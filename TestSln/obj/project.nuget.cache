@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "nlYrqJmmc/QEjLq4UbcvVsLABICap6yvqb4pft50KVg+xXh+9+TG7GdJrUpLvUdUEuJw85N87kKkcNKm9kA0gA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\JHema\\source\\repos\\CSE3902Project\\TestSln\\TestSln.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\JHema\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\JHema\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+  ],
+  "logs": []
+}
