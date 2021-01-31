@@ -31,7 +31,8 @@ namespace sprint0
 
             foreach (Keys key in pressedKeys)
             {
-                controllerMappings[key].Execute();
+                if (controllerMappings.ContainsKey(key))
+                    controllerMappings[key].Execute();
             }
         }
     }

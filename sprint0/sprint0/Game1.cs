@@ -37,12 +37,16 @@ namespace sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            texture = Content.Load<Texture2D>("Images/samus-sprites");
-            font = Content.Load<SpriteFont>("Font");
-            sprite = new NonMovingNonAnimatedSprite(texture);
-            text = new TextSprite(Font, "Credits\n" +
-                "Program made by: Jesse He\n" +
-                "Sprites from: www.spriters-resource.com/game_boy_advance/metzero/sheet/106418/");
+            //texture = Content.Load<Texture2D>("Images/samus-sprites");
+            //font = Content.Load<SpriteFont>("Font");
+            //sprite = new NonMovingNonAnimatedSprite(texture, new Vector2(400, 200));
+            //text = new TextSprite(Font, "Credits\n" +
+            //    "Program made by: Jesse He\n" +
+            //    "Sprites from: www.spriters-resource.com/game_boy_advance/metzero/sheet/106418/");
+            //text.Location = new Vector2(100, 400);
+            SpriteFactory spriteFactory = new SpriteFactory(this);
+            sprite = spriteFactory.MakeSprite("old woman");
+            sprite.Location = new Vector2(400, 200);
         }
 
         protected override void Update(GameTime gameTime)
@@ -50,10 +54,11 @@ namespace sprint0
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            foreach (IController controller in controllerList)
-            {
-                controller.Update();
-            }
+            //TODO need to make new commands
+            //foreach (IController controller in controllerList)
+            //{
+            //    controller.Update();
+            //}
             Sprite.Update();
             base.Update(gameTime);
         }
@@ -62,8 +67,8 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
-            text.Draw(_spriteBatch, new Vector2(100, 400));
-            sprite.Draw(_spriteBatch, new Vector2(400, 200));
+            //text.Draw(_spriteBatch);
+            sprite.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

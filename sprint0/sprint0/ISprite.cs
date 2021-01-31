@@ -8,7 +8,8 @@ namespace sprint0
 {
     public interface ISprite
     {
+        public Vector2 Location { get; set; }
         public void Update();
-        public void Draw(SpriteBatch spriteBatch, Vector2 location);
+        public void Draw(SpriteBatch spriteBatch);
     }
 }
