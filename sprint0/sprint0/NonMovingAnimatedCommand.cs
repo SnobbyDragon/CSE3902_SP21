@@ -1,4 +1,6 @@
-﻿namespace sprint0
+﻿using Microsoft.Xna.Framework;
+
+namespace sprint0
 {
     public class NonMovingAnimatedCommand : ICommand
     {
@@ -9,7 +11,7 @@
         }
         public void Execute()
         {
-            game.Sprite = new NonMovingAnimatedSprite(game.Texture);
+            game.Sprite = new NonMovingAnimatedSprite(game.Texture, new Vector2(400, 200));
         }
     }
 }

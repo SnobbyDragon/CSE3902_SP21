@@ -8,14 +8,15 @@ namespace sprint0
 {
     class MovingAnimatedSprite : ISprite
     {
+        public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private List<Rectangle> frameList;
         private int currentFrame;
-        private int xPos;
+        private int xPos; //TODO delete this
         private int repeatFrames;
         private int count;
 
-        public MovingAnimatedSprite(Texture2D texture)
+        public MovingAnimatedSprite(Texture2D texture, Vector2 location)
         {
             Texture = texture;
             frameList = new List<Rectangle>();
@@ -33,12 +34,14 @@ namespace sprint0
             frameList.Add(new Rectangle(766, 217, 29, 37));
             frameList.Add(new Rectangle(803, 216, 30, 38));
             frameList.Add(new Rectangle(842, 217, 27, 37));
+            Location = location;
         }
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+
+        public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle sourceRectangle = frameList[currentFrame];
-            Rectangle destinationRectangle = new Rectangle(xPos - 50 + 32 - sourceRectangle.Width,
-                (int)location.Y + 38 - sourceRectangle.Height, sourceRectangle.Width, sourceRectangle.Height);
+            Rectangle destinationRectangle = new Rectangle((int)Location.X - 50 + 32 - sourceRectangle.Width,
+                (int)Location.Y + 38 - sourceRectangle.Height, sourceRectangle.Width, sourceRectangle.Height);
 
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
         }
