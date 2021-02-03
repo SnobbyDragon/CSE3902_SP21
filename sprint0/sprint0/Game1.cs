@@ -45,7 +45,7 @@ namespace sprint0
             //    "Sprites from: www.spriters-resource.com/game_boy_advance/metzero/sheet/106418/");
             //text.Location = new Vector2(100, 400);
             SpriteFactory spriteFactory = new SpriteFactory(this);
-            sprite = spriteFactory.MakeSprite("old man 2");
+            sprite = spriteFactory.MakeSprite("aquamentus");
             sprite.Location = new Vector2(400, 200);
         }
 
