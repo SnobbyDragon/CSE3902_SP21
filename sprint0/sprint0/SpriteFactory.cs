@@ -20,22 +20,37 @@ namespace sprint0
             {
                 case "old man 1":
                     texture = game.Content.Load<Texture2D>("Images/NPCs");
-                    return new OldPerson(texture, new Rectangle(1,11,16,16));
+                    return new OldPerson(texture, "man 1");
                 case "old man 2":
                     texture = game.Content.Load<Texture2D>("Images/NPCs");
-                    return new OldPerson(texture, new Rectangle(18, 11, 16, 16));
+                    return new OldPerson(texture, "man 2");
                 case "old woman":
                     texture = game.Content.Load<Texture2D>("Images/NPCs");
-                    return new OldPerson(texture, new Rectangle(35, 11, 16, 16));
+                    return new OldPerson(texture, "woman");
                 case "green merchant":
                     texture = game.Content.Load<Texture2D>("Images/NPCs");
-                    return new Merchant(texture, new Rectangle(109, 11, 16, 16));
+                    return new Merchant(texture, "green");
                 case "white merchant":
                     texture = game.Content.Load<Texture2D>("Images/NPCs");
-                    return new Merchant(texture, new Rectangle(126, 11, 16, 16));
+                    return new Merchant(texture, "white");
                 case "red merchant":
                     texture = game.Content.Load<Texture2D>("Images/NPCs");
-                    return new Merchant(texture, new Rectangle(143, 11, 16, 16));
+                    return new Merchant(texture, "red");
+                case "red heart":
+                    texture = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
+                    return new Heart(texture, "red");
+                case "half heart":
+                    texture = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
+                    return new Heart(texture, "half");
+                case "pink heart":
+                    texture = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
+                    return new Heart(texture, "pink");
+                case "blue heart":
+                    texture = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
+                    return new Heart(texture, "blue");
+                case "heart container":
+                    texture = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
+                    return new HeartContainer(texture);
                 default:
                     return null;
             }
