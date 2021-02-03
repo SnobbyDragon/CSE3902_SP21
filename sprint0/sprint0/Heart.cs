@@ -5,23 +5,24 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Merchant : ISprite
+    public class Heart : ISprite
     {
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         public String Type { get; set; }
-        private readonly int xOffset = 109, yOffset = 11, size = 16;
+        private readonly int width = 7, height = 8;
         private Dictionary<String, Rectangle> typeRectMap;
 
-        public Merchant(Texture2D texture, String type)
+        public Heart(Texture2D texture, String type)
         {
             Texture = texture;
-            this.Type = type;
+            Type = type;
             typeRectMap = new Dictionary<String, Rectangle>
             {
-                { "green", new Rectangle(xOffset, yOffset, size, size) },
-                { "white", new Rectangle(xOffset + size + 1, yOffset, size, size) },
-                { "red", new Rectangle(xOffset + 2 * (size + 1), yOffset, size, size) }
+                { "red", new Rectangle(0, 0, width, height) },
+                { "half", new Rectangle(width + 1, 0, width, height) },
+                { "pink", new Rectangle(2 * (width + 1), 0, width, height) },
+                { "blue", new Rectangle(0, height, width, height) }
             };
         }
 
@@ -32,7 +33,7 @@ namespace sprint0
 
         public void Update()
         {
-            // does nothing for now; probably buy/sell stuff later???
+            // does nothing for now
         }
     }
 }
