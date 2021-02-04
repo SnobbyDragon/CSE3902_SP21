@@ -32,6 +32,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/Bosses.png
 
+#begin Images/DungeonEnemies.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=116,116,116,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/DungeonEnemies.png
+
 #begin Images/ItemsAndWeapons.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -56,15 +68,15 @@
 /processorParam:TextureFormat=Color
 /build:Images/NPCs.png
 
-#begin Images/samus-sprites.png
+#begin Images/OverworldEnemies.png
 /importer:TextureImporter
 /processor:TextureProcessor
-/processorParam:ColorKeyColor=0,15,58,255
+/processorParam:ColorKeyColor=116,116,116,255
 /processorParam:ColorKeyEnabled=True
 /processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/samus-sprites.png
+/build:Images/OverworldEnemies.png
 

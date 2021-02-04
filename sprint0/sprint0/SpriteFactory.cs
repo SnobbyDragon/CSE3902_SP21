@@ -51,6 +51,15 @@ namespace sprint0
                 case "heart container":
                     texture = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
                     return new HeartContainer(texture);
+                case "wallmaster":
+                    texture = game.Content.Load<Texture2D>("Images/DungeonEnemies");
+                    return new Wallmaster(texture);
+                case "aquamentus":
+                    texture = game.Content.Load<Texture2D>("Images/Bosses");
+                    return new Aquamentus(texture);
+                case "aquamentus fireball":
+                    texture = game.Content.Load<Texture2D>("Images/Bosses");
+                    return new AquamentusFireball(texture);
                 default:
                     return null;
             }
