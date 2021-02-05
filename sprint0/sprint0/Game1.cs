@@ -10,6 +10,7 @@ namespace sprint0
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         List<IController> controllerList;
+        private List<ISprite> sprites;
         private ISprite sprite;
         private ISprite text;
         private Texture2D texture;
@@ -37,16 +38,24 @@ namespace sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            //texture = Content.Load<Texture2D>("Images/samus-sprites");
-            //font = Content.Load<SpriteFont>("Font");
-            //sprite = new NonMovingNonAnimatedSprite(texture, new Vector2(400, 200));
-            //text = new TextSprite(Font, "Credits\n" +
-            //    "Program made by: Jesse He\n" +
-            //    "Sprites from: www.spriters-resource.com/game_boy_advance/metzero/sheet/106418/");
-            //text.Location = new Vector2(100, 400);
             SpriteFactory spriteFactory = new SpriteFactory(this);
-            sprite = spriteFactory.MakeSprite("aquamentus");
-            sprite.Location = new Vector2(400, 200);
+            sprites = new List<ISprite> // testing sprites here
+            {
+                spriteFactory.MakeSprite("ganon fireball center", new Vector2(400, 200)),
+                spriteFactory.MakeSprite("ganon fireball up", new Vector2(415, 200)),
+                spriteFactory.MakeSprite("ganon fireball up left", new Vector2(430, 200)),
+                spriteFactory.MakeSprite("ganon fireball left", new Vector2(445, 200)),
+                spriteFactory.MakeSprite("ganon fireball down left", new Vector2(460, 200)),
+                spriteFactory.MakeSprite("ganon fireball down", new Vector2(475, 200)),
+                spriteFactory.MakeSprite("ganon fireball down right", new Vector2(490, 200)),
+                spriteFactory.MakeSprite("ganon fireball right", new Vector2(505, 200)),
+                spriteFactory.MakeSprite("ganon fireball up right", new Vector2(520, 200)),
+                spriteFactory.MakeSprite("orange gohma", new Vector2(420, 420)),
+                spriteFactory.MakeSprite("blue gohma", new Vector2(450, 450)),
+                spriteFactory.MakeSprite("patra", new Vector2(300, 150)),
+                spriteFactory.MakeSprite("patra minion", new Vector2(320, 150)),
+                spriteFactory.MakeSprite("manhandla", new Vector2(100,100))
+            };
         }
 
         protected override void Update(GameTime gameTime)
@@ -59,16 +68,18 @@ namespace sprint0
             //{
             //    controller.Update();
             //}
-            Sprite.Update();
+            foreach (ISprite _sprite in sprites)
+                _sprite.Update();
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
             //text.Draw(_spriteBatch);
-            sprite.Draw(_spriteBatch);
+            foreach (ISprite _sprite in sprites)
+                _sprite.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

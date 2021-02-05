@@ -5,38 +5,38 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Wallmaster : ISprite
+    public class GleeokFireball : ISprite
     {
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 393, yOffset = 11, size = 16;
+        private readonly int xOffset = 271, yOffset = 31, width = 8, height = 10;
         private List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
 
-        public Wallmaster(Texture2D texture, Vector2 location)
+        public GleeokFireball(Texture2D texture, Vector2 location)
         {
             Location = location;
             Texture = texture;
-            sources = new List<Rectangle>
-            {
-                new Rectangle(xOffset, yOffset, size, size),
-                new Rectangle(xOffset + size + 1, yOffset, size, size)
-            };
             currFrame = 0;
-            totalFrames = 2;
-            repeatedFrames = 8;
+            totalFrames = 4;
+            repeatedFrames = 2;
+            sources = new List<Rectangle>();
+            for (int frame = 0; frame < totalFrames; frame++)
+            {
+                sources.Add(new Rectangle(xOffset + frame * (width + 1), yOffset, width, height));
+            };
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, sources[currFrame/repeatedFrames], Color.White);
+            spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
         }
 
         public void Update()
         {
             // animates all the time for now
-            currFrame = (currFrame + 1) % (totalFrames*repeatedFrames);
+            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
     }
 }

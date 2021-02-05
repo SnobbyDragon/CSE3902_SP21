@@ -13,8 +13,9 @@ namespace sprint0
         private readonly int xOffset = 1, yOffset = 11, size = 16;
         private Dictionary<String, Rectangle> typeRectMap;
 
-        public OldPerson(Texture2D texture, String type)
+        public OldPerson(Texture2D texture, Vector2 location, String type)
         {
+            Location = location;
             Texture = texture;
             Type = type;
             typeRectMap = new Dictionary<String, Rectangle>

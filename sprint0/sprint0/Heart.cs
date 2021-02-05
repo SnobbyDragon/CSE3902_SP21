@@ -13,8 +13,9 @@ namespace sprint0
         private readonly int width = 7, height = 8;
         private Dictionary<String, Rectangle> typeRectMap;
 
-        public Heart(Texture2D texture, String type)
+        public Heart(Texture2D texture, Vector2 location, String type)
         {
+            Location = location;
             Texture = texture;
             Type = type;
             typeRectMap = new Dictionary<String, Rectangle>
