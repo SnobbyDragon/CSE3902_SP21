@@ -14,8 +14,9 @@ namespace sprint0
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
 
-        public Aquamentus(Texture2D texture)
+        public Aquamentus(Texture2D texture, Vector2 location)
         {
+            Location = location;
             Texture = texture;
             currFrame = 0;
             totalFrames = 4;
