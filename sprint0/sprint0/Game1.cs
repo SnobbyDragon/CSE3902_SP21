@@ -54,7 +54,9 @@ namespace sprint0
                 bossSpriteFactory.MakeSprite("blue gohma", new Vector2(450, 450)),
                 bossSpriteFactory.MakeSprite("patra", new Vector2(300, 150)),
                 bossSpriteFactory.MakeSprite("patra minion", new Vector2(320, 150)),
-                bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,100))
+                bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,100)),
+                bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,100))
+
             };
         }
 

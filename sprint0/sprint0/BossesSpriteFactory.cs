@@ -60,6 +60,8 @@ namespace sprint0
                     return new Gohma(texture, location, "orange");
                 case "blue gohma":
                     return new Gohma(texture, location, "blue");
+                case "dodongo":
+                    return new Dodongo(texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }
