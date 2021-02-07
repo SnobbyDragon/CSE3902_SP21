@@ -44,26 +44,28 @@ namespace sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            BossesSpriteFactory bossSpriteFactory = new BossesSpriteFactory(this);
             SpriteFactory spriteFactory = new SpriteFactory(this);
             playerFactory = new PlayerSpriteFactory(this);
             player = new Link(new UpIdleState(playerFactory.MakeSprite("link up idle", new Vector2(200, 250))), new Vector2(200, 250));
-
             sprites = new List<ISprite> // testing sprites here
             {
-                spriteFactory.MakeSprite("ganon fireball center", new Vector2(400, 200)),
-                spriteFactory.MakeSprite("ganon fireball up", new Vector2(415, 200)),
-                spriteFactory.MakeSprite("ganon fireball up left", new Vector2(430, 200)),
-                spriteFactory.MakeSprite("ganon fireball left", new Vector2(445, 200)),
-                spriteFactory.MakeSprite("ganon fireball down left", new Vector2(460, 200)),
-                spriteFactory.MakeSprite("ganon fireball down", new Vector2(475, 200)),
-                spriteFactory.MakeSprite("ganon fireball down right", new Vector2(490, 200)),
-                spriteFactory.MakeSprite("ganon fireball right", new Vector2(505, 200)),
-                spriteFactory.MakeSprite("ganon fireball up right", new Vector2(520, 200)),
-                spriteFactory.MakeSprite("orange gohma", new Vector2(420, 420)),
-                spriteFactory.MakeSprite("blue gohma", new Vector2(450, 450)),
-                spriteFactory.MakeSprite("patra", new Vector2(300, 150)),
-                spriteFactory.MakeSprite("patra minion", new Vector2(320, 150)),
-                spriteFactory.MakeSprite("manhandla", new Vector2(100,100))
+                bossSpriteFactory.MakeSprite("ganon fireball center", new Vector2(400, 200)),
+                bossSpriteFactory.MakeSprite("ganon fireball up", new Vector2(415, 200)),
+                bossSpriteFactory.MakeSprite("ganon fireball up left", new Vector2(430, 200)),
+                bossSpriteFactory.MakeSprite("ganon fireball left", new Vector2(445, 200)),
+                bossSpriteFactory.MakeSprite("ganon fireball down left", new Vector2(460, 200)),
+                bossSpriteFactory.MakeSprite("ganon fireball down", new Vector2(475, 200)),
+                bossSpriteFactory.MakeSprite("ganon fireball down right", new Vector2(490, 200)),
+                bossSpriteFactory.MakeSprite("ganon fireball right", new Vector2(505, 200)),
+                bossSpriteFactory.MakeSprite("ganon fireball up right", new Vector2(520, 200)),
+                bossSpriteFactory.MakeSprite("orange gohma", new Vector2(420, 420)),
+                bossSpriteFactory.MakeSprite("blue gohma", new Vector2(450, 450)),
+                bossSpriteFactory.MakeSprite("patra", new Vector2(300, 150)),
+                bossSpriteFactory.MakeSprite("patra minion", new Vector2(320, 150)),
+                bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,100)),
+                bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,100))
+
             };
         }
 
