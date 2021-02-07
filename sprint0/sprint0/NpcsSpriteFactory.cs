@@ -7,16 +7,17 @@ namespace sprint0
     public class NpcsSpriteFactory
     {
         Game1 game;
+        Texture2D texture;
 
         public NpcsSpriteFactory(Game1 game)
         {
             this.game = game;
+            texture = game.Content.Load<Texture2D>("Images/NPCs");
         }
 
         public ISprite MakeSprite(String spriteType, Vector2 location)
         {
-            Texture2D texture;
-            texture = game.Content.Load<Texture2D>("Images/NPCs");
+            
             switch (spriteType)
             {
                 case "old man 1":

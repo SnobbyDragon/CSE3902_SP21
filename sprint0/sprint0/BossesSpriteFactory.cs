@@ -7,16 +7,18 @@ namespace sprint0
     public class BossesSpriteFactory
     {
         Game1 game;
+        private Texture2D texture;
+        
 
         public BossesSpriteFactory(Game1 game)
         {
             this.game = game;
+            texture = game.Content.Load<Texture2D>("Images/Bosses");
         }
 
         public ISprite MakeSprite(String spriteType, Vector2 location)
         {
-            Texture2D texture;
-            texture = game.Content.Load<Texture2D>("Images/Bosses");
+            
             switch (spriteType)
             {
      
