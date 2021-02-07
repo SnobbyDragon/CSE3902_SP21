@@ -45,7 +45,7 @@ namespace sprint0
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             BossesSpriteFactory bossSpriteFactory = new BossesSpriteFactory(this);
-            SpriteFactory spriteFactory = new SpriteFactory(this);
+//             SpriteFactory spriteFactory = new SpriteFactory(this);
             playerFactory = new PlayerSpriteFactory(this);
             player = new Link(new UpIdleState(playerFactory.MakeSprite("link up idle", new Vector2(200, 250))), new Vector2(200, 250));
             sprites = new List<ISprite> // testing sprites here
