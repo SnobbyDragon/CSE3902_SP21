@@ -13,11 +13,16 @@ namespace sprint0
         {
             this.game = game;
             controllerMappings = new Dictionary<Keys, ICommand>();
-            RegisterCommand(Keys.D0, new QuitCommand(game));
-            RegisterCommand(Keys.D1, new NonMovingNonAnimatedCommand(game));
-            RegisterCommand(Keys.D2, new NonMovingAnimatedCommand(game));
-            RegisterCommand(Keys.D3, new MovingNonAnimatedCommand(game));
-            RegisterCommand(Keys.D4, new MovingAnimatedCommand(game));
+            RegisterCommand(Keys.Q, new QuitCommand(game));
+
+            RegisterCommand(Keys.W, new UpCommand(game));
+            RegisterCommand(Keys.S, new DownCommand(game));
+            RegisterCommand(Keys.A, new LeftCommand(game));
+            RegisterCommand(Keys.D, new RightCommand(game));
+            RegisterCommand(Keys.Up, new UpCommand(game));
+            RegisterCommand(Keys.Down, new DownCommand(game));
+            RegisterCommand(Keys.Left, new LeftCommand(game));
+            RegisterCommand(Keys.Right, new RightCommand(game));
         }
 
         public void RegisterCommand(Keys key, ICommand command)
