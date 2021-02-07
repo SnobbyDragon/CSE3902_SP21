@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace sprint0
@@ -9,15 +10,20 @@ namespace sprint0
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        List<IController> controllerList;
+        private List<IController> controllerList;
         private List<ISprite> sprites;
+        private Dictionary<String, ISprite> playerSprites;
         private ISprite sprite;
         private ISprite text;
         private Texture2D texture;
         private SpriteFont font;
+        private IPlayer player;
+        private PlayerSpriteFactory playerFactory;
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public Texture2D Texture { get => texture; }
         public SpriteFont Font { get => font; set => font = value; }
+        public IPlayer Player { get => player; set => player = value; }
+        internal PlayerSpriteFactory PlayerFactory { get => playerFactory; set => playerFactory = value; }
 
         public Game1()
         {
@@ -39,6 +45,9 @@ namespace sprint0
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             BossesSpriteFactory bossSpriteFactory = new BossesSpriteFactory(this);
+            SpriteFactory spriteFactory = new SpriteFactory(this);
+            playerFactory = new PlayerSpriteFactory(this);
+            player = new Link(new UpIdleState(playerFactory.MakeSprite("link up idle", new Vector2(200, 250))), new Vector2(200, 250));
             sprites = new List<ISprite> // testing sprites here
             {
                 bossSpriteFactory.MakeSprite("ganon fireball center", new Vector2(400, 200)),
@@ -66,10 +75,11 @@ namespace sprint0
                 Exit();
 
             //TODO need to make new commands
-            //foreach (IController controller in controllerList)
-            //{
-            //    controller.Update();
-            //}
+            foreach (IController controller in controllerList)
+            {
+                controller.Update();
+            }
+
             foreach (ISprite _sprite in sprites)
                 _sprite.Update();
             base.Update(gameTime);
@@ -80,6 +90,7 @@ namespace sprint0
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
             //text.Draw(_spriteBatch);
+            player.State.Sprite.Draw(_spriteBatch);
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
             _spriteBatch.End();

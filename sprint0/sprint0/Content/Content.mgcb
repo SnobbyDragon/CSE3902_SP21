@@ -56,6 +56,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/ItemsAndWeapons.png
 
+#begin Images/Link.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=116,116,116,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Link.png
+
 #begin Images/NPCs.png
 /importer:TextureImporter
 /processor:TextureProcessor
