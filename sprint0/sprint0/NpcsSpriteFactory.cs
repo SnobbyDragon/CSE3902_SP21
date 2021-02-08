@@ -32,6 +32,8 @@ namespace sprint0
                     return new Merchant(texture, location, "white");
                 case "red merchant":
                     return new Merchant(texture, location, "red");
+                case "flame":
+                    return new Flame(texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }
