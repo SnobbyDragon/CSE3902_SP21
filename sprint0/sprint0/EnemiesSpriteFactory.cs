@@ -39,6 +39,18 @@ namespace sprint0
                     return new Gel(texture, location, "grey");
                 case "blkwhite gel":
                     return new Gel(texture, location, "blkwhite");
+                case "green zol":
+                    return new Zol(texture, location, "green");
+                case "blkgold zol":
+                    return new Zol(texture, location, "blkgold");
+                case "lime zol":
+                    return new Zol(texture, location, "lime");
+                case "brown zol":
+                    return new Zol(texture, location, "brown");
+                case "grey zol":
+                    return new Zol(texture, location, "grey");
+                case "blkwhite zol":
+                    return new Zol(texture, location, "blkwhite");
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }

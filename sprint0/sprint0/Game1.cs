@@ -78,6 +78,8 @@ namespace sprint0
                 itemFactory.MakeSprite("clock", new Vector2(740,300)),
                 enemyFactory.MakeSprite("teal gel", new Vector2(340,300)),
                 enemyFactory.MakeSprite("blkwhite gel", new Vector2(360,300)),
+                enemyFactory.MakeSprite("green zol", new Vector2(440,300)),
+                enemyFactory.MakeSprite("blkwhite zol", new Vector2(460,300)),
 
             };
         }
