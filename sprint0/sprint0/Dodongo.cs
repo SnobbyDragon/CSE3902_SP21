@@ -15,7 +15,7 @@ namespace sprint0
         private int repeatedFrames=10;
 
 
-        //TODO:fix this my making seperate classes
+        //TODO:fix this by making seperate classes
         enum Direction {left,right,front,back}
         private Direction direction = Direction.left;
 
