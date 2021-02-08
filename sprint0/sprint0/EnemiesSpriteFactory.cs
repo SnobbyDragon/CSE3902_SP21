@@ -23,6 +23,22 @@ namespace sprint0
                 
                 case "wallmaster":
                     return new Wallmaster(texture, location);
+                case "teal gel":
+                    return new Gel(texture, location,"teal");
+                case "blue gel":
+                    return new Gel(texture, location, "blue");
+                case "green gel":
+                    return new Gel(texture, location, "green");
+                case "blkgold gel":
+                    return new Gel(texture, location, "blkgold");
+                case "lime gel":
+                    return new Gel(texture, location, "lime");
+                case "brown gel":
+                    return new Gel(texture, location, "brown");
+                case "grey gel":
+                    return new Gel(texture, location, "grey");
+                case "blkwhite gel":
+                    return new Gel(texture, location, "blkwhite");
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }

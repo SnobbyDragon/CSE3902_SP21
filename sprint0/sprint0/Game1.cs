@@ -47,6 +47,7 @@ namespace sprint0
             BossesSpriteFactory bossSpriteFactory = new BossesSpriteFactory(this);
             DungeonFactory dungeonFactory = new DungeonFactory(this);
             ItemsWeaponsSpriteFactory itemFactory = new ItemsWeaponsSpriteFactory(this);
+            EnemiesSpriteFactory enemyFactory = new EnemiesSpriteFactory(this);
             playerFactory = new PlayerSpriteFactory(this);
             player = new Link(new UpIdleState(playerFactory.MakeSprite("link up idle", new Vector2(200, 250))), new Vector2(200, 250));
             sprites = new List<ISprite> // testing sprites here
@@ -75,6 +76,8 @@ namespace sprint0
                 itemFactory.MakeSprite("fairy", new Vector2(700,300)),
                 itemFactory.MakeSprite("bomb", new Vector2(720,300)),
                 itemFactory.MakeSprite("clock", new Vector2(740,300)),
+                enemyFactory.MakeSprite("teal gel", new Vector2(340,300)),
+                enemyFactory.MakeSprite("blkwhite gel", new Vector2(360,300)),
 
             };
         }
