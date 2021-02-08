@@ -32,6 +32,12 @@ namespace sprint0
                     return new Heart(texture, location, "blue");
                 case "heart container":
                     return new HeartContainer(texture, location);
+                case "fairy":
+                    return new Fairy(texture, location);
+                case "bomb":
+                    return new Bomb(texture, location);
+                case "clock":
+                    return new Clock(texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }

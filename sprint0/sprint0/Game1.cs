@@ -45,7 +45,10 @@ namespace sprint0
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             BossesSpriteFactory bossSpriteFactory = new BossesSpriteFactory(this);
-//             SpriteFactory spriteFactory = new SpriteFactory(this);
+            DungeonFactory dungeonFactory = new DungeonFactory(this);
+            ItemsWeaponsSpriteFactory itemFactory = new ItemsWeaponsSpriteFactory(this);
+            EnemiesSpriteFactory enemyFactory = new EnemiesSpriteFactory(this);
+            NpcsSpriteFactory npcFactory = new NpcsSpriteFactory(this);
             playerFactory = new PlayerSpriteFactory(this);
             player = new Link(new UpIdleState(playerFactory.MakeSprite("link up idle", new Vector2(200, 250))), new Vector2(200, 250));
             sprites = new List<ISprite> // testing sprites here
@@ -64,8 +67,21 @@ namespace sprint0
                 bossSpriteFactory.MakeSprite("patra", new Vector2(300, 150)),
                 bossSpriteFactory.MakeSprite("patra minion", new Vector2(320, 150)),
                 bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,100)),
-                bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,100))
-
+                bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,100)),
+                dungeonFactory.MakeSprite("block", new Vector2(600,200)),
+                dungeonFactory.MakeSprite("tile", new Vector2(620,200)),
+                dungeonFactory.MakeSprite("gap", new Vector2(640,200)),
+                dungeonFactory.MakeSprite("stairs", new Vector2(660,200)),
+                dungeonFactory.MakeSprite("ladder", new Vector2(680,200)),
+                dungeonFactory.MakeSprite("brick", new Vector2(700,200)),
+                itemFactory.MakeSprite("fairy", new Vector2(700,300)),
+                itemFactory.MakeSprite("bomb", new Vector2(720,300)),
+                itemFactory.MakeSprite("clock", new Vector2(740,300)),
+                enemyFactory.MakeSprite("teal gel", new Vector2(340,300)),
+                enemyFactory.MakeSprite("blkwhite gel", new Vector2(360,300)),
+                enemyFactory.MakeSprite("green zol", new Vector2(440,300)),
+                enemyFactory.MakeSprite("snake", new Vector2(460,300)),
+                npcFactory.MakeSprite("flame", new Vector2(560,300)),
             };
         }
 
