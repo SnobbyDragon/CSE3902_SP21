@@ -15,7 +15,7 @@ namespace sprint0
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
 
-        public Keese(Texture2D texture, Vector2 location)
+        public GoriyaBoomerang(Texture2D texture, Vector2 location)
         {
             Location = location;
             Texture = texture;
