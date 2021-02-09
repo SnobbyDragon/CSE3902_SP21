@@ -17,14 +17,14 @@ namespace sprint0
 
         public ISprite MakeSprite(String spriteType, Vector2 location)
         {
-            
+
             switch (spriteType)
             {
-                
+
                 case "wallmaster":
                     return new Wallmaster(texture, location);
                 case "teal gel":
-                    return new Gel(texture, location,"teal");
+                    return new Gel(texture, location, "teal");
                 case "blue gel":
                     return new Gel(texture, location, "blue");
                 case "green gel":
@@ -53,6 +53,10 @@ namespace sprint0
                     return new Zol(texture, location, "blkwhite");
                 case "snake":
                     return new Snake(texture, location);
+                case "stalfos":
+                    return new Stalfos(texture, location);
+                case "trap":
+                    return new Trap(texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }
