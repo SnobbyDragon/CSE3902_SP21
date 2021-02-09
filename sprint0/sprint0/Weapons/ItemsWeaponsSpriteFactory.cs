@@ -38,6 +38,8 @@ namespace sprint0
                     return new Bomb(texture, location);
                 case "clock":
                     return new Clock(texture, location);
+                case "boomerang":
+                    return new Boomerang(texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }

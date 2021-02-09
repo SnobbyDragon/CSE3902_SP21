@@ -53,6 +53,10 @@ namespace sprint0
                     return new Zol(texture, location, "blkwhite");
                 case "snake":
                     return new Snake(texture, location);
+                case "goriya":
+                    return new Goriya(texture, location);
+                case "keese":
+                    return new Keese (texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }
