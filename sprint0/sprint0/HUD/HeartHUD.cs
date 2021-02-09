@@ -27,7 +27,7 @@ namespace sprint0
             for (int frame = 0; frame < totalFrames; frame++)
             {
                 sources.Add(new Rectangle(xPos, yPos, sideLength, sideLength));
-                xPos += sideLength;
+                xPos += sideLength + 1;
             }
         }
 
@@ -35,17 +35,19 @@ namespace sprint0
         {
             int xShift = 0;
             int yShift = 0;
+            int heartCount = 0;
             for (int i = 0; i < heartState.Length; i++)
             {
                 for (int num = 0; num < heartState[i]; num++)
                 {
-                    if (xShift == 65)
+                    if (heartCount == 8)
                     {
                         xShift = 0;
                         yShift = 9;
                     }
-                    spriteBatch.Draw(Texture, new Vector2(Location.X + xShift, Location.Y + yShift), sources[0], Color.White);
+                    spriteBatch.Draw(Texture, new Vector2(Location.X + xShift, Location.Y + yShift), sources[i], Color.White);
                     xShift += sideLength;
+                    heartCount++;
                 }
             }
         }

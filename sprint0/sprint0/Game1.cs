@@ -89,11 +89,11 @@ namespace sprint0
                 enemyFactory.MakeSprite("stalfos", new Vector2(300,300)),
                 enemyFactory.MakeSprite("trap", new Vector2(400,400)),
                 npcFactory.MakeSprite("flame", new Vector2(560,300)),
-                /*hudFactory.MakeSprite("hud", new Vector2(600,0)),
-                hudFactory.MakeSprite("rinventory 15", new Vector2(600,0)),
-                hudFactory.MakeSprite("kinventory ", new Vector2(600,0)),
-                hudFactory.MakeSprite("binventory ", new Vector2(600,0)),
-                hudFactory.MakeSprite("hinventory 5,10", new Vector2(600,0)),*/
+                hudFactory.MakeSprite("hud", new Vector2(400,0)),
+                hudFactory.MakeSprite("rinventory 15", new Vector2(400,0)),
+                hudFactory.MakeSprite("kinventory 5", new Vector2(400,0)),
+                hudFactory.MakeSprite("binventory 33", new Vector2(400,0)),
+                hudFactory.MakeSprite("hinventory 5,10", new Vector2(400,0)),
 
 
             };

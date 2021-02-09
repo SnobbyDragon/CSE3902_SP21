@@ -13,7 +13,7 @@ namespace sprint0
         public HUDFactory(Game1 game)
         {
             this.game = game;
-            //texture = game.Content.Load<Texture2D>("Images/HUDPauseScreen");
+            texture = game.Content.Load<Texture2D>("Images/HUDPauseScreen");
         }
 
         public ISprite MakeSprite(String spriteType, Vector2 location)
@@ -35,21 +35,21 @@ namespace sprint0
                         int rupeeNum = 0;
                         int.TryParse(numString, out rupeeNum);
 
-                        return new RupeeHUD(texture, new Vector2(location.X + 96, location.Y + 16), rupeeNum);
+                        return new RupeeHUD(texture, new Vector2(location.X + 97, location.Y + 16), rupeeNum);
                     //location: 96, 16 plus HUD location
                     case "kinventory ":
 
                         int keyNum = 0;
                         int.TryParse(numString, out keyNum);
 
-                        return new KeyHUD(texture, new Vector2(location.X + 96, location.Y + 32), keyNum);
+                        return new KeyHUD(texture, new Vector2(location.X + 97, location.Y + 32), keyNum);
 
                     case "binventory ": //bomb inventory
 
                         int bombNum = 0;
                         int.TryParse(numString, out bombNum);
 
-                        return new BombHUD(texture, new Vector2(location.X + 96, location.Y + 40), bombNum);
+                        return new BombHUD(texture, new Vector2(location.X + 97, location.Y + 40), bombNum);
 
                     case "hinventory ": //heart inventory/state
 
@@ -57,10 +57,10 @@ namespace sprint0
                         int[] heartNum = { 0, 0, 0 };
                         int sum = 16;
 
-                        for (int i = 1; i < heartNumString.Length; i++)
+                        for (int i = 0; i < heartNumString.Length; i++)
                         {
-                            int.TryParse(heartNumString[i], out heartNum[i]);
-                            sum -= heartNum[i];
+                            int.TryParse(heartNumString[i], out heartNum[i + 1]);
+                            sum -= heartNum[i + 1];
                         }
                         heartNum[0] = sum;
 

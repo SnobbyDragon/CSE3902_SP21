@@ -26,7 +26,7 @@ namespace sprint0
             for (int frame = 0; frame < totalFrames; frame++)
             {
                 sources.Add(new Rectangle(xPos, yPos, sideLength, sideLength));
-                xPos += sideLength;
+                xPos += sideLength + 1;
             }
             sources.Add(new Rectangle(519, yPos, sideLength, sideLength));
         }
@@ -35,8 +35,8 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, sources[10], Color.White);
-            spriteBatch.Draw(Texture, Location, sources[rupeeNumTens], Color.White);
-            spriteBatch.Draw(Texture, Location, sources[rupeeNumOnes], Color.White);
+            spriteBatch.Draw(Texture, new Vector2(Location.X + 8, Location.Y), sources[rupeeNumTens], Color.White);
+            spriteBatch.Draw(Texture, new Vector2(Location.X + 16, Location.Y), sources[rupeeNumOnes], Color.White);
         }
 
         public void Update()
