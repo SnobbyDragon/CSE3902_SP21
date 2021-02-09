@@ -21,7 +21,7 @@ namespace sprint0
             Texture = texture;
             sources = new List<Rectangle>
             {
-                new Rectangle(xOffset, yOffset, size, size),
+                new Rectangle(xOffset, yOffset, sizeX, sizeY),
                 new Rectangle(xOffset + sizeX + 1, yOffset, sizeX, sizeY),
                 new Rectangle(xOffset + sizeX*2 + 2, yOffset, sizeX, sizeY)
             };
