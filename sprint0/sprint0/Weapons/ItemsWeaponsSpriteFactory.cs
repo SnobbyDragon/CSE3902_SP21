@@ -17,11 +17,11 @@ namespace sprint0
 
         public ISprite MakeSprite(String spriteType, Vector2 location)
         {
-            
-           
+
+
             switch (spriteType)
             {
-                
+
                 case "red heart":
                     return new Heart(texture, location, "red");
                 case "half heart":
@@ -38,6 +38,14 @@ namespace sprint0
                     return new Bomb(texture, location);
                 case "clock":
                     return new Clock(texture, location);
+                case "arrow":
+                    return new Arrow(texture, location);
+                case "compass":
+                    return new Compass(texture, location);
+                case "key":
+                    return new Key(texture, location);
+                case "rupee":
+                    return new Rupee(texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }
