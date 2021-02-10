@@ -42,9 +42,9 @@ namespace sprint0
                     return new Boomerang(texture, location);
                 case "bow":
                     return new Bow(texture, location);
-                case "triforce piece":
+                case "gold triforce piece":
                     return new TriforcePiece(texture, location, "gold");
-                case "triforce piece":
+                case "blue triforce piece":
                     return new TriforcePiece(texture, location, "blue");
                 case "arrow":
                     return new Arrow(texture, location);

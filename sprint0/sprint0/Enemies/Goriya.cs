@@ -13,6 +13,7 @@ namespace sprint0
         private int currentFrame;
         private string color;
         private readonly int totalFrames, repeatedFrames;
+        private Dictionary<string, List<Rectangle>> colorMap;
 
         public Goriya(Texture2D texture, Vector2 location, String goriyaColor)
         {
@@ -48,7 +49,7 @@ namespace sprint0
         public void Update()
         {
             // animates all the time for now
-            currFrame = (currFrame + 1) % (totalFrames*repeatedFrames);
+            currentFrame = (currentFrame + 1) % (totalFrames*repeatedFrames);
         }
     }
 }
