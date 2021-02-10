@@ -9,30 +9,40 @@ namespace sprint0
     {
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 222, yOffset = 11, size = 15;
         private List<Rectangle> sources;
         private int currFrame;
+        private string color;
         private readonly int totalFrames, repeatedFrames;
 
-        public Goriya(Texture2D texture, Vector2 location)
+        public Goriya(Texture2D texture, Vector2 location, String goriyaColor)
         {
             Location = location;
             Texture = texture;
-            sources = new List<Rectangle>
-            {
-                new Rectangle(xOffset, yOffset, size, size),
-                new Rectangle(xOffset + size + 1, yOffset, size, size),
-                new Rectangle(xOffset + size*2 + 2, yOffset, size, size),
-                new Rectangle(xOffset + size*3 + 3, yOffset, size, size)
-            };
+            color = goriyaColor;
             currFrame = 0;
             totalFrames = 4;
             repeatedFrames = 8;
+
+            colorMap = new Dictionary<string, List<Rectangle>>
+            {
+                { "red", GetFrames(222, 11, 4)},
+                { "blue", GetFrames(222, 28, 4)}
+            };
+        }
+
+        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames) {
+            List<Rectangle> sources = new List<Rectangle>();
+            int size =16;
+            for (int i = 0; i < numFrames; i++) {
+                sources.Add(new Rectangle(xPos,yPos,size,size));
+                xPos += size + 1;
+            }
+            return sources;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, sources[currFrame/repeatedFrames], Color.White);
+            spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
         }
 
         public void Update()

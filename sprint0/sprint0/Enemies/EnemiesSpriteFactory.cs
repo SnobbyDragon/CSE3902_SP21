@@ -54,9 +54,13 @@ namespace sprint0
                 case "snake":
                     return new Snake(texture, location);
                 case "goriya":
-                    return new Goriya(texture, location);
+                    return new Goriya(texture, location, "red");
+                case "goriya":
+                    return new Goriya(texture, location, "blue");
                 case "keese":
-                    return new Keese (texture, location);
+                    return new Keese (texture, location, "red");
+                case "keese":
+                    return new Keese (texture, location, "blue");
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }

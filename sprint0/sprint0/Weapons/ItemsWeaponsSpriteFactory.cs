@@ -40,6 +40,12 @@ namespace sprint0
                     return new Clock(texture, location);
                 case "boomerang":
                     return new Boomerang(texture, location);
+                case "bow":
+                    return new Bow(texture, location);
+                case "triforce piece":
+                    return new TriforcePiece(texture, location, "gold");
+                case "triforce piece":
+                    return new TriforcePiece(texture, location, "blue");
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }

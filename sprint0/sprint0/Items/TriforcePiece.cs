@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Keese : ISprite
+    public class TriforcePiece : ISprite
     {
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -14,25 +14,25 @@ namespace sprint0
         private string color;
         private readonly int totalFrames, repeatedFrames;
 
-        public Keese(Texture2D texture, Vector2 location, String keeseColor)
+        public TriforcePiece(Texture2D texture, Vector2 location, String triforceColor)
         {
             Location = location;
             Texture = texture;
-            color = keeseColor;
+            color = triforceColor;
             currFrame = 0;
-            totalFrames = 2;
+            totalFrames = 4;
             repeatedFrames = 8;
 
             colorMap = new Dictionary<string, List<Rectangle>>
             {
-                { "blue", GetFrames(183, 11, 2)},
-                { "red", GetFrames(183, 28, 2)}
+                { "gold", GetFrames(273, 1, 1)},
+                { "blue", GetFrames(273, 17, 1)}
             };
         }
 
         private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames) {
             List<Rectangle> sources = new List<Rectangle>();
-            int size =16;
+            int size =14;
             for (int i = 0; i < numFrames; i++) {
                 sources.Add(new Rectangle(xPos,yPos,size,size));
                 xPos += size + 1;
