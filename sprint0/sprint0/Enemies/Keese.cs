@@ -10,7 +10,7 @@ namespace sprint0
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private List<Rectangle> sources;
-        private int currFrame;
+        private int currentFrame;
         private string color;
         private readonly int totalFrames, repeatedFrames;
 
@@ -19,7 +19,7 @@ namespace sprint0
             Location = location;
             Texture = texture;
             color = keeseColor;
-            currFrame = 0;
+            currentFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;
 
