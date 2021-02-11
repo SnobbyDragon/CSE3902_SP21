@@ -9,7 +9,6 @@ namespace sprint0
     {
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
-        private List<Rectangle> sources;
         private int currentFrame;
         private string color;
         private readonly int totalFrames, repeatedFrames;
