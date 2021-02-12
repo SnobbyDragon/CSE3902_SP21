@@ -64,7 +64,7 @@ namespace sprint0
                         }
                         heartNum[0] = sum;
 
-                        return new HeartHUD(texture, new Vector2(location.X + 176, location.Y + 32), heartNum);
+                        return new HeartHUD(texture, new Vector2(location.X + 177, location.Y + 32), heartNum);
 
                     default:
                         throw new ArgumentException("Invalid sprite! Sprite factory failed.");
