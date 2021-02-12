@@ -75,6 +75,10 @@ namespace sprint0
                 dungeonFactory.MakeSprite("stairs", new Vector2(660,200)),
                 dungeonFactory.MakeSprite("ladder", new Vector2(680,200)),
                 dungeonFactory.MakeSprite("brick", new Vector2(700,200)),
+                dungeonFactory.MakeSprite("up wall", new Vector2(600, 150)),
+                dungeonFactory.MakeSprite("down open door", new Vector2(640, 150)),
+                dungeonFactory.MakeSprite("right locked door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("left bombed opening", new Vector2(720, 150)),
                 itemFactory.MakeSprite("fairy", new Vector2(700,300)),
                 itemFactory.MakeSprite("bomb", new Vector2(720,300)),
                 itemFactory.MakeSprite("clock", new Vector2(740,300)),
@@ -94,8 +98,6 @@ namespace sprint0
                 hudFactory.MakeSprite("kinventory 5", new Vector2(400,0)),
                 hudFactory.MakeSprite("binventory 33", new Vector2(400,0)),
                 hudFactory.MakeSprite("hinventory 5,10", new Vector2(400,0)),
-
-
             };
         }
 
