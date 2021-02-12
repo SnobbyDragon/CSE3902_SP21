@@ -9,10 +9,12 @@ namespace sprint0
     {
         Game1 game;
         private Dictionary<Keys, ICommand> controllerMappings;
+        private Keys[] previousPressedKeys;
         public KeyboardController(Game1 game)
         {
             this.game = game;
             controllerMappings = new Dictionary<Keys, ICommand>();
+            previousPressedKeys = Keyboard.GetState().GetPressedKeys();
             RegisterCommand(Keys.Q, new QuitCommand(game));
 
             RegisterCommand(Keys.W, new UpCommand(game));
@@ -23,6 +25,11 @@ namespace sprint0
             RegisterCommand(Keys.Down, new DownCommand(game));
             RegisterCommand(Keys.Left, new LeftCommand(game));
             RegisterCommand(Keys.Right, new RightCommand(game));
+            RegisterCommand(Keys.U, new ItemPreviousSpriteCommand(game));
+            RegisterCommand(Keys.I, new ItemNextSpriteCommand(game));
+            RegisterCommand(Keys.O, new EnemyNPCPreviousSpriteCommand(game));
+            RegisterCommand(Keys.P, new EnemyNPCNextSpriteCommand(game));
+
         }
 
         public void RegisterCommand(Keys key, ICommand command)
@@ -36,9 +43,12 @@ namespace sprint0
 
             foreach (Keys key in pressedKeys)
             {
-                if (controllerMappings.ContainsKey(key))
+                if (controllerMappings.ContainsKey(key) && (Array.IndexOf(previousPressedKeys, key) == -1))
+                {
                     controllerMappings[key].Execute();
+                }
             }
+            previousPressedKeys = pressedKeys;
         }
     }
 }
