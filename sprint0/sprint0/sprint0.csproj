@@ -29,5 +29,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HUD\" />
+    <Folder Include="Bosses\Manhandla\" />
+    <Folder Include="Bosses\Patra\" />
+    <Folder Include="Bosses\Dodongo\" />
+    <Folder Include="Bosses\Gohma\" />
   </ItemGroup>
 </Project>

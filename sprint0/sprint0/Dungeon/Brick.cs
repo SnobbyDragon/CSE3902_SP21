@@ -8,18 +8,15 @@ namespace sprint0
     public class Brick:ISprite
     {
 
-        private SpriteBatch spriteBatch;
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        
 
         public Brick(Texture2D texture, Vector2 location)
         {
             Location = location;
             Texture = texture;
             source = new Rectangle(984, 45, 16, 16);
-          
 
         }
 

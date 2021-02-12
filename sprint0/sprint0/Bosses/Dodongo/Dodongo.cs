@@ -10,10 +10,7 @@ namespace sprint0
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private List<Rectangle> sources;
-        private int totalFrames;
-        private int currentFrame;
-        private int repeatedFrames=10;
-
+        private int totalFrames, currentFrame, repeatedFrames;
 
         //TODO:fix this by making seperate classes
         enum Direction {left,right,front,back}
@@ -27,6 +24,7 @@ namespace sprint0
             Texture = texture;
             totalFrames = 7;
             currentFrame = 0;
+            repeatedFrames = 10;
             sources = new List<Rectangle>();
             int xPos =1, yPos =58, sideLength =16;
             for (int frame = 0; frame < totalFrames; frame++) {
