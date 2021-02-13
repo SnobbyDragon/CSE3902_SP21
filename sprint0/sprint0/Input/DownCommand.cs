@@ -10,7 +10,7 @@
 
         public void Execute()
         {
-            game.Player.State = new DownIdleState(game.PlayerFactory.MakeSprite("link down idle", game.Player.Position));
+            // no-op
         }
     }
 }

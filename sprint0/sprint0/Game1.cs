@@ -8,22 +8,23 @@ namespace sprint0
 {
     public class Game1 : Game
     {
+        private static PlayerSpriteFactory playerFactory;
+        public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
         private List<ISprite> sprites;
-        private Dictionary<String, ISprite> playerSprites;
         private ISprite sprite;
         private ISprite text;
         private Texture2D texture;
         private SpriteFont font;
         private IPlayer player;
-        private PlayerSpriteFactory playerFactory;
+
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public Texture2D Texture { get => texture; }
         public SpriteFont Font { get => font; set => font = value; }
         public IPlayer Player { get => player; set => player = value; }
-        internal PlayerSpriteFactory PlayerFactory { get => playerFactory; set => playerFactory = value; }
         public List<ISprite> itemSprites, enemyNPCSprites;
         public int itemIndex, enemyNPCIndex;
 
@@ -39,6 +40,8 @@ namespace sprint0
             controllerList = new List<IController>();
             controllerList.Add(new KeyboardController(this));
             controllerList.Add(new MouseController(this));
+            playerFactory = new PlayerSpriteFactory(this);
+            player = new Link(new Vector2(200, 250));
 
             base.Initialize();
         }
@@ -52,8 +55,7 @@ namespace sprint0
             EnemiesSpriteFactory enemyFactory = new EnemiesSpriteFactory(this);
             NpcsSpriteFactory npcFactory = new NpcsSpriteFactory(this);
             HUDFactory hudFactory = new HUDFactory(this);
-            playerFactory = new PlayerSpriteFactory(this);
-            player = new Link(new UpIdleState(playerFactory.MakeSprite("link up idle", new Vector2(200, 250))), new Vector2(200, 250));
+            
             itemIndex = enemyNPCIndex = 0;
             sprites = new List<ISprite> // testing sprites here
             {
@@ -118,6 +120,10 @@ namespace sprint0
                 npcFactory.MakeSprite("old woman", new Vector2(580,350)),
             };
 
+            foreach (IController controller in controllerList)
+            {
+                controller.Initialize();
+            }
         }
 
         protected override void Update(GameTime gameTime)
@@ -130,13 +136,14 @@ namespace sprint0
             {
                 controller.Update();
             }
-
+            player.Update();
             foreach (ISprite _sprite in sprites)
                 _sprite.Update();
             foreach (ISprite _sprite in itemSprites)
                 _sprite.Update();
             foreach (ISprite _sprite in enemyNPCSprites)
                 _sprite.Update();
+            
             base.Update(gameTime);
             base.Update(gameTime);
         }
@@ -146,7 +153,7 @@ namespace sprint0
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
             //text.Draw(_spriteBatch);
-            player.State.Sprite.Draw(_spriteBatch);
+            player.Draw(_spriteBatch);
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
             itemSprites[itemIndex].Draw(_spriteBatch);

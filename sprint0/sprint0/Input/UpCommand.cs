@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace sprint0
 {
@@ -14,7 +15,7 @@ namespace sprint0
 
         public void Execute()
         {
-            game.Player.State = new UpIdleState(game.PlayerFactory.MakeSprite("link up idle", game.Player.Position));
+            game.Player.State.HandleUp();
         }
     }
 }
