@@ -12,10 +12,20 @@ namespace sprint0
         public IPlayerState State { get => state; set => state = value; }
         public Vector2 Position { get => position; set => position = value; }
 
-        public Link(IPlayerState state, Vector2 position)
+        public Link(Vector2 position)
         {
-            this.state = state;
             this.position = position;
+            state = new UpIdleState(this);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            state.Draw(spriteBatch);
+        }
+
+        public void Update()
+        {
+            state.Update();
         }
 
         private void move(int xa, int ya) {

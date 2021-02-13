@@ -6,27 +6,31 @@ using System.Text;
 
 namespace sprint0
 {
-    class UpIdleLinkSprite : ISprite
-    { 
+    class UpWalkingLinkSprite : ISprite
+    {
         public Texture2D Texture { get => texture; set => texture = value; }
         public Vector2 Location { get => location; set => location = value; }
 
         private Texture2D texture;
         private Vector2 location;
-        private Rectangle sourceRectangle;
+        private List<Rectangle> frames;
+        private int currentFrame;
 
-        public UpIdleLinkSprite(Texture2D texture, Vector2 location)
+        public UpWalkingLinkSprite(Texture2D texture, Vector2 location)
         {
             this.texture = texture;
             this.location = location;
-            sourceRectangle = new Rectangle(69, 11, 16, 16);
+            frames = new List<Rectangle> { new Rectangle(69, 11, 16, 16), new Rectangle(86, 11, 16, 16) };
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, location, sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, location, frames[currentFrame], Color.White);
         }
 
-        public void Update(){ }
+        public void Update() {
+            currentFrame = (currentFrame + 1) % 2;
+            location.Y -= 3;
+        }
     }
 }

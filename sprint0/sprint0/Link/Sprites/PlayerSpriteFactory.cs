@@ -6,7 +6,7 @@ using System.Text;
 
 namespace sprint0
 {
-    class PlayerSpriteFactory
+    public class PlayerSpriteFactory
     {
         Game1 game;
         Texture2D texture;
@@ -37,6 +37,8 @@ namespace sprint0
                     return new LeftWoodSwordSprite(texture, location);
                 case "link right sword":
                     return new RightWoodSwordSprite(texture, location);
+                case "link up walking":
+                    return new UpWalkingLinkSprite(texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Player sprite factory failed.");
             }
