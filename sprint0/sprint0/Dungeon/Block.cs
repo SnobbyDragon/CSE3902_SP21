@@ -8,6 +8,7 @@ namespace sprint0
     public class Block:ISprite
     {
 
+
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
