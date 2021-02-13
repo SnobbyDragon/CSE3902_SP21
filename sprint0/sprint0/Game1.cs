@@ -12,9 +12,7 @@ namespace sprint0
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
         private List<ISprite> sprites;
-        private Dictionary<String, ISprite> playerSprites;
         private ISprite sprite;
-        private ISprite text;
         private Texture2D texture;
         private SpriteFont font;
         private IPlayer player;
@@ -54,7 +52,9 @@ namespace sprint0
             HUDFactory hudFactory = new HUDFactory(this);
             playerFactory = new PlayerSpriteFactory(this);
             player = new Link(new UpIdleState(playerFactory.MakeSprite("link up idle", new Vector2(200, 250))), new Vector2(200, 250));
+            player = new Link(new UpIdleState(playerFactory.MakeSprite("link up sword", new Vector2(250, 250))), new Vector2(250, 250));
             itemIndex = enemyNPCIndex = 0;
+
             sprites = new List<ISprite> // testing sprites here
             {
                 bossSpriteFactory.MakeSprite("ganon fireball center", new Vector2(400, 200)),

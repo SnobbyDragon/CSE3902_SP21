@@ -29,6 +29,14 @@ namespace sprint0
                     return new LeftIdleLinkSprite(texture, location);
                 case "link right idle":
                     return new RightIdleLinkSprite(texture, location);
+                case "link up sword":
+                    return new UpWoodSwordSprite(texture, location);
+                case "link down sword":
+                    return new DownWoodSwordSprite(texture, location);
+                case "link left sword":
+                    return new LeftWoodSwordSprite(texture, location);
+                case "link right sword":
+                    return new RightWoodSwordSprite(texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Player sprite factory failed.");
             }
