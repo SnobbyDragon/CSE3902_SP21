@@ -28,6 +28,8 @@ namespace sprint0
                     return new Tile(texture, location);
                 case "gap":
                     return new Gap(texture, location);
+                case "water":
+                    return new Water(texture, location);
                 case "stairs":
                     return new Stairs(texture, location);
                 case "ladder":

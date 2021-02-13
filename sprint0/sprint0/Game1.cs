@@ -78,6 +78,7 @@ namespace sprint0
                 dungeonFactory.MakeSprite("stairs", new Vector2(660,200)),
                 dungeonFactory.MakeSprite("ladder", new Vector2(680,200)),
                 dungeonFactory.MakeSprite("brick", new Vector2(700,200)),
+                dungeonFactory.MakeSprite("water", new Vector2(720,200)),
                 dungeonFactory.MakeSprite("up wall", new Vector2(600, 150)),
                 dungeonFactory.MakeSprite("down open door", new Vector2(640, 150)),
                 dungeonFactory.MakeSprite("right locked door", new Vector2(680, 150)),
