@@ -14,7 +14,6 @@ namespace sprint0
         private List<ISprite> sprites;
         private Dictionary<String, ISprite> playerSprites;
         private ISprite sprite;
-        private ISprite text;
         private Texture2D texture;
         private SpriteFont font;
         private IPlayer player;
@@ -24,8 +23,8 @@ namespace sprint0
         public SpriteFont Font { get => font; set => font = value; }
         public IPlayer Player { get => player; set => player = value; }
         internal PlayerSpriteFactory PlayerFactory { get => playerFactory; set => playerFactory = value; }
-        public List<ISprite> itemSprites, enemyNPCSprites;
-        public int itemIndex, enemyNPCIndex;
+        public List<ISprite> itemSprites, enemyNPCSprites, roomElementsSprites;
+        public int itemIndex, enemyNPCIndex, roomElementsIndex;
 
         public Game1()
         {
@@ -54,7 +53,7 @@ namespace sprint0
             HUDFactory hudFactory = new HUDFactory(this);
             playerFactory = new PlayerSpriteFactory(this);
             player = new Link(new UpIdleState(playerFactory.MakeSprite("link up idle", new Vector2(200, 250))), new Vector2(200, 250));
-            itemIndex = enemyNPCIndex = 0;
+            itemIndex = enemyNPCIndex= roomElementsIndex = 0;
             sprites = new List<ISprite> // testing sprites here
             {
                 bossSpriteFactory.MakeSprite("ganon fireball center", new Vector2(400, 200)),
@@ -72,17 +71,6 @@ namespace sprint0
                 bossSpriteFactory.MakeSprite("patra minion", new Vector2(320, 150)),
                 bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,100)),
                 bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,100)),
-                dungeonFactory.MakeSprite("block", new Vector2(600,200)),
-                dungeonFactory.MakeSprite("tile", new Vector2(620,200)),
-                dungeonFactory.MakeSprite("gap", new Vector2(640,200)),
-                dungeonFactory.MakeSprite("stairs", new Vector2(660,200)),
-                dungeonFactory.MakeSprite("ladder", new Vector2(680,200)),
-                dungeonFactory.MakeSprite("brick", new Vector2(700,200)),
-                dungeonFactory.MakeSprite("water", new Vector2(720,200)),
-                dungeonFactory.MakeSprite("up wall", new Vector2(600, 150)),
-                dungeonFactory.MakeSprite("down open door", new Vector2(640, 150)),
-                dungeonFactory.MakeSprite("right locked door", new Vector2(680, 150)),
-                dungeonFactory.MakeSprite("left bombed opening", new Vector2(720, 150)),
                 hudFactory.MakeSprite("hud", new Vector2(400,0)),
                 hudFactory.MakeSprite("rinventory 15", new Vector2(400,0)),
                 hudFactory.MakeSprite("kinventory 5", new Vector2(400,0)),
@@ -119,6 +107,40 @@ namespace sprint0
                 npcFactory.MakeSprite("old woman", new Vector2(580,350)),
             };
 
+            roomElementsSprites = new List<ISprite>
+            {
+                dungeonFactory.MakeSprite("block", new Vector2(600,200)),
+                dungeonFactory.MakeSprite("tile", new Vector2(620,200)),
+                dungeonFactory.MakeSprite("gap", new Vector2(640,200)),
+                dungeonFactory.MakeSprite("stairs", new Vector2(660,200)),
+                dungeonFactory.MakeSprite("ladder", new Vector2(680,200)),
+                dungeonFactory.MakeSprite("brick", new Vector2(700,200)),
+                dungeonFactory.MakeSprite("water", new Vector2(720,200)),
+                dungeonFactory.MakeSprite("fire", new Vector2(740,200)),
+                dungeonFactory.MakeSprite("left statue", new Vector2(720,220)),
+                dungeonFactory.MakeSprite("right statue", new Vector2(700,220)),
+                dungeonFactory.MakeSprite("up wall", new Vector2(600, 150)),
+                dungeonFactory.MakeSprite("down wall", new Vector2(600, 150)),
+                dungeonFactory.MakeSprite("left wall", new Vector2(600, 150)),
+                dungeonFactory.MakeSprite("right wall", new Vector2(600, 150)),
+                dungeonFactory.MakeSprite("down open door", new Vector2(640, 150)),
+                dungeonFactory.MakeSprite("up open door", new Vector2(640, 150)),
+                dungeonFactory.MakeSprite("left open door", new Vector2(640, 150)),
+                dungeonFactory.MakeSprite("right open door", new Vector2(640, 150)),
+                dungeonFactory.MakeSprite("right locked door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("left locked door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("up locked door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("down shut door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("right shut door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("left shut door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("up shut door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("down shut door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("left bombed opening", new Vector2(720, 150)),
+                dungeonFactory.MakeSprite("right bombed opening", new Vector2(720, 150)),
+                dungeonFactory.MakeSprite("up bombed opening", new Vector2(720, 150)),
+                dungeonFactory.MakeSprite("down bombed opening", new Vector2(720, 150)),
+            };
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -138,6 +160,8 @@ namespace sprint0
                 _sprite.Update();
             foreach (ISprite _sprite in enemyNPCSprites)
                 _sprite.Update();
+            foreach (ISprite _sprite in roomElementsSprites)
+                _sprite.Update();
             base.Update(gameTime);
             base.Update(gameTime);
         }
@@ -146,12 +170,12 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
-            //text.Draw(_spriteBatch);
             player.State.Sprite.Draw(_spriteBatch);
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
             itemSprites[itemIndex].Draw(_spriteBatch);
             enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
+            roomElementsSprites[roomElementsIndex].Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

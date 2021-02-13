@@ -16,7 +16,7 @@ namespace sprint0
             controllerMappings = new Dictionary<Keys, ICommand>();
             previousPressedKeys = Keyboard.GetState().GetPressedKeys();
             RegisterCommand(Keys.Q, new QuitCommand(game));
-
+            RegisterCommand(Keys.R, new ResetCommand(game));
             RegisterCommand(Keys.W, new UpCommand(game));
             RegisterCommand(Keys.S, new DownCommand(game));
             RegisterCommand(Keys.A, new LeftCommand(game));
@@ -29,6 +29,8 @@ namespace sprint0
             RegisterCommand(Keys.I, new ItemNextSpriteCommand(game));
             RegisterCommand(Keys.O, new EnemyNPCPreviousSpriteCommand(game));
             RegisterCommand(Keys.P, new EnemyNPCNextSpriteCommand(game));
+            RegisterCommand(Keys.T, new RoomElementPreviousSpriteCommand(game));
+            RegisterCommand(Keys.Y, new RoomElementNextSpriteCommand(game));
 
         }
 
