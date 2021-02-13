@@ -10,10 +10,12 @@ namespace sprint0
         Game1 game;
         private Dictionary<Keys, ICommand> controllerMappings;
         private Keys[] previousPressedKeys;
+        private HashSet<Keys> movementKeys;
         public KeyboardController(Game1 game)
         {
             this.game = game;
             controllerMappings = new Dictionary<Keys, ICommand>();
+            movementKeys = new HashSet<Keys> { Keys.W, Keys.A, Keys.S, Keys.D, Keys.Up, Keys.Down, Keys.Left, Keys.Right };
             previousPressedKeys = Keyboard.GetState().GetPressedKeys();
             RegisterCommand(Keys.Q, new QuitCommand(game));
             RegisterCommand(Keys.R, new ResetCommand(game));
@@ -45,7 +47,7 @@ namespace sprint0
 
             foreach (Keys key in pressedKeys)
             {
-                if (controllerMappings.ContainsKey(key) && (Array.IndexOf(previousPressedKeys, key) == -1))
+                if (controllerMappings.ContainsKey(key) && (Array.IndexOf(previousPressedKeys, key) == -1) || movementKeys.Contains(key))
                 {
                     controllerMappings[key].Execute();
                 }

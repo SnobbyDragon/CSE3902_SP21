@@ -1,24 +1,24 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace sprint0
 {
-    class UpIdleState : IPlayerState
+    class UpWalkingState : IPlayerState
     {
         private IPlayer player;
         private ISprite sprite;
-
-        public UpIdleState(IPlayer player)
+        public UpWalkingState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link up idle", player.Position);
+            sprite = Game1.PlayerFactory.MakeSprite("link up walking", player.Position);
         }
 
         public void HandleUp()
         {
-            player.State = new UpWalkingState(player);
+            
         }
 
         public void HandleDown()
@@ -35,9 +35,11 @@ namespace sprint0
         {
             throw new NotImplementedException();
         }
+
         public void Update()
         {
-            // Idle no-op
+            player.Position += new Vector2(0, -3);
+            sprite.Update();
         }
 
         public void Draw(SpriteBatch spritebatch)
