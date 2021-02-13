@@ -22,12 +22,16 @@ namespace sprint0
             switch (spriteType)
             {
 
+                case "room border":
+                    return new RoomBorder(texture, location);
                 case "block":
                     return new Block(texture, location);
                 case "tile":
                     return new Tile(texture, location);
                 case "gap":
                     return new Gap(texture, location);
+                case "water":
+                    return new Water(texture, location);
                 case "stairs":
                     return new Stairs(texture, location);
                 case "ladder":
