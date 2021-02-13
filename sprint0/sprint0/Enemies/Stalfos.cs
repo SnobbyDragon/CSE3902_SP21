@@ -1,28 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Flame : ISprite
+    public class Stalfos : ISprite
     {
-
+        SpriteEffects s = SpriteEffects.FlipHorizontally;
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        SpriteEffects s = SpriteEffects.FlipHorizontally;
-        private int currentFrame;
-        private int repeatedFrames;
-        private int totalFrames;
+        private int currFrame;
 
-        public Flame(Texture2D texture, Vector2 location)
+        public Stalfos(Texture2D texture, Vector2 location)
         {
             Location = location;
             Texture = texture;
-            source = new Rectangle(52, 11, 16, 16);
-            currentFrame = 0;
-            repeatedFrames = 8;
-            totalFrames = 2;
+            source = new Rectangle(1, 59, 16, 16);
+            currFrame = 0;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -32,7 +28,7 @@ namespace sprint0
 
         public void Update()
         {
-            if (currentFrame / repeatedFrames == 0)
+            if (currFrame % 14 < 7)
             {
                 s = SpriteEffects.FlipHorizontally;
             }
@@ -40,7 +36,7 @@ namespace sprint0
             {
                 s = SpriteEffects.None;
             }
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+            currFrame++;
         }
     }
 }

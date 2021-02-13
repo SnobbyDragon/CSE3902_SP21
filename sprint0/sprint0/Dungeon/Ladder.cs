@@ -8,12 +8,10 @@ namespace sprint0
     public class Ladder:ISprite
     {
 
-        private SpriteBatch spriteBatch;
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
         
-
         public Ladder(Texture2D texture, Vector2 location)
         {
             Location = location;
