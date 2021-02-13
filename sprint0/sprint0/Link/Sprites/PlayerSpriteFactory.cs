@@ -28,7 +28,7 @@ namespace sprint0
                 case "link left idle":
                     return new LeftIdleLinkSprite(texture, location);
                 case "link right idle":
-                    return new RightWoodSwordSprite(texture, location);
+                    return new RightIdleLinkSprite(texture, location);
                 case "link up sword":
                     return new UpWoodSwordSprite(texture, location);
                 case "link down sword":
