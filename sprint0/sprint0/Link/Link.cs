@@ -17,5 +17,19 @@ namespace sprint0
             this.state = state;
             this.position = position;
         }
+
+        private void move(int xa, int ya) {
+            //TODO: check for collisions here
+            position.X += xa;
+            position.Y += ya;
+        }
+
+        public void update() { 
+            //no-op for now
+        }
+
+        public void draw() { 
+        
+        }
     }
 }

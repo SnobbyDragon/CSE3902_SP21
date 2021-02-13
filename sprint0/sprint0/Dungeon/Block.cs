@@ -8,7 +8,7 @@ namespace sprint0
     public class Block:ISprite
     {
 
-        private SpriteBatch spriteBatch;
+        
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
