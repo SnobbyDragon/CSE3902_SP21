@@ -78,7 +78,7 @@ namespace sprint0
                 hudFactory.MakeSprite("hinventory 5,10", new Vector2(400,0)),
             };
 
-            itemSprites = new List<ISprite> // moved item sprites here
+            itemSprites = new List<ISprite> 
             {
                 itemFactory.MakeSprite("fairy", new Vector2(640,300)),
                 itemFactory.MakeSprite("bomb", new Vector2(660,300)),
@@ -116,7 +116,6 @@ namespace sprint0
                 dungeonFactory.MakeSprite("ladder", new Vector2(680,200)),
                 dungeonFactory.MakeSprite("brick", new Vector2(700,200)),
                 dungeonFactory.MakeSprite("water", new Vector2(720,200)),
-                dungeonFactory.MakeSprite("fire", new Vector2(740,200)),
                 dungeonFactory.MakeSprite("left statue", new Vector2(720,220)),
                 dungeonFactory.MakeSprite("right statue", new Vector2(700,220)),
                 dungeonFactory.MakeSprite("up wall", new Vector2(600, 150)),

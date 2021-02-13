@@ -30,8 +30,6 @@ namespace sprint0
                     return new Gap(texture, location);
                 case "water":
                     return new Water(texture, location);
-                case "fire":
-                    return new Flame(texture, location);
                 case "stairs":
                     return new Stairs(texture, location);
                 case "ladder":
