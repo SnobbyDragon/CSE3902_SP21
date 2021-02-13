@@ -22,6 +22,8 @@ namespace sprint0
             switch (spriteType)
             {
 
+                case "room border":
+                    return new RoomBorder(texture, location);
                 case "block":
                     return new Block(texture, location);
                 case "tile":

@@ -25,6 +25,7 @@ namespace sprint0
         internal PlayerSpriteFactory PlayerFactory { get => playerFactory; set => playerFactory = value; }
         public List<ISprite> itemSprites, enemyNPCSprites, roomElementsSprites;
         public int itemIndex, enemyNPCIndex, roomElementsIndex;
+        private ISprite roomBorder;
 
         public Game1()
         {
@@ -77,6 +78,9 @@ namespace sprint0
                 hudFactory.MakeSprite("binventory 33", new Vector2(400,0)),
                 hudFactory.MakeSprite("hinventory 5,10", new Vector2(400,0)),
             };
+
+            //Room Boarder
+            roomBorder=dungeonFactory.MakeSprite("room border", new Vector2(0,56));
 
             itemSprites = new List<ISprite> 
             {
@@ -169,6 +173,7 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
+            roomBorder.Draw(_spriteBatch);
             player.State.Sprite.Draw(_spriteBatch);
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
