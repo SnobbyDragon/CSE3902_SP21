@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
-
-namespace sprint0
+﻿namespace sprint0
 {
     class UpCommand : ICommand
     {

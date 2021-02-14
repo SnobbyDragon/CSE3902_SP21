@@ -39,6 +39,12 @@ namespace sprint0
                     return new RightWoodSwordSprite(texture, location);
                 case "link up walking":
                     return new UpWalkingLinkSprite(texture, location);
+                case "link down walking":
+                    return new DownWalkingLinkSprite(texture, location);
+                case "link left walking":
+                    return new LeftWalkingLinkSprite(texture, location);
+                case "link right walking":
+                    return new RightWalkingLinkSprite(texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Player sprite factory failed.");
             }

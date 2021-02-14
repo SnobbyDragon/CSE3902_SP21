@@ -1,6 +1,6 @@
 ﻿namespace sprint0
 {
-    internal class LeftCommand : ICommand
+    class LeftCommand : ICommand
     {
         private Game1 game;
         public LeftCommand(Game1 game)
@@ -10,7 +10,7 @@
 
         public void Execute()
         {
-            // temp no-op
+            game.Player.State.HandleLeft();
         }
     }
 }

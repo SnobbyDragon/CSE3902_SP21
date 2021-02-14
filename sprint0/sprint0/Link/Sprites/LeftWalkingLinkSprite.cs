@@ -1,12 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace sprint0
 {
-    class UpWalkingLinkSprite : ISprite
+    class LeftWalkingLinkSprite : ISprite
     {
         public Texture2D Texture { get => texture; set => texture = value; }
         public Vector2 Location { get => location; set => location = value; }
@@ -18,19 +16,20 @@ namespace sprint0
         private int repeatFrames;
         private int totalFrames;
 
-        public UpWalkingLinkSprite(Texture2D texture, Vector2 location)
+        public LeftWalkingLinkSprite(Texture2D texture, Vector2 location)
         {
             this.texture = texture;
             this.location = location;
             currentFrame = 0;
             repeatFrames = 8;
             totalFrames = 2 * repeatFrames;
-            frames = new List<Rectangle> { new Rectangle(69, 11, 16, 16), new Rectangle(86, 11, 16, 16) };
+            frames = new List<Rectangle> { new Rectangle(35, 11, 16, 16), new Rectangle(52, 11, 16, 16) };
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, location, frames[currentFrame / repeatFrames], Color.White);
+            Rectangle destination = new Rectangle((int) location.X, (int) location.Y, 16, 16);
+            spriteBatch.Draw(texture, destination, frames[currentFrame / repeatFrames], Color.White, 0, new Vector2(0,0), SpriteEffects.FlipHorizontally, 0);
         }
 
         public void Update() {

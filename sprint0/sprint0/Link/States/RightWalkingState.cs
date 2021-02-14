@@ -1,29 +1,25 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    class UpWalkingState : IPlayerState
+    class RightWalkingState : IPlayerState
     {
         private IPlayer player;
         private ISprite sprite;
-        public UpWalkingState(IPlayer player)
+        public RightWalkingState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link up walking", player.Position);
+            sprite = Game1.PlayerFactory.MakeSprite("link right walking", player.Position);
         }
 
         public void Stop()
         {
-            player.State = new UpIdleState(player);
+            player.State = new RightIdleState(player);
         }
 
-        public void HandleUp()
+        public void HandleRight()
         {
-            player.Move(0, -1);
+            player.Move(1, 0);
         }
 
         public void Update()

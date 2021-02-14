@@ -23,21 +23,22 @@ namespace sprint0
 
         public void HandleDown()
         {
-            throw new NotImplementedException();
+            player.State = new DownWalkingState(player);
         }
 
         public void HandleLeft()
         {
-            throw new NotImplementedException();
+            player.State = new LeftWalkingState(player);
         }
 
         public void HandleRight()
         {
-            throw new NotImplementedException();
+            player.State = new RightWalkingState(player);
         }
+
         public void Update()
         {
-            // Idle no-op
+            sprite.Update();
         }
 
         public void Draw(SpriteBatch spritebatch)

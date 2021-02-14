@@ -9,6 +9,7 @@ namespace sprint0
     {
         private IPlayerState state;
         private Vector2 position;
+        private int speed = 2;
         public IPlayerState State { get => state; set => state = value; }
         public Vector2 Position { get => position; set => position = value; }
 
@@ -16,6 +17,12 @@ namespace sprint0
         {
             this.position = position;
             state = new UpIdleState(this);
+            speed = 2;
+        }
+
+        public void Move(int x, int y)
+        {
+            position += new Vector2(speed*x, speed*y);
         }
 
         public void Draw(SpriteBatch spriteBatch)

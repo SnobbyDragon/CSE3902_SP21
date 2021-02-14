@@ -1,6 +1,6 @@
 ﻿namespace sprint0
 {
-    internal class RightCommand : ICommand
+    class RightCommand : ICommand
     {
         private Game1 game;
         public RightCommand(Game1 game)
@@ -10,7 +10,7 @@
 
         public void Execute()
         {
-            // temp no-op
+            game.Player.State.HandleRight();
         }
     }
 }
