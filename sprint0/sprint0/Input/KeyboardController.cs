@@ -44,14 +44,13 @@ namespace sprint0
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-
+            
             foreach (Keys key in pressedKeys)
-            {
                 if (controllerMappings.ContainsKey(key) && (Array.IndexOf(previousPressedKeys, key) == -1) || movementKeys.Contains(key))
-                {
                     controllerMappings[key].Execute();
-                }
-            }
+            foreach (Keys key in movementKeys)
+                if (Array.IndexOf(previousPressedKeys, key) > -1 && Array.IndexOf(pressedKeys, key) == -1)
+                    game.Player.State.Stop();
             previousPressedKeys = pressedKeys;
         }
     }

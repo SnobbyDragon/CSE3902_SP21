@@ -2,44 +2,45 @@
 
 namespace sprint0
 {
-    internal class LeftIdleState : IPlayerState
+    class LeftIdleState : IPlayerState
     {
+        private IPlayer player;
         private ISprite sprite;
-        public ISprite Sprite { get => sprite; set => sprite = value; }
 
-        public LeftIdleState(ISprite sprite)
+        public LeftIdleState(IPlayer player)
         {
-            this.sprite = sprite;
+            this.player = player;
+            sprite = Game1.PlayerFactory.MakeSprite("link left idle", player.Position);
         }
 
         public void HandleUp()
         {
-            throw new System.NotImplementedException();
+            player.State = new UpWalkingState(player);
         }
 
         public void HandleDown()
         {
-            throw new System.NotImplementedException();
+            player.State = new DownWalkingState(player);
         }
 
         public void HandleLeft()
         {
-            throw new System.NotImplementedException();
+            player.State = new LeftWalkingState(player);
         }
 
         public void HandleRight()
         {
-            throw new System.NotImplementedException();
+            player.State = new RightWalkingState(player);
         }
 
         public void Update()
         {
-            throw new System.NotImplementedException();
+            sprite.Update();
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            throw new System.NotImplementedException();
+            sprite.Draw(spritebatch);
         }
     }
 }

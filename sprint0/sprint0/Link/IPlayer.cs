@@ -10,6 +10,7 @@ namespace sprint0
         IPlayerState State { get; set; }
         Vector2 Position { get; set; }
 
+        void Move(int x, int y);
         void Draw(SpriteBatch spriteBatch);
         void Update();
     }
