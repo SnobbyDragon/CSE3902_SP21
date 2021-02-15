@@ -22,6 +22,11 @@ namespace sprint0
             player.Move(0, 1);
         }
 
+        public void HandleSword()
+        {
+            player.State = new DownWoodSwordState(player);
+        }
+
         public void Update()
         {
             sprite.Location = player.Position;

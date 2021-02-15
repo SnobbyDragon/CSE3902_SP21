@@ -4,42 +4,34 @@ namespace sprint0
 {
     internal class LeftWoodSwordState : IPlayerState
     {
+        private IPlayer player;
         private ISprite sprite;
-        public ISprite Sprite { get => sprite; set => sprite = value; }
-
-        public LeftWoodSwordState(ISprite sprite)
+        private int count = 0;
+        public LeftWoodSwordState(IPlayer player)
         {
-            this.sprite = sprite;
+            this.player = player;
+            sprite = Game1.PlayerFactory.MakeSprite("link left sword", player.Position);
         }
 
-        public void HandleUp()
+        public void HandleSword()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void HandleDown()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void HandleLeft()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void HandleRight()
-        {
-            throw new System.NotImplementedException();
+            player.State = new LeftWoodSwordState(player);
         }
 
         public void Update()
         {
-            throw new System.NotImplementedException();
+            if (count > 24)
+            {
+                player.State = new LeftIdleState(player);
+            }
+            sprite.Location = player.Position;
+            sprite.Update();
+            count++;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            throw new System.NotImplementedException();
+            sprite.Draw(spritebatch);
         }
     }
 }
