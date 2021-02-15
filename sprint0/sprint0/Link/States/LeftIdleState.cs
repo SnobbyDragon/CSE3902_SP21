@@ -23,6 +23,11 @@ namespace sprint0
             player.State = new DownWalkingState(player);
         }
 
+        public void HandleSword()
+        {
+            player.State = new LeftWoodSwordState(player);
+        }
+
         public void HandleLeft()
         {
             player.State = new LeftWalkingState(player);

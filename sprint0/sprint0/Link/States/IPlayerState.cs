@@ -10,8 +10,11 @@ namespace sprint0
         void Stop() { }
         void HandleUp() { }
         void HandleDown() { }
+        void HandleSword() { }
         void HandleLeft() { }
         void HandleRight() { }
+        void HandleZ() { }
+        void HandleN() { }
         void Update();
         void Draw(SpriteBatch spritebatch);
     }

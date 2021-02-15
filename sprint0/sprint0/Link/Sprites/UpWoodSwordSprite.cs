@@ -14,6 +14,7 @@ namespace sprint0
         private Texture2D texture;
         private Vector2 location;
         private int currFrame;
+        private int slow;
         private readonly int xOffset = 1, yOffset = 109;
         private int width = 0, height = 0;
         public UpWoodSwordSprite(Texture2D texture, Vector2 location)
@@ -52,16 +53,19 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
-            
-        } 
+            if (currFrame < 4)
+            {
+                spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
+            }
+        }
 
         public void Update() {
-            
-            currFrame += 1;
-            if (currFrame > 4)
-                currFrame = 0;
+            slow++;
+            if (slow % 8 == 0)
+            {
+                currFrame += 1;
+            }
+
         }
     }
 }

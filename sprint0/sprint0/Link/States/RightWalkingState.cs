@@ -21,6 +21,10 @@ namespace sprint0
         {
             player.Move(1, 0);
         }
+        public void HandleSword()
+        {
+            player.State = new RightWoodSwordState(player);
+        }
 
         public void Update()
         {

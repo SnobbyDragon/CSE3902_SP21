@@ -33,6 +33,11 @@ namespace sprint0
             player.State = new RightWalkingState(player);
         }
 
+        public void HandleSword()
+        {
+            player.State = new DownWoodSwordState(player);
+        }
+
         public void Update()
         {
             sprite.Update();
