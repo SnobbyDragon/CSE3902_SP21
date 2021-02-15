@@ -8,20 +8,24 @@ namespace sprint0
 {
     public class Game1 : Game
     {
+        private static PlayerSpriteFactory playerFactory;
+        public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
         private List<ISprite> sprites;
-        private Dictionary<String, ISprite> playerSprites;
         private ISprite sprite;
-        private ISprite text;
+        private Texture2D texture;
         private SpriteFont font;
         private IPlayer player;
-        private PlayerSpriteFactory playerFactory;
+
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
         public IPlayer Player { get => player; set => player = value; }
-        internal PlayerSpriteFactory PlayerFactory { get => playerFactory; set => playerFactory = value; }
+        public List<ISprite> itemSprites, enemyNPCSprites, roomElementsSprites;
+        public int itemIndex, enemyNPCIndex, roomElementsIndex;
+        private ISprite roomBorder;
 
         public Game1()
         {
@@ -32,11 +36,11 @@ namespace sprint0
 
         protected override void Initialize()
         {
-            controllerList = new List<IController>
-            {
-                new KeyboardController(this),
-                new MouseController(this)
-            };
+            controllerList = new List<IController>();
+            controllerList.Add(new KeyboardController(this));
+            controllerList.Add(new MouseController(this));
+            playerFactory = new PlayerSpriteFactory(this);
+            player = new Link(new Vector2(200, 250));
 
             base.Initialize();
         }
@@ -50,8 +54,8 @@ namespace sprint0
             EnemiesSpriteFactory enemyFactory = new EnemiesSpriteFactory(this);
             NpcsSpriteFactory npcFactory = new NpcsSpriteFactory(this);
             HUDFactory hudFactory = new HUDFactory(this);
-            playerFactory = new PlayerSpriteFactory(this);
-            player = new Link(new UpIdleState(playerFactory.MakeSprite("link up idle", new Vector2(200, 250))), new Vector2(200, 250));
+            
+            itemIndex = enemyNPCIndex = 0;
             sprites = new List<ISprite> // testing sprites here
             {
                 bossSpriteFactory.MakeSprite("ganon fireball center", new Vector2(400, 200)),
@@ -71,36 +75,79 @@ namespace sprint0
                 bossSpriteFactory.MakeSprite("gleeok", new Vector2(290,100)),
                 bossSpriteFactory.MakeSprite("ganon", new Vector2(100,150)),
                 bossSpriteFactory.MakeSprite("aquamentus", new Vector2(340,100)),
-                dungeonFactory.MakeSprite("block", new Vector2(600,200)),
-                dungeonFactory.MakeSprite("tile", new Vector2(620,200)),
-                dungeonFactory.MakeSprite("gap", new Vector2(640,200)),
-                dungeonFactory.MakeSprite("stairs", new Vector2(660,200)),
-                dungeonFactory.MakeSprite("ladder", new Vector2(680,200)),
-                dungeonFactory.MakeSprite("brick", new Vector2(700,200)),
-                dungeonFactory.MakeSprite("up wall", new Vector2(600, 150)),
-                dungeonFactory.MakeSprite("down open door", new Vector2(640, 150)),
-                dungeonFactory.MakeSprite("right locked door", new Vector2(680, 150)),
-                dungeonFactory.MakeSprite("left bombed opening", new Vector2(720, 150)),
-                itemFactory.MakeSprite("fairy", new Vector2(700,300)),
-                itemFactory.MakeSprite("bomb", new Vector2(720,300)),
-                itemFactory.MakeSprite("clock", new Vector2(740,300)),
-                itemFactory.MakeSprite("arrow", new Vector2(350,350)),
-                itemFactory.MakeSprite("compass", new Vector2(400,350)),
-                itemFactory.MakeSprite("key", new Vector2(450,350)),
-                itemFactory.MakeSprite("rupee", new Vector2(500,350)),
-                enemyFactory.MakeSprite("teal gel", new Vector2(340,300)),
-                enemyFactory.MakeSprite("blkwhite gel", new Vector2(360,300)),
-                enemyFactory.MakeSprite("green zol", new Vector2(440,300)),
-                enemyFactory.MakeSprite("snake", new Vector2(460,300)),
-                enemyFactory.MakeSprite("stalfos", new Vector2(300,300)),
-                enemyFactory.MakeSprite("trap", new Vector2(400,400)),
-                npcFactory.MakeSprite("flame", new Vector2(560,300)),
                 hudFactory.MakeSprite("hud", new Vector2(400,0)),
                 hudFactory.MakeSprite("rinventory 15", new Vector2(400,0)),
                 hudFactory.MakeSprite("kinventory 5", new Vector2(400,0)),
                 hudFactory.MakeSprite("binventory 33", new Vector2(400,0)),
                 hudFactory.MakeSprite("hinventory 5,10", new Vector2(400,0)),
             };
+
+            //Room Boarder
+            roomBorder=dungeonFactory.MakeSprite("room border", new Vector2(0,56));
+
+            itemSprites = new List<ISprite> 
+            {
+                itemFactory.MakeSprite("fairy", new Vector2(640,300)),
+                itemFactory.MakeSprite("bomb", new Vector2(660,300)),
+                itemFactory.MakeSprite("clock", new Vector2(680,300)),
+                itemFactory.MakeSprite("arrow", new Vector2(700,300)),
+                itemFactory.MakeSprite("compass", new Vector2(720,300)),
+                itemFactory.MakeSprite("key", new Vector2(740,300)),
+                itemFactory.MakeSprite("rupee", new Vector2(760,300)),
+
+                };
+
+            enemyNPCSprites = new List<ISprite>
+            {
+                enemyFactory.MakeSprite("teal gel", new Vector2(340,350)),
+                enemyFactory.MakeSprite("blkwhite gel", new Vector2(360,350)),
+                enemyFactory.MakeSprite("green zol", new Vector2(380,350)),
+                enemyFactory.MakeSprite("snake", new Vector2(400,350)),
+                enemyFactory.MakeSprite("stalfos", new Vector2(420,350)),
+                enemyFactory.MakeSprite("trap", new Vector2(440,350)),
+                npcFactory.MakeSprite("flame", new Vector2(460,350)),
+                npcFactory.MakeSprite("green merchant", new Vector2(480,350)),
+                npcFactory.MakeSprite("white merchant", new Vector2(500,350)),
+                npcFactory.MakeSprite("red merchant", new Vector2(520,350)),
+                npcFactory.MakeSprite("old man 1", new Vector2(540,350)),
+                npcFactory.MakeSprite("old man 2", new Vector2(560,350)),
+                npcFactory.MakeSprite("old woman", new Vector2(580,350)),
+            };
+
+            roomElementsSprites = new List<ISprite>
+            {
+                dungeonFactory.MakeSprite("block", new Vector2(600,200)),
+                dungeonFactory.MakeSprite("tile", new Vector2(620,200)),
+                dungeonFactory.MakeSprite("gap", new Vector2(640,200)),
+                dungeonFactory.MakeSprite("stairs", new Vector2(660,200)),
+                dungeonFactory.MakeSprite("ladder", new Vector2(680,200)),
+                dungeonFactory.MakeSprite("brick", new Vector2(700,200)),
+                dungeonFactory.MakeSprite("water", new Vector2(720,200)),
+                dungeonFactory.MakeSprite("left statue", new Vector2(720,220)),
+                dungeonFactory.MakeSprite("right statue", new Vector2(700,220)),
+                dungeonFactory.MakeSprite("up wall", new Vector2(600, 150)),
+                dungeonFactory.MakeSprite("down wall", new Vector2(600, 150)),
+                dungeonFactory.MakeSprite("left wall", new Vector2(600, 150)),
+                dungeonFactory.MakeSprite("right wall", new Vector2(600, 150)),
+                dungeonFactory.MakeSprite("down open door", new Vector2(640, 150)),
+                dungeonFactory.MakeSprite("up open door", new Vector2(640, 150)),
+                dungeonFactory.MakeSprite("left open door", new Vector2(640, 150)),
+                dungeonFactory.MakeSprite("right open door", new Vector2(640, 150)),
+                dungeonFactory.MakeSprite("right locked door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("left locked door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("up locked door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("down shut door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("right shut door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("left shut door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("up shut door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("down shut door", new Vector2(680, 150)),
+                dungeonFactory.MakeSprite("left bombed opening", new Vector2(720, 150)),
+                dungeonFactory.MakeSprite("right bombed opening", new Vector2(720, 150)),
+                dungeonFactory.MakeSprite("up bombed opening", new Vector2(720, 150)),
+                dungeonFactory.MakeSprite("down bombed opening", new Vector2(720, 150)),
+            };
+
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -113,9 +160,15 @@ namespace sprint0
             {
                 controller.Update();
             }
-
+            player.Update();
             foreach (ISprite _sprite in sprites)
                 _sprite.Update();
+            foreach (ISprite _sprite in itemSprites)
+                _sprite.Update();
+            foreach (ISprite _sprite in enemyNPCSprites)
+                _sprite.Update();
+            
+            base.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -123,10 +176,13 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
-            //text.Draw(_spriteBatch);
-            player.State.Sprite.Draw(_spriteBatch);
+            roomBorder.Draw(_spriteBatch);
+            player.Draw(_spriteBatch);
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
+            itemSprites[itemIndex].Draw(_spriteBatch);
+            enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
+            roomElementsSprites[roomElementsIndex].Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

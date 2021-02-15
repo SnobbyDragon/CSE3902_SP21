@@ -9,12 +9,16 @@ namespace sprint0
     {
         Game1 game;
         private Dictionary<Keys, ICommand> controllerMappings;
+        private Keys[] previousPressedKeys;
+        private HashSet<Keys> movementKeys;
         public KeyboardController(Game1 game)
         {
             this.game = game;
             controllerMappings = new Dictionary<Keys, ICommand>();
+            movementKeys = new HashSet<Keys> { Keys.W, Keys.A, Keys.S, Keys.D, Keys.Up, Keys.Down, Keys.Left, Keys.Right };
+            previousPressedKeys = Keyboard.GetState().GetPressedKeys();
             RegisterCommand(Keys.Q, new QuitCommand(game));
-
+            RegisterCommand(Keys.R, new ResetCommand(game));
             RegisterCommand(Keys.W, new UpCommand(game));
             RegisterCommand(Keys.S, new DownCommand(game));
             RegisterCommand(Keys.A, new LeftCommand(game));
@@ -23,6 +27,14 @@ namespace sprint0
             RegisterCommand(Keys.Down, new DownCommand(game));
             RegisterCommand(Keys.Left, new LeftCommand(game));
             RegisterCommand(Keys.Right, new RightCommand(game));
+            RegisterCommand(Keys.U, new ItemPreviousSpriteCommand(game));
+            RegisterCommand(Keys.I, new ItemNextSpriteCommand(game));
+            RegisterCommand(Keys.O, new EnemyNPCPreviousSpriteCommand(game));
+            RegisterCommand(Keys.P, new EnemyNPCNextSpriteCommand(game));
+            RegisterCommand(Keys.T, new RoomElementPreviousSpriteCommand(game));
+            RegisterCommand(Keys.Y, new RoomElementNextSpriteCommand(game));
+            RegisterCommand(Keys.Z, new SwordCommand(game));
+            RegisterCommand(Keys.N, new SwordCommand(game));
         }
 
         public void RegisterCommand(Keys key, ICommand command)
@@ -33,12 +45,14 @@ namespace sprint0
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-
+            
             foreach (Keys key in pressedKeys)
-            {
-                if (controllerMappings.ContainsKey(key))
+                if (controllerMappings.ContainsKey(key) && (Array.IndexOf(previousPressedKeys, key) == -1) || movementKeys.Contains(key))
                     controllerMappings[key].Execute();
-            }
+            foreach (Keys key in movementKeys)
+                if (Array.IndexOf(previousPressedKeys, key) > -1 && Array.IndexOf(pressedKeys, key) == -1)
+                    game.Player.State.Stop();
+            previousPressedKeys = pressedKeys;
         }
     }
 }

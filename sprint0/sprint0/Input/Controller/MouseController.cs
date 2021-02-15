@@ -21,5 +21,10 @@ namespace sprint0
         {
             //no-op for now
         }
+
+        public void Initialize()
+        {
+            // no-op for now
+        }
     }
 }

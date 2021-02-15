@@ -1,6 +1,6 @@
 ﻿namespace sprint0
 {
-    internal class DownCommand : ICommand
+    class DownCommand : ICommand
     {
         private Game1 game;
         public DownCommand(Game1 game)
@@ -10,7 +10,7 @@
 
         public void Execute()
         {
-            game.Player.State = new DownIdleState(game.PlayerFactory.MakeSprite("link down idle", game.Player.Position));
+            game.Player.State.HandleDown();
         }
     }
 }

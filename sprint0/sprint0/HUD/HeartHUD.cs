@@ -43,7 +43,7 @@ namespace sprint0
                     if (heartCount == 8)
                     {
                         xShift = 0;
-                        yShift = 9;
+                        yShift = 8;
                     }
                     spriteBatch.Draw(Texture, new Vector2(Location.X + xShift, Location.Y + yShift), sources[i], Color.White);
                     xShift += sideLength;

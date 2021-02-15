@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace sprint0
+﻿namespace sprint0
 {
     class UpCommand : ICommand
     {
@@ -14,7 +10,7 @@ namespace sprint0
 
         public void Execute()
         {
-            game.Player.State = new UpIdleState(game.PlayerFactory.MakeSprite("link up idle", game.Player.Position));
+            game.Player.State.HandleUp();
         }
     }
 }
