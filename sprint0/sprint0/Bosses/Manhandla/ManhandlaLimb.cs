@@ -15,9 +15,9 @@ namespace sprint0
         private Dictionary<String, Vector2> dirToLocationMap;
         private Dictionary<String, List<Rectangle>> dirToSourcesMap;
         private string dir;
-        private Manhandla center;
+        private ISprite center; // center of manhandla
 
-        public ManhandlaLimb(Texture2D texture, Manhandla center, String dir)
+        public ManhandlaLimb(Texture2D texture, ISprite center, String dir)
         {
             Texture = texture;
             this.center = center;

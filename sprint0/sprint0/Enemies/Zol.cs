@@ -10,7 +10,6 @@ namespace sprint0
 
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
-        private List<Rectangle> sources;
         private int totalFrames;
         private int currentFrame;
         private int repeatedFrames = 10;

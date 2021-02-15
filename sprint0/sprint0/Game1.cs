@@ -15,12 +15,10 @@ namespace sprint0
         private Dictionary<String, ISprite> playerSprites;
         private ISprite sprite;
         private ISprite text;
-        private Texture2D texture;
         private SpriteFont font;
         private IPlayer player;
         private PlayerSpriteFactory playerFactory;
         public ISprite Sprite { get => sprite; set => sprite = value; }
-        public Texture2D Texture { get => texture; }
         public SpriteFont Font { get => font; set => font = value; }
         public IPlayer Player { get => player; set => player = value; }
         internal PlayerSpriteFactory PlayerFactory { get => playerFactory; set => playerFactory = value; }
@@ -34,9 +32,11 @@ namespace sprint0
 
         protected override void Initialize()
         {
-            controllerList = new List<IController>();
-            controllerList.Add(new KeyboardController(this));
-            controllerList.Add(new MouseController(this));
+            controllerList = new List<IController>
+            {
+                new KeyboardController(this),
+                new MouseController(this)
+            };
 
             base.Initialize();
         }
@@ -65,10 +65,12 @@ namespace sprint0
                 bossSpriteFactory.MakeSprite("ganon fireball up right", new Vector2(520, 200)),
                 bossSpriteFactory.MakeSprite("orange gohma", new Vector2(420, 420)),
                 bossSpriteFactory.MakeSprite("blue gohma", new Vector2(450, 450)),
-                bossSpriteFactory.MakeSprite("patra", new Vector2(300, 150)),
-                bossSpriteFactory.MakeSprite("patra minion", new Vector2(320, 150)),
+                bossSpriteFactory.MakeSprite("patra", new Vector2(300, 200)),
                 bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,100)),
                 bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,100)),
+                bossSpriteFactory.MakeSprite("gleeok", new Vector2(290,100)),
+                bossSpriteFactory.MakeSprite("ganon", new Vector2(100,150)),
+                bossSpriteFactory.MakeSprite("aquamentus", new Vector2(340,100)),
                 dungeonFactory.MakeSprite("block", new Vector2(600,200)),
                 dungeonFactory.MakeSprite("tile", new Vector2(620,200)),
                 dungeonFactory.MakeSprite("gap", new Vector2(640,200)),
