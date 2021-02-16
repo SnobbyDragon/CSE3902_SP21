@@ -121,12 +121,13 @@ namespace sprint0
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
             //roomBorder.Draw(_spriteBatch);
-            player.Draw(_spriteBatch);
+           
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
             itemSprites[itemIndex].Draw(_spriteBatch);
             enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
             roomElementsSprites[roomElementsIndex].Draw(_spriteBatch);
+            player.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
