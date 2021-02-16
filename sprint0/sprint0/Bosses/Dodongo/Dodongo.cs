@@ -95,7 +95,7 @@ namespace sprint0
                 //Sets sprite effect
                 currentSpriteEffect = repeatedFrames+1;
 
-                //resets to first frame of left animation
+                //walking animation
                 currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL-1) * repeatedFrames);
 
                 //moves sprite left
@@ -112,7 +112,7 @@ namespace sprint0
                 //Sets sprite effect
                 currentSpriteEffect = 0;
 
-                //resets to first frame of right animation
+                //walking animation
                 currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL-1) * repeatedFrames);
 
                 
