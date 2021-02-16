@@ -13,7 +13,6 @@ namespace sprint0
         private int totalFrames;
         private int currentFrame;
         private int repeatedFrames;
-        private int totalSpriteEffects, currentSpriteEffect;
         private SpriteEffects spriteEffect;
 
         enum Direction { left, right, up, down }
@@ -57,7 +56,7 @@ namespace sprint0
                 spriteEffect = SpriteEffects.FlipHorizontally;
                 //moves sprite left
                 Location += new Vector2(-1, 0);
-                if (Location.X <= 200)
+                if (Location.X <= 100)
                 {
                     direction = Direction.down;
                     
@@ -70,7 +69,7 @@ namespace sprint0
                 spriteEffect = SpriteEffects.None;
                 //moves sprite right
                 Location += new Vector2(1, 0);
-                if (Location.X >= 500)
+                if (Location.X >= 690)
                 {
                     direction = Direction.up;
                    
@@ -80,7 +79,7 @@ namespace sprint0
             {
                 //moves sprite down
                 Location += new Vector2(0, 1);
-                if (Location.Y >= 300)
+                if (Location.Y >= 396)
                 {
                     direction = Direction.right;
                   
@@ -89,7 +88,7 @@ namespace sprint0
             else { //direction==Direction.up
                 //moves sprite up
                 Location += new Vector2(0, -1);
-                if (Location.Y <= 200)
+                if (Location.Y <= 136)
                 {
                     direction = Direction.left;
                     
