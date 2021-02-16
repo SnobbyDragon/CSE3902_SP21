@@ -25,7 +25,7 @@ namespace sprint0
         public IPlayer Player { get => player; set => player = value; }
         public List<ISprite> itemSprites, enemyNPCSprites, roomElementsSprites;
         public int itemIndex, enemyNPCIndex, roomElementsIndex;
-        private ISprite roomBorder;
+        //private ISprite roomBorder;
 
         public Game1()
         {
@@ -48,44 +48,32 @@ namespace sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            BossesSpriteFactory bossSpriteFactory = new BossesSpriteFactory(this);
             DungeonFactory dungeonFactory = new DungeonFactory(this);
             ItemsWeaponsSpriteFactory itemFactory = new ItemsWeaponsSpriteFactory(this);
-            EnemiesSpriteFactory enemyFactory = new EnemiesSpriteFactory(this);
-            NpcsSpriteFactory npcFactory = new NpcsSpriteFactory(this);
             HUDFactory hudFactory = new HUDFactory(this);
-            
+
             itemIndex = enemyNPCIndex = 0;
             sprites = new List<ISprite> // testing sprites here
             {
-                bossSpriteFactory.MakeSprite("ganon fireball center", new Vector2(400, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball up", new Vector2(415, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball up left", new Vector2(430, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball left", new Vector2(445, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball down left", new Vector2(460, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball down", new Vector2(475, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball down right", new Vector2(490, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball right", new Vector2(505, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball up right", new Vector2(520, 200)),
-                bossSpriteFactory.MakeSprite("orange gohma", new Vector2(420, 420)),
-                bossSpriteFactory.MakeSprite("blue gohma", new Vector2(450, 450)),
-                bossSpriteFactory.MakeSprite("patra", new Vector2(300, 200)),
-                bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,100)),
-                bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,100)),
-                bossSpriteFactory.MakeSprite("gleeok", new Vector2(290,100)),
-                bossSpriteFactory.MakeSprite("ganon", new Vector2(100,150)),
-                bossSpriteFactory.MakeSprite("aquamentus", new Vector2(340,100)),
-                hudFactory.MakeSprite("hud", new Vector2(400,0)),
-                hudFactory.MakeSprite("rinventory 15", new Vector2(400,0)),
-                hudFactory.MakeSprite("kinventory 5", new Vector2(400,0)),
-                hudFactory.MakeSprite("binventory 33", new Vector2(400,0)),
-                hudFactory.MakeSprite("hinventory 5,10", new Vector2(400,0)),
+                hudFactory.MakeSprite("hudM", new Vector2(400,0)),
+                hudFactory.MakeSprite("rin 15", new Vector2(400,0)),
+                hudFactory.MakeSprite("kin 5", new Vector2(400,0)),
+                hudFactory.MakeSprite("bin 33", new Vector2(400,0)),
+                hudFactory.MakeSprite("hin 5,10", new Vector2(400,0)),
+                hudFactory.MakeSprite("hudA sword", new Vector2(400,0)),
+                hudFactory.MakeSprite("hudB magical boomerang", new Vector2(400,0)),
+                dungeonFactory.MakeSprite("room border", new Vector2(0, 56)),
+                dungeonFactory.MakeSprite("room floor plain", new Vector2(97, 134)),
+                dungeonFactory.MakeSprite("down open door", new Vector2(349, 55)),
+                dungeonFactory.MakeSprite("up open door", new Vector2(349, 404)),
+                dungeonFactory.MakeSprite("left open door", new Vector2(700, 231)),
+                dungeonFactory.MakeSprite("right open door", new Vector2(0, 231)),
             };
 
             //Room Boarder
-            roomBorder=dungeonFactory.MakeSprite("room border", new Vector2(0,56));
+            //roomBorder = dungeonFactory.MakeSprite("room border", new Vector2(0, 56));
 
-            itemSprites = new List<ISprite> 
+            itemSprites = new List<ISprite>
             {
                 itemFactory.MakeSprite("fairy", new Vector2(640,300)),
                 itemFactory.MakeSprite("bomb", new Vector2(660,300)),
@@ -97,57 +85,13 @@ namespace sprint0
 
                 };
 
-            enemyNPCSprites = new List<ISprite>
-            {
-                enemyFactory.MakeSprite("teal gel", new Vector2(340,350)),
-                enemyFactory.MakeSprite("blkwhite gel", new Vector2(360,350)),
-                enemyFactory.MakeSprite("green zol", new Vector2(380,350)),
-                enemyFactory.MakeSprite("snake", new Vector2(400,350)),
-                enemyFactory.MakeSprite("stalfos", new Vector2(420,350)),
-                enemyFactory.MakeSprite("trap", new Vector2(440,350)),
-                npcFactory.MakeSprite("flame", new Vector2(460,350)),
-                npcFactory.MakeSprite("green merchant", new Vector2(480,350)),
-                npcFactory.MakeSprite("white merchant", new Vector2(500,350)),
-                npcFactory.MakeSprite("red merchant", new Vector2(520,350)),
-                npcFactory.MakeSprite("old man 1", new Vector2(540,350)),
-                npcFactory.MakeSprite("old man 2", new Vector2(560,350)),
-                npcFactory.MakeSprite("old woman", new Vector2(580,350)),
-            };
+            //list of enemy, npc, and boss sprites
+            EnemyNPCSprites enbSprite = new EnemyNPCSprites(this);
+            enemyNPCSprites = enbSprite.LoadEnemyNPCSprites();
 
-            roomElementsSprites = new List<ISprite>
-            {
-                dungeonFactory.MakeSprite("block", new Vector2(600,200)),
-                dungeonFactory.MakeSprite("tile", new Vector2(620,200)),
-                dungeonFactory.MakeSprite("gap", new Vector2(640,200)),
-                dungeonFactory.MakeSprite("stairs", new Vector2(660,200)),
-                dungeonFactory.MakeSprite("ladder", new Vector2(680,200)),
-                dungeonFactory.MakeSprite("brick", new Vector2(700,200)),
-                dungeonFactory.MakeSprite("water", new Vector2(720,200)),
-                dungeonFactory.MakeSprite("left statue", new Vector2(720,220)),
-                dungeonFactory.MakeSprite("right statue", new Vector2(700,220)),
-                dungeonFactory.MakeSprite("up wall", new Vector2(600, 150)),
-                dungeonFactory.MakeSprite("down wall", new Vector2(600, 150)),
-                dungeonFactory.MakeSprite("left wall", new Vector2(600, 150)),
-                dungeonFactory.MakeSprite("right wall", new Vector2(600, 150)),
-                dungeonFactory.MakeSprite("down open door", new Vector2(640, 150)),
-                dungeonFactory.MakeSprite("up open door", new Vector2(640, 150)),
-                dungeonFactory.MakeSprite("left open door", new Vector2(640, 150)),
-                dungeonFactory.MakeSprite("right open door", new Vector2(640, 150)),
-                dungeonFactory.MakeSprite("right locked door", new Vector2(680, 150)),
-                dungeonFactory.MakeSprite("left locked door", new Vector2(680, 150)),
-                dungeonFactory.MakeSprite("up locked door", new Vector2(680, 150)),
-                dungeonFactory.MakeSprite("down shut door", new Vector2(680, 150)),
-                dungeonFactory.MakeSprite("right shut door", new Vector2(680, 150)),
-                dungeonFactory.MakeSprite("left shut door", new Vector2(680, 150)),
-                dungeonFactory.MakeSprite("up shut door", new Vector2(680, 150)),
-                dungeonFactory.MakeSprite("down shut door", new Vector2(680, 150)),
-                dungeonFactory.MakeSprite("left bombed opening", new Vector2(720, 150)),
-                dungeonFactory.MakeSprite("right bombed opening", new Vector2(720, 150)),
-                dungeonFactory.MakeSprite("up bombed opening", new Vector2(720, 150)),
-                dungeonFactory.MakeSprite("down bombed opening", new Vector2(720, 150)),
-            };
-
-
+            //list of room element sprites
+            DungeonSprites dungeonSprite = new DungeonSprites(this);
+            roomElementsSprites = dungeonSprite.LoadDungeonSprites();
         }
 
         protected override void Update(GameTime gameTime)
@@ -167,7 +111,7 @@ namespace sprint0
                 _sprite.Update();
             foreach (ISprite _sprite in enemyNPCSprites)
                 _sprite.Update();
-            
+
             base.Update(gameTime);
             base.Update(gameTime);
         }
@@ -176,7 +120,7 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
-            roomBorder.Draw(_spriteBatch);
+            //roomBorder.Draw(_spriteBatch);
             player.Draw(_spriteBatch);
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
