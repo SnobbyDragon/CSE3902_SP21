@@ -22,6 +22,12 @@ namespace sprint0
             switch (spriteType)
             {
 
+                case "room floor plain":
+                    return new RoomFloor(texture, location, "plain");
+                case "room floor 1": //todo: more descriptive names
+                    return new RoomFloor(texture, location, "1");
+                case "room floor 2": //todo: more descriptive names
+                    return new RoomFloor(texture, location, "2");
                 case "room border":
                     return new RoomBorder(texture, location);
                 case "block":
