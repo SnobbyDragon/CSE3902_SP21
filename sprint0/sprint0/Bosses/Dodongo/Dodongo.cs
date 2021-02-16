@@ -7,17 +7,17 @@ namespace sprint0
 {
     public class Dodongo : ISprite
     {
+        //TODO:Add bomb eating animation and logic
+
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private List<Rectangle> upDownSources, rightLeftSources;
         private int totalFramesUD, currentFrameUD, repeatedFrames;
         private int totalFramesRL, currentFrameRL;
-        SpriteEffects s = SpriteEffects.FlipHorizontally;
-        private int xcoordinate;
-        private int ycoordinate;
+        private int totalSpriteEffects, currentSpriteEffect;
+        private List<SpriteEffects> spriteEffects;
         public Vector2 Destination { get; set; }
-        private Rectangle destinationRectangle;
-
+        
 
         enum Direction { left, right, up, down }
         private Direction direction = Direction.left;
@@ -29,13 +29,12 @@ namespace sprint0
             Location = location;
             Texture = texture;
             totalFramesUD = 4; currentFrameUD = 0;
-            totalFramesRL = 6; currentFrameRL = (totalFramesRL/2)+1;
+            totalFramesRL = 3; currentFrameRL = 0;
             repeatedFrames = 10;
             upDownSources = new List<Rectangle>();
             rightLeftSources = new List<Rectangle>();
             int xPos = 1, yPos = 58, sideLength = 16;
-            xcoordinate = (int)Location.X;
-            ycoordinate = (int)Location.Y;
+         
             //adds up and down frames
             for (int frame = 0; frame < totalFramesUD; frame++)
             {
@@ -47,13 +46,21 @@ namespace sprint0
             int xPosCopy = xPos;
             for (int frame = 0; frame < totalFramesRL; frame++)
             {
-                if (frame == 3) { xPos = xPosCopy; }
                 rightLeftSources.Add(new Rectangle(xPos, yPos, width, sideLength));
                 xPos += width + 1;
 
             }
 
+            //Creates sprite effect list
+            totalSpriteEffects = 2; currentSpriteEffect = 0;
+            spriteEffects = new List<SpriteEffects> {
+                SpriteEffects.None,
+                SpriteEffects.FlipHorizontally
+            };
+            
+            
             //sets Destination-later can make a set destination method
+            //TODO:make movement dependent on destination
             Destination = new Vector2(700, 300);
         }
 
@@ -62,20 +69,17 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
 
         {
-          
-
             if (direction == Direction.left || direction == Direction.right)
             {
-                destinationRectangle = new Rectangle(xcoordinate, ycoordinate, 32, 16);
                 
-                spriteBatch.Draw(Texture, destinationRectangle, rightLeftSources[currentFrameRL / repeatedFrames],
-                    Color.White, 0, new Vector2(0, 0), s, 0);
+                spriteBatch.Draw(Texture, Location, rightLeftSources[currentFrameRL / repeatedFrames],
+                    Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), spriteEffects[currentSpriteEffect/repeatedFrames], 0);
             }
             else
             {
-                destinationRectangle = new Rectangle(xcoordinate, ycoordinate, 16, 16);
-                spriteBatch.Draw(Texture, destinationRectangle, upDownSources[currentFrameUD / repeatedFrames], Color.White,
-                    0, new Vector2(0, 0), s, 0);
+                
+                spriteBatch.Draw(Texture, Location, upDownSources[currentFrameUD / repeatedFrames], Color.White,
+                    0, new Vector2(0, 0), new Vector2(1, 1), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
             }
 
         }
@@ -89,17 +93,14 @@ namespace sprint0
             if (direction == Direction.left)
             {
                 //Sets sprite effect
-                s = SpriteEffects.FlipHorizontally;
+                currentSpriteEffect = repeatedFrames+1;
 
-                currentFrameRL = (currentFrameRL + 1) % (totalFramesRL * repeatedFrames);
-                if (currentFrameRL == totalFramesRL * repeatedFrames-1) 
-                {
-                    currentFrameRL = (totalFramesRL*repeatedFrames / 2) + 1;
-                }
+                //resets to first frame of left animation
+                currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL-1) * repeatedFrames);
 
-
-                xcoordinate--;
-                if (xcoordinate <= 200)
+                //moves sprite left
+                Location += new Vector2(-1,0);
+                if(Location.X<=200)
                 {
                     direction = Direction.down;
                     currentFrameUD = 0;
@@ -109,18 +110,15 @@ namespace sprint0
             else if (direction == Direction.right)
             {
                 //Sets sprite effect
-                s = SpriteEffects.None;
+                currentSpriteEffect = 0;
 
-                currentFrameRL = (currentFrameRL + 1) % (totalFramesRL * repeatedFrames);
-                if (currentFrameRL == totalFramesRL*repeatedFrames / 2)
-                {
-                    currentFrameRL = 0;
-                }
+                //resets to first frame of right animation
+                currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL-1) * repeatedFrames);
+
                 
-
-
-                xcoordinate++;
-                if (xcoordinate >= 500)
+                //moves sprite right
+                Location += new Vector2(1, 0);
+                if (Location.X >= 500)
                 {
                     direction = Direction.up;
                     currentFrameUD = (totalFramesUD*repeatedFrames / 2)+1;
@@ -130,14 +128,15 @@ namespace sprint0
 
 
             } else if (direction == Direction.down) {
-                currentFrameUD = (currentFrameUD + 1) % (totalFramesUD * repeatedFrames);
-                if (currentFrameUD == totalFramesUD*repeatedFrames / 2)
-                {
-                    currentFrameUD = 0;
-                }
+                 
+               
+                //amiantes sprite by filping after every repeatedFrames frames
+                currentSpriteEffect= (currentSpriteEffect + 1)%(totalSpriteEffects*repeatedFrames);
+                
 
-                ycoordinate++;
-                if (ycoordinate >= 300)
+                //moves sprite down
+                Location += new Vector2(0, 1);
+                if (Location.Y >= 300)
                 {
                     direction = Direction.right;
                     currentFrameRL = 0;
@@ -146,14 +145,12 @@ namespace sprint0
 
             } else { //direction == Direction.up
 
-                currentFrameUD = (currentFrameUD + 1) % (totalFramesUD * repeatedFrames);
-                if (currentFrameUD == totalFramesUD*repeatedFrames-1)
-                {
-                    currentFrameUD = (totalFramesUD*repeatedFrames / 2) + 1;
-                }
-
-                ycoordinate--;
-                if (ycoordinate <= 200)
+                //amiantes sprite by filping after every repeatedFrames frames
+                currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
+                
+                //moves sprite up
+                Location += new Vector2(0,-1);
+                if (Location.Y <= 200)
                 {
                     direction = Direction.left;
                     currentFrameRL = (totalFramesRL*repeatedFrames / 2) + 1;
