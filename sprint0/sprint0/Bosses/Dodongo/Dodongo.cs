@@ -5,15 +5,21 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Dodongo:ISprite
+    public class Dodongo : ISprite
     {
+        //TODO:Add bomb eating animation and logic
+
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
-        private List<Rectangle> sources;
-        private int totalFrames, currentFrame, repeatedFrames;
+        private List<Rectangle> upDownSources, rightLeftSources;
+        private int totalFramesUD, currentFrameUD, repeatedFrames;
+        private int totalFramesRL, currentFrameRL;
+        private int totalSpriteEffects, currentSpriteEffect;
+        private List<SpriteEffects> spriteEffects;
+        public Vector2 Destination { get; set; }
+        
 
-        //TODO:fix this by making seperate classes
-        enum Direction {left,right,front,back}
+        enum Direction { left, right, up, down }
         private Direction direction = Direction.left;
 
         //list of source frames
@@ -22,27 +28,135 @@ namespace sprint0
         {
             Location = location;
             Texture = texture;
-            totalFrames = 7;
-            currentFrame = 0;
+            totalFramesUD = 4; currentFrameUD = 0;
+            totalFramesRL = 3; currentFrameRL = 0;
             repeatedFrames = 10;
-            sources = new List<Rectangle>();
-            int xPos =1, yPos =58, sideLength =16;
-            for (int frame = 0; frame < totalFrames; frame++) {
-                sources.Add(new Rectangle(xPos,yPos,sideLength, sideLength));
+            upDownSources = new List<Rectangle>();
+            rightLeftSources = new List<Rectangle>();
+            int xPos = 1, yPos = 58, sideLength = 16;
+         
+            //adds up and down frames
+            for (int frame = 0; frame < totalFramesUD; frame++)
+            {
+                upDownSources.Add(new Rectangle(xPos, yPos, sideLength, sideLength));
                 xPos += sideLength + 1;
             }
+            //adds right and left frames
+            int width = 32;
+            int xPosCopy = xPos;
+            for (int frame = 0; frame < totalFramesRL; frame++)
+            {
+                rightLeftSources.Add(new Rectangle(xPos, yPos, width, sideLength));
+                xPos += width + 1;
+
+            }
+
+            //Creates sprite effect list
+            totalSpriteEffects = 2; currentSpriteEffect = 0;
+            spriteEffects = new List<SpriteEffects> {
+                SpriteEffects.None,
+                SpriteEffects.FlipHorizontally
+            };
+            
+            
+            //sets Destination-later can make a set destination method
+            //TODO:make movement dependent on destination
+            Destination = new Vector2(700, 300);
         }
 
-        
+
 
         public void Draw(SpriteBatch spriteBatch)
+
         {
-            spriteBatch.Draw(Texture, Location, sources[currentFrame/repeatedFrames], Color.White);
+            if (direction == Direction.left || direction == Direction.right)
+            {
+                
+                spriteBatch.Draw(Texture, Location, rightLeftSources[currentFrameRL / repeatedFrames],
+                    Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), spriteEffects[currentSpriteEffect/repeatedFrames], 0);
+            }
+            else
+            {
+                
+                spriteBatch.Draw(Texture, Location, upDownSources[currentFrameUD / repeatedFrames], Color.White,
+                    0, new Vector2(0, 0), new Vector2(1, 1), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
+            }
+
         }
 
         public void Update()
         {
-            currentFrame = (currentFrame + 1) % (totalFrames*repeatedFrames);
+
+            
+            //handels movement
+
+            if (direction == Direction.left)
+            {
+                //Sets sprite effect
+                currentSpriteEffect = repeatedFrames+1;
+
+                //resets to first frame of left animation
+                currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL-1) * repeatedFrames);
+
+                //moves sprite left
+                Location += new Vector2(-1,0);
+                if(Location.X<=200)
+                {
+                    direction = Direction.down;
+                    currentFrameUD = 0;
+                    
+                }
+            }
+            else if (direction == Direction.right)
+            {
+                //Sets sprite effect
+                currentSpriteEffect = 0;
+
+                //resets to first frame of right animation
+                currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL-1) * repeatedFrames);
+
+                
+                //moves sprite right
+                Location += new Vector2(1, 0);
+                if (Location.X >= 500)
+                {
+                    direction = Direction.up;
+                    currentFrameUD = (totalFramesUD*repeatedFrames / 2)+1;
+                    
+                }
+
+
+
+            } else if (direction == Direction.down) {
+                 
+               
+                //amiantes sprite by filping after every repeatedFrames frames
+                currentSpriteEffect= (currentSpriteEffect + 1)%(totalSpriteEffects*repeatedFrames);
+                
+
+                //moves sprite down
+                Location += new Vector2(0, 1);
+                if (Location.Y >= 300)
+                {
+                    direction = Direction.right;
+                    currentFrameRL = 0;
+                    
+                }
+
+            } else { //direction == Direction.up
+
+                //amiantes sprite by filping after every repeatedFrames frames
+                currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
+                
+                //moves sprite up
+                Location += new Vector2(0,-1);
+                if (Location.Y <= 200)
+                {
+                    direction = Direction.left;
+                    currentFrameRL = (totalFramesRL*repeatedFrames / 2) + 1;
+                    
+                }
+            }
 
         }
     }
