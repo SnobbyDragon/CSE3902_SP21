@@ -15,6 +15,9 @@ namespace sprint0
         private string color;
         private int headCurrFrame, legCurrFrame;
         private readonly int headTotalFrames, headRepeatedFrames, legTotalFrames, legRepeatedFrames;
+        private int currDest;
+        private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < legTotalFrames*legRepeatedFrames
+        private List<Vector2> destinations; // gohma moves to predetermined destinations
 
         public Gohma(Texture2D texture, Vector2 location, string color)
         {
@@ -24,9 +27,9 @@ namespace sprint0
             headCurrFrame = 0;
             legCurrFrame = 0;
             headTotalFrames = 4;
-            headRepeatedFrames = 8;
+            headRepeatedFrames = 12;
             legTotalFrames = 2;
-            legRepeatedFrames = 4;
+            legRepeatedFrames = 14;
 
             colorToLegMap = new Dictionary<string, List<Rectangle>>
             {
@@ -47,6 +50,16 @@ namespace sprint0
             {
                 { "orange", GetFrames(230, 105, headTotalFrames) },
                 { "blue", GetFrames(230, 122, headTotalFrames) }
+            };
+
+            currDest = 0;
+            moveDelay = 2; //slow spooder
+            destinations = new List<Vector2>
+            {
+                location,
+                location + new Vector2(100,0),
+                location,
+                location + new Vector2(0,100)
             };
         }
 
@@ -83,6 +96,19 @@ namespace sprint0
 
         public void Update()
         {
+            Vector2 dist = destinations[currDest] - Location;
+            if (dist.Length() == 0) // can use exact bc no floating point errors for whole numbers
+            {
+                // reached destination, so pick a new destination
+                currDest = (currDest + 1) % destinations.Count;
+            }
+            else if (legCurrFrame % moveDelay == 0)
+            {
+                // has not reached destination, move towards it
+                dist.Normalize();
+                Location += dist;
+            }
+
             // animates all the time for now
             headCurrFrame = (headCurrFrame + 1) % (headTotalFrames * headRepeatedFrames);
             legCurrFrame = (legCurrFrame + 1) % (legTotalFrames * legRepeatedFrames);

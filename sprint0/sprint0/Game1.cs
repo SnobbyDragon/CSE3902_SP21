@@ -21,7 +21,6 @@ namespace sprint0
         private IPlayer player;
 
         public ISprite Sprite { get => sprite; set => sprite = value; }
-        public Texture2D Texture { get => texture; }
         public SpriteFont Font { get => font; set => font = value; }
         public IPlayer Player { get => player; set => player = value; }
         public List<ISprite> itemSprites, enemyNPCSprites, roomElementsSprites;
@@ -70,10 +69,12 @@ namespace sprint0
                 bossSpriteFactory.MakeSprite("ganon fireball up right", new Vector2(520, 200)),
                 bossSpriteFactory.MakeSprite("orange gohma", new Vector2(420, 420)),
                 bossSpriteFactory.MakeSprite("blue gohma", new Vector2(450, 450)),
-                bossSpriteFactory.MakeSprite("patra", new Vector2(300, 150)),
-                bossSpriteFactory.MakeSprite("patra minion", new Vector2(320, 150)),
+                bossSpriteFactory.MakeSprite("patra", new Vector2(300, 200)),
                 bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,100)),
                 bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,100)),
+                bossSpriteFactory.MakeSprite("gleeok", new Vector2(290,100)),
+                bossSpriteFactory.MakeSprite("ganon", new Vector2(100,150)),
+                bossSpriteFactory.MakeSprite("aquamentus", new Vector2(340,100)),
                 hudFactory.MakeSprite("hud", new Vector2(400,0)),
                 hudFactory.MakeSprite("rinventory 15", new Vector2(400,0)),
                 hudFactory.MakeSprite("kinventory 5", new Vector2(400,0)),
