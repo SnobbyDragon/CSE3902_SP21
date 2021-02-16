@@ -95,12 +95,12 @@ namespace sprint0
                 //Sets sprite effect
                 currentSpriteEffect = repeatedFrames+1;
 
-                //resets to first frame of left animation
+                //walking animation
                 currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL-1) * repeatedFrames);
 
                 //moves sprite left
                 Location += new Vector2(-1,0);
-                if(Location.X<=200)
+                if(Location.X<=100)
                 {
                     direction = Direction.down;
                     currentFrameUD = 0;
@@ -112,13 +112,13 @@ namespace sprint0
                 //Sets sprite effect
                 currentSpriteEffect = 0;
 
-                //resets to first frame of right animation
+                //walking animation
                 currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL-1) * repeatedFrames);
 
                 
                 //moves sprite right
                 Location += new Vector2(1, 0);
-                if (Location.X >= 500)
+                if (Location.X >= 690)
                 {
                     direction = Direction.up;
                     currentFrameUD = (totalFramesUD*repeatedFrames / 2)+1;
@@ -136,7 +136,7 @@ namespace sprint0
 
                 //moves sprite down
                 Location += new Vector2(0, 1);
-                if (Location.Y >= 300)
+                if (Location.Y >= 396)
                 {
                     direction = Direction.right;
                     currentFrameRL = 0;
@@ -150,7 +150,7 @@ namespace sprint0
                 
                 //moves sprite up
                 Location += new Vector2(0,-1);
-                if (Location.Y <= 200)
+                if (Location.Y <= 136)
                 {
                     direction = Direction.left;
                     currentFrameRL = (totalFramesRL*repeatedFrames / 2) + 1;
