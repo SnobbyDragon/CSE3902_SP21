@@ -10,7 +10,7 @@
 
         public void Execute()
         {
-            game.Player.State.HandleDown();
+            game.Player.HandleDown();
         }
     }
 }
