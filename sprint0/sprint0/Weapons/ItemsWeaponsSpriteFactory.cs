@@ -33,7 +33,7 @@ namespace sprint0
                 case "heart container":
                     return new HeartContainer(texture, location);
                 case "fairy":
-                    return new Fairy(texture, location);
+                    return new Fairy(texture, location, game);
                 case "bomb":
                     return new Bomb(texture, location);
                 case "clock":
