@@ -13,6 +13,11 @@ namespace sprint0
         private List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
+        private SpriteEffects s; // could be flipped horizontally, vertically, or both
+        enum Direction { n, s, e, w } // TODO make a global public class bc a lot of sprites use this
+        private Direction direction; // wallmaster only moves n s e w (cannot move diagonal)
+        private int moveCounter, dirChangeDelay;
+        private Random rand;
 
         public Wallmaster(Texture2D texture, Vector2 location)
         {
@@ -26,17 +31,96 @@ namespace sprint0
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;
+
+            rand = new Random();
+
+            if (Location.X <= Game1.MapWidth / 2) // if coming from the left, then faces right
+            {
+                s = SpriteEffects.None;
+            }
+            else // if coming from the right, then faces left
+            {
+                s = SpriteEffects.FlipHorizontally;
+            }
+            if (Location.Y < Game1.MapHeight / 2 + Game1.HUDHeight) // if coming from above, faces down
+            {
+                s |= SpriteEffects.FlipVertically;
+            } // otherwise (coming from below), faces up
+
+            if (Location.X <= 0) // coming from the left, move right
+            {
+                direction = Direction.e;
+            }
+            else if (Location.X >= Game1.MapWidth) // coming from the right, move left
+            {
+                direction = Direction.w;
+            }
+            else if (Location.Y <= Game1.HUDHeight) // coming from the top, move down
+            {
+                direction = Direction.s;
+            }
+            else if (Location.Y >= Game1.HUDHeight + Game1.MapHeight) // coming from the bottom, move up
+            {
+                direction = Direction.n;
+            }
+            else // this shouldn't happen; TODO throw error? keep for sprint2
+            {
+                randomDirection();
+            }
+        }
+
+        public void randomDirection()
+        {
+            // changes to a random direction
+            moveCounter = 0;
+            dirChangeDelay = rand.Next(10, 50);
+            switch (rand.Next(0, 4)) // 0 <= rand integer < 4
+            {
+                case 0:
+                    direction = Direction.n;
+                    break;
+                case 1:
+                    direction = Direction.s;
+                    break;
+                case 2:
+                    direction = Direction.e;
+                    break;
+                case 3:
+                    direction = Direction.w;
+                    break;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, sources[currFrame/repeatedFrames], Color.White);
+            spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), 1, s, 0);
         }
 
         public void Update()
         {
             // animates all the time for now
-            currFrame = (currFrame + 1) % (totalFrames*repeatedFrames);
+            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+            if (moveCounter == dirChangeDelay)
+            {
+                randomDirection();
+            }
+            moveCounter++;
+
+            switch (direction)
+            {
+                case Direction.n:
+                    Location += new Vector2(0, -1);
+                    break;
+                case Direction.s:
+                    Location += new Vector2(0, 1);
+                    break;
+                case Direction.e:
+                    Location += new Vector2(1, 0);
+                    break;
+                case Direction.w:
+                    Location += new Vector2(-1, 0);
+                    break;
+            }
         }
     }
 }
