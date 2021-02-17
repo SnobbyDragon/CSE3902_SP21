@@ -74,6 +74,7 @@ namespace sprint0
                 bossSpriteFactory.MakeSprite("patra minion", new Vector2(320, 150)),
                 bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,100)),
                 bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,100)),
+                bossSpriteFactory.MakeSprite("digdogger", new Vector2(250,250)),
                 hudFactory.MakeSprite("hud", new Vector2(400,0)),
                 hudFactory.MakeSprite("rinventory 15", new Vector2(400,0)),
                 hudFactory.MakeSprite("kinventory 5", new Vector2(400,0)),
@@ -81,8 +82,8 @@ namespace sprint0
                 hudFactory.MakeSprite("hinventory 5,10", new Vector2(400,0)),
             };
 
-            //Room Boarder
-            roomBorder=dungeonFactory.MakeSprite("room border", new Vector2(0,56));
+            //Room Border
+            roomBorder = dungeonFactory.MakeSprite("room border", new Vector2(0,56));
 
             itemSprites = new List<ISprite> 
             {
