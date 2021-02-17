@@ -67,6 +67,12 @@ namespace sprint0
                     return new Stalfos(texture, location);
                 case "trap":
                     return new Trap(texture, location);
+                case "goriya boomerang horizontal":
+                    return new GoriyaBoomerang(texture, location, 0);
+                case "goriya boomerang vertical":
+                    return new GoriyaBoomerang(texture, location, 2);
+                case "goriya boomerang diagonal":
+                    return new GoriyaBoomerang(texture, location, 4);
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }

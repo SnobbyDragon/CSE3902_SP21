@@ -47,6 +47,9 @@ namespace sprint0
                 enemyFactory.MakeSprite("blue keese", new Vector2(260,350)),
                 enemyFactory.MakeSprite("stalfos", new Vector2(280,350)),
                 enemyFactory.MakeSprite("trap", new Vector2(300,350)),
+                enemyFactory.MakeSprite("goriya boomerang horizontal", new Vector2(320,350)),
+                enemyFactory.MakeSprite("goriya boomerang vertical", new Vector2(320,350)),
+                enemyFactory.MakeSprite("goriya boomerang diagonal", new Vector2(320,350))
             };
             return enemySprites;
         }
