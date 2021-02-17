@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Hannah Johnson and co
+
 namespace sprint0
 {
     public class EnemiesSpriteFactory
