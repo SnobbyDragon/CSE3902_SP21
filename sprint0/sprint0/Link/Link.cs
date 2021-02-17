@@ -10,16 +10,15 @@ namespace sprint0
         private IPlayerState state;
         private Vector2 position;
         private int speed = 2;
-        public IPlayerState State { get => state; set => state = value; }
         public Vector2 Position { get => position; set => position = value; }
+        public IPlayerState State { get => state; set => state = value; }
 
         public Link(Vector2 position)
         {
             this.position = position;
-            state = new UpIdleState(this);
+            State = new UpIdleState(this);
             speed = 2;
         }
-
         public void Move(int x, int y)
         {
             position += new Vector2(speed*x, speed*y);
@@ -27,12 +26,52 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            state.Draw(spriteBatch);
+            State.Draw(spriteBatch);
         }
 
         public void Update()
         {
-            state.Update();
+            State.Update();
+        }
+
+        public void Stop()
+        {
+            State.Stop();
+        }
+
+        public void HandleUp()
+        {
+            State.HandleUp();
+        }
+
+        public void HandleDown()
+        {
+            State.HandleDown();
+        }
+
+        public void HandleLeft()
+        {
+            State.HandleLeft();
+        }
+
+        public void HandleRight()
+        {
+            State.HandleRight();
+        }
+
+        public void HandleSword()
+        {
+            State.HandleSword();
+        }
+
+        public void HandleZ()
+        {
+            State.HandleZ();
+        }
+
+        public void HandleN()
+        {
+            State.HandleN();
         }
     }
 }

@@ -10,7 +10,7 @@
 
         public void Execute()
         {
-            game.Player.State.HandleLeft();
+            game.Player.HandleLeft();
         }
     }
 }
