@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Hannah Johnson
+
 namespace sprint0
 {
     public class Zol:ISprite
@@ -15,7 +17,11 @@ namespace sprint0
         private int repeatedFrames = 10;
         private string color;
         private Dictionary<string, List<Rectangle>> colorMap;
-   
+        private int delay, delayCounter;
+
+        enum Direction { left, right, up, down }
+        private Direction direction = Direction.left;
+
 
         public Zol(Texture2D texture, Vector2 location, string gelColor)
         {
@@ -24,6 +30,8 @@ namespace sprint0
             totalFrames = 2;
             currentFrame = 0;
             color = gelColor;
+            delay = 50;
+            delayCounter=0;
 
             colorMap = new Dictionary<string, List<Rectangle>>
             {
@@ -59,6 +67,70 @@ namespace sprint0
         public void Update()
         {
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+            if (direction == Direction.left)
+            {
+
+                //moves sprite left
+                delayCounter++;
+                if (delayCounter == delay) {
+                    Location += new Vector2(-40, 0);
+                    delayCounter=0;
+                }
+                
+                if (Location.X <= 100)
+                {
+                    direction = Direction.down;
+
+
+                }
+            }
+            else if (direction == Direction.right)
+            {
+
+                //moves sprite right
+                delayCounter++;
+                if (delayCounter == delay) {
+                    Location += new Vector2(40, 0);
+                    delayCounter =0;
+                }
+                
+                if (Location.X >= 690)
+                {
+                    direction = Direction.up;
+
+                }
+            }
+            else if (direction == Direction.down)
+            {
+                //moves sprite down
+                delayCounter++;
+                if (delayCounter == delay)
+                {
+                    Location += new Vector2(0, 40);
+                    delayCounter = 0;
+                }
+                if (Location.Y >= 396)
+                {
+                    direction = Direction.right;
+
+                }
+            }
+            else
+            { //direction==Direction.up
+                //moves sprite up
+                
+                delayCounter++;
+                if (delayCounter == delay)
+                {
+                    Location += new Vector2(0, -40);
+                    delayCounter = 0;
+                }
+                if (Location.Y <= 136)
+                {
+                    direction = Direction.left;
+
+                }
+            }
         }
     }
 }

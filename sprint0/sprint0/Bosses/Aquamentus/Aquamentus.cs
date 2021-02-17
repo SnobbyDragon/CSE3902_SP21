@@ -13,6 +13,9 @@ namespace sprint0
         private List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
+        private int currDest;
+        private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < totalFrames*repeatedFrames
+        private List<Vector2> destinations; // aquamentus moves to predetermined destinations TODO depends on link actually
 
         public Aquamentus(Texture2D texture, Vector2 location)
         {
@@ -20,11 +23,19 @@ namespace sprint0
             Texture = texture;
             currFrame = 0;
             totalFrames = 4;
-            repeatedFrames = 8;
+            repeatedFrames = 14;
             sources = new List<Rectangle>();
             for (int frame = 0; frame < totalFrames; frame++)
             {
                 sources.Add(new Rectangle(xOffset + frame * (width + 1), yOffset, width, height));
+            };
+
+            currDest = 0;
+            moveDelay = 5; //slow dragoon
+            destinations = new List<Vector2>
+            {
+                location,
+                location + new Vector2(30,0)
             };
         }
 
@@ -35,7 +46,18 @@ namespace sprint0
 
         public void Update()
         {
-            // animates all the time for now; TODO make it walk back and forth left and right
+            Vector2 dist = destinations[currDest] - Location;
+            if (dist.Length() == 0)
+            {
+                // reached destination, so pick a new destination
+                currDest = (currDest + 1) % destinations.Count;
+            }
+            else if (currFrame % moveDelay == 0)
+            {
+                // has not reached destination, move towards it
+                dist.Normalize();
+                Location += dist;
+            }
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
     }

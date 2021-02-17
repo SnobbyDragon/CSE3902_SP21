@@ -7,10 +7,17 @@ namespace sprint0
 {
     public interface IPlayer
     {
-        IPlayerState State { get; set; }
         Vector2 Position { get; set; }
-
+        IPlayerState State { get; set; }
         void Move(int x, int y);
+        void Stop();
+        void HandleUp();
+        void HandleDown();
+        void HandleLeft();
+        void HandleRight();
+        void HandleSword();
+        void HandleZ();
+        void HandleN();
         void Draw(SpriteBatch spriteBatch);
         void Update();
     }

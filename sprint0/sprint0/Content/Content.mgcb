@@ -23,7 +23,7 @@
 #begin Images/Bosses.png
 /importer:TextureImporter
 /processor:TextureProcessor
-/processorParam:ColorKeyColor=116,116,116,255
+/processorParam:ColorKeyColor=255,0,255,255
 /processorParam:ColorKeyEnabled=True
 /processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True
@@ -35,7 +35,7 @@
 #begin Images/DungeonEnemies.png
 /importer:TextureImporter
 /processor:TextureProcessor
-/processorParam:ColorKeyColor=116,116,116,255
+/processorParam:ColorKeyColor=255,0,255,255
 /processorParam:ColorKeyEnabled=True
 /processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True
@@ -107,7 +107,7 @@
 #begin Images/OverworldEnemies.png
 /importer:TextureImporter
 /processor:TextureProcessor
-/processorParam:ColorKeyColor=116,116,116,255
+/processorParam:ColorKeyColor=255,0,255,255
 /processorParam:ColorKeyEnabled=True
 /processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True

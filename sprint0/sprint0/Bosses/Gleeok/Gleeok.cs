@@ -13,7 +13,7 @@ namespace sprint0
         private List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private List<ISprite> head1, head2;
+        private List<ISprite> neck1, neck2;
 
         public Gleeok(Texture2D texture, Vector2 location)
         {
@@ -21,7 +21,7 @@ namespace sprint0
             Texture = texture;
             currFrame = 0;
             totalFrames = 3;
-            repeatedFrames = 8;
+            repeatedFrames = 12;
             sources = new List<Rectangle>();
             for (int frame = 0; frame < totalFrames; frame++)
             {
@@ -29,24 +29,29 @@ namespace sprint0
             };
             sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height)); // animation = left middle right middle ...
 
-            head1 = new List<ISprite>
+            neck1 = generateNeck();
+            neck2 = generateNeck();
+        }
+
+        public List<ISprite> generateNeck()
+        {
+            List<ISprite> neck = new List<ISprite>();
+            Vector2 anchor = Location + new Vector2(width / 2 - 4, height - 6);
+            ISprite head = new GleeokHead(Texture, anchor);
+            for (int i = 0; i < 4; i++)
             {
-                new GleeokNeck(Texture, Location), //TODO change location and make more necks segments
-                new GleeokHead(Texture, Location)
-            };
-            head2 = new List<ISprite>
-            {
-                new GleeokNeck(Texture, Location), //TODO change location and make more necks segments
-                new GleeokHead(Texture, Location)
-            };
+                neck.Add(new GleeokNeck(Texture, anchor, head, i));
+            }
+            neck.Add(head);
+            return neck;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
-            foreach (ISprite sprite in head1)
+            foreach (ISprite sprite in neck1)
                 sprite.Draw(spriteBatch);
-            foreach (ISprite sprite in head2)
+            foreach (ISprite sprite in neck2)
                 sprite.Draw(spriteBatch);
         }
 
@@ -54,9 +59,9 @@ namespace sprint0
         {
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            foreach (ISprite sprite in head1)
+            foreach (ISprite sprite in neck1)
                 sprite.Update();
-            foreach (ISprite sprite in head2)
+            foreach (ISprite sprite in neck2)
                 sprite.Update();
         }
     }

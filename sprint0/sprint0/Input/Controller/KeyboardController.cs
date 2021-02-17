@@ -51,7 +51,7 @@ namespace sprint0
                     controllerMappings[key].Execute();
             foreach (Keys key in movementKeys)
                 if (Array.IndexOf(previousPressedKeys, key) > -1 && Array.IndexOf(pressedKeys, key) == -1)
-                    game.Player.State.Stop();
+                    game.Player.Stop();
             previousPressedKeys = pressedKeys;
         }
     }

@@ -1,4 +1,5 @@
-﻿namespace sprint0
+﻿//Author: Hannah Johnson
+namespace sprint0
 {
     internal class RoomElementPreviousSpriteCommand : ICommand
     {

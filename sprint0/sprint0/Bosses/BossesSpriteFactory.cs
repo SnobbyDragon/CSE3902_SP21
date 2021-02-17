@@ -28,8 +28,6 @@ namespace sprint0
                     return new AquamentusFireball(texture, location);
                 case "patra":
                     return new Patra(texture, location);
-                case "patra minion":
-                    return new PatraMinion(texture, location);
                 case "manhandla":
                     return new Manhandla(texture, location);
                 case "manhandla fireball":

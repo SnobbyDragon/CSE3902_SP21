@@ -9,7 +9,7 @@ namespace sprint0
     {
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
-        public int[] heartState;
+        public int[] heartState { get; set; }
         private List<Rectangle> sources;
         private int sideLength;
 
