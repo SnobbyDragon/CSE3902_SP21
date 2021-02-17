@@ -16,7 +16,6 @@ namespace sprint0
         private List<IController> controllerList;
         private List<ISprite> sprites;
         private ISprite sprite;
-        private Texture2D texture;
         private SpriteFont font;
         private IPlayer player;
 
@@ -70,8 +69,7 @@ namespace sprint0
                 dungeonFactory.MakeSprite("right open door", new Vector2(0, 231)),
             };
 
-            //Room Boarder
-            //roomBorder = dungeonFactory.MakeSprite("room border", new Vector2(0, 56));
+            
 
             itemSprites = new List<ISprite>
             {
@@ -120,7 +118,7 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
-            //roomBorder.Draw(_spriteBatch);
+           
            
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
