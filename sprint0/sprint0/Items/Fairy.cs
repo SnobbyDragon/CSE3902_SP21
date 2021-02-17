@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Hannah Johnson
+
 namespace sprint0
 {
     public class Fairy:ISprite
@@ -13,9 +15,13 @@ namespace sprint0
         private int totalFrames;
         private int currentFrame;
         private int repeatedFrames = 10;
+        private Game1 game;
+        private int upOrSide;
 
-        public Fairy(Texture2D texture, Vector2 location)
+        //high coupling because has game object-wish there was better way
+        public Fairy(Texture2D texture, Vector2 location, Game1 game1)
         {
+            game = game1;
             Location = location;
             Texture = texture;
             totalFrames = 2;
@@ -24,7 +30,8 @@ namespace sprint0
             int xPos = 40, yPos = 0, width = 7, height =16;
             sources.Add(new Rectangle(xPos, yPos, width, height));
             sources.Add(new Rectangle(xPos+width+1, yPos, width, height));
-            
+            upOrSide=0;
+
         }
 
         
@@ -36,7 +43,15 @@ namespace sprint0
 
         public void Update()
         {
+            upOrSide++;
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+            if ((upOrSide / 70) % 2 == 0)
+            {
+                Location = game.Player.Position + new Vector2(20, -10);
+            }
+            else {
+                Location = game.Player.Position + new Vector2(12, -20);
+            }
         }
     }
 }

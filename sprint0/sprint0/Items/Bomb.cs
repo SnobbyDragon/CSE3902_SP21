@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Hannah Johnson
+
 namespace sprint0
 {
     public class Bomb:ISprite

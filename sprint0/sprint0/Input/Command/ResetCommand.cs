@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
+//Author: Hannah Johnson
+
 namespace sprint0
 {
     class ResetCommand : ICommand
