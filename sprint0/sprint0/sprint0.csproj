@@ -33,5 +33,6 @@
     <Folder Include="Bosses\Patra\" />
     <Folder Include="Bosses\Dodongo\" />
     <Folder Include="Bosses\Gohma\" />
+    <Folder Include="Bosses\Digdogger\" />
   </ItemGroup>
 </Project>

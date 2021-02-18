@@ -59,6 +59,7 @@ namespace sprint0
             itemIndex = enemyNPCIndex = 0;
             sprites = new List<ISprite> // testing sprites here
             {
+
                 hudFactory.MakeSprite("hudM", new Vector2(400,0)),
                 hudFactory.MakeSprite("rin 15", new Vector2(400,0)),
                 hudFactory.MakeSprite("kin 5", new Vector2(400,0)),
@@ -73,8 +74,6 @@ namespace sprint0
                 dungeonFactory.MakeSprite("left open door", new Vector2(700, 231)),
                 dungeonFactory.MakeSprite("right open door", new Vector2(0, 231)),
             };
-
-            
 
             itemSprites = new List<ISprite>
             {
