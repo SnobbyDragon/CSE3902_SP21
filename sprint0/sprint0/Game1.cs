@@ -26,6 +26,11 @@ namespace sprint0
         public int itemIndex, enemyNPCIndex, roomElementsIndex;
         //private ISprite roomBorder;
 
+        // map width and height in pixels (does not include HUD) TODO scale up?
+        public static int MapWidth { get; } = 256;
+        public static int MapHeight { get; } = 176;
+        public static int HUDHeight { get; } = 56;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -81,7 +86,7 @@ namespace sprint0
                 itemFactory.MakeSprite("key", new Vector2(740,300)),
                 itemFactory.MakeSprite("rupee", new Vector2(760,300)),
 
-                };
+            };
 
             //list of enemy, npc, and boss sprites
             EnemyNPCSprites enbSprite = new EnemyNPCSprites(this);
