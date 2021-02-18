@@ -1,4 +1,5 @@
-﻿namespace sprint0
+﻿// Author: Jesse He
+namespace sprint0
 {
     class UpCommand : ICommand
     {

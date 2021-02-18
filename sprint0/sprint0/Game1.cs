@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace sprint0
 {
+    public enum Direction { n, s, e, w };
     public class Game1 : Game
     {
         private static PlayerSpriteFactory playerFactory;
@@ -44,7 +45,7 @@ namespace sprint0
             controllerList.Add(new KeyboardController(this));
             controllerList.Add(new MouseController(this));
             playerFactory = new PlayerSpriteFactory(this);
-            player = new Link(new Vector2(200, 250));
+            player = new Link(this, new Vector2(200, 250));
 
             base.Initialize();
         }

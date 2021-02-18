@@ -35,6 +35,7 @@ namespace sprint0
             RegisterCommand(Keys.Y, new RoomElementNextSpriteCommand(game));
             RegisterCommand(Keys.Z, new SwordCommand(game));
             RegisterCommand(Keys.N, new SwordCommand(game));
+            RegisterCommand(Keys.E, new DamageCommand(game));
         }
 
         public void RegisterCommand(Keys key, ICommand command)
