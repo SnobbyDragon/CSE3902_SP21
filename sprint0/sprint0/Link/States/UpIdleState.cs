@@ -43,6 +43,7 @@ namespace sprint0
 
         public void Update()
         {
+            sprite.Location = player.Position;
             sprite.Update();
         }
 

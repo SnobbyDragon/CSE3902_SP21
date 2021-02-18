@@ -35,6 +35,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spritebatch)
         {
+            sprite.Location = player.Position;
             sprite.Draw(spritebatch);
         }
     }
