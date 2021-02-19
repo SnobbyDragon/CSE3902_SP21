@@ -14,13 +14,13 @@ namespace sprint0
         {
             this.game = game;
         }
-        public void Execute()
+        public void Execute() //TODO move to game in a reset method
         {
             // reset game timer
             game.ResetElapsedTime();
 
             //reset ItemIndex
-            game.itemIndex = 0;
+            game.itemIndex = 0; // tight coupling :(
 
             //reset enemyNPCIndex
             game.enemyNPCIndex = 0;

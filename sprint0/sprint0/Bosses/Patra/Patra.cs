@@ -76,7 +76,7 @@ namespace sprint0
             moveCounter++;
 
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            foreach (ISprite minion in minions)
+            foreach (ISprite minion in minions) //TODO maybe move to game
                 minion.Update();
         }
 

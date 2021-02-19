@@ -80,7 +80,7 @@ namespace sprint0
                     // expanding / contracting
                     if (expansionCounter % 2 == 0)
                     {
-                        // contracting
+                        // contracting TODO extract to other methods
                         if (distance == minDistance)
                         {
                             // done contracting
