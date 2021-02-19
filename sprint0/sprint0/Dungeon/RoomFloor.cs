@@ -28,7 +28,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, 606, 275), source, Color.White);
+            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(xSize * Game1.Scale), (int)(ySize * Game1.Scale)), source, Color.White);
 
         }
 

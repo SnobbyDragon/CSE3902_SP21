@@ -75,23 +75,14 @@ namespace sprint0
             BossesSpriteFactory bossSpriteFactory = new BossesSpriteFactory(game);
             List<ISprite> bossSprites = new List<ISprite>
             {
-                bossSpriteFactory.MakeSprite("ganon fireball center", new Vector2(400, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball up", new Vector2(415, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball up left", new Vector2(430, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball left", new Vector2(445, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball down left", new Vector2(460, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball down", new Vector2(475, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball down right", new Vector2(490, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball right", new Vector2(505, 200)),
-                bossSpriteFactory.MakeSprite("ganon fireball up right", new Vector2(520, 200)),
                 bossSpriteFactory.MakeSprite("orange gohma", new Vector2(420, 420)),
                 bossSpriteFactory.MakeSprite("blue gohma", new Vector2(450, 450)),
-                bossSpriteFactory.MakeSprite("patra", new Vector2(300, 200)),
-                bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,100)),
-                bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,100)),
-                bossSpriteFactory.MakeSprite("gleeok", new Vector2(290,100)),
-                bossSpriteFactory.MakeSprite("ganon", new Vector2(100,150)),
-                bossSpriteFactory.MakeSprite("aquamentus", new Vector2(340,100)),
+                bossSpriteFactory.MakeSprite("patra", new Vector2(300, 300)),
+                bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,300)),
+                bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,300)),
+                bossSpriteFactory.MakeSprite("gleeok", new Vector2(290,300)),
+                bossSpriteFactory.MakeSprite("ganon", new Vector2(100,300)),
+                bossSpriteFactory.MakeSprite("aquamentus", new Vector2(340,300)),
             };
             return bossSprites;
         }

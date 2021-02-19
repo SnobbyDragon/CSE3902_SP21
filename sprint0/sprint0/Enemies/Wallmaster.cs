@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+// Author: Angela Li
 namespace sprint0
 {
     public class Wallmaster : ISprite
@@ -34,7 +35,7 @@ namespace sprint0
 
             rand = new Random();
 
-            if (Location.X <= Game1.MapWidth / 2) // if coming from the left, then faces right
+            if (Location.X <= Game1.Width / 2) // if coming from the left, then faces right
             {
                 s = SpriteEffects.None;
             }
@@ -51,7 +52,7 @@ namespace sprint0
             {
                 direction = Direction.e;
             }
-            else if (Location.X >= Game1.MapWidth) // coming from the right, move left
+            else if (Location.X >= Game1.Width) // coming from the right, move left
             {
                 direction = Direction.w;
             }

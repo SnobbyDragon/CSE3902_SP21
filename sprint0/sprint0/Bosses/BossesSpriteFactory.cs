@@ -23,43 +23,19 @@ namespace sprint0
             {
      
                 case "aquamentus":
-                    return new Aquamentus(texture, location);
-                case "aquamentus fireball":
-                    return new AquamentusFireball(texture, location);
+                    return new Aquamentus(texture, location, game);
                 case "patra":
                     return new Patra(texture, location);
                 case "manhandla":
-                    return new Manhandla(texture, location);
-                case "manhandla fireball":
-                    return new ManhandlaFireball(texture, location);
+                    return new Manhandla(texture, location, game);
                 case "gleeok":
-                    return new Gleeok(texture, location);
-                case "gleeok fireball":
-                    return new GleeokFireball(texture, location);
+                    return new Gleeok(texture, location, game);
                 case "ganon":
-                    return new Ganon(texture, location);
-                case "ganon fireball center":
-                    return new GanonFireball(texture, location, "center");
-                case "ganon fireball up":
-                    return new GanonFireball(texture, location, "up");
-                case "ganon fireball up left":
-                    return new GanonFireball(texture, location, "up left");
-                case "ganon fireball left":
-                    return new GanonFireball(texture, location, "left");
-                case "ganon fireball down left":
-                    return new GanonFireball(texture, location, "down left");
-                case "ganon fireball down":
-                    return new GanonFireball(texture, location, "down");
-                case "ganon fireball down right":
-                    return new GanonFireball(texture, location, "down right");
-                case "ganon fireball right":
-                    return new GanonFireball(texture, location, "right");
-                case "ganon fireball up right":
-                    return new GanonFireball(texture, location, "up right");
+                    return new Ganon(texture, location, game);
                 case "orange gohma":
-                    return new Gohma(texture, location, "orange");
+                    return new Gohma(texture, location, "orange", game);
                 case "blue gohma":
-                    return new Gohma(texture, location, "blue");
+                    return new Gohma(texture, location, "blue", game);
                 case "dodongo":
                     return new Dodongo(texture, location);
                 case "digdogger":

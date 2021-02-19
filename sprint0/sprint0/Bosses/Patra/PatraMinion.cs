@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+// Author: Angela Li
 namespace sprint0
 {
     public class PatraMinion : ISprite

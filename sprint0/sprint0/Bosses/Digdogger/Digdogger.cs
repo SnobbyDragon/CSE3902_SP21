@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+// Author: Angela Li
 namespace sprint0
 {
     public class Digdogger : ISprite
@@ -115,9 +116,12 @@ namespace sprint0
         // generates a new destination
         public void generateDest()
         {
-            // currently picks a random destination TODO change location bounds
+            // currently picks a random destination TODO make 32 static variable? this is the wall width
             // TODO movement depends on where link is?
-            destination = new Vector2(rand.Next(0, 800), rand.Next(0, 500));
+            destination = new Vector2(
+                rand.Next((int)(32 * Game1.Scale), (int)((Game1.Width - 32) * Game1.Scale)),
+                rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32)*Game1.Scale))
+                );
         }
     }
 }

@@ -16,7 +16,7 @@ namespace sprint0
         {
             Location = location;
             Texture = texture;
-            source = new Rectangle(258, 11, 256, 56);
+            source = new Rectangle(258, 11, Game1.Width, Game1.HUDHeight);
 
         }
 
@@ -24,7 +24,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
+            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(Game1.Width * Game1.Scale), (int)(Game1.HUDHeight * Game1.Scale)), source, Color.White);
         }
 
         public void Update()

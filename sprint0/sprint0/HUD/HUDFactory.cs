@@ -29,30 +29,30 @@ namespace sprint0
 
                 case "hudA":
                     //spriteType format: hudA <itemName>
-                    return new HUDItemA(texture, new Vector2(location.X + 153, location.Y + 24), spriteType.Substring(nameLen + 1));
+                    return new HUDItemA(texture, new Vector2(location.X + 153 * Game1.Scale, location.Y + 24 * Game1.Scale), spriteType.Substring(nameLen + 1));
 
                 case "hudB":
                     //spriteType format: hudB <itemName>
-                    return new HUDItemB(texture, new Vector2(location.X + 128, location.Y + 24), spriteType.Substring(nameLen + 1));
+                    return new HUDItemB(texture, new Vector2(location.X + 128 * Game1.Scale, location.Y + 24 * Game1.Scale), spriteType.Substring(nameLen + 1));
 
                 case "rin ": //rupee inventory
                     //spriteType format: rin <rupeeAmount>
                     int rupeeNum;
                     int.TryParse(numString, out rupeeNum);
-                    return new RupeeHUD(texture, new Vector2(location.X + 97, location.Y + 16), rupeeNum);
+                    return new RupeeHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 16 * Game1.Scale), rupeeNum);
 
                 case "kin ":
                     //spriteType format: kin <keyAmount>
                     int keyNum;
                     int.TryParse(numString, out keyNum);
-                    return new KeyHUD(texture, new Vector2(location.X + 97, location.Y + 32), keyNum);
+                    return new KeyHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 32 * Game1.Scale), keyNum);
 
                 case "bin ": //bomb inventory
                     //spriteType format: bin <bombAmount>
                     int bombNum;
                     int.TryParse(numString, out bombNum);
 
-                    return new BombHUD(texture, new Vector2(location.X + 97, location.Y + 40), bombNum);
+                    return new BombHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 40 * Game1.Scale), bombNum);
 
                 case "hin ": //heart inventory/state
                     //spriteType format: hin <halfHeartAmount>,<fullHeartAmount>
@@ -71,7 +71,7 @@ namespace sprint0
                      * heartNum[1] : # of half hearts
                      * heartNum[2] : # of full hearts
                     */
-                    return new HeartHUD(texture, new Vector2(location.X + 176, location.Y + 32), heartNum);
+                    return new HeartHUD(texture, new Vector2(location.X + 176 * Game1.Scale, location.Y + 32 * Game1.Scale), heartNum);
 
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");

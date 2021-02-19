@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+// Author: Angela Li
 namespace sprint0
 {
     public class GanonFireball : ISprite // regular round fireball
@@ -12,21 +13,22 @@ namespace sprint0
         private readonly int width = 8, height = 10;
         private Dictionary<String, List<Rectangle>> dirToSourcesMap;
         private Dictionary<String, SpriteEffects> dirToEffectsMap;
-        private String dir;
+        private String type;
         private int currFrame;
-        private readonly int totalFrames, repeatedFrames;
+        private readonly int totalFrames, repeatedFrames, speed = 3;
+        public Vector2 Direction { get; set; } // direction fireball travels
+        public bool IsDead { get; set; }
 
-        public GanonFireball(Texture2D texture, Vector2 location, String dir)
+        public GanonFireball(Texture2D texture, String type)
         {
-            Location = location;
             Texture = texture;
-            this.dir = dir;
+            this.type = type;
             currFrame = 0;
             totalFrames = 4;
             repeatedFrames = 2;
             dirToSourcesMap = new Dictionary<string, List<Rectangle>>
             {
-                { "center",  GetFrames(238, 157) },
+                { "none",  GetFrames(238, 157) }, // direction varies
                 { "up", GetFrames(276, 157) },
                 { "up left", GetFrames(276, 174) },
                 { "left", GetFrames(276, 192) },
@@ -38,7 +40,7 @@ namespace sprint0
             };
             dirToEffectsMap = new Dictionary<string, SpriteEffects>
             {
-                { "center",  SpriteEffects.None },
+                { "none",  SpriteEffects.None }, // direction varies
                 { "up", SpriteEffects.None },
                 { "up left", SpriteEffects.None },
                 { "left", SpriteEffects.None },
@@ -48,6 +50,44 @@ namespace sprint0
                 { "right",  SpriteEffects.FlipHorizontally },
                 { "up right", SpriteEffects.FlipHorizontally }
             };
+            IsDead = true; // start hidden
+            GetDirection();
+        }
+
+        public void GetDirection()
+        {
+            switch (type)
+            {
+                case "up":
+                    Direction = new Vector2(0, -1);
+                    break;
+                case "up left":
+                    Direction = new Vector2(-1, -1);
+                    break;
+                case "left":
+                    Direction = new Vector2(-1, 0);
+                    break;
+                case "down left":
+                    Direction = new Vector2(-1, 1);
+                    break;
+                case "down":
+                    Direction = new Vector2(0, 1);
+                    break;
+                case "down right":
+                    Direction = new Vector2(1, 1);
+                    break;
+                case "right":
+                    Direction = new Vector2(1, 0);
+                    break;
+                case "up right":
+                    Direction = new Vector2(1, -1);
+                    break;
+                default:
+                    // do nothing for none (determined by Link's position)
+                    break;
+            }
+            if (!type.Equals("none"))
+                Direction.Normalize();
         }
 
         //TODO make a utility class so we can reuse this code??? this is in a lot of places rn
@@ -63,13 +103,23 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, dirToSourcesMap[dir][currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), 1, dirToEffectsMap[dir], 0);
+            if (!IsDead)
+                spriteBatch.Draw(Texture, Location, dirToSourcesMap[type][currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), 1, dirToEffectsMap[type], 0);
         }
 
         public void Update()
         {
-            // animates all the time for now
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+            if (!IsDead)
+            {
+                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+                Location += speed * Direction;
+
+                // checks if hit wall (left || right || up || down)
+                if (Location.X <= 0 || Location.X >= Game1.Width * Game1.Scale || Location.Y <= Game1.HUDHeight * Game1.Scale || Location.Y >= (Game1.HUDHeight + Game1.MapHeight) * Game1.Scale)
+                {
+                    IsDead = true;
+                }
+            }
         }
     }
 }
