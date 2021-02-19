@@ -16,6 +16,7 @@ namespace sprint0
         void HandleSword() { }
         void HandleZ() { }
         void HandleN() { }
+        void HandleOne(Direction direction, int life) { }
         void Update();
         void Draw(SpriteBatch spritebatch);
     }

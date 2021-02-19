@@ -12,14 +12,19 @@ namespace sprint0
         private IPlayerState state;
         private Vector2 position;
         private int speed = 2;
+        Direction direction = Direction.n;
         public Vector2 Position { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
+        private Random rand;
+
+        Direction IPlayer.direction => direction;
 
         public Link(Game1 game, Vector2 position)
         {
             this.game = game;
             this.position = position;
             State = new UpIdleState(this);
+            rand = new Random();
             speed = 2;
         }
 
@@ -33,6 +38,13 @@ namespace sprint0
             game.Player = new DamagedLink(this, game, direction);
         }
 
+        public void shoot() {
+            // Random time for arrows is neat :)
+            int time = rand.Next(10, 20);
+            game.AddArrow(position, direction, time);
+        }
+
+
         public void Stop()
         {
             State.Stop();
@@ -40,22 +52,27 @@ namespace sprint0
 
         public void HandleUp()
         {
+            direction = Direction.n;
             State.HandleUp();
         }
 
         public void HandleDown()
         {
+            direction = Direction.s;
             State.HandleDown();
         }
 
         public void HandleLeft()
         {
+            direction = Direction.w;
             State.HandleLeft();
         }
 
         public void HandleRight()
         {
+            direction = Direction.e;
             State.HandleRight();
+
         }
 
         public void HandleSword()
@@ -81,6 +98,21 @@ namespace sprint0
         public void Update()
         {
             State.Update();
+        }
+
+        public void HandleOne()
+        {
+            shoot();
+        }
+
+        public void HandleTwo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void HandleThree()
+        {
+            throw new NotImplementedException();
         }
     }
 }
