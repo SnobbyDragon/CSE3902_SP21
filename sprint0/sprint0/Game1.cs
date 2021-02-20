@@ -101,7 +101,6 @@ namespace sprint0
         //Temporary until we get projectiles figured out
         public void AddArrow(Vector2 Location, Direction dir, int lifespan)
         {
-            itemFactory.MakeSprite("clock", new Vector2(680, 300), Direction.n, 0);
             itemSprites.Add(itemFactory.MakeSprite("arrow", Location, dir, lifespan));
         }
 
