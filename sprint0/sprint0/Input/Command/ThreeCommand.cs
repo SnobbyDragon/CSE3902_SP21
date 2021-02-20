@@ -1,4 +1,4 @@
-﻿// Author: Jesse He
+﻿// Author: Jacob Urick
 namespace sprint0
 {
     class ThreeCommand : ICommand
