@@ -13,8 +13,6 @@ namespace sprint0
             sprite = Game1.PlayerFactory.MakeSprite("link down sword", player.Position);
         }
 
-       
-
         public void Update()
         {
             if (count > 24)

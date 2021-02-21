@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿// Author: Jesse He
 namespace sprint0
 {
     public interface ICommand

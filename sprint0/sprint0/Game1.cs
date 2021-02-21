@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace sprint0
 {
+    public enum Direction { n, s, e, w };
     public class Game1 : Game
     {
         private static PlayerSpriteFactory playerFactory;
@@ -24,6 +25,8 @@ namespace sprint0
         public IPlayer Player { get => player; set => player = value; }
         public List<ISprite> itemSprites, enemyNPCSprites, roomElementsSprites;
         public int itemIndex, enemyNPCIndex, roomElementsIndex;
+        public ItemsWeaponsSpriteFactory itemFactory;
+        //private ISprite roomBorder;
 
         // map width and height in pixels (does not include HUD) TODO scale up?
         public static int Width { get; } = 256;
@@ -50,7 +53,7 @@ namespace sprint0
             controllerList.Add(new KeyboardController(this));
             controllerList.Add(new MouseController(this));
             playerFactory = new PlayerSpriteFactory(this);
-            player = new Link(new Vector2(200, 250));
+            player = new Link(this, new Vector2(200, 250));
 
             base.Initialize();
         }
@@ -59,7 +62,7 @@ namespace sprint0
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             DungeonFactory dungeonFactory = new DungeonFactory(this);
-            ItemsWeaponsSpriteFactory itemFactory = new ItemsWeaponsSpriteFactory(this);
+            itemFactory = new ItemsWeaponsSpriteFactory(this);
             HUDFactory hudFactory = new HUDFactory(this);
 
             itemIndex = enemyNPCIndex = 0;
@@ -83,13 +86,13 @@ namespace sprint0
 
             itemSprites = new List<ISprite>
             {
-                itemFactory.MakeSprite("fairy", new Vector2(640,300)),
-                itemFactory.MakeSprite("bomb", new Vector2(660,300)),
-                itemFactory.MakeSprite("clock", new Vector2(680,300)),
-                itemFactory.MakeSprite("arrow", new Vector2(700,300)),
-                itemFactory.MakeSprite("compass", new Vector2(720,300)),
-                itemFactory.MakeSprite("key", new Vector2(740,300)),
-                itemFactory.MakeSprite("rupee", new Vector2(760,300)),
+                itemFactory.MakeSprite("fairy", new Vector2(640,300),Direction.n,0),
+                itemFactory.MakeSprite("bomb", new Vector2(660,300),Direction.n,0),
+                itemFactory.MakeSprite("clock", new Vector2(680,300),Direction.n,0),
+                itemFactory.MakeSprite("arrow", new Vector2(700,300),Direction.n,0),
+                itemFactory.MakeSprite("compass", new Vector2(720,300),Direction.n,0),
+                itemFactory.MakeSprite("key", new Vector2(740,300),Direction.n,0),
+                itemFactory.MakeSprite("rupee", new Vector2(760,300),Direction.n,0),
 
             };
 
@@ -100,6 +103,12 @@ namespace sprint0
             //list of room element sprites
             DungeonSprites dungeonSprite = new DungeonSprites(this);
             roomElementsSprites = dungeonSprite.LoadDungeonSprites();
+        }
+
+        //Temporary until we get projectiles figured out
+        public void AddArrow(Vector2 Location, Direction dir, int lifespan)
+        {
+            itemSprites.Add(itemFactory.MakeSprite("arrow", Location, dir, lifespan));
         }
 
         protected override void Update(GameTime gameTime)

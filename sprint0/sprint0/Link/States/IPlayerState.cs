@@ -8,6 +8,7 @@ namespace sprint0
     public interface IPlayerState
     {
         void Stop() { }
+        void TakeDamage(Direction direction) { }
         void HandleUp() { }
         void HandleDown() { }
         void HandleLeft() { }
@@ -15,6 +16,7 @@ namespace sprint0
         void HandleSword() { }
         void HandleZ() { }
         void HandleN() { }
+        void HandleOne(Direction direction, int life) { }
         void Update();
         void Draw(SpriteBatch spritebatch);
     }
