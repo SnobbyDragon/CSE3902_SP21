@@ -16,21 +16,7 @@ namespace sprint0
         }
         public void Execute() //TODO move to game in a reset method
         {
-            // reset game timer
-            game.ResetElapsedTime();
-
-            //reset ItemIndex
-            game.itemIndex = 0; // tight coupling :(
-
-            //reset enemyNPCIndex
-            game.enemyNPCIndex = 0;
-
-            //reset roomElementsIndex
-            game.roomElementsIndex = 0;
-
-            //reset player state
-            game.Player.Pos = new Vector2(200, 250);
-            game.Player.State = new UpIdleState(game.Player);
+            game.ResetGame();
         }
     }
 }
