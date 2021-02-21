@@ -147,5 +147,24 @@ namespace sprint0
             _spriteBatch.End();
             base.Draw(gameTime);
         }
+
+        public void ResetGame()
+        {
+            // reset game timer
+            this.ResetElapsedTime();
+
+            //reset ItemIndex
+            this.itemIndex = 0; // tight coupling :(
+
+            //reset enemyNPCIndex
+            this.enemyNPCIndex = 0;
+
+            //reset roomElementsIndex
+            this.roomElementsIndex = 0;
+
+            //reset player state
+            this.Player.Pos = new Vector2(200, 250);
+            this.Player.State = new UpIdleState(this.Player);
+        }
     }
 }
