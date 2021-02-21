@@ -4,25 +4,29 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 // Authors: Jesse He and Jacob Urick
+
+/*
+ * Last updated: 2/21/21 by urick.9
+ */
 namespace sprint0
 {
-    class Link : IPlayer
+     class Link : IPlayer
     {
         private readonly Game1 game;
         private IPlayerState state;
-        private Vector2 position;
+        public static Vector2 position;
         private readonly int speed = 2;
         private Direction direction = Direction.n;
-        public Vector2 Position { get => position; set => position = value; }
+        public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
         private readonly Random rand;
 
-        Direction IPlayer.direction => direction;
+        Direction IPlayer.Direction => direction;
 
-        public Link(Game1 game, Vector2 position)
+        public Link(Game1 game, Vector2 pos)
         {
             this.game = game;
-            this.position = position;
+            position = pos;
             State = new UpIdleState(this);
             rand = new Random();
             speed = 2;
@@ -40,8 +44,35 @@ namespace sprint0
 
         public void Shoot() {
             // Random time for arrows is neat :)
-            int time = rand.Next(10, 20);
-            game.AddArrow(position, direction, time);
+            int time = rand.Next(35, 45);
+            Vector2 offsetPos = position;
+            if (direction == Direction.n || direction == Direction.s)
+            {
+                offsetPos = new Vector2(position.X + 6, position.Y);
+            }
+
+            game.AddItem(offsetPos, direction, time, "arrow");
+        }
+
+        public void ThrowBomb()
+        {
+            Vector2 offsetPos = position;
+            if (direction == Direction.n || direction == Direction.s)
+            {
+                offsetPos = new Vector2(position.X + 6, position.Y);
+            }
+
+            game.AddItem(offsetPos, direction, 0, "bomb");
+        }
+
+        public void ThrowBoomerang()
+        {
+            Vector2 offsetPos = position;
+            if (direction == Direction.n || direction == Direction.s)
+            {
+                offsetPos = new Vector2(position.X + 6, position.Y);
+            }
+            game.AddItem(offsetPos, direction, 0, "boomerang");
         }
 
 
@@ -80,15 +111,6 @@ namespace sprint0
             State.HandleSword();
         }
 
-        public void HandleZ()
-        {
-            State.HandleZ();
-        }
-
-        public void HandleN()
-        {
-            State.HandleN();
-        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -107,12 +129,12 @@ namespace sprint0
 
         public void HandleBomb()
         {
-            throw new NotImplementedException();
+            ThrowBomb();
         }
 
         public void HandleBoomerang()
         {
-            throw new NotImplementedException();
+            ThrowBoomerang();
         }
     }
 }

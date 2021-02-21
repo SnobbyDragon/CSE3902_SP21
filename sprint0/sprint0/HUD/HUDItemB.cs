@@ -13,8 +13,9 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         public string Item { get; set; }
-        private Dictionary<string, Rectangle> itemMap;
-        private int width = 8, height = 16;
+        private readonly Dictionary<string, Rectangle> itemMap;
+        private readonly int width = 8;
+        private readonly int height = 16;
 
         public HUDItemB(Texture2D texture, Vector2 location, string itemName)
         {

@@ -102,7 +102,7 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            Vector2 dir = game.Player.Position - (Location + centerOffset);
+            Vector2 dir = game.Player.Pos - (Location + centerOffset);
             dir.Normalize();
             fireball.Direction = dir;
             fireball.Location = Location + centerOffset;

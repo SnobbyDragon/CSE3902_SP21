@@ -1,20 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 // Author: Jesse He
+/*
+ * Last updated: 2/21/21 by urick.9
+ */
 namespace sprint0
 {
     class DamagedLink : IPlayer
     {
-        Game1 game;
-        IPlayer decoratedLink;
-        Direction direction;
+        readonly Game1 game;
+        private readonly IPlayer decoratedLink;
+        readonly Direction direction;
         int timer = 80;
-
-        public Vector2 Position { get => decoratedLink.Position; set => decoratedLink.Position = value; }
+        private readonly Random rand = new Random();
+        public Vector2 Pos { get => decoratedLink.Pos; set => decoratedLink.Pos = value; }
         public IPlayerState State { get => decoratedLink.State; set => decoratedLink.State = value; }
 
-        Direction IPlayer.direction => direction;
+        Direction IPlayer.Direction => direction;
 
         public DamagedLink(IPlayer decoratedLink, Game1 game, Direction direction)
         {
@@ -68,15 +72,6 @@ namespace sprint0
             decoratedLink.HandleSword();
         }
 
-        public void HandleZ()
-        {
-            decoratedLink.HandleZ();
-        }
-
-        public void HandleN()
-        {
-            decoratedLink.HandleN();
-        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -113,19 +108,57 @@ namespace sprint0
             decoratedLink.Update();
         }
 
+        public void Shoot()
+        {
+            // Random time for arrows is neat :)
+            int time = rand.Next(35, 45);
+            Vector2 offsetPos = Pos;
+            if (direction == Direction.n || direction == Direction.s)
+            {
+                offsetPos = new Vector2(Pos.X + 6, Pos.Y);
+            }
+
+            game.AddItem(offsetPos, direction, time, "arrow");
+        }
+
+        public void ThrowBomb()
+        {
+            // Random time for bombs is neat :)
+            int time = rand.Next(35, 45);
+            Vector2 offsetPos = Pos;
+            if (direction == Direction.n || direction == Direction.s)
+            {
+                offsetPos = new Vector2(Pos.X + 6, Pos.Y);
+            }
+
+            game.AddItem(offsetPos, direction, time, "bomb");
+        }
+
+        public void ThrowBoomerang()
+        {
+            Vector2 offsetPos = Pos;
+            if (direction == Direction.n || direction == Direction.s)
+            {
+                offsetPos = new Vector2(Pos.X + 6, Pos.Y);
+            }
+
+            game.AddItem(offsetPos, direction, 0, "boomerang");
+        }
+
+
         public void HandleShoot()
         {
-            throw new System.NotImplementedException();
+            Shoot();
         }
 
         public void HandleBomb()
         {
-            throw new System.NotImplementedException();
+            ThrowBomb();
         }
 
         public void HandleBoomerang()
         {
-            throw new System.NotImplementedException();
+            ThrowBoomerang();
         }
     }
 }

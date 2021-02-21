@@ -33,7 +33,6 @@ namespace sprint0
         public static int MapHeight { get; } = 176;
         public static int HUDHeight { get; } = 56;
         public static float Scale { get; } = 2.5f; //TODO change later?
-
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this)
@@ -66,7 +65,6 @@ namespace sprint0
             DungeonFactory dungeonFactory = new DungeonFactory(this);
             itemFactory = new ItemsWeaponsSpriteFactory(this);
             HUDFactory hudFactory = new HUDFactory(this);
-
             itemIndex = enemyNPCIndex = 0;
             sprites = new List<ISprite> // testing sprites here
             {
@@ -107,10 +105,9 @@ namespace sprint0
             roomElementsSprites = dungeonSprite.LoadDungeonSprites();
         }
 
-        //Temporary until we get projectiles figured out
-        public void AddArrow(Vector2 Location, Direction dir, int lifespan)
+        public void AddItem(Vector2 Location, Direction dir, int lifespan, String item)
         {
-            itemSprites.Add(itemFactory.MakeSprite("arrow", Location, dir, lifespan));
+            sprites.Add(itemFactory.MakeSprite(item, Location, dir, lifespan));
         }
 
         protected override void Update(GameTime gameTime)
