@@ -86,13 +86,12 @@ namespace sprint0
 
             itemSprites = new List<ISprite>
             {
-                itemFactory.MakeSprite("fairy", new Vector2(640,300),Direction.n,0),
-                itemFactory.MakeSprite("bomb", new Vector2(660,300),Direction.n,0),
-                itemFactory.MakeSprite("clock", new Vector2(680,300),Direction.n,0),
-                itemFactory.MakeSprite("arrow", new Vector2(700,300),Direction.n,0),
-                itemFactory.MakeSprite("compass", new Vector2(720,300),Direction.n,0),
-                itemFactory.MakeSprite("key", new Vector2(740,300),Direction.n,0),
-                itemFactory.MakeSprite("rupee", new Vector2(760,300),Direction.n,0),
+                itemFactory.MakeSprite("fairy", new Vector2(200,300),Direction.n,0),
+                itemFactory.MakeSprite("bomb", new Vector2(200,300),Direction.n,0),
+                itemFactory.MakeSprite("clock", new Vector2(200,300),Direction.n,0),
+                itemFactory.MakeSprite("compass", new Vector2(200,300),Direction.n,0),
+                itemFactory.MakeSprite("key", new Vector2(200,300),Direction.n,0),
+                itemFactory.MakeSprite("rupee", new Vector2(200,300),Direction.n,0),
 
             };
 

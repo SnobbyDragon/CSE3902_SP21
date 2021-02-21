@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Runtime;
 namespace sprint0
 {
     public class Arrow : ISprite
     {
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
+        public Vector2 origin;
+        private float rotation;
+        private readonly float rotate180;
         private readonly List<Rectangle> sources;
         private readonly int xOffset = 154, yOffset = 0, sizex = 5, sizey = 16;
         private int currFrame;
@@ -35,10 +37,13 @@ namespace sprint0
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;
-
+            origin = new Vector2(sizex / 2, sizey / 2);
+            rotation = 0;
+            rotate180 = (float)Math.PI;
         }
 
-        private Boolean Alive() {
+        private Boolean Alive()
+        {
             if (age < lifespan || lifespan <= 0)
             {
                 age++;
@@ -47,8 +52,9 @@ namespace sprint0
             return false;
         }
 
-        private void Move() {
-            Location = new Vector2(Location.X+xa, Location.Y + ya);
+        private void Move()
+        {
+            Location = new Vector2(Location.X + xa, Location.Y + ya);
         }
 
 
@@ -57,7 +63,7 @@ namespace sprint0
         {
             if (Alive())
             {
-                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White, rotation, origin, new Vector2(1, 1), SpriteEffects.None, 0);
             }
         }
 
@@ -70,21 +76,30 @@ namespace sprint0
                 {
                     case Direction.n:
                         ya = -5;
+                        // 0 degrees
+                        rotation = 0;
                         break;
                     case Direction.s:
                         ya = 5;
+                        // 180 degrees
+                        rotation = rotate180;
                         break;
                     case Direction.e:
                         xa = 5;
+                        // 90 degrees
+                        rotation = rotate180 / 2.0f;
                         break;
                     case Direction.w:
                         xa = -5;
+                        // 270 degrees
+                        rotation = 1.5f * rotate180;
                         break;
                 }
                 Move();
 
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
+            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
     }
 }
