@@ -47,10 +47,10 @@ namespace sprint0
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             if ((upOrSide / 70) % 2 == 0)
             {
-                Location = game.Player.Position + new Vector2(20, -10);
+                Location = game.Player.Pos + new Vector2(20, -10);
             }
             else {
-                Location = game.Player.Position + new Vector2(12, -20);
+                Location = game.Player.Pos + new Vector2(12, -20);
             }
         }
     }

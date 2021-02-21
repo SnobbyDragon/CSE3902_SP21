@@ -9,7 +9,7 @@ namespace sprint0
         public LeftWalkingState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link left walking", player.Position);
+            sprite = Game1.PlayerFactory.MakeSprite("link left walking", player.Pos);
         }
 
         public void Stop()
@@ -29,7 +29,7 @@ namespace sprint0
 
         public void Update()
         {
-            sprite.Location = player.Position;
+            sprite.Location = player.Pos;
             sprite.Update();
         }
 

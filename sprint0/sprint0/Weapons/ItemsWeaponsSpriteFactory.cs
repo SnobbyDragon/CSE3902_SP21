@@ -3,62 +3,48 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Hannah Johnson and co
-
+/*
+ * Last updated: 2/21/21 by urick.9
+ */
 namespace sprint0
 {
     public class ItemsWeaponsSpriteFactory
     {
-        Game1 game;
-        Texture2D texture;
+        private readonly Game1 game;
+        private readonly Texture2D texture;
 
         public ItemsWeaponsSpriteFactory(Game1 game)
         {
             this.game = game;
             texture = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
         }
-
+        /*
+         * Note: if the lifespan is predetermined(for instnace with "bomb", use 0)
+         */
         public ISprite MakeSprite(String spriteType, Vector2 location, Direction dir, int lifespan)
         {
 
 
-            switch (spriteType)
+            return spriteType switch
             {
-
-                case "red heart":
-                    return new Heart(texture, location, "red");
-                case "half heart":
-                    return new Heart(texture, location, "half");
-                case "pink heart":
-                    return new Heart(texture, location, "pink");
-                case "blue heart":
-                    return new Heart(texture, location, "blue");
-                case "heart container":
-                    return new HeartContainer(texture, location);
-                case "fairy":
-                    return new Fairy(texture, location, game);
-                case "bomb":
-                    return new Bomb(texture, location);
-                case "clock":
-                    return new Clock(texture, location);
-                case "boomerang":
-                    return new Boomerang(texture, location);
-                case "bow":
-                    return new Bow(texture, location);
-                case "gold triforce piece":
-                    return new TriforcePiece(texture, location, "gold");
-                case "blue triforce piece":
-                    return new TriforcePiece(texture, location, "blue");
-                case "arrow":
-                    return new Arrow(texture, location, dir, lifespan);
-                case "compass":
-                    return new Compass(texture, location);
-                case "key":
-                    return new Key(texture, location);
-                case "rupee":
-                    return new Rupee(texture, location);
-                default:
-                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
-            }
+                "red heart" => new Heart(texture, location, "red"),
+                "half heart" => new Heart(texture, location, "half"),
+                "pink heart" => new Heart(texture, location, "pink"),
+                "blue heart" => new Heart(texture, location, "blue"),
+                "heart container" => new HeartContainer(texture, location),
+                "fairy" => new Fairy(texture, location, game),
+                "bomb" => new Bomb(texture, location, dir),
+                "clock" => new Clock(texture, location),
+                "boomerang" => new Boomerang(texture, location, dir),
+                "bow" => new Bow(texture, location),
+                "gold triforce piece" => new TriforcePiece(texture, location, "gold"),
+                "blue triforce piece" => new TriforcePiece(texture, location, "blue"),
+                "arrow" => new Arrow(texture, location, dir, lifespan),
+                "compass" => new Compass(texture, location),
+                "key" => new Key(texture, location),
+                "rupee" => new Rupee(texture, location),
+                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+            };
         }
     }
 }

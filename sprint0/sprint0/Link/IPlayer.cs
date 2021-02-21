@@ -9,10 +9,14 @@ namespace sprint0
     public interface IPlayer
     {
 
-        Direction direction { get; }
-        Vector2 Position { get; set; }
+        Direction Direction { get; }
+
+        //Pos is deprecated
+        Vector2 Pos { get; set; }
         IPlayerState State { get; set; }
 
+        //Use position, not Pos
+        static Vector2 Position;
         void Move(int x, int y);
         void Stop();
         void TakeDamage(Direction direction);
@@ -24,8 +28,6 @@ namespace sprint0
         void HandleShoot();
         void HandleBomb();
         void HandleBoomerang();
-        void HandleZ();
-        void HandleN();
         void Draw(SpriteBatch spriteBatch);
         void Update();
     }
