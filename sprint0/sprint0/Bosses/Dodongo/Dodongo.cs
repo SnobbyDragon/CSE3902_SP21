@@ -90,7 +90,7 @@ namespace sprint0
         {
 
             
-            //handels movement
+            //handles movement
 
             if (direction == Direction.left)
             {
@@ -102,7 +102,7 @@ namespace sprint0
 
                 //moves sprite left
                 Location += new Vector2(-1,0);
-                if(Location.X<=100)
+                if(Location.X <= 50 * Game1.Scale)
                 {
                     direction = Direction.down;
                     currentFrameUD = 0;
@@ -120,7 +120,7 @@ namespace sprint0
                 
                 //moves sprite right
                 Location += new Vector2(1, 0);
-                if (Location.X >= 690)
+                if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                 {
                     direction = Direction.up;
                     currentFrameUD = (totalFramesUD*repeatedFrames / 2)+1;
@@ -132,13 +132,12 @@ namespace sprint0
             } else if (direction == Direction.down) {
                  
                
-                //amiantes sprite by filping after every repeatedFrames frames
-                currentSpriteEffect= (currentSpriteEffect + 1)%(totalSpriteEffects*repeatedFrames);
-                
+                //amiantes sprite by fliping after every repeatedFrames frames
+                currentSpriteEffect = (currentSpriteEffect + 1)%(totalSpriteEffects*repeatedFrames);
 
                 //moves sprite down
                 Location += new Vector2(0, 1);
-                if (Location.Y >= 396)
+                if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
                     direction = Direction.right;
                     currentFrameRL = 0;
@@ -147,12 +146,12 @@ namespace sprint0
 
             } else { //direction == Direction.up
 
-                //amiantes sprite by filping after every repeatedFrames frames
+                //amiantes sprite by fliping after every repeatedFrames frames
                 currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
                 
                 //moves sprite up
                 Location += new Vector2(0,-1);
-                if (Location.Y <= 136)
+                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
                     direction = Direction.left;
                     currentFrameRL = (totalFramesRL*repeatedFrames / 2) + 1;

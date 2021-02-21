@@ -48,47 +48,49 @@ namespace sprint0
                 s |= SpriteEffects.FlipVertically;
             } // otherwise (coming from below), faces up
 
-            if (Location.X <= 0) // coming from the left, move right
+            ArbitraryDirection();
+        }
+
+        public void ArbitraryDirection()
+        {
+            // changes to an arbitrary direction; if in wall, go into room, else random direction
+            // TODO 32 is a magic number for room border / wall width... make static variable in Game1?
+            moveCounter = 0;
+            if (Location.X <= 32 * Game1.Scale) // in the left wall, move right
             {
                 direction = Direction.e;
+                Console.Write(Location.X);
             }
-            else if (Location.X >= Game1.Width) // coming from the right, move left
+            else if (Location.X >= (Game1.Width - 32) * Game1.Scale) // in the right wall, move left
             {
                 direction = Direction.w;
             }
-            else if (Location.Y <= Game1.HUDHeight) // coming from the top, move down
+            else if (Location.Y <= (Game1.HUDHeight + 32) * Game1.Scale) // in the top wall, move down
             {
                 direction = Direction.s;
             }
-            else if (Location.Y >= Game1.HUDHeight + Game1.MapHeight) // coming from the bottom, move up
+            else if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale) // in the bottom wall, move up
             {
                 direction = Direction.n;
             }
-            else // this shouldn't happen; TODO throw error? keep for sprint2
+            else // not in a wall, move in random direction
             {
-                randomDirection();
-            }
-        }
-
-        public void randomDirection()
-        {
-            // changes to a random direction
-            moveCounter = 0;
-            dirChangeDelay = rand.Next(10, 50);
-            switch (rand.Next(0, 4)) // 0 <= rand integer < 4
-            {
-                case 0:
-                    direction = Direction.n;
-                    break;
-                case 1:
-                    direction = Direction.s;
-                    break;
-                case 2:
-                    direction = Direction.e;
-                    break;
-                case 3:
-                    direction = Direction.w;
-                    break;
+                dirChangeDelay = rand.Next(10, 50);
+                switch (rand.Next(0, 4)) // 0 <= rand integer < 4
+                {
+                    case 0:
+                        direction = Direction.n;
+                        break;
+                    case 1:
+                        direction = Direction.s;
+                        break;
+                    case 2:
+                        direction = Direction.e;
+                        break;
+                    case 3:
+                        direction = Direction.w;
+                        break;
+                }
             }
         }
 
@@ -103,7 +105,7 @@ namespace sprint0
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             if (moveCounter == dirChangeDelay)
             {
-                randomDirection();
+                ArbitraryDirection();
             }
             moveCounter++;
 

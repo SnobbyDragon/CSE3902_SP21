@@ -77,7 +77,7 @@ namespace sprint0
                     delayCounter=0;
                 }
                 
-                if (Location.X <= 100)
+                if (Location.X <= 50 * Game1.Scale)
                 {
                     direction = Direction.down;
 
@@ -94,7 +94,7 @@ namespace sprint0
                     delayCounter =0;
                 }
                 
-                if (Location.X >= 690)
+                if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                 {
                     direction = Direction.up;
 
@@ -109,7 +109,7 @@ namespace sprint0
                     Location += new Vector2(0, 40);
                     delayCounter = 0;
                 }
-                if (Location.Y >= 396)
+                if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
                     direction = Direction.right;
 
@@ -125,7 +125,7 @@ namespace sprint0
                     Location += new Vector2(0, -40);
                     delayCounter = 0;
                 }
-                if (Location.Y <= 136)
+                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
                     direction = Direction.left;
 

@@ -58,7 +58,7 @@ namespace sprint0
                 spriteEffect = SpriteEffects.FlipHorizontally;
                 //moves sprite left
                 Location += new Vector2(-1, 0);
-                if (Location.X <= 100)
+                if (Location.X <= 50 * Game1.Scale)
                 {
                     direction = Direction.down;
                     
@@ -71,7 +71,7 @@ namespace sprint0
                 spriteEffect = SpriteEffects.None;
                 //moves sprite right
                 Location += new Vector2(1, 0);
-                if (Location.X >= 690)
+                if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                 {
                     direction = Direction.up;
                    
@@ -81,7 +81,7 @@ namespace sprint0
             {
                 //moves sprite down
                 Location += new Vector2(0, 1);
-                if (Location.Y >= 396)
+                if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
                     direction = Direction.right;
                   
@@ -90,7 +90,7 @@ namespace sprint0
             else { //direction==Direction.up
                 //moves sprite up
                 Location += new Vector2(0, -1);
-                if (Location.Y <= 136)
+                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
                     direction = Direction.left;
                     
