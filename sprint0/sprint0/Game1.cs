@@ -12,7 +12,7 @@ namespace sprint0
         private static PlayerSpriteFactory playerFactory;
         public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
 
-        private GraphicsDeviceManager _graphics;
+        private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
         private List<ISprite> sprites;
@@ -49,9 +49,11 @@ namespace sprint0
             _graphics.PreferredBackBufferWidth = (int)(Width * Scale);
             _graphics.PreferredBackBufferHeight = (int)((HUDHeight + MapHeight) * Scale);
             _graphics.ApplyChanges();
-            controllerList = new List<IController>();
-            controllerList.Add(new KeyboardController(this));
-            controllerList.Add(new MouseController(this));
+            controllerList = new List<IController>
+            {
+                new KeyboardController(this),
+                new MouseController(this)
+            };
             playerFactory = new PlayerSpriteFactory(this);
             player = new Link(this, new Vector2(200, 250));
 

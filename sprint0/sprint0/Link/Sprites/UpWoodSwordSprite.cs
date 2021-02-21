@@ -7,10 +7,9 @@ namespace sprint0
     class UpWoodSwordSprite : ISprite
     {
 
-        private Rectangle source;
         public Texture2D Texture { get => texture; set => texture = value; }
         public Vector2 Location { get => location; set => location = value; }
-        private List<Rectangle> sources;
+        private readonly List<Rectangle> sources;
         private Texture2D texture;
         private Vector2 location;
         private int currFrame;
@@ -22,12 +21,13 @@ namespace sprint0
         
             this.texture = texture;
             this.location = location;
-            sources = GetFrames(xOffset, yOffset);
+            sources = GetFrames();
 
         }
 
-        private List<Rectangle> GetFrames(int xPos, int yPos)
+        private List<Rectangle> GetFrames()
         {
+            int xPos, yPos;
             List<Rectangle> sources = new List<Rectangle>();
             width = 16;
             height = 16;

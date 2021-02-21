@@ -8,14 +8,14 @@ namespace sprint0
 {
     class Link : IPlayer
     {
-        private Game1 game;
+        private readonly Game1 game;
         private IPlayerState state;
         private Vector2 position;
-        private int speed = 2;
-        Direction direction = Direction.n;
+        private readonly int speed = 2;
+        private Direction direction = Direction.n;
         public Vector2 Position { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
-        private Random rand;
+        private readonly Random rand;
 
         Direction IPlayer.direction => direction;
 
@@ -38,7 +38,7 @@ namespace sprint0
             game.Player = new DamagedLink(this, game, direction);
         }
 
-        public void shoot() {
+        public void Shoot() {
             // Random time for arrows is neat :)
             int time = rand.Next(10, 20);
             game.AddArrow(position, direction, time);
@@ -100,17 +100,17 @@ namespace sprint0
             State.Update();
         }
 
-        public void HandleOne()
+        public void HandleShoot()
         {
-            shoot();
+            Shoot();
         }
 
-        public void HandleTwo()
+        public void HandleBomb()
         {
             throw new NotImplementedException();
         }
 
-        public void HandleThree()
+        public void HandleBoomerang()
         {
             throw new NotImplementedException();
         }
