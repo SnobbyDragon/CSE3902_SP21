@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Stuti Shah
 namespace sprint0
 {
     public class HUD : ISprite
@@ -16,6 +17,8 @@ namespace sprint0
         {
             Location = location;
             Texture = texture;
+
+            //load HUD sprite
             source = new Rectangle(258, 11, Game1.Width, Game1.HUDHeight);
 
         }

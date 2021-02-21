@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Stuti Shah
 namespace sprint0
 {
     public class HUDItemB : ISprite
@@ -23,6 +24,7 @@ namespace sprint0
             Item = itemName;
             int yPos = 137;
 
+            //add items to list
             itemMap = new Dictionary<string, Rectangle>
             {
                 { "sword", GetSource(555, yPos)},
@@ -51,6 +53,7 @@ namespace sprint0
 
         private Rectangle GetSource(int xPos, int yPos)
         {
+            //get sprite
             source = new Rectangle();
             source = new Rectangle(xPos, yPos, width, height);
             return source;
@@ -65,7 +68,7 @@ namespace sprint0
 
         public void Update()
         {
-            //Do Nothing
+            //todo: switch between objects and based on link
         }
     }
 }

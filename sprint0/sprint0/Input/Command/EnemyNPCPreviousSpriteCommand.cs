@@ -1,4 +1,5 @@
-﻿namespace sprint0
+﻿//Author: Stuti Shah
+namespace sprint0
 {
     internal class EnemyNPCPreviousSpriteCommand : ICommand
     {
@@ -10,6 +11,7 @@
 
         public void Execute()
         {
+            //go to next previous sprite
             game.enemyNPCIndex = ((game.enemyNPCIndex - 1) + game.enemyNPCSprites.Count) % game.enemyNPCSprites.Count;
         }
     }

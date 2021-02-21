@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
+
+//Author: Stuti Shah
 namespace sprint0
 {
     public class EnemyNPCSprites
@@ -11,7 +13,7 @@ namespace sprint0
         {
             this.game = game;
         }
-        public List<ISprite> LoadEnemyNPCSprites()
+        public List<ISprite> LoadEnemyNPCSprites() //loads all sprites
         {
             List<ISprite> enemyNPCSprites = LoadEnemySprites();
             enemyNPCSprites.AddRange(LoadNPCSprites());
@@ -20,7 +22,7 @@ namespace sprint0
             return enemyNPCSprites;
         }
 
-        private List<ISprite> LoadEnemySprites()
+        private List<ISprite> LoadEnemySprites() //loads enemy sprites
         {
             EnemiesSpriteFactory enemyFactory = new EnemiesSpriteFactory(game);
             List<ISprite> enemySprites = new List<ISprite>
@@ -54,7 +56,7 @@ namespace sprint0
             return enemySprites;
         }
 
-        private List<ISprite> LoadNPCSprites()
+        private List<ISprite> LoadNPCSprites() //loads npc sprites
         {
             NpcsSpriteFactory npcFactory = new NpcsSpriteFactory(game);
             List<ISprite> npcSprites = new List<ISprite>
@@ -70,7 +72,7 @@ namespace sprint0
             return npcSprites;
         }
 
-        private List<ISprite> LoadBossSprites()
+        private List<ISprite> LoadBossSprites() //loads boss sprites
         {
             BossesSpriteFactory bossSpriteFactory = new BossesSpriteFactory(game);
             List<ISprite> bossSprites = new List<ISprite>

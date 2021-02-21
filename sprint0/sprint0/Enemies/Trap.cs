@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Stuti Shah
 namespace sprint0
 {
     public class Trap : ISprite
@@ -15,6 +16,8 @@ namespace sprint0
         {
             Location = location;
             Texture = texture;
+
+            //load sprite
             source = new Rectangle(164, 59, 16, 16);
         }
 
