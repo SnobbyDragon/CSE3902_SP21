@@ -36,6 +36,9 @@ namespace sprint0
             RegisterCommand(Keys.Z, new SwordCommand(game));
             RegisterCommand(Keys.N, new SwordCommand(game));
             RegisterCommand(Keys.E, new DamageCommand(game));
+            RegisterCommand(Keys.D1, new OneCommand(game));
+            RegisterCommand(Keys.D2, new TwoCommand(game));
+            RegisterCommand(Keys.D3, new ThreeCommand(game));
         }
 
         public void RegisterCommand(Keys key, ICommand command)

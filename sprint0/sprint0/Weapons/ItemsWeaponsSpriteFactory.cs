@@ -17,7 +17,7 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
         }
 
-        public ISprite MakeSprite(String spriteType, Vector2 location)
+        public ISprite MakeSprite(String spriteType, Vector2 location, Direction dir, int lifespan)
         {
 
 
@@ -49,7 +49,7 @@ namespace sprint0
                 case "blue triforce piece":
                     return new TriforcePiece(texture, location, "blue");
                 case "arrow":
-                    return new Arrow(texture, location);
+                    return new Arrow(texture, location, dir, lifespan);
                 case "compass":
                     return new Compass(texture, location);
                 case "key":

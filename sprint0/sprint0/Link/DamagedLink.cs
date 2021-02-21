@@ -14,6 +14,8 @@ namespace sprint0
         public Vector2 Position { get => decoratedLink.Position; set => decoratedLink.Position = value; }
         public IPlayerState State { get => decoratedLink.State; set => decoratedLink.State = value; }
 
+        Direction IPlayer.direction => direction;
+
         public DamagedLink(IPlayer decoratedLink, Game1 game, Direction direction)
         {
             this.game = game;
@@ -109,6 +111,21 @@ namespace sprint0
             }
 
             decoratedLink.Update();
+        }
+
+        public void HandleOne()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void HandleTwo()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void HandleThree()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

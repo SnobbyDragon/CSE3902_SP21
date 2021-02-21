@@ -38,6 +38,8 @@ namespace sprint0
             player.State = new DownWoodSwordState(player);
         }
 
+     
+
         public void Update()
         {
             sprite.Location = player.Position;

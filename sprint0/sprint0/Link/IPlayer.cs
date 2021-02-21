@@ -8,6 +8,8 @@ namespace sprint0
 {
     public interface IPlayer
     {
+
+        Direction direction { get; }
         Vector2 Position { get; set; }
         IPlayerState State { get; set; }
 
@@ -19,6 +21,9 @@ namespace sprint0
         void HandleLeft();
         void HandleRight();
         void HandleSword();
+        void HandleOne();
+        void HandleTwo();
+        void HandleThree();
         void HandleZ();
         void HandleN();
         void Draw(SpriteBatch spriteBatch);
