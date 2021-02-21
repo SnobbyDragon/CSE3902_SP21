@@ -47,7 +47,7 @@ namespace sprint0
                 enemyFactory.MakeSprite("blue goriya", new Vector2(220,350)),
                 enemyFactory.MakeSprite("red keese", new Vector2(240,350)),
                 enemyFactory.MakeSprite("blue keese", new Vector2(260,350)),
-                enemyFactory.MakeSprite("stalfos", new Vector2(280,350)),
+                enemyFactory.MakeSprite("stalfos", new Vector2(280,400)),
                 enemyFactory.MakeSprite("trap", new Vector2(300,350)),
                 enemyFactory.MakeSprite("goriya boomerang horizontal", new Vector2(320,350)),
                 enemyFactory.MakeSprite("goriya boomerang vertical", new Vector2(320,350)),
@@ -77,8 +77,8 @@ namespace sprint0
             BossesSpriteFactory bossSpriteFactory = new BossesSpriteFactory(game);
             List<ISprite> bossSprites = new List<ISprite>
             {
-                bossSpriteFactory.MakeSprite("orange gohma", new Vector2(420, 420)),
-                bossSpriteFactory.MakeSprite("blue gohma", new Vector2(450, 450)),
+                bossSpriteFactory.MakeSprite("orange gohma", new Vector2(300, 300)),
+                bossSpriteFactory.MakeSprite("blue gohma", new Vector2(300, 300)),
                 bossSpriteFactory.MakeSprite("patra", new Vector2(300, 300)),
                 bossSpriteFactory.MakeSprite("manhandla", new Vector2(100,300)),
                 bossSpriteFactory.MakeSprite("dodongo", new Vector2(250,300)),
