@@ -11,9 +11,9 @@ namespace sprint0
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int width = 8, height = 10;
-        private Dictionary<String, List<Rectangle>> dirToSourcesMap;
-        private Dictionary<String, SpriteEffects> dirToEffectsMap;
-        private String type;
+        private readonly Dictionary<String, List<Rectangle>> dirToSourcesMap;
+        private readonly Dictionary<String, SpriteEffects> dirToEffectsMap;
+        private readonly String type;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames, speed = 3;
         public Vector2 Direction { get; set; } // direction fireball travels

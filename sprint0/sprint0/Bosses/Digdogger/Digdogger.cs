@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
+/*
+ * Last updated: 2/21/21 by urick.9
+ */
 namespace sprint0
 {
     public class Digdogger : ISprite
@@ -11,13 +14,13 @@ namespace sprint0
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int bigSize = 32, smallSize = 16;
-        private List<Rectangle> smallSources;
-        private Dictionary<string, List<Rectangle>> dirToBigSource;
+        private readonly List<Rectangle> smallSources;
+        private readonly Dictionary<string, List<Rectangle>> dirToBigSource;
         private int currFrame, spikeDelay, spikeCounter; // randomly switch spike direction after a delay
         private readonly int bigTotalFrames, repeatedFrames, totalFrames;
-        private bool isBig;
+        private readonly bool isBig;
         private string spikes;
-        private Random rand;
+        private readonly Random rand;
         private Vector2 destination; //TODO depends on link; runs away?
         private int moveCounter;
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < totalFrames*repeatedFrames
@@ -42,7 +45,7 @@ namespace sprint0
             rand = new Random();
             spikes = "none";
             SwitchSpikeDir();
-            generateDest();
+            GenerateDest();
             moveCounter = 0;
             moveDelay = 4; // slow
         }
@@ -93,7 +96,7 @@ namespace sprint0
                 if (dist.Length() < 5)
                 {
                     // reached destination, generate new destination; TODO change dir bc of link position
-                    generateDest();
+                    GenerateDest();
                 }
                 else if (moveCounter == moveDelay)
                 {
@@ -114,7 +117,7 @@ namespace sprint0
         }
 
         // generates a new destination
-        public void generateDest()
+        public void GenerateDest()
         {
             // currently picks a random destination TODO make 32 static variable? this is the wall width
             // TODO movement depends on where link is?

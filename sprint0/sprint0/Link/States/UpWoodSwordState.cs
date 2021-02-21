@@ -4,13 +4,13 @@ namespace sprint0
 {
     internal class UpWoodSwordState : IPlayerState
     {
-        private ISprite sprite;
-        private IPlayer player;
+        private readonly ISprite sprite;
+        private readonly IPlayer player;
         private int count = 0;
         public UpWoodSwordState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link up sword", player.Position);
+            sprite = Game1.PlayerFactory.MakeSprite("link up sword", player.Pos);
         }
 
 
@@ -19,7 +19,7 @@ namespace sprint0
             if (count > 24) {
                 player.State = new UpIdleState(player);
             }
-            sprite.Location = player.Position;
+            sprite.Location = player.Pos;
             sprite.Update();
             count++;
         }

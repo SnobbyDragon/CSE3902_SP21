@@ -10,7 +10,7 @@ namespace sprint0
         public DownWoodSwordState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link down sword", player.Position);
+            sprite = Game1.PlayerFactory.MakeSprite("link down sword", player.Pos);
         }
 
         public void Update()
@@ -19,7 +19,7 @@ namespace sprint0
             {
                 player.State = new DownIdleState(player);
             }
-            sprite.Location = player.Position;
+            sprite.Location = player.Pos;
             sprite.Update();
             count++;
         }

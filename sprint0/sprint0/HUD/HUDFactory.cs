@@ -6,9 +6,9 @@ namespace sprint0
 {
     public class HUDFactory
     {
-        Game1 game;
-        Texture2D texture;
-        int nameLen = 4;
+        readonly Game1 game;
+        readonly Texture2D texture;
+        readonly int nameLen = 4;
 
         public HUDFactory(Game1 game)
         {
@@ -20,7 +20,7 @@ namespace sprint0
         {
             //note: wherever the location is modified is how far the corresponding object is from the top-left corner of the HUD
             String subSpriteType = spriteType.Substring(0, nameLen);
-            String numString = spriteType.Substring(nameLen);
+            String numString = spriteType[nameLen..];
             switch (subSpriteType)
             {
 
@@ -29,11 +29,11 @@ namespace sprint0
 
                 case "hudA":
                     //spriteType format: hudA <itemName>
-                    return new HUDItemA(texture, new Vector2(location.X + 153 * Game1.Scale, location.Y + 24 * Game1.Scale), spriteType.Substring(nameLen + 1));
+                    return new HUDItemA(texture, new Vector2(location.X + 153 * Game1.Scale, location.Y + 24 * Game1.Scale), spriteType[(nameLen + 1)..]);
 
                 case "hudB":
                     //spriteType format: hudB <itemName>
-                    return new HUDItemB(texture, new Vector2(location.X + 128 * Game1.Scale, location.Y + 24 * Game1.Scale), spriteType.Substring(nameLen + 1));
+                    return new HUDItemB(texture, new Vector2(location.X + 128 * Game1.Scale, location.Y + 24 * Game1.Scale), spriteType[(nameLen + 1)..]);
 
                 case "rin ": //rupee inventory
                     //spriteType format: rin <rupeeAmount>

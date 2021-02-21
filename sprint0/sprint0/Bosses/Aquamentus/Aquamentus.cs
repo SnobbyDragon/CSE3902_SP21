@@ -4,22 +4,25 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
+/*
+ * Last updated: 2/21/21 by urick.9
+ */
 namespace sprint0
 {
     public class Aquamentus : ISprite
     {
-        private Game1 game; //TODO maybe have player bc static so we don't need this
+        private readonly Game1 game; //TODO maybe have player bc static so we don't need this
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 1, yOffset = 11, width = 24, height = 32;
-        private List<Rectangle> sources;
+        private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
         private int currDest;
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < totalFrames*repeatedFrames
-        private List<Vector2> destinations; // aquamentus moves to predetermined destinations TODO depends on link actually
-        private List<AquamentusFireball> fireballs;
-        private bool isDead; //TODO maybe should be in a more general class since a lot of sprites can die
+        private readonly List<Vector2> destinations; // aquamentus moves to predetermined destinations TODO depends on link actually
+        private readonly List<AquamentusFireball> fireballs;
+        private readonly bool isDead; //TODO maybe should be in a more general class since a lot of sprites can die
         private Vector2 headOffset; // offsets from top left to center of aquamentus' head (where fireballs come from)
 
         public Aquamentus(Texture2D texture, Vector2 location, Game1 game)
@@ -112,7 +115,7 @@ namespace sprint0
 
         private void ShootFireballs()
         {
-            Vector2 dir = game.Player.Position - (Location + headOffset); // TODO offset to center of link
+            Vector2 dir = game.Player.Pos - (Location + headOffset); // TODO offset to center of link
             dir.Normalize();
             foreach (AquamentusFireball fireball in fireballs)
             {

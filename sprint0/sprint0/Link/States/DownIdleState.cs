@@ -10,7 +10,7 @@ namespace sprint0
         public DownIdleState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link down idle", player.Position);
+            sprite = Game1.PlayerFactory.MakeSprite("link down idle", player.Pos);
         }
 
         public void HandleUp()
@@ -42,7 +42,7 @@ namespace sprint0
 
         public void Update()
         {
-            sprite.Location = player.Position;
+            sprite.Location = player.Pos;
             sprite.Update();
         }
 

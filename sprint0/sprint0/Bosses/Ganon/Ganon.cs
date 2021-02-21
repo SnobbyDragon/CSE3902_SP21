@@ -4,23 +4,25 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
+/*
+ * Last updated: 2/21/21 by urick.9
+ */
 namespace sprint0
 {
     public class Ganon : ISprite
     {
-        private Game1 game; //TODO maybe have player bc static so we don't need this
+        private readonly Game1 game; //TODO maybe have player bc static so we don't need this
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 40, yOffset = 154, size = 32;
-        private List<Rectangle> sources;
+        private readonly List<Rectangle> sources;
         private int currFrame, counter; // counts the time
         private readonly int totalFrames, invisibleTime = 200, visibleTime = 100, teleportTime = 50; //TODO currently arbitrary times
         private bool isVisible;
         private readonly Random rand;
-        private GanonFireball fireball; // main fireball
-        private List<GanonFireball> fireballExplosion; // TODO upon death; currently shoots w/main fireball as demonstration
+        private readonly GanonFireball fireball; // main fireball
+        private readonly List<GanonFireball> fireballExplosion; // TODO upon death; currently shoots w/main fireball as demonstration
         private Vector2 centerOffset; // fireball shoots from center of ganon
-
         public Ganon(Texture2D texture, Vector2 location, Game1 game)
         {
             Location = location;
@@ -118,7 +120,7 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            Vector2 dir = game.Player.Position - (Location + centerOffset);
+            Vector2 dir = game.Player.Pos - (Location + centerOffset);
             dir.Normalize();
             fireball.Direction = dir;
             fireball.Location = Location + centerOffset;

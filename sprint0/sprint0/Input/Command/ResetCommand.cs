@@ -29,7 +29,7 @@ namespace sprint0
             game.roomElementsIndex = 0;
 
             //reset player state
-            game.Player.Position = new Vector2(200, 250);
+            game.Player.Pos = new Vector2(200, 250);
             game.Player.State = new UpIdleState(game.Player);
         }
     }
