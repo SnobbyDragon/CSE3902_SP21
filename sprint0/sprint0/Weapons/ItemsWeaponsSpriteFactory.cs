@@ -32,7 +32,7 @@ namespace sprint0
                 "pink heart" => new Heart(texture, location, "pink"),
                 "blue heart" => new Heart(texture, location, "blue"),
                 "heart container" => new HeartContainer(texture, location),
-                "fairy" => new Fairy(texture, location, game),
+                "fairy" => new Fairy(texture, location),
                 "bomb" => new Bomb(texture, location, dir),
                 "clock" => new Clock(texture, location),
                 "boomerang" => new Boomerang(texture, location, dir),
