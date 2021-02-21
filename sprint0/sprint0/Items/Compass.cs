@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Stuti Shah
 namespace sprint0
 {
     public class Compass : ISprite
@@ -16,6 +17,8 @@ namespace sprint0
         {
             Location = location;
             Texture = texture;
+
+            //get sprite
             source = new Rectangle(258, 1, 11, 12);
 
         }

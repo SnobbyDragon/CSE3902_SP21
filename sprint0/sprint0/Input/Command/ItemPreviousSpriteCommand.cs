@@ -1,4 +1,5 @@
-﻿namespace sprint0
+﻿//Author: Stuti Shah
+namespace sprint0
 {
     internal class ItemPreviousSpriteCommand : ICommand
     {
@@ -10,6 +11,7 @@
 
         public void Execute()
         {
+            //go to previous item
             game.itemIndex = ((game.itemIndex - 1) + game.itemSprites.Count) % game.itemSprites.Count;
         }
     }

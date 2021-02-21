@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Stuti Shah
 namespace sprint0
 {
     public class Rupee : ISprite
@@ -19,11 +20,14 @@ namespace sprint0
         {
             Location = location;
             Texture = texture;
+
+            //load sprites
             sources = new List<Rectangle>
             {
                 new Rectangle(xOffset, yOffset, sizex, sizey),
                 new Rectangle(xOffset, yOffset+sizey+1, sizex, sizey)
             };
+
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
+//Author: Stuti Shah
 namespace sprint0
 {
     public class DungeonSprites
@@ -13,7 +14,7 @@ namespace sprint0
             this.game = game;
             dungeonFactory = new DungeonFactory(this.game);
         }
-        public List<ISprite> LoadDungeonSprites()
+        public List<ISprite> LoadDungeonSprites() //loads all dungeon sprites
         {
             List<ISprite> dungeonSprites = LoadMiscSprites();
             dungeonSprites.AddRange(LoadStatueSprites());
@@ -24,7 +25,7 @@ namespace sprint0
             return dungeonSprites;
         }
 
-        private List<ISprite> LoadMiscSprites()
+        private List<ISprite> LoadMiscSprites() //only loads misc sprites
         {
             List<ISprite> miscSprites = new List<ISprite>
             {
@@ -39,7 +40,7 @@ namespace sprint0
             return miscSprites;
         }
 
-        private List<ISprite> LoadStatueSprites()
+        private List<ISprite> LoadStatueSprites() //only loads statue sprites
         {
             List<ISprite> statueSprites = new List<ISprite>
             {
@@ -49,7 +50,7 @@ namespace sprint0
             return statueSprites;
         }
 
-        private List<ISprite> LoadWallSprites()
+        private List<ISprite> LoadWallSprites() //loads wall sorites
         {
             List<ISprite> wallSprites = new List<ISprite>
             {
@@ -61,7 +62,7 @@ namespace sprint0
             return wallSprites;
         }
 
-        private List<ISprite> LoadDoorSprites()
+        private List<ISprite> LoadDoorSprites() //loads open, locked, and shut door sprites
         {
             List<ISprite> doorSprites = new List<ISprite>
             {
@@ -81,31 +82,7 @@ namespace sprint0
             return doorSprites;
         }
 
-        private List<ISprite> LoadOpeningSprites()
-        {
-            List<ISprite> openingSprites = new List<ISprite>
-            {
-                dungeonFactory.MakeSprite("left bombed opening", new Vector2(720, 150)),
-                dungeonFactory.MakeSprite("right bombed opening", new Vector2(720, 150)),
-                dungeonFactory.MakeSprite("up bombed opening", new Vector2(720, 150)),
-                dungeonFactory.MakeSprite("down bombed opening", new Vector2(720, 150)),
-            };
-            return openingSprites;
-        }
-
-        private List<ISprite> LoadDungeonBorderSprites()
-        {
-            List<ISprite> openingSprites = new List<ISprite>
-            {
-                dungeonFactory.MakeSprite("left bombed opening", new Vector2(720, 150)),
-                dungeonFactory.MakeSprite("right bombed opening", new Vector2(720, 150)),
-                dungeonFactory.MakeSprite("up bombed opening", new Vector2(720, 150)),
-                dungeonFactory.MakeSprite("down bombed opening", new Vector2(720, 150)),
-            };
-            return openingSprites;
-        }
-
-        private List<ISprite> LoadDungeonFloorSprites()
+        private List<ISprite> LoadOpeningSprites() //loads opening sprites
         {
             List<ISprite> openingSprites = new List<ISprite>
             {

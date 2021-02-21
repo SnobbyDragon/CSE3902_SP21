@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Stuti Shah
 namespace sprint0
 {
     public class Key : ISprite
@@ -19,11 +20,14 @@ namespace sprint0
         {
             Location = location;
             Texture = texture;
+
+            //add sprites
             sources = new List<Rectangle>
             {
                 new Rectangle(xOffset, yOffset, sizex, sizey),
                 new Rectangle(xOffset+sizex+1, yOffset, sizex, sizey)
             };
+
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;
@@ -39,6 +43,7 @@ namespace sprint0
 
         public void Update()
         {
+            //switches between two versions of the key (not sure if that's correct)
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
     }

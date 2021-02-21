@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Stuti Shah
 namespace sprint0
 {
     public class HUDFactory
@@ -18,44 +19,64 @@ namespace sprint0
 
         public ISprite MakeSprite(String spriteType, Vector2 location)
         {
+            /*
+             * spriteType format for HUD:
+             * 
+             * hud: N/A
+             * item A: hudA <itemName>
+             * item B: hudB <itemName>
+             * rupee inventopry: rin <rupeeAmount>
+             * key inventory: kin <keyAmount>
+             * bomb inventory: bin <bombAmount>
+             * heart state: hin <halfHeartAmount>,<fullHeartAmount>
+             */
+
             //note: wherever the location is modified is how far the corresponding object is from the top-left corner of the HUD
             String subSpriteType = spriteType.Substring(0, nameLen);
             String numString = spriteType.Substring(nameLen);
             switch (subSpriteType)
             {
-
+                //hud
                 case "hudM":
                     return new HUD(texture, location);
 
+
+                //item A
                 case "hudA":
-                    //spriteType format: hudA <itemName>
                     return new HUDItemA(texture, new Vector2(location.X + 153 * Game1.Scale, location.Y + 24 * Game1.Scale), spriteType.Substring(nameLen + 1));
 
+
+                //item B
                 case "hudB":
-                    //spriteType format: hudB <itemName>
                     return new HUDItemB(texture, new Vector2(location.X + 128 * Game1.Scale, location.Y + 24 * Game1.Scale), spriteType.Substring(nameLen + 1));
 
-                case "rin ": //rupee inventory
-                    //spriteType format: rin <rupeeAmount>
+                //rupee inventory
+                case "rin ":
                     int rupeeNum;
+
+                    //get number of rupees
                     int.TryParse(numString, out rupeeNum);
                     return new RupeeHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 16 * Game1.Scale), rupeeNum);
 
+                //key inventory
                 case "kin ":
-                    //spriteType format: kin <keyAmount>
                     int keyNum;
+
+                    //get number of keys
                     int.TryParse(numString, out keyNum);
                     return new KeyHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 32 * Game1.Scale), keyNum);
 
-                case "bin ": //bomb inventory
-                    //spriteType format: bin <bombAmount>
+                //bomb inventory
+                case "bin ":
                     int bombNum;
-                    int.TryParse(numString, out bombNum);
 
+                    //get number of bombs
+                    int.TryParse(numString, out bombNum);
                     return new BombHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 40 * Game1.Scale), bombNum);
 
+
+                //heart state
                 case "hin ": //heart inventory/state
-                    //spriteType format: hin <halfHeartAmount>,<fullHeartAmount>
                     String[] heartNumString = numString.Split(',');
                     int[] heartNum = { 0, 0, 0 }; //array that stores the number of empty, half, and full hearts
                     int sum = 16; //total number of hearts
