@@ -103,7 +103,7 @@ namespace sprint0
         {
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            if (moveCounter == dirChangeDelay)
+            if (moveCounter == dirChangeDelay) //TODO may still go into the wall... not sure if that's okay?
             {
                 ArbitraryDirection();
             }
