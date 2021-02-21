@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+// Author: Angela Li
 namespace sprint0
 {
     public class PatraMinion : ISprite
@@ -79,7 +80,7 @@ namespace sprint0
                     // expanding / contracting
                     if (expansionCounter % 2 == 0)
                     {
-                        // contracting
+                        // contracting TODO extract to other methods
                         if (distance == minDistance)
                         {
                             // done contracting

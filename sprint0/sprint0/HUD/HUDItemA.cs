@@ -13,7 +13,7 @@ namespace sprint0
         private Rectangle source;
         private string Item { get; set; }
         private Dictionary<string, Rectangle> itemMap;
-
+        private int width = 8, height = 16;
 
         public HUDItemA(Texture2D texture, Vector2 location, string itemName)
         {
@@ -51,17 +51,13 @@ namespace sprint0
         private Rectangle GetSource(int xPos, int yPos)
         {
             source = new Rectangle();
-            int width = 8;
-            int height = 16;
             source = new Rectangle(xPos, yPos, width, height);
             return source;
         }
 
-
-
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, itemMap[Item], Color.White);
+            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)), itemMap[Item], Color.White);
         }
 
         public void Update()

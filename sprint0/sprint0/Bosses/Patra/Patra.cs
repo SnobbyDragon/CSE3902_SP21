@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+// Author: Angela Li
 namespace sprint0
 {
     public class Patra : ISprite
@@ -75,7 +76,7 @@ namespace sprint0
             moveCounter++;
 
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            foreach (ISprite minion in minions)
+            foreach (ISprite minion in minions) //TODO maybe move to game
                 minion.Update();
         }
 
@@ -84,7 +85,10 @@ namespace sprint0
         {
             // currently picks a random destination TODO change location bounds
             // TODO movement depends on where link is?
-            destination = new Vector2(rand.Next(0, 800), rand.Next(0, 500));
+            destination = new Vector2(
+                rand.Next((int)(32 * Game1.Scale), (int)((Game1.Width - 32) * Game1.Scale)),
+                rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale))
+                );
         }
     }
 }

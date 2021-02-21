@@ -12,7 +12,7 @@ namespace sprint0
         public int keyNumTens;
         public int keyNumOnes;
         private List<Rectangle> sources;
-
+        private int sideLength = 8;
 
         public KeyHUD(Texture2D texture, Vector2 location, int keyNum)
         {
@@ -21,7 +21,7 @@ namespace sprint0
             keyNumTens = keyNum / 10;
             keyNumOnes = keyNum % 10;
             int totalFrames = 10;
-            int xPos = 528, yPos = 117, sideLength = 8;
+            int xPos = 528, yPos = 117;
             sources = new List<Rectangle>();
             for (int frame = 0; frame < totalFrames; frame++)
             {
@@ -34,9 +34,9 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, sources[10], Color.White);
-            spriteBatch.Draw(Texture, new Vector2(Location.X + 8, Location.Y), sources[keyNumTens], Color.White);
-            spriteBatch.Draw(Texture, new Vector2(Location.X + 16, Location.Y), sources[keyNumOnes], Color.White);
+            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[10], Color.White);
+            spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[keyNumTens], Color.White);
+            spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + 2 * sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[keyNumOnes], Color.White);
         }
 
         public void Update()

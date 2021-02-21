@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+// Author: Angela Li
 namespace sprint0
 {
     public class Gleeok : ISprite
     {
+        private Game1 game;
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 196, yOffset = 11, width = 24, height = 32;
@@ -15,10 +17,11 @@ namespace sprint0
         private readonly int totalFrames, repeatedFrames;
         private List<ISprite> neck1, neck2;
 
-        public Gleeok(Texture2D texture, Vector2 location)
+        public Gleeok(Texture2D texture, Vector2 location, Game1 game)
         {
             Location = location;
             Texture = texture;
+            this.game = game;
             currFrame = 0;
             totalFrames = 3;
             repeatedFrames = 12;
@@ -37,7 +40,7 @@ namespace sprint0
         {
             List<ISprite> neck = new List<ISprite>();
             Vector2 anchor = Location + new Vector2(width / 2 - 4, height - 6);
-            ISprite head = new GleeokHead(Texture, anchor);
+            ISprite head = new GleeokHead(Texture, anchor, game);
             for (int i = 0; i < 4; i++)
             {
                 neck.Add(new GleeokNeck(Texture, anchor, head, i));

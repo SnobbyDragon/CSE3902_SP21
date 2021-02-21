@@ -17,7 +17,7 @@ namespace sprint0
         {
             Location = location;
             Texture = texture;
-            destination = new Rectangle((int)Location.X, (int)Location.Y, (int)((size + .5) * 3.15), (int)((size + .7) * 2.45));
+            destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             source = dir switch
             {
                 "down" => new Rectangle(xOffset, yOffset, size, size),

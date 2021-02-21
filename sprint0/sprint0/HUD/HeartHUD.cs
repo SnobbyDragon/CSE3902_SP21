@@ -43,10 +43,10 @@ namespace sprint0
                     if (heartCount == 8)
                     {
                         xShift = 0;
-                        yShift = 8;
+                        yShift = (int)(sideLength * Game1.Scale);
                     }
-                    spriteBatch.Draw(Texture, new Vector2(Location.X + xShift, Location.Y + yShift), sources[i], Color.White);
-                    xShift += sideLength;
+                    spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + xShift), (int)(Location.Y + yShift), (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[i], Color.White);
+                    xShift += (int)(sideLength * Game1.Scale);
                     heartCount++;
                 }
             }

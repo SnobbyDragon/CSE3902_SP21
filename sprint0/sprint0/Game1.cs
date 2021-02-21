@@ -29,19 +29,26 @@ namespace sprint0
         //private ISprite roomBorder;
 
         // map width and height in pixels (does not include HUD) TODO scale up?
-        public static int MapWidth { get; } = 256;
+        public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
         public static int HUDHeight { get; } = 56;
+        public static float Scale { get; } = 2.5f; //TODO change later?
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this)
+            {
+                IsFullScreen = false,
+            };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
+            _graphics.PreferredBackBufferWidth = (int)(Width * Scale);
+            _graphics.PreferredBackBufferHeight = (int)((HUDHeight + MapHeight) * Scale);
+            _graphics.ApplyChanges();
             controllerList = new List<IController>();
             controllerList.Add(new KeyboardController(this));
             controllerList.Add(new MouseController(this));
@@ -62,19 +69,19 @@ namespace sprint0
             sprites = new List<ISprite> // testing sprites here
             {
 
-                hudFactory.MakeSprite("hudM", new Vector2(400,0)),
-                hudFactory.MakeSprite("rin 15", new Vector2(400,0)),
-                hudFactory.MakeSprite("kin 5", new Vector2(400,0)),
-                hudFactory.MakeSprite("bin 33", new Vector2(400,0)),
-                hudFactory.MakeSprite("hin 5,10", new Vector2(400,0)),
-                hudFactory.MakeSprite("hudA sword", new Vector2(400,0)),
-                hudFactory.MakeSprite("hudB magical boomerang", new Vector2(400,0)),
-                dungeonFactory.MakeSprite("room border", new Vector2(0, 56)),
-                dungeonFactory.MakeSprite("room floor plain", new Vector2(97, 134)),
-                dungeonFactory.MakeSprite("down open door", new Vector2(349, 55)),
-                dungeonFactory.MakeSprite("up open door", new Vector2(349, 404)),
-                dungeonFactory.MakeSprite("left open door", new Vector2(700, 231)),
-                dungeonFactory.MakeSprite("right open door", new Vector2(0, 231)),
+                hudFactory.MakeSprite("hudM", new Vector2(0,0)),
+                hudFactory.MakeSprite("rin 15", new Vector2(0,0)),
+                hudFactory.MakeSprite("kin 5", new Vector2(0,0)),
+                hudFactory.MakeSprite("bin 33", new Vector2(0,0)),
+                hudFactory.MakeSprite("hin 5,10", new Vector2(0,0)),
+                hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
+                hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
+                dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
+                dungeonFactory.MakeSprite("room floor plain", new Vector2(32*Scale, HUDHeight * Scale + 32*Scale)), // location = borderX + 32*scale, borderY + 32*scale
+                dungeonFactory.MakeSprite("down open door", new Vector2(112*Scale, HUDHeight * Scale)), // location = borderX + 112*scale, borderY
+                dungeonFactory.MakeSprite("up open door", new Vector2(112*Scale, HUDHeight * Scale + 144*Scale)), // location = borderX + 112*scale, borderY + 144*scale
+                dungeonFactory.MakeSprite("left open door", new Vector2(224*Scale, HUDHeight * Scale + 72*Scale)), // location = borderX + 224*scale, borderY + 72*scale
+                dungeonFactory.MakeSprite("right open door", new Vector2(0, HUDHeight * Scale + 72*Scale)), // location = borderX, borderY + 72*scale
             };
 
             itemSprites = new List<ISprite>
@@ -130,8 +137,8 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
-           
-           
+
+
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
             itemSprites[itemIndex].Draw(_spriteBatch);
