@@ -45,7 +45,7 @@ namespace sprint0
         }
 
 
-
+        //Adds source frames to a list
         private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames) {
             List<Rectangle> sources = new List<Rectangle>();
             int width =16;
@@ -67,70 +67,61 @@ namespace sprint0
         public void Update()
         {
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            if (direction == Direction.left)
-            {
+            switch (direction){
+                case Direction.left:
+                    //moves sprite left but in a halting manner
+                    if (delayCounter == delay)
+                    {
+                        Location += new Vector2(-40, 0);
+                        delayCounter = 0;
+                    }
 
-                //moves sprite left
-                delayCounter++;
-                if (delayCounter == delay) {
-                    Location += new Vector2(-40, 0);
-                    delayCounter=0;
-                }
-                
-                if (Location.X <= 100)
-                {
-                    direction = Direction.down;
+                    if (Location.X <= 100)
+                    {
+                        direction = Direction.down;
 
+                    }
+                    break;
+                case Direction.right:
+                    if (delayCounter == delay)
+                    {
+                        Location += new Vector2(40, 0);
+                        delayCounter = 0;
+                    }
 
-                }
-            }
-            else if (direction == Direction.right)
-            {
+                    if (Location.X >= 690)
+                    {
+                        direction = Direction.up;
 
-                //moves sprite right
-                delayCounter++;
-                if (delayCounter == delay) {
-                    Location += new Vector2(40, 0);
-                    delayCounter =0;
-                }
-                
-                if (Location.X >= 690)
-                {
-                    direction = Direction.up;
+                    }
+                    break;
+                case Direction.down:
+                    if (delayCounter == delay)
+                    {
+                        Location += new Vector2(0, 40);
+                        delayCounter = 0;
+                    }
+                    if (Location.Y >= 396)
+                    {
+                        direction = Direction.right;
 
-                }
-            }
-            else if (direction == Direction.down)
-            {
-                //moves sprite down
-                delayCounter++;
-                if (delayCounter == delay)
-                {
-                    Location += new Vector2(0, 40);
-                    delayCounter = 0;
-                }
-                if (Location.Y >= 396)
-                {
-                    direction = Direction.right;
+                    }
+                    break;
+                case Direction.up:
+                    if (delayCounter == delay)
+                    {
+                        Location += new Vector2(0, -40);
+                        delayCounter = 0;
+                    }
+                    if (Location.Y <= 136)
+                    {
+                        direction = Direction.left;
 
-                }
-            }
-            else
-            { //direction==Direction.up
-                //moves sprite up
-                
-                delayCounter++;
-                if (delayCounter == delay)
-                {
-                    Location += new Vector2(0, -40);
-                    delayCounter = 0;
-                }
-                if (Location.Y <= 136)
-                {
-                    direction = Direction.left;
+                    }
+                    break;
 
-                }
-            }
+            };
+            delayCounter++;
         }
     }
 }
