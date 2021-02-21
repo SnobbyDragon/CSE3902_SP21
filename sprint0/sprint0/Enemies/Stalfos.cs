@@ -75,7 +75,7 @@ namespace sprint0
                     }
                     break;
                 case Direction.Up: //move up; if y limit reached, turn left
-                    if (Location.Y > 200)
+                    if (Location.Y > 250)
                     {
                         Location = new Vector2(Location.X, Location.Y - 1);
                     }

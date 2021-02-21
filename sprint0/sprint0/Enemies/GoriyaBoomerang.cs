@@ -79,7 +79,7 @@ namespace sprint0
                 //moves sprite left
                 Location += new Vector2(-1, 0);
 
-                if (Location.X <= 100)
+                if (Location.X <= 50 * Game1.Scale)
                 {
                     direction = Direction.right;
 
@@ -91,7 +91,7 @@ namespace sprint0
                 //moves sprite right
                 Location += new Vector2(1, 0);
 
-                if (Location.X >= 690)
+                if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                 {
                     direction = Direction.left;
                 }
@@ -99,11 +99,11 @@ namespace sprint0
             else if (direction == Direction.ne)
             {
                 Location += new Vector2(1, -1);
-                if (Location.Y <= 136)
+                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
                     direction = Direction.se;
                 }
-                if (Location.X >= 690)
+                if (Location.X >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
                     direction = Direction.nw;
                 }
@@ -112,11 +112,11 @@ namespace sprint0
             else if (direction == Direction.sw)
             {
                 Location += new Vector2(-1, 1);
-                if (Location.Y >= 396)
+                if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
                     direction = Direction.nw;
                 }
-                if (Location.X <= 100)
+                if (Location.X <= 50 * Game1.Scale)
                 {
                     direction = Direction.se;
 
@@ -125,11 +125,11 @@ namespace sprint0
             else if (direction == Direction.nw)
             {
                 Location += new Vector2(-1, -1);
-                if (Location.Y <= 136)
+                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
                     direction = Direction.sw;
                 }
-                if (Location.X <= 100)
+                if (Location.X <= 50 * Game1.Scale)
                 {
                     direction = Direction.ne;
 
@@ -138,11 +138,11 @@ namespace sprint0
             else if (direction == Direction.se)
             {
                 Location += new Vector2(1, 1);
-                if (Location.Y >= 396)
+                if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
                     direction = Direction.ne;
                 }
-                if (Location.X >= 690)
+                if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                 {
                     direction = Direction.sw;
                 }
@@ -152,7 +152,7 @@ namespace sprint0
                 //moves sprite down
                 Location += new Vector2(0, 1);
 
-                if (Location.Y >= 396)
+                if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
                     direction = Direction.up;
                 }
@@ -162,7 +162,7 @@ namespace sprint0
                 //moves sprite up
                 Location += new Vector2(0, -1);
 
-                if (Location.Y <= 136)
+                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
                     direction = Direction.down;
                 }
