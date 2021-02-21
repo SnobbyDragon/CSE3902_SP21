@@ -7,27 +7,28 @@ namespace sprint0
     class RightWoodSwordSprite : ISprite
     {
 
-        private Rectangle source;
-        public Texture2D Texture { get => texture; set => texture = value; }
+        public Texture2D Texture { get; set; }
         public Vector2 Location { get => location; set => location = value; }
-        private List<Rectangle> sources;
-        private Texture2D texture;
+        private readonly List<Rectangle> sources;
         private Vector2 location;
         private int currFrame;
         private int slow;
         private readonly int xOffset = 1, yOffset = 77;
-        private int width = 16, height = 16;
+        private int width = 16;
+        private readonly int height = 16;
+
         public RightWoodSwordSprite(Texture2D texture, Vector2 location)
         {
 
-            this.texture = texture;
+            this.Texture = texture;
             this.location = location;
-            sources = GetFrames(xOffset, yOffset);
+            sources = GetFrames();
 
         }
 
-        private List<Rectangle> GetFrames(int xPos, int yPos)
+        private List<Rectangle> GetFrames()
         {
+            int xPos, yPos;
             List<Rectangle> sources = new List<Rectangle>();
             xPos = xOffset;
             yPos = yOffset;

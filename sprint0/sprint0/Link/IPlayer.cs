@@ -21,9 +21,9 @@ namespace sprint0
         void HandleLeft();
         void HandleRight();
         void HandleSword();
-        void HandleOne();
-        void HandleTwo();
-        void HandleThree();
+        void HandleShoot();
+        void HandleBomb();
+        void HandleBoomerang();
         void HandleZ();
         void HandleN();
         void Draw(SpriteBatch spriteBatch);

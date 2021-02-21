@@ -8,46 +8,31 @@ namespace sprint0
 {
     public class PlayerSpriteFactory
     {
-        Game1 game;
-        Texture2D texture;
+        readonly Texture2D texture;
 
         public PlayerSpriteFactory(Game1 game)
         {
-            this.game = game;
             texture = game.Content.Load<Texture2D>("Images/Link");
         }
 
         public ISprite MakeSprite(String spriteType, Vector2 location)
         {
-            switch (spriteType)
+            return spriteType switch
             {
-                case "link up idle":
-                    return new UpIdleLinkSprite(texture, location);
-                case "link down idle":
-                    return new DownIdleLinkSprite(texture, location);
-                case "link left idle":
-                    return new LeftIdleLinkSprite(texture, location);
-                case "link right idle":
-                    return new RightIdleLinkSprite(texture, location);
-                case "link up sword":
-                    return new UpWoodSwordSprite(texture, location);
-                case "link down sword":
-                    return new DownWoodSwordSprite(texture, location);
-                case "link left sword":
-                    return new LeftWoodSwordSprite(texture, location);
-                case "link right sword":
-                    return new RightWoodSwordSprite(texture, location);
-                case "link up walking":
-                    return new UpWalkingLinkSprite(texture, location);
-                case "link down walking":
-                    return new DownWalkingLinkSprite(texture, location);
-                case "link left walking":
-                    return new LeftWalkingLinkSprite(texture, location);
-                case "link right walking":
-                    return new RightWalkingLinkSprite(texture, location);
-                default:
-                    throw new ArgumentException("Invalid sprite! Player sprite factory failed.");
-            }
+                "link up idle" => new UpIdleLinkSprite(texture, location),
+                "link down idle" => new DownIdleLinkSprite(texture, location),
+                "link left idle" => new LeftIdleLinkSprite(texture, location),
+                "link right idle" => new RightIdleLinkSprite(texture, location),
+                "link up sword" => new UpWoodSwordSprite(texture, location),
+                "link down sword" => new DownWoodSwordSprite(texture, location),
+                "link left sword" => new LeftWoodSwordSprite(texture, location),
+                "link right sword" => new RightWoodSwordSprite(texture, location),
+                "link up walking" => new UpWalkingLinkSprite(texture, location),
+                "link down walking" => new DownWalkingLinkSprite(texture, location),
+                "link left walking" => new LeftWalkingLinkSprite(texture, location),
+                "link right walking" => new RightWalkingLinkSprite(texture, location),
+                _ => throw new ArgumentException("Invalid sprite! Player sprite factory failed."),
+            };
         }
     }
 }

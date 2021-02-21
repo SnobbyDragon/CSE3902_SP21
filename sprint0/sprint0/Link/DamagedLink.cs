@@ -113,17 +113,17 @@ namespace sprint0
             decoratedLink.Update();
         }
 
-        public void HandleOne()
+        public void HandleShoot()
         {
             throw new System.NotImplementedException();
         }
 
-        public void HandleTwo()
+        public void HandleBomb()
         {
             throw new System.NotImplementedException();
         }
 
-        public void HandleThree()
+        public void HandleBoomerang()
         {
             throw new System.NotImplementedException();
         }

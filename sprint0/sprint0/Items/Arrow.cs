@@ -9,16 +9,16 @@ namespace sprint0
     {
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
-        private List<Rectangle> sources;
+        private readonly List<Rectangle> sources;
         private readonly int xOffset = 154, yOffset = 0, sizex = 5, sizey = 16;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private Direction dir;
+        private readonly Direction dir;
         //xa is x adjust, ya is y adjust
         private float xa, ya;
         //Lifespan is the number of updates before it dies. 
         //For now, it just stops rendering
-        private int lifespan;
+        private readonly int lifespan;
         //Age is the current number of updates
         private int age;
         public Arrow(Texture2D texture, Vector2 location, Direction dir, int lifespan)
@@ -38,8 +38,9 @@ namespace sprint0
 
         }
 
-        private Boolean alive() {
-            if (age < lifespan || lifespan < 0) {
+        private Boolean Alive() {
+            if (age < lifespan || lifespan <= 0)
+            {
                 age++;
                 return true;
             }
@@ -54,7 +55,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (alive())
+            if (Alive())
             {
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
             }
@@ -62,7 +63,7 @@ namespace sprint0
 
         public void Update()
         {
-            if (alive())
+            if (Alive())
             {
 
                 switch (dir)
