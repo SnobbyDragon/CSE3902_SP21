@@ -58,7 +58,16 @@ namespace sprint0
             {
                 Move();
             }
+<<<<<<< Updated upstream
             age++;
+=======
+            else if(age<lifespan+3*repeatedFrames && age >= lifespan) { //age==lifespan so the bomb reached destination
+                //animates bomb to explode
+                currentSource = explosionSources[currentFrame/repeatedFrames];
+                currentFrame = (currentFrame + 1) % (totalFrames*repeatedFrames);
+            }
+           
+>>>>>>> Stashed changes
         }
     }
 }
