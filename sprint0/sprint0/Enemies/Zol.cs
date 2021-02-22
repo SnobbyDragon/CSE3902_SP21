@@ -45,7 +45,7 @@ namespace sprint0
         }
 
 
-
+        //Adds source frames to a list
         private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames) {
             List<Rectangle> sources = new List<Rectangle>();
             int width =16;
@@ -67,70 +67,62 @@ namespace sprint0
         public void Update()
         {
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            if (direction == Direction.left)
-            {
 
-                //moves sprite left
-                delayCounter++;
-                if (delayCounter == delay) {
-                    Location += new Vector2(-40, 0);
-                    delayCounter=0;
-                }
-                
-                if (Location.X <= 50 * Game1.Scale)
-                {
-                    direction = Direction.down;
+            switch (direction){
+                case Direction.left:
+                    //moves sprite left but in a halting manner
+                    if (delayCounter == delay)
+                    {
+                        Location += new Vector2(-40, 0);
+                        delayCounter = 0;
+                    }
 
+                    if (Location.X <= 50 * Game1.Scale)
+                    {
+                        direction = Direction.down;
 
-                }
-            }
-            else if (direction == Direction.right)
-            {
+                    }
+                    break;
+                case Direction.right:
+                    if (delayCounter == delay)
+                    {
+                        Location += new Vector2(40, 0);
+                        delayCounter = 0;
+                    }
 
-                //moves sprite right
-                delayCounter++;
-                if (delayCounter == delay) {
-                    Location += new Vector2(40, 0);
-                    delayCounter =0;
-                }
-                
-                if (Location.X >= (Game1.Width - 50) * Game1.Scale)
-                {
-                    direction = Direction.up;
+                    if (Location.X >= (Game1.Width - 50) * Game1.Scale)
+                    {
+                        direction = Direction.up;
 
-                }
-            }
-            else if (direction == Direction.down)
-            {
-                //moves sprite down
-                delayCounter++;
-                if (delayCounter == delay)
-                {
-                    Location += new Vector2(0, 40);
-                    delayCounter = 0;
-                }
-                if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
-                {
-                    direction = Direction.right;
+                    }
+                    break;
+                case Direction.down:
+                    if (delayCounter == delay)
+                    {
+                        Location += new Vector2(0, 40);
+                        delayCounter = 0;
+                    }
+                    if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
+                    {
+                        direction = Direction.right;
 
-                }
-            }
-            else
-            { //direction==Direction.up
-                //moves sprite up
-                
-                delayCounter++;
-                if (delayCounter == delay)
-                {
-                    Location += new Vector2(0, -40);
-                    delayCounter = 0;
-                }
-                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
-                {
-                    direction = Direction.left;
+                    }
+                    break;
+                case Direction.up:
+                    if (delayCounter == delay)
+                    {
+                        Location += new Vector2(0, -40);
+                        delayCounter = 0;
+                    }
+                    if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
+                    {
+                        direction = Direction.left;
 
-                }
-            }
+                    }
+                    break;
+
+            };
+            delayCounter++;
         }
     }
 }

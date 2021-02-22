@@ -66,7 +66,7 @@ namespace sprint0
             itemFactory = new ItemsWeaponsSpriteFactory(this);
             HUDFactory hudFactory = new HUDFactory(this);
             itemIndex = enemyNPCIndex = 0;
-            sprites = new List<ISprite> // testing sprites here
+            sprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
             {
 
                 hudFactory.MakeSprite("hudM", new Vector2(0,0)),
