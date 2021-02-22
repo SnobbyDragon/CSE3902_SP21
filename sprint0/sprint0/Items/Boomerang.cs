@@ -7,14 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
     /*
-     * Last updated: 2/21/21 by urick.9
+     * Last updated: 2/21/21 by urick.9 and li.10011
      */
     public class Boomerang : ISprite
     {
         
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 290, yOffset = 11, sizeX = 7, sizeY = 15;
+        private readonly int xOffset = 290, yOffset = 11, sizeX = 8, sizeY = 16;
         private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
@@ -22,7 +22,8 @@ namespace sprint0
         private readonly int ya = 0;
         private readonly int maxDistance = 25;
         private int age = 0;
-        Vector2 moveVector = new Vector2();
+        private Vector2 moveVector;
+
         public Boomerang(Texture2D texture, Vector2 location, Direction dir)
         {
             switch (dir)
