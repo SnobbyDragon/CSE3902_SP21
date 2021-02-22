@@ -25,7 +25,28 @@ namespace sprint0
         private int age;
         public Arrow(Texture2D texture, Vector2 location, Direction dir, int lifespan)
         {
-            Location = location;
+            /*
+             * Adjust the source location based on the direction 
+             */
+            int sourceAdjustX = 0;
+            int sourceAdjustY = 0;
+            switch (dir)
+            {
+                case Direction.n:
+                    sourceAdjustX += 2;
+                    break;
+                case Direction.s:
+                    sourceAdjustX += 2;
+                    sourceAdjustY += 3;
+                    break;
+                case Direction.e:
+                    sourceAdjustY += 10;
+                    break;
+                case Direction.w:
+                    sourceAdjustY += 10;
+                    break;
+            }
+            Location = location + new Vector2(sourceAdjustX, sourceAdjustY);
             Texture = texture;
             this.dir = dir;
             this.lifespan = lifespan;
