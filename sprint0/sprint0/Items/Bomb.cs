@@ -34,6 +34,9 @@ namespace sprint0
         {
             int sourceAdjustX = 0;
             int sourceAdjustY = 0;
+            /*
+             * Adjust the source location based on the direction 
+             */
             switch (dir)
             {
                 case Direction.n:
