@@ -20,20 +20,34 @@ namespace sprint0
         private int age;
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        private List<Rectangle> explosionSources;
+        private readonly List<Rectangle> explosionSources;
         //Lifespan is the number of updates before it dies. 
         //For now, it just stops rendering
         private readonly int lifespan;
         private readonly int xadd, yadd;
-        private int repeatedFrames;
-        private int totalFrames, currentFrame;
+        private readonly int repeatedFrames;
+        private readonly int totalFrames;
+        private int currentFrame;
         private Rectangle currentSource;
 
         public Bomb(Texture2D texture, Vector2 location, Direction dir, int lifespan)
         {
+            int sourceAdjustX = 0;
+            int sourceAdjustY = 0;
             switch (dir)
             {
-                //based on the direction link is facing the bomb is thrown 4 away
+                case Direction.n:
+                    sourceAdjustX -= 4;
+                    break;
+                case Direction.s:
+                    sourceAdjustX -= 4;
+                    break;
+            }
+            Location = location + new Vector2(sourceAdjustX, sourceAdjustY);
+
+            switch (dir)
+            {
+                //based on the direction link is facing the bomb is thrown 4 ways
                 case Direction.n:
                     yadd = -4;
                     break;
@@ -47,7 +61,6 @@ namespace sprint0
                     xadd = -4;
                     break;
             }
-            Location = location;
             Texture = texture;
             repeatedFrames = 5;
             this.lifespan = lifespan;

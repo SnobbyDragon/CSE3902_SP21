@@ -11,7 +11,7 @@ namespace sprint0
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 143, yOffset = 0, sizeX = 17, sizeY = 11;
-        private List<Rectangle> sources;
+        private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
 
