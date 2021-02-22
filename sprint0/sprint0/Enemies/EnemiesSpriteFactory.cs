@@ -20,62 +20,35 @@ namespace sprint0
         public ISprite MakeSprite(String spriteType, Vector2 location)
         {
 
-            switch (spriteType)
+            return spriteType switch
             {
-
-                case "wallmaster":
-                    return new Wallmaster(texture, location);
-                case "teal gel":
-                    return new Gel(texture, location, "teal");
-                case "blue gel":
-                    return new Gel(texture, location, "blue");
-                case "green gel":
-                    return new Gel(texture, location, "green");
-                case "blkgold gel":
-                    return new Gel(texture, location, "blkgold");
-                case "lime gel":
-                    return new Gel(texture, location, "lime");
-                case "brown gel":
-                    return new Gel(texture, location, "brown");
-                case "grey gel":
-                    return new Gel(texture, location, "grey");
-                case "blkwhite gel":
-                    return new Gel(texture, location, "blkwhite");
-                case "green zol":
-                    return new Zol(texture, location, "green");
-                case "blkgold zol":
-                    return new Zol(texture, location, "blkgold");
-                case "lime zol":
-                    return new Zol(texture, location, "lime");
-                case "brown zol":
-                    return new Zol(texture, location, "brown");
-                case "grey zol":
-                    return new Zol(texture, location, "grey");
-                case "blkwhite zol":
-                    return new Zol(texture, location, "blkwhite");
-                case "snake":
-                    return new Snake(texture, location);
-                case "red goriya":
-                    return new Goriya(texture, location, "red");
-                case "blue goriya":
-                    return new Goriya(texture, location, "blue");
-                case "red keese":
-                    return new Keese (texture, location, "red");
-                case "blue keese":
-                    return new Keese (texture, location, "blue");
-                case "stalfos":
-                    return new Stalfos(texture, location);
-                case "trap":
-                    return new Trap(texture, location);
-                case "goriya boomerang horizontal":
-                    return new GoriyaBoomerang(texture, location, 0);
-                case "goriya boomerang vertical":
-                    return new GoriyaBoomerang(texture, location, 2);
-                case "goriya boomerang diagonal":
-                    return new GoriyaBoomerang(texture, location, 4);
-                default:
-                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
-            }
+                "wallmaster" => new Wallmaster(texture, location),
+                "teal gel" => new Gel(texture, location, "teal"),
+                "blue gel" => new Gel(texture, location, "blue"),
+                "green gel" => new Gel(texture, location, "green"),
+                "blkgold gel" => new Gel(texture, location, "blkgold"),
+                "lime gel" => new Gel(texture, location, "lime"),
+                "brown gel" => new Gel(texture, location, "brown"),
+                "grey gel" => new Gel(texture, location, "grey"),
+                "blkwhite gel" => new Gel(texture, location, "blkwhite"),
+                "green zol" => new Zol(texture, location, "green"),
+                "blkgold zol" => new Zol(texture, location, "blkgold"),
+                "lime zol" => new Zol(texture, location, "lime"),
+                "brown zol" => new Zol(texture, location, "brown"),
+                "grey zol" => new Zol(texture, location, "grey"),
+                "blkwhite zol" => new Zol(texture, location, "blkwhite"),
+                "snake" => new Snake(texture, location),
+                "red goriya" => new Goriya(texture, location, "red"),
+                "blue goriya" => new Goriya(texture, location, "blue"),
+                "red keese" => new Keese(texture, location, "red"),
+                "blue keese" => new Keese(texture, location, "blue"),
+                "stalfos" => new Stalfos(texture, location),
+                "trap" => new Trap(texture, location),
+                "goriya boomerang horizontal" => new GoriyaBoomerang(texture, location, 0),
+                "goriya boomerang vertical" => new GoriyaBoomerang(texture, location, 2),
+                "goriya boomerang diagonal" => new GoriyaBoomerang(texture, location, 4),
+                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+            };
         }
     }
 }
