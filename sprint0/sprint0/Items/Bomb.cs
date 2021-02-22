@@ -95,7 +95,6 @@ namespace sprint0
             {
                 Move();
             }
-            age++;
             else if(age<lifespan+3*repeatedFrames && age >= lifespan) { //age==lifespan so the bomb reached destination
                 //animates bomb to explode
                 currentSource = explosionSources[currentFrame/repeatedFrames];
