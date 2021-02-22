@@ -62,7 +62,7 @@ namespace sprint0
                 offsetPos = new Vector2(position.X + 6, position.Y);
             }
 
-            game.AddItem(offsetPos, direction, 0, "bomb");
+            game.AddItem(offsetPos, direction, 30, "bomb");
         }
 
         public void ThrowBoomerang()
