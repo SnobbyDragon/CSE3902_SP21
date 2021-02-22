@@ -75,7 +75,6 @@ namespace sprint0
             }
             else // not in a wall, move in random direction
             {
-                dirChangeDelay = rand.Next(10, 50);
                 switch (rand.Next(0, 4)) // 0 <= rand integer < 4
                 {
                     case 0:
@@ -92,6 +91,7 @@ namespace sprint0
                         break;
                 }
             }
+            dirChangeDelay = rand.Next(10, 50); //TODO may still go into the wall... not sure if that's okay?
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -103,7 +103,7 @@ namespace sprint0
         {
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            if (moveCounter == dirChangeDelay) //TODO may still go into the wall... not sure if that's okay?
+            if (moveCounter == dirChangeDelay)
             {
                 ArbitraryDirection();
             }
