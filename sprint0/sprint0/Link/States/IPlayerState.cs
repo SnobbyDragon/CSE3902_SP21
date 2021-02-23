@@ -8,7 +8,6 @@ namespace sprint0
     public interface IPlayerState
     {
         void Stop() { }
-        void TakeDamage(Direction direction) { }
         void HandleUp() { }
         void HandleDown() { }
         void HandleLeft() { }
