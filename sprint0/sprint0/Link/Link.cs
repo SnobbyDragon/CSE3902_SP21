@@ -124,16 +124,19 @@ namespace sprint0
         public void HandleShoot()
         {
             Shoot();
+            State.UseItem();
         }
 
         public void HandleBomb()
         {
             ThrowBomb();
+            State.UseItem();
         }
 
         public void HandleBoomerang()
         {
             ThrowBoomerang();
+            State.UseItem();
         }
     }
 }

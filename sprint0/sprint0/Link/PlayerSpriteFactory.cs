@@ -31,6 +31,10 @@ namespace sprint0
                 "link down walking" => new DownWalkingLinkSprite(texture, location),
                 "link left walking" => new LeftWalkingLinkSprite(texture, location),
                 "link right walking" => new RightWalkingLinkSprite(texture, location),
+                "link up item" => new UpUseItemSprite(texture, location),
+                "link down item" => new DownUseItemSprite(texture, location),
+                "link left item" => new LeftUseItemSprite(texture, location),
+                "link right item" => new RightUseItemSprite(texture, location),
                 _ => throw new ArgumentException("Invalid sprite! Player sprite factory failed."),
             };
         }

@@ -4,8 +4,8 @@ namespace sprint0
 {
     class LeftWalkingState : IPlayerState
     {
-        private IPlayer player;
-        private ISprite sprite;
+        private readonly IPlayer player;
+        private readonly ISprite sprite;
         public LeftWalkingState(IPlayer player)
         {
             this.player = player;
@@ -20,6 +20,11 @@ namespace sprint0
         public void HandleLeft()
         {
             player.Move(-1, 0);
+        }
+
+        public void UseItem()
+        {
+            player.State = new LeftUseItemState(player);
         }
 
         public void HandleSword()

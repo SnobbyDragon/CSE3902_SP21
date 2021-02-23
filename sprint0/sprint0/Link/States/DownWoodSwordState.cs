@@ -4,8 +4,8 @@ namespace sprint0
 {
     internal class DownWoodSwordState : IPlayerState
     {
-        private IPlayer player;
-        private ISprite sprite;
+        private readonly IPlayer player;
+        private readonly ISprite sprite;
         private int count = 0;
         public DownWoodSwordState(IPlayer player)
         {

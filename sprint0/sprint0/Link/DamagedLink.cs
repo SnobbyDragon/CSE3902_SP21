@@ -4,7 +4,7 @@ using System;
 
 // Author: Jesse He
 /*
- * Last updated: 2/21/21 by urick.9
+ * Last updated: 2/22/21 by urick.9
  */
 namespace sprint0
 {
@@ -124,7 +124,7 @@ namespace sprint0
         public void ThrowBomb()
         {
             // Random time for bombs is neat :)
-            int time = rand.Next(35, 45);
+            int time = rand.Next(50, 65);
             Vector2 offsetPos = Pos;
             if (direction == Direction.n || direction == Direction.s)
             {
@@ -149,16 +149,19 @@ namespace sprint0
         public void HandleShoot()
         {
             Shoot();
+            State.UseItem();
         }
 
         public void HandleBomb()
         {
             ThrowBomb();
+            State.UseItem();
         }
 
         public void HandleBoomerang()
         {
             ThrowBoomerang();
+            State.UseItem();
         }
     }
 }
