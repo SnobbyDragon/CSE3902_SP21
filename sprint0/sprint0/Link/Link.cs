@@ -110,7 +110,6 @@ namespace sprint0
             State.HandleSword();
         }
 
-
         public void Draw(SpriteBatch spriteBatch)
         {
             State.Draw(spriteBatch);

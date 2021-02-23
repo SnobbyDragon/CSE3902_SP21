@@ -4,7 +4,7 @@ using System;
 
 // Author: Jesse He
 /*
- * Last updated: 2/22/21 by urick.9
+ * Last updated: 2/22/21 by he.1528
  */
 namespace sprint0
 {
@@ -14,7 +14,6 @@ namespace sprint0
         private readonly IPlayer decoratedLink;
         readonly Direction direction;
         int timer = 80;
-        private readonly Random rand = new Random();
         public Vector2 Pos { get => decoratedLink.Pos; set => decoratedLink.Pos = value; }
         public IPlayerState State { get => decoratedLink.State; set => decoratedLink.State = value; }
 
@@ -72,6 +71,21 @@ namespace sprint0
             decoratedLink.HandleSword();
         }
 
+        public void HandleShoot()
+        {
+            decoratedLink.HandleShoot();
+        }
+
+        public void HandleBomb()
+        {
+            decoratedLink.HandleBomb();
+        }
+
+        public void HandleBoomerang()
+        {
+            decoratedLink.HandleBoomerang();
+        }
+
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -106,62 +120,6 @@ namespace sprint0
             }
 
             decoratedLink.Update();
-        }
-
-        public void Shoot()
-        {
-            // Random time for arrows is neat :)
-            int time = rand.Next(35, 45);
-            Vector2 offsetPos = Pos;
-            if (direction == Direction.n || direction == Direction.s)
-            {
-                offsetPos = new Vector2(Pos.X + 6, Pos.Y);
-            }
-
-            game.AddItem(offsetPos, direction, time, "arrow");
-        }
-
-        public void ThrowBomb()
-        {
-            // Random time for bombs is neat :)
-            int time = rand.Next(50, 65);
-            Vector2 offsetPos = Pos;
-            if (direction == Direction.n || direction == Direction.s)
-            {
-                offsetPos = new Vector2(Pos.X + 6, Pos.Y);
-            }
-
-            game.AddItem(offsetPos, direction, time, "bomb");
-        }
-
-        public void ThrowBoomerang()
-        {
-            Vector2 offsetPos = Pos;
-            if (direction == Direction.n || direction == Direction.s)
-            {
-                offsetPos = new Vector2(Pos.X + 6, Pos.Y);
-            }
-
-            game.AddItem(offsetPos, direction, 0, "boomerang");
-        }
-
-
-        public void HandleShoot()
-        {
-            Shoot();
-            State.UseItem();
-        }
-
-        public void HandleBomb()
-        {
-            ThrowBomb();
-            State.UseItem();
-        }
-
-        public void HandleBoomerang()
-        {
-            ThrowBoomerang();
-            State.UseItem();
         }
     }
 }
