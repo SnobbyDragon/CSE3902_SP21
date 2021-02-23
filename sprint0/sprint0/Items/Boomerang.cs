@@ -7,14 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
     /*
-     * Last updated: 2/21/21 by urick.9
+     * Last updated: 2/22/21 by urick.9 and li.10011
      */
     public class Boomerang : ISprite
     {
         
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 290, yOffset = 11, sizeX = 7, sizeY = 15;
+        private readonly int xOffset = 290, yOffset = 11, sizeX = 8, sizeY = 16;
         private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
@@ -22,11 +22,14 @@ namespace sprint0
         private readonly int ya = 0;
         private readonly int maxDistance = 25;
         private int age = 0;
-        Vector2 moveVector = new Vector2();
         SpriteEffects h = SpriteEffects.FlipHorizontally;
         SpriteEffects v = SpriteEffects.FlipVertically;
+        private Vector2 moveVector;
+        private bool alive;
+
         public Boomerang(Texture2D texture, Vector2 location, Direction dir)
         {
+            alive = true;
             switch (dir)
             {
                 case Direction.n:
@@ -58,54 +61,65 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int tempFrame = currFrame / repeatedFrames;
-            if (tempFrame == 3)
-            {
-                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
-            }
-            else if (tempFrame == 4)
-            {
-                spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
-            }
-            else if (tempFrame == 5)
-            {
-                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v | h, 0);
-            }
-            else if (tempFrame == 6)
-            {
-                spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
-            }
-            else if (tempFrame == 7)
-            {
-                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
-            }
-            else
-            {
-                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+             if (alive){
+              int tempFrame = currFrame / repeatedFrames;
+              if (tempFrame == 3)
+              {
+                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
+              }
+              else if (tempFrame == 4)
+              {
+                  spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
+              }
+              else if (tempFrame == 5)
+              {
+                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v | h, 0);
+              }
+              else if (tempFrame == 6)
+              {
+                  spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+              }
+              else if (tempFrame == 7)
+              {
+                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+              }
+              else
+              {
+                  spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+              }
             }
         }
 
 
-        public void Move() {
-            if (age < maxDistance * 2)
+        public void Move()
+        {
+            //The plus six is required so the boomerang reaches link.
+            if (age < (maxDistance * 2) + 6)
             {
                 Location += moveVector;
+            }else
+            {
+                alive = false;    
             }
             
         }
 
+
         public void Update()
         {
-            if (age > maxDistance)
+            if (alive)
             {
-                moveVector = Location - Link.position;
-                moveVector.Normalize();
-                moveVector = 6 * moveVector;
+                if (age > maxDistance)
+                {
+                    moveVector = Link.position - Location;
+                    moveVector.Normalize();
+                    moveVector = 6 * moveVector;
+                }
+                Move();
+                // animates all the time for now
+                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+                age++;
             }
-            Move();
-            // animates all the time for now
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            age++;
         }
     }
 }

@@ -92,7 +92,7 @@ namespace sprint0
                 itemFactory.MakeSprite("compass", new Vector2(200,300),Direction.n,0),
                 itemFactory.MakeSprite("key", new Vector2(200,300),Direction.n,0),
                 itemFactory.MakeSprite("rupee", new Vector2(200,300),Direction.n,0),
-
+                itemFactory.MakeSprite("boomerang", new Vector2(200, 300), Direction.n, 0)
             };
 
             //list of enemy, npc, and boss sprites

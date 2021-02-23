@@ -21,11 +21,6 @@ namespace sprint0
             player.State = new UpIdleState(player);
         }
 
-        public void HandleUp()
-        {
-            player.Move(0, -1);
-        }
-
         public void HandleSword()
         {
             player.State = new UpWoodSwordState(player);
@@ -33,6 +28,7 @@ namespace sprint0
 
         public void Update()
         {
+            player.Move(0, -1);
             sprite.Location = player.Pos;
             sprite.Update();
         }

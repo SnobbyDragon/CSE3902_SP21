@@ -59,7 +59,6 @@ namespace sprint0
             if (Location.X <= 32 * Game1.Scale) // in the left wall, move right
             {
                 direction = Direction.e;
-                Console.Write(Location.X);
             }
             else if (Location.X >= (Game1.Width - 32) * Game1.Scale) // in the right wall, move left
             {
