@@ -22,6 +22,8 @@ namespace sprint0
         private readonly int ya = 0;
         private readonly int maxDistance = 25;
         private int age = 0;
+        SpriteEffects h = SpriteEffects.FlipHorizontally;
+        SpriteEffects v = SpriteEffects.FlipVertically;
         private Vector2 moveVector;
         private bool alive;
 
@@ -53,15 +55,38 @@ namespace sprint0
                 new Rectangle(xOffset + sizeX*2 + 2, yOffset, sizeX, sizeY)
             };
             currFrame = 0;
-            totalFrames = 3;
-            repeatedFrames = 8;
+            totalFrames = 8;
+            repeatedFrames = 4;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (alive)
-            {
-                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+             if (alive){
+              int tempFrame = currFrame / repeatedFrames;
+              if (tempFrame == 3)
+              {
+                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
+              }
+              else if (tempFrame == 4)
+              {
+                  spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
+              }
+              else if (tempFrame == 5)
+              {
+                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v | h, 0);
+              }
+              else if (tempFrame == 6)
+              {
+                  spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+              }
+              else if (tempFrame == 7)
+              {
+                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+              }
+              else
+              {
+                  spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+              }
             }
         }
 
