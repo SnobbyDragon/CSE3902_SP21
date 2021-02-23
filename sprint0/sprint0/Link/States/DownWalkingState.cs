@@ -4,8 +4,8 @@ namespace sprint0
 {
     class DownWalkingState : IPlayerState
     {
-        private IPlayer player;
-        private ISprite sprite;
+        private readonly IPlayer player;
+        private readonly ISprite sprite;
         public DownWalkingState(IPlayer player)
         {
             this.player = player;
@@ -15,6 +15,11 @@ namespace sprint0
         public void Stop()
         {
             player.State = new DownIdleState(player);
+        }
+
+        public void UseItem()
+        {
+            player.State = new DownUseItemState(player);
         }
 
         public void HandleSword()

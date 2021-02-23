@@ -7,8 +7,8 @@ namespace sprint0
 {
     class UpIdleState : IPlayerState
     {
-        private IPlayer player;
-        private ISprite sprite;
+        private readonly IPlayer player;
+        private readonly ISprite sprite;
 
         public UpIdleState(IPlayer player)
         {
@@ -50,6 +50,10 @@ namespace sprint0
         public void Draw(SpriteBatch spritebatch)
         {
             sprite.Draw(spritebatch);
+        }
+        public void UseItem()
+        {
+            player.State = new UpUseItemState(player);
         }
     }
 }

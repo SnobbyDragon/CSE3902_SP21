@@ -43,7 +43,7 @@ namespace sprint0
 
         public void Shoot() {
             // Random time for arrows is neat :)
-            int time = rand.Next(35, 45);
+            int time = rand.Next(50, 65);
             Vector2 offsetPos = position;
             if (direction == Direction.n || direction == Direction.s)
             {
@@ -124,16 +124,19 @@ namespace sprint0
         public void HandleShoot()
         {
             Shoot();
+            State.UseItem();
         }
 
         public void HandleBomb()
         {
             ThrowBomb();
+            State.UseItem();
         }
 
         public void HandleBoomerang()
         {
             ThrowBoomerang();
+            State.UseItem();
         }
     }
 }

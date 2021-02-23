@@ -65,7 +65,7 @@ namespace sprint0
 
         private Boolean Alive()
         {
-            if (age < lifespan || lifespan <= 0)
+            if (age < lifespan || lifespan < 0)
             {
                 age++;
                 return true;
