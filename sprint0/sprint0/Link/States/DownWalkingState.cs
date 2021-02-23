@@ -17,14 +17,11 @@ namespace sprint0
             player.State = new DownIdleState(player);
         }
 
-        public void HandleDown()
-        {
-            player.Move(0, 1);
-        }
         public void UseItem()
         {
             player.State = new DownUseItemState(player);
         }
+
         public void HandleSword()
         {
             player.State = new DownWoodSwordState(player);
@@ -32,6 +29,7 @@ namespace sprint0
 
         public void Update()
         {
+            player.Move(0, 1);
             sprite.Location = player.Pos;
             sprite.Update();
         }

@@ -13,11 +13,6 @@ namespace sprint0
             sprite = Game1.PlayerFactory.MakeSprite("link left sword", player.Pos);
         }
 
-        public void HandleSword()
-        {
-            player.State = new LeftWoodSwordState(player);
-        }
-
         public void Update()
         {
             if (count > 24)

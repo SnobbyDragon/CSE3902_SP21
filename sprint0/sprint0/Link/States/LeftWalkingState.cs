@@ -17,11 +17,6 @@ namespace sprint0
             player.State = new LeftIdleState(player);
         }
 
-        public void HandleLeft()
-        {
-            player.Move(-1, 0);
-        }
-
         public void UseItem()
         {
             player.State = new LeftUseItemState(player);
@@ -34,6 +29,7 @@ namespace sprint0
 
         public void Update()
         {
+            player.Move(-1, 0);
             sprite.Location = player.Pos;
             sprite.Update();
         }
