@@ -23,6 +23,8 @@ namespace sprint0
         private readonly int maxDistance = 25;
         private int age = 0;
         Vector2 moveVector = new Vector2();
+        SpriteEffects h = SpriteEffects.FlipHorizontally;
+        SpriteEffects v = SpriteEffects.FlipVertically;
         public Boomerang(Texture2D texture, Vector2 location, Direction dir)
         {
             switch (dir)
@@ -50,13 +52,37 @@ namespace sprint0
                 new Rectangle(xOffset + sizeX*2 + 2, yOffset, sizeX, sizeY)
             };
             currFrame = 0;
-            totalFrames = 3;
-            repeatedFrames = 8;
+            totalFrames = 8;
+            repeatedFrames = 4;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, sources[currFrame/repeatedFrames], Color.White);
+            int tempFrame = currFrame / repeatedFrames;
+            if (tempFrame == 3)
+            {
+                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
+            }
+            else if (tempFrame == 4)
+            {
+                spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
+            }
+            else if (tempFrame == 5)
+            {
+                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v | h, 0);
+            }
+            else if (tempFrame == 6)
+            {
+                spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+            }
+            else if (tempFrame == 7)
+            {
+                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+            }
+            else
+            {
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+            }
         }
 
 
