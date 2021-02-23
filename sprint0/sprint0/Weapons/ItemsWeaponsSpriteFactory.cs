@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 //Author: Hannah Johnson and co
 /*
- * Last updated: 2/21/21 by urick.9
+ * Last updated: 2/22/21 by urick.9
  */
 namespace sprint0
 {
@@ -12,7 +12,7 @@ namespace sprint0
     {
         private readonly Texture2D texture1, texture2, texture3;
 
-        public ItemsWeaponsSpriteFactory(Game game)
+        public ItemsWeaponsSpriteFactory(Game1 game)
         {
             texture1 = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
             texture2 = game.Content.Load<Texture2D>("Images/Link");
