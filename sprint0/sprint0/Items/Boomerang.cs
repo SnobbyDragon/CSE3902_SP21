@@ -24,24 +24,29 @@ namespace sprint0
         private int age = 0;
         private Vector2 moveVector;
         private bool alive;
-
-        public Boomerang(Texture2D texture, Vector2 location, Direction dir)
+        private readonly int lifespan;
+        public Boomerang(Texture2D texture, Vector2 location, Direction dir, int lfspn)
         {
+            lifespan = lfspn;
+
             alive = true;
-            switch (dir)
+            if (lifespan >= 0)
             {
-                case Direction.n:
-                    ya = -6;
-                    break;
-                case Direction.s:
-                    ya = 6;
-                    break;
-                case Direction.e:
-                    xa = 6;
-                    break;
-                case Direction.w:
-                    xa = -6;
-                    break;
+                switch (dir)
+                {
+                    case Direction.n:
+                        ya = -6;
+                        break;
+                    case Direction.s:
+                        ya = 6;
+                        break;
+                    case Direction.e:
+                        xa = 6;
+                        break;
+                    case Direction.w:
+                        xa = -6;
+                        break;
+                }
             }
             moveVector = new Vector2(xa, ya);
             Location = location;
@@ -59,7 +64,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (alive)
+            if (alive || lifespan < 0)
             {
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
             }
@@ -95,6 +100,8 @@ namespace sprint0
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 age++;
             }
+            else if (lifespan  < 0 )
+                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+            }
         }
     }
-}

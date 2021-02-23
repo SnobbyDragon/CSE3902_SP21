@@ -10,12 +10,10 @@ namespace sprint0
 {
     public class ItemsWeaponsSpriteFactory
     {
-        private readonly Game1 game;
         private readonly Texture2D texture1, texture2, texture3;
 
-        public ItemsWeaponsSpriteFactory(Game1 game)
+        public ItemsWeaponsSpriteFactory(Game game)
         {
-            this.game = game;
             texture1 = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
             texture2 = game.Content.Load<Texture2D>("Images/Link");
             texture3 = game.Content.Load<Texture2D>("Images/DungeonEnemies");
@@ -37,7 +35,7 @@ namespace sprint0
                 "fairy" => new Fairy(texture1, location),
                 "bomb" => new Bomb(texture2, location, dir, lifespan),
                 "clock" => new Clock(texture1, location),
-                "boomerang" => new Boomerang(texture3, location, dir),
+                "boomerang" => new Boomerang(texture3, location, dir, lifespan),
                 "bow" => new Bow(texture1, location),
                 "gold triforce piece" => new TriforcePiece(texture1, location, "gold"),
                 "blue triforce piece" => new TriforcePiece(texture1, location, "blue"),
