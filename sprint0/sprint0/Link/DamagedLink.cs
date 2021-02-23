@@ -111,7 +111,7 @@ namespace sprint0
         public void Shoot()
         {
             // Random time for arrows is neat :)
-            int time = rand.Next(35, 45);
+            int time = rand.Next(50, 65);
             Vector2 offsetPos = Pos;
             if (direction == Direction.n || direction == Direction.s)
             {
@@ -123,15 +123,13 @@ namespace sprint0
 
         public void ThrowBomb()
         {
-            // Random time for bombs is neat :)
-            int time = rand.Next(50, 65);
             Vector2 offsetPos = Pos;
             if (direction == Direction.n || direction == Direction.s)
             {
                 offsetPos = new Vector2(Pos.X + 6, Pos.Y);
             }
 
-            game.AddItem(offsetPos, direction, time, "bomb");
+            game.AddItem(offsetPos, direction, 30, "bomb");
         }
 
         public void ThrowBoomerang()
