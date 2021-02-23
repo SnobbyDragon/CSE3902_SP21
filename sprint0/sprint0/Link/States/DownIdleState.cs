@@ -4,8 +4,8 @@ namespace sprint0
 {
     class DownIdleState : IPlayerState
     {
-        private IPlayer player;
-        private ISprite sprite;
+        private readonly IPlayer player;
+        private readonly ISprite sprite;
 
         public DownIdleState(IPlayer player)
         {
@@ -23,6 +23,10 @@ namespace sprint0
             player.State = new DownWalkingState(player);
         }
 
+        public void UseItem()
+        {
+            player.State = new DownUseItemState(player);
+        }
         public void HandleLeft()
         {
             player.State = new LeftWalkingState(player);

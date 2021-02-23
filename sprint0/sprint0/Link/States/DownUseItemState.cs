@@ -2,22 +2,22 @@
 
 namespace sprint0
 {
-    internal class LeftWoodSwordState : IPlayerState
+    class DownUseItemState : IPlayerState
     {
         private readonly IPlayer player;
         private readonly ISprite sprite;
         private int count = 0;
-        public LeftWoodSwordState(IPlayer player)
+        public DownUseItemState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link left sword", player.Pos);
+            sprite = Game1.PlayerFactory.MakeSprite("link down item", player.Pos);
         }
 
         public void Update()
         {
-            if (count > 24)
+            if (count > 12)
             {
-                player.State = new LeftIdleState(player);
+                player.State = new DownIdleState(player);
             }
             sprite.Location = player.Pos;
             sprite.Update();

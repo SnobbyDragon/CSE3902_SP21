@@ -11,10 +11,10 @@ namespace sprint0
 
         private Texture2D texture;
         private Vector2 location;
-        private List<Rectangle> frames;
+        private readonly List<Rectangle> frames;
         private int currentFrame;
-        private int repeatFrames;
-        private int totalFrames;
+        private readonly int repeatFrames;
+        private readonly int totalFrames;
 
         public RightWalkingLinkSprite(Texture2D texture, Vector2 location)
         {

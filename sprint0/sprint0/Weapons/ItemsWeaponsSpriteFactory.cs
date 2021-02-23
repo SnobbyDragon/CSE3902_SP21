@@ -12,7 +12,7 @@ namespace sprint0
     {
         private readonly Texture2D texture1, texture2, texture3;
 
-        public ItemsWeaponsSpriteFactory(Game1 game)
+        public ItemsWeaponsSpriteFactory(Game game)
         {
             texture1 = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
             texture2 = game.Content.Load<Texture2D>("Images/Link");

@@ -4,8 +4,8 @@ namespace sprint0
 {
     class RightWalkingState : IPlayerState
     {
-        private IPlayer player;
-        private ISprite sprite;
+        private readonly IPlayer player;
+        private readonly ISprite sprite;
         public RightWalkingState(IPlayer player)
         {
             this.player = player;
@@ -26,6 +26,11 @@ namespace sprint0
             player.Move(1, 0);
             sprite.Location = player.Pos;
             sprite.Update();
+        }
+
+        public void UseItem()
+        {
+            player.State = new RightUseItemState(player);
         }
 
         public void Draw(SpriteBatch spritebatch)
