@@ -100,8 +100,8 @@ namespace sprint0
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 age++;
             }
-            else if (lifespan  < 0 )
+            else if (lifespan < 0)
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            }
         }
     }
+}
