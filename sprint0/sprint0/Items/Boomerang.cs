@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
     /*
-     * Last updated: 2/21/21 by urick.9 and li.10011
+     * Last updated: 2/22/21 by urick.9 and li.10011
      */
     public class Boomerang : ISprite
     {
@@ -23,9 +23,11 @@ namespace sprint0
         private readonly int maxDistance = 25;
         private int age = 0;
         private Vector2 moveVector;
+        private bool alive;
 
         public Boomerang(Texture2D texture, Vector2 location, Direction dir)
         {
+            alive = true;
             switch (dir)
             {
                 case Direction.n:
@@ -57,30 +59,42 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, sources[currFrame/repeatedFrames], Color.White);
+            if (alive)
+            {
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+            }
         }
 
 
-        public void Move() {
-            if (age < maxDistance * 2)
+        public void Move()
+        {
+            //The plus six is required so the boomerang reaches link.
+            if (age < (maxDistance * 2) + 6)
             {
                 Location += moveVector;
+            }else
+            {
+                alive = false;    
             }
             
         }
 
+
         public void Update()
         {
-            if (age > maxDistance)
+            if (alive)
             {
-                moveVector = Location - Link.position;
-                moveVector.Normalize();
-                moveVector = 6 * moveVector;
+                if (age > maxDistance)
+                {
+                    moveVector = Link.position - Location;
+                    moveVector.Normalize();
+                    moveVector = 6 * moveVector;
+                }
+                Move();
+                // animates all the time for now
+                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+                age++;
             }
-            Move();
-            // animates all the time for now
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            age++;
         }
     }
 }

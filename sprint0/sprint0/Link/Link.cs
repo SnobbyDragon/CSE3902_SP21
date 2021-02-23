@@ -20,7 +20,6 @@ namespace sprint0
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
         private readonly Random rand;
-
         Direction IPlayer.Direction => direction;
 
         public Link(Game1 game, Vector2 pos)

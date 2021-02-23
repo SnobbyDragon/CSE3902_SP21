@@ -11,10 +11,10 @@ namespace sprint0
     {
         public Vector2 Location { get; set; }
         public Texture2D Texture { get; set; }
-        private List<Rectangle> sources;
-        private int totalFrames;
+        private readonly List<Rectangle> sources;
+        private readonly int totalFrames;
         private int currentFrame;
-        private int repeatedFrames;
+        private readonly int repeatedFrames;
         //private int moveCounter;
 
         private Vector2 destination;
@@ -35,7 +35,7 @@ namespace sprint0
             sources.Add(new Rectangle(xPos+width+1, yPos, width, height));
 
             rand = new Random();
-            generateDest();
+            GenerateDest();
 
 
         }
@@ -55,7 +55,7 @@ namespace sprint0
             if (dist.Length() < 5)
             {
                 // reached destination, generate new destination;
-                generateDest();
+                GenerateDest();
             }
             else 
             {
@@ -68,9 +68,9 @@ namespace sprint0
         }
 
         // generates a new destination
-        public void generateDest()
+        public void GenerateDest()
         {
-            int xlowerBound =(int) Location.X - 200;
+            int xlowerBound = (int)Location.X - 200;
             int ylowerBound = (int)Location.Y - 200;
             int xupperBound = (int)Location.X + 200;
             int yupperBound = (int)Location.X + 200;
