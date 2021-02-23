@@ -91,7 +91,7 @@ namespace sprint0
                 itemFactory.MakeSprite("clock", new Vector2(200,300),Direction.n,-1),
                 itemFactory.MakeSprite("compass", new Vector2(200,300),Direction.n,-1),
                 itemFactory.MakeSprite("key", new Vector2(200,300),Direction.n,-1),
-                itemFactory.MakeSprite("rupee", new Vector2(200,300),Direction.n,1),
+                itemFactory.MakeSprite("rupee", new Vector2(200,300),Direction.n, -1),
                 itemFactory.MakeSprite("boomerang", new Vector2(200, 300), Direction.n, -1)
             };
 
