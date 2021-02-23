@@ -31,44 +31,37 @@ namespace sprint0
                 new Rectangle(xOffset + sizeX*2 + 4, yOffset, sizeX+1, sizeY)
             };
             currFrame = 0;
-            totalFrames = 3;
-            repeatedFrames = 9;
+            totalFrames = 8;
+            repeatedFrames = 4;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (direction == Direction.left)
-            {
-                spriteBatch.Draw(Texture, Location, sources[0], Color.White);
-            }
-            else if (direction == Direction.right)
-            {
-                spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
-            }
-            else if (direction == Direction.ne)
-            {
-                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v | h, 0);
-            }
-            else if (direction == Direction.nw)
-            {
-                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
-            }
-            else if (direction == Direction.se)
+            int tempFrame = currFrame / repeatedFrames;
+            if (tempFrame == 3)
             {
                 spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
             }
-            else if (direction == Direction.sw)
-            {
-                spriteBatch.Draw(Texture, Location, sources[1], Color.White);
+            else if (tempFrame == 4){
+                spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
             }
-            else if (direction == Direction.down)
+            else if (tempFrame == 5)
             {
-                spriteBatch.Draw(Texture, Location, sources[2], Color.White);
+                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v | h, 0);
             }
-            else
+            else if (tempFrame == 6)
             {
                 spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
             }
+            else if (tempFrame == 7)
+            {
+                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+            }
+            else
+            {
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+            }
+            
         }
 
         public void Update()
