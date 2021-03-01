@@ -16,8 +16,7 @@ namespace sprint0
         int timer = 80;
         public Vector2 Pos { get => decoratedLink.Pos; set => decoratedLink.Pos = value; }
         public IPlayerState State { get => decoratedLink.State; set => decoratedLink.State = value; }
-
-        Direction IPlayer.Direction => direction;
+        Direction IPlayer.Direction { get => decoratedLink.Direction; set => decoratedLink.Direction = value; }
 
         public DamagedLink(IPlayer decoratedLink, Game1 game, Direction direction)
         {
