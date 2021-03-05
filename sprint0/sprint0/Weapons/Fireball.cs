@@ -9,6 +9,7 @@ namespace sprint0
     public class Fireball : ISprite
     {
         public Rectangle Location { get; set; }
+        private Vector2 preciseLocation;
         public Texture2D Texture { get; set; }
         private bool isDead;
         private readonly int width = 8, height = 10;
@@ -20,15 +21,16 @@ namespace sprint0
         public Fireball(Texture2D texture, Vector2 location, Vector2 direction)
         {
             Texture = texture;
-            sources = GetFrames(231, 62); // in enemies sprite sheet; all fireballs are the same
             Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            preciseLocation = location;
             this.direction = direction;
 
             currFrame = 0;
             totalFrames = 4;
             repeatedFrames = 2;
+            sources = GetFrames(231, 62); // in enemies sprite sheet; all fireballs are the same
 
-            isDead = true; // start hidden
+            isDead = false;
         }
 
         private List<Rectangle> GetFrames(int xOffset, int yOffset)
@@ -44,7 +46,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             if (!isDead)
-                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+                spriteBatch.Draw(Texture, preciseLocation, sources[currFrame / repeatedFrames], Color.White);
         }
 
         public void Update()
@@ -52,9 +54,8 @@ namespace sprint0
             if (!isDead)
             {   // alive and traveling
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-                Rectangle loc = Location; // unfortunately need to do this bc struct
-                loc.Offset(speed * direction);
-                Location = loc;
+                preciseLocation += speed * direction;
+                Location = new Rectangle((int)preciseLocation.X, (int)preciseLocation.Y, Location.Width, Location.Height);
 
                 if (HitWall())
                 {

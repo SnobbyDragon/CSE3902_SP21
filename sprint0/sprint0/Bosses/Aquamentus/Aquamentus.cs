@@ -23,6 +23,8 @@ namespace sprint0
         private readonly List<Vector2> destinations; // aquamentus moves to predetermined destinations TODO depends on link actually
         private readonly bool isDead; //TODO maybe should be in a more general class since a lot of sprites can die
         private Vector2 headOffset; // offsets from top left to center of aquamentus' head (where fireballs come from)
+        private readonly int fireballRate = 100; //TODO currently arbitrary
+        private int fireballCounter = 0;
 
         public Aquamentus(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -85,23 +87,18 @@ namespace sprint0
 
         private bool CanShoot()
         {
-            //TODO
-            return true;
+            fireballCounter++;
+            fireballCounter %= fireballRate;
+            return fireballCounter == 0;
         }
 
         private void ShootFireballs()
         {
-            //TODO
-            //Vector2 dir = game.Player.Pos - (Location + headOffset); // TODO offset to center of link
-            //dir.Normalize();
-            //foreach (AquamentusFireball fireball in fireballs)
-            //{
-            //    fireball.Location = Location + headOffset;
-            //    fireball.IsDead = false;
-            //}
-            //fireballs[0].Direction = dir;
-            //fireballs[1].Direction = Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))); // 30 degrees up
-            //fireballs[2].Direction = Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))); // 30 degrees down
+            Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + headOffset); // TODO offset to center of link
+            dir.Normalize();
+            game.AddFireball(Location.Center.ToVector2(), dir);
+            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6)))); // 30 degrees up
+            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6)))); // 30 degrees down
         }
 
         public Collision GetCollision(ISprite other)

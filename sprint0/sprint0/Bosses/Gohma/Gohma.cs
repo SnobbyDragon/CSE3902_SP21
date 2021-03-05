@@ -21,6 +21,8 @@ namespace sprint0
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < legTotalFrames*legRepeatedFrames
         private List<Vector2> destinations; // gohma moves to predetermined destinations
         private Vector2 centerOffset; // fireball shoots from center of gohma
+        private readonly int fireballRate = 100; //TODO currently arbitrary
+        private int fireballCounter = 0;
 
         public Gohma(Texture2D texture, Vector2 location, string color, Game1 game)
         {
@@ -134,18 +136,18 @@ namespace sprint0
             return Collision.None;
         }
 
-        private bool CanShoot() // TODO
+        private bool CanShoot()
         {
-            return true;
+            fireballCounter++;
+            fireballCounter %= fireballRate;
+            return fireballCounter == 0;
         }
 
         private void ShootFireball()
         {
-            //Vector2 dir = game.Player.Pos - (Location + centerOffset);
-            //dir.Normalize();
-            //fireball.Direction = dir;
-            //fireball.Location = Location + centerOffset;
-            //fireball.IsDead = false;
+            Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + centerOffset);
+            dir.Normalize();
+            game.AddFireball(Location.Center.ToVector2(), dir);
         }
 
         private Vector2 ApproximateDirection(Vector2 dir)

@@ -18,7 +18,8 @@ namespace sprint0
         private Dictionary<String, List<Rectangle>> dirToSourcesMap;
         private string dir;
         private ISprite center; // center of manhandla
-        private Vector2 centerOffset; // fireball shoots from center of gohma
+        private readonly int fireballRate = 100; //TODO currently arbitrary
+        private int fireballCounter = 0;
 
         public ManhandlaLimb(Texture2D texture, ISprite center, String dir, Game1 game)
         {
@@ -65,8 +66,6 @@ namespace sprint0
             };
             Location = new Rectangle(0, 0, size, size); //TODO clean up
             Location = new Rectangle(center.Location.X + (int)dirToLocationMap[dir].X, center.Location.Y + (int)dirToLocationMap[dir].Y, size, size);
-
-            centerOffset = new Vector2(size / 2 - 4, size / 2 - 5); // limb size / 2 - fireball size / 2
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -92,18 +91,18 @@ namespace sprint0
             return Collision.None;
         }
 
-        private bool CanShoot() // TODO
+        private bool CanShoot()
         {
-            return true;
+            fireballCounter++;
+            fireballCounter %= fireballRate;
+            return fireballCounter == 0;
         }
 
         private void ShootFireball()
         {
-            //Vector2 dir = game.Player.Pos - (Location + centerOffset);
-            //dir.Normalize();
-            //fireball.Direction = dir;
-            //fireball.Location = Location + centerOffset;
-            //fireball.IsDead = false;
+            Vector2 dir = game.Player.Pos - Location.Center.ToVector2();
+            dir.Normalize();
+            game.AddFireball(Location.Center.ToVector2(), dir);
         }
     }
 }

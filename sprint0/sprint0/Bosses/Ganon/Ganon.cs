@@ -20,9 +20,11 @@ namespace sprint0
         private readonly int totalFrames, invisibleTime = 200, visibleTime = 100, teleportTime = 50; //TODO currently arbitrary times
         private bool isVisible;
         private readonly Random rand;
-        private readonly GanonFireball fireball; // main fireball
         private readonly List<GanonFireball> fireballExplosion; // TODO upon death; currently shoots w/main fireball as demonstration
         private Vector2 centerOffset; // fireball shoots from center of ganon
+        private readonly int fireballRate = 100; //TODO currently arbitrary
+        private int fireballCounter = 0;
+
         public Ganon(Texture2D texture, Vector2 location, Game1 game)
         {
             width = height = 32;
@@ -41,7 +43,6 @@ namespace sprint0
             isVisible = true;
             counter = 0;
 
-            fireball = new GanonFireball(texture, "none");
             centerOffset = new Vector2(width / 2 - 4, height / 2 - 5); // ganon size / 2 - fireball size / 2
             fireballExplosion = new List<GanonFireball>()
             {
@@ -61,14 +62,11 @@ namespace sprint0
             if (isVisible) // TODO also add if dead
                 spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
 
-            // fireball draws regardless
-            fireball.Draw(spriteBatch);
-
             // fireballs should draw after death TODO maybe just move to game??
-            foreach (GanonFireball fireball in fireballExplosion)
-            {
-                fireball.Draw(spriteBatch);
-            }
+            //foreach (GanonFireball fireball in fireballExplosion)
+            //{
+            //    fireball.Draw(spriteBatch);
+            //}
         }
 
         public void Update()
@@ -104,14 +102,13 @@ namespace sprint0
                 ShootFireball();
                 //FireballExplosion(); // TODO move this to when ganon dies
             }
-            else
-            {
-                fireball.Update();
-                foreach (GanonFireball fireball in fireballExplosion)
-                {
-                    fireball.Update();
-                }
-            }
+            //else
+            //{
+            //    foreach (GanonFireball fireball in fireballExplosion)
+            //    {
+            //        fireball.Update();
+            //    }
+            //}
         }
 
         public Collision GetCollision(ISprite other)
@@ -119,29 +116,29 @@ namespace sprint0
             return Collision.None;
         }
 
-        private bool CanShoot() // shoot fireball if fireball is dead
+        private bool CanShoot()
         {
-            return fireball.IsDead;
+            fireballCounter++;
+            fireballCounter %= fireballRate;
+            return fireballCounter == 0;
         }
 
         private void ShootFireball()
         {
-            //Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + centerOffset);
-            //dir.Normalize();
-            //fireball.Direction = dir;
-            //fireball.Location = Location.Location.ToVector2() + centerOffset;
-            //fireball.IsDead = false;
+            Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + centerOffset);
+            dir.Normalize();
+            game.AddFireball(Location.Location.ToVector2(), dir);
         }
 
-        private void FireballExplosion()
-        {
-            // shoots 8 fireballs in all directions
-            foreach (GanonFireball fireball in fireballExplosion)
-            {
-                //fireball.Location = Location.Location.ToVector2() + centerOffset;
-                //fireball.IsDead = false;
-            }
-        }
+        //private void FireballExplosion()
+        //{
+        //    // shoots 8 fireballs in all directions
+        //    foreach (GanonFireball fireball in fireballExplosion)
+        //    {
+        //        fireball.Location = Location.Location.ToVector2() + centerOffset;
+        //        fireball.IsDead = false;
+        //    }
+        //}
 
         public void Teleport()
         {

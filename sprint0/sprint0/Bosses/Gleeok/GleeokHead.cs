@@ -23,7 +23,8 @@ namespace sprint0
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings
         private int moveCounter;
         private Vector2 destination;
-        private Vector2 centerOffset;
+        private readonly int fireballRate = 100; //TODO currently arbitrary
+        private int fireballCounter = 0;
 
         public GleeokHead(Texture2D texture, Vector2 anchor, Game1 game)
         {
@@ -47,7 +48,6 @@ namespace sprint0
             Vector2 randLoc = RandomLocation();
             Location = new Rectangle((int)randLoc.X, (int)randLoc.Y, 8, size);
             destination = RandomLocation();
-            centerOffset = new Vector2(size / 2 - 4, size / 2 - 5); // head size / 2 - fireball size / 2
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -86,14 +86,10 @@ namespace sprint0
 
             //TODO
             // fireballs move and animate regardless
-            //if (CanShoot())
-            //{
-            //    ShootFireball();
-            //}
-            //else
-            //{
-            //    fireball.Update();
-            //}
+            if (CanShoot())
+            {
+                ShootFireball();
+            }
         }
 
         public Collision GetCollision(ISprite other)
@@ -101,19 +97,18 @@ namespace sprint0
             return Collision.None;
         }
 
-        //TODO
-        //private bool CanShoot() // shoot fireball if fireball is dead
-        //{
-        //    return fireball.IsDead;
-        //}
+        private bool CanShoot()
+        {
+            fireballCounter++;
+            fireballCounter %= fireballRate;
+            return fireballCounter == 0;
+        }
 
         private void ShootFireball()
-        {   //TODO
-            //Vector2 dir = game.Player.Pos - (Location + centerOffset);
-            //dir.Normalize();
-            //fireball.Direction = dir;
-            //fireball.Location = Location + centerOffset;
-            //fireball.IsDead = false;
+        {
+            Vector2 dir = game.Player.Pos - Location.Center.ToVector2();
+            dir.Normalize();
+            game.AddFireball(Location.Center.ToVector2(), dir);
         }
 
         // generates random location

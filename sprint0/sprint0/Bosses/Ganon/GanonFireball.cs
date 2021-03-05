@@ -28,7 +28,6 @@ namespace sprint0
             repeatedFrames = 2;
             dirToSourcesMap = new Dictionary<string, List<Rectangle>>
             {
-                { "none",  GetFrames(238, 157) }, // direction varies
                 { "up", GetFrames(276, 157) },
                 { "up left", GetFrames(276, 174) },
                 { "left", GetFrames(276, 192) },
@@ -40,7 +39,6 @@ namespace sprint0
             };
             dirToEffectsMap = new Dictionary<string, SpriteEffects>
             {
-                { "none",  SpriteEffects.None }, // direction varies
                 { "up", SpriteEffects.None },
                 { "up left", SpriteEffects.None },
                 { "left", SpriteEffects.None },
