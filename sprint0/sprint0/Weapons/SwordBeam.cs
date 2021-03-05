@@ -7,12 +7,12 @@ namespace sprint0
 {
     class SwordBeam : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         private readonly Texture2D texture;
         private readonly List<Rectangle> sources;
         private readonly Direction dir;
         private int xa, ya = 0;
-        private int xSize, ySize;
+        private int width, height;
         private readonly int lifespan = 120;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
@@ -22,7 +22,7 @@ namespace sprint0
         {
             this.dir = dir;
             this.texture = texture;
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;
@@ -43,26 +43,26 @@ namespace sprint0
             }
             if (dir == Direction.n || dir == Direction.s)
             {
-                xSize = 7;
-                ySize = 16;
+                width = 7;
+                height = 16;
                 sources = new List<Rectangle>
                 {
-                    new Rectangle(1, 154, xSize, ySize),
-                    new Rectangle(36, 154, xSize, ySize),
-                    new Rectangle(71, 154, xSize, ySize),
-                    new Rectangle(106, 154, xSize, ySize)
+                    new Rectangle(1, 154, width, height),
+                    new Rectangle(36, 154, width, height),
+                    new Rectangle(71, 154, width, height),
+                    new Rectangle(106, 154, width, height)
                 };
             }
             else
             {
-                xSize = 16;
-                ySize = 7;
+                width = 16;
+                height = 7;
                 sources = new List<Rectangle>
                 {
-                    new Rectangle(10, 159, xSize, ySize),
-                    new Rectangle(45, 159, xSize, ySize),
-                    new Rectangle(80, 159, xSize, ySize),
-                    new Rectangle(115, 159, xSize, ySize)
+                    new Rectangle(10, 159, width, height),
+                    new Rectangle(45, 159, width, height),
+                    new Rectangle(80, 159, width, height),
+                    new Rectangle(115, 159, width, height)
                 };
             }
             
@@ -75,7 +75,7 @@ namespace sprint0
 
         private void Move()
         {
-            Location = new Vector2(Location.X + xa, Location.Y + ya);
+            Location = new Rectangle(Location.X + xa, Location.Y + ya, Location.Width, Location.Height);
         }
 
         private void Break()
@@ -87,7 +87,7 @@ namespace sprint0
         {
             if (Alive())
             {
-                Rectangle destination = new Rectangle((int)Location.X, (int)Location.Y, xSize, ySize);
+                Rectangle destination = new Rectangle((int)Location.X, (int)Location.Y, width, height);
                 switch (dir)
                 {
                     case Direction.n:
@@ -118,6 +118,11 @@ namespace sprint0
             {
                 Break();
             }
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
         }
     }
 }

@@ -115,9 +115,9 @@ namespace sprint0
             projectiles.Add(itemFactory.MakeSprite(item, Location, dir, lifespan));
         }
 
-        public void Fireball(Vector2 location, Vector2 dir)
+        public void AddFireball(Vector2 location, Vector2 dir)
         {
-            //projectiles.Add();
+            projectiles.Add(itemFactory.MakeFireball(location, dir));
         }
 
         protected override void Update(GameTime gameTime)

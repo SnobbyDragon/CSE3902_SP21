@@ -119,7 +119,7 @@ namespace sprint0
                     offsetPos = new Vector2(position.X, position.Y + 6);
                     break;
             }
-            game.AddItem(offsetPos, direction, 0, "sword beam");
+            game.AddProjectile(offsetPos, direction, 0, "sword beam");
         }
 
         public void Draw(SpriteBatch spriteBatch)
