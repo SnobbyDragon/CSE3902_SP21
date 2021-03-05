@@ -11,22 +11,22 @@ namespace sprint0
     class LeftWoodSwordSprite : ISprite
     {
         public Texture2D Texture { get => texture; set => texture = value; }
-        public Vector2 Location { get => location; set => location = value; }
+        public Rectangle Location { get; set; }
         private readonly List<Rectangle> sources;
         private Texture2D texture;
-        private Vector2 location;
+        
         private int currFrame;
         private int slow;
         private readonly int xOffset = 1, yOffset = 77;
         private int width = 16;
         private readonly int height = 16;
         private readonly List<Vector2> locations;
-        private readonly List<int> ySizes;
+        private readonly List<int> xSizes;
         public LeftWoodSwordSprite(Texture2D texture, Vector2 location)
         {
 
             this.texture = texture;
-            this.location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             sources = GetFrames();
             /*
              * Ugly pixel math is unavoidable with the current spritesheet
@@ -34,11 +34,11 @@ namespace sprint0
             locations = new List<Vector2>
             {
                 location,
-                new Vector2(this.location.X-11, this.location.Y),
-                new Vector2(this.location.X-10, this.location.Y),
-                new Vector2(this.location.X-3, this.location.Y)
+                new Vector2(Location.X-11, Location.Y),
+                new Vector2(Location.X-10, Location.Y),
+                new Vector2(Location.X-3, Location.Y)
             };
-            ySizes = new List<int>
+            xSizes = new List<int>
             {
                 16,
                 16+11,
@@ -71,8 +71,8 @@ namespace sprint0
         {
             if (currFrame < 4)
             {
-                Rectangle destination = new Rectangle((int)locations[currFrame].X, (int)locations[currFrame].Y, ySizes[currFrame], 16);
-                spriteBatch.Draw(Texture, destination, sources[currFrame], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+                Location = new Rectangle((int)locations[currFrame].X, (int)locations[currFrame].Y, xSizes[currFrame], height);
+                spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             }
         }
 
@@ -83,7 +83,11 @@ namespace sprint0
             {
                 currFrame += 1;
             }
+        }
 
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

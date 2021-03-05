@@ -7,16 +7,18 @@ namespace sprint0
 {
     public class TriforcePiece : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private int currentFrame;
         private string color;
         private readonly int totalFrames, repeatedFrames;
         private Dictionary<string, List<Rectangle>> colorMap;
+        private readonly int width, height;
 
         public TriforcePiece(Texture2D texture, Vector2 location, String triforceColor)
         {
-            Location = location;
+            width = height = 14;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             color = triforceColor;
             currentFrame = 0;
@@ -30,12 +32,13 @@ namespace sprint0
             };
         }
 
-        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames) {
+        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
+        {
             List<Rectangle> sources = new List<Rectangle>();
-            int size =14;
-            for (int i = 0; i < numFrames; i++) {
-                sources.Add(new Rectangle(xPos,yPos,size,size));
-                xPos += size + 1;
+            for (int i = 0; i < numFrames; i++)
+            {
+                sources.Add(new Rectangle(xPos, yPos, width, height));
+                xPos += width + 1;
             }
             return sources;
         }
@@ -48,7 +51,12 @@ namespace sprint0
         public void Update()
         {
             // animates all the time for now
-            currentFrame = (currentFrame + 1) % (totalFrames*repeatedFrames);
+            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

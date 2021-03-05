@@ -5,14 +5,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 /*
- * Last updated: 2/21/21 by urick.9
+ * Last updated: 3/4/21 by li.10011
  */
 namespace sprint0
 {
     public class Aquamentus : ISprite
     {
         private readonly Game1 game; //TODO maybe have player bc static so we don't need this
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 1, yOffset = 11, width = 24, height = 32;
         private readonly List<Rectangle> sources;
@@ -21,14 +21,15 @@ namespace sprint0
         private int currDest;
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < totalFrames*repeatedFrames
         private readonly List<Vector2> destinations; // aquamentus moves to predetermined destinations TODO depends on link actually
-        private readonly List<AquamentusFireball> fireballs;
         private readonly bool isDead; //TODO maybe should be in a more general class since a lot of sprites can die
         private Vector2 headOffset; // offsets from top left to center of aquamentus' head (where fireballs come from)
+        private readonly int fireballRate = 100; //TODO currently arbitrary
+        private int fireballCounter = 0;
 
         public Aquamentus(Texture2D texture, Vector2 location, Game1 game)
         {
             this.game = game;
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             currFrame = 0;
             totalFrames = 4;
@@ -48,13 +49,6 @@ namespace sprint0
                 location + new Vector2(30,0)
             };
 
-            // aquamentus shoots 3 fireballs left (up, middle, down); only 3 is on the map at a time
-            fireballs = new List<AquamentusFireball>();
-            for (int i = 0; i < 3; i++)
-            {
-                fireballs.Add(new AquamentusFireball(texture));
-            };
-
             isDead = false;
         }
 
@@ -62,19 +56,13 @@ namespace sprint0
         {
             if (!isDead) // only draws if alive
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
-
-            //fireballs draw regardless
-            foreach (AquamentusFireball fireball in fireballs)
-            {
-                fireball.Draw(spriteBatch);
-            }
         }
 
         public void Update()
         {
             if (!isDead)
             { // only moves and animates if alive
-                Vector2 dist = destinations[currDest] - Location;
+                Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
                 if (dist.Length() == 0)
                 {
                     // reached destination, so pick a new destination
@@ -84,7 +72,9 @@ namespace sprint0
                 {
                     // has not reached destination, move towards it
                     dist.Normalize();
-                    Location += dist;
+                    Rectangle loc = Location;
+                    loc.Offset(dist);
+                    Location = loc;
                 }
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
@@ -93,38 +83,27 @@ namespace sprint0
             {
                 ShootFireballs();
             }
-            else
-            {
-                //fireballs update
-                foreach (AquamentusFireball fireball in fireballs)
-                {
-                    fireball.Update();
-                }
-            }
         }
 
-        private bool CanShoot() // shoot fireballs if all fireballs dead
+        private bool CanShoot()
         {
-            foreach (AquamentusFireball fireball in fireballs)
-            {
-                if (!fireball.IsDead)
-                    return false;
-            }
-            return true;
+            fireballCounter++;
+            fireballCounter %= fireballRate;
+            return fireballCounter == 0;
         }
 
         private void ShootFireballs()
         {
-            Vector2 dir = game.Player.Pos - (Location + headOffset); // TODO offset to center of link
+            Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + headOffset); // TODO offset to center of link
             dir.Normalize();
-            foreach (AquamentusFireball fireball in fireballs)
-            {
-                fireball.Location = Location + headOffset;
-                fireball.IsDead = false;
-            }
-            fireballs[0].Direction = dir;
-            fireballs[1].Direction = Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))); // 30 degrees up
-            fireballs[2].Direction = Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))); // 30 degrees down
+            game.AddFireball(Location.Center.ToVector2(), dir);
+            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6)))); // 30 degrees up
+            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6)))); // 30 degrees down
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
         }
     }
 }

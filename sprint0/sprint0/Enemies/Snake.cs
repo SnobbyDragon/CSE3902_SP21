@@ -7,95 +7,92 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Snake:ISprite
+    public class Snake : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private List<Rectangle> sources;
         private int totalFrames;
         private int currentFrame;
         private int repeatedFrames;
         private SpriteEffects spriteEffect;
-
-        enum Direction { left, right, up, down }
-        private Direction direction = Direction.left;
+        private readonly int width, height;
+        private Direction direction = Direction.w;
 
         public Snake(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            width = height = 16;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             spriteEffect = SpriteEffects.None;
             totalFrames = 2;
             currentFrame = 0;
             repeatedFrames = 10;
             sources = new List<Rectangle>();
-            int xPos = 126, yPos = 59, sideLength = 16;
+            int xPos = 126, yPos = 59;
             //add frames to list
             for (int frame = 0; frame < totalFrames; frame++)
             {
-                sources.Add(new Rectangle(xPos, yPos, sideLength, sideLength));
-                xPos += sideLength + 1;
+                sources.Add(new Rectangle(xPos, yPos, width, height));
+                xPos += width + 1;
             }
-            
-
-
         }
 
-        
         public void Draw(SpriteBatch spriteBatch)
         {
-           
+
             spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames],
-                    Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), spriteEffect, 0);
+                    Color.White, 0, new Vector2(0, 0), spriteEffect, 0);
         }
 
         public void Update()
         {
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            if (direction == Direction.left)
+            if (direction == Direction.w)
             {
                 //sets sprite effect so snake faces left
                 spriteEffect = SpriteEffects.FlipHorizontally;
                 //moves sprite left
-                Location += new Vector2(-1, 0);
+                Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
                 if (Location.X <= 50 * Game1.Scale)
                 {
-                    direction = Direction.down;
-                    
-
+                    direction = Direction.s;
                 }
             }
-            else if (direction == Direction.right)
+            else if (direction == Direction.e)
             {
                 //sets sprite effect so snake faces right
                 spriteEffect = SpriteEffects.None;
                 //moves sprite right
-                Location += new Vector2(1, 0);
+                Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
                 if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                 {
-                    direction = Direction.up;
-                   
+                    direction = Direction.n;
                 }
             }
-            else if (direction == Direction.down)
+            else if (direction == Direction.s)
             {
                 //moves sprite down
-                Location += new Vector2(0, 1);
+                Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
                 if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
-                    direction = Direction.right;
-                  
+                    direction = Direction.e;
                 }
             }
-            else { //direction==Direction.up
+            else
+            { //direction == Direction.n
                 //moves sprite up
-                Location += new Vector2(0, -1);
+                Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
                 if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
-                    direction = Direction.left;
-                    
+                    direction = Direction.w;
                 }
             }
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

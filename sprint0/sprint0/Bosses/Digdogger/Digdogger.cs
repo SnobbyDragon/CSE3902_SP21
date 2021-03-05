@@ -5,13 +5,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 /*
- * Last updated: 2/21/21 by urick.9
+ * Last updated: 3/4/21 by li.10011
  */
 namespace sprint0
 {
     public class Digdogger : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int bigSize = 32, smallSize = 16;
         private readonly List<Rectangle> smallSources;
@@ -27,7 +27,7 @@ namespace sprint0
 
         public Digdogger(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, bigSize, bigSize); //TODO size is variable
             Texture = texture;
             currFrame = 0;
             bigTotalFrames = 5;
@@ -92,7 +92,7 @@ namespace sprint0
                 }
                 spikeCounter++;
 
-                Vector2 dist = destination - Location;
+                Vector2 dist = destination - Location.Location.ToVector2();
                 if (dist.Length() < 5)
                 {
                     // reached destination, generate new destination; TODO change dir bc of link position
@@ -102,7 +102,9 @@ namespace sprint0
                 {
                     // has not reached destination, move towards it
                     dist.Normalize();
-                    Location += dist; //TODO BUG: green background appears bc of floating point error; make a rounding method for vectors? or refactor movement
+                    Rectangle loc = Location;
+                    loc.Offset(ApproximateDirection(dist)); //TODO BUG: green background appears bc of floating point error; make a rounding method for vectors? or refactor movement
+                    Location = loc;
                     moveCounter = 0;
                 }
                 moveCounter++;
@@ -116,8 +118,13 @@ namespace sprint0
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
 
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
+        }
+
         // generates a new destination
-        public void GenerateDest()
+        private void GenerateDest()
         {
             // currently picks a random destination TODO make 32 static variable? this is the wall width
             // TODO movement depends on where link is?
@@ -125,6 +132,36 @@ namespace sprint0
                 rand.Next((int)(32 * Game1.Scale), (int)((Game1.Width - 32) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32)*Game1.Scale))
                 );
+        }
+
+        private Vector2 ApproximateDirection(Vector2 dir)
+        {
+            //TODO currently using vectors; maybe make IDirection interface?
+            //Direction closestApprox;
+            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
+            List<Vector2> vectors = new List<Vector2>
+            {
+                new Vector2(1, 0),
+                new Vector2(-1, 0),
+                new Vector2(0, 1),
+                new Vector2(0, -1),
+                new Vector2(1, 1),
+                new Vector2(1, -1),
+                new Vector2(-1, 1),
+                new Vector2(-1, -1),
+            };
+            Vector2 closestApprox = vectors[0];
+            float closestDist = (closestApprox - dir).LengthSquared();
+            foreach (Vector2 v in vectors)
+            {
+                float dist = (v - dir).LengthSquared();
+                if (dist < closestDist)
+                {
+                    closestApprox = v;
+                    closestDist = dist;
+                }
+            }
+            return closestApprox;
         }
     }
 }

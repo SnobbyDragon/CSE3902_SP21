@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class PatraMinion : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 18, yOffset = 158, width = 8, height = 8;
         private List<Rectangle> sources;
@@ -44,7 +44,7 @@ namespace sprint0
             spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
         }
 
-        public float degreesToRadians(int degrees)
+        private float DegreesToRadians(int degrees)
         {
             return (float)(Math.PI * degrees / 180.0);
         }
@@ -52,20 +52,13 @@ namespace sprint0
         public void Update()
         {
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames); // animate flying
-            Location = center.Location + offset + new Vector2((float)(distance * Math.Cos(degreesToRadians(angle))), (float)(distance * Math.Sin(degreesToRadians(angle))));
+            Vector2 loc = center.Location.Location.ToVector2() + offset + new Vector2((float)(distance * Math.Cos(DegreesToRadians(angle))), (float)(distance * Math.Sin(DegreesToRadians(angle))));
+            Location = new Rectangle((int)loc.X, (int)loc.Y, width, height);
 
             // spins fast, no need for delay
             angle = (angle - 3) % 360; // spin counterclockwise
 
-            if (expansionTime == expansionDelay)
-            {
-                expansionTime = 0; // time to expand
-                expansionCounter = 1; // on first expansion
-            }
-            else if (expansionCounter == 0)
-            {
-                expansionTime++; // if waiting, then increment time
-            }
+            CountExpansion();
 
             if (expansionCounter > 0)
             {
@@ -80,34 +73,63 @@ namespace sprint0
                     // expanding / contracting
                     if (expansionCounter % 2 == 0)
                     {
-                        // contracting TODO extract to other methods
-                        if (distance == minDistance)
-                        {
-                            // done contracting
-                            expansionCounter++;
-                        }
-                        else
-                        {
-                            // not done, decrease distance
-                            distance--;
-                        }
+                        Contract();
                     }
                     else
                     {
-                        // expanding
-                        if (distance == maxDistance)
-                        {
-                            // done expanding
-                            expansionCounter++;
-                        }
-                        else
-                        {
-                            // not done, increase distance
-                            distance++;
-                        }
+                        Expand();
                     }
                 }
             }
+        }
+
+        // keeps timings for expansions
+        private void CountExpansion()
+        {
+            if (expansionTime == expansionDelay)
+            {
+                expansionTime = 0; // time to expand
+                expansionCounter = 1; // on first expansion
+            }
+            else if (expansionCounter == 0)
+            {
+                expansionTime++; // if waiting, then increment time
+            }
+        }
+
+        // contracting movement
+        private void Contract()
+        {
+            if (distance == minDistance)
+            {
+                // done contracting
+                expansionCounter++;
+            }
+            else
+            {
+                // not done, decrease distance
+                distance--;
+            }
+        }
+
+        // expanding movement
+        private void Expand()
+        {
+            if (distance == maxDistance)
+            {
+                // done expanding
+                expansionCounter++;
+            }
+            else
+            {
+                // not done, increase distance
+                distance++;
+            }
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
         }
     }
 }

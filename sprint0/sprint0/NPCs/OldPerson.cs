@@ -7,22 +7,23 @@ namespace sprint0
 {
     public class OldPerson : ISprite
     {
-        public Vector2 Location { get; set;}
+        public Rectangle Location { get; set;}
         public Texture2D Texture { get; set; }
         public String Type { get; set; }
-        private readonly int xOffset = 1, yOffset = 11, size = 16;
+        private readonly int xOffset = 1, yOffset = 11, width, height;
         private Dictionary<String, Rectangle> typeRectMap;
 
         public OldPerson(Texture2D texture, Vector2 location, String type)
         {
-            Location = location;
+            width = height = 16;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             Type = type;
-            typeRectMap = new Dictionary<String, Rectangle>
+            typeRectMap = new Dictionary<String, Rectangle> //TODO use GetFrames method when we make that static public
             {
-                { "man 1", new Rectangle(xOffset, yOffset, size, size) },
-                { "man 2", new Rectangle(xOffset + size + 1, yOffset, size, size) },
-                { "woman", new Rectangle(xOffset + 2 * (size + 1), yOffset, size, size) }
+                { "man 1", new Rectangle(xOffset, yOffset, width, height) },
+                { "man 2", new Rectangle(xOffset + width + 1, yOffset, width, height) },
+                { "woman", new Rectangle(xOffset + 2 * (width + 1), yOffset, width, height) }
             };
         }
 
@@ -34,6 +35,11 @@ namespace sprint0
         public void Update()
         {
             // does nothing for now
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
         }
     }
 }

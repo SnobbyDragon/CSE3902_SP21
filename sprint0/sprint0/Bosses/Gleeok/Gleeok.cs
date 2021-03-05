@@ -9,7 +9,7 @@ namespace sprint0
     public class Gleeok : ISprite
     {
         private Game1 game;
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 196, yOffset = 11, width = 24, height = 32;
         private List<Rectangle> sources;
@@ -19,7 +19,7 @@ namespace sprint0
 
         public Gleeok(Texture2D texture, Vector2 location, Game1 game)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             this.game = game;
             currFrame = 0;
@@ -39,7 +39,7 @@ namespace sprint0
         public List<ISprite> generateNeck()
         {
             List<ISprite> neck = new List<ISprite>();
-            Vector2 anchor = Location + new Vector2(width / 2 - 4, height - 6);
+            Vector2 anchor = Location.Location.ToVector2() + new Vector2(width / 2 - 4, height - 6);
             ISprite head = new GleeokHead(Texture, anchor, game);
             for (int i = 0; i < 4; i++)
             {
@@ -66,6 +66,11 @@ namespace sprint0
                 sprite.Update();
             foreach (ISprite sprite in neck2)
                 sprite.Update();
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
         }
     }
 }

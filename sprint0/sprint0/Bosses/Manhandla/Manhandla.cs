@@ -9,7 +9,7 @@ namespace sprint0
     public class Manhandla : ISprite
     {
         private Game1 game;
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int size = 16;
         private Rectangle source;
@@ -21,7 +21,7 @@ namespace sprint0
 
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
             Texture = texture;
             this.game = game;
             source = new Rectangle(69, 89, size, size); //center
@@ -35,7 +35,7 @@ namespace sprint0
                 new ManhandlaLimb(Texture, this, "right", game)
             };
             rand = new Random();
-            generateDest();
+            GenerateDest();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -47,25 +47,32 @@ namespace sprint0
 
         public void Update()
         {
-            Vector2 dist = destination - Location;
+            Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5) // floating point errors
             {
                 // reached destination, so pick a new destination
-                generateDest();
+                GenerateDest();
             }
             else
             {
                 // has not reached destination, move towards it
                 dist.Normalize();
-                Location += speed * dist; //TODO BUG: green background appears bc of floating point error; make a rounding method for vectors? or refactor movement
+                Rectangle loc = Location;
+                loc.Offset(speed * ApproximateDirection(dist)); //TODO BUG: green background appears bc of floating point error; make a rounding method for vectors? or refactor movement
+                Location = loc;
             }
 
             foreach (ISprite limb in limbs)
                 limb.Update();
         }
 
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
+        }
+
         // generates a new destination
-        public void generateDest()
+        private void GenerateDest()
         {
             // currently picks a random destination TODO change location bounds
             // TODO movement depends on where link is?
@@ -73,6 +80,36 @@ namespace sprint0
                 rand.Next((int)(32 * Game1.Scale), (int)((Game1.Width - 32) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale))
                 );
+        }
+
+        private Vector2 ApproximateDirection(Vector2 dir)
+        {
+            //TODO currently using vectors; maybe make IDirection interface?
+            //Direction closestApprox;
+            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
+            List<Vector2> vectors = new List<Vector2>
+            {
+                new Vector2(1, 0),
+                new Vector2(-1, 0),
+                new Vector2(0, 1),
+                new Vector2(0, -1),
+                new Vector2(1, 1),
+                new Vector2(1, -1),
+                new Vector2(-1, 1),
+                new Vector2(-1, -1),
+            };
+            Vector2 closestApprox = vectors[0];
+            float closestDist = (closestApprox - dir).LengthSquared();
+            foreach (Vector2 v in vectors)
+            {
+                float dist = (v - dir).LengthSquared();
+                if (dist < closestDist)
+                {
+                    closestApprox = v;
+                    closestDist = dist;
+                }
+            }
+            return closestApprox;
         }
     }
 }

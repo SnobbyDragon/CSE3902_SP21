@@ -9,7 +9,7 @@ namespace sprint0
     public class ManhandlaLimb : ISprite
     {
         private Game1 game;
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int size = 16;
         private int currFrame;
@@ -18,8 +18,8 @@ namespace sprint0
         private Dictionary<String, List<Rectangle>> dirToSourcesMap;
         private string dir;
         private ISprite center; // center of manhandla
-        private ManhandlaFireball fireball; // TODO each limb can have multiple fireballs; refactor to spawn fireballs in Game1???
-        private Vector2 centerOffset; // fireball shoots from center of gohma
+        private readonly int fireballRate = 100; //TODO currently arbitrary
+        private int fireballCounter = 0;
 
         public ManhandlaLimb(Texture2D texture, ISprite center, String dir, Game1 game)
         {
@@ -64,49 +64,45 @@ namespace sprint0
                     }
                 }
             };
-            Location = center.Location + dirToLocationMap[dir];
-
-            fireball = new ManhandlaFireball(texture);
-            centerOffset = new Vector2(size / 2 - 4, size / 2 - 5); // limb size / 2 - fireball size / 2
+            Location = new Rectangle(0, 0, size, size); //TODO clean up
+            Location = new Rectangle(center.Location.X + (int)dirToLocationMap[dir].X, center.Location.Y + (int)dirToLocationMap[dir].Y, size, size);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, dirToSourcesMap[dir][currFrame / repeatedFrames], Color.White);
-
-            // draws fireball
-            fireball.Draw(spriteBatch);
         }
 
         public void Update()
         {
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            Location = center.Location + dirToLocationMap[dir];
+            Location = new Rectangle(center.Location.X + (int)dirToLocationMap[dir].X, center.Location.Y + (int)dirToLocationMap[dir].Y, size, size);
 
             // shoot fireball
             if (CanShoot())
             {
                 ShootFireball();
             }
-            else
-            {
-                fireball.Update();
-            }
         }
 
-        private bool CanShoot() // shoot fireball if fireball is dead
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
+        }
+
+        private bool CanShoot()
         {
-            return fireball.IsDead;
+            fireballCounter++;
+            fireballCounter %= fireballRate;
+            return fireballCounter == 0;
         }
 
         private void ShootFireball()
         {
-            Vector2 dir = game.Player.Pos - (Location + centerOffset);
+            Vector2 dir = game.Player.Pos - Location.Center.ToVector2();
             dir.Normalize();
-            fireball.Direction = dir;
-            fireball.Location = Location + centerOffset;
-            fireball.IsDead = false;
+            game.AddFireball(Location.Center.ToVector2(), dir);
         }
     }
 }

@@ -3,35 +3,39 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 /*
- * Last updated: 2/21/21 by urick.9
+ * Last updated: 3/5/21 by li.10011
  */
 namespace sprint0
 {
     class RightUseItemSprite : ISprite
     {
 
-
         public Texture2D Texture { get => texture; set => texture = value; }
-        public Vector2 Location { get => location; set => location = value; }
+        public Rectangle Location { get; set; }
         private Texture2D texture;
-        private Vector2 location;
+        
         private readonly int xOffset = 124, yOffset = 11;
+        private readonly int size = 16;
+
         public RightUseItemSprite(Texture2D texture, Vector2 location)
         {
-            this.location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
             this.texture = texture;
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, location, new Rectangle(xOffset, yOffset, 16, 16), Color.White);
+            spriteBatch.Draw(Texture, Location, new Rectangle(xOffset, yOffset, size, size), Color.White);
         }
 
         public void Update()
         {
             //Nothing here
+        }
 
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

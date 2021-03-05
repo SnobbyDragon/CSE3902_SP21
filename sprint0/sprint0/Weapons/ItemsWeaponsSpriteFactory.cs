@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 //Author: Hannah Johnson and co
 /*
- * Last updated: 2/22/21 by urick.9
+ * Last updated: 3/4/21 by li.10011
  */
 namespace sprint0
 {
@@ -12,19 +12,17 @@ namespace sprint0
     {
         private readonly Texture2D texture1, texture2, texture3;
 
-        public ItemsWeaponsSpriteFactory(Game game)
+        public ItemsWeaponsSpriteFactory(Game1 game)
         {
             texture1 = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
             texture2 = game.Content.Load<Texture2D>("Images/Link");
             texture3 = game.Content.Load<Texture2D>("Images/DungeonEnemies");
         }
         /*
-         * Note: if the lifespan is predetermined(for instnace with "bomb", use 0)
+         * Note: if the lifespan is predetermined (for instance with "bomb", use 0)
          */
         public ISprite MakeSprite(String spriteType, Vector2 location, Direction dir, int lifespan)
         {
-
-
             return spriteType switch
             {
                 "red heart" => new Heart(texture1, location, "red"),
@@ -46,6 +44,11 @@ namespace sprint0
                 "sword beam" => new SwordBeam(texture2, location, dir, lifespan),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
+        }
+
+        public ISprite MakeFireball(Vector2 location, Vector2 direction)
+        {
+            return new Fireball(texture3, location, direction);
         }
     }
 }

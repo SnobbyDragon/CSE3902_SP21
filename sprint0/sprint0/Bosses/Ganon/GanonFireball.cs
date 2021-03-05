@@ -6,9 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class GanonFireball : ISprite // regular round fireball
+    public class GanonFireball : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int width = 8, height = 10;
         private readonly Dictionary<String, List<Rectangle>> dirToSourcesMap;
@@ -28,7 +28,6 @@ namespace sprint0
             repeatedFrames = 2;
             dirToSourcesMap = new Dictionary<string, List<Rectangle>>
             {
-                { "none",  GetFrames(238, 157) }, // direction varies
                 { "up", GetFrames(276, 157) },
                 { "up left", GetFrames(276, 174) },
                 { "left", GetFrames(276, 192) },
@@ -40,7 +39,6 @@ namespace sprint0
             };
             dirToEffectsMap = new Dictionary<string, SpriteEffects>
             {
-                { "none",  SpriteEffects.None }, // direction varies
                 { "up", SpriteEffects.None },
                 { "up left", SpriteEffects.None },
                 { "left", SpriteEffects.None },
@@ -104,7 +102,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             if (!IsDead)
-                spriteBatch.Draw(Texture, Location, dirToSourcesMap[type][currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), 1, dirToEffectsMap[type], 0);
+                spriteBatch.Draw(Texture, Location, dirToSourcesMap[type][currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), dirToEffectsMap[type], 0);
         }
 
         public void Update()
@@ -112,7 +110,9 @@ namespace sprint0
             if (!IsDead)
             {
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-                Location += speed * Direction;
+                Rectangle loc = Location;
+                loc.Offset(speed * Direction);
+                Location = loc;
 
                 // checks if hit wall (left || right || up || down)
                 if (Location.X <= 0 || Location.X >= Game1.Width * Game1.Scale || Location.Y <= Game1.HUDHeight * Game1.Scale || Location.Y >= (Game1.HUDHeight + Game1.MapHeight) * Game1.Scale)
@@ -120,6 +120,11 @@ namespace sprint0
                     IsDead = true;
                 }
             }
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

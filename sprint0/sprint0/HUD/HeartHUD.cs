@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class HeartHUD : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public int[] heartState { get; set; }
         private readonly List<Rectangle> sources;
@@ -16,7 +16,7 @@ namespace sprint0
 
         public HeartHUD(Texture2D texture, Vector2 location, int[] heartNum)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, 0, 0); // this rectangle is just a point
             Texture = texture;
 
             //heartState[0] : number of empty hearts
@@ -69,6 +69,11 @@ namespace sprint0
         public void Update()
         {
             //change heartState based on link's damage
+        }
+
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace sprint0
     public class HUDItemB : ISprite
     {
 
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
         public string Item { get; set; }
@@ -19,7 +19,7 @@ namespace sprint0
 
         public HUDItemB(Texture2D texture, Vector2 location, string itemName)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height); // TODO use this for drawing?
             Texture = texture;
             Item = itemName;
             int yPos = 137;
@@ -59,8 +59,6 @@ namespace sprint0
             return source;
         }
 
-
-
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)), itemMap[Item], Color.White);
@@ -69,6 +67,11 @@ namespace sprint0
         public void Update()
         {
             //todo: switch between objects and based on link
+        }
+
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

@@ -7,22 +7,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Clock:ISprite
+    public class Clock : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        
+        private readonly int width = 13, height = 17;
 
         public Clock(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
-            source=new Rectangle(58, 0, 13, 17);
-            
-        }
+            source = new Rectangle(58, 0, width, height);
 
-        
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -32,6 +30,11 @@ namespace sprint0
         public void Update()
         {
             //Does nothing
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

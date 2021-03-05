@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class Patra : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private List<SpriteEffects> effects;
@@ -20,12 +20,13 @@ namespace sprint0
         private readonly Random rand;
         private int moveCounter;
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < totalFrames*repeatedFrames
+        private readonly int width = 16, height = 11;
 
         public Patra(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
-            source = new Rectangle(1, 157, 16, 11);
+            source = new Rectangle(1, 157, width, height);
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 2;
@@ -45,7 +46,7 @@ namespace sprint0
             }
 
             rand = new Random();
-            generateDest();
+            GenerateDest();
 
             moveCounter = 0;
             moveDelay = 5; // slow
@@ -53,24 +54,26 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), 1, effects[currFrame / repeatedFrames], 0);
+            spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), effects[currFrame / repeatedFrames], 0);
             foreach (ISprite minion in minions)
                 minion.Draw(spriteBatch);
         }
 
         public void Update()
         {
-            Vector2 dist = destination - Location;
+            Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
             {
                 // reached destination, generate new destination; TODO change dir bc of link position
-                generateDest();
+                GenerateDest();
             }
             else if (moveCounter == moveDelay)
             {
                 // has not reached destination, move towards it
                 dist.Normalize();
-                Location += dist; //TODO BUG: green background appears bc of floating point error; make a rounding method for vectors? or refactor movement
+                Rectangle loc = Location;
+                loc.Offset(ApproximateDirection(dist));
+                Location = loc;
                 moveCounter = 0;
             }
             moveCounter++;
@@ -80,8 +83,13 @@ namespace sprint0
                 minion.Update();
         }
 
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
+        }
+
         // generates a new destination
-        public void generateDest()
+        private void GenerateDest()
         {
             // currently picks a random destination TODO change location bounds
             // TODO movement depends on where link is?
@@ -89,6 +97,36 @@ namespace sprint0
                 rand.Next((int)(32 * Game1.Scale), (int)((Game1.Width - 32) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale))
                 );
+        }
+
+        private Vector2 ApproximateDirection(Vector2 dir)
+        {
+            //TODO currently using vectors; maybe make IDirection interface?
+            //Direction closestApprox;
+            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
+            List<Vector2> vectors = new List<Vector2>
+            {
+                new Vector2(1, 0),
+                new Vector2(-1, 0),
+                new Vector2(0, 1),
+                new Vector2(0, -1),
+                new Vector2(1, 1),
+                new Vector2(1, -1),
+                new Vector2(-1, 1),
+                new Vector2(-1, -1),
+            };
+            Vector2 closestApprox = vectors[0];
+            float closestDist = (closestApprox - dir).LengthSquared();
+            foreach (Vector2 v in vectors)
+            {
+                float dist = (v - dir).LengthSquared();
+                if (dist < closestDist)
+                {
+                    closestApprox = v;
+                    closestDist = dist;
+                }
+            }
+            return closestApprox;
         }
     }
 }

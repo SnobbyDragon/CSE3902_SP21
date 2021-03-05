@@ -7,19 +7,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Stairs:ISprite
+    public class Stairs : ISprite
     {
 
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
+        private readonly int width = 16, height = 16;
 
         public Stairs(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
-            source = new Rectangle(1035, 28, 16, 16);
-          
+            source = new Rectangle(1035, 28, width, height);
+
 
         }
 
@@ -31,6 +32,11 @@ namespace sprint0
         public void Update()
         {
             //No movement for now
+        }
+
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

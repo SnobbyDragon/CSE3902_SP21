@@ -8,10 +8,10 @@ namespace sprint0
     {
 
         public Texture2D Texture { get => texture; set => texture = value; }
-        public Vector2 Location { get => location; set => location = value; }
+        public Rectangle Location { get; set; }
         private readonly List<Rectangle> sources;
         private Texture2D texture;
-        private Vector2 location;
+        
         private int currFrame;
         private int slow;
         private readonly int xOffset = 1, yOffset = 47;
@@ -22,9 +22,8 @@ namespace sprint0
         {
 
             this.texture = texture;
-            this.location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             sources = GetFrames();
-
         }
 
         private List<Rectangle> GetFrames()
@@ -58,7 +57,11 @@ namespace sprint0
             {
                 currFrame += 1;
             }
+        }
 
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

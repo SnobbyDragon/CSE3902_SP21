@@ -7,14 +7,14 @@ namespace sprint0
     public class ShutDoor : ISprite
     {
 
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int xOffset = 914, yOffset = 11, size = 32;
 
         public ShutDoor(Texture2D texture, Vector2 location, string dir)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
             Texture = texture;
             source = dir switch
             {
@@ -34,6 +34,11 @@ namespace sprint0
         public void Update()
         {
 
+        }
+
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

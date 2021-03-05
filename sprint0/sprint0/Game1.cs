@@ -6,7 +6,9 @@ using System.Collections.Generic;
 
 namespace sprint0
 {
-    public enum Direction { n, s, e, w };
+    public enum Direction { n, s, e, w, ne, nw, se, sw };
+    public enum Collision { Left, Right, Top, Bottom, None };
+
     public class Game1 : Game
     {
         private static PlayerSpriteFactory playerFactory;
@@ -15,7 +17,7 @@ namespace sprint0
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
-        private List<ISprite> sprites;
+        private List<ISprite> sprites, projectiles;
         private ISprite sprite;
         private SpriteFont font;
         private IPlayer player;
@@ -33,6 +35,7 @@ namespace sprint0
         public static int MapHeight { get; } = 176;
         public static int HUDHeight { get; } = 56;
         public static float Scale { get; } = 2.5f; //TODO change later?
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this)
@@ -102,11 +105,19 @@ namespace sprint0
             //list of room element sprites
             DungeonSprites dungeonSprite = new DungeonSprites(this);
             roomElementsSprites = dungeonSprite.LoadDungeonSprites();
+
+            //projectile sprites (starts with none)
+            projectiles = new List<ISprite>();
         }
 
-        public void AddItem(Vector2 Location, Direction dir, int lifespan, String item)
+        public void AddProjectile(Vector2 Location, Direction dir, int lifespan, String item)
         {
-            sprites.Add(itemFactory.MakeSprite(item, Location, dir, lifespan));
+            projectiles.Add(itemFactory.MakeSprite(item, Location, dir, lifespan));
+        }
+
+        public void AddFireball(Vector2 location, Vector2 dir)
+        {
+            projectiles.Add(itemFactory.MakeFireball(location, dir));
         }
 
         protected override void Update(GameTime gameTime)
@@ -122,6 +133,8 @@ namespace sprint0
             player.Update();
             foreach (ISprite _sprite in sprites)
                 _sprite.Update();
+            foreach (ISprite projectile in projectiles)
+                projectile.Update();
             foreach (ISprite _sprite in itemSprites)
                 _sprite.Update();
             foreach (ISprite _sprite in enemyNPCSprites)
@@ -139,6 +152,8 @@ namespace sprint0
 
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
+            foreach (ISprite projectile in projectiles)
+                projectile.Draw(_spriteBatch);
             itemSprites[itemIndex].Draw(_spriteBatch);
             enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
             roomElementsSprites[roomElementsIndex].Draw(_spriteBatch);
@@ -150,20 +165,20 @@ namespace sprint0
         public void ResetGame()
         {
             // reset game timer
-            this.ResetElapsedTime();
+            ResetElapsedTime();
 
             //reset ItemIndex
-            this.itemIndex = 0; // tight coupling :(
+            itemIndex = 0; // tight coupling :(
 
             //reset enemyNPCIndex
-            this.enemyNPCIndex = 0;
+            enemyNPCIndex = 0;
 
             //reset roomElementsIndex
-            this.roomElementsIndex = 0;
+            roomElementsIndex = 0;
 
             //reset player state
-            this.Player.Pos = new Vector2(200, 250);
-            this.Player.State = new UpIdleState(this.Player);
+            Player.Pos = new Vector2(200, 250);
+            Player.State = new UpIdleState(Player);
         }
     }
 }

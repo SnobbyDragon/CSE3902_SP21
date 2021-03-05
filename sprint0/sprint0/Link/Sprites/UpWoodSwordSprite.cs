@@ -11,18 +11,17 @@ namespace sprint0
     {
 
         public Texture2D Texture { get => texture; set => texture = value; }
-        public Vector2 Location { get => location; set => location = value; }
+        public Rectangle Location { get; set; }
         private readonly List<Rectangle> sources;
         private Texture2D texture;
         private int currFrame;
         private int slow;
-        private Vector2 location;
         private readonly int xOffset = 1, yOffset = 109;
         private int width = 0, height = 0;
         private readonly List<Vector2> locations;
         public UpWoodSwordSprite(Texture2D texture, Vector2 location)
         {
-            this.location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             this.texture = texture;
             sources = GetFrames();
             /*
@@ -31,9 +30,9 @@ namespace sprint0
             locations = new List<Vector2>
             {
                 location,
-                new Vector2(this.location.X, this.location.Y - 11),
-                new Vector2(this.location.X, this.location.Y - 10),
-                new Vector2(this.location.X, this.location.Y - 3)
+                new Vector2(Location.X, Location.Y - 11),
+                new Vector2(Location.X, Location.Y - 10),
+                new Vector2(Location.X, Location.Y - 3)
             };
 
         }
@@ -68,7 +67,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (currFrame < 4)
+            if (currFrame < 4) //TODO use Location rectangle
             {
                 spriteBatch.Draw(Texture, locations[currFrame], sources[currFrame], Color.White);
             }
@@ -80,7 +79,11 @@ namespace sprint0
             {
                 currFrame += 1;
             }
+        }
 
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
         }
     }
 }
