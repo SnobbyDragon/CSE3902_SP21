@@ -8,24 +8,24 @@ namespace sprint0
 {
     public class Rupee : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private List<Rectangle> sources;
-        private readonly int xOffset = 72, yOffset = 0, sizex = 8, sizey = 16;
+        private readonly int xOffset = 72, yOffset = 0, width = 8, height = 16;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
 
 
         public Rupee(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
 
             //load sprites
             sources = new List<Rectangle>
             {
-                new Rectangle(xOffset, yOffset, sizex, sizey),
-                new Rectangle(xOffset, yOffset+sizey+1, sizex, sizey)
+                new Rectangle(xOffset, yOffset, width, height),
+                new Rectangle(xOffset, yOffset+height+1, width, height)
             };
 
             currFrame = 0;
@@ -44,6 +44,11 @@ namespace sprint0
         {
             //Switches between colors
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

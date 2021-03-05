@@ -5,16 +5,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 /*
- * Last updated: 2/21/21 by urick.9
+ * Last updated: 3/4/21 by li.10011
  */
 namespace sprint0
 {
     public class Ganon : ISprite
     {
         private readonly Game1 game; //TODO maybe have player bc static so we don't need this
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 40, yOffset = 154, size = 32;
+        private readonly int xOffset = 40, yOffset = 154, width, height;
         private readonly List<Rectangle> sources;
         private int currFrame, counter; // counts the time
         private readonly int totalFrames, invisibleTime = 200, visibleTime = 100, teleportTime = 50; //TODO currently arbitrary times
@@ -25,7 +25,8 @@ namespace sprint0
         private Vector2 centerOffset; // fireball shoots from center of ganon
         public Ganon(Texture2D texture, Vector2 location, Game1 game)
         {
-            Location = location;
+            width = height = 32;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             this.game = game;
             currFrame = 0;
@@ -33,7 +34,7 @@ namespace sprint0
             sources = new List<Rectangle>();
             for (int frame = 0; frame < totalFrames; frame++)
             {
-                sources.Add(new Rectangle(xOffset + frame * (size + 1), yOffset, size, size));
+                sources.Add(new Rectangle(xOffset + frame * (width + 1), yOffset, width, height));
             };
             rand = new Random();
 
@@ -41,7 +42,7 @@ namespace sprint0
             counter = 0;
 
             fireball = new GanonFireball(texture, "none");
-            centerOffset = new Vector2(size / 2 - 4, size / 2 - 5); // ganon size / 2 - fireball size / 2
+            centerOffset = new Vector2(width / 2 - 4, height / 2 - 5); // ganon size / 2 - fireball size / 2
             fireballExplosion = new List<GanonFireball>()
             {
                 new GanonFireball(texture, "up"),
@@ -101,7 +102,7 @@ namespace sprint0
             if (CanShoot())
             {
                 ShootFireball();
-                FireballExplosion(); // TODO move this to when ganon dies
+                //FireballExplosion(); // TODO move this to when ganon dies
             }
             else
             {
@@ -113,6 +114,11 @@ namespace sprint0
             }
         }
 
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
+        }
+
         private bool CanShoot() // shoot fireball if fireball is dead
         {
             return fireball.IsDead;
@@ -120,11 +126,11 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            Vector2 dir = game.Player.Pos - (Location + centerOffset);
-            dir.Normalize();
-            fireball.Direction = dir;
-            fireball.Location = Location + centerOffset;
-            fireball.IsDead = false;
+            //Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + centerOffset);
+            //dir.Normalize();
+            //fireball.Direction = dir;
+            //fireball.Location = Location.Location.ToVector2() + centerOffset;
+            //fireball.IsDead = false;
         }
 
         private void FireballExplosion()
@@ -132,8 +138,8 @@ namespace sprint0
             // shoots 8 fireballs in all directions
             foreach (GanonFireball fireball in fireballExplosion)
             {
-                fireball.Location = Location + centerOffset;
-                fireball.IsDead = false;
+                //fireball.Location = Location.Location.ToVector2() + centerOffset;
+                //fireball.IsDead = false;
             }
         }
 
@@ -141,10 +147,11 @@ namespace sprint0
         {
             // currently picks a random place to appear TODO change location bounds
             // TODO depends on where link is?
-            Location = new Vector2(
-                rand.Next((int)(32 * Game1.Scale), (int)((Game1.Width - 32 - size) * Game1.Scale)),
-                rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32 - size) * Game1.Scale))
-                );
+            Vector2 loc = new Vector2(
+                rand.Next((int)(32 * Game1.Scale), (int)((Game1.Width - 32 - width) * Game1.Scale)),
+                rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32 - height) * Game1.Scale))
+                ) - Location.Location.ToVector2();
+            Location = new Rectangle((int)loc.X, (int)loc.Y, Location.Width, Location.Height);
         }
     }
 }

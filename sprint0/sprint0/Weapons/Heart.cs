@@ -7,7 +7,7 @@ namespace sprint0
 {
     public class Heart : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public String Type { get; set; }
         private readonly int width = 7, height = 8;
@@ -15,7 +15,7 @@ namespace sprint0
 
         public Heart(Texture2D texture, Vector2 location, String type)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             Type = type;
             typeRectMap = new Dictionary<String, Rectangle>
@@ -35,6 +35,11 @@ namespace sprint0
         public void Update()
         {
             // does nothing for now
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
         }
     }
 }

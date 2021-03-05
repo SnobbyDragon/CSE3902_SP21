@@ -6,19 +6,21 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Hannah Johnson
 namespace sprint0
 {
-    public class Ladder:ISprite
+    public class Ladder : ISprite
     {
 
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        
+        private readonly int width, height;
+
         public Ladder(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            width = height = 16;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
-            source = new Rectangle(1001, 45, 16, 16);
-          
+            source = new Rectangle(1001, 45, width, height);
+
 
         }
 
@@ -30,6 +32,11 @@ namespace sprint0
         public void Update()
         {
             //No movement for now
+        }
+
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

@@ -8,31 +8,31 @@ namespace sprint0
 {
     public class Stalfos : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private int totalFrames;
         private int currentFrame;
         private int repeatedFrames;
+        private readonly int width = 16, height = 16;
 
         //direction that stalfos is moving/'facing'
-        enum Direction { Up, Down, Left, Right }
         Direction dir;
         private List<SpriteEffects> spriteEffects;
 
         public Stalfos(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             totalFrames = 2;
             currentFrame = 0;
             repeatedFrames = 7;
 
             //adds sprite
-            source = new Rectangle(1, 59, 16, 16);
+            source = new Rectangle(1, 59, width, height);
 
             //initializes direction
-            dir = Direction.Up;
+            dir = Direction.n;
 
             //Creates sprite effect list
             spriteEffects = new List<SpriteEffects> {
@@ -43,7 +43,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), spriteEffects[currentFrame / repeatedFrames], 0);
+            spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), spriteEffects[currentFrame / repeatedFrames], 0);
         }
 
         public void Update()
@@ -54,50 +54,54 @@ namespace sprint0
             //todo: move in 'random' directions, avoid obstacles
             switch (dir)
             {
-                case Direction.Down: //move down; if y limit reached, turn right
+                case Direction.s: //move down; if y limit reached, turn right
                     if (Location.Y < 300)
                     {
-                        Location = new Vector2(Location.X, Location.Y + 1);
+                        Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
                     }
                     else
                     {
-                        dir = Direction.Right;
+                        dir = Direction.e;
                     }
                     break;
-                case Direction.Right: //move right; if x limit reached, turn up
+                case Direction.e: //move right; if x limit reached, turn up
                     if (Location.X < 400)
                     {
-                        Location = new Vector2(Location.X + 1, Location.Y);
+                        Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
                     }
                     else
                     {
-                        dir = Direction.Up;
+                        dir = Direction.n;
                     }
                     break;
-                case Direction.Up: //move up; if y limit reached, turn left
+                case Direction.n: //move up; if y limit reached, turn left
                     if (Location.Y > 250)
                     {
-                        Location = new Vector2(Location.X, Location.Y - 1);
+                        Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
                     }
                     else
                     {
-                        dir = Direction.Left;
+                        dir = Direction.w;
                     }
                     break;
-                case Direction.Left: //move left; if y limit reached, turn down
+                case Direction.w: //move left; if y limit reached, turn down
                     if (Location.X > 200)
                     {
-                        Location = new Vector2(Location.X - 1, Location.Y);
+                        Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
                     }
                     else
                     {
-                        dir = Direction.Down;
+                        dir = Direction.s;
                     }
                     break;
                 default:
                     throw new ArgumentException("Invalid direction! Stalfos movement failed.");
             }
+        }
 
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

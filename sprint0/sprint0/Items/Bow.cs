@@ -8,20 +8,20 @@ namespace sprint0
 {
     public class Bow : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 143, yOffset = 0, sizeX = 17, sizeY = 11;
+        private readonly int xOffset = 143, yOffset = 0, width = 17, height = 11;
         private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
 
         public Bow(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             sources = new List<Rectangle>
             {
-                new Rectangle(xOffset, yOffset, sizeX, sizeY)
+                new Rectangle(xOffset, yOffset, width, height)
             };
             currFrame = 0;
             totalFrames = 1;
@@ -37,6 +37,11 @@ namespace sprint0
         {
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames*repeatedFrames);
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

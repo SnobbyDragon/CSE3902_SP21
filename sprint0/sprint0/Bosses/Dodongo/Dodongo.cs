@@ -11,7 +11,7 @@ namespace sprint0
     {
         //TODO:Add bomb eating animation and logic
 
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private List<Rectangle> upDownSources, rightLeftSources;
         private int totalFramesUD, currentFrameUD, repeatedFrames;
@@ -19,24 +19,22 @@ namespace sprint0
         private int totalSpriteEffects, currentSpriteEffect;
         private List<SpriteEffects> spriteEffects;
         public Vector2 Destination { get; set; }
-        
-
-        enum Direction { left, right, up, down }
-        private Direction direction = Direction.left;
+        private Direction direction = Direction.w;
+        private readonly int sideLength = 16, width = 32;
 
         //list of source frames
 
         public Dodongo(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, sideLength); // starts horizontal
             Texture = texture;
             totalFramesUD = 4; currentFrameUD = 0;
             totalFramesRL = 3; currentFrameRL = 0;
             repeatedFrames = 10;
             upDownSources = new List<Rectangle>();
             rightLeftSources = new List<Rectangle>();
-            int xPos = 1, yPos = 58, sideLength = 16;
-         
+            int xPos = 1, yPos = 58;
+
             //adds up and down frames
             for (int frame = 0; frame < totalFramesUD; frame++)
             {
@@ -44,7 +42,6 @@ namespace sprint0
                 xPos += sideLength + 1;
             }
             //adds right and left frames
-            int width = 32;
             int xPosCopy = xPos;
             for (int frame = 0; frame < totalFramesRL; frame++)
             {
@@ -59,8 +56,8 @@ namespace sprint0
                 SpriteEffects.None,
                 SpriteEffects.FlipHorizontally
             };
-            
-            
+
+
             //sets Destination-later can make a set destination method
             //TODO:make movement dependent on destination
             Destination = new Vector2(700, 300);
@@ -71,17 +68,17 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
 
         {
-            if (direction == Direction.left || direction == Direction.right)
+            if (direction == Direction.w || direction == Direction.e)
             {
-                
+
                 spriteBatch.Draw(Texture, Location, rightLeftSources[currentFrameRL / repeatedFrames],
-                    Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), spriteEffects[currentSpriteEffect/repeatedFrames], 0);
+                    Color.White, 0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
             }
             else
             {
-                
+
                 spriteBatch.Draw(Texture, Location, upDownSources[currentFrameUD / repeatedFrames], Color.White,
-                    0, new Vector2(0, 0), new Vector2(1, 1), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
+                    0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
             }
 
         }
@@ -89,76 +86,80 @@ namespace sprint0
         public void Update()
         {
 
-            
+
             //handles movement
 
-            if (direction == Direction.left)
+            if (direction == Direction.w)
             {
                 //Sets sprite effect
-                currentSpriteEffect = repeatedFrames+1;
+                currentSpriteEffect = repeatedFrames + 1;
 
                 //walking animation
-                currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL-1) * repeatedFrames);
+                currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
 
                 //moves sprite left
-                Location += new Vector2(-1,0);
-                if(Location.X <= 50 * Game1.Scale)
+                Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
+                if (Location.X <= 50 * Game1.Scale)
                 {
-                    direction = Direction.down;
+                    direction = Direction.s;
                     currentFrameUD = 0;
-                    
+                    Location = new Rectangle(Location.X, Location.Y, sideLength, Location.Height); // change to vertical dimensions
                 }
             }
-            else if (direction == Direction.right)
+            else if (direction == Direction.e)
             {
                 //Sets sprite effect
                 currentSpriteEffect = 0;
 
                 //walking animation
-                currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL-1) * repeatedFrames);
+                currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
 
-                
                 //moves sprite right
-                Location += new Vector2(1, 0);
+                Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
                 if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                 {
-                    direction = Direction.up;
-                    currentFrameUD = (totalFramesUD*repeatedFrames / 2)+1;
-                    
+                    direction = Direction.n;
+                    currentFrameUD = (totalFramesUD * repeatedFrames / 2) + 1;
+                    Location = new Rectangle(Location.X, Location.Y, sideLength, Location.Height); // change to vertical dimensions
                 }
+            }
+            else if (direction == Direction.s)
+            {
 
-
-
-            } else if (direction == Direction.down) {
-                 
-               
-                //amiantes sprite by fliping after every repeatedFrames frames
-                currentSpriteEffect = (currentSpriteEffect + 1)%(totalSpriteEffects*repeatedFrames);
-
-                //moves sprite down
-                Location += new Vector2(0, 1);
-                if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
-                {
-                    direction = Direction.right;
-                    currentFrameRL = 0;
-                    
-                }
-
-            } else { //direction == Direction.up
 
                 //amiantes sprite by fliping after every repeatedFrames frames
                 currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
-                
+
+                //moves sprite down
+                Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
+                if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
+                {
+                    direction = Direction.e;
+                    currentFrameRL = 0;
+                    Location = new Rectangle(Location.X, Location.Y, width, Location.Height); // change to horizontal dimensions
+                }
+
+            }
+            else
+            { //direction == Direction.up
+
+                //amiantes sprite by fliping after every repeatedFrames frames
+                currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
+
                 //moves sprite up
-                Location += new Vector2(0,-1);
+                Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
                 if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
-                    direction = Direction.left;
-                    currentFrameRL = (totalFramesRL*repeatedFrames / 2) + 1;
-                    
+                    direction = Direction.w;
+                    currentFrameRL = (totalFramesRL * repeatedFrames / 2) + 1;
+                    Location = new Rectangle(Location.X, Location.Y, width, Location.Height); // change to horizontal dimensions
                 }
             }
+        }
 
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
         }
     }
 }

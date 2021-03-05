@@ -9,7 +9,7 @@ namespace sprint0
     public class Gohma : ISprite
     {
         private Game1 game;
-        public Vector2 Location { get; set; } // location of the head
+        public Rectangle Location { get; set; } // location of the head
         public Texture2D Texture { get; set; }
         private readonly int size = 16;
         private Dictionary<string, List<Rectangle>> colorToLegMap, colorToHeadMap;
@@ -20,12 +20,11 @@ namespace sprint0
         private int currDest;
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < legTotalFrames*legRepeatedFrames
         private List<Vector2> destinations; // gohma moves to predetermined destinations
-        private ManhandlaFireball fireball; // TODO no gohma fireball, so manhandla for now
         private Vector2 centerOffset; // fireball shoots from center of gohma
 
         public Gohma(Texture2D texture, Vector2 location, string color, Game1 game)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
             Texture = texture;
             this.game = game;
             this.color = color;
@@ -67,7 +66,7 @@ namespace sprint0
                 location + new Vector2(0,100)
             };
 
-            fireball = new ManhandlaFireball(texture);
+            //fireball = new ManhandlaFireball(texture); TODO
             centerOffset = new Vector2(size / 2 - 4, size / 2 - 5); // gohma size / 2 - fireball size / 2
         }
 
@@ -86,9 +85,9 @@ namespace sprint0
         {
             // draws the left leg
             spriteBatch.Draw(
-                Texture, Location + new Vector2(-size, 0),
+                Texture, new Rectangle(Location.X - size, Location.Y, size, size),
                 colorToLegMap[color][legCurrFrame / legRepeatedFrames],
-                Color.White, 0, new Vector2(0,0), 1,
+                Color.White, 0, new Vector2(0,0),
                 leftLegEffects[legCurrFrame / legRepeatedFrames], 0);
 
             // draws the head
@@ -96,18 +95,15 @@ namespace sprint0
 
             // draws the right leg; left/right leg should be opposite frames
             spriteBatch.Draw(
-                Texture, Location + new Vector2(size, 0),
+                Texture, new Rectangle(Location.X + size, Location.Y, size, size),
                 colorToLegMap[color][(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], // TODO refator: this is probably overly complicated
-                Color.White, 0, new Vector2(0, 0), 1,
+                Color.White, 0, new Vector2(0, 0),
                 rightLegEffects[(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], 0);
-
-            // draws fireball
-            fireball.Draw(spriteBatch);
         }
 
         public void Update()
         {
-            Vector2 dist = destinations[currDest] - Location;
+            Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
             if (dist.Length() == 0) // can use exact bc no floating point errors for whole numbers
             {
                 // reached destination, so pick a new destination
@@ -117,7 +113,9 @@ namespace sprint0
             {
                 // has not reached destination, move towards it
                 dist.Normalize();
-                Location += dist;
+                Rectangle loc = Location;
+                loc.Offset(ApproximateDirection(dist));
+                Location = loc;
             }
 
             // animates all the time for now
@@ -129,24 +127,55 @@ namespace sprint0
             {
                 ShootFireball();
             }
-            else
-            {
-                fireball.Update();
-            }
         }
 
-        private bool CanShoot() // shoot fireball if fireball is dead
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
+        }
+
+        private bool CanShoot() // TODO
         {
-            return fireball.IsDead;
+            return true;
         }
 
         private void ShootFireball()
         {
-            Vector2 dir = game.Player.Pos - (Location + centerOffset);
-            dir.Normalize();
-            fireball.Direction = dir;
-            fireball.Location = Location + centerOffset;
-            fireball.IsDead = false;
+            //Vector2 dir = game.Player.Pos - (Location + centerOffset);
+            //dir.Normalize();
+            //fireball.Direction = dir;
+            //fireball.Location = Location + centerOffset;
+            //fireball.IsDead = false;
+        }
+
+        private Vector2 ApproximateDirection(Vector2 dir)
+        {
+            //TODO currently using vectors; maybe make IDirection interface?
+            //Direction closestApprox;
+            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
+            List<Vector2> vectors = new List<Vector2>
+            {
+                new Vector2(1, 0),
+                new Vector2(-1, 0),
+                new Vector2(0, 1),
+                new Vector2(0, -1),
+                new Vector2(1, 1),
+                new Vector2(1, -1),
+                new Vector2(-1, 1),
+                new Vector2(-1, -1),
+            };
+            Vector2 closestApprox = vectors[0];
+            float closestDist = (closestApprox - dir).LengthSquared();
+            foreach (Vector2 v in vectors)
+            {
+                float dist = (v - dir).LengthSquared();
+                if (dist < closestDist)
+                {
+                    closestApprox = v;
+                    closestDist = dist;
+                }
+            }
+            return closestApprox;
         }
     }
 }

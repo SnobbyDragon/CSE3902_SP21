@@ -85,6 +85,7 @@ namespace sprint0
                 bossSpriteFactory.MakeSprite("gleeok", new Vector2(290,300)),
                 bossSpriteFactory.MakeSprite("ganon", new Vector2(100,300)),
                 bossSpriteFactory.MakeSprite("aquamentus", new Vector2(340,300)),
+                bossSpriteFactory.MakeSprite("digdogger", new Vector2(340,300))
             };
             return bossSprites;
         }

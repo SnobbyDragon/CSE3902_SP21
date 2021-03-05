@@ -8,27 +8,25 @@ namespace sprint0
 {
     public class GoriyaBoomerang : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 290, yOffset = 11, sizeX = 7, sizeY = 15;
+        private readonly int xOffset = 290, yOffset = 11, width = 7, height = 15;
         private List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        SpriteEffects h = SpriteEffects.FlipHorizontally;
-        SpriteEffects v = SpriteEffects.FlipVertically;
-        enum Direction { left, right, up, down, ne, se, sw, nw }
-        Direction direction;
+        private readonly SpriteEffects h = SpriteEffects.FlipHorizontally, v = SpriteEffects.FlipVertically;
+        private Direction direction;
 
         public GoriyaBoomerang(Texture2D texture, Vector2 location, int dir)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             direction = (Direction)dir;
             sources = new List<Rectangle>
             {
-                new Rectangle(xOffset, yOffset, sizeX, sizeY),
-                new Rectangle(xOffset + sizeX + 2, yOffset, sizeX, sizeY),
-                new Rectangle(xOffset + sizeX*2 + 4, yOffset, sizeX+1, sizeY)
+                new Rectangle(xOffset, yOffset, width, height),
+                new Rectangle(xOffset + width + 2, yOffset, width, height),
+                new Rectangle(xOffset + width*2 + 4, yOffset, width+1, height)
             };
             currFrame = 0;
             totalFrames = 8;
@@ -40,22 +38,22 @@ namespace sprint0
             int tempFrame = currFrame / repeatedFrames;
             if (tempFrame == 3)
             {
-                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
+                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), h, 0);
             }
             else if (tempFrame == 4){
-                spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
+                spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), h, 0);
             }
             else if (tempFrame == 5)
             {
-                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v | h, 0);
+                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), v | h, 0);
             }
             else if (tempFrame == 6)
             {
-                spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+                spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), v, 0);
             }
             else if (tempFrame == 7)
             {
-                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+                spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), v, 0);
             }
             else
             {
@@ -67,31 +65,31 @@ namespace sprint0
         public void Update()
         {
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            if (direction == Direction.left)
+            if (direction == Direction.w)
             {
                 //moves sprite left
-                Location += new Vector2(-1, 0);
+                Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
 
                 if (Location.X <= 50 * Game1.Scale)
                 {
-                    direction = Direction.right;
+                    direction = Direction.e;
 
                 }
             }
-            else if (direction == Direction.right)
+            else if (direction == Direction.e)
             {
 
                 //moves sprite right
-                Location += new Vector2(1, 0);
+                Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
 
                 if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                 {
-                    direction = Direction.left;
+                    direction = Direction.w;
                 }
             }
             else if (direction == Direction.ne)
             {
-                Location += new Vector2(1, -1);
+                Location = new Rectangle(Location.X + 1, Location.Y - 1, Location.Width, Location.Height);
                 if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
                     direction = Direction.se;
@@ -104,7 +102,7 @@ namespace sprint0
             }
             else if (direction == Direction.sw)
             {
-                Location += new Vector2(-1, 1);
+                Location = new Rectangle(Location.X - 1, Location.Y + 1, Location.Width, Location.Height);
                 if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
                     direction = Direction.nw;
@@ -117,7 +115,7 @@ namespace sprint0
             }
             else if (direction == Direction.nw)
             {
-                Location += new Vector2(-1, -1);
+                Location = new Rectangle(Location.X - 1, Location.Y - 1, Location.Width, Location.Height);
                 if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
                     direction = Direction.sw;
@@ -130,7 +128,7 @@ namespace sprint0
             }
             else if (direction == Direction.se)
             {
-                Location += new Vector2(1, 1);
+                Location = new Rectangle(Location.X + 1, Location.Y + 1, Location.Width, Location.Height);
                 if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
                     direction = Direction.ne;
@@ -140,26 +138,31 @@ namespace sprint0
                     direction = Direction.sw;
                 }
             }
-            else if (direction == Direction.down)
+            else if (direction == Direction.s)
             {
                 //moves sprite down
-                Location += new Vector2(0, 1);
+                Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
 
                 if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
-                    direction = Direction.up;
+                    direction = Direction.n;
                 }
             }
             else
             { //direction==Direction.up
                 //moves sprite up
-                Location += new Vector2(0, -1);
+                Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
 
                 if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
-                    direction = Direction.down;
+                    direction = Direction.s;
                 }
             }
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

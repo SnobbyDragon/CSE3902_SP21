@@ -9,19 +9,21 @@ namespace sprint0
     public class Flame : ISprite
     {
 
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
         SpriteEffects s = SpriteEffects.FlipHorizontally;
         private int currentFrame;
         private int repeatedFrames;
         private int totalFrames;
+        private readonly int width, height;
 
         public Flame(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            width = height = 16;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
-            source = new Rectangle(52, 11, 16, 16);
+            source = new Rectangle(52, 11, width, height);
             currentFrame = 0;
             repeatedFrames = 8;
             totalFrames = 2;
@@ -29,7 +31,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), s, 0);
+            spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), s, 0);
         }
 
         public void Update()
@@ -43,6 +45,11 @@ namespace sprint0
                 s = SpriteEffects.None;
             }
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
         }
     }
 }

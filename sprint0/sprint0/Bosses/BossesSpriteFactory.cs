@@ -18,31 +18,20 @@ namespace sprint0
 
         public ISprite MakeSprite(String spriteType, Vector2 location)
         {
-            
-            switch (spriteType)
+
+            return spriteType switch
             {
-     
-                case "aquamentus":
-                    return new Aquamentus(texture, location, game);
-                case "patra":
-                    return new Patra(texture, location);
-                case "manhandla":
-                    return new Manhandla(texture, location, game);
-                case "gleeok":
-                    return new Gleeok(texture, location, game);
-                case "ganon":
-                    return new Ganon(texture, location, game);
-                case "orange gohma":
-                    return new Gohma(texture, location, "orange", game);
-                case "blue gohma":
-                    return new Gohma(texture, location, "blue", game);
-                case "dodongo":
-                    return new Dodongo(texture, location);
-                case "digdogger":
-                    return new Digdogger(texture, location);
-                default:
-                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
-            }
+                "aquamentus" => new Aquamentus(texture, location, game),
+                "patra" => new Patra(texture, location),
+                "manhandla" => new Manhandla(texture, location, game),
+                "gleeok" => new Gleeok(texture, location, game),
+                "ganon" => new Ganon(texture, location, game),
+                "orange gohma" => new Gohma(texture, location, "orange", game),
+                "blue gohma" => new Gohma(texture, location, "blue", game),
+                "dodongo" => new Dodongo(texture, location),
+                "digdogger" => new Digdogger(texture, location),
+                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+            };
         }
     }
 }

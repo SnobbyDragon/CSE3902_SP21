@@ -6,13 +6,13 @@ namespace sprint0
 {
     public class Arrow : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public Vector2 origin;
         private float rotation;
         private readonly float rotate180;
         private readonly List<Rectangle> sources;
-        private readonly int xOffset = 154, yOffset = 0, sizex = 5, sizey = 16;
+        private readonly int xOffset = 154, yOffset = 0, width = 5, height = 16;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
         private readonly Direction dir;
@@ -46,19 +46,20 @@ namespace sprint0
                     sourceAdjustY += 10;
                     break;
             }
-            Location = location + new Vector2(sourceAdjustX, sourceAdjustY);
+            Vector2 loc = location + new Vector2(sourceAdjustX, sourceAdjustY);
+            Location = new Rectangle((int)loc.X, (int)loc.Y, width, height);
             Texture = texture;
             this.dir = dir;
             this.lifespan = lifespan;
             sources = new List<Rectangle>
             {
-                new Rectangle(xOffset, yOffset, sizex, sizey),
-                new Rectangle(xOffset, yOffset+sizey+1, sizex, sizey)
+                new Rectangle(xOffset, yOffset, width, height),
+                new Rectangle(xOffset, yOffset+height+1, width, height)
             };
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;
-            origin = new Vector2(sizex / 2, sizey / 2);
+            origin = new Vector2(width / 2, height / 2);
             rotation = 0;
             rotate180 = (float)Math.PI;
         }
@@ -75,7 +76,9 @@ namespace sprint0
 
         private void Move()
         {
-            Location = new Vector2(Location.X + xa, Location.Y + ya);
+            Rectangle loc = Location;
+            loc.Offset(xa, ya);
+            Location = loc;
         }
 
 
@@ -84,7 +87,7 @@ namespace sprint0
         {
             if (Alive())
             {
-                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White, rotation, origin, new Vector2(1, 1), SpriteEffects.None, 0);
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White, rotation, origin, SpriteEffects.None, 0);
             }
         }
 
@@ -121,6 +124,11 @@ namespace sprint0
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Fairy:ISprite
+    public class Fairy : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly List<Rectangle> sources;
         private readonly int totalFrames;
@@ -20,64 +20,63 @@ namespace sprint0
         private Vector2 destination;
         private readonly Random rand;
 
-
-
         public Fairy(Texture2D texture, Vector2 location)
         {
-           
-            Location = location;
             Texture = texture;
             totalFrames = 2;
             currentFrame = 0; repeatedFrames = 10; //moveCounter = 0;
             sources = new List<Rectangle>();
-            int xPos = 40, yPos = 0, width = 7, height =16;
+            int xPos = 40, yPos = 0, width = 7, height = 16;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             sources.Add(new Rectangle(xPos, yPos, width, height));
-            sources.Add(new Rectangle(xPos+width+1, yPos, width, height));
+            sources.Add(new Rectangle(xPos + width + 1, yPos, width, height));
 
             rand = new Random();
             GenerateDest();
-
-
         }
-
-        
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, sources[currentFrame/repeatedFrames], Color.White);
+            spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
         }
 
         public void Update()
         {
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
-            Vector2 dist = destination - Location;
+            Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
             {
                 // reached destination, generate new destination;
                 GenerateDest();
             }
-            else 
+            else
             {
                 // has not reached destination, move towards it
                 dist.Normalize();
-                Location += dist; 
-               
+                dist = ApproximateDirection(dist);
+                Location = new Rectangle((int)(Location.X + dist.X), (int)(Location.Y + dist.Y), Location.Width, Location.Height);
             }
-        
+
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
 
         // generates a new destination
-        public void GenerateDest()
+        private void GenerateDest()
         {
-            int xlowerBound = (int)Location.X - 200;
-            int ylowerBound = (int)Location.Y - 200;
-            int xupperBound = (int)Location.X + 200;
-            int yupperBound = (int)Location.X + 200;
+            int xlowerBound = Location.X - 200;
+            int ylowerBound = Location.Y - 200;
+            int xupperBound = Location.X + 200;
+            int yupperBound = Location.X + 200;
 
             //if destination is off screen resets to screen bounds
-            if (xlowerBound< 32*Game1.Scale) {
-                xlowerBound = (int) (32 * Game1.Scale);
+            if (xlowerBound < 32 * Game1.Scale)
+            {
+                xlowerBound = (int)(32 * Game1.Scale);
             }
             if (xupperBound > (Game1.Width - 32) * Game1.Scale)
             {
@@ -94,9 +93,39 @@ namespace sprint0
             // picks a random destination 
 
             destination = new Vector2(
-                rand.Next(xlowerBound,xupperBound),
+                rand.Next(xlowerBound, xupperBound),
                 rand.Next(ylowerBound, yupperBound)
                 );
+        }
+
+        private Vector2 ApproximateDirection(Vector2 dir)
+        {
+            //TODO currently using vectors; maybe make IDirection interface?
+            //Direction closestApprox;
+            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
+            List<Vector2> vectors = new List<Vector2>
+            {
+                new Vector2(1, 0),
+                new Vector2(-1, 0),
+                new Vector2(0, 1),
+                new Vector2(0, -1),
+                new Vector2(1, 1),
+                new Vector2(1, -1),
+                new Vector2(-1, 1),
+                new Vector2(-1, -1),
+            };
+            Vector2 closestApprox = vectors[0];
+            float closestDist = (closestApprox - dir).LengthSquared();
+            foreach (Vector2 v in vectors)
+            {
+                float dist = (v - dir).LengthSquared();
+                if (dist < closestDist)
+                {
+                    closestApprox = v;
+                    closestDist = dist;
+                }
+            }
+            return closestApprox;
         }
     }
 }

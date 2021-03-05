@@ -7,34 +7,40 @@ namespace sprint0
     class RightWalkingLinkSprite : ISprite
     {
         public Texture2D Texture { get => texture; set => texture = value; }
-        public Vector2 Location { get => location; set => location = value; }
+        public Rectangle Location { get; set; }
 
         private Texture2D texture;
-        private Vector2 location;
+        
         private readonly List<Rectangle> frames;
         private int currentFrame;
         private readonly int repeatFrames;
         private readonly int totalFrames;
+        private readonly int size = 16;
 
         public RightWalkingLinkSprite(Texture2D texture, Vector2 location)
         {
             this.texture = texture;
-            this.location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
             currentFrame = 0;
             repeatFrames = 8;
             totalFrames = 2 * repeatFrames;
-            frames = new List<Rectangle> { new Rectangle(35, 11, 16, 16), new Rectangle(52, 11, 16, 16) };
+            frames = new List<Rectangle> { new Rectangle(35, 11, size, size), new Rectangle(52, 11, size, size) };
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, location, frames[currentFrame / repeatFrames], Color.White);
+            spriteBatch.Draw(texture, Location, frames[currentFrame / repeatFrames], Color.White);
         }
 
         public void Update()
         {
             currentFrame++;
             currentFrame %= totalFrames;
+        }
+
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

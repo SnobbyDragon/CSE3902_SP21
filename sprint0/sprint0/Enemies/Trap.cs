@@ -8,17 +8,18 @@ namespace sprint0
 {
     public class Trap : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
+        private readonly int width = 16, height = 16;
 
         public Trap(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
 
             //load sprite
-            source = new Rectangle(164, 59, 16, 16);
+            source = new Rectangle(164, 59, width, height);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -29,6 +30,11 @@ namespace sprint0
         public void Update()
         {
             // N/A
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

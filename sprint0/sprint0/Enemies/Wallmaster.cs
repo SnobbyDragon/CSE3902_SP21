@@ -8,26 +8,25 @@ namespace sprint0
 {
     public class Wallmaster : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 393, yOffset = 11, size = 16;
+        private readonly int xOffset = 393, yOffset = 11, width = 16, height = 16;
         private List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
         private SpriteEffects s; // could be flipped horizontally, vertically, or both
-        enum Direction { n, s, e, w } // TODO make a global public class bc a lot of sprites use this
         private Direction direction; // wallmaster only moves n s e w (cannot move diagonal)
         private int moveCounter, dirChangeDelay;
         private Random rand;
 
         public Wallmaster(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             sources = new List<Rectangle>
             {
-                new Rectangle(xOffset, yOffset, size, size),
-                new Rectangle(xOffset + size + 1, yOffset, size, size)
+                new Rectangle(xOffset, yOffset, width, height),
+                new Rectangle(xOffset + width + 1, yOffset, width, height)
             };
             currFrame = 0;
             totalFrames = 2;
@@ -51,7 +50,7 @@ namespace sprint0
             ArbitraryDirection();
         }
 
-        public void ArbitraryDirection()
+        private void ArbitraryDirection()
         {
             // changes to an arbitrary direction; if in wall, go into room, else random direction
             // TODO 32 is a magic number for room border / wall width... make static variable in Game1?
@@ -95,7 +94,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), 1, s, 0);
+            spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), s, 0);
         }
 
         public void Update()
@@ -111,18 +110,23 @@ namespace sprint0
             switch (direction)
             {
                 case Direction.n:
-                    Location += new Vector2(0, -1);
+                    Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
                     break;
                 case Direction.s:
-                    Location += new Vector2(0, 1);
+                    Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
                     break;
                 case Direction.e:
-                    Location += new Vector2(1, 0);
+                    Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
                     break;
                 case Direction.w:
-                    Location += new Vector2(-1, 0);
+                    Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
                     break;
             }
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

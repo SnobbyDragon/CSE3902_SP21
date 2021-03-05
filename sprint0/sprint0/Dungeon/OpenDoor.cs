@@ -7,7 +7,7 @@ namespace sprint0
     public class OpenDoor : ISprite
     {
 
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private Rectangle destination;
@@ -15,7 +15,7 @@ namespace sprint0
 
         public OpenDoor(Texture2D texture, Vector2 location, string dir)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
             Texture = texture;
             destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             source = dir switch
@@ -37,6 +37,11 @@ namespace sprint0
         public void Update()
         {
 
+        }
+
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

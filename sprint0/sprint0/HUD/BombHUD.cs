@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class BombHUD : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public int bombNumTens;
         public int bombNumOnes;
@@ -17,7 +17,7 @@ namespace sprint0
 
         public BombHUD(Texture2D texture, Vector2 location, int bombNum)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, 0, 0); // this rectangle is just a point
             Texture = texture;
 
             //the tens and ones place for the number of bombs
@@ -54,6 +54,11 @@ namespace sprint0
         public void Update()
         {
             //todo: update ones and tens after link gets/uses item
+        }
+
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

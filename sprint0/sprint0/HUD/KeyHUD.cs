@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class KeyHUD : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public int keyNumTens;
         public int keyNumOnes;
@@ -17,7 +17,7 @@ namespace sprint0
 
         public KeyHUD(Texture2D texture, Vector2 location, int keyNum)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, 0, 0); // this rectangle is just a point
             Texture = texture;
 
             //the tens and ones place for the number of keys
@@ -55,6 +55,11 @@ namespace sprint0
         public void Update()
         {
             //todo: update ones and tens after link gets/uses item
+        }
+
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

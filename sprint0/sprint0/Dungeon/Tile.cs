@@ -7,20 +7,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Tile:ISprite
+    public class Tile : ISprite
     {
 
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
+        private readonly int width, height;
 
         public Tile(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            width = height = 16;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
-            source = new Rectangle(984, 11, 16, 16);
-          
-
+            source = new Rectangle(984, 11, width, height);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -31,6 +31,11 @@ namespace sprint0
         public void Update()
         {
             //No movement 
+        }
+
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

@@ -8,22 +8,20 @@ namespace sprint0
 {
     public class HUD : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
 
 
         public HUD(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, 0, 0); // this rectangle is just a point
             Texture = texture;
 
             //load HUD sprite
             source = new Rectangle(258, 11, Game1.Width, Game1.HUDHeight);
 
         }
-
-
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -33,6 +31,11 @@ namespace sprint0
         public void Update()
         {
             //Does nothing
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

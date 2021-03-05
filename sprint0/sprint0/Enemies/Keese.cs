@@ -7,23 +7,25 @@ namespace sprint0
 {
     public class Keese : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private int currentFrame;
         private string color;
         private readonly int totalFrames, repeatedFrames;
         private Dictionary<string, List<Rectangle>> colorMap;
-        enum Direction { left, right, up, down }
+        private readonly int width, height;
+
         Direction direction;
         public Keese(Texture2D texture, Vector2 location, String keeseColor)
         {
-            Location = location;
+            width = height = 16;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             color = keeseColor;
             currentFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;
-            direction = Direction.up;
+            direction = Direction.n;
 
 
             colorMap = new Dictionary<string, List<Rectangle>>
@@ -36,11 +38,10 @@ namespace sprint0
         private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
         {
             List<Rectangle> sources = new List<Rectangle>();
-            int size = 16;
             for (int i = 0; i < numFrames; i++)
             {
-                sources.Add(new Rectangle(xPos, yPos, size, size));
-                xPos += size + 1;
+                sources.Add(new Rectangle(xPos, yPos, width, height));
+                xPos += width + 1;
             }
             return sources;
         }
@@ -54,48 +55,53 @@ namespace sprint0
         {
 
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            if (direction == Direction.left)
+            if (direction == Direction.w)
             {
                 //moves sprite left
-                Location += new Vector2(-1, 0);
+                Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
 
                 if (Location.X <= 50 * Game1.Scale)
                 {
-                    direction = Direction.down;
+                    direction = Direction.s;
 
                 }
             }
-            else if (direction == Direction.right)
+            else if (direction == Direction.e)
             {
 
                 //moves sprite right
-                Location += new Vector2(1, 0);
+                Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
 
                 if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                 {
-                    direction = Direction.up;
+                    direction = Direction.n;
                 }
             }
-            else if (direction == Direction.down)
+            else if (direction == Direction.s)
             {
                 //moves sprite down
-                Location += new Vector2(0, 1);
+                Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
 
                 if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                 {
-                    direction = Direction.right;
+                    direction = Direction.e;
                 }
             }
             else
             { //direction==Direction.up
                 //moves sprite up
-                Location += new Vector2(0, -1);
+                Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
 
                 if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
-                    direction = Direction.left;
+                    direction = Direction.w;
                 }
             }
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

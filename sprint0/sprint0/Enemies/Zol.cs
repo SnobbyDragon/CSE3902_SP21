@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -7,10 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Zol:ISprite
+    public class Zol : ISprite
     {
 
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private int totalFrames;
         private int currentFrame;
@@ -18,20 +17,18 @@ namespace sprint0
         private string color;
         private Dictionary<string, List<Rectangle>> colorMap;
         private int delay, delayCounter;
-
-        enum Direction { left, right, up, down }
-        private Direction direction = Direction.left;
-
+        private readonly int width = 16, height = 16;
+        private Direction direction = Direction.w;
 
         public Zol(Texture2D texture, Vector2 location, string gelColor)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             totalFrames = 2;
             currentFrame = 0;
             color = gelColor;
             delay = 50;
-            delayCounter=0;
+            delayCounter = 0;
 
             colorMap = new Dictionary<string, List<Rectangle>>
             {
@@ -46,18 +43,18 @@ namespace sprint0
 
 
         //Adds source frames to a list
-        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames) {
+        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
+        {
             List<Rectangle> sources = new List<Rectangle>();
-            int width =16;
-            int height =16;
-            for (int i = 0; i < numFrames; i++) {
-                sources.Add(new Rectangle(xPos,yPos,width,height));
+            for (int i = 0; i < numFrames; i++)
+            {
+                sources.Add(new Rectangle(xPos, yPos, width, height));
                 xPos += width + 1;
             }
             return sources;
         }
 
-        
+
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -68,61 +65,67 @@ namespace sprint0
         {
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
-            switch (direction){
-                case Direction.left:
+            switch (direction)
+            {
+                case Direction.w:
                     //moves sprite left but in a halting manner
                     if (delayCounter == delay)
                     {
-                        Location += new Vector2(-40, 0);
+                        Location = new Rectangle(Location.X - 40, Location.Y, Location.Width, Location.Height);
                         delayCounter = 0;
                     }
 
                     if (Location.X <= 50 * Game1.Scale)
                     {
-                        direction = Direction.down;
+                        direction = Direction.s;
 
                     }
                     break;
-                case Direction.right:
+                case Direction.e:
                     if (delayCounter == delay)
                     {
-                        Location += new Vector2(40, 0);
+                        Location = new Rectangle(Location.X + 40, Location.Y, Location.Width, Location.Height);
                         delayCounter = 0;
                     }
 
                     if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                     {
-                        direction = Direction.up;
+                        direction = Direction.n;
 
                     }
                     break;
-                case Direction.down:
+                case Direction.s:
                     if (delayCounter == delay)
                     {
-                        Location += new Vector2(0, 40);
+                        Location = new Rectangle(Location.X, Location.Y + 40, Location.Width, Location.Height);
                         delayCounter = 0;
                     }
                     if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                     {
-                        direction = Direction.right;
+                        direction = Direction.e;
 
                     }
                     break;
-                case Direction.up:
+                case Direction.n:
                     if (delayCounter == delay)
                     {
-                        Location += new Vector2(0, -40);
+                        Location = new Rectangle(Location.X, Location.Y - 40, Location.Width, Location.Height);
                         delayCounter = 0;
                     }
                     if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                     {
-                        direction = Direction.left;
+                        direction = Direction.w;
 
                     }
                     break;
 
             };
             delayCounter++;
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

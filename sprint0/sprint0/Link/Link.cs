@@ -50,7 +50,7 @@ namespace sprint0
                 offsetPos = new Vector2(position.X + 6, position.Y);
             }
 
-            game.AddItem(offsetPos, direction, time, "arrow");
+            game.AddProjectile(offsetPos, direction, time, "arrow");
         }
 
         public void ThrowBomb()
@@ -61,7 +61,7 @@ namespace sprint0
                 offsetPos = new Vector2(position.X + 6, position.Y);
             }
 
-            game.AddItem(offsetPos, direction, 30, "bomb");
+            game.AddProjectile(offsetPos, direction, 30, "bomb");
         }
 
         public void ThrowBoomerang()
@@ -71,7 +71,7 @@ namespace sprint0
             {
                 offsetPos = new Vector2(position.X + 6, position.Y);
             }
-            game.AddItem(offsetPos, direction, 0, "boomerang");
+            game.AddProjectile(offsetPos, direction, 0, "boomerang");
         }
 
 

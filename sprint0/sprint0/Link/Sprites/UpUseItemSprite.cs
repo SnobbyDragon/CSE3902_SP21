@@ -12,26 +12,30 @@ namespace sprint0
 
 
         public Texture2D Texture { get => texture; set => texture = value; }
-        public Vector2 Location { get => location; set => location = value; }
+        public Rectangle Location { get; set; }
         private Texture2D texture;
-        private Vector2 location;
-        private readonly int xOffset = 140, yOffset = 11;
+
+        private readonly int xOffset = 140, yOffset = 11, width = 16, height = 16;
+
         public UpUseItemSprite(Texture2D texture, Vector2 location)
         {
-            this.location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             this.texture = texture;
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, location, new Rectangle(xOffset, yOffset, 16, 16), Color.White);
+            spriteBatch.Draw(Texture, Location, new Rectangle(xOffset, yOffset, width, height), Color.White);
         }
 
         public void Update()
         {
             //Nothing here
+        }
 
+        public Collision GetCollision(ISprite other)
+        {
+            return Collision.None;
         }
     }
 }

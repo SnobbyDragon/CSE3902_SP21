@@ -7,14 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
     /*
-     * Last updated: 2/22/21 by urick.9 and li.10011
+     * Last updated: 3/4/21 by urick.9 and li.10011
      */
     public class Boomerang : ISprite
     {
         
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 290, yOffset = 11, sizeX = 8, sizeY = 16;
+        private readonly int xOffset = 290, yOffset = 11, width = 8, height = 16;
         private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
@@ -51,13 +51,13 @@ namespace sprint0
                 }
             }
             moveVector = new Vector2(xa, ya);
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             sources = new List<Rectangle>
             {
-                new Rectangle(xOffset, yOffset, sizeX, sizeY),
-                new Rectangle(xOffset + sizeX + 1, yOffset, sizeX, sizeY),
-                new Rectangle(xOffset + sizeX*2 + 2, yOffset, sizeX, sizeY)
+                new Rectangle(xOffset, yOffset, width, height),
+                new Rectangle(xOffset + width + 1, yOffset, width, height),
+                new Rectangle(xOffset + width*2 + 2, yOffset, width, height)
             };
             currFrame = 0;
             totalFrames = 8;
@@ -70,23 +70,23 @@ namespace sprint0
               int tempFrame = currFrame / repeatedFrames;
               if (tempFrame == 3)
               {
-                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
+                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), h, 0);
               }
               else if (tempFrame == 4)
               {
-                  spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), h, 0);
+                  spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), h, 0);
               }
               else if (tempFrame == 5)
               {
-                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v | h, 0);
+                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), v | h, 0);
               }
               else if (tempFrame == 6)
               {
-                  spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+                  spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), v, 0);
               }
               else if (tempFrame == 7)
               {
-                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), new Vector2(1, 1), v, 0);
+                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), v, 0);
               }
               else
               {
@@ -101,7 +101,9 @@ namespace sprint0
             //The plus six is required so the boomerang reaches link.
             if (age < (maxDistance * 2) + 6)
             {
-                Location += moveVector;
+                Rectangle loc = Location;
+                loc.Offset(moveVector);
+                Location = loc;
             }else
             {
                 alive = false;    
@@ -109,14 +111,13 @@ namespace sprint0
             
         }
 
-
         public void Update()
         {
             if (alive)
             {
                 if (age > maxDistance)
                 {
-                    moveVector = Link.position - Location;
+                    moveVector = Link.position - Location.Location.ToVector2();
                     moveVector.Normalize();
                     moveVector = 6 * moveVector;
                 }
@@ -127,6 +128,11 @@ namespace sprint0
             }
             else if (lifespan < 0)
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }

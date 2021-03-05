@@ -9,7 +9,7 @@ namespace sprint0
     public class GleeokHead : ISprite
     {
         private Game1 game;
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle defaultSource;
         private bool isAngry; // if head is severed / angry, has different frames; TODO maybe change to state pattern later?
@@ -23,7 +23,6 @@ namespace sprint0
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings
         private int moveCounter;
         private Vector2 destination;
-        private GleeokFireball fireball;
         private Vector2 centerOffset;
 
         public GleeokHead(Texture2D texture, Vector2 anchor, Game1 game)
@@ -45,10 +44,9 @@ namespace sprint0
             this.anchor = anchor;
             rand = new Random();
             // randomly generates head location
-            Location = RandomLocation();
+            Vector2 randLoc = RandomLocation();
+            Location = new Rectangle((int)randLoc.X, (int)randLoc.Y, 8, size);
             destination = RandomLocation();
-
-            fireball = new GleeokFireball(texture);
             centerOffset = new Vector2(size / 2 - 4, size / 2 - 5); // head size / 2 - fireball size / 2
         }
 
@@ -58,8 +56,6 @@ namespace sprint0
                 spriteBatch.Draw(Texture, Location, angrySources[currFrame / repeatedFrames], Color.White);
             else
                 spriteBatch.Draw(Texture, Location, defaultSource, Color.White);
-
-            fireball.Draw(spriteBatch);
         }
 
         public void Update()
@@ -70,7 +66,7 @@ namespace sprint0
                 //TODO movement for angry
             } else
             {
-                Vector2 dist = destination - Location;
+                Vector2 dist = destination - Location.Location.ToVector2();
                 if (dist.Length() < 2)
                 {
                     // reached destination, so pick a new destination
@@ -80,44 +76,83 @@ namespace sprint0
                 {
                     // has not reached destination, move towards it
                     dist.Normalize();
-                    Location +=  dist;
+                    Rectangle loc = Location;
+                    loc.Offset(ApproximateDirection(dist));
+                    Location = loc;
                     moveCounter = 0;
                 }
                 moveCounter++;
             }
 
+            //TODO
             // fireballs move and animate regardless
-            if (CanShoot())
-            {
-                ShootFireball();
-            }
-            else
-            {
-                fireball.Update();
-            }
+            //if (CanShoot())
+            //{
+            //    ShootFireball();
+            //}
+            //else
+            //{
+            //    fireball.Update();
+            //}
         }
 
-        private bool CanShoot() // shoot fireball if fireball is dead
-        {
-            return fireball.IsDead;
+        public Collision GetCollision(ISprite other)
+        {   //TODO
+            return Collision.None;
         }
+
+        //TODO
+        //private bool CanShoot() // shoot fireball if fireball is dead
+        //{
+        //    return fireball.IsDead;
+        //}
 
         private void ShootFireball()
-        {
-            Vector2 dir = game.Player.Pos - (Location + centerOffset);
-            dir.Normalize();
-            fireball.Direction = dir;
-            fireball.Location = Location + centerOffset;
-            fireball.IsDead = false;
+        {   //TODO
+            //Vector2 dir = game.Player.Pos - (Location + centerOffset);
+            //dir.Normalize();
+            //fireball.Direction = dir;
+            //fireball.Location = Location + centerOffset;
+            //fireball.IsDead = false;
         }
 
         // generates random location
-        public Vector2 RandomLocation()
+        private Vector2 RandomLocation()
         {
             // TODO depends on where link is?
             Vector2 dir = new Vector2(rand.Next(-100, 100), rand.Next(0, 100)); // location can only below anchor
             dir.Normalize();
             return anchor + rand.Next(0, maxDistance) * dir;
+        }
+
+        private Vector2 ApproximateDirection(Vector2 dir)
+        {
+            //TODO currently using vectors; maybe make IDirection interface?
+            //Direction closestApprox;
+            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
+            List<Vector2> vectors = new List<Vector2>
+            {
+                new Vector2(1, 0),
+                new Vector2(-1, 0),
+                new Vector2(0, 1),
+                new Vector2(0, -1),
+                new Vector2(1, 1),
+                new Vector2(1, -1),
+                new Vector2(-1, 1),
+                new Vector2(-1, -1),
+            };
+            Vector2 closestApprox = vectors[0];
+            float closestDist = (closestApprox - dir).LengthSquared();
+            foreach (Vector2 v in vectors)
+            {
+                float dist = (v - dir).LengthSquared();
+                if (dist < closestDist)
+                {
+                    closestApprox = v;
+                    closestDist = dist;
+                }
+            }
+            return closestApprox;
         }
     }
 }

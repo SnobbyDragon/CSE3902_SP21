@@ -8,18 +8,18 @@ namespace sprint0
 {
     public class Compass : ISprite
     {
-        public Vector2 Location { get; set; }
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-
+        private readonly int width = 11, height = 12;
 
         public Compass(Texture2D texture, Vector2 location)
         {
-            Location = location;
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
 
             //get sprite
-            source = new Rectangle(258, 1, 11, 12);
+            source = new Rectangle(258, 1, width, height);
 
         }
 
@@ -32,6 +32,11 @@ namespace sprint0
         public void Update()
         {
             //Does nothing
+        }
+
+        public Collision GetCollision(ISprite other)
+        {   //TODO get collision
+            return Collision.None;
         }
     }
 }
