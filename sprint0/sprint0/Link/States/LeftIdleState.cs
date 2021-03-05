@@ -16,12 +16,26 @@ namespace sprint0
 
         public void HandleUp()
         {
+            player.Direction = Direction.n;
             player.State = new UpWalkingState(player);
         }
 
         public void HandleDown()
         {
+            player.Direction = Direction.s;
             player.State = new DownWalkingState(player);
+        }
+
+        public void HandleLeft()
+        {
+            player.Direction = Direction.w;
+            player.State = new LeftWalkingState(player);
+        }
+
+        public void HandleRight()
+        {
+            player.Direction = Direction.e;
+            player.State = new RightWalkingState(player);
         }
         public void UseItem()
         {
@@ -30,16 +44,6 @@ namespace sprint0
         public void HandleSword()
         {
             player.State = new LeftWoodSwordState(player);
-        }
-
-        public void HandleLeft()
-        {
-            player.State = new LeftWalkingState(player);
-        }
-
-        public void HandleRight()
-        {
-            player.State = new RightWalkingState(player);
         }
 
         public void Update()

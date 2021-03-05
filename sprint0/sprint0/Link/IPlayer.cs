@@ -9,7 +9,7 @@ namespace sprint0
     public interface IPlayer
     {
 
-        Direction Direction { get; }
+        Direction Direction { get; set; }
 
         //Pos is deprecated
         Vector2 Pos { get; set; }

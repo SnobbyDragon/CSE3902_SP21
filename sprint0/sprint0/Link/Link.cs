@@ -20,7 +20,7 @@ namespace sprint0
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
         private readonly Random rand;
-        Direction IPlayer.Direction => direction;
+        Direction IPlayer.Direction { get => direction; set => direction = value; }
 
         public Link(Game1 game, Vector2 pos)
         {
@@ -82,32 +82,44 @@ namespace sprint0
 
         public void HandleUp()
         {
-            direction = Direction.n;
             State.HandleUp();
         }
 
         public void HandleDown()
         {
-            direction = Direction.s;
             State.HandleDown();
         }
 
         public void HandleLeft()
         {
-            direction = Direction.w;
             State.HandleLeft();
         }
 
         public void HandleRight()
         {
-            direction = Direction.e;
             State.HandleRight();
-
         }
 
         public void HandleSword()
         {
             State.HandleSword();
+            Vector2 offsetPos = position;
+            switch(direction)
+            {
+                case Direction.n:
+                    offsetPos = new Vector2(position.X + 3, position.Y);
+                    break;
+                case Direction.s:
+                    offsetPos = new Vector2(position.X + 5, position.Y);
+                    break;
+                case Direction.e:
+                    offsetPos = new Vector2(position.X + 8, position.Y + 6);
+                    break;
+                case Direction.w:
+                    offsetPos = new Vector2(position.X, position.Y + 6);
+                    break;
+            }
+            game.AddItem(offsetPos, direction, 0, "sword beam");
         }
 
         public void Draw(SpriteBatch spriteBatch)

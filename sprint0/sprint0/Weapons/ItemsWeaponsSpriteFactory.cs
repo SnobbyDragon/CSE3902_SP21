@@ -41,6 +41,7 @@ namespace sprint0
                 "compass" => new Compass(texture1, location),
                 "key" => new Key(texture1, location),
                 "rupee" => new Rupee(texture1, location),
+                "sword beam" => new SwordBeam(texture2, location, dir, lifespan),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
