@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace sprint0
 {
-    class SwordBeam : ISprite
+    class SwordBeam : IProjectile
     {
         public Rectangle Location { get; set; }
         private readonly Texture2D texture;

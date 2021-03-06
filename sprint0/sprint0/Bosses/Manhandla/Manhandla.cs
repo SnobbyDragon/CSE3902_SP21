@@ -6,14 +6,14 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class Manhandla : ISprite
+    public class Manhandla : IEnemy
     {
         private Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int size = 16;
         private Rectangle source;
-        private List<ISprite> limbs;
+        private List<IEnemy> limbs;
         private int speed; // TODO faster as limbs die
         //private int fireballRate; // TODO faster as limbs die; use this, currently shooting s.t. only 1 fireball on map at a time
         private Vector2 destination;
@@ -27,7 +27,7 @@ namespace sprint0
             source = new Rectangle(69, 89, size, size); //center
             speed = 1; // starting speed; TODO might actually need to be slower...
             //fireballRate = 100; // TODO currently arbitrary
-            limbs = new List<ISprite>
+            limbs = new List<IEnemy>
             {
                 new ManhandlaLimb(Texture, this, "up", game),
                 new ManhandlaLimb(Texture, this, "down", game),
@@ -62,7 +62,7 @@ namespace sprint0
                 Location = loc;
             }
 
-            foreach (ISprite limb in limbs)
+            foreach (IEnemy limb in limbs)
                 limb.Update();
         }
 

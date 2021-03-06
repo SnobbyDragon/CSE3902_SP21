@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Goriya : ISprite
+    public class Goriya : IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }

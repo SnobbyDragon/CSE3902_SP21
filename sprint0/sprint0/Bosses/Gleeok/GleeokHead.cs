@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class GleeokHead : ISprite
+    public class GleeokHead : IEnemy
     {
         private Game1 game;
         public Rectangle Location { get; set; }

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class PatraMinion : ISprite
+    public class PatraMinion : IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -14,14 +14,14 @@ namespace sprint0
         private List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private ISprite center; // blue patra
+        private IEnemy center; // blue patra
         private Vector2 offset; // offset so distances can be calculated to be center of sprites
         private readonly int minDistance = 30, maxDistance = 80; // min and max distances from center
         private int distance, angle; // curr distance; angle from center (0 is right of center)
         private int expansionTime, expansionCounter; // 0 = waiting, 1 - 6 = moving; odd = expanding to max dist, even = contract to min dist
         private readonly int expansionDelay = 200; // time between expansions
 
-        public PatraMinion(Texture2D texture, ISprite center, int angle)
+        public PatraMinion(Texture2D texture, IEnemy center, int angle)
         {
             Texture = texture;
             currFrame = 0;

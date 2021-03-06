@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
  */
 namespace sprint0
 {
-    public class Aquamentus : ISprite
+    public class Aquamentus : IEnemy
     {
         private readonly Game1 game; //TODO maybe have player bc static so we don't need this
         public Rectangle Location { get; set; }

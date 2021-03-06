@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class GanonFireball : ISprite
+    public class GanonFireball : IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }

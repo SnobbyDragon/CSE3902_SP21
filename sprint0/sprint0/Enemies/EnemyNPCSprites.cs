@@ -13,19 +13,19 @@ namespace sprint0
         {
             this.game = game;
         }
-        public List<ISprite> LoadEnemyNPCSprites() //loads all sprites
+        public List<IEnemy> LoadEnemyNPCSprites() //loads all sprites
         {
-            List<ISprite> enemyNPCSprites = LoadEnemySprites();
-            enemyNPCSprites.AddRange(LoadNPCSprites());
+            List<IEnemy> enemyNPCSprites = LoadEnemySprites();
+            //enemyNPCSprites.AddRange(LoadNPCSprites()); doesn't work with enemy
             enemyNPCSprites.AddRange(LoadBossSprites());
 
             return enemyNPCSprites;
         }
 
-        private List<ISprite> LoadEnemySprites() //loads enemy sprites
+        private List<IEnemy> LoadEnemySprites() //loads enemy sprites
         {
             EnemiesSpriteFactory enemyFactory = new EnemiesSpriteFactory(game);
-            List<ISprite> enemySprites = new List<ISprite>
+            List<IEnemy> enemySprites = new List<IEnemy>
             {
                 enemyFactory.MakeSprite("wallmaster", new Vector2(20,300)),
                 enemyFactory.MakeSprite("teal gel", new Vector2(40,300)),
@@ -72,10 +72,10 @@ namespace sprint0
             return npcSprites;
         }
 
-        private List<ISprite> LoadBossSprites() //loads boss sprites
+        private List<IEnemy> LoadBossSprites() //loads boss sprites
         {
             BossesSpriteFactory bossSpriteFactory = new BossesSpriteFactory(game);
-            List<ISprite> bossSprites = new List<ISprite>
+            List<IEnemy> bossSprites = new List<IEnemy>
             {
                 bossSpriteFactory.MakeSprite("orange gohma", new Vector2(300, 300)),
                 bossSpriteFactory.MakeSprite("blue gohma", new Vector2(300, 300)),

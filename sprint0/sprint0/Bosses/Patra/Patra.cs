@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class Patra : ISprite
+    public class Patra : IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -14,7 +14,7 @@ namespace sprint0
         private List<SpriteEffects> effects;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private List<ISprite> minions;
+        private List<IEnemy> minions;
         private readonly int totalMinions = 8;
         private Vector2 destination; //TODO depends on link. i think it keeps optimal distance so minions can hit link
         private readonly Random rand;
@@ -39,7 +39,7 @@ namespace sprint0
             };
 
             // has 8 orange minions
-            minions = new List<ISprite>();
+            minions = new List<IEnemy>();
             for (int i = 0; i < totalMinions; i++)
             {
                 minions.Add(new PatraMinion(Texture, this, 360/totalMinions * i));
@@ -55,7 +55,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), effects[currFrame / repeatedFrames], 0);
-            foreach (ISprite minion in minions)
+            foreach (IEnemy minion in minions)
                 minion.Draw(spriteBatch);
         }
 
@@ -79,7 +79,7 @@ namespace sprint0
             moveCounter++;
 
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            foreach (ISprite minion in minions) //TODO maybe move to game
+            foreach (IEnemy minion in minions) //TODO maybe move to game
                 minion.Update();
         }
 

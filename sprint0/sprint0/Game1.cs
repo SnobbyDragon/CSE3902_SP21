@@ -17,7 +17,8 @@ namespace sprint0
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
-        private List<ISprite> sprites, projectiles;
+        private List<ISprite> sprites;
+        private List<IProjectile> projectiles;
         private ISprite sprite;
         private SpriteFont font;
         private IPlayer player;
@@ -89,30 +90,30 @@ namespace sprint0
 
             itemSprites = new List<ISprite>
             {
-                itemFactory.MakeSprite("fairy", new Vector2(200,300),Direction.n,-1),
-                itemFactory.MakeSprite("bomb", new Vector2(200,300),Direction.n,-1),
+                //itemFactory.MakeSprite("fairy", new Vector2(200,300),Direction.n,-1),
+                //itemFactory.MakeSprite("bomb", new Vector2(200,300),Direction.n,-1), TODO make a still bomb that's just an ISprite? or make bomb not a projectile
                 itemFactory.MakeSprite("clock", new Vector2(200,300),Direction.n,-1),
                 itemFactory.MakeSprite("compass", new Vector2(200,300),Direction.n,-1),
                 itemFactory.MakeSprite("key", new Vector2(200,300),Direction.n,-1),
                 itemFactory.MakeSprite("rupee", new Vector2(200,300),Direction.n, -1),
-                itemFactory.MakeSprite("boomerang", new Vector2(200, 300), Direction.n, -1)
+                //itemFactory.MakeSprite("boomerang", new Vector2(200, 300), Direction.n, -1)
             };
 
             //list of enemy, npc, and boss sprites
             EnemyNPCSprites enbSprite = new EnemyNPCSprites(this);
-            enemyNPCSprites = enbSprite.LoadEnemyNPCSprites();
+            //enemyNPCSprites = enbSprite.LoadEnemyNPCSprites();
 
             //list of room element sprites
             DungeonSprites dungeonSprite = new DungeonSprites(this);
             roomElementsSprites = dungeonSprite.LoadDungeonSprites();
 
             //projectile sprites (starts with none)
-            projectiles = new List<ISprite>();
+            projectiles = new List<IProjectile>();
         }
 
-        public void AddProjectile(Vector2 Location, Direction dir, int lifespan, String item)
+        public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item)
         {
-            projectiles.Add(itemFactory.MakeSprite(item, Location, dir, lifespan));
+            projectiles.Add(itemFactory.MakeProjectile(item, Location, dir, lifespan));
         }
 
         public void AddFireball(Vector2 location, Vector2 dir)
@@ -137,8 +138,8 @@ namespace sprint0
                 projectile.Update();
             foreach (ISprite _sprite in itemSprites)
                 _sprite.Update();
-            foreach (ISprite _sprite in enemyNPCSprites)
-                _sprite.Update();
+            //foreach (ISprite _sprite in enemyNPCSprites)
+            //    _sprite.Update();
 
             base.Update(gameTime);
             base.Update(gameTime);
@@ -149,13 +150,12 @@ namespace sprint0
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
 
-
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
             foreach (ISprite projectile in projectiles)
                 projectile.Draw(_spriteBatch);
             itemSprites[itemIndex].Draw(_spriteBatch);
-            enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
+            //enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
             roomElementsSprites[roomElementsIndex].Draw(_spriteBatch);
             player.Draw(_spriteBatch);
             _spriteBatch.End();

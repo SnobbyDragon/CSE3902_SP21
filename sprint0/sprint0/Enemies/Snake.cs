@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Snake : ISprite
+    public class Snake : IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }

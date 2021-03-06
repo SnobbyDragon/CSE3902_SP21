@@ -5,30 +5,34 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Hannah Johnson
 
 /*
- * Last updated: 2/21/21 by urick.9
+ * Last updated: 3/6/21 by li.10011
  */
 
 //This code is not that pretty-if find extra time refactor
 
 namespace sprint0
 {
-    public class Bomb : ISprite
+    public class Bomb : IProjectile
     {
         public Rectangle Location { get; set; }
-        //Age is the current number of updates
-        private int age;
         public Texture2D Texture { get; set; }
+
         private Rectangle source;
         private readonly List<Rectangle> explosionSources;
-        //Lifespan is the number of updates before it dies. 
-        //For now, it just stops rendering
+        private Rectangle currentSource;
+        private readonly int xPos = 138, yPos = 184, width = 17, height = 18;
+
+        //Age is the current number of updates
+        private int age;
+        
+        //Lifespan is the number of updates before it dies. For now, it just stops rendering
         private readonly int lifespan;
+
         private readonly int xadd, yadd;
+
         private readonly int repeatedFrames;
         private readonly int totalFrames;
         private int currentFrame;
-        private Rectangle currentSource;
-        private readonly int xPos = 138, yPos = 184, width = 17, height = 18;
 
         public Bomb(Texture2D texture, Vector2 location, Direction dir, int lifespan)
         {
@@ -67,6 +71,7 @@ namespace sprint0
             repeatedFrames = 5;
             this.lifespan = lifespan;
             source = new Rectangle(127, 184, 10, 17);
+
             //add frames to explosion sources
             totalFrames = 3; currentFrame = 0;
             explosionSources = new List<Rectangle>();
@@ -81,9 +86,7 @@ namespace sprint0
 
         public void Move()
         {
-            Rectangle loc = Location;
-            loc.Offset(xadd, yadd);
-            Location = loc;
+            Location = new Rectangle(Location.X + xadd, Location.Y + yadd, Location.Width, Location.Height);
         }
 
         private bool Alive()
@@ -113,7 +116,7 @@ namespace sprint0
                 Move();
             }
             else if (age < lifespan + 3 * repeatedFrames && age >= lifespan && lifespan > 0)
-            { //age==lifespan so the bomb reached destination
+            {   //age == lifespan so the bomb reached destination
                 //animates bomb to explode
                 Location = new Rectangle(Location.X, Location.Y, width, height); // explosion size diff from pre-explosion
                 currentSource = explosionSources[currentFrame / repeatedFrames];

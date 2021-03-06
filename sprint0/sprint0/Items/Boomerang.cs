@@ -9,7 +9,7 @@ namespace sprint0
     /*
      * Last updated: 3/4/21 by urick.9 and li.10011
      */
-    public class Boomerang : ISprite
+    public class Boomerang : IProjectile
     {
         
         public Rectangle Location { get; set; }

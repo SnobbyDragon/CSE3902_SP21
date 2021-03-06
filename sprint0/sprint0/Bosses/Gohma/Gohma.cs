@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class Gohma : ISprite
+    public class Gohma : IEnemy
     {
         private Game1 game;
         public Rectangle Location { get; set; } // location of the head

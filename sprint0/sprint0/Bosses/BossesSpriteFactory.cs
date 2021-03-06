@@ -16,7 +16,7 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/Bosses");
         }
 
-        public ISprite MakeSprite(String spriteType, Vector2 location)
+        public IEnemy MakeSprite(String spriteType, Vector2 location)
         {
 
             return spriteType switch

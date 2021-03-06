@@ -5,12 +5,12 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class GleeokNeck : ISprite
+    public class GleeokNeck : IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        private ISprite head;
+        private IEnemy head;
         private int segmentNumber; // 0 = anchor to body, 3 = closest to head
         private Vector2 anchor;
         private Random rand;
@@ -18,7 +18,7 @@ namespace sprint0
         private int xWiggle, yWiggle, wiggleCount;
         private readonly int width = 8, height = 12;
 
-        public GleeokNeck(Texture2D texture, Vector2 anchor, ISprite head, int segmentNumber)
+        public GleeokNeck(Texture2D texture, Vector2 anchor, IEnemy head, int segmentNumber)
         {
             Texture = texture;
             source = new Rectangle(271, 13, width, height);

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
  */
 namespace sprint0
 {
-    public class Digdogger : ISprite
+    public class Digdogger : IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }

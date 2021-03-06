@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Gel : ISprite
+    public class Gel : IEnemy
     {
 
         public Rectangle Location { get; set; }
