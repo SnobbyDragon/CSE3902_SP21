@@ -14,7 +14,7 @@ namespace sprint0
 
         public ShutDoor(Texture2D texture, Vector2 location, string dir)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             Texture = texture;
             source = dir switch
             {

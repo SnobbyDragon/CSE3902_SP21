@@ -59,7 +59,9 @@ namespace sprint0
             };
             playerFactory = new PlayerSpriteFactory(this);
             player = new Link(this, new Vector2(200, 250));
-            //levelLoader = new LevelLoader(this, "13");
+
+            //note: 14 refers to the room number to load
+            //levelLoader = new LevelLoader(this, "14");
 
 
             base.Initialize();
@@ -163,13 +165,12 @@ namespace sprint0
             player.Update();
             foreach (ISprite _sprite in sprites)
                 _sprite.Update();
-            foreach (ISprite projectile in projectiles)
-                projectile.Update();
             foreach (ISprite _sprite in itemSprites)
                 _sprite.Update();
             foreach (ISprite _sprite in enemyNPCSprites)
                 _sprite.Update();
-
+            foreach (ISprite projectile in projectiles)
+                projectile.Update();
             //to update level sprites and hud
             //foreach (ISprite _sprite in roomSprites)
             //    _sprite.Update();
@@ -191,10 +192,11 @@ namespace sprint0
             //    _sprite.Draw(_spriteBatch);
             //foreach (ISprite _sprite in roomSprites)
             //    _sprite.Draw(_spriteBatch);
-            //foreach (ISprite _sprite in sprites)
-            //    _sprite.Draw(_spriteBatch);
-            foreach (ISprite projectile in projectiles)
-                projectile.Draw(_spriteBatch);
+            //foreach (ISprite projectile in projectiles)
+            //    projectile.Draw(_spriteBatch);
+            foreach (ISprite _sprite in sprites)
+                _sprite.Draw(_spriteBatch);
+
             itemSprites[itemIndex].Draw(_spriteBatch);
             enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
             roomElementsSprites[roomElementsIndex].Draw(_spriteBatch);
