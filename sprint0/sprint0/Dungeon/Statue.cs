@@ -14,7 +14,7 @@ namespace sprint0
 
         public Statue(Texture2D texture, Vector2 location, string dir)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             if (dir.Equals("right"))
             { // creates a right facing statue
@@ -33,7 +33,7 @@ namespace sprint0
 
         public void Update()
         {
-            
+
         }
 
         public Collision GetCollision(ISprite other)

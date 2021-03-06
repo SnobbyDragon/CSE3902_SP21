@@ -19,7 +19,7 @@ namespace sprint0
 
         public GoriyaBoomerang(Texture2D texture, Vector2 location, int dir)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             direction = (Direction)dir;
             sources = new List<Rectangle>
@@ -40,7 +40,8 @@ namespace sprint0
             {
                 spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), h, 0);
             }
-            else if (tempFrame == 4){
+            else if (tempFrame == 4)
+            {
                 spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), h, 0);
             }
             else if (tempFrame == 5)
@@ -59,7 +60,7 @@ namespace sprint0
             {
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
             }
-            
+
         }
 
         public void Update()

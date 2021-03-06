@@ -21,7 +21,7 @@ namespace sprint0
         public Flame(Texture2D texture, Vector2 location)
         {
             width = height = 16;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             source = new Rectangle(52, 11, width, height);
             currentFrame = 0;
