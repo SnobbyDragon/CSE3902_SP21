@@ -10,14 +10,14 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        private Rectangle destination;
+        //private Rectangle destination;
         private readonly int xOffset = 848, yOffset = 11, size = 32;
 
         public OpenDoor(Texture2D texture, Vector2 location, string dir)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             Texture = texture;
-            destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
+            //destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             source = dir switch
             {
                 "down" => new Rectangle(xOffset, yOffset, size, size),
@@ -30,8 +30,8 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(Texture, Location, source, Color.White);
-            spriteBatch.Draw(Texture, destination, source, Color.White);
+            spriteBatch.Draw(Texture, Location, source, Color.White);
+            //spriteBatch.Draw(Texture, destination, source, Color.White);
         }
 
         public void Update()

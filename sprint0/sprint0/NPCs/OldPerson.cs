@@ -7,7 +7,7 @@ namespace sprint0
 {
     public class OldPerson : ISprite
     {
-        public Rectangle Location { get; set;}
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public String Type { get; set; }
         private readonly int xOffset = 1, yOffset = 11, width, height;
@@ -16,7 +16,7 @@ namespace sprint0
         public OldPerson(Texture2D texture, Vector2 location, String type)
         {
             width = height = 16;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             Type = type;
             typeRectMap = new Dictionary<String, Rectangle> //TODO use GetFrames method when we make that static public

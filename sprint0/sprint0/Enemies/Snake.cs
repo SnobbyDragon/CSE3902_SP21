@@ -22,7 +22,7 @@ namespace sprint0
         public Snake(Texture2D texture, Vector2 location)
         {
             width = height = 16;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             spriteEffect = SpriteEffects.None;
             totalFrames = 2;

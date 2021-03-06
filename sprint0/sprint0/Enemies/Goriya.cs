@@ -20,7 +20,7 @@ namespace sprint0
         public Goriya(Texture2D texture, Vector2 location, string goriyaColor)
         {
             width = height = 16;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             color = goriyaColor;
             currentFrame = 0;

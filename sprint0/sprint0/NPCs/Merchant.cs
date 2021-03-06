@@ -16,7 +16,7 @@ namespace sprint0
         public Merchant(Texture2D texture, Vector2 location, String type)
         {
             width = height = 16;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             this.Type = type;
             typeRectMap = new Dictionary<String, Rectangle> //TODO use GetFrames method when we make that static public
