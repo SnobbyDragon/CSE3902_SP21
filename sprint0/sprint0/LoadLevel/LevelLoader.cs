@@ -5,6 +5,8 @@ using System.Net;
 using System.Xml;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
+//Author: Stuti Shah
+//Updated: 03/06/21
 namespace sprint0
 {
     public class LevelLoader
@@ -20,11 +22,13 @@ namespace sprint0
         BossesSpriteFactory bossFactory;
         NpcsSpriteFactory npcFactory;
 
-        public LevelLoader(Game1 game1, String roomNo)
+        public LevelLoader(Game1 game1, int roomNo)
         {
             //path, open stream, open file to read
+
             path = "Content/LevelData/Room";
-            path += roomNo + ".xml";
+            path += roomNo.ToString();
+            path += ".xml";
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
 

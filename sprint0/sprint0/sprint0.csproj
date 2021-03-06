@@ -36,5 +36,6 @@
     <Folder Include="Bosses\Digdogger\" />
     <Folder Include="Content\bin\DesktopGL\Content\LevelData\" />
     <Folder Include="LevelLoading\" />
+    <Folder Include="LoadLevel\" />
   </ItemGroup>
 </Project>

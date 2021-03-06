@@ -21,8 +21,11 @@ namespace sprint0
         private ISprite sprite;
         private SpriteFont font;
         private IPlayer player;
+
         //private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
         //private LevelLoader levelLoader;
+        public Boolean changeRoom;
+        public int roomIndex;
 
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
@@ -60,9 +63,10 @@ namespace sprint0
             playerFactory = new PlayerSpriteFactory(this);
             player = new Link(this, new Vector2(200, 250));
 
-            //note: 14 refers to the room number to load
-            //levelLoader = new LevelLoader(this, "14");
-
+            //note: the integer refers to the room number to load
+            //changeRoom = true;
+            //roomIndex = 9;
+            //levelLoader = new LevelLoader(this, roomIndex);
 
             base.Initialize();
         }
@@ -163,6 +167,20 @@ namespace sprint0
                 controller.Update();
             }
             player.Update();
+            //NOTE: changes room if needed
+            //if (changeRoom)
+            //{
+            //    levelLoader = new LevelLoader(this, roomIndex);
+            //    roomSprites = levelLoader.LoadLevel();
+            //    changeRoom = false;
+            //}
+
+            //NOTE: to update level sprites and hud
+            //foreach (ISprite _sprite in roomSprites)
+            //    _sprite.Update();
+            //foreach (ISprite _sprite in hudSprites)
+            //    _sprite.Update();
+
             foreach (ISprite _sprite in sprites)
                 _sprite.Update();
             foreach (ISprite _sprite in itemSprites)
@@ -171,11 +189,8 @@ namespace sprint0
                 _sprite.Update();
             foreach (ISprite projectile in projectiles)
                 projectile.Update();
-            //to update level sprites and hud
-            //foreach (ISprite _sprite in roomSprites)
-            //    _sprite.Update();
-            //foreach (ISprite _sprite in hudSprites)
-            //    _sprite.Update();
+
+
             base.Update(gameTime);
             base.Update(gameTime);
         }
@@ -185,15 +200,16 @@ namespace sprint0
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
 
-            //draws room base, hud, and level elements
+            //NOTE: draws room base, hud, and level elements
             //foreach (ISprite _sprite in roomBaseSprites)
             //    _sprite.Draw(_spriteBatch);
             //foreach (ISprite _sprite in hudSprites)
             //    _sprite.Draw(_spriteBatch);
             //foreach (ISprite _sprite in roomSprites)
             //    _sprite.Draw(_spriteBatch);
-            //foreach (ISprite projectile in projectiles)
-            //    projectile.Draw(_spriteBatch);
+
+            foreach (ISprite projectile in projectiles)
+                projectile.Draw(_spriteBatch);
             foreach (ISprite _sprite in sprites)
                 _sprite.Draw(_spriteBatch);
 
