@@ -56,10 +56,5 @@ namespace sprint0
         {
             //todo: update ones and tens after link gets/uses item
         }
-
-        public Collision GetCollision(ISprite other)
-        {
-            return Collision.None;
-        }
     }
 }

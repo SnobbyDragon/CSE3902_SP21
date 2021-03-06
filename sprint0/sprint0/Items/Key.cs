@@ -44,10 +44,5 @@ namespace sprint0
             //switches between two versions of the key (not sure if that's correct)
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO get collision
-            return Collision.None;
-        }
     }
 }

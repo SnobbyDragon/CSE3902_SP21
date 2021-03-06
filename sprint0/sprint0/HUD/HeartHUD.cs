@@ -70,10 +70,5 @@ namespace sprint0
         {
             //change heartState based on link's damage
         }
-
-        public Collision GetCollision(ISprite other)
-        {
-            return Collision.None;
-        }
     }
 }

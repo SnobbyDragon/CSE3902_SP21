@@ -80,7 +80,7 @@ namespace sprint0
                     break;
                 case "ItemWeapon":
                     Direction dir = WeaponDirection(roomReader.GetAttribute("Direction"));
-                    int lifespan = Int32.Parse(roomReader.GetAttribute("Lifespan"));
+                    int lifespan = int.Parse(roomReader.GetAttribute("Lifespan"));
                     sprites.Add(itemFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir, lifespan));
                     break;
                 case "Boss":

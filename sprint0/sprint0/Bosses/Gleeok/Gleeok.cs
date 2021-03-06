@@ -67,10 +67,5 @@ namespace sprint0
             foreach (IEnemy sprite in neck2)
                 sprite.Update();
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO
-            return Collision.None;
-        }
     }
 }

@@ -122,10 +122,5 @@ namespace sprint0
             };
             delayCounter++;
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO get collision
-            return Collision.None;
-        }
     }
 }

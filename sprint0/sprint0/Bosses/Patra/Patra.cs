@@ -83,11 +83,6 @@ namespace sprint0
                 minion.Update();
         }
 
-        public Collision GetCollision(ISprite other)
-        {   //TODO
-            return Collision.None;
-        }
-
         // generates a new destination
         private void GenerateDest()
         {

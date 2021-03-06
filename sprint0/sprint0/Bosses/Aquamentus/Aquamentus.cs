@@ -100,10 +100,5 @@ namespace sprint0
             game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6)))); // 30 degrees up
             game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6)))); // 30 degrees down
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO
-            return Collision.None;
-        }
     }
 }

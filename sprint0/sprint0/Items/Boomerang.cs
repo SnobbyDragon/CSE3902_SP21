@@ -129,10 +129,5 @@ namespace sprint0
             else if (lifespan < 0)
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO get collision
-            return Collision.None;
-        }
     }
 }

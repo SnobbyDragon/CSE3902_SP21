@@ -36,10 +36,5 @@ namespace sprint0
             currentFrame++;
             currentFrame %= totalFrames;
         }
-
-        public Collision GetCollision(ISprite other)
-        {
-            return Collision.None;
-        }
     }
 }

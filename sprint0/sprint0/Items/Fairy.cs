@@ -60,11 +60,6 @@ namespace sprint0
 
         }
 
-        public Collision GetCollision(ISprite other)
-        {   //TODO get collision
-            return Collision.None;
-        }
-
         // generates a new destination
         private void GenerateDest()
         {

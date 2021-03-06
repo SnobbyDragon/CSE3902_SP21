@@ -33,10 +33,5 @@ namespace sprint0
         {
             //No movement for now
         }
-
-        public Collision GetCollision(ISprite other)
-        {
-            return Collision.None;
-        }
     }
 }

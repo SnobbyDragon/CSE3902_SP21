@@ -98,10 +98,5 @@ namespace sprint0
                     throw new ArgumentException("Invalid direction! Stalfos movement failed.");
             }
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO get collision
-            return Collision.None;
-        }
     }
 }

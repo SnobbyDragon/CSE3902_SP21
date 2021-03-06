@@ -80,10 +80,5 @@ namespace sprint0
                 currFrame += 1;
             }
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO
-            return Collision.None;
-        }
     }
 }

@@ -9,6 +9,5 @@ namespace sprint0
 
         public void Update();
         public void Draw(SpriteBatch spriteBatch);
-        public Collision GetCollision(ISprite other);
     }
 }

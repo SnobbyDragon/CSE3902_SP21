@@ -26,10 +26,5 @@ namespace sprint0
         }
 
         public void Update() { }
-
-        public Collision GetCollision(ISprite other)
-        {
-            return Collision.None;
-        }
     }
 }

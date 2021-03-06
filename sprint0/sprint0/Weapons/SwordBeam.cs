@@ -119,10 +119,5 @@ namespace sprint0
                 Break();
             }
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO
-            return Collision.None;
-        }
     }
 }

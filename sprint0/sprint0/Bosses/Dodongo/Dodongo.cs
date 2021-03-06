@@ -63,8 +63,6 @@ namespace sprint0
             Destination = new Vector2(700, 300);
         }
 
-
-
         public void Draw(SpriteBatch spriteBatch)
 
         {
@@ -155,11 +153,6 @@ namespace sprint0
                     Location = new Rectangle(Location.X, Location.Y, width, Location.Height); // change to horizontal dimensions
                 }
             }
-        }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO
-            return Collision.None;
         }
     }
 }

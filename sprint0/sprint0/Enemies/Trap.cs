@@ -31,10 +31,5 @@ namespace sprint0
         {
             // N/A
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO get collision
-            return Collision.None;
-        }
     }
 }
