@@ -100,6 +100,7 @@ namespace sprint0
                 hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
             };
             //projectile sprites (starts with none)
+            itemFactory = new ItemsWeaponsSpriteFactory(this);
             projectiles = new List<IProjectile>();
         }
 

@@ -11,7 +11,7 @@ namespace sprint0
 {
     public class Aquamentus : IEnemy
     {
-        private readonly Game1 game; //TODO maybe have player bc static so we don't need this
+        private readonly Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 1, yOffset = 11, width = 24, height = 32;

@@ -15,7 +15,6 @@ namespace sprint0
         {
             this.game = game;
             texture = game.Content.Load<Texture2D>("Images/DungeonTileset");
-
         }
 
         public ISprite MakeSprite(String spriteType, Vector2 location)
@@ -32,8 +31,8 @@ namespace sprint0
                 "stairs" => new Stairs(texture, location),
                 "ladder" => new Ladder(texture, location),
                 "brick" => new Brick(texture, location),
-                "left statue" => new Statue(texture, location, "left"),
-                "right statue" => new Statue(texture, location, "right"),
+                "left statue" => new Statue(texture, location, "left", game),
+                "right statue" => new Statue(texture, location, "right", game),
                 "down wall" => new Wall(texture, location, "down"),
                 "right wall" => new Wall(texture, location, "right"),
                 "left wall" => new Wall(texture, location, "left"),
