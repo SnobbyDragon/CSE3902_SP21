@@ -1,10 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace sprint0
+﻿namespace sprint0
 {
     class MouseController : IController
     {
@@ -14,7 +8,6 @@ namespace sprint0
         public MouseController(Game1 game) {
             this.game = game;
             quit = new QuitCommand(game);
-     
         }
 
         public void Update()

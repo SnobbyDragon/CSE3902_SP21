@@ -64,7 +64,7 @@ namespace sprint0
             rotate180 = (float)Math.PI;
         }
 
-        private Boolean Alive()
+        private bool Alive()
         {
             if (age < lifespan || lifespan < 0)
             {
@@ -80,8 +80,6 @@ namespace sprint0
             loc.Offset(xa, ya);
             Location = loc;
         }
-
-
 
         public void Draw(SpriteBatch spriteBatch)
         {

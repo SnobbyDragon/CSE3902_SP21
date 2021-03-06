@@ -35,8 +35,6 @@
     <Folder Include="Bosses\Gohma\" />
     <Folder Include="Bosses\Digdogger\" />
     <Folder Include="Collision\" />
-    <Folder Include="Content\bin\DesktopGL\Content\LevelData\" />
-    <Folder Include="LevelLoading\" />
     <Folder Include="LoadLevel\" />
   </ItemGroup>
 </Project>

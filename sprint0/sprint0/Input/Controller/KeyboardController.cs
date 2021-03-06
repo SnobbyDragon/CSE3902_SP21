@@ -29,8 +29,8 @@ namespace sprint0
             RegisterCommand(Keys.Right, new RightCommand(game));
             RegisterCommand(Keys.U, new ItemPreviousSpriteCommand(game));
             RegisterCommand(Keys.I, new ItemNextSpriteCommand(game));
-            RegisterCommand(Keys.O, new EnemyNPCPreviousSpriteCommand(game));
-            RegisterCommand(Keys.P, new EnemyNPCNextSpriteCommand(game));
+            //RegisterCommand(Keys.O, new EnemyNPCPreviousSpriteCommand(game)); not compatible with new IEnemy
+            //RegisterCommand(Keys.P, new EnemyNPCNextSpriteCommand(game));
             RegisterCommand(Keys.T, new RoomElementPreviousSpriteCommand(game));
             RegisterCommand(Keys.Y, new RoomElementNextSpriteCommand(game));
             RegisterCommand(Keys.Z, new SwordCommand(game));

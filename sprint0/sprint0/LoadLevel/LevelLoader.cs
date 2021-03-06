@@ -25,8 +25,7 @@ namespace sprint0
         public LevelLoader(Game1 game1, int roomNo)
         {
             //path, open stream, open file to read
-
-            path = "Content/LevelData/Room";
+            path = System.IO.Path.GetFullPath(@"../../../Content/LevelData/Room");
             path += roomNo.ToString();
             path += ".xml";
             roomStream = File.OpenRead(path);
