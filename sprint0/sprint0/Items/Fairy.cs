@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Fairy : ISprite
+    public class Fairy : IProjectile // fairy is projectile lol !
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }

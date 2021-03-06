@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
-    public class Trap : ISprite
+    public class Trap : IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }

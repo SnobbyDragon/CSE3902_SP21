@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Dodongo : ISprite
+    public class Dodongo : IEnemy
     {
         //TODO:Add bomb eating animation and logic
 

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
-    public class Arrow : ISprite
+    public class Arrow : IProjectile
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }

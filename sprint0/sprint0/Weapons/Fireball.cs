@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class Fireball : ISprite
+    public class Fireball : IProjectile
     {
         public Rectangle Location { get; set; }
         private Vector2 preciseLocation;

@@ -21,7 +21,7 @@ namespace sprint0
         /*
          * Note: if the lifespan is predetermined (for instance with "bomb", use 0)
          */
-        public ISprite MakeSprite(String spriteType, Vector2 location, Direction dir, int lifespan)
+        public ISprite MakeSprite(string spriteType, Vector2 location, Direction dir, int lifespan)
         {
             return spriteType switch
             {
@@ -30,23 +30,32 @@ namespace sprint0
                 "pink heart" => new Heart(texture1, location, "pink"),
                 "blue heart" => new Heart(texture1, location, "blue"),
                 "heart container" => new HeartContainer(texture1, location),
-                "fairy" => new Fairy(texture1, location),
-                "bomb" => new Bomb(texture2, location, dir, lifespan),
                 "clock" => new Clock(texture1, location),
-                "boomerang" => new Boomerang(texture3, location, dir, lifespan),
                 "bow" => new Bow(texture1, location),
                 "gold triforce piece" => new TriforcePiece(texture1, location, "gold"),
                 "blue triforce piece" => new TriforcePiece(texture1, location, "blue"),
-                "arrow" => new Arrow(texture1, location, dir, lifespan),
                 "compass" => new Compass(texture1, location),
                 "key" => new Key(texture1, location),
                 "rupee" => new Rupee(texture1, location),
+                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+            };
+        }
+
+        public IProjectile MakeProjectile(string spriteType, Vector2 location, Direction dir, int lifespan)
+        {
+            return spriteType switch
+            {
+                "fairy" => new Fairy(texture1, location),
+                "bomb" => new Bomb(texture2, location, dir, lifespan),
+                "boomerang" => new Boomerang(texture3, location, dir, lifespan),
+                "arrow" => new Arrow(texture1, location, dir, lifespan),
                 "sword beam" => new SwordBeam(texture2, location, dir, lifespan),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
 
-        public ISprite MakeFireball(Vector2 location, Vector2 direction)
+        // need different method because has vector direction
+        public IProjectile MakeFireball(Vector2 location, Vector2 direction)
         {
             return new Fireball(texture3, location, direction);
         }

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class ManhandlaLimb : ISprite
+    public class ManhandlaLimb : IEnemy
     {
         private Game1 game;
         public Rectangle Location { get; set; }
@@ -17,11 +17,11 @@ namespace sprint0
         private Dictionary<String, Vector2> dirToLocationMap;
         private Dictionary<String, List<Rectangle>> dirToSourcesMap;
         private string dir;
-        private ISprite center; // center of manhandla
+        private IEnemy center; // center of manhandla
         private readonly int fireballRate = 100; //TODO currently arbitrary
         private int fireballCounter = 0;
 
-        public ManhandlaLimb(Texture2D texture, ISprite center, String dir, Game1 game)
+        public ManhandlaLimb(Texture2D texture, IEnemy center, String dir, Game1 game)
         {
             Texture = texture;
             this.game = game;

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class Gleeok : ISprite
+    public class Gleeok : IEnemy
     {
         private Game1 game;
         public Rectangle Location { get; set; }
@@ -15,7 +15,7 @@ namespace sprint0
         private List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private List<ISprite> neck1, neck2;
+        private List<IEnemy> neck1, neck2;
 
         public Gleeok(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -36,11 +36,11 @@ namespace sprint0
             neck2 = generateNeck();
         }
 
-        public List<ISprite> generateNeck()
+        public List<IEnemy> generateNeck()
         {
-            List<ISprite> neck = new List<ISprite>();
+            List<IEnemy> neck = new List<IEnemy>();
             Vector2 anchor = Location.Location.ToVector2() + new Vector2(width / 2 - 4, height - 6);
-            ISprite head = new GleeokHead(Texture, anchor, game);
+            IEnemy head = new GleeokHead(Texture, anchor, game);
             for (int i = 0; i < 4; i++)
             {
                 neck.Add(new GleeokNeck(Texture, anchor, head, i));
@@ -52,9 +52,9 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
-            foreach (ISprite sprite in neck1)
+            foreach (IEnemy sprite in neck1)
                 sprite.Draw(spriteBatch);
-            foreach (ISprite sprite in neck2)
+            foreach (IEnemy sprite in neck2)
                 sprite.Draw(spriteBatch);
         }
 
@@ -62,9 +62,9 @@ namespace sprint0
         {
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            foreach (ISprite sprite in neck1)
+            foreach (IEnemy sprite in neck1)
                 sprite.Update();
-            foreach (ISprite sprite in neck2)
+            foreach (IEnemy sprite in neck2)
                 sprite.Update();
         }
 
