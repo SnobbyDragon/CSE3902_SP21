@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<XnaContent>?    
+    <Dungeon ObjectName="up locked door" LocationX="280" LocationY="500" />?    
+    <Dungeon ObjectName="down open door" LocationX="280" LocationY="140" />?    
+    <Dungeon ObjectName="left wall" LocationX="560" LocationY="320" />?    
+    <Dungeon ObjectName="right wall" LocationX="0" LocationY="320" />?     
+    
+    <Dungeon ObjectName="block" LocationX="280" LocationY="300" />? 
+    <Dungeon ObjectName="block" LocationX="320" LocationY="300" />?  
+    
+    <Dungeon ObjectName="block" LocationX="280" LocationY="340" />? 
+    <Dungeon ObjectName="block" LocationX="320" LocationY="340" />?
+ 
+    <Dungeon ObjectName="block" LocationX="280" LocationY="380" />? 
+    <Dungeon ObjectName="block" LocationX="320" LocationY="380" />?  
+        
+    <Enemy ObjectName="stalfos" LocationX="240" LocationY="300" />? 
+    <Enemy ObjectName="stalfos" LocationX="400" LocationY="220" />? 
+    <Enemy ObjectName="stalfos" LocationX="240" LocationY="380" />? 
+    
+?</XnaContent>
