@@ -24,8 +24,8 @@ namespace sprint0
 
         //private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
         //private LevelLoader levelLoader;
-        //public Boolean changeRoom;
-        //public int roomIndex;
+        public Boolean changeRoom;
+        public int roomIndex;
 
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
