@@ -17,7 +17,6 @@ namespace sprint0
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
-        private List<ISprite> sprites;
         private List<IProjectile> projectiles;
         private ISprite sprite;
         private SpriteFont font;
@@ -104,44 +103,6 @@ namespace sprint0
                 hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
                 hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
             };
-
-            sprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
-            {
-
-                hudFactory.MakeSprite("hudM", new Vector2(0,0)),
-                hudFactory.MakeSprite("rin 15", new Vector2(0,0)),
-                hudFactory.MakeSprite("kin 5", new Vector2(0,0)),
-                hudFactory.MakeSprite("bin 33", new Vector2(0,0)),
-                hudFactory.MakeSprite("hin 5,10", new Vector2(0,0)),
-                hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
-                hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
-                dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
-                dungeonFactory.MakeSprite("room floor plain", new Vector2(32*Scale, HUDHeight * Scale + 32*Scale)), // location = borderX + 32*scale, borderY + 32*scale
-                dungeonFactory.MakeSprite("down open door", new Vector2(112*Scale, HUDHeight * Scale)), // location = borderX + 112*scale, borderY
-                dungeonFactory.MakeSprite("up open door", new Vector2(112*Scale, HUDHeight * Scale + 144*Scale)), // location = borderX + 112*scale, borderY + 144*scale
-                dungeonFactory.MakeSprite("left open door", new Vector2(224*Scale, HUDHeight * Scale + 72*Scale)), // location = borderX + 224*scale, borderY + 72*scale
-                dungeonFactory.MakeSprite("right open door", new Vector2(0, HUDHeight * Scale + 72*Scale)), // location = borderX, borderY + 72*scale
-            };
-
-            itemSprites = new List<ISprite>
-            {
-                //itemFactory.MakeSprite("fairy", new Vector2(200,300),Direction.n,-1),
-                //itemFactory.MakeSprite("bomb", new Vector2(200,300),Direction.n,-1), TODO make a still bomb that's just an ISprite? or make bomb not a projectile
-                itemFactory.MakeSprite("clock", new Vector2(200,300),Direction.n,-1),
-                itemFactory.MakeSprite("compass", new Vector2(200,300),Direction.n,-1),
-                itemFactory.MakeSprite("key", new Vector2(200,300),Direction.n,-1),
-                itemFactory.MakeSprite("rupee", new Vector2(200,300),Direction.n, -1),
-                //itemFactory.MakeSprite("boomerang", new Vector2(200, 300), Direction.n, -1)
-            };
-
-            //list of enemy, npc, and boss sprites
-            EnemyNPCSprites enbSprite = new EnemyNPCSprites(this);
-            //enemyNPCSprites = enbSprite.LoadEnemyNPCSprites();
-
-            //list of room element sprites
-            DungeonSprites dungeonSprite = new DungeonSprites(this);
-            roomElementsSprites = dungeonSprite.LoadDungeonSprites();
-
             //projectile sprites (starts with none)
             projectiles = new List<IProjectile>();
         }
@@ -181,13 +142,6 @@ namespace sprint0
                 _sprite.Update();
             foreach (ISprite _sprite in hudSprites)
                 _sprite.Update();
-
-            foreach (ISprite _sprite in sprites)
-                _sprite.Update();
-            foreach (ISprite _sprite in itemSprites)
-                _sprite.Update();
-            //foreach (ISprite _sprite in enemyNPCSprites)
-            //    _sprite.Update();
             foreach (IProjectile projectile in projectiles)
                 projectile.Update();
 
@@ -207,14 +161,8 @@ namespace sprint0
                 _sprite.Draw(_spriteBatch);
             foreach (ISprite _sprite in roomSprites)
                 _sprite.Draw(_spriteBatch);
-
-            foreach (ISprite _sprite in sprites)
-                _sprite.Draw(_spriteBatch);
             foreach (IProjectile projectile in projectiles)
                 projectile.Draw(_spriteBatch);
-            itemSprites[itemIndex].Draw(_spriteBatch);
-            //enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
-            roomElementsSprites[roomElementsIndex].Draw(_spriteBatch);
             player.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);

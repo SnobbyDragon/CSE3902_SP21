@@ -5,7 +5,8 @@
         Game1 game;
         ICommand quit;
 
-        public MouseController(Game1 game) {
+        public MouseController(Game1 game)
+        {
             this.game = game;
             quit = new QuitCommand(game);
         }

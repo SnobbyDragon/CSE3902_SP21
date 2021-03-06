@@ -36,5 +36,6 @@
     <Folder Include="Bosses\Digdogger\" />
     <Folder Include="Collision\" />
     <Folder Include="LoadLevel\" />
+    <Folder Include="Content\LevelData\" />
   </ItemGroup>
 </Project>
