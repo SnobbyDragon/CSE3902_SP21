@@ -21,8 +21,8 @@ namespace sprint0
         private ISprite sprite;
         private SpriteFont font;
         private IPlayer player;
-        private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
-        private ParseTest levelLoader;
+        //private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
+        //private LevelLoader levelLoader;
 
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
@@ -30,7 +30,6 @@ namespace sprint0
         public List<ISprite> itemSprites, enemyNPCSprites, roomElementsSprites;
         public int itemIndex, enemyNPCIndex, roomElementsIndex;
         public ItemsWeaponsSpriteFactory itemFactory;
-        //private ISprite roomBorder;
 
         // map width and height in pixels (does not include HUD) TODO scale up?
         public static int Width { get; } = 256;
@@ -60,7 +59,7 @@ namespace sprint0
             };
             playerFactory = new PlayerSpriteFactory(this);
             player = new Link(this, new Vector2(200, 250));
-            levelLoader = new ParseTest(this, "13");
+            //levelLoader = new LevelLoader(this, "13");
 
 
             base.Initialize();
@@ -74,24 +73,31 @@ namespace sprint0
             HUDFactory hudFactory = new HUDFactory(this);
             itemIndex = enemyNPCIndex = 0;
 
-            roomSprites = levelLoader.LoadLevel();
-            roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
-            {
-                dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
-                dungeonFactory.MakeSprite("room floor plain", new Vector2(32*Scale, HUDHeight * Scale + 32*Scale)), // location = borderX + 32*scale, borderY + 32*scale
-            };
+            /*
+             * below code was commented out so it's not confusing when testing. The following code is stuff for after we get all of the level loading stuff done/to test level loading
+             * commented out code:
+             * 1. separates out hud and the base elements of the room (plain floor and room border)
+             * 2. loads sprites for the level
+             */
 
-            hudSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
-            {
+            //roomSprites = levelLoader.LoadLevel();
+            //roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
+            //{
+            //    dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
+            //    dungeonFactory.MakeSprite("room floor plain", new Vector2(32*Scale, HUDHeight * Scale + 32*Scale)), // location = borderX + 32*scale, borderY + 32*scale
+            //};
 
-                hudFactory.MakeSprite("hudM", new Vector2(0,0)),
-                hudFactory.MakeSprite("rin 15", new Vector2(0,0)),
-                hudFactory.MakeSprite("kin 5", new Vector2(0,0)),
-                hudFactory.MakeSprite("bin 33", new Vector2(0,0)),
-                hudFactory.MakeSprite("hin 5,10", new Vector2(0,0)),
-                hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
-                hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
-            };
+            //hudSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
+            //{
+
+            //    hudFactory.MakeSprite("hudM", new Vector2(0,0)),
+            //    hudFactory.MakeSprite("rin 15", new Vector2(0,0)),
+            //    hudFactory.MakeSprite("kin 5", new Vector2(0,0)),
+            //    hudFactory.MakeSprite("bin 33", new Vector2(0,0)),
+            //    hudFactory.MakeSprite("hin 5,10", new Vector2(0,0)),
+            //    hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
+            //    hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
+            //};
 
             sprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
             {
@@ -155,18 +161,20 @@ namespace sprint0
                 controller.Update();
             }
             player.Update();
-            //foreach (ISprite _sprite in sprites)
-            //    _sprite.Update();
+            foreach (ISprite _sprite in sprites)
+                _sprite.Update();
             foreach (ISprite projectile in projectiles)
                 projectile.Update();
-            //foreach (ISprite _sprite in itemSprites)
-            //    _sprite.Update();
-            //foreach (ISprite _sprite in enemyNPCSprites)
-            //    _sprite.Update();
-            foreach (ISprite _sprite in roomSprites)
+            foreach (ISprite _sprite in itemSprites)
                 _sprite.Update();
-            foreach (ISprite _sprite in hudSprites)
+            foreach (ISprite _sprite in enemyNPCSprites)
                 _sprite.Update();
+
+            //to update level sprites and hud
+            //foreach (ISprite _sprite in roomSprites)
+            //    _sprite.Update();
+            //foreach (ISprite _sprite in hudSprites)
+            //    _sprite.Update();
             base.Update(gameTime);
             base.Update(gameTime);
         }
@@ -176,19 +184,20 @@ namespace sprint0
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
 
-            foreach (ISprite _sprite in roomBaseSprites)
-                _sprite.Draw(_spriteBatch);
-            foreach (ISprite _sprite in hudSprites)
-                _sprite.Draw(_spriteBatch);
-            foreach (ISprite _sprite in roomSprites)
-                _sprite.Draw(_spriteBatch);
+            //draws room base, hud, and level elements
+            //foreach (ISprite _sprite in roomBaseSprites)
+            //    _sprite.Draw(_spriteBatch);
+            //foreach (ISprite _sprite in hudSprites)
+            //    _sprite.Draw(_spriteBatch);
+            //foreach (ISprite _sprite in roomSprites)
+            //    _sprite.Draw(_spriteBatch);
             //foreach (ISprite _sprite in sprites)
             //    _sprite.Draw(_spriteBatch);
             foreach (ISprite projectile in projectiles)
                 projectile.Draw(_spriteBatch);
-            //itemSprites[itemIndex].Draw(_spriteBatch);
-            //enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
-            //roomElementsSprites[roomElementsIndex].Draw(_spriteBatch);
+            itemSprites[itemIndex].Draw(_spriteBatch);
+            enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
+            roomElementsSprites[roomElementsIndex].Draw(_spriteBatch);
             player.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
