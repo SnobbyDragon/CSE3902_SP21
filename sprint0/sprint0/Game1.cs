@@ -30,8 +30,6 @@ namespace sprint0
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
         public IPlayer Player { get => player; set => player = value; }
-        public List<ISprite> itemSprites, enemyNPCSprites, roomElementsSprites;
-        public int itemIndex, enemyNPCIndex, roomElementsIndex;
         public ItemsWeaponsSpriteFactory itemFactory;
 
         // map width and height in pixels (does not include HUD) TODO scale up?
@@ -65,7 +63,7 @@ namespace sprint0
 
             //note: the integer refers to the room number to load
             changeRoom = true;
-            roomIndex = 0;
+            roomIndex = 10;
             levelLoader = new LevelLoader(this, roomIndex);
 
             base.Initialize();
@@ -75,9 +73,7 @@ namespace sprint0
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             DungeonFactory dungeonFactory = new DungeonFactory(this);
-            itemFactory = new ItemsWeaponsSpriteFactory(this);
             HUDFactory hudFactory = new HUDFactory(this);
-            itemIndex = enemyNPCIndex = 0;
 
             /*
              * below code was commented out so it's not confusing when testing. The following code is stuff for after we get all of the level loading stuff done/to test level loading
@@ -172,15 +168,6 @@ namespace sprint0
         {
             // reset game timer
             ResetElapsedTime();
-
-            //reset ItemIndex
-            itemIndex = 0; // tight coupling :(
-
-            //reset enemyNPCIndex
-            enemyNPCIndex = 0;
-
-            //reset roomElementsIndex
-            roomElementsIndex = 0;
 
             //reset player state
             Player.Pos = new Vector2(200, 250);
