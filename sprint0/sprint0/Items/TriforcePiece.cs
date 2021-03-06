@@ -53,10 +53,5 @@ namespace sprint0
             // animates all the time for now
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO get collision
-            return Collision.None;
-        }
     }
 }

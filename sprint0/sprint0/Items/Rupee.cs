@@ -45,10 +45,5 @@ namespace sprint0
             //Switches between colors
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO get collision
-            return Collision.None;
-        }
     }
 }

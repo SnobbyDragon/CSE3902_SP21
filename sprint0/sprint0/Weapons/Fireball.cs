@@ -64,11 +64,6 @@ namespace sprint0
             }
         }
 
-        public Collision GetCollision(ISprite other)
-        {   //TODO get collision
-            return Collision.None;
-        }
-
         // checks if hit wall (left || right || up || down); TODO account for size of fireball?
         private bool HitWall()
         {

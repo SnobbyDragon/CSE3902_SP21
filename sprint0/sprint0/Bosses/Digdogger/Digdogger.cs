@@ -118,11 +118,6 @@ namespace sprint0
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
 
-        public Collision GetCollision(ISprite other)
-        {   //TODO
-            return Collision.None;
-        }
-
         // generates a new destination
         private void GenerateDest()
         {

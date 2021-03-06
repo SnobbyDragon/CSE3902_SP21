@@ -131,11 +131,6 @@ namespace sprint0
             }
         }
 
-        public Collision GetCollision(ISprite other)
-        {   //TODO
-            return Collision.None;
-        }
-
         private bool CanShoot()
         {
             fireballCounter++;

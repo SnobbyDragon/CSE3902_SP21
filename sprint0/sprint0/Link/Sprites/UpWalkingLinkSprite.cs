@@ -35,14 +35,10 @@ namespace sprint0
             spriteBatch.Draw(texture, Location, frames[currentFrame / repeatFrames], Color.White);
         }
 
-        public void Update() {
+        public void Update()
+        {
             currentFrame++;
             currentFrame %= totalFrames;
-        }
-
-        public Collision GetCollision(ISprite other)
-        {
-            return Collision.None;
         }
     }
 }

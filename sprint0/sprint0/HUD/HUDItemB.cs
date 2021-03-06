@@ -68,10 +68,5 @@ namespace sprint0
         {
             //todo: switch between objects and based on link
         }
-
-        public Collision GetCollision(ISprite other)
-        {
-            return Collision.None;
-        }
     }
 }

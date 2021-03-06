@@ -20,78 +20,44 @@ namespace sprint0
 
         public ISprite MakeSprite(String spriteType, Vector2 location)
         {
-
-            switch (spriteType)
+            return spriteType switch
             {
-                case "room floor plain":
-                    return new RoomFloor(texture, location);
-                case "room border":
-                    return new RoomBorder(texture, location);
-                case "block":
-                    return new Block(texture, location);
-                case "tile":
-                    return new Tile(texture, location);
-                case "gap":
-                    return new Gap(texture, location);
-                case "water":
-                    return new Water(texture, location);
-                case "floor":
-                    return new Floor(texture, location);
-                case "stairs":
-                    return new Stairs(texture, location);
-                case "ladder":
-                    return new Ladder(texture, location);
-                case "brick":
-                    return new Brick(texture, location);
-                case "left statue":
-                    return new Statue(texture, location, "left");
-                case "right statue":
-                    return new Statue(texture, location, "right");
-                case "down wall":
-                    return new Wall(texture, location, "down");
-                case "right wall":
-                    return new Wall(texture, location, "right");
-                case "left wall":
-                    return new Wall(texture, location, "left");
-                case "up wall":
-                    return new Wall(texture, location, "up");
-                case "down open door":
-                    return new OpenDoor(texture, location, "down");
-                case "right open door":
-                    return new OpenDoor(texture, location, "right");
-                case "left open door":
-                    return new OpenDoor(texture, location, "left");
-                case "up open door":
-                    return new OpenDoor(texture, location, "up");
-                case "down locked door":
-                    return new LockedDoor(texture, location, "down");
-                case "right locked door":
-                    return new LockedDoor(texture, location, "right");
-                case "left locked door":
-                    return new LockedDoor(texture, location, "left");
-                case "up locked door":
-                    return new LockedDoor(texture, location, "up");
-                case "down shut door":
-                    return new ShutDoor(texture, location, "down");
-                case "right shut door":
-                    return new ShutDoor(texture, location, "right");
-                case "left shut door":
-                    return new ShutDoor(texture, location, "left");
-                case "up shut door":
-                    return new ShutDoor(texture, location, "up");
-                case "down bombed opening":
-                    return new BombedOpening(texture, location, "down");
-                case "right bombed opening":
-                    return new BombedOpening(texture, location, "right");
-                case "left bombed opening":
-                    return new BombedOpening(texture, location, "left");
-                case "up bombed opening":
-                    return new BombedOpening(texture, location, "up");
-                case "movable block": //TODO currently just makes another block
-                    return new Block(texture, location);
-                default:
-                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
-            }
+                "room floor plain" => new RoomFloor(texture, location),
+                "room border" => new RoomBorder(texture, location),
+                "block" => new Block(texture, location),
+                "tile" => new Tile(texture, location),
+                "gap" => new Gap(texture, location),
+                "water" => new Water(texture, location),
+                "floor" => new Floor(texture, location),
+                "stairs" => new Stairs(texture, location),
+                "ladder" => new Ladder(texture, location),
+                "brick" => new Brick(texture, location),
+                "left statue" => new Statue(texture, location, "left"),
+                "right statue" => new Statue(texture, location, "right"),
+                "down wall" => new Wall(texture, location, "down"),
+                "right wall" => new Wall(texture, location, "right"),
+                "left wall" => new Wall(texture, location, "left"),
+                "up wall" => new Wall(texture, location, "up"),
+                "down open door" => new OpenDoor(texture, location, "down"),
+                "right open door" => new OpenDoor(texture, location, "right"),
+                "left open door" => new OpenDoor(texture, location, "left"),
+                "up open door" => new OpenDoor(texture, location, "up"),
+                "down locked door" => new LockedDoor(texture, location, "down"),
+                "right locked door" => new LockedDoor(texture, location, "right"),
+                "left locked door" => new LockedDoor(texture, location, "left"),
+                "up locked door" => new LockedDoor(texture, location, "up"),
+                "down shut door" => new ShutDoor(texture, location, "down"),
+                "right shut door" => new ShutDoor(texture, location, "right"),
+                "left shut door" => new ShutDoor(texture, location, "left"),
+                "up shut door" => new ShutDoor(texture, location, "up"),
+                "down bombed opening" => new BombedOpening(texture, location, "down"),
+                "right bombed opening" => new BombedOpening(texture, location, "right"),
+                "left bombed opening" => new BombedOpening(texture, location, "left"),
+                "up bombed opening" => new BombedOpening(texture, location, "up"),
+                //TODO currently just makes another block
+                "movable block" => new Block(texture, location),
+                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+            };
         }
     }
 }

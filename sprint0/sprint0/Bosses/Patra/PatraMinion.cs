@@ -126,10 +126,5 @@ namespace sprint0
                 distance++;
             }
         }
-
-        public Collision GetCollision(ISprite other)
-        {   //TODO
-            return Collision.None;
-        }
     }
 }
