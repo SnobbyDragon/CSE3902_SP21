@@ -23,9 +23,9 @@ namespace sprint0
         private SpriteFont font;
         private IPlayer player;
 
-        //private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
-        //private LevelLoader levelLoader;
-        public Boolean changeRoom;
+        private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
+        private LevelLoader levelLoader;
+        public bool changeRoom;
         public int roomIndex;
 
         public ISprite Sprite { get => sprite; set => sprite = value; }
@@ -65,9 +65,9 @@ namespace sprint0
             player = new Link(this, new Vector2(200, 250));
 
             //note: the integer refers to the room number to load
-            //changeRoom = true;
-            //roomIndex = 9;
-            //levelLoader = new LevelLoader(this, roomIndex);
+            changeRoom = true;
+            roomIndex = 0;
+            levelLoader = new LevelLoader(this, roomIndex);
 
             base.Initialize();
         }
@@ -87,24 +87,23 @@ namespace sprint0
              * 2. loads sprites for the level
              */
 
-            //roomSprites = levelLoader.LoadLevel();
-            //roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
-            //{
-            //    dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
-            //    dungeonFactory.MakeSprite("room floor plain", new Vector2(32*Scale, HUDHeight * Scale + 32*Scale)), // location = borderX + 32*scale, borderY + 32*scale
-            //};
+            roomSprites = levelLoader.LoadLevel();
+            roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
+            {
+                dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
+                dungeonFactory.MakeSprite("room floor plain", new Vector2(32*Scale, HUDHeight * Scale + 32*Scale)), // location = borderX + 32*scale, borderY + 32*scale
+            };
 
-            //hudSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
-            //{
-
-            //    hudFactory.MakeSprite("hudM", new Vector2(0,0)),
-            //    hudFactory.MakeSprite("rin 15", new Vector2(0,0)),
-            //    hudFactory.MakeSprite("kin 5", new Vector2(0,0)),
-            //    hudFactory.MakeSprite("bin 33", new Vector2(0,0)),
-            //    hudFactory.MakeSprite("hin 5,10", new Vector2(0,0)),
-            //    hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
-            //    hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
-            //};
+            hudSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
+            {
+                hudFactory.MakeSprite("hudM", new Vector2(0,0)),
+                hudFactory.MakeSprite("rin 15", new Vector2(0,0)),
+                hudFactory.MakeSprite("kin 5", new Vector2(0,0)),
+                hudFactory.MakeSprite("bin 33", new Vector2(0,0)),
+                hudFactory.MakeSprite("hin 5,10", new Vector2(0,0)),
+                hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
+                hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
+            };
 
             sprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
             {
@@ -168,19 +167,20 @@ namespace sprint0
                 controller.Update();
             }
             player.Update();
+
             //NOTE: changes room if needed
-            //if (changeRoom)
-            //{
-            //    levelLoader = new LevelLoader(this, roomIndex);
-            //    roomSprites = levelLoader.LoadLevel();
-            //    changeRoom = false;
-            //}
+            if (changeRoom)
+            {
+                levelLoader = new LevelLoader(this, roomIndex);
+                roomSprites = levelLoader.LoadLevel();
+                changeRoom = false;
+            }
 
             //NOTE: to update level sprites and hud
-            //foreach (ISprite _sprite in roomSprites)
-            //    _sprite.Update();
-            //foreach (ISprite _sprite in hudSprites)
-            //    _sprite.Update();
+            foreach (ISprite _sprite in roomSprites)
+                _sprite.Update();
+            foreach (ISprite _sprite in hudSprites)
+                _sprite.Update();
 
             foreach (ISprite _sprite in sprites)
                 _sprite.Update();
@@ -188,9 +188,8 @@ namespace sprint0
                 _sprite.Update();
             //foreach (ISprite _sprite in enemyNPCSprites)
             //    _sprite.Update();
-            foreach (ISprite projectile in projectiles)
+            foreach (IProjectile projectile in projectiles)
                 projectile.Update();
-
 
             base.Update(gameTime);
             base.Update(gameTime);
@@ -202,18 +201,17 @@ namespace sprint0
             _spriteBatch.Begin();
 
             //NOTE: draws room base, hud, and level elements
-            //foreach (ISprite _sprite in roomBaseSprites)
-            //    _sprite.Draw(_spriteBatch);
-            //foreach (ISprite _sprite in hudSprites)
-            //    _sprite.Draw(_spriteBatch);
-            //foreach (ISprite _sprite in roomSprites)
-            //    _sprite.Draw(_spriteBatch);
-
-            foreach (ISprite projectile in projectiles)
-                projectile.Draw(_spriteBatch);
-            foreach (ISprite _sprite in sprites)
+            foreach (ISprite _sprite in roomBaseSprites)
+                _sprite.Draw(_spriteBatch);
+            foreach (ISprite _sprite in hudSprites)
+                _sprite.Draw(_spriteBatch);
+            foreach (ISprite _sprite in roomSprites)
                 _sprite.Draw(_spriteBatch);
 
+            foreach (ISprite _sprite in sprites)
+                _sprite.Draw(_spriteBatch);
+            foreach (IProjectile projectile in projectiles)
+                projectile.Draw(_spriteBatch);
             itemSprites[itemIndex].Draw(_spriteBatch);
             //enemyNPCSprites[enemyNPCIndex].Draw(_spriteBatch);
             roomElementsSprites[roomElementsIndex].Draw(_spriteBatch);

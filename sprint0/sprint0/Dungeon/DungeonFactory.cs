@@ -23,7 +23,6 @@ namespace sprint0
 
             switch (spriteType)
             {
-
                 case "room floor plain":
                     return new RoomFloor(texture, location);
                 case "room border":
@@ -88,6 +87,8 @@ namespace sprint0
                     return new BombedOpening(texture, location, "left");
                 case "up bombed opening":
                     return new BombedOpening(texture, location, "up");
+                case "movable block": //TODO currently just makes another block
+                    return new Block(texture, location);
                 default:
                     throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }

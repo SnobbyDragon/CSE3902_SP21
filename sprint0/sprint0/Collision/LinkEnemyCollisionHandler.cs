@@ -8,7 +8,7 @@ namespace sprint0
 
         }
 
-        public void HandleCollision(IPlayer link, ISprite enemy, Direction side)
+        public void HandleCollision(IPlayer link, IEnemy enemy, Direction side)
         {
             link.TakeDamage(side);
         }
