@@ -34,5 +34,6 @@
     <Folder Include="Bosses\Dodongo\" />
     <Folder Include="Bosses\Gohma\" />
     <Folder Include="Bosses\Digdogger\" />
+    <Folder Include="Content\bin\DesktopGL\Content\LevelData\" />
   </ItemGroup>
 </Project>
