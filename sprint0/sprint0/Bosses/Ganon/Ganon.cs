@@ -122,7 +122,7 @@ namespace sprint0
         {
             Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + centerOffset);
             dir.Normalize();
-            game.AddFireball(Location.Location.ToVector2(), dir);
+            game.AddFireball(Location.Location.ToVector2(), dir, this);
         }
 
         //private void FireballExplosion()

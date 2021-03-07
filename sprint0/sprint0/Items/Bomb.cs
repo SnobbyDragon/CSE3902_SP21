@@ -14,7 +14,7 @@ namespace sprint0
 {
     public class Bomb : IProjectile
     {
-        public IEntity Source { get; set; }
+        public IEntity Shooter { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
 
@@ -35,8 +35,9 @@ namespace sprint0
         private readonly int totalFrames;
         private int currentFrame;
 
-        public Bomb(Texture2D texture, Vector2 location, Direction dir, int lifespan)
+        public Bomb(Texture2D texture, Vector2 location, Direction dir, int lifespan, IEntity shooter)
         {
+            Shooter = shooter;
             int sourceAdjustX = 0;
             int sourceAdjustY = 0;
             /*

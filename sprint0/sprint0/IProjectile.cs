@@ -3,6 +3,6 @@ namespace sprint0
 {
     public interface IProjectile : ISprite
     {
-        public IEntity Source { get; set; }
+        public IEntity Shooter { get; set; }
     }
 }

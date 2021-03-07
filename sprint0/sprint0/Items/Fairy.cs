@@ -9,7 +9,7 @@ namespace sprint0
 {
     public class Fairy : IProjectile // fairy is projectile lol !
     {
-        public IEntity Source { get; set; }
+        public IEntity Shooter { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly List<Rectangle> sources;

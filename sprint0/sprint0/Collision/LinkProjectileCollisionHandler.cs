@@ -10,7 +10,7 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, IProjectile projectile, Direction side)
         {
-            if (!projectile.Source.Equals(link)) // can only hit link if he didn't throw it
+            if (!projectile.Shooter.Equals(link)) // can only hit link if he didn't throw it
                 link.TakeDamage(side);
         }
     }

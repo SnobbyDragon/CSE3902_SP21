@@ -96,9 +96,9 @@ namespace sprint0
         {
             Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + headOffset); // TODO offset to center of link
             dir.Normalize();
-            game.AddFireball(Location.Center.ToVector2(), dir);
-            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6)))); // 30 degrees up
-            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6)))); // 30 degrees down
+            game.AddFireball(Location.Center.ToVector2(), dir, this);
+            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))), this); // 30 degrees up
+            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))), this); // 30 degrees down
         }
     }
 }

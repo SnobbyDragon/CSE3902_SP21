@@ -7,7 +7,7 @@ namespace sprint0
 {
     class SwordBeam : IProjectile
     {
-        public IEntity Source { get; set; }
+        public IEntity Shooter { get; set; }
         public Rectangle Location { get; set; }
         private readonly Texture2D texture;
         private readonly List<Rectangle> sources;
@@ -19,8 +19,9 @@ namespace sprint0
         private readonly int totalFrames, repeatedFrames;
         private int age = 0;
 
-        public SwordBeam(Texture2D texture, Vector2 location, Direction dir, int lifespan)
+        public SwordBeam(Texture2D texture, Vector2 location, Direction dir, int lifespan, IEntity source)
         {
+            Shooter = source;
             this.dir = dir;
             this.texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, width, height);

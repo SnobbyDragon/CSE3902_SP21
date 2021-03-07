@@ -6,7 +6,7 @@ namespace sprint0
 {
     public class Arrow : IProjectile
     {
-        public IEntity Source { get; set; }
+        public IEntity Shooter { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public Vector2 origin;
@@ -24,8 +24,10 @@ namespace sprint0
         private readonly int lifespan;
         //Age is the current number of updates
         private int age;
-        public Arrow(Texture2D texture, Vector2 location, Direction dir, int lifespan)
+        public Arrow(Texture2D texture, Vector2 location, Direction dir, int lifespan, IEntity shooter)
         {
+            Shooter = shooter;
+
             /*
              * Adjust the source location based on the direction 
              */

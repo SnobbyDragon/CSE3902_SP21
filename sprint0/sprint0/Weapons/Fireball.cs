@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class Fireball : IProjectile
     {
-        public IEntity Source { get; set; }
+        public IEntity Shooter { get; set; }
         public Rectangle Location { get; set; }
         private Vector2 preciseLocation;
         public Texture2D Texture { get; set; }
@@ -19,9 +19,9 @@ namespace sprint0
         private readonly int totalFrames, repeatedFrames, speed = 3; // fast fireballs
         private readonly Vector2 direction; // direction fireball travels
 
-        public Fireball(Texture2D texture, Vector2 location, Vector2 direction)
+        public Fireball(Texture2D texture, Vector2 location, Vector2 direction, IEntity shooter)
         {
-            Source = this; // TODO temporary so it doesn't crash bc of null pointer
+            Shooter = shooter;
             Texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             preciseLocation = location;
