@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Hannah Johnson
 namespace sprint0
 {
-    public class Ladder : ISprite
+    public class Ladder : IBlock
     {
 
         public Rectangle Location { get; set; }
@@ -20,8 +20,6 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             source = new Rectangle(1001, 45, width, height);
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -32,6 +30,16 @@ namespace sprint0
         public void Update()
         {
             //No movement for now
+        }
+
+        public bool IsWalkable()
+        {
+            return true;
+        }
+
+        public bool IsMovable()
+        {
+            return false;
         }
     }
 }

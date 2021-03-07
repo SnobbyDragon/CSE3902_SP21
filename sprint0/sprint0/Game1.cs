@@ -11,16 +11,20 @@ namespace sprint0
 
     public class Game1 : Game
     {
-        private static PlayerSpriteFactory playerFactory;
-        public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
-
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
-        private List<IProjectile> projectiles;
-        private ISprite sprite;
-        private SpriteFont font;
+
+        private static PlayerSpriteFactory playerFactory;
+        public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
         private IPlayer player;
+        public IPlayer Player { get => player; set => player = value; }
+
+        private ItemsWeaponsSpriteFactory itemFactory;
+
+        private List<IProjectile> projectiles;
+        private List<IBlock> blocks;
+        private List<IEnemy> enemies;
         private AllCollisionHandler collisionHandler;
 
         private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
@@ -28,10 +32,10 @@ namespace sprint0
         public bool changeRoom;
         public int roomIndex;
 
+        private ISprite sprite;
+        private SpriteFont font;
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
-        public IPlayer Player { get => player; set => player = value; }
-        public ItemsWeaponsSpriteFactory itemFactory;
 
         // map width and height in pixels (does not include HUD) TODO scale up?
         public static int Width { get; } = 256;
@@ -75,6 +79,13 @@ namespace sprint0
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             DungeonFactory dungeonFactory = new DungeonFactory(this);
             HUDFactory hudFactory = new HUDFactory(this);
+            itemFactory = new ItemsWeaponsSpriteFactory(this);
+
+            projectiles = new List<IProjectile>();
+            blocks = new List<IBlock>();
+            enemies = new List<IEnemy>();
+
+            collisionHandler = new AllCollisionHandler();
 
             /*
              * below code was commented out so it's not confusing when testing. The following code is stuff for after we get all of the level loading stuff done/to test level loading
@@ -83,7 +94,11 @@ namespace sprint0
              * 2. loads sprites for the level
              */
 
-            roomSprites = levelLoader.LoadLevel();
+            (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>) roomElements = levelLoader.LoadLevel();
+            roomSprites = roomElements.Item1;
+            projectiles = roomElements.Item2;
+            blocks = roomElements.Item3;
+            enemies = roomElements.Item4;
             roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
             {
                 dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
@@ -100,11 +115,6 @@ namespace sprint0
                 hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
                 hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
             };
-            //projectile sprites (starts with none)
-            itemFactory = new ItemsWeaponsSpriteFactory(this);
-            projectiles = new List<IProjectile>();
-
-            collisionHandler = new AllCollisionHandler();
         }
 
         public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item, IEntity source)
@@ -132,7 +142,11 @@ namespace sprint0
             if (changeRoom)
             {
                 levelLoader = new LevelLoader(this, roomIndex);
-                roomSprites = levelLoader.LoadLevel();
+                (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>) roomElements = levelLoader.LoadLevel();
+                roomSprites = roomElements.Item1;
+                projectiles = roomElements.Item2;
+                blocks = roomElements.Item3;
+                enemies = roomElements.Item4;
                 changeRoom = false;
             }
 
@@ -143,10 +157,15 @@ namespace sprint0
                 _sprite.Update();
             foreach (IProjectile projectile in projectiles)
                 projectile.Update();
+            foreach (IBlock block in blocks)
+                block.Update();
+            foreach (IEnemy enemy in enemies)
+                enemy.Update();
 
-            // handles projectiles
+            // handles collisions
             collisionHandler.HandleLinkProjectileCollisions(Player, projectiles);
-            collisionHandler.HandleLinkBlockCollisions(Player, roomSprites);
+            collisionHandler.HandleLinkBlockCollisions(Player, blocks);
+            collisionHandler.HandleLinkEnemyCollisions(Player, enemies);
 
             base.Update(gameTime);
         }
@@ -165,6 +184,10 @@ namespace sprint0
                 _sprite.Draw(_spriteBatch);
             foreach (IProjectile projectile in projectiles)
                 projectile.Draw(_spriteBatch);
+            foreach (IBlock block in blocks)
+                block.Draw(_spriteBatch);
+            foreach (IEnemy enemy in enemies)
+                enemy.Draw(_spriteBatch);
             player.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);

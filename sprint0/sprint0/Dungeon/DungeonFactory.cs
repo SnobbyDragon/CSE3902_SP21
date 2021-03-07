@@ -17,7 +17,7 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/DungeonTileset");
         }
 
-        public ISprite MakeSprite(String spriteType, Vector2 location)
+        public ISprite MakeSprite(string spriteType, Vector2 location)
         {
             return spriteType switch
             {
@@ -53,8 +53,26 @@ namespace sprint0
                 "right bombed opening" => new BombedOpening(texture, location, "right"),
                 "left bombed opening" => new BombedOpening(texture, location, "left"),
                 "up bombed opening" => new BombedOpening(texture, location, "up"),
-                //TODO currently just makes another block
-                "movable block" => new Block(texture, location),
+                "movable block" => new MovableBlock(texture, location),
+                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+            };
+        }
+
+        public IBlock MakeBlock(string spriteType, Vector2 location)
+        {
+            return spriteType switch
+            {
+                "block" => new Block(texture, location),
+                "tile" => new Tile(texture, location),
+                "gap" => new Gap(texture, location),
+                "water" => new Water(texture, location),
+                "floor" => new Floor(texture, location),
+                "stairs" => new Stairs(texture, location),
+                "ladder" => new Ladder(texture, location),
+                "brick" => new Brick(texture, location),
+                "left statue" => new Statue(texture, location, "left", game),
+                "right statue" => new Statue(texture, location, "right", game),
+                "movable block" => new MovableBlock(texture, location),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }

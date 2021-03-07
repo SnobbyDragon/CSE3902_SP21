@@ -58,11 +58,11 @@ namespace sprint0
         /*
          * Checks if link collides with any blocks; handles collisions TODO generalize to static obstacles
          */
-        public void HandleLinkBlockCollisions(IPlayer link, List<ISprite> blocks)
+        public void HandleLinkBlockCollisions(IPlayer link, List<IBlock> blocks)
         {
             LinkBlockCollisionHandler collisionHandler = new LinkBlockCollisionHandler();
             Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, 16, 16); //TODO change with size of link
-            foreach (ISprite block in blocks)
+            foreach (IBlock block in blocks)
             {
                 Collision side = collisionDetector.DetectCollision(linkHitbox, block);
                 if (side != Collision.None)

@@ -8,19 +8,19 @@
     <Dungeon ObjectName="left wall" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />?     
     
-    <Dungeon ObjectName="block" LocationX="160" LocationY="300" />? 
-    <Dungeon ObjectName="block" LocationX="200" LocationY="300" />?  
-    <Dungeon ObjectName="block" LocationX="160" LocationY="340" />? 
-    <Dungeon ObjectName="block" LocationX="200" LocationY="340" />?
-    <Dungeon ObjectName="block" LocationX="160" LocationY="380" />? 
-    <Dungeon ObjectName="block" LocationX="200" LocationY="380" />?  
+    <Block ObjectName="block" LocationX="160" LocationY="300" />? 
+    <Block ObjectName="block" LocationX="200" LocationY="300" />?  
+    <Block ObjectName="block" LocationX="160" LocationY="340" />? 
+    <Block ObjectName="block" LocationX="200" LocationY="340" />?
+    <Block ObjectName="block" LocationX="160" LocationY="380" />? 
+    <Block ObjectName="block" LocationX="200" LocationY="380" />?  
     
-    <Dungeon ObjectName="block" LocationX="400" LocationY="300" />? 
-    <Dungeon ObjectName="block" LocationX="440" LocationY="300" />?  
-    <Dungeon ObjectName="block" LocationX="400" LocationY="340" />? 
-    <Dungeon ObjectName="block" LocationX="440" LocationY="340" />?
-    <Dungeon ObjectName="block" LocationX="400" LocationY="380" />? 
-    <Dungeon ObjectName="block" LocationX="440" LocationY="380" />?  
+    <Block ObjectName="block" LocationX="400" LocationY="300" />? 
+    <Block ObjectName="block" LocationX="440" LocationY="300" />?  
+    <Block ObjectName="block" LocationX="400" LocationY="340" />? 
+    <Block ObjectName="block" LocationX="440" LocationY="340" />?
+    <Block ObjectName="block" LocationX="400" LocationY="380" />? 
+    <Block ObjectName="block" LocationX="440" LocationY="380" />?  
         
     <Enemy ObjectName="stalfos" LocationX="360" LocationY="380" />? 
     <Enemy ObjectName="stalfos" LocationX="440" LocationY="260" />? 

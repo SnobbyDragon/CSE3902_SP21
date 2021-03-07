@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Statue : ISprite
+    public class Statue : IBlock
     {
         private readonly Game1 game;
         public Rectangle Location { get; set; }
@@ -54,6 +54,16 @@ namespace sprint0
             Vector2 dir = game.Player.Pos - (Location.Center.ToVector2());
             dir.Normalize();
             game.AddFireball(Location.Center.ToVector2(), dir, this);
+        }
+
+        public bool IsWalkable()
+        {
+            return false;
+        }
+
+        public bool IsMovable()
+        {
+            return false;
         }
     }
 }

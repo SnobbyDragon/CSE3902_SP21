@@ -9,14 +9,14 @@
     <Dungeon ObjectName="left shut door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right wall" LocationX="0" LocationY="320" />?     
     
-    <Dungeon ObjectName="block" LocationX="280" LocationY="300" />? 
-    <Dungeon ObjectName="block" LocationX="320" LocationY="300" />?  
+    <Block ObjectName="block" LocationX="280" LocationY="300" />? 
+    <Block ObjectName="block" LocationX="320" LocationY="300" />?  
     
-    <Dungeon ObjectName="block" LocationX="280" LocationY="340" />? 
-    <Dungeon ObjectName="block" LocationX="320" LocationY="340" />?
+    <Block ObjectName="block" LocationX="280" LocationY="340" />? 
+    <Block ObjectName="block" LocationX="320" LocationY="340" />?
  
-    <Dungeon ObjectName="block" LocationX="280" LocationY="380" />? 
-    <Dungeon ObjectName="block" LocationX="320" LocationY="380" />?  
+    <Block ObjectName="block" LocationX="280" LocationY="380" />? 
+    <Block ObjectName="block" LocationX="320" LocationY="380" />?  
 
     
     <Enemy ObjectName="blue keese" LocationX="200" LocationY="340" />? 
