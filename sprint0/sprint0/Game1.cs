@@ -146,7 +146,7 @@ namespace sprint0
                 projectile.Update();
 
             // handles projectiles
-            collisonHandler.HandleLinkProjectileCollisions(player, projectiles);
+            collisionHandler.HandleLinkProjectileCollisions(player, projectiles);
 
             base.Update(gameTime);
             base.Update(gameTime);
