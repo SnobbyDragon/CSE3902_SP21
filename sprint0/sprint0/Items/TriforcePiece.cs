@@ -22,7 +22,7 @@ namespace sprint0
             Texture = texture;
             color = triforceColor;
             currentFrame = 0;
-            totalFrames = 4;
+            totalFrames = 1;
             repeatedFrames = 8;
 
             colorMap = new Dictionary<string, List<Rectangle>>

@@ -64,7 +64,7 @@ namespace sprint0
 
             //note: the integer refers to the room number to load
             changeRoom = true;
-            roomIndex = 10;
+            roomIndex = 9;
             levelLoader = new LevelLoader(this, roomIndex);
 
             base.Initialize();

@@ -61,7 +61,7 @@ namespace sprint0
             }
             else // somehow two is inside one
             {
-                return Collision.Top; // arbitrarily chooses top TODO
+                return Collision.None; // TODO is just none for now; should make it go towards the nearest edge?
             }
         }
 
