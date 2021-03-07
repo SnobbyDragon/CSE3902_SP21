@@ -98,5 +98,11 @@ namespace sprint0
                 }
             }
         }
+
+        public void ChangeDirection()
+        {
+            Random random = new Random();
+            direction = (Direction)random.Next(0, 4);
+        }
     }
 }

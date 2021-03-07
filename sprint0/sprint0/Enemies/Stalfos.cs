@@ -98,5 +98,11 @@ namespace sprint0
                     throw new ArgumentException("Invalid direction! Stalfos movement failed.");
             }
         }
+
+        public void ChangeDirection()
+        {
+            Random random = new Random();
+            dir = (Direction)random.Next(0, 4);
+        }
     }
 }

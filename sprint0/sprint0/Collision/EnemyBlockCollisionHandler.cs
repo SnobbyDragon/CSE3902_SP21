@@ -13,7 +13,7 @@ namespace sprint0
         {
             if (!block.IsWalkable()) // cannot walk on it TODO can some enemies walk on surfaces link can't?
             {
-                switch (side) // TODO make enemies turn around?????
+                switch (side)
                 {
                     case Direction.n: // if collide above, then move down
                         enemy.Location = new Rectangle(enemy.Location.X, block.Location.Bottom, enemy.Location.Width, enemy.Location.Height);
@@ -28,6 +28,7 @@ namespace sprint0
                         enemy.Location = new Rectangle(block.Location.Right, enemy.Location.Y, enemy.Location.Width, enemy.Location.Height);
                         break;
                 }
+                enemy.ChangeDirection();
             }
         }
     }

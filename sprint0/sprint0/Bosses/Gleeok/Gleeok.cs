@@ -67,5 +67,10 @@ namespace sprint0
             foreach (IEnemy sprite in neck2)
                 sprite.Update();
         }
+
+        public void ChangeDirection()
+        {
+            // not necessary
+        }
     }
 }

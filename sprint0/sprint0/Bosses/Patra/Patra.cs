@@ -83,6 +83,11 @@ namespace sprint0
                 minion.Update();
         }
 
+        public void ChangeDirection()
+        {
+            GenerateDest();
+        }
+
         // generates a new destination
         private void GenerateDest()
         {

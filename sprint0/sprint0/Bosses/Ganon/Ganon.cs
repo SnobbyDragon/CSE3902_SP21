@@ -46,14 +46,14 @@ namespace sprint0
             centerOffset = new Vector2(width / 2 - 4, height / 2 - 5); // ganon size / 2 - fireball size / 2
             fireballExplosion = new List<GanonFireball>()
             {
-                new GanonFireball(texture, "up"),
-                new GanonFireball(texture, "up left"),
-                new GanonFireball(texture, "left"),
-                new GanonFireball(texture, "down left"),
-                new GanonFireball(texture, "down"),
-                new GanonFireball(texture, "down right"),
-                new GanonFireball(texture, "right"),
-                new GanonFireball(texture, "up right")
+                new GanonFireball(texture, "up", this),
+                new GanonFireball(texture, "up left", this),
+                new GanonFireball(texture, "left", this),
+                new GanonFireball(texture, "down left", this),
+                new GanonFireball(texture, "down", this),
+                new GanonFireball(texture, "down right", this),
+                new GanonFireball(texture, "right", this),
+                new GanonFireball(texture, "up right", this)
             };
         }
 
@@ -109,6 +109,11 @@ namespace sprint0
             //        fireball.Update();
             //    }
             //}
+        }
+
+        public void ChangeDirection()
+        {
+            // not necessary
         }
 
         private bool CanShoot()
