@@ -6,6 +6,7 @@ namespace sprint0
 {
     public class Arrow : IProjectile
     {
+        public IEntity Source { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public Vector2 origin;

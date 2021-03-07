@@ -21,6 +21,7 @@ namespace sprint0
         private ISprite sprite;
         private SpriteFont font;
         private IPlayer player;
+        private AllCollisonHandler collisonHandler;
 
         private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
         private LevelLoader levelLoader;
@@ -102,11 +103,13 @@ namespace sprint0
             //projectile sprites (starts with none)
             itemFactory = new ItemsWeaponsSpriteFactory(this);
             projectiles = new List<IProjectile>();
+
+            collisonHandler = new AllCollisonHandler();
         }
 
-        public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item)
+        public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item, IEntity source)
         {
-            projectiles.Add(itemFactory.MakeProjectile(item, Location, dir, lifespan));
+            projectiles.Add(itemFactory.MakeProjectile(item, Location, dir, lifespan, source));
         }
 
         public void AddFireball(Vector2 location, Vector2 dir)
@@ -141,6 +144,9 @@ namespace sprint0
                 _sprite.Update();
             foreach (IProjectile projectile in projectiles)
                 projectile.Update();
+
+            // handles projectiles
+            collisonHandler.HandleLinkProjectileCollisions(player, projectiles);
 
             base.Update(gameTime);
             base.Update(gameTime);

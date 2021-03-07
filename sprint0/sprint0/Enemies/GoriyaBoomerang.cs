@@ -8,6 +8,7 @@ namespace sprint0
 {
     public class GoriyaBoomerang : IProjectile
     {
+        public IEntity Source { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 290, yOffset = 11, width = 7, height = 15;

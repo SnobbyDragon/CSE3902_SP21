@@ -45,33 +45,64 @@ namespace sprint0
             // Random time for arrows is neat :)
             int time = rand.Next(50, 65);
             Vector2 offsetPos = position;
-            if (direction == Direction.n || direction == Direction.s)
+            switch (direction)
             {
-                offsetPos = new Vector2(position.X + 6, position.Y);
+                case Direction.n:
+                    offsetPos = new Vector2(position.X + 6, position.Y - 11); // 11 was smallest num s.t. arrow does not trigger collision with link TODO not necessary with source for projectiles
+                    break;
+                case Direction.s:
+                    offsetPos = new Vector2(position.X + 6, position.Y + 16);
+                    break;
+                case Direction.e:
+                    offsetPos = new Vector2(position.X + 16, position.Y);
+                    break;
+                case Direction.w:
+                    offsetPos = new Vector2(position.X, position.Y);
+                    break;
             }
-
-            game.AddProjectile(offsetPos, direction, time, "arrow");
+            game.AddProjectile(offsetPos, direction, time, "arrow", this);
         }
 
         public void ThrowBomb()
         {
             Vector2 offsetPos = position;
-            if (direction == Direction.n || direction == Direction.s)
+            switch (direction)
             {
-                offsetPos = new Vector2(position.X + 6, position.Y);
+                case Direction.n:
+                    offsetPos = new Vector2(position.X + 3, position.Y - 16);
+                    break;
+                case Direction.s:
+                    offsetPos = new Vector2(position.X + 5, position.Y + 16);
+                    break;
+                case Direction.e:
+                    offsetPos = new Vector2(position.X + 16, position.Y);
+                    break;
+                case Direction.w:
+                    offsetPos = new Vector2(position.X - 10, position.Y);
+                    break;
             }
-
-            game.AddProjectile(offsetPos, direction, 30, "bomb");
+            game.AddProjectile(offsetPos, direction, 30, "bomb", this);
         }
 
         public void ThrowBoomerang()
         {
             Vector2 offsetPos = position;
-            if (direction == Direction.n || direction == Direction.s)
+            switch (direction)
             {
-                offsetPos = new Vector2(position.X + 6, position.Y);
+                case Direction.n:
+                    offsetPos = new Vector2(position.X + 3, position.Y);
+                    break;
+                case Direction.s:
+                    offsetPos = new Vector2(position.X + 5, position.Y + 16);
+                    break;
+                case Direction.e:
+                    offsetPos = new Vector2(position.X + 16, position.Y + 6);
+                    break;
+                case Direction.w:
+                    offsetPos = new Vector2(position.X, position.Y + 6);
+                    break;
             }
-            game.AddProjectile(offsetPos, direction, 0, "boomerang");
+            game.AddProjectile(offsetPos, direction, 0, "boomerang", this);
         }
 
 
@@ -110,16 +141,16 @@ namespace sprint0
                     offsetPos = new Vector2(position.X + 3, position.Y);
                     break;
                 case Direction.s:
-                    offsetPos = new Vector2(position.X + 5, position.Y);
+                    offsetPos = new Vector2(position.X + 5, position.Y + 16);
                     break;
                 case Direction.e:
-                    offsetPos = new Vector2(position.X + 8, position.Y + 6);
+                    offsetPos = new Vector2(position.X + 16, position.Y + 6);
                     break;
                 case Direction.w:
                     offsetPos = new Vector2(position.X, position.Y + 6);
                     break;
             }
-            game.AddProjectile(offsetPos, direction, 0, "sword beam");
+            game.AddProjectile(offsetPos, direction, 0, "sword beam", this);
         }
 
         public void Draw(SpriteBatch spriteBatch)

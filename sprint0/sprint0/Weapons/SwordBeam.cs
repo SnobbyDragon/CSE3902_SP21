@@ -7,6 +7,7 @@ namespace sprint0
 {
     class SwordBeam : IProjectile
     {
+        public IEntity Source { get; set; }
         public Rectangle Location { get; set; }
         private readonly Texture2D texture;
         private readonly List<Rectangle> sources;
