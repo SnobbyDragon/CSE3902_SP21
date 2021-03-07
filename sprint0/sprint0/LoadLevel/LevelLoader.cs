@@ -15,6 +15,7 @@ namespace sprint0
         private FileStream roomStream;
         private String path;
         private List<ISprite> sprites;
+        private List<IProjectile> projectile;
         Game1 game1;
         EnemiesSpriteFactory enemyFactory;
         ItemsWeaponsSpriteFactory itemFactory;
@@ -32,6 +33,7 @@ namespace sprint0
             roomReader = XmlReader.Create(roomStream);
 
             sprites = new List<ISprite>();
+            projectile = new List<IProjectile>();
             this.game1 = game1;
 
             //factories
@@ -82,6 +84,11 @@ namespace sprint0
                     Direction dir = WeaponDirection(roomReader.GetAttribute("Direction"));
                     int lifespan = Int32.Parse(roomReader.GetAttribute("Lifespan"));
                     sprites.Add(itemFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir, lifespan));
+                    break;
+                case "Projectile":
+                    Direction dir1 = WeaponDirection(roomReader.GetAttribute("Direction"));
+                    int lifespan1 = Int32.Parse(roomReader.GetAttribute("Lifespan"));
+                    projectile.Add(itemFactory.MakeProjectile(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir1, lifespan1));
                     break;
                 case "Boss":
                     if (roomReader.HasAttributes)

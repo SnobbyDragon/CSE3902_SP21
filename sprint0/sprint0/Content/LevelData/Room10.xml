@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<XnaContent>?    
+<XnaContent>?
+
+     <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />
+     <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />
+
     <Dungeon ObjectName="up wall" LocationX="280" LocationY="500" />?    
     <Dungeon ObjectName="down locked door" LocationX="280" LocationY="140" />?    
     <Dungeon ObjectName="left wall" LocationX="560" LocationY="320" />?    
