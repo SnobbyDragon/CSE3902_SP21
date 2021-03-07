@@ -14,14 +14,15 @@ namespace sprint0
         public MouseController(Game1 game)
         {
             this.game = game;
-            lButtonState = Mouse.GetState().LeftButton;
-            rButtonState = Mouse.GetState().RightButton;
             next = new NextRoomCommand(this.game);
             previous = new PreviousRoomCommand(this.game);
+
+            lButtonState = Mouse.GetState().LeftButton;
+            rButtonState = Mouse.GetState().RightButton;
             previousStates = new List<ButtonState>
             {
-                Mouse.GetState().LeftButton,
-                Mouse.GetState().RightButton,
+                lButtonState,
+                rButtonState
             };
         }
         public void Update()

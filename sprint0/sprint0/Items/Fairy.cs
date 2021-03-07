@@ -9,6 +9,7 @@ namespace sprint0
 {
     public class Fairy : IProjectile // fairy is projectile lol !
     {
+        public IEntity Shooter { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly List<Rectangle> sources;
@@ -20,7 +21,7 @@ namespace sprint0
         private Vector2 destination;
         private readonly Random rand;
 
-        public Fairy(Texture2D texture, Vector2 location)
+        public Fairy(Texture2D texture, Vector2 location) //TODO source if this is really a projectile lol
         {
             Texture = texture;
             totalFrames = 2;

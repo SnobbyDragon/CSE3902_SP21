@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 // Authors: Jesse He and Jacob Urick
 namespace sprint0
 {
-    public interface IPlayer
+    public interface IPlayer : IEntity
     {
 
         Direction Direction { get; set; }

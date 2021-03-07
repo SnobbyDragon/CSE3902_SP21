@@ -6,63 +6,69 @@ namespace sprint0
 {
     public class CollisionDetector
     {
+
         public CollisionDetector()
         {
         }
 
-        //TODO idk what im doing
-        //public void DetectLinkEnemyCollisions(ISprite link, List<IEnemy> enemies)
-        //{
-        //    foreach (IEnemy enemy in enemies)
-        //    {
-        //        Collision side = DetectCollision(link, enemy);
-        //        if (side != Collision.None)
-        //        {
+        // overload with different parameters
+        public Collision DetectCollision(ISprite one, Rectangle two)
+        {
+            return DetectCollision(one.Location, two);
+        }
 
-        //        }
-        //    }
-        //}
+        // overload with different parameters
+        public Collision DetectCollision(Rectangle one, ISprite two)
+        {
+            return DetectCollision(one, two.Location);
+        }
+
+        // overload with different parameters
+        public Collision DetectCollision(ISprite one, ISprite two)
+        {
+            return DetectCollision(one.Location, two.Location);
+        }
 
         /*
          * Returns where two collides with one (ex. top of one, left of one)
          */
-        public Collision DetectCollision(ISprite one, ISprite two)
+        public Collision DetectCollision(Rectangle one, Rectangle two)
         {
-            Rectangle intersection = Rectangle.Intersect(one.Location, two.Location);
+            Rectangle intersection = Rectangle.Intersect(one, two);
 
             if (intersection.IsEmpty)
                 return Collision.None;
 
-            if (intersection.Bottom == one.Location.Bottom) // intersects at the bottom
+            if (intersection.Bottom == one.Bottom) // intersects at the bottom
             {
                 // could be Left, Bottom, or Right
                 return DetermineCollisionBottom(intersection, one);
             }
-            else if (intersection.Top == one.Location.Top) // intersects at the top
+            else if (intersection.Top == one.Top) // intersects at the top
             {
                 // could be Left, Top, or Right
                 return DetermineCollisionTop(intersection, one);
             }
-            else if (intersection.Right == one.Location.Right)
+            else if (intersection.Right == one.Right)
             {
                 // could be Top, Bottom, or Right
                 return DetermineCollisionRight(intersection, one);
             }
-            else if (intersection.Left == one.Location.Left)
+            else if (intersection.Left == one.Left)
             {
                 // could be Top, Bottom, or Left
                 return DetermineCollisionLeft(intersection, one);
             }
             else // somehow two is inside one
             {
-                return Collision.Top; // arbitrarily chooses top TODO
+                return Collision.None; // TODO is just none for now; should make it go towards the nearest edge?
             }
         }
 
-        public Collision DetermineCollisionBottom(Rectangle intersection, ISprite one)
+        public Collision DetermineCollisionBottom(Rectangle intersection, Rectangle one)
         {
             // check if could be Left
-            if (intersection.Left > one.Location.Left)
+            if (intersection.Left > one.Left)
             {
                 // cannot be Left, so check if intersects Bottom or Right more
                 if (intersection.Height > intersection.Width)
@@ -92,10 +98,10 @@ namespace sprint0
             }
         }
 
-        public Collision DetermineCollisionTop(Rectangle intersection, ISprite one)
+        public Collision DetermineCollisionTop(Rectangle intersection, Rectangle one)
         {
             // check if could be Left
-            if (intersection.Left > one.Location.Left)
+            if (intersection.Left > one.Left)
             {
                 // cannot be Left, so check if intersects Top or Right more
                 if (intersection.Height > intersection.Width)
@@ -125,10 +131,10 @@ namespace sprint0
             }
         }
 
-        public Collision DetermineCollisionRight(Rectangle intersection, ISprite one)
+        public Collision DetermineCollisionRight(Rectangle intersection, Rectangle one)
         {
             // check if could be Top
-            if (intersection.Top > one.Location.Top)
+            if (intersection.Top > one.Top)
             {
                 // cannot be Top, so check if intersects Bottom or Right more
                 if (intersection.Height > intersection.Width)
@@ -158,10 +164,10 @@ namespace sprint0
             }
         }
 
-        public Collision DetermineCollisionLeft(Rectangle intersection, ISprite one)
+        public Collision DetermineCollisionLeft(Rectangle intersection, Rectangle one)
         {
             // check if could be Top
-            if (intersection.Top > one.Location.Top)
+            if (intersection.Top > one.Top)
             {
                 // cannot be Top, so check if intersects Bottom or Right more
                 if (intersection.Height > intersection.Width)

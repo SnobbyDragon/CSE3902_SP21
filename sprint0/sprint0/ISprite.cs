@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public interface ISprite
+    public interface ISprite : IEntity
     {
         public Rectangle Location { get; set; }
 

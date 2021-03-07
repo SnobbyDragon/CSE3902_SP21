@@ -11,7 +11,7 @@ namespace sprint0
 {
     public class Aquamentus : IEnemy
     {
-        private readonly Game1 game; //TODO maybe have player bc static so we don't need this
+        private readonly Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 1, yOffset = 11, width = 24, height = 32;
@@ -96,9 +96,9 @@ namespace sprint0
         {
             Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + headOffset); // TODO offset to center of link
             dir.Normalize();
-            game.AddFireball(Location.Center.ToVector2(), dir);
-            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6)))); // 30 degrees up
-            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6)))); // 30 degrees down
+            game.AddFireball(Location.Center.ToVector2(), dir, this);
+            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))), this); // 30 degrees up
+            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))), this); // 30 degrees down
         }
     }
 }

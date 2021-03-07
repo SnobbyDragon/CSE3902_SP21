@@ -11,7 +11,7 @@ namespace sprint0
      */
     public class Boomerang : IProjectile
     {
-        
+        public IEntity Shooter { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 290, yOffset = 11, width = 8, height = 16;
@@ -22,13 +22,14 @@ namespace sprint0
         private readonly int ya = 0;
         private readonly int maxDistance = 25;
         private int age = 0;
-        SpriteEffects h = SpriteEffects.FlipHorizontally;
-        SpriteEffects v = SpriteEffects.FlipVertically;
+        private readonly SpriteEffects h = SpriteEffects.FlipHorizontally, v = SpriteEffects.FlipVertically;
         private Vector2 moveVector;
         private bool alive;
         private readonly int lifespan;
-        public Boomerang(Texture2D texture, Vector2 location, Direction dir, int lfspn)
+
+        public Boomerang(Texture2D texture, Vector2 location, Direction dir, int lfspn, IEntity shooter)
         {
+            Shooter = shooter;
             lifespan = lfspn;
 
             alive = true;

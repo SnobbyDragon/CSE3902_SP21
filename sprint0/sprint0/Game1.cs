@@ -21,6 +21,7 @@ namespace sprint0
         private ISprite sprite;
         private SpriteFont font;
         private IPlayer player;
+        private AllCollisionHandler collisionHandler;
 
         private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
         private LevelLoader levelLoader;
@@ -63,7 +64,7 @@ namespace sprint0
 
             //note: the integer refers to the room number to load
             changeRoom = true;
-            roomIndex = 10;
+            roomIndex = 9;
             levelLoader = new LevelLoader(this, roomIndex);
 
             base.Initialize();
@@ -100,17 +101,20 @@ namespace sprint0
                 hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
             };
             //projectile sprites (starts with none)
+            itemFactory = new ItemsWeaponsSpriteFactory(this);
             projectiles = new List<IProjectile>();
+
+            collisionHandler = new AllCollisionHandler();
         }
 
-        public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item)
+        public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item, IEntity source)
         {
-            projectiles.Add(itemFactory.MakeProjectile(item, Location, dir, lifespan));
+            projectiles.Add(itemFactory.MakeProjectile(item, Location, dir, lifespan, source));
         }
 
-        public void AddFireball(Vector2 location, Vector2 dir)
+        public void AddFireball(Vector2 location, Vector2 dir, IEntity source)
         {
-            projectiles.Add(itemFactory.MakeFireball(location, dir));
+            projectiles.Add(itemFactory.MakeFireball(location, dir, source));
         }
 
         protected override void Update(GameTime gameTime)
@@ -118,7 +122,6 @@ namespace sprint0
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            //TODO need to make new commands
             foreach (IController controller in controllerList)
             {
                 controller.Update();
@@ -141,7 +144,10 @@ namespace sprint0
             foreach (IProjectile projectile in projectiles)
                 projectile.Update();
 
-            base.Update(gameTime);
+            // handles projectiles
+            collisionHandler.HandleLinkProjectileCollisions(Player, projectiles);
+            collisionHandler.HandleLinkBlockCollisions(Player, roomSprites);
+
             base.Update(gameTime);
         }
 

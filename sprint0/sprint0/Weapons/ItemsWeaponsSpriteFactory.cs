@@ -41,23 +41,23 @@ namespace sprint0
             };
         }
 
-        public IProjectile MakeProjectile(string spriteType, Vector2 location, Direction dir, int lifespan)
-        {
+        public IProjectile MakeProjectile(string spriteType, Vector2 location, Direction dir, int lifespan, IEntity source)
+        {   //TODO add sources for whoever made the projectile
             return spriteType switch
             {
                 "fairy" => new Fairy(texture1, location),
-                "bomb" => new Bomb(texture2, location, dir, lifespan),
-                "boomerang" => new Boomerang(texture3, location, dir, lifespan),
-                "arrow" => new Arrow(texture1, location, dir, lifespan),
-                "sword beam" => new SwordBeam(texture2, location, dir, lifespan),
+                "bomb" => new Bomb(texture2, location, dir, lifespan, source),
+                "boomerang" => new Boomerang(texture3, location, dir, lifespan, source),
+                "arrow" => new Arrow(texture1, location, dir, lifespan, source),
+                "sword beam" => new SwordBeam(texture2, location, dir, lifespan, source),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
 
         // need different method because has vector direction
-        public IProjectile MakeFireball(Vector2 location, Vector2 direction)
-        {
-            return new Fireball(texture3, location, direction);
+        public IProjectile MakeFireball(Vector2 location, Vector2 direction, IEntity source)
+        {   //TODO add source for fireball
+            return new Fireball(texture3, location, direction, source);
         }
     }
 }
