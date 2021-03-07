@@ -21,7 +21,7 @@ namespace sprint0
         private ISprite sprite;
         private SpriteFont font;
         private IPlayer player;
-        private AllCollisonHandler collisonHandler;
+        private AllCollisionHandler collisionHandler;
 
         private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
         private LevelLoader levelLoader;
@@ -104,7 +104,7 @@ namespace sprint0
             itemFactory = new ItemsWeaponsSpriteFactory(this);
             projectiles = new List<IProjectile>();
 
-            collisonHandler = new AllCollisonHandler();
+            collisionHandler = new AllCollisionHandler();
         }
 
         public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item, IEntity source)
