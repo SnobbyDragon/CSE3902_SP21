@@ -1,1 +1,73 @@
-﻿<?xml version="1.0" encoding="utf-8"?> <XnaContent>     <RoomInterior>0 3</RoomInterior>     <Enemies>         <Enemy ObjectName="Goriya" LocationX="100" LocationY="100" />         <Enemy ObjectName="Goriya" LocationX="150" LocationY="132" />         <Enemy ObjectName="Goriya" LocationX="100" LocationY="132" />     </Enemies>   <ItemsWeapons>         <Item ObjecName="Heart" LocationX="32"  LocationY="32"/>         <Item ObjecName="Key" LocationX="64"  LocationY="32"/>         <Item ObjecName="Rupee" LocationX="132"  LocationY="100"/>         <Item ObjecName="Rupee" LocationX="132"  LocationY="132"/>     </ItemsWeapons> </XnaContent> 
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<XnaContent>?    
+    <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />
+     <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />
+
+      <Dungeon ObjectName="up open door" LocationX="280" LocationY="500" />?    
+    <Dungeon ObjectName="down locked door" LocationX="280" LocationY="140" />?    
+    <Dungeon ObjectName="left wall" LocationX="560" LocationY="320" />?    
+    <Dungeon ObjectName="right wall" LocationX="0" LocationY="320" />? 
+
+    <Dungeon ObjectName="water" LocationX="80" LocationY="220" />
+    <Dungeon ObjectName="water" LocationX="120" LocationY="220" />
+    <Dungeon ObjectName="water" LocationX="160" LocationY="220" />
+    <Dungeon ObjectName="water" LocationX="200" LocationY="220" />
+    <Dungeon ObjectName="water" LocationX="240" LocationY="220" />
+    <Dungeon ObjectName="water" LocationX="360" LocationY="220" />
+     <Dungeon ObjectName="water" LocationX="400" LocationY="220" />
+    <Dungeon ObjectName="water" LocationX="440" LocationY="220" />
+    <Dungeon ObjectName="water" LocationX="480" LocationY="220" />
+    <Dungeon ObjectName="water" LocationX="520" LocationY="220" />
+
+    <Dungeon ObjectName="water" LocationX="80" LocationY="260" />
+    <Dungeon ObjectName="water" LocationX="240" LocationY="260" />
+     <Dungeon ObjectName="water" LocationX="440" LocationY="260" />
+      <Dungeon ObjectName="water" LocationX="520" LocationY="260" />
+
+      <Dungeon ObjectName="water" LocationX="80" LocationY="300" />
+      <Dungeon ObjectName="water" LocationX="160" LocationY="300" />
+      <Dungeon ObjectName="water" LocationX="240" LocationY="300" />
+
+      <Dungeon ObjectName="water" LocationX="320" LocationY="300" />
+    <Dungeon ObjectName="water" LocationX="360" LocationY="300" />
+    <Dungeon ObjectName="water" LocationX="440" LocationY="300" />
+    <Dungeon ObjectName="water" LocationX="520" LocationY="300" />
+    <Dungeon ObjectName="water" LocationX="160" LocationY="340" />
+    <Dungeon ObjectName="water" LocationX="240" LocationY="340" />
+     <Dungeon ObjectName="water" LocationX="360" LocationY="340" />
+
+      <Dungeon ObjectName="water" LocationX="440" LocationY="340" />
+       <Dungeon ObjectName="water" LocationX="80" LocationY="380" />
+        <Dungeon ObjectName="water" LocationX="160" LocationY="380" />
+        <Dungeon ObjectName="water" LocationX="240" LocationY="380" />
+    <Dungeon ObjectName="water" LocationX="280" LocationY="380" />
+     <Dungeon ObjectName="water" LocationX="360" LocationY="380" />
+      <Dungeon ObjectName="water" LocationX="440" LocationY="380" />
+      <Dungeon ObjectName="water" LocationX="520" LocationY="380" />
+      <Dungeon ObjectName="water" LocationX="80" LocationY="420" />
+      <Dungeon ObjectName="water" LocationX="160" LocationY="420" />
+
+    
+     
+    <Dungeon ObjectName="water" LocationX="360" LocationY="420" />
+    <Dungeon ObjectName="water" LocationX="520" LocationY="420" />
+
+    <Dungeon ObjectName="water" LocationX="80" LocationY="460" />
+    <Dungeon ObjectName="water" LocationX="120" LocationY="460" />
+    <Dungeon ObjectName="water" LocationX="160" LocationY="460" />
+    <Dungeon ObjectName="water" LocationX="200" LocationY="460" />
+    <Dungeon ObjectName="water" LocationX="240" LocationY="460" />
+
+    <Dungeon ObjectName="water" LocationX="360" LocationY="460" />
+    <Dungeon ObjectName="water" LocationX="400" LocationY="460" />
+    <Dungeon ObjectName="water" LocationX="440" LocationY="460" />
+    <Dungeon ObjectName="water" LocationX="480" LocationY="460" />
+    <Dungeon ObjectName="water" LocationX="520" LocationY="460" />
+
+     <Enemy ObjectName="stalfos" LocationX="120" LocationY="340" />?
+    <Enemy ObjectName="stalfos" LocationX="320" LocationY="260" />?
+    <Enemy ObjectName="stalfos" LocationX="320" LocationY="380" />?
+
+    <ItemWeapon ObjectName="key" LocationX="520" LocationY="340" Direction="North" Lifespan="0" />
+
+?</XnaContent>
