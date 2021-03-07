@@ -122,7 +122,6 @@ namespace sprint0
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            //TODO need to make new commands
             foreach (IController controller in controllerList)
             {
                 controller.Update();
@@ -146,9 +145,9 @@ namespace sprint0
                 projectile.Update();
 
             // handles projectiles
-            collisionHandler.HandleLinkProjectileCollisions(player, projectiles);
+            collisionHandler.HandleLinkProjectileCollisions(Player, projectiles);
+            collisionHandler.HandleLinkBlockCollisions(Player, roomSprites);
 
-            base.Update(gameTime);
             base.Update(gameTime);
         }
 

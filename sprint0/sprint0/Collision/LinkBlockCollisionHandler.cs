@@ -7,9 +7,9 @@ namespace sprint0
         {
         }
 
-        public void HandleCollision(IPlayer link, Block block, Direction side)
+        public void HandleCollision(IPlayer link, ISprite block, Direction side)
         {
-
+            link.Stop();
         }
     }
 }

@@ -26,13 +26,14 @@ namespace sprint0
          */
         public void HandleLinkEnemyCollisions(IPlayer link, List<IEnemy> enemies)
         {
-            Rectangle linkHitbox = new Rectangle((int)IPlayer.Position.X, (int)IPlayer.Position.Y, 16, 16); //TODO change with size of link
+            LinkEnemyCollisionHandler collisionHandler = new LinkEnemyCollisionHandler();
+            Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, 16, 16); //TODO change with size of link
             foreach (IEnemy enemy in enemies)
             {
                 Collision side = collisionDetector.DetectCollision(linkHitbox, enemy);
                 if (side != Collision.None)
                 {
-                    new LinkEnemyCollisionHandler().HandleCollision(link, enemy, sideToDir[side]);
+                    collisionHandler.HandleCollision(link, enemy, sideToDir[side]);
                 }
             }
         }
@@ -42,13 +43,14 @@ namespace sprint0
          */
         public void HandleLinkProjectileCollisions(IPlayer link, List<IProjectile> projectiles)
         {
+            LinkProjectileCollisionHandler collisionHandler = new LinkProjectileCollisionHandler();
             Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, 16, 16); //TODO change with size of link
             foreach (IProjectile projectile in projectiles)
             {
                 Collision side = collisionDetector.DetectCollision(linkHitbox, projectile);
                 if (side != Collision.None)
                 {
-                    new LinkProjectileCollisionHandler().HandleCollision(link, projectile, sideToDir[side]);
+                    collisionHandler.HandleCollision(link, projectile, sideToDir[side]);
                 }
             }
         }
