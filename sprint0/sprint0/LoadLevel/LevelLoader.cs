@@ -13,27 +13,33 @@ namespace sprint0
     {
         private XmlReader roomReader;
         private FileStream roomStream;
-        private String path;
+        private string path;
+
         private List<ISprite> sprites;
-        private List<IProjectile> projectile;
-        Game1 game1;
-        EnemiesSpriteFactory enemyFactory;
-        ItemsWeaponsSpriteFactory itemFactory;
-        DungeonFactory dungeonFactory;
-        BossesSpriteFactory bossFactory;
-        NpcsSpriteFactory npcFactory;
+        private List<IProjectile> projectiles;
+        private List<IBlock> blocks;
+        private List<IEnemy> enemies;
+
+        private Game1 game1;
+        private EnemiesSpriteFactory enemyFactory;
+        private ItemsWeaponsSpriteFactory itemFactory;
+        private DungeonFactory dungeonFactory;
+        private BossesSpriteFactory bossFactory;
+        private NpcsSpriteFactory npcFactory;
 
         public LevelLoader(Game1 game1, int roomNo)
         {
             //path, open stream, open file to read
-            path = System.IO.Path.GetFullPath(@"../../../Content/LevelData/Room");
+            path = Path.GetFullPath(@"../../../Content/LevelData/Room");
             path += roomNo.ToString();
             path += ".xml";
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
 
             sprites = new List<ISprite>();
-            projectile = new List<IProjectile>();
+            projectiles = new List<IProjectile>();
+            blocks = new List<IBlock>();
+            enemies = new List<IEnemy>();
             this.game1 = game1;
 
             //factories
@@ -44,7 +50,7 @@ namespace sprint0
             npcFactory = new NpcsSpriteFactory(this.game1);
         }
 
-        public List<ISprite> LoadLevel()
+        public (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>) LoadLevel()
         {
             using (roomReader)
             {
@@ -56,7 +62,7 @@ namespace sprint0
                     }
                 }
             }
-            return sprites;
+            return (sprites, projectiles, blocks, enemies);
         }
 
         public Direction WeaponDirection(String dir)
@@ -77,8 +83,8 @@ namespace sprint0
             //add element depending on the type of element
             switch (roomReader.Name.ToString())
             {
-                case "Enemy": //adds enemy or NPC
-                    sprites.Add(enemyFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
+                case "Enemy":
+                    enemies.Add(enemyFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
                     break;
                 case "ItemWeapon":
                     Direction dir = WeaponDirection(roomReader.GetAttribute("Direction"));
@@ -87,26 +93,24 @@ namespace sprint0
                     break;
                 case "Projectile":
                     Direction dir1 = WeaponDirection(roomReader.GetAttribute("Direction"));
-                    int lifespan1 = Int32.Parse(roomReader.GetAttribute("Lifespan"));
-                    projectile.Add(itemFactory.MakeProjectile(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir1, lifespan1, null)); //TODO randomly null for now
+                    int lifespan1 = int.Parse(roomReader.GetAttribute("Lifespan"));
+                    projectiles.Add(itemFactory.MakeProjectile(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir1, lifespan1, null)); //TODO randomly null for now
                     break;
                 case "Boss":
                     if (roomReader.HasAttributes)
-                    {
-                        sprites.Add(bossFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
-                    }
+                        enemies.Add(bossFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
                     break;
                 case "Dungeon":
                     if (roomReader.HasAttributes)
-                    {
                         sprites.Add(dungeonFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
-                    }
+                    break;
+                case "Block":
+                    if (roomReader.HasAttributes)
+                        blocks.Add(dungeonFactory.MakeBlock(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
                     break;
                 case "NPC":
                     if (roomReader.HasAttributes)
-                    {
                         sprites.Add(npcFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
-                    }
                     break;
                 default:
                     throw new ArgumentException("Invalid sprite! Level loading failed.");

@@ -9,16 +9,16 @@
     <Dungeon ObjectName="left locked door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right wall" LocationX="0" LocationY="320" />? 
     
-    <Dungeon ObjectName="block" LocationX="320" LocationY="260" />?   
-    <Dungeon ObjectName="block" LocationX="280" LocationY="300" />?  
-    <Dungeon ObjectName="block" LocationX="360" LocationY="300" />? 
-    <Dungeon ObjectName="block" LocationX="240" LocationY="340" />?  
-    <Dungeon ObjectName="block" LocationX="400" LocationY="340" />?  
-    <Dungeon ObjectName="block" LocationX="280" LocationY="380" />?  
-    <Dungeon ObjectName="block" LocationX="360" LocationY="380" />?    
-    <Dungeon ObjectName="block" LocationX="320" LocationY="420" />?  
-    <Dungeon ObjectName="movable block" LocationX="240" LocationY="340" />?
-    <Dungeon ObjectName="stairs" LocationX="320" LocationY="340" />?  
+    <Block ObjectName="block" LocationX="320" LocationY="260" />?   
+    <Block ObjectName="block" LocationX="280" LocationY="300" />?  
+    <Block ObjectName="block" LocationX="360" LocationY="300" />? 
+    <Block ObjectName="block" LocationX="240" LocationY="340" />?  
+    <Block ObjectName="block" LocationX="400" LocationY="340" />?  
+    <Block ObjectName="block" LocationX="280" LocationY="380" />?  
+    <Block ObjectName="block" LocationX="360" LocationY="380" />?    
+    <Block ObjectName="block" LocationX="320" LocationY="420" />?  
+    <Block ObjectName="movable block" LocationX="240" LocationY="340" />?
+    <Block ObjectName="stairs" LocationX="320" LocationY="340" />?  
     
     <Enemy ObjectName="trap" LocationX="82" LocationY="220" />?    
     <Enemy ObjectName="trap" LocationX="520" LocationY="220" />?    

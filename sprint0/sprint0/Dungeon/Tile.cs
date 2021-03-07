@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Tile : ISprite
+    public class Tile : IBlock
     {
 
         public Rectangle Location { get; set; }
@@ -31,6 +31,16 @@ namespace sprint0
         public void Update()
         {
             //No movement 
+        }
+
+        public bool IsWalkable()
+        {
+            return true;
+        }
+
+        public bool IsMovable()
+        {
+            return false;
         }
     }
 }

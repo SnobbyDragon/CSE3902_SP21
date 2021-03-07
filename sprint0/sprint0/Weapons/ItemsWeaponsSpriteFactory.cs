@@ -42,7 +42,7 @@ namespace sprint0
         }
 
         public IProjectile MakeProjectile(string spriteType, Vector2 location, Direction dir, int lifespan, IEntity source)
-        {   //TODO add sources for whoever made the projectile
+        {
             return spriteType switch
             {
                 "fairy" => new Fairy(texture1, location),
@@ -56,7 +56,7 @@ namespace sprint0
 
         // need different method because has vector direction
         public IProjectile MakeFireball(Vector2 location, Vector2 direction, IEntity source)
-        {   //TODO add source for fireball
+        {
             return new Fireball(texture3, location, direction, source);
         }
     }

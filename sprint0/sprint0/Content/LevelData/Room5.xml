@@ -8,7 +8,7 @@
     <Dungeon ObjectName="left locked door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />?
 
-    <Dungeon ObjectName="movable block" LocationX="280" LocationY="340" />? 
+    <Block ObjectName="movable block" LocationX="280" LocationY="340" />? 
 
 
      <Enemy ObjectName="blue gel" LocationX="280" LocationY="260" />?

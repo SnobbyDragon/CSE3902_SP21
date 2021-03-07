@@ -8,10 +8,10 @@
     <Dungeon ObjectName="left open door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right locked door" LocationX="0" LocationY="320" />?
 
-    <Dungeon ObjectName="block" LocationX="160" LocationY="380" />?
-    <Dungeon ObjectName="block" LocationX="440" LocationY="380" />?
-    <Dungeon ObjectName="block" LocationX="160" LocationY="300" />?
-    <Dungeon ObjectName="block" LocationX="440" LocationY="300" />?
+    <Block ObjectName="block" LocationX="160" LocationY="380" />?
+    <Block ObjectName="block" LocationX="440" LocationY="380" />?
+    <Block ObjectName="block" LocationX="160" LocationY="300" />?
+    <Block ObjectName="block" LocationX="440" LocationY="300" />?
 
 
      <Boss ObjectName="digdogger" LocationX="360" LocationY="220" />?

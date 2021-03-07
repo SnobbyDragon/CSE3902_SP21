@@ -8,7 +8,7 @@
     <Dungeon ObjectName="left open door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right wall" LocationX="0" LocationY="320" />?
 
-    <Dungeon ObjectName="gap" LocationX="80" LocationY="220" />?
+    <Block ObjectName="gap" LocationX="80" LocationY="220" />?
      
     
     

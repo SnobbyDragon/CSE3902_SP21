@@ -9,26 +9,26 @@
     <Dungeon ObjectName="left wall" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />? 
     
-    <Dungeon ObjectName="block" LocationX="120" LocationY="260" />?   
-    <Dungeon ObjectName="block" LocationX="200" LocationY="260" />?  
-    <Dungeon ObjectName="block" LocationX="280" LocationY="260" />? 
-    <Dungeon ObjectName="block" LocationX="320" LocationY="260" />?  
-    <Dungeon ObjectName="block" LocationX="400" LocationY="260" />?  
-    <Dungeon ObjectName="block" LocationX="480" LocationY="260" />? 
+    <Block ObjectName="block" LocationX="120" LocationY="260" />?   
+    <Block ObjectName="block" LocationX="200" LocationY="260" />?  
+    <Block ObjectName="block" LocationX="280" LocationY="260" />? 
+    <Block ObjectName="block" LocationX="320" LocationY="260" />?  
+    <Block ObjectName="block" LocationX="400" LocationY="260" />?  
+    <Block ObjectName="block" LocationX="480" LocationY="260" />? 
     
-    <Dungeon ObjectName="block" LocationX="120" LocationY="340" />?   
-    <Dungeon ObjectName="block" LocationX="200" LocationY="340" />?  
-    <Dungeon ObjectName="block" LocationX="280" LocationY="340" />? 
-    <Dungeon ObjectName="block" LocationX="320" LocationY="340" />?  
-    <Dungeon ObjectName="block" LocationX="400" LocationY="340" />?  
-    <Dungeon ObjectName="block" LocationX="480" LocationY="340" />? 
+    <Block ObjectName="block" LocationX="120" LocationY="340" />?   
+    <Block ObjectName="block" LocationX="200" LocationY="340" />?  
+    <Block ObjectName="block" LocationX="280" LocationY="340" />? 
+    <Block ObjectName="block" LocationX="320" LocationY="340" />?  
+    <Block ObjectName="block" LocationX="400" LocationY="340" />?  
+    <Block ObjectName="block" LocationX="480" LocationY="340" />? 
     
-    <Dungeon ObjectName="block" LocationX="120" LocationY="420" />?   
-    <Dungeon ObjectName="block" LocationX="200" LocationY="420" />?  
-    <Dungeon ObjectName="block" LocationX="280" LocationY="420" />? 
-    <Dungeon ObjectName="block" LocationX="320" LocationY="420" />?  
-    <Dungeon ObjectName="block" LocationX="400" LocationY="420" />?  
-    <Dungeon ObjectName="block" LocationX="480" LocationY="420" />? 
+    <Block ObjectName="block" LocationX="120" LocationY="420" />?   
+    <Block ObjectName="block" LocationX="200" LocationY="420" />?  
+    <Block ObjectName="block" LocationX="280" LocationY="420" />? 
+    <Block ObjectName="block" LocationX="320" LocationY="420" />?  
+    <Block ObjectName="block" LocationX="400" LocationY="420" />?  
+    <Block ObjectName="block" LocationX="480" LocationY="420" />? 
     
     <ItemWeapon ObjectName="key" LocationX="416" LocationY="462" Direction="North" Lifespan="0" />?
     

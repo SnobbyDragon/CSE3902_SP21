@@ -8,19 +8,19 @@
     <Dungeon ObjectName="left open door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right locked door" LocationX="0" LocationY="320" />?
 
-    <Dungeon ObjectName="block" LocationX="120" LocationY="260" />?
-    <Dungeon ObjectName="block" LocationX="160" LocationY="260" />?
-    <Dungeon ObjectName="block" LocationX="440" LocationY="260" />?
-    <Dungeon ObjectName="block" LocationX="480" LocationY="260" />?
+    <Block ObjectName="block" LocationX="120" LocationY="260" />?
+    <Block ObjectName="block" LocationX="160" LocationY="260" />?
+    <Block ObjectName="block" LocationX="440" LocationY="260" />?
+    <Block ObjectName="block" LocationX="480" LocationY="260" />?
 
-    <Dungeon ObjectName="block" LocationX="280" LocationY="340" />?
-    <Dungeon ObjectName="block" LocationX="320" LocationY="340" />?
+    <Block ObjectName="block" LocationX="280" LocationY="340" />?
+    <Block ObjectName="block" LocationX="320" LocationY="340" />?
     
 
-    <Dungeon ObjectName="block" LocationX="120" LocationY="420" />?
-    <Dungeon ObjectName="block" LocationX="160" LocationY="420" />?
-    <Dungeon ObjectName="block" LocationX="440" LocationY="420" />?
-    <Dungeon ObjectName="block" LocationX="480" LocationY="420" />? 
+    <Block ObjectName="block" LocationX="120" LocationY="420" />?
+    <Block ObjectName="block" LocationX="160" LocationY="420" />?
+    <Block ObjectName="block" LocationX="440" LocationY="420" />?
+    <Block ObjectName="block" LocationX="480" LocationY="420" />? 
 
 
      <Enemy ObjectName="blkgold zol" LocationX="160" LocationY="220" />?

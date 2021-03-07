@@ -9,11 +9,11 @@
     <Dungeon ObjectName="left open door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />?     
     
-    <Dungeon ObjectName="block" LocationX="160" LocationY="300" />? 
-    <Dungeon ObjectName="block" LocationX="440" LocationY="300" />?  
+    <Block ObjectName="block" LocationX="160" LocationY="300" />? 
+    <Block ObjectName="block" LocationX="440" LocationY="300" />?  
  
-    <Dungeon ObjectName="block" LocationX="160" LocationY="380" />? 
-    <Dungeon ObjectName="block" LocationX="440" LocationY="380" />?  
+    <Block ObjectName="block" LocationX="160" LocationY="380" />? 
+    <Block ObjectName="block" LocationX="440" LocationY="380" />?  
     
     <Enemy ObjectName="stalfos" LocationX="320" LocationY="340" />? 
     <Enemy ObjectName="stalfos" LocationX="240" LocationY="300" />? 
