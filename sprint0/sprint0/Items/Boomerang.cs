@@ -52,7 +52,7 @@ namespace sprint0
                 }
             }
             moveVector = new Vector2(xa, ya);
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             sources = new List<Rectangle>
             {
@@ -67,32 +67,33 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-             if (alive || lifespan < 0){
-              int tempFrame = currFrame / repeatedFrames;
-              if (tempFrame == 3)
-              {
-                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), h, 0);
-              }
-              else if (tempFrame == 4)
-              {
-                  spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), h, 0);
-              }
-              else if (tempFrame == 5)
-              {
-                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), v | h, 0);
-              }
-              else if (tempFrame == 6)
-              {
-                  spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), v, 0);
-              }
-              else if (tempFrame == 7)
-              {
-                  spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), v, 0);
-              }
-              else
-              {
-                  spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
-              }
+            if (alive || lifespan < 0)
+            {
+                int tempFrame = currFrame / repeatedFrames;
+                if (tempFrame == 3)
+                {
+                    spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), h, 0);
+                }
+                else if (tempFrame == 4)
+                {
+                    spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), h, 0);
+                }
+                else if (tempFrame == 5)
+                {
+                    spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), v | h, 0);
+                }
+                else if (tempFrame == 6)
+                {
+                    spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), v, 0);
+                }
+                else if (tempFrame == 7)
+                {
+                    spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), v, 0);
+                }
+                else
+                {
+                    spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+                }
             }
         }
 
@@ -105,11 +106,12 @@ namespace sprint0
                 Rectangle loc = Location;
                 loc.Offset(moveVector);
                 Location = loc;
-            }else
-            {
-                alive = false;    
             }
-            
+            else
+            {
+                alive = false;
+            }
+
         }
 
         public void Update()

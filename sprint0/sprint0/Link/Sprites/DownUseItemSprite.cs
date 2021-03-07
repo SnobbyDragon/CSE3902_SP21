@@ -19,7 +19,7 @@ namespace sprint0
 
         public DownUseItemSprite(Texture2D texture, Vector2 location)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             this.texture = texture;
         }
 
@@ -28,7 +28,8 @@ namespace sprint0
             spriteBatch.Draw(Texture, Location, new Rectangle(xOffset, yOffset, size, size), Color.White);
         }
 
-        public void Update() {
+        public void Update()
+        {
             //Nothing here
         }
     }

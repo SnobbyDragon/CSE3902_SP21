@@ -7,7 +7,7 @@ using System.Text;
 namespace sprint0
 {
     class UpIdleLinkSprite : ISprite
-    { 
+    {
         public Texture2D Texture { get => texture; set => texture = value; }
         public Rectangle Location { get; set; }
 
@@ -18,7 +18,7 @@ namespace sprint0
         public UpIdleLinkSprite(Texture2D texture, Vector2 location)
         {
             this.texture = texture;
-            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             sourceRectangle = new Rectangle(69, 11, size, size);
         }
 

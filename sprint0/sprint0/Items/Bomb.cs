@@ -25,7 +25,7 @@ namespace sprint0
 
         //Age is the current number of updates
         private int age;
-        
+
         //Lifespan is the number of updates before it dies. For now, it just stops rendering
         private readonly int lifespan;
 
@@ -83,7 +83,7 @@ namespace sprint0
                 xPos += width + 1;
             }
             Vector2 loc = location + new Vector2(sourceAdjustX, sourceAdjustY);
-            Location = new Rectangle((int)loc.X, (int)loc.Y, 10, height);
+            Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(10 * Game1.Scale), (int)(height * Game1.Scale));
         }
 
         public void Move()
@@ -120,10 +120,11 @@ namespace sprint0
             else if (age < lifespan + 3 * repeatedFrames && age >= lifespan && lifespan > 0)
             {   //age == lifespan so the bomb reached destination
                 //animates bomb to explode
-                Location = new Rectangle(Location.X, Location.Y, width, height); // explosion size diff from pre-explosion
+                Location = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)); // explosion size diff from pre-explosion
                 currentSource = explosionSources[currentFrame / repeatedFrames];
                 currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             }
         }
     }
 }
+

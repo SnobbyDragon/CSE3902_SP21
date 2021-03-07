@@ -12,7 +12,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
 
         private Texture2D texture;
-        
+
         private readonly List<Rectangle> frames;
         private int currentFrame;
         private readonly int repeatFrames;
@@ -23,7 +23,7 @@ namespace sprint0
         {
             width = height = 16;
             this.texture = texture;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             currentFrame = 0;
             repeatFrames = 8;
             totalFrames = 2 * repeatFrames;
