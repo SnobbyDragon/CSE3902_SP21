@@ -11,6 +11,22 @@ namespace sprint0
 
     public class Game1 : Game
     {
+        public static Direction OppositeDirection(Direction direction)
+        {
+            return direction switch
+            {
+                Direction.n => Direction.s,
+                Direction.s => Direction.n,
+                Direction.e => Direction.s,
+                Direction.w => Direction.s,
+                Direction.ne => Direction.sw,
+                Direction.nw => Direction.se,
+                Direction.se => Direction.nw,
+                Direction.sw => Direction.ne,
+                _ => throw new ArgumentException("Invalid direction! No opposite direction.")
+            };
+        }
+
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
@@ -163,10 +179,7 @@ namespace sprint0
                 enemy.Update();
 
             // handles collisions
-            collisionHandler.HandleLinkProjectileCollisions(Player, projectiles);
-            collisionHandler.HandleLinkBlockCollisions(Player, blocks);
-            collisionHandler.HandleLinkEnemyCollisions(Player, enemies);
-            collisionHandler.HandleEnemyBlockCollisions(enemies, blocks);
+            collisionHandler.HandleAllCollisions(Player, enemies, projectiles, blocks);
 
             base.Update(gameTime);
         }
@@ -183,12 +196,12 @@ namespace sprint0
                 _sprite.Draw(_spriteBatch);
             foreach (ISprite _sprite in roomSprites)
                 _sprite.Draw(_spriteBatch);
-            foreach (IProjectile projectile in projectiles)
-                projectile.Draw(_spriteBatch);
             foreach (IBlock block in blocks)
                 block.Draw(_spriteBatch);
             foreach (IEnemy enemy in enemies)
                 enemy.Draw(_spriteBatch);
+            foreach (IProjectile projectile in projectiles)
+                projectile.Draw(_spriteBatch);
             player.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);

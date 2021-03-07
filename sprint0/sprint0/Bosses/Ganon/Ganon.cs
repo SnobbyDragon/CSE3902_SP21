@@ -20,7 +20,7 @@ namespace sprint0
         private readonly int totalFrames, invisibleTime = 200, visibleTime = 100, teleportTime = 50; //TODO currently arbitrary times
         private bool isVisible;
         private readonly Random rand;
-        private readonly List<GanonFireball> fireballExplosion; // TODO upon death; currently shoots w/main fireball as demonstration
+        //private readonly List<GanonFireball> fireballExplosion; // TODO upon death; currently shoots w/main fireball as demonstration
         private Vector2 centerOffset; // fireball shoots from center of ganon
         private readonly int fireballRate = 100; //TODO currently arbitrary
         private int fireballCounter = 0;
@@ -44,17 +44,17 @@ namespace sprint0
             counter = 0;
 
             centerOffset = new Vector2(width / 2 - 4, height / 2 - 5); // ganon size / 2 - fireball size / 2
-            fireballExplosion = new List<GanonFireball>()
-            {
-                new GanonFireball(texture, "up", this),
-                new GanonFireball(texture, "up left", this),
-                new GanonFireball(texture, "left", this),
-                new GanonFireball(texture, "down left", this),
-                new GanonFireball(texture, "down", this),
-                new GanonFireball(texture, "down right", this),
-                new GanonFireball(texture, "right", this),
-                new GanonFireball(texture, "up right", this)
-            };
+            //fireballExplosion = new List<GanonFireball>() //TODO broken with location
+            //{
+            //    new GanonFireball(texture, "up", this),
+            //    new GanonFireball(texture, "up left", this),
+            //    new GanonFireball(texture, "left", this),
+            //    new GanonFireball(texture, "down left", this),
+            //    new GanonFireball(texture, "down", this),
+            //    new GanonFireball(texture, "down right", this),
+            //    new GanonFireball(texture, "right", this),
+            //    new GanonFireball(texture, "up right", this)
+            //};
         }
 
         public void Draw(SpriteBatch spriteBatch)

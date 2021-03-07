@@ -21,10 +21,19 @@ namespace sprint0
             collisionDetector = new CollisionDetector();
         }
 
+        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IProjectile> projectiles, List<IBlock> blocks)
+        {
+            HandleLinkProjectileCollisions(link, projectiles);
+            HandleLinkBlockCollisions(link, blocks);
+            HandleLinkEnemyCollisions(link, enemies);
+            HandleEnemyBlockCollisions(enemies, blocks);
+            HandleEnemyEnemyCollisions(enemies);
+        }
+
         /*
          * Checks if link collides with any enemies; handles collisions
          */
-        public void HandleLinkEnemyCollisions(IPlayer link, List<IEnemy> enemies)
+        private void HandleLinkEnemyCollisions(IPlayer link, List<IEnemy> enemies)
         {
             LinkEnemyCollisionHandler collisionHandler = new LinkEnemyCollisionHandler();
             Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, 16, 16); //TODO change with size of link
@@ -41,7 +50,7 @@ namespace sprint0
         /*
          * Checks if link collides with any projectiles; handles collisions
          */
-        public void HandleLinkProjectileCollisions(IPlayer link, List<IProjectile> projectiles)
+        private void HandleLinkProjectileCollisions(IPlayer link, List<IProjectile> projectiles)
         {
             LinkProjectileCollisionHandler collisionHandler = new LinkProjectileCollisionHandler();
             Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, 16, 16); //TODO change with size of link
@@ -58,7 +67,7 @@ namespace sprint0
         /*
          * Checks if link collides with any blocks; handles collisions
          */
-        public void HandleLinkBlockCollisions(IPlayer link, List<IBlock> blocks)
+        private void HandleLinkBlockCollisions(IPlayer link, List<IBlock> blocks)
         {
             LinkBlockCollisionHandler collisionHandler = new LinkBlockCollisionHandler();
             Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, 16, 16); //TODO change with size of link
@@ -75,7 +84,7 @@ namespace sprint0
         /*
          * Checks if enemies collide with any blocks; handles collisions
          */
-        public void HandleEnemyBlockCollisions(List<IEnemy> enemies, List<IBlock> blocks)
+        private void HandleEnemyBlockCollisions(List<IEnemy> enemies, List<IBlock> blocks)
         {
             EnemyBlockCollisionHandler collisionHandler = new EnemyBlockCollisionHandler();
             foreach (IEnemy enemy in enemies)
@@ -86,6 +95,25 @@ namespace sprint0
                     if (side != Collision.None)
                     {
                         collisionHandler.HandleCollision(enemy, block, sideToDir[side]);
+                    }
+                }
+            }
+        }
+
+        /*
+         * Checks if enemies collide with any other enemies; handles collisions
+         */
+        private void HandleEnemyEnemyCollisions(List<IEnemy> enemies)
+        {
+            EnemyEnemyCollisionHandler collisionHandler = new EnemyEnemyCollisionHandler();
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                for (int j = i + 1; j < enemies.Count; j++)
+                {
+                    Collision side = collisionDetector.DetectCollision(enemies[i], enemies[j]);
+                    if (side != Collision.None)
+                    {
+                        collisionHandler.HandleCollision(enemies[i], enemies[j], sideToDir[side]);
                     }
                 }
             }
