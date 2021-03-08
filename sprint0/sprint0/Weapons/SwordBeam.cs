@@ -24,7 +24,7 @@ namespace sprint0
             Shooter = source;
             this.dir = dir;
             this.texture = texture;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;
@@ -67,7 +67,7 @@ namespace sprint0
                     new Rectangle(115, 159, width, height)
                 };
             }
-            
+
         }
 
         private Boolean Alive()
@@ -82,14 +82,14 @@ namespace sprint0
 
         private void Break()
         {
-            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             if (Alive())
             {
-                Rectangle destination = new Rectangle((int)Location.X, (int)Location.Y, width, height);
+                Rectangle destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
                 switch (dir)
                 {
                     case Direction.n:

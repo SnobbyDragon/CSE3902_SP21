@@ -24,7 +24,8 @@ namespace sprint0
 
         public Dodongo(Texture2D texture, Vector2 location)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, width, sideLength); // starts horizontal
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(sideLength * Game1.Scale));
+            // starts horizontal
             Texture = texture;
             totalFramesUD = 4; currentFrameUD = 0;
             totalFramesRL = 3; currentFrameRL = 0;

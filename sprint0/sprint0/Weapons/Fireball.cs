@@ -23,7 +23,7 @@ namespace sprint0
         {
             Shooter = shooter;
             Texture = texture;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             preciseLocation = location;
             this.direction = direction;
 

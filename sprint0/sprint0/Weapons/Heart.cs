@@ -15,7 +15,7 @@ namespace sprint0
 
         public Heart(Texture2D texture, Vector2 location, String type)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             Type = type;
             typeRectMap = new Dictionary<String, Rectangle>

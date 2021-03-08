@@ -27,7 +27,8 @@ namespace sprint0
 
         public Digdogger(Texture2D texture, Vector2 location)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, bigSize, bigSize); //TODO size is variable
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(bigSize * Game1.Scale), (int)(bigSize * Game1.Scale));
+            //TODO size is variable
             Texture = texture;
             currFrame = 0;
             bigTotalFrames = 5;
@@ -130,7 +131,7 @@ namespace sprint0
             // TODO movement depends on where link is?
             destination = new Vector2(
                 rand.Next((int)(32 * Game1.Scale), (int)((Game1.Width - 32) * Game1.Scale)),
-                rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32)*Game1.Scale))
+                rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale))
                 );
         }
 

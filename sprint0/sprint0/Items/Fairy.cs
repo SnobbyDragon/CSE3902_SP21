@@ -28,7 +28,7 @@ namespace sprint0
             currentFrame = 0; repeatedFrames = 10; //moveCounter = 0;
             sources = new List<Rectangle>();
             int xPos = 40, yPos = 0, width = 7, height = 16;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             sources.Add(new Rectangle(xPos, yPos, width, height));
             sources.Add(new Rectangle(xPos + width + 1, yPos, width, height));
 

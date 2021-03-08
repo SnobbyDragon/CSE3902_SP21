@@ -24,8 +24,7 @@ namespace sprint0
 
         public Patra(Texture2D texture, Vector2 location)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
-            Texture = texture;
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)); Texture = texture;
             source = new Rectangle(1, 157, width, height);
             currFrame = 0;
             totalFrames = 2;
@@ -42,7 +41,7 @@ namespace sprint0
             minions = new List<IEnemy>();
             for (int i = 0; i < totalMinions; i++)
             {
-                minions.Add(new PatraMinion(Texture, this, 360/totalMinions * i));
+                minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i));
             }
 
             rand = new Random();

@@ -19,20 +19,30 @@ namespace sprint0
         private readonly int xOffset = 1, yOffset = 109;
         private int width = 0, height = 0;
         private readonly List<Vector2> locations;
+        private readonly List<int> ySizes;
+
         public UpWoodSwordSprite(Texture2D texture, Vector2 location)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
-            this.texture = texture;
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+            Texture = texture;
             sources = GetFrames();
             /*
              * Ugly pixel math is unavoidable with the current spritesheet
              */
             locations = new List<Vector2>
             {
+
                 location,
-                new Vector2(Location.X, Location.Y - 11),
-                new Vector2(Location.X, Location.Y - 10),
-                new Vector2(Location.X, Location.Y - 3)
+                new Vector2(Location.X, Location.Y - 11 * Game1.Scale),
+                new Vector2(Location.X, Location.Y - 10 * Game1.Scale),
+                new Vector2(Location.X, Location.Y - 3 * Game1.Scale)
+            };
+            ySizes = new List<int>
+            {
+                16,
+                16+11,
+                16+10,
+                16+3
             };
 
         }
@@ -67,13 +77,15 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (currFrame < 4) //TODO use Location rectangle
+            if (currFrame < 4) 
             {
-                spriteBatch.Draw(Texture, locations[currFrame], sources[currFrame], Color.White);
+                Location = new Rectangle((int)locations[currFrame].X, (int)locations[currFrame].Y, (int)(width * Game1.Scale), (int)(ySizes[currFrame] * Game1.Scale));
+                spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
             }
         }
 
-        public void Update() {
+        public void Update()
+        {
             slow++;
             if (slow % 8 == 0)
             {

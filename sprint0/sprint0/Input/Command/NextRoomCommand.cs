@@ -11,7 +11,7 @@ namespace sprint0
 
         public void Execute()
         {
-            game.roomIndex = ((game.roomIndex + 1) % 17);
+            game.roomIndex = ((game.roomIndex + 1) % game.numRooms);
             game.changeRoom = true;
         }
     }

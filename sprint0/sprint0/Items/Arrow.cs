@@ -36,21 +36,22 @@ namespace sprint0
             switch (dir)
             {
                 case Direction.n:
-                    sourceAdjustX += 2;
+                    sourceAdjustX += 14;
                     break;
                 case Direction.s:
-                    sourceAdjustX += 2;
+                    sourceAdjustX += 14;
                     sourceAdjustY += 3;
                     break;
                 case Direction.e:
-                    sourceAdjustY += 10;
+                    sourceAdjustY += 18;
                     break;
                 case Direction.w:
-                    sourceAdjustY += 10;
+                    sourceAdjustY += 18;
                     break;
             }
+
             Vector2 loc = location + new Vector2(sourceAdjustX, sourceAdjustY);
-            Location = new Rectangle((int)loc.X, (int)loc.Y, width, height);
+            Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             this.dir = dir;
             this.lifespan = lifespan;

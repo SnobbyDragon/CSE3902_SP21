@@ -11,7 +11,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         private readonly List<Rectangle> sources;
         private Texture2D texture;
-        
+
         private int currFrame;
         private int slow;
         private readonly int xOffset = 1, yOffset = 47;
@@ -22,7 +22,7 @@ namespace sprint0
         {
 
             this.texture = texture;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             sources = GetFrames();
         }
 

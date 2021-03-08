@@ -47,6 +47,8 @@ namespace sprint0
         private LevelLoader levelLoader;
         public bool changeRoom;
         public int roomIndex;
+        public readonly int numRooms=18;
+        private Text text;
 
         private ISprite sprite;
         private SpriteFont font;
@@ -84,7 +86,7 @@ namespace sprint0
 
             //note: the integer refers to the room number to load
             changeRoom = true;
-            roomIndex = 9;
+            roomIndex = 1;
             levelLoader = new LevelLoader(this, roomIndex);
 
             base.Initialize();
@@ -131,6 +133,10 @@ namespace sprint0
                 hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
                 hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
             };
+
+            
+            text = new Text(this);
+            
         }
 
         public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item, IEntity source)
@@ -198,13 +204,23 @@ namespace sprint0
                 _sprite.Draw(_spriteBatch);
             foreach (IBlock block in blocks)
                 block.Draw(_spriteBatch);
+            foreach (IProjectile projectile in projectiles)
+                projectile.Draw(_spriteBatch);
             foreach (IEnemy enemy in enemies)
                 enemy.Draw(_spriteBatch);
             foreach (IProjectile projectile in projectiles)
                 projectile.Draw(_spriteBatch);
             player.Draw(_spriteBatch);
+
+            if (roomIndex == 4)
+            {
+                text.Draw(_spriteBatch);
+            }
+
             _spriteBatch.End();
             base.Draw(gameTime);
+
+            
         }
 
         public void ResetGame()

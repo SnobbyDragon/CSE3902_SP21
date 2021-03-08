@@ -28,7 +28,7 @@ namespace sprint0
         public Ganon(Texture2D texture, Vector2 location, Game1 game)
         {
             width = height = 32;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             this.game = game;
             currFrame = 0;
@@ -80,7 +80,8 @@ namespace sprint0
                     isVisible = false;
                     counter = 0;
                 }
-            } else
+            }
+            else
             {
                 if (counter == invisibleTime)
                 {
@@ -88,7 +89,8 @@ namespace sprint0
                     isVisible = true;
                     counter = 0;
                     currFrame = (currFrame + 1) % totalFrames; //TODO frame depends on location?
-                } else if (counter == teleportTime)
+                }
+                else if (counter == teleportTime)
                 {
                     // teleport somewhere
                     Teleport();

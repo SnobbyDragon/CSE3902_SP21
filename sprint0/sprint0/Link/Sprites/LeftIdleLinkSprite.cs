@@ -16,13 +16,13 @@ namespace sprint0
         public LeftIdleLinkSprite(Texture2D texture, Vector2 location)
         {
             this.texture = texture;
-            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             sourceRectangle = new Rectangle(35, 11, size, size);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Location, sourceRectangle, Color.White, 0, new Vector2(0,0), SpriteEffects.FlipHorizontally, 0);
+            spriteBatch.Draw(texture, Location, sourceRectangle, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
         }
 
         public void Update() { }

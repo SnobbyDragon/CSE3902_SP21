@@ -26,7 +26,7 @@ namespace sprint0
 
         public Gohma(Texture2D texture, Vector2 location, string color, Game1 game)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             Texture = texture;
             this.game = game;
             this.color = color;
@@ -89,7 +89,7 @@ namespace sprint0
             spriteBatch.Draw(
                 Texture, new Rectangle(Location.X - size, Location.Y, size, size),
                 colorToLegMap[color][legCurrFrame / legRepeatedFrames],
-                Color.White, 0, new Vector2(0,0),
+                Color.White, 0, new Vector2(0, 0),
                 leftLegEffects[legCurrFrame / legRepeatedFrames], 0);
 
             // draws the head
