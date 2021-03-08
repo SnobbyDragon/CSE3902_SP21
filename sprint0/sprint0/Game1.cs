@@ -31,6 +31,7 @@ namespace sprint0
         private LevelLoader levelLoader;
         public bool changeRoom;
         public int roomIndex;
+        public readonly int numRooms=18;
 
         private ISprite sprite;
         private SpriteFont font;
@@ -68,7 +69,7 @@ namespace sprint0
 
             //note: the integer refers to the room number to load
             changeRoom = true;
-            roomIndex = 9;
+            roomIndex = 1;
             levelLoader = new LevelLoader(this, roomIndex);
 
             base.Initialize();
