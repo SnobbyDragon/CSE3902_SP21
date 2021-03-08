@@ -6,22 +6,25 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class GanonFireball : IEnemy
+    public class GanonFireball : IProjectile
     {
+        public IEntity Shooter { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int width = 8, height = 10;
-        private readonly Dictionary<String, List<Rectangle>> dirToSourcesMap;
-        private readonly Dictionary<String, SpriteEffects> dirToEffectsMap;
-        private readonly String type;
+        private readonly Dictionary<string, List<Rectangle>> dirToSourcesMap;
+        private readonly Dictionary<string, SpriteEffects> dirToEffectsMap;
+        private readonly string type;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames, speed = 3;
         public Vector2 Direction { get; set; } // direction fireball travels
         public bool IsDead { get; set; }
 
-        public GanonFireball(Texture2D texture, String type)
+        public GanonFireball(Texture2D texture, Vector2 location, string type, IEntity shooter)
         {
+            Shooter = shooter;
             Texture = texture;
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width*Game1.Scale), (int)(height*Game1.Scale));
             this.type = type;
             currFrame = 0;
             totalFrames = 4;

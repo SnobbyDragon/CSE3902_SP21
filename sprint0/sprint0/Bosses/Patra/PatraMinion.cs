@@ -15,7 +15,6 @@ namespace sprint0
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
         private IEnemy center; // blue patra
-        private Vector2 offset; // offset so distances can be calculated to be center of sprites
         private readonly int minDistance = 30, maxDistance = 80; // min and max distances from center
         private int distance, angle; // curr distance; angle from center (0 is right of center)
         private int expansionTime, expansionCounter; // 0 = waiting, 1 - 6 = moving; odd = expanding to max dist, even = contract to min dist
@@ -35,7 +34,6 @@ namespace sprint0
             this.center = center;
             this.angle = angle;
             distance = minDistance; // starts close
-            offset = new Vector2(8, 5.5f) - new Vector2(width / 2, height / 2); // offset from center - offset from minion
             expansionCounter = expansionTime = 0;
         }
 
@@ -52,8 +50,8 @@ namespace sprint0
         public void Update()
         {
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames); // animate flying
-            Vector2 loc = center.Location.Location.ToVector2() + offset + new Vector2((float)(distance * Math.Cos(DegreesToRadians(angle))), (float)(distance * Math.Sin(DegreesToRadians(angle))));
-            Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+            Vector2 loc = center.Location.Center.ToVector2() + new Vector2((float)(distance * Math.Cos(DegreesToRadians(angle))), (float)(distance * Math.Sin(DegreesToRadians(angle))));
+            Location = new Rectangle((int)loc.X, (int)loc.Y, width, height);
 
             // spins fast, no need for delay
             angle = (angle - 3) % 360; // spin counterclockwise
@@ -81,6 +79,11 @@ namespace sprint0
                     }
                 }
             }
+        }
+
+        public void ChangeDirection()
+        {
+            // not necessary
         }
 
         // keeps timings for expansions

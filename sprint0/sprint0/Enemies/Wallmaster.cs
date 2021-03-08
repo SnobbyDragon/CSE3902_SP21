@@ -73,21 +73,7 @@ namespace sprint0
             }
             else // not in a wall, move in random direction
             {
-                switch (rand.Next(0, 4)) // 0 <= rand integer < 4
-                {
-                    case 0:
-                        direction = Direction.n;
-                        break;
-                    case 1:
-                        direction = Direction.s;
-                        break;
-                    case 2:
-                        direction = Direction.e;
-                        break;
-                    case 3:
-                        direction = Direction.w;
-                        break;
-                }
+                direction = (Direction)rand.Next(0, 4);
             }
             dirChangeDelay = rand.Next(10, 50); //TODO may still go into the wall... not sure if that's okay?
         }
@@ -122,6 +108,11 @@ namespace sprint0
                     Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
                     break;
             }
+        }
+
+        public void ChangeDirection()
+        {
+            ArbitraryDirection();
         }
     }
 }

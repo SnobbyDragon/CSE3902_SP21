@@ -57,5 +57,10 @@ namespace sprint0
                 }
             }
         }
+
+        public void ChangeDirection()
+        {
+            // not necessary
+        }
     }
 }

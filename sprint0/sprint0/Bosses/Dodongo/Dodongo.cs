@@ -22,8 +22,6 @@ namespace sprint0
         private Direction direction = Direction.w;
         private readonly int sideLength = 16, width = 32;
 
-        //list of source frames
-
         public Dodongo(Texture2D texture, Vector2 location)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(sideLength * Game1.Scale));
@@ -43,7 +41,6 @@ namespace sprint0
                 xPos += sideLength + 1;
             }
             //adds right and left frames
-            int xPosCopy = xPos;
             for (int frame = 0; frame < totalFramesRL; frame++)
             {
                 rightLeftSources.Add(new Rectangle(xPos, yPos, width, sideLength));
@@ -57,7 +54,6 @@ namespace sprint0
                 SpriteEffects.None,
                 SpriteEffects.FlipHorizontally
             };
-
 
             //sets Destination-later can make a set destination method
             //TODO:make movement dependent on destination
@@ -84,8 +80,6 @@ namespace sprint0
 
         public void Update()
         {
-
-
             //handles movement
 
             if (direction == Direction.w)
@@ -124,9 +118,7 @@ namespace sprint0
             }
             else if (direction == Direction.s)
             {
-
-
-                //amiantes sprite by fliping after every repeatedFrames frames
+                //animates sprite by fliping after every repeatedFrames frames
                 currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
 
                 //moves sprite down
@@ -140,9 +132,9 @@ namespace sprint0
 
             }
             else
-            { //direction == Direction.up
+            {   //direction == Direction.n
 
-                //amiantes sprite by fliping after every repeatedFrames frames
+                //animates sprite by fliping after every repeatedFrames frames
                 currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
 
                 //moves sprite up
@@ -154,6 +146,12 @@ namespace sprint0
                     Location = new Rectangle(Location.X, Location.Y, width, Location.Height); // change to horizontal dimensions
                 }
             }
+        }
+
+        public void ChangeDirection()
+        {
+            Random random = new Random();
+            direction = (Direction)random.Next(0, 4);
         }
     }
 }

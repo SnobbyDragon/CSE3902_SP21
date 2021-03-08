@@ -29,7 +29,12 @@ namespace sprint0
 
         public void Update()
         {
-            // N/A
+            // TODO SQUISH LINK
+        }
+
+        public void ChangeDirection()
+        {
+            // TODO
         }
     }
 }

@@ -131,6 +131,11 @@ namespace sprint0
             }
         }
 
+        public void ChangeDirection()
+        {
+            // TODO
+        }
+
         private bool CanShoot()
         {
             fireballCounter++;

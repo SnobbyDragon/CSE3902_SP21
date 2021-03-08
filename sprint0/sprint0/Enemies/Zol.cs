@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -121,6 +122,12 @@ namespace sprint0
 
             };
             delayCounter++;
+        }
+
+        public void ChangeDirection()
+        {
+            Random random = new Random();
+            direction = (Direction)random.Next(0, 4);
         }
     }
 }
