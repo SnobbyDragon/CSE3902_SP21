@@ -138,16 +138,16 @@ namespace sprint0
             switch(direction)
             {
                 case Direction.n:
-                    offsetPos = new Vector2(position.X + 3, position.Y);
+                    offsetPos = new Vector2(position.X + 8, position.Y);
                     break;
                 case Direction.s:
                     offsetPos = new Vector2(position.X + 5, position.Y + 16);
                     break;
                 case Direction.e:
-                    offsetPos = new Vector2(position.X + 16, position.Y + 6);
+                    offsetPos = new Vector2(position.X + 32, position.Y + 15);
                     break;
                 case Direction.w:
-                    offsetPos = new Vector2(position.X, position.Y + 6);
+                    offsetPos = new Vector2(position.X, position.Y + 15);
                     break;
             }
             game.AddProjectile(offsetPos, direction, 0, "sword beam", this);
