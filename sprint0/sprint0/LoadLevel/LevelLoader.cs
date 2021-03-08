@@ -112,6 +112,7 @@ namespace sprint0
                     if (roomReader.HasAttributes)
                         sprites.Add(npcFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
                     break;
+                
                 default:
                     throw new ArgumentException("Invalid sprite! Level loading failed.");
             }

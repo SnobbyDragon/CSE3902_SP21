@@ -23,6 +23,7 @@ namespace sprint0
             {
                 "room floor plain" => new RoomFloor(texture, location),
                 "room border" => new RoomBorder(texture, location),
+                "darkness" => new Darkness(texture, location),
                 "block" => new Block(texture, location),
                 "tile" => new Tile(texture, location),
                 "gap" => new Gap(texture, location),
