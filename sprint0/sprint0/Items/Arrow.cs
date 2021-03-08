@@ -36,17 +36,17 @@ namespace sprint0
             switch (dir)
             {
                 case Direction.n:
-                    sourceAdjustX += 2;
+                    sourceAdjustX += 14;
                     break;
                 case Direction.s:
-                    sourceAdjustX += 2;
+                    sourceAdjustX += 14;
                     sourceAdjustY += 3;
                     break;
                 case Direction.e:
-                    sourceAdjustY += 10;
+                    sourceAdjustY += 18;
                     break;
                 case Direction.w:
-                    sourceAdjustY += 10;
+                    sourceAdjustY += 18;
                     break;
             }
 
