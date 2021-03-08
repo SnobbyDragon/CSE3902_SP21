@@ -8,7 +8,7 @@ namespace sprint0
     {
         private readonly Dictionary<Collision, Direction> sideToDir;
         private readonly CollisionDetector collisionDetector;
-
+        private readonly int base_size = 16;
         public AllCollisionHandler()
         {
             sideToDir = new Dictionary<Collision, Direction>
@@ -70,7 +70,7 @@ namespace sprint0
         private void HandleLinkBlockCollisions(IPlayer link, List<IBlock> blocks)
         {
             LinkBlockCollisionHandler collisionHandler = new LinkBlockCollisionHandler();
-            Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, 16, 16); //TODO change with size of link
+            Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, (int)(base_size * Game1.Scale), (int)(base_size * Game1.Scale)); 
             foreach (IBlock block in blocks)
             {
                 Collision side = collisionDetector.DetectCollision(linkHitbox, block);
