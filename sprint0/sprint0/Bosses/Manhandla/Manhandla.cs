@@ -21,7 +21,7 @@ namespace sprint0
 
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, size, size);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             Texture = texture;
             this.game = game;
             source = new Rectangle(69, 89, size, size); //center

@@ -64,8 +64,8 @@ namespace sprint0
                     }
                 }
             };
-            Location = new Rectangle(0, 0, size, size); //TODO clean up
-            Location = new Rectangle(center.Location.X + (int)dirToLocationMap[dir].X, center.Location.Y + (int)dirToLocationMap[dir].Y, size, size);
+            Location = new Rectangle(0, 0, (int)(size * Game1.Scale), (int)(size * Game1.Scale)); //TODO clean up
+            Location = new Rectangle(center.Location.X + (int)dirToLocationMap[dir].X, center.Location.Y + (int)dirToLocationMap[dir].Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -14,7 +14,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         private readonly List<Rectangle> sources;
         private Texture2D texture;
-        
+
         private int currFrame;
         private int slow;
         private readonly int xOffset = 1, yOffset = 77;
@@ -22,11 +22,12 @@ namespace sprint0
         private readonly int height = 16;
         private readonly List<Vector2> locations;
         private readonly List<int> xSizes;
+
         public LeftWoodSwordSprite(Texture2D texture, Vector2 location)
         {
 
             this.texture = texture;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             sources = GetFrames();
             /*
              * Ugly pixel math is unavoidable with the current spritesheet
@@ -71,7 +72,7 @@ namespace sprint0
         {
             if (currFrame < 4)
             {
-                Location = new Rectangle((int)locations[currFrame].X, (int)locations[currFrame].Y, xSizes[currFrame], height);
+                Location = new Rectangle((int)locations[currFrame].X, (int)locations[currFrame].Y, (int)(xSizes[currFrame] * Game1.Scale), (int)(height * Game1.Scale));
                 spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
             }
         }

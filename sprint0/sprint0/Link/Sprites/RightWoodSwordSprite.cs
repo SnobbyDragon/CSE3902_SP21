@@ -10,7 +10,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         public Rectangle Location { get; set; }
         private readonly List<Rectangle> sources;
-        
+
         private int currFrame;
         private int slow;
         private readonly int xOffset = 1, yOffset = 77;
@@ -20,7 +20,7 @@ namespace sprint0
         public RightWoodSwordSprite(Texture2D texture, Vector2 location)
         {
             Texture = texture;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             sources = GetFrames();
         }
 
@@ -47,7 +47,7 @@ namespace sprint0
         {
             if (currFrame < 4)
             {
-                Location = new Rectangle(Location.X, Location.Y, sources[currFrame].Width, sources[currFrame].Height); // changes size w/frame
+                Location = new Rectangle(Location.X, Location.Y, (int)(sources[currFrame].Width * Game1.Scale), (int)(sources[currFrame].Height * Game1.Scale)); // changes size w/frame
                 spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
             }
         }

@@ -49,8 +49,9 @@ namespace sprint0
                     sourceAdjustY += 10;
                     break;
             }
+
             Vector2 loc = location + new Vector2(sourceAdjustX, sourceAdjustY);
-            Location = new Rectangle((int)loc.X, (int)loc.Y, width, height);
+            Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             this.dir = dir;
             this.lifespan = lifespan;

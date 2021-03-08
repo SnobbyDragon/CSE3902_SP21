@@ -21,7 +21,7 @@ namespace sprint0
         private readonly List<Vector2> locations;
         public UpWoodSwordSprite(Texture2D texture, Vector2 location)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             this.texture = texture;
             sources = GetFrames();
             /*
@@ -73,7 +73,8 @@ namespace sprint0
             }
         }
 
-        public void Update() {
+        public void Update()
+        {
             slow++;
             if (slow % 8 == 0)
             {
