@@ -5,9 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Authors: Jesse He and Jacob Urick
 
-/*
- * Last updated: 2/21/21 by urick.9
- */
 namespace sprint0
 {
      class Link : IPlayer
@@ -15,15 +12,25 @@ namespace sprint0
         private readonly Game1 game;
         private IPlayerState state;
         public static Vector2 position;
+        private double health = 16.0;
         private readonly int speed = 2;
+        private Boolean isAlive;
         private Direction direction = Direction.n;
+        /*
+         * Note! A count of any number less than 0 is infinite.
+         */
+        private int arrowCount = -1;
+        private int bombCount = -1;
+        private int boomerangCount = -1;
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
         private readonly Random rand;
         Direction IPlayer.Direction { get => direction; set => direction = value; }
 
+
         public Link(Game1 game, Vector2 pos)
         {
+            isAlive = true;
             this.game = game;
             position = pos;
             State = new UpIdleState(this);
@@ -39,6 +46,8 @@ namespace sprint0
         public void TakeDamage(Direction direction)
         {
             game.Player = new DamagedLink(this, game, direction);
+            health -= 0.5;
+            if (health < 0) Die();
         }
 
         public void Shoot() {
@@ -48,7 +57,8 @@ namespace sprint0
             switch (direction)
             {
                 case Direction.n:
-                    offsetPos = new Vector2(position.X + 6, position.Y - 11); // 11 was smallest num s.t. arrow does not trigger collision with link TODO not necessary with source for projectiles
+                    // 11 was smallest num s.t. arrow does not trigger collision with link TODO not necessary with source for projectiles
+                    offsetPos = new Vector2(position.X + 6, position.Y - 11);
                     break;
                 case Direction.s:
                     offsetPos = new Vector2(position.X + 6, position.Y + 16);
@@ -63,6 +73,9 @@ namespace sprint0
             game.AddProjectile(offsetPos, direction, time, "arrow", this);
         }
 
+        private void Die() {
+            isAlive = false;
+        }
         public void ThrowBomb()
         {
             Vector2 offsetPos = position;
@@ -105,10 +118,9 @@ namespace sprint0
             game.AddProjectile(offsetPos, direction, 0, "boomerang", this);
         }
 
-
         public void Stop()
         {
-            State.Stop();
+                State.Stop();
         }
 
         public void HandleUp()
@@ -134,51 +146,98 @@ namespace sprint0
         public void HandleSword()
         {
             State.HandleSword();
-            Vector2 offsetPos = position;
-            switch(direction)
+            if (health == 16)
             {
-                case Direction.n:
-                    offsetPos = new Vector2(position.X + 3, position.Y);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2(position.X + 5, position.Y + 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2(position.X + 16, position.Y + 6);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(position.X, position.Y + 6);
-                    break;
+                Vector2 offsetPos = position;
+                switch (direction)
+                {
+                    case Direction.n:
+                        offsetPos = new Vector2(position.X + 8, position.Y);
+                        break;
+                    case Direction.s:
+                        offsetPos = new Vector2(position.X + 12, position.Y + 16);
+                        break;
+                    case Direction.e:
+                        offsetPos = new Vector2(position.X + 32, position.Y + 15);
+                        break;
+                    case Direction.w:
+                        offsetPos = new Vector2(position.X, position.Y + 15);
+                        break;
+                }
+                game.AddProjectile(offsetPos, direction, 0, "sword beam", this);
             }
-            game.AddProjectile(offsetPos, direction, 0, "sword beam", this);
         }
 
+        
         public void Draw(SpriteBatch spriteBatch)
         {
-            State.Draw(spriteBatch);
+            if (isAlive)
+            {
+                State.Draw(spriteBatch);
+            }
+            
         }
 
         public void Update()
         {
-            State.Update();
+            if (isAlive)
+            {
+                State.Update();
+            }
         }
 
         public void HandleShoot()
         {
-            Shoot();
-            State.UseItem();
+            if (isAlive)
+            {
+                if (arrowCount != 0)
+                {
+                    arrowCount--;
+                    Shoot();
+                    State.UseItem();
+                }
+            }
         }
 
         public void HandleBomb()
         {
-            ThrowBomb();
-            State.UseItem();
+            if (isAlive)
+            {
+                if (bombCount != 0)
+                {
+                    bombCount--;
+                    ThrowBomb();
+                    State.UseItem();
+                }
+            }
         }
 
         public void HandleBoomerang()
         {
-            ThrowBoomerang();
-            State.UseItem();
+            if (isAlive)
+            {
+                if (boomerangCount != 0)
+                {
+                    boomerangCount--;
+                    ThrowBoomerang();
+                    State.UseItem();
+                }
+            }
+        }
+
+        public void ReceiveBomb(int n)
+        {
+            bombCount += n;
+        }
+
+        public void ReceiveArrow(int n)
+        {
+            arrowCount += n;
+        }
+
+        public void ReceiveBoomerang(int n)
+        {
+            boomerangCount += n;
         }
     }
 }

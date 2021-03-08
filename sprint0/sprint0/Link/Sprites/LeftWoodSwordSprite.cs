@@ -35,9 +35,9 @@ namespace sprint0
             locations = new List<Vector2>
             {
                 location,
-                new Vector2(Location.X-11, Location.Y),
-                new Vector2(Location.X-10, Location.Y),
-                new Vector2(Location.X-3, Location.Y)
+                new Vector2(Location.X-(11 * Game1.Scale), Location.Y),
+                new Vector2(Location.X-(10 * Game1.Scale), Location.Y),
+                new Vector2(Location.X-(3 * Game1.Scale), Location.Y)
             };
             xSizes = new List<int>
             {
@@ -57,7 +57,7 @@ namespace sprint0
             yPos = yOffset;
             sources.Add(new Rectangle(xPos, yPos, width, height));
             xPos += width + 1;
-            width = 27;
+            width = 16 + 11;
             sources.Add(new Rectangle(xPos, yPos, width, height));
             xPos += width + 1;
             width = 16 + 7;

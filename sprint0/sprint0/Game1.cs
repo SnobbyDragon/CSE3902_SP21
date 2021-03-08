@@ -189,10 +189,10 @@ namespace sprint0
                 _sprite.Draw(_spriteBatch);
             foreach (ISprite _sprite in roomSprites)
                 _sprite.Draw(_spriteBatch);
-            foreach (IProjectile projectile in projectiles)
-                projectile.Draw(_spriteBatch);
             foreach (IBlock block in blocks)
                 block.Draw(_spriteBatch);
+            foreach (IProjectile projectile in projectiles)
+                projectile.Draw(_spriteBatch);
             foreach (IEnemy enemy in enemies)
                 enemy.Draw(_spriteBatch);
             player.Draw(_spriteBatch);

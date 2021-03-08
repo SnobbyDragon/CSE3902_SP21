@@ -120,5 +120,20 @@ namespace sprint0
 
             decoratedLink.Update();
         }
+
+        public void ReceiveBomb(int n)
+        {
+            decoratedLink.ReceiveBomb(n);
+        }
+
+        public void ReceiveArrow(int n)
+        {
+            decoratedLink.ReceiveArrow(n);
+        }
+
+        public void ReceiveBoomerang(int n)
+        {
+            decoratedLink.ReceiveBoomerang(n);
+        }
     }
 }

@@ -25,6 +25,10 @@ namespace sprint0
         void HandleSword();
         void HandleShoot();
         void HandleBomb();
+
+        void ReceiveBomb(int n);
+        void ReceiveArrow(int n);
+        void ReceiveBoomerang(int n);
         void HandleBoomerang();
         void Draw(SpriteBatch spriteBatch);
         void Update();
