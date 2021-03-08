@@ -32,6 +32,7 @@ namespace sprint0
         public bool changeRoom;
         public int roomIndex;
         public readonly int numRooms=18;
+        private Text text;
 
         private ISprite sprite;
         private SpriteFont font;
@@ -116,6 +117,10 @@ namespace sprint0
                 hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
                 hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
             };
+
+            
+            text = new Text(this);
+            
         }
 
         public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item, IEntity source)
@@ -191,8 +196,16 @@ namespace sprint0
             foreach (IEnemy enemy in enemies)
                 enemy.Draw(_spriteBatch);
             player.Draw(_spriteBatch);
+
+            if (roomIndex == 4)
+            {
+                text.Draw(_spriteBatch);
+            }
+
             _spriteBatch.End();
             base.Draw(gameTime);
+
+            
         }
 
         public void ResetGame()
