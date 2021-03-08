@@ -105,6 +105,11 @@ namespace sprint0
             game.AddProjectile(offsetPos, direction, 0, "boomerang", this);
         }
 
+        public void SwordBeam() 
+        { 
+        
+        }
+
 
         public void Stop()
         {
@@ -141,7 +146,7 @@ namespace sprint0
                     offsetPos = new Vector2(position.X + 8, position.Y);
                     break;
                 case Direction.s:
-                    offsetPos = new Vector2(position.X + 5, position.Y + 16);
+                    offsetPos = new Vector2(position.X + 12, position.Y + 16);
                     break;
                 case Direction.e:
                     offsetPos = new Vector2(position.X + 32, position.Y + 15);
