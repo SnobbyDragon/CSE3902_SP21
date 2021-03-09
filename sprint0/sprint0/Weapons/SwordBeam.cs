@@ -14,10 +14,14 @@ namespace sprint0
         private readonly Direction dir;
         private int xa, ya = 0;
         private int width, height;
-        private readonly int lifespan = 120;
-        private int currFrame;
-        private readonly int totalFrames, repeatedFrames;
+        private readonly int lifespan = 80;
+        private int currFrame, totalFrames;
+        private readonly int repeatedFrames;
         private int age = 0;
+
+        private readonly List<Rectangle> explodeSources;
+        private int framesSinceHit;
+        private bool hit = false;
 
         public SwordBeam(Texture2D texture, Vector2 location, Direction dir, int lifespan, IEntity source)
         {
@@ -31,16 +35,16 @@ namespace sprint0
             switch (dir)
             {
                 case Direction.n:
-                    ya = -2;
+                    ya = (int)(-2 * Game1.Scale);
                     break;
                 case Direction.s:
-                    ya = 2;
+                    ya = (int)(2 * Game1.Scale);
                     break;
                 case Direction.e:
-                    xa = 2;
+                    xa = (int)(2 * Game1.Scale);
                     break;
                 case Direction.w:
-                    xa = -2;
+                    xa = (int)(-2 * Game1.Scale);
                     break;
             }
             if (dir == Direction.n || dir == Direction.s)
@@ -67,12 +71,17 @@ namespace sprint0
                     new Rectangle(115, 159, width, height)
                 };
             }
-
+            explodeSources = new List<Rectangle>
+            {
+                new Rectangle(27, 157, 8,10),
+                new Rectangle(62, 157, 8,10),
+                new Rectangle(97, 157, 8,10)
+            };
         }
 
         private Boolean Alive()
         {
-            return age < lifespan || lifespan < 0;
+            return (age < lifespan || lifespan < 0);
         }
 
         private void Move()
@@ -82,7 +91,13 @@ namespace sprint0
 
         private void Break()
         {
-
+            hit = true;
+            framesSinceHit = 0;
+            width = 8;
+            height = 10;
+            totalFrames = 3;
+            xa = (int)(width * Game1.Scale);  // once broken, the beam no longer moves, so repurpose
+            ya = (int)(height * Game1.Scale); // xa and ya to move each component of the explosion
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -106,6 +121,17 @@ namespace sprint0
                         break;
                 }
             }
+            else if (hit && framesSinceHit < 15)
+            {
+                Rectangle destinationNW = new Rectangle((int)Location.X - xa, (int)Location.Y - ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                Rectangle destinationNE = new Rectangle((int)Location.X + xa, (int)Location.Y - ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                Rectangle destinationSW = new Rectangle((int)Location.X - xa, (int)Location.Y + ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                Rectangle destinationSE = new Rectangle((int)Location.X + xa, (int)Location.Y + ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                spriteBatch.Draw(texture, destinationNW, explodeSources[currFrame / repeatedFrames], Color.White);
+                spriteBatch.Draw(texture, destinationNE, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+                spriteBatch.Draw(texture, destinationSW, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 0);
+                spriteBatch.Draw(texture, destinationSE, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally, 0);
+            }
         }
 
         public void Update()
@@ -116,10 +142,14 @@ namespace sprint0
                 Move();
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
-            else
+            else if (hit)
             {
-                Break();
+                framesSinceHit++;
+                xa += 2;
+                ya += 2;
+                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
+            else Break(); // TODO: Have this break when it hits an enemy
         }
     }
 }
