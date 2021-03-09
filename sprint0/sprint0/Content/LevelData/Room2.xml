@@ -1,44 +1,42 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <XnaContent>?    
-    <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />
-     <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />
-
+    <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />?
+    <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />?
     <Dungeon ObjectName="up open door" LocationX="280" LocationY="500" />?    
     <Dungeon ObjectName="down wall" LocationX="280" LocationY="140" />?    
     <Dungeon ObjectName="left wall" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right locked door" LocationX="0" LocationY="320" />? 
     
-    <Block ObjectName="water" LocationX="120" LocationY="260" />
-    <Block ObjectName="water" LocationX="160" LocationY="260" />
-    <Block ObjectName="water" LocationX="200" LocationY="260" />
+    <Block ObjectName="water" LocationX="120" LocationY="260" />?
+    <Block ObjectName="water" LocationX="160" LocationY="260" />?
+    <Block ObjectName="water" LocationX="200" LocationY="260" />?
 
-    <Block ObjectName="water" LocationX="400" LocationY="260" />
-    <Block ObjectName="water" LocationX="440" LocationY="260" />
-    <Block ObjectName="water" LocationX="480" LocationY="260" />
+    <Block ObjectName="water" LocationX="400" LocationY="260" />?
+    <Block ObjectName="water" LocationX="440" LocationY="260" />?
+    <Block ObjectName="water" LocationX="480" LocationY="260" />?
 
-    <Block ObjectName="water" LocationX="120" LocationY="300" />
-    <Block ObjectName="water" LocationX="120" LocationY="340" />
-    <Block ObjectName="water" LocationX="120" LocationY="380" />
+    <Block ObjectName="water" LocationX="120" LocationY="300" />?
+    <Block ObjectName="water" LocationX="120" LocationY="340" />?
+    <Block ObjectName="water" LocationX="120" LocationY="380" />?
 
-     <Block ObjectName="water" LocationX="480" LocationY="300" />
-     <Block ObjectName="water" LocationX="480" LocationY="340" />
-      <Block ObjectName="water" LocationX="480" LocationY="380" />
+    <Block ObjectName="water" LocationX="480" LocationY="300" />?
+    <Block ObjectName="water" LocationX="480" LocationY="340" />?
+    <Block ObjectName="water" LocationX="480" LocationY="380" />?
 
-      <Block ObjectName="water" LocationX="200" LocationY="340" />
-      <Block ObjectName="water" LocationX="240" LocationY="340" />
-      <Block ObjectName="water" LocationX="280" LocationY="340" />
-      <Block ObjectName="water" LocationX="320" LocationY="340" />
-       <Block ObjectName="water" LocationX="360" LocationY="340" />
-       <Block ObjectName="water" LocationX="400" LocationY="340" />
+    <Block ObjectName="water" LocationX="200" LocationY="340" />?
+    <Block ObjectName="water" LocationX="240" LocationY="340" />?
+    <Block ObjectName="water" LocationX="280" LocationY="340" />?
+    <Block ObjectName="water" LocationX="320" LocationY="340" />?
+    <Block ObjectName="water" LocationX="360" LocationY="340" />?
+    <Block ObjectName="water" LocationX="400" LocationY="340" />?
+       
+    <Block ObjectName="water" LocationX="120" LocationY="420" />?
+    <Block ObjectName="water" LocationX="160" LocationY="420" />?
+    <Block ObjectName="water" LocationX="200" LocationY="420" />?
 
-
-     <Block ObjectName="water" LocationX="120" LocationY="420" />
-    <Block ObjectName="water" LocationX="160" LocationY="420" />
-    <Block ObjectName="water" LocationX="200" LocationY="420" />
-
-    <Block ObjectName="water" LocationX="400" LocationY="420" />
-    <Block ObjectName="water" LocationX="440" LocationY="420" />
-    <Block ObjectName="water" LocationX="480" LocationY="420" />
+    <Block ObjectName="water" LocationX="400" LocationY="420" />?
+    <Block ObjectName="water" LocationX="440" LocationY="420" />?
+    <Block ObjectName="water" LocationX="480" LocationY="420" />?
    
     
     <ItemWeapon ObjectName="key" LocationX="280" LocationY="260" Direction="North" Lifespan="0" />?
@@ -46,5 +44,7 @@
     <Enemy ObjectName="red goriya" LocationX="360" LocationY="260" />?
     <Enemy ObjectName="red goriya" LocationX="360" LocationY="220" />?
     <Enemy ObjectName="red goriya" LocationX="280" LocationY="220" />?
+    
+      <Player ObjectName="Link" LocationX="82" LocationY="340" />?
 
 ?</XnaContent>
