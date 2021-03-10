@@ -32,6 +32,8 @@ namespace sprint0
             sources.Add(new Rectangle(xPos, yPos, width, height));
             sources.Add(new Rectangle(xPos + width + 1, yPos, width, height));
 
+          
+
             rand = new Random();
             GenerateDest();
         }

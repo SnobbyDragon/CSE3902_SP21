@@ -23,5 +23,7 @@
     <Enemy ObjectName="trap" LocationX="520" LocationY="460" />?
     
     <ItemWeapon ObjectName="bow" LocationX="332" LocationY="300" Direction="North" Lifespan="0" />?
+    <Projectile ObjectName="fairy" LocationX="200" LocationY="200" Direction="North" Lifespan="0" />?
+
      <Player ObjectName="Link" LocationX="520" LocationY="340" />?
 ?</XnaContent>
