@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <XnaContent>?    
-    <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />
-     <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />
+    <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />?
+     <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />?
 
-      <Dungeon ObjectName="up wall" LocationX="280" LocationY="500" />?    
-    <Dungeon ObjectName="down shut door" LocationX="280" LocationY="140" />?    
-    <Dungeon ObjectName="left locked door" LocationX="560" LocationY="320" />?    
-    <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />?
+      <Dungeon ObjectName="up locked door" LocationX="280" LocationY="500" />?    
+    <Dungeon ObjectName="down wall" LocationX="280" LocationY="140" />?    
+    <Dungeon ObjectName="left open door" LocationX="560" LocationY="320" />?    
+    <Dungeon ObjectName="right shut door" LocationX="0" LocationY="320" />?
 
     <Block ObjectName="movable block" LocationX="280" LocationY="340" />? 
 
@@ -15,6 +15,6 @@
     <Enemy ObjectName="green gel" LocationX="280" LocationY="420" />?
     <Enemy ObjectName="teal gel" LocationX="200" LocationY="340" />?
 
-    
+    <Player ObjectName="Link" LocationX="82" LocationY="340" />?
 
 ?</XnaContent>

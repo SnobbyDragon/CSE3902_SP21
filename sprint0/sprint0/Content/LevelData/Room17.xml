@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <XnaContent>?
-    <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />
-     <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />
+    <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />?
+     <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />?
 
     <Dungeon ObjectName="up wall" LocationX="280" LocationY="500" />?    
     <Dungeon ObjectName="down wall" LocationX="280" LocationY="140" />?    
@@ -22,10 +22,8 @@
     <Block ObjectName="block" LocationX="400" LocationY="380" />? 
     <Block ObjectName="block" LocationX="440" LocationY="380" />?  
         
-    <Enemy ObjectName="stalfos" LocationX="360" LocationY="380" />? 
-    <Enemy ObjectName="stalfos" LocationX="440" LocationY="260" />? 
-    <Enemy ObjectName="stalfos" LocationX="480" LocationY="420" />? 
-    <Enemy ObjectName="stalfos" LocationX="320" LocationY="260" />? 
-    <Enemy ObjectName="stalfos" LocationX="200" LocationY="420" />? 
+    <Boss ObjectName="ganon" LocationX="360" LocationY="380" />? 
+    
+    <Player ObjectName="Link" LocationX="80" LocationY="340" />?
     
 ?</XnaContent>
