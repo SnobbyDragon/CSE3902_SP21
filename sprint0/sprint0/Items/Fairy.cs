@@ -21,8 +21,9 @@ namespace sprint0
         private Vector2 destination;
         private readonly Random rand;
 
-        public Fairy(Texture2D texture, Vector2 location) //TODO source if this is really a projectile lol
+        public Fairy(Texture2D texture, Vector2 location, IEntity shooter)
         {
+            Shooter = shooter;
             Texture = texture;
             totalFrames = 2;
             currentFrame = 0; repeatedFrames = 10; //moveCounter = 0;

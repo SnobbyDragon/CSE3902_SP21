@@ -41,15 +41,15 @@ namespace sprint0
             };
         }
 
-        public IProjectile MakeProjectile(string spriteType, Vector2 location, Direction dir, int lifespan, IEntity source)
+        public IProjectile MakeProjectile(string spriteType, Vector2 location, Direction dir, int lifespan, IEntity shooter)
         {
             return spriteType switch
             {
-                "fairy" => new Fairy(texture1, location),
-                "bomb" => new Bomb(texture2, location, dir, lifespan, source),
-                "boomerang" => new Boomerang(texture3, location, dir, lifespan, source),
-                "arrow" => new Arrow(texture1, location, dir, lifespan, source),
-                "sword beam" => new SwordBeam(texture2, location, dir, lifespan, source),
+                "fairy" => new Fairy(texture1, location, shooter),
+                "bomb" => new Bomb(texture2, location, dir, lifespan, shooter),
+                "boomerang" => new Boomerang(texture3, location, dir, lifespan, shooter),
+                "arrow" => new Arrow(texture1, location, dir, lifespan, shooter),
+                "sword beam" => new SwordBeam(texture2, location, dir, lifespan, shooter),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
