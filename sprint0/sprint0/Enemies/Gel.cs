@@ -20,6 +20,7 @@ namespace sprint0
         private readonly int width = 8, height = 16;
 
         private Direction direction = Direction.w;
+        private int directionChangeCounter;
 
 
         public Gel(Texture2D texture, Vector2 location, string gelColor)
@@ -29,6 +30,7 @@ namespace sprint0
             totalFrames = 2;
             currentFrame = 0;
             color = gelColor;
+            directionChangeCounter = 0;
 
             colorMap = new Dictionary<string, List<Rectangle>>
             {
@@ -63,42 +65,35 @@ namespace sprint0
         {
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
+            if (directionChangeCounter== 100) { ChangeDirection(); directionChangeCounter = 0; }
+
             if (direction == Direction.w)
             {
                 //moves sprite left
                 Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
-                if (Location.X <= 50 * Game1.Scale)
-                {
-                    direction = Direction.s;
-                }
+               
             }
             else if (direction == Direction.e)
             {
                 //moves sprite right
                 Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
-                if (Location.X >= (Game1.Width - 50) * Game1.Scale)
-                {
-                    direction = Direction.n;
-                }
+                
             }
             else if (direction == Direction.s)
             {
                 //moves sprite down
                 Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
-                if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
-                {
-                    direction = Direction.e;
-                }
+                
             }
             else
             {   //direction == Direction.n
                 //moves sprite up
                 Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
-                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
-                {
-                    direction = Direction.w;
-                }
+                
             }
+
+            directionChangeCounter++;
+
         }
 
         public void ChangeDirection()

@@ -34,7 +34,7 @@
 
     <Boss ObjectName="aquamentus" LocationX="400" LocationY="340" />?
 
-    <ItemWeapon ObjectName="heart container" LocationX="495" LocationY="355" Direction="North" Lifespan="0" />?
+    <ItemWeapon ObjectName="heart container" LocationX="482" LocationY="342" Direction="North" Lifespan="0" />?
     <Player ObjectName="Link" LocationX="310" LocationY="460" />?
 
 ?</XnaContent>

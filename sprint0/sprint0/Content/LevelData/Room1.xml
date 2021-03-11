@@ -9,7 +9,7 @@
     <Block ObjectName="block" LocationX="320" LocationY="260" />?   
     <Block ObjectName="block" LocationX="280" LocationY="300" />?  
     <Block ObjectName="block" LocationX="360" LocationY="300" />? 
-    <Block ObjectName="block" LocationX="240" LocationY="340" />?  
+  
     <Block ObjectName="block" LocationX="400" LocationY="340" />?  
     <Block ObjectName="block" LocationX="280" LocationY="380" />?  
     <Block ObjectName="block" LocationX="360" LocationY="380" />?    
@@ -23,5 +23,7 @@
     <Enemy ObjectName="trap" LocationX="520" LocationY="460" />?
     
     <ItemWeapon ObjectName="bow" LocationX="332" LocationY="300" Direction="North" Lifespan="0" />?
+    <Projectile ObjectName="fairy" LocationX="200" LocationY="200" Direction="North" Lifespan="0" />?
+
      <Player ObjectName="Link" LocationX="520" LocationY="340" />?
 ?</XnaContent>
