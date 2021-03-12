@@ -86,6 +86,11 @@ namespace sprint0
             // not necessary
         }
 
+        public void TakeDamage()
+        {
+            // TODO
+        }
+
         // keeps timings for expansions
         private void CountExpansion()
         {

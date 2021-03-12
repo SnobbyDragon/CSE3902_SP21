@@ -11,7 +11,7 @@ namespace sprint0
      */
     public class Boomerang : IProjectile
     {
-        public IEntity Shooter { get; set; }
+        public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 290, yOffset = 11, width = 8, height = 16;
@@ -97,6 +97,8 @@ namespace sprint0
             }
         }
 
+        public bool IsAlive() => alive;
+        public void Perish() => alive = false;
 
         public void Move()
         {

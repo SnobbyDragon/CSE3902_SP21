@@ -9,7 +9,7 @@ namespace sprint0
 {
     public class Zol : IEnemy
     {
-
+        private Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private int totalFrames;
@@ -20,8 +20,10 @@ namespace sprint0
         private int delay, delayCounter;
         private readonly int width = 16, height = 16;
         private Direction direction = Direction.w;
+        private int spawnCounter;
+        private readonly int spawnRate = 100; // arbitrary; spawns a gel every spawnRate
 
-        public Zol(Texture2D texture, Vector2 location, string gelColor)
+        public Zol(Texture2D texture, Vector2 location, string gelColor, Game1 game)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
@@ -40,8 +42,10 @@ namespace sprint0
                 { "grey", GetFrames(111, 28, 2)},
                 { "blkwhite", GetFrames(145, 28, 2)},
             };
-        }
 
+            spawnCounter = 0;
+            this.game = game;
+        }
 
         //Adds source frames to a list
         private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
@@ -55,8 +59,6 @@ namespace sprint0
             return sources;
         }
 
-
-
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
@@ -64,6 +66,8 @@ namespace sprint0
 
         public void Update()
         {
+            SpawnGel();
+
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
             switch (direction)
@@ -128,6 +132,26 @@ namespace sprint0
         {
             Random random = new Random();
             direction = (Direction)random.Next(0, 4);
+        }
+
+        public void TakeDamage()
+        {
+            // TODO
+        }
+
+        private void SpawnGel()
+        {
+            // makes gel babies lol
+            if (spawnCounter == spawnRate)
+            {
+                // TODO gel collides with zol, but maybe they should be able to be on top of each other?
+                game.AddEnemy(Location.Location.ToVector2(), color + " gel");
+                spawnCounter = 0;
+            }
+            else
+            {
+                spawnCounter++;
+            }
         }
     }
 }

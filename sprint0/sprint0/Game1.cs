@@ -37,10 +37,11 @@ namespace sprint0
         public IPlayer Player { get => player; set => player = value; }
 
         private ItemsWeaponsSpriteFactory itemFactory;
+        private EnemiesSpriteFactory enemyFactory;
 
         private List<IProjectile> projectiles;
         private List<IBlock> blocks;
-        private List<IEnemy> enemies;
+        private List<IEnemy> enemies, enemiesToSpawn;
         private AllCollisionHandler collisionHandler;
 
         private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
@@ -86,7 +87,7 @@ namespace sprint0
 
             //note: the integer refers to the room number to load
             changeRoom = true;
-            roomIndex = 1;
+            roomIndex = 12;
             levelLoader = new LevelLoader(this, roomIndex);
 
             base.Initialize();
@@ -98,6 +99,7 @@ namespace sprint0
             DungeonFactory dungeonFactory = new DungeonFactory(this);
             HUDFactory hudFactory = new HUDFactory(this);
             itemFactory = new ItemsWeaponsSpriteFactory(this);
+            enemyFactory = new EnemiesSpriteFactory(this);
 
             projectiles = new List<IProjectile>();
             blocks = new List<IBlock>();
@@ -117,6 +119,7 @@ namespace sprint0
             projectiles = roomElements.Item2;
             blocks = roomElements.Item3;
             enemies = roomElements.Item4;
+            enemiesToSpawn = new List<IEnemy>(); // used for spawning new enemies; avoids mutating enemies list during foreach
             roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
             {
                 dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
@@ -134,7 +137,6 @@ namespace sprint0
                 hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
             };
 
-            
             text = new Text(this);
             
         }
@@ -147,6 +149,11 @@ namespace sprint0
         public void AddFireball(Vector2 location, Vector2 dir, IEntity source)
         {
             projectiles.Add(itemFactory.MakeFireball(location, dir, source));
+        }
+
+        public void AddEnemy(Vector2 location, string enemy)
+        {
+            enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
         }
 
         protected override void Update(GameTime gameTime)
@@ -186,6 +193,13 @@ namespace sprint0
 
             // handles collisions
             collisionHandler.HandleAllCollisions(Player, enemies, projectiles, blocks);
+
+            // after all traversals, add new enemies
+            if (enemiesToSpawn.Count > 0)
+            {
+                enemies.AddRange(enemiesToSpawn);
+                enemiesToSpawn.Clear();
+            }
 
             base.Update(gameTime);
         }

@@ -121,5 +121,10 @@ namespace sprint0
             Random random = new Random();
             direction = (Direction)random.Next(0, 4);
         }
+
+        public void TakeDamage()
+        {
+            // TODO
+        }
     }
 }

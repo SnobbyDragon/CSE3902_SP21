@@ -7,7 +7,7 @@ namespace sprint0
 {
     class SwordBeam : IProjectile
     {
-        public IEntity Shooter { get; set; }
+        public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         private readonly Texture2D texture;
         private readonly List<Rectangle> sources;
@@ -79,10 +79,12 @@ namespace sprint0
             };
         }
 
-        private Boolean Alive()
+        public bool IsAlive()
         {
             return (age < lifespan || lifespan < 0);
         }
+
+        public void Perish() => age = lifespan;
 
         private void Move()
         {
@@ -102,7 +104,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (Alive())
+            if (IsAlive())
             {
                 Rectangle destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
                 switch (dir)
@@ -137,7 +139,7 @@ namespace sprint0
         public void Update()
         {
             age++;
-            if (Alive())
+            if (IsAlive())
             {
                 Move();
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);

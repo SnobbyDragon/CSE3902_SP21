@@ -114,5 +114,10 @@ namespace sprint0
         {
             ArbitraryDirection();
         }
+
+        public void TakeDamage()
+        {
+            // TODO
+        }
     }
 }

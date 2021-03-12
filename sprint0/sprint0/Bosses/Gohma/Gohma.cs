@@ -136,6 +136,11 @@ namespace sprint0
             // TODO
         }
 
+        public void TakeDamage()
+        {
+            // TODO
+        }
+
         private bool CanShoot()
         {
             fireballCounter++;

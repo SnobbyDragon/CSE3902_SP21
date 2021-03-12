@@ -32,11 +32,11 @@ namespace sprint0
             };
             sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height)); // animation = left middle right middle ...
 
-            neck1 = generateNeck();
-            neck2 = generateNeck();
+            neck1 = GenerateNeck();
+            neck2 = GenerateNeck();
         }
 
-        public List<IEnemy> generateNeck()
+        private List<IEnemy> GenerateNeck()
         {
             List<IEnemy> neck = new List<IEnemy>();
             Vector2 anchor = Location.Location.ToVector2() + new Vector2(width / 2 - 4, height - 6);
@@ -71,6 +71,11 @@ namespace sprint0
         public void ChangeDirection()
         {
             // not necessary
+        }
+
+        public void TakeDamage()
+        {
+            // TODO
         }
     }
 }

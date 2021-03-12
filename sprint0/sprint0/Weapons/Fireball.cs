@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class Fireball : IProjectile
     {
-        public IEntity Shooter { get; set; }
+        public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         private Vector2 preciseLocation;
         public Texture2D Texture { get; set; }
@@ -44,6 +44,9 @@ namespace sprint0
             };
             return sources;
         }
+
+        public bool IsAlive() => !isDead;
+        public void Perish() => isDead = true;
 
         public void Draw(SpriteBatch spriteBatch)
         {
