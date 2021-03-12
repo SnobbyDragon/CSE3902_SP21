@@ -66,16 +66,7 @@ namespace sprint0
 
         public void Update()
         {
-            if (spawnCounter == spawnRate)
-            {
-                // TODO gel collides with zol, but maybe they should be able to be on top of each other?
-                game.AddEnemy(Location.Location.ToVector2(), color + " gel");
-                spawnCounter = 0;
-            }
-            else
-            {
-                spawnCounter++;
-            }
+            SpawnGel();
 
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
@@ -151,7 +142,16 @@ namespace sprint0
         private void SpawnGel()
         {
             // makes gel babies lol
-
+            if (spawnCounter == spawnRate)
+            {
+                // TODO gel collides with zol, but maybe they should be able to be on top of each other?
+                game.AddEnemy(Location.Location.ToVector2(), color + " gel");
+                spawnCounter = 0;
+            }
+            else
+            {
+                spawnCounter++;
+            }
         }
     }
 }

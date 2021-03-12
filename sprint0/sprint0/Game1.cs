@@ -195,8 +195,11 @@ namespace sprint0
             collisionHandler.HandleAllCollisions(Player, enemies, projectiles, blocks);
 
             // after all traversals, add new enemies
-            enemies.AddRange(enemiesToSpawn);
-            enemiesToSpawn.Clear();
+            if (enemiesToSpawn.Count > 0)
+            {
+                enemies.AddRange(enemiesToSpawn);
+                enemiesToSpawn.Clear();
+            }
 
             base.Update(gameTime);
         }

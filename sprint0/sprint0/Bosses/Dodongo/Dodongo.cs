@@ -191,21 +191,7 @@ namespace sprint0
         public void ChangeDirection()
         {
             Random random = new Random();
-            switch (random.Next(0, 4))
-            {
-                case 0:
-                    FaceNorth();
-                    break;
-                case 1:
-                    FaceSouth();
-                    break;
-                case 2:
-                    FaceEast();
-                    break;
-                case 3:
-                    FaceWest();
-                    break;
-            }
+            FaceDirection((Direction)random.Next(0, 4));
         }
 
         private void FaceNorth()
@@ -238,7 +224,7 @@ namespace sprint0
 
         public void TakeDamage()
         {
-
+            // TODO
         }
     }
 }
