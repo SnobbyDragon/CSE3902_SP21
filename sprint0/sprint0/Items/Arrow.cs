@@ -6,7 +6,7 @@ namespace sprint0
 {
     public class Arrow : IProjectile
     {
-        public IEntity Shooter { get; set; }
+        public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public Vector2 origin;
@@ -68,7 +68,7 @@ namespace sprint0
             rotate180 = (float)Math.PI;
         }
 
-        private bool Alive()
+        public bool IsAlive()
         {
             if (age < lifespan || lifespan < 0)
             {
@@ -76,6 +76,11 @@ namespace sprint0
                 return true;
             }
             return false;
+        }
+
+        public void Perish()
+        {
+            age = lifespan;
         }
 
         private void Move()
@@ -87,7 +92,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (Alive())
+            if (IsAlive())
             {
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White, rotation, origin, SpriteEffects.None, 0);
             }
@@ -95,7 +100,7 @@ namespace sprint0
 
         public void Update()
         {
-            if (Alive())
+            if (IsAlive())
             {
 
                 switch (dir)

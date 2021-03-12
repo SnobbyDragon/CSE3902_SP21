@@ -14,7 +14,7 @@ namespace sprint0
 {
     public class Bomb : IProjectile
     {
-        public IEntity Shooter { get; set; }
+        public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
 
@@ -91,7 +91,7 @@ namespace sprint0
             Location = new Rectangle(Location.X + xadd, Location.Y + yadd, Location.Width, Location.Height);
         }
 
-        private bool Alive()
+        public bool IsAlive()
         {
             if (age < lifespan + 3 * repeatedFrames || lifespan <= 0) // if lifespan <= 0, always alive
             {
@@ -101,9 +101,14 @@ namespace sprint0
             return false;
         }
 
+        public void Perish()
+        {
+            age = lifespan + 3 * repeatedFrames;
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (Alive())
+            if (IsAlive())
             {
                 spriteBatch.Draw(Texture, Location, currentSource, Color.White);
             }

@@ -9,7 +9,7 @@ namespace sprint0
 {
     public class Fairy : IProjectile // fairy is projectile lol !
     {
-        public IEntity Shooter { get; set; }
+        public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly List<Rectangle> sources;
@@ -33,11 +33,12 @@ namespace sprint0
             sources.Add(new Rectangle(xPos, yPos, width, height));
             sources.Add(new Rectangle(xPos + width + 1, yPos, width, height));
 
-          
-
             rand = new Random();
             GenerateDest();
         }
+
+        public bool IsAlive() => true; // fairy lives F O R E V E R !
+        public void Perish() { } // again, fairy NEVER DIES!
 
         public void Draw(SpriteBatch spriteBatch)
         {

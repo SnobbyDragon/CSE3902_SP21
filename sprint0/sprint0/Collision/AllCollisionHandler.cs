@@ -28,6 +28,7 @@ namespace sprint0
             HandleLinkEnemyCollisions(link, enemies);
             HandleEnemyBlockCollisions(enemies, blocks);
             HandleEnemyEnemyCollisions(enemies);
+            HandleEnemyProjectileCollisions(enemies, projectiles);
             HandleBlockBlockCollisions(blocks);
         }
 
@@ -115,6 +116,25 @@ namespace sprint0
                     if (side != Collision.None)
                     {
                         collisionHandler.HandleCollision(enemies[i], enemies[j], sideToDir[side]);
+                    }
+                }
+            }
+        }
+
+        /*
+         * Checks if enemies collide with any projectiles; handles collisions
+         */
+        private void HandleEnemyProjectileCollisions(List<IEnemy> enemies, List<IProjectile> projectiles)
+        {
+            EnemyProjectileCollisionHandler collisionHandler = new EnemyProjectileCollisionHandler();
+            foreach (IEnemy enemy in enemies)
+            {
+                foreach (IProjectile projectile in projectiles)
+                {
+                    Collision side = collisionDetector.DetectCollision(enemy, projectile);
+                    if (side != Collision.None)
+                    {
+                        collisionHandler.HandleCollision(enemy, projectile, sideToDir[side]);
                     }
                 }
             }

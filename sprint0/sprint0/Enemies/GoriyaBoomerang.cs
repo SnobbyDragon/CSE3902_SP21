@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class GoriyaBoomerang : IProjectile
     {
-        public IEntity Shooter { get; set; }
+        public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 290, yOffset = 11, width = 7, height = 15;
@@ -33,6 +33,9 @@ namespace sprint0
             totalFrames = 8;
             repeatedFrames = 4;
         }
+
+        public bool IsAlive() => true; // TODO always alive for now
+        public void Perish() { } // TODO does nothing for now
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -151,7 +154,7 @@ namespace sprint0
                 }
             }
             else
-            { //direction==Direction.up
+            { //direction == Direction.up
                 //moves sprite up
                 Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
 

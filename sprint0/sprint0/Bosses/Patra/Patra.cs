@@ -87,6 +87,11 @@ namespace sprint0
             GenerateDest();
         }
 
+        public void TakeDamage()
+        {
+            // TODO
+        }
+
         // generates a new destination
         private void GenerateDest()
         {

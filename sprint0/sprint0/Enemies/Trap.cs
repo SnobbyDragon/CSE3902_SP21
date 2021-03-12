@@ -47,10 +47,15 @@ namespace sprint0
             }
         }
 
-            public void ChangeDirection()
+        public void ChangeDirection()
         {
-                Random random = new Random();
-                direction = (Direction)random.Next(0, 2);
-            }
+            Random random = new Random();
+            direction = (Direction)random.Next(0, 2);
+        }
+
+        public void TakeDamage()
+        {
+            // not necessary; unkillable
+        }
     }
 }

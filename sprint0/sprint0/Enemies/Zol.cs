@@ -42,7 +42,6 @@ namespace sprint0
             };
         }
 
-
         //Adds source frames to a list
         private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
         {
@@ -54,8 +53,6 @@ namespace sprint0
             }
             return sources;
         }
-
-
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -128,6 +125,16 @@ namespace sprint0
         {
             Random random = new Random();
             direction = (Direction)random.Next(0, 4);
+        }
+
+        public void TakeDamage()
+        {
+            // TODO
+        }
+
+        private void SpawnGel()
+        {
+            // makes gel babies lol
         }
     }
 }

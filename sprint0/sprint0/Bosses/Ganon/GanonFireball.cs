@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class GanonFireball : IProjectile
     {
-        public IEntity Shooter { get; set; }
+        public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int width = 8, height = 10;
@@ -101,6 +101,9 @@ namespace sprint0
             };
             return sources;
         }
+
+        public bool IsAlive() => !IsDead; // TODO clean up, we only need IsAlive()
+        public void Perish() => IsDead = true;
 
         public void Draw(SpriteBatch spriteBatch)
         {
