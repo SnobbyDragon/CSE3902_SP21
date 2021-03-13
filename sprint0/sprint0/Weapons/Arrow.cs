@@ -16,7 +16,6 @@ namespace sprint0
         private readonly List<Rectangle> sources;
         private readonly int xOffset = 154, yOffset = 0, width = 5, height = 16;
         private int currFrame;
-        private readonly int totalFrames, repeatedFrames;
         private readonly Direction dir;
         //xa is x adjust, ya is y adjust
         private float xa, ya;
@@ -61,8 +60,6 @@ namespace sprint0
                 new Rectangle(xOffset, yOffset+height+1, width, height)
             };
             currFrame = 0;
-            totalFrames = 2;
-            repeatedFrames = 8;
             origin = new Vector2(width / 2, height / 2);
             rotation = 0;
             rotate180 = (float)Math.PI;
@@ -84,7 +81,7 @@ namespace sprint0
         {
             if (IsAlive())
             {
-                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White, rotation, origin, SpriteEffects.None, 0);
+                spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White, rotation, origin, SpriteEffects.None, 0);
             }
         }
 
