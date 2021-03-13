@@ -74,6 +74,7 @@ namespace sprint0
                 "left statue" => new Statue(texture, location, "left", game),
                 "right statue" => new Statue(texture, location, "right", game),
                 "movable block" => new MovableBlock(texture, location),
+                "invisible block" => new InvisibleBlock(location),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
