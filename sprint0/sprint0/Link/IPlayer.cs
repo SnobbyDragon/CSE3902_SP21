@@ -13,11 +13,13 @@ namespace sprint0
         Vector2 Pos { get; set; }
         IPlayerState State { get; set; }
 
+        int WeaponDamage { get; set; }
+
         //Use position, not Pos
         static Vector2 Position;
         void Move(int x, int y);
         void Stop();
-        void TakeDamage(Direction direction);
+        void TakeDamage(Direction direction, int damage);
         void HandleUp();
         void HandleDown();
         void HandleLeft();

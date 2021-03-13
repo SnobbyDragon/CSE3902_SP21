@@ -9,6 +9,9 @@ namespace sprint0
     {
         public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
+
+        public int Damage { get; }
+
         private readonly Texture2D texture;
         private readonly List<Rectangle> sources;
         private readonly Direction dir;
@@ -24,6 +27,8 @@ namespace sprint0
 
         public SwordBeam(Texture2D texture, Vector2 location, Direction dir, int lifespan, IEntity source)
         {
+            if (source is IPlayer link) Damage = link.WeaponDamage;
+            else Damage = 2;
             Shooter = source;
             this.dir = dir;
             this.texture = texture;
@@ -83,11 +88,16 @@ namespace sprint0
             return age < lifespan || lifespan < 0;
         }
 
-        public void Perish() => Break();
+        public void Perish() { }
 
         private void Move()
         {
-            if (!hit) Location = new Rectangle(Location.X + xa, Location.Y + ya, Location.Width, Location.Height);
+            if (!hit)
+            {
+                Rectangle tempLoc = Location;
+                tempLoc.Offset(xa, ya);
+                Location = tempLoc;
+            }
             else
             {
                 xa += 2;
@@ -97,7 +107,6 @@ namespace sprint0
 
         private void Break()
         {
-            hit = true;
             width = 8;
             height = 10;
             totalFrames = 3;
@@ -159,7 +168,8 @@ namespace sprint0
         }
         public void RegisterHit(IEnemy enemy)
         {
-            //no-op required
+            hit = true;
+            Break();
         }
     }
 }

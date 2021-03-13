@@ -8,6 +8,7 @@ namespace sprint0
     {
         public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
+        public int Damage { get => 4; }
         public Texture2D Texture { get; set; }
         public Vector2 origin;
         private float rotation;

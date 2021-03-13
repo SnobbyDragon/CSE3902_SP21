@@ -12,7 +12,8 @@ namespace sprint0
         private readonly Game1 game;
         private IPlayerState state;
         public static Vector2 position;
-        private double health = 16.0;
+        private int health = 32;
+        private int maxHealth = 32;
         private readonly int speed = 2;
         private Boolean isAlive;
         private Direction direction = Direction.n;
@@ -27,9 +28,12 @@ namespace sprint0
         private readonly Random rand;
         Direction IPlayer.Direction { get => direction; set => direction = value; }
 
+        // TODO Make this change with different color of sword
+        public int WeaponDamage { get; set; }
 
         public Link(Game1 game, Vector2 pos)
         {
+            WeaponDamage = 2;
             isAlive = true;
             this.game = game;
             position = pos;
@@ -43,10 +47,10 @@ namespace sprint0
             position += new Vector2(speed*x, speed*y);
         }
 
-        public void TakeDamage(Direction direction)
+        public void TakeDamage(Direction direction, int damage)
         {
             game.Player = new DamagedLink(this, game, direction);
-            health -= 0.5;
+            health -= damage;
             if (health < 0) Die();
         }
 
@@ -147,24 +151,25 @@ namespace sprint0
         public void HandleSword()
         {
             State.HandleSword();
-            if (health == 16)
+            Vector2 offsetPos = position;
+            switch (direction)
             {
-                Vector2 offsetPos = position;
-                switch (direction)
-                {
-                    case Direction.n:
-                        offsetPos = new Vector2(position.X + 8, position.Y);
-                        break;
-                    case Direction.s:
-                        offsetPos = new Vector2(position.X + 12, position.Y + 16);
-                        break;
-                    case Direction.e:
-                        offsetPos = new Vector2(position.X + 32, position.Y + 15);
-                        break;
-                    case Direction.w:
-                        offsetPos = new Vector2(position.X, position.Y + 15);
-                        break;
-                }
+                case Direction.n:
+                    offsetPos = new Vector2(position.X + 8, position.Y);
+                    break;
+                case Direction.s:
+                    offsetPos = new Vector2(position.X + 12, position.Y + 16);
+                    break;
+                case Direction.e:
+                    offsetPos = new Vector2(position.X + 32, position.Y + 15);
+                    break;
+                case Direction.w:
+                    offsetPos = new Vector2(position.X, position.Y + 15);
+                    break;
+            }
+            game.AddProjectile(offsetPos, direction, 0, "sword", this);
+            if (health == maxHealth)
+            {
                 game.AddProjectile(offsetPos, direction, 0, "sword beam", this);
             }
         }
