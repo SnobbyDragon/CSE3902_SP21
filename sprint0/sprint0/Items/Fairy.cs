@@ -11,6 +11,7 @@ namespace sprint0
     {
         public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
+        public int Damage { get => Int32.MaxValue; }
         public Texture2D Texture { get; set; }
         private readonly List<Rectangle> sources;
         private readonly int totalFrames;

@@ -11,6 +11,9 @@ namespace sprint0
         public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
+
+        public int Damage { get => 1; }
+
         private readonly int xOffset = 290, yOffset = 11, width = 7, height = 15;
         private List<Rectangle> sources;
         private int currFrame;

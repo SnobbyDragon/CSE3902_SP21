@@ -50,6 +50,7 @@ namespace sprint0
                 "boomerang" => new Boomerang(texture3, location, dir, lifespan, shooter),
                 "arrow" => new Arrow(texture1, location, dir, lifespan, shooter),
                 "sword beam" => new SwordBeam(texture2, location, dir, lifespan, shooter),
+                "sword" => new Sword(location, dir, shooter),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }

@@ -20,9 +20,12 @@ namespace sprint0
         public Vector2 Direction { get; set; } // direction fireball travels
         public bool IsDead { get; set; }
 
+        public int Damage { get; }
+
         public GanonFireball(Texture2D texture, Vector2 location, string type, IEntity shooter)
         {
             Shooter = shooter;
+            Damage = 1;
             Texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width*Game1.Scale), (int)(height*Game1.Scale));
             this.type = type;

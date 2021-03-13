@@ -16,6 +16,7 @@ namespace sprint0
     {
         public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
+        public int Damage { get => 20; }
         public Texture2D Texture { get; set; }
 
         private Rectangle source;
