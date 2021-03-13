@@ -6,13 +6,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Flame : ISprite
+    public class Flame : IBlock
     {
 
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        SpriteEffects s = SpriteEffects.FlipHorizontally;
+        private SpriteEffects s = SpriteEffects.FlipHorizontally;
         private int currentFrame;
         private int repeatedFrames;
         private int totalFrames;
@@ -46,5 +46,8 @@ namespace sprint0
             }
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
         }
+
+        public bool IsWalkable() => false;
+        public bool IsMovable() => false;
     }
 }

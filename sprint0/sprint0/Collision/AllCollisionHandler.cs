@@ -8,7 +8,9 @@ namespace sprint0
     {
         private readonly Dictionary<Collision, Direction> sideToDir;
         private readonly CollisionDetector collisionDetector;
-        private readonly int base_size = 16;
+        private readonly int linkSize = (int)(16 * Game1.Scale); // size of link
+        private readonly int offset = 2; // make hitbox slightly smaller
+
         public AllCollisionHandler()
         {
             sideToDir = new Dictionary<Collision, Direction>
@@ -38,7 +40,7 @@ namespace sprint0
         private void HandleLinkEnemyCollisions(IPlayer link, List<IEnemy> enemies)
         {
             LinkEnemyCollisionHandler collisionHandler = new LinkEnemyCollisionHandler();
-            Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, 16, 16); //TODO change with size of link
+            Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset*2, linkSize - offset*2);
             foreach (IEnemy enemy in enemies)
             {
                 Collision side = collisionDetector.DetectCollision(linkHitbox, enemy);
@@ -55,7 +57,7 @@ namespace sprint0
         private void HandleLinkProjectileCollisions(IPlayer link, List<IProjectile> projectiles)
         {
             LinkProjectileCollisionHandler collisionHandler = new LinkProjectileCollisionHandler();
-            Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, 16, 16); //TODO change with size of link
+            Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
             foreach (IProjectile projectile in projectiles)
             {
                 Collision side = collisionDetector.DetectCollision(linkHitbox, projectile);
@@ -72,7 +74,7 @@ namespace sprint0
         private void HandleLinkBlockCollisions(IPlayer link, List<IBlock> blocks)
         {
             LinkBlockCollisionHandler collisionHandler = new LinkBlockCollisionHandler();
-            Rectangle linkHitbox = new Rectangle((int)link.Pos.X, (int)link.Pos.Y, (int)(base_size * Game1.Scale), (int)(base_size * Game1.Scale)); 
+            Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
             foreach (IBlock block in blocks)
             {
                 Collision side = collisionDetector.DetectCollision(linkHitbox, block);
