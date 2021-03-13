@@ -43,7 +43,7 @@ namespace sprint0
                 "red keese" => new Keese(texture, location, "red"),
                 "blue keese" => new Keese(texture, location, "blue"),
                 "stalfos" => new Stalfos(texture, location),
-                "trap" => new Trap(texture, location),
+                "trap" => new Trap(texture, location, game),
                 //"goriya boomerang horizontal" => new GoriyaBoomerang(texture, location, 0), TODO move to projectile or change to enemy?
                 //"goriya boomerang vertical" => new GoriyaBoomerang(texture, location, 2),
                 //"goriya boomerang diagonal" => new GoriyaBoomerang(texture, location, 4),
