@@ -61,6 +61,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             if (!isDead)
             { // only moves and animates if alive
                 Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
@@ -88,7 +89,8 @@ namespace sprint0
 
         public void ChangeDirection()
         {
-            // TODO
+           // Random random = new Random();
+            //direction = (Direction)random.Next(0, 2); //TODO: make movement depend on direction
         }
 
         private void CheckHealth()

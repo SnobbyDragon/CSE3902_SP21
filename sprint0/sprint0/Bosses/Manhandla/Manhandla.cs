@@ -18,10 +18,10 @@ namespace sprint0
         //private int fireballRate; // TODO faster as limbs die; use this, currently shooting s.t. only 1 fireball on map at a time
         private Vector2 destination;
         private readonly Random rand;
-        private int health;
+  
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {
-            health = 25;
+    
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             Texture = texture;
             this.game = game;
@@ -48,6 +48,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5) // floating point errors
             {
@@ -74,11 +75,15 @@ namespace sprint0
 
         private void CheckHealth()
         {
+            int health = 0;
+            foreach(ManhandlaLimb limb in limbs){
+                health+=limb.CheckHealth();
+            }
             if (health < 0) Perish();
         }
         public void TakeDamage(int damage)
         {
-            health -= damage;
+            //no-op
         }
 
         public void Perish()

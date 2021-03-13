@@ -107,6 +107,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
             if (dist.Length() == 0) // can use exact bc no floating point errors for whole numbers
             {

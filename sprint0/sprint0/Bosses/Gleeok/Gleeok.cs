@@ -61,6 +61,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             foreach (IEnemy sprite in neck1)
