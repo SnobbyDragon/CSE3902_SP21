@@ -2,147 +2,171 @@
 <XnaContent>?    
     
     <Dungeon ObjectName="darkness" LocationX="80" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="80" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="0" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="80" LocationY="180" />?
     <Dungeon ObjectName="ladder" LocationX="120" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="160" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="200" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="240" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="280" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="320" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="360" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="400" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="440" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="480" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="520" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="180" />?
-     <Dungeon ObjectName="brick" LocationX="600" LocationY="180" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="80" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="160" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="200" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="240" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="280" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="320" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="360" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="400" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="440" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="480" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="520" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="180" />?
+     <Block ObjectName="brick" LocationX="600" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="0" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="80" LocationY="140" />?
     <Dungeon ObjectName="ladder" LocationX="120" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="160" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="200" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="240" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="280" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="320" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="360" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="400" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="440" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="480" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="520" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="600" LocationY="140" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="80" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="160" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="200" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="240" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="280" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="320" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="360" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="400" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="440" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="480" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="520" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="140" />?
+    <Block ObjectName="brick" LocationX="0" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="80" LocationY="220" />?
     <Dungeon ObjectName="ladder" LocationX="120" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="160" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="200" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="240" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="280" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="320" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="360" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="400" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="440" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="480" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="520" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="600" LocationY="220" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="260" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="260" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="260" />?
-    <Dungeon ObjectName="brick" LocationX="600" LocationY="260" />?
-    <Dungeon ObjectName="brick" LocationX="80" LocationY="260" />?
+    <Block ObjectName="brick" LocationX="160" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="200" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="240" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="280" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="320" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="360" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="400" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="440" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="480" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="520" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="220" />?
+    <Block ObjectName="brick" LocationX="0" LocationY="260" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="260" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="260" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="260" />?
+    <Block ObjectName="brick" LocationX="80" LocationY="260" />?
     <Dungeon ObjectName="ladder" LocationX="120" LocationY="260" />?
-    <Dungeon ObjectName="brick" LocationX="160" LocationY="260" />?
-    <Dungeon ObjectName="brick" LocationX="200" LocationY="260" />?
-    <Dungeon ObjectName="brick" LocationX="240" LocationY="260" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="300" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="300" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="300" />?
-    <Dungeon ObjectName="brick" LocationX="600" LocationY="300" />?
-    <Dungeon ObjectName="brick" LocationX="80" LocationY="300" />?
+    <Block ObjectName="brick" LocationX="160" LocationY="260" />?
+    <Block ObjectName="brick" LocationX="200" LocationY="260" />?
+    <Block ObjectName="brick" LocationX="240" LocationY="260" />?
+     <Block ObjectName="invisible block" LocationX="280" LocationY="260" />?
+     <Block ObjectName="invisible block" LocationX="320" LocationY="260" />?
+     <Block ObjectName="invisible block" LocationX="360" LocationY="260" />?
+     <Block ObjectName="invisible block" LocationX="400" LocationY="260" />?
+     <Block ObjectName="invisible block" LocationX="440" LocationY="260" />?
+     <Block ObjectName="invisible block" LocationX="480" LocationY="260" />?
+     <Block ObjectName="invisible block" LocationX="520" LocationY="260" />?
+    <Block ObjectName="brick" LocationX="0" LocationY="300" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="300" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="300" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="300" />?
+    <Block ObjectName="brick" LocationX="80" LocationY="300" />?
     <Dungeon ObjectName="ladder" LocationX="120" LocationY="300" />?
-    <Dungeon ObjectName="brick" LocationX="160" LocationY="300" />?
-    <Dungeon ObjectName="brick" LocationX="200" LocationY="300" />?
-    <Dungeon ObjectName="brick" LocationX="240" LocationY="300" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="340" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="340" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="340" />?
-    <Dungeon ObjectName="brick" LocationX="600" LocationY="340" />?
-    <Dungeon ObjectName="brick" LocationX="80" LocationY="340" />?
+    <Block ObjectName="brick" LocationX="160" LocationY="300" />?
+    <Block ObjectName="brick" LocationX="200" LocationY="300" />?
+    <Block ObjectName="brick" LocationX="240" LocationY="300" />?
+     <Block ObjectName="invisible block" LocationX="280" LocationY="300" />?
+     <Block ObjectName="invisible block" LocationX="320" LocationY="300" />?
+     <Block ObjectName="invisible block" LocationX="360" LocationY="300" />?
+     <Block ObjectName="invisible block" LocationX="400" LocationY="300" />?
+     <Block ObjectName="invisible block" LocationX="440" LocationY="300" />?
+     <Block ObjectName="invisible block" LocationX="480" LocationY="300" />?
+     <Block ObjectName="invisible block" LocationX="520" LocationY="300" />?
+    <Block ObjectName="brick" LocationX="0" LocationY="340" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="340" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="340" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="340" />?
+    <Block ObjectName="brick" LocationX="80" LocationY="340" />?
     <Dungeon ObjectName="ladder" LocationX="120" LocationY="340" />?
-    <Dungeon ObjectName="brick" LocationX="160" LocationY="340" />?
-    <Dungeon ObjectName="brick" LocationX="200" LocationY="340" />?
-    <Dungeon ObjectName="brick" LocationX="240" LocationY="340" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="600" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="80" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="160" LocationY="340" />?
+    <Block ObjectName="brick" LocationX="200" LocationY="340" />?
+    <Block ObjectName="brick" LocationX="240" LocationY="340" />?
+    <Block ObjectName="brick" LocationX="0" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="80" LocationY="380" />?
     <Dungeon ObjectName="ladder" LocationX="120" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="160" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="200" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="240" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="280" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="320" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="360" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="400" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="160" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="200" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="240" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="280" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="320" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="360" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="400" LocationY="380" />?
     <Dungeon ObjectName="ladder" LocationX="440" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="480" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="520" LocationY="380" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="420" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="420" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="420" />?
-    <Dungeon ObjectName="brick" LocationX="600" LocationY="420" />?
+    <Block ObjectName="brick" LocationX="480" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="520" LocationY="380" />?
+    <Block ObjectName="brick" LocationX="0" LocationY="420" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="420" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="420" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="420" />?
+    <Block ObjectName="invisible block" LocationX="80" LocationY="420" />?
     <Dungeon ObjectName="ladder" LocationX="120" LocationY="420" />?
+     <Block ObjectName="invisible block" LocationX="160" LocationY="420" />?
+     <Block ObjectName="invisible block" LocationX="240" LocationY="420" />?
+     <Block ObjectName="invisible block" LocationX="200" LocationY="420" />?
+     <Block ObjectName="invisible block" LocationX="280" LocationY="420" />?
+    <Block ObjectName="invisible block" LocationX="320" LocationY="420" />?
+     <Block ObjectName="invisible block" LocationX="360" LocationY="420" />?
+    <Block ObjectName="invisible block" LocationX="400" LocationY="420" />?
     <Dungeon ObjectName="ladder" LocationX="440" LocationY="420" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="460" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="460" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="460" />?
-    <Dungeon ObjectName="brick" LocationX="600" LocationY="460" />?
+     <Block ObjectName="invisible block" LocationX="480" LocationY="420" />?
+      <Block ObjectName="invisible block" LocationX="520" LocationY="420" />?
+    <Block ObjectName="brick" LocationX="0" LocationY="460" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="460" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="460" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="460" />?
     <Dungeon ObjectName="ladder" LocationX="120" LocationY="460" />?
     <Dungeon ObjectName="ladder" LocationX="440" LocationY="460" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="80" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="120" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="160" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="200" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="240" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="280" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="320" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="360" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="400" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="440" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="480" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="520" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="600" LocationY="500" />?
-    <Dungeon ObjectName="brick" LocationX="0" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="40" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="80" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="120" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="160" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="200" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="240" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="280" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="320" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="360" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="400" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="440" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="480" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="520" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="560" LocationY="540" />?
-    <Dungeon ObjectName="brick" LocationX="600" LocationY="540" />? 
+    <Block ObjectName="brick" LocationX="0" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="80" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="120" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="160" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="200" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="240" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="280" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="320" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="360" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="400" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="440" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="480" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="520" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="500" />?
+    <Block ObjectName="brick" LocationX="0" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="40" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="80" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="120" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="160" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="200" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="240" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="280" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="320" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="360" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="400" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="440" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="480" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="520" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="560" LocationY="540" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="540" />? 
     
     <Enemy ObjectName="blue keese" LocationX="82" LocationY="220" />?    
     <Enemy ObjectName="red keese" LocationX="520" LocationY="220" />?    
     <Enemy ObjectName="blue keese" LocationX="82" LocationY="460" />?    
     <Enemy ObjectName="red keese" LocationX="520" LocationY="460" />?
     
-    <ItemWeapon ObjectName="bow" LocationX="332" LocationY="300" Direction="North" Lifespan="0" />?
+    <ItemWeapon ObjectName="bow" LocationX="332" LocationY="340" Direction="North" Lifespan="0" />?
    <Player ObjectName="Link" LocationX="120" LocationY="140" />?
 ?</XnaContent>
