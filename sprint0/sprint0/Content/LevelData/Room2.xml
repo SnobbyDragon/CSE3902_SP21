@@ -5,9 +5,61 @@
     <Dungeon ObjectName="up open door" LocationX="280" LocationY="500" />?    
     <Dungeon ObjectName="down wall" LocationX="280" LocationY="140" />?    
     <Dungeon ObjectName="left wall" LocationX="560" LocationY="320" />?    
-    <Dungeon ObjectName="right locked door" LocationX="0" LocationY="320" />? 
-    
-    <Block ObjectName="water" LocationX="120" LocationY="260" />?
+    <Dungeon ObjectName="right locked door" LocationX="0" LocationY="320" />?
+
+	<Block ObjectName="invisible block" LocationX="40" LocationY="200" />?
+	<Block ObjectName="invisible block" LocationX="40" LocationY="240" />?
+	<Block ObjectName="invisible block" LocationX="40" LocationY="280" />?
+	<!--Only put blocks here when there is no door-->
+	<Block ObjectName="invisible block" LocationX="40" LocationY="320" />?
+	<Block ObjectName="invisible block" LocationX="40" LocationY="360" />?
+	<!--Only put blocks here when there is no door-->
+	<Block ObjectName="invisible block" LocationX="40" LocationY="400" />?
+	<Block ObjectName="invisible block" LocationX="40" LocationY="440" />?
+	<Block ObjectName="invisible block" LocationX="40" LocationY="480" />?
+
+	<Block ObjectName="invisible block" LocationX="560" LocationY="200" />?
+	<Block ObjectName="invisible block" LocationX="560" LocationY="240" />?
+	<Block ObjectName="invisible block" LocationX="560" LocationY="280" />?
+	<!--Only put blocks here when there is no door-->
+	<Block ObjectName="invisible block" LocationX="560" LocationY="320" />?
+	<Block ObjectName="invisible block" LocationX="560" LocationY="360" />?
+	<!--Only put blocks here when there is no door-->
+	<Block ObjectName="invisible block" LocationX="560" LocationY="400" />?
+	<Block ObjectName="invisible block" LocationX="560" LocationY="440" />?
+	<Block ObjectName="invisible block" LocationX="560" LocationY="480" />?
+
+	<Block ObjectName="invisible block" LocationX="80" LocationY="160" />?
+	<Block ObjectName="invisible block" LocationX="120" LocationY="160" />?
+	<Block ObjectName="invisible block" LocationX="160" LocationY="160" />?
+	<Block ObjectName="invisible block" LocationX="200" LocationY="160" />?
+	<Block ObjectName="invisible block" LocationX="240" LocationY="160" />?
+	<!--Only put blocks here when there is no door-->
+	<Block ObjectName="invisible block" LocationX="280" LocationY="160" />?
+	<Block ObjectName="invisible block" LocationX="320" LocationY="160" />?
+	<!--Only put blocks here when there is no door-->
+	<Block ObjectName="invisible block" LocationX="360" LocationY="160" />?
+	<Block ObjectName="invisible block" LocationX="400" LocationY="160" />?
+	<Block ObjectName="invisible block" LocationX="440" LocationY="160" />?
+	<Block ObjectName="invisible block" LocationX="480" LocationY="160" />?
+	<Block ObjectName="invisible block" LocationX="520" LocationY="160" />?
+
+	<Block ObjectName="invisible block" LocationX="80" LocationY="500" />?
+	<Block ObjectName="invisible block" LocationX="120" LocationY="500" />?
+	<Block ObjectName="invisible block" LocationX="160" LocationY="500" />?
+	<Block ObjectName="invisible block" LocationX="200" LocationY="500" />?
+	<Block ObjectName="invisible block" LocationX="240" LocationY="500" />?
+	<!--Only put blocks here when there is no door-->
+	<!--<Block ObjectName="invisible block" LocationX="280" LocationY="500" />?
+	<Block ObjectName="invisible block" LocationX="320" LocationY="500" />?-->
+	<!--Only put blocks here when there is no door-->
+	<Block ObjectName="invisible block" LocationX="360" LocationY="500" />?
+	<Block ObjectName="invisible block" LocationX="400" LocationY="500" />?
+	<Block ObjectName="invisible block" LocationX="440" LocationY="500" />?
+	<Block ObjectName="invisible block" LocationX="480" LocationY="500" />?
+	<Block ObjectName="invisible block" LocationX="520" LocationY="500" />?
+
+	<Block ObjectName="water" LocationX="120" LocationY="260" />?
     <Block ObjectName="water" LocationX="160" LocationY="260" />?
     <Block ObjectName="water" LocationX="200" LocationY="260" />?
 
