@@ -20,6 +20,7 @@ namespace sprint0
         private readonly int totalFrames, repeatedFrames;
         private readonly SpriteEffects h = SpriteEffects.FlipHorizontally, v = SpriteEffects.FlipVertically;
         private Direction direction;
+        private bool hit = false;
 
         public GoriyaBoomerang(Texture2D texture, Vector2 location, int dir)
         {
@@ -167,15 +168,9 @@ namespace sprint0
                 }
             }
         }
-
-        public bool HasRecentlyHit(IEnemy enemy)
+        public void RegisterHit()
         {
-            //no-op 
-            return false;
-        }
-        public void RegisterHit(IEnemy enemy)
-        {
-            //no-op required
+            hit = true;
         }
     }
 }

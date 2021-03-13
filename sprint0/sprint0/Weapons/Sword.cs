@@ -6,10 +6,9 @@ using System.Text;
 
 namespace sprint0
 {
-    class Sword : IProjectile
+    class Sword : IWeapon
     {
         private IPlayer player;
-        public IEntity Shooter { get; }
 
         public Rectangle Location { get; set; }
 
@@ -17,10 +16,9 @@ namespace sprint0
 
         public int Damage { get; }
 
-        public Sword(Vector2 location, Direction dir, IEntity source)
+        public Sword(Vector2 location, Direction dir, IPlayer player)
         {
-            Shooter = source;
-            player = source as IPlayer;
+            this.player = player;
             Damage = player.WeaponDamage;
             if (dir == Direction.n || dir == Direction.s)
             {
@@ -40,25 +38,9 @@ namespace sprint0
             // no-op: the sword is drawn by the Link sprite
         }
 
-        public bool HasRecentlyHit(IEnemy enemy)
-        {
-            // no-op
-            return false;
-        }
-
         public bool IsAlive()
         {
             return player.State is UpWoodSwordState || player.State is DownWoodSwordState || player.State is LeftWoodSwordState || player.State is RightWoodSwordState;
-        }
-
-        public void Perish()
-        {
-            // no-op
-        }
-
-        public void RegisterHit(IEnemy enemy)
-        {
-            // no-op
         }
 
         public void Update()

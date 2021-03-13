@@ -94,7 +94,7 @@ namespace sprint0
                 case "Projectile":
                     Direction dir1 = WeaponDirection(roomReader.GetAttribute("Direction"));
                     int lifespan1 = int.Parse(roomReader.GetAttribute("Lifespan"));
-                    projectiles.Add(itemFactory.MakeProjectile(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir1, lifespan1, null)); //TODO randomly null for now
+                    projectiles.Add(itemFactory.MakeProjectile(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir1, null)); //TODO randomly null for now
                     break;
                 case "Boss":
                     if (roomReader.HasAttributes)

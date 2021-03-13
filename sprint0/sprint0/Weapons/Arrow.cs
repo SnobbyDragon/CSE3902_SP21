@@ -22,10 +22,10 @@ namespace sprint0
         private float xa, ya;
         //Lifespan is the number of updates before it dies. 
         //For now, it just stops rendering
-        private readonly int lifespan;
         //Age is the current number of updates
-        private int age;
-        public Arrow(Texture2D texture, Vector2 location, Direction dir, int lifespan, IEntity shooter)
+        private bool hit = false;
+
+        public Arrow(Texture2D texture, Vector2 location, Direction dir, IEntity shooter)
         {
             Shooter = shooter;
 
@@ -55,7 +55,6 @@ namespace sprint0
             Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             this.dir = dir;
-            this.lifespan = lifespan;
             sources = new List<Rectangle>
             {
                 new Rectangle(xOffset, yOffset, width, height),
@@ -71,17 +70,7 @@ namespace sprint0
 
         public bool IsAlive()
         {
-            if (age < lifespan || lifespan < 0)
-            {
-                age++;
-                return true;
-            }
-            return false;
-        }
-
-        public void Perish()
-        {
-            age = lifespan;
+            return !hit;
         }
 
         private void Move()
@@ -128,20 +117,12 @@ namespace sprint0
                         break;
                 }
                 Move();
-
-                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+                // currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
-
-        public bool HasRecentlyHit(IEnemy enemy)
+        public void RegisterHit()
         {
-            //no-op
-            return false;
-        }
-        public void RegisterHit(IEnemy enemy)
-        {
-            //no-op required
+            hit = true;
         }
     }
 }

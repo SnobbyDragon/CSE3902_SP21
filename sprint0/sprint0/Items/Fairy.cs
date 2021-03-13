@@ -128,13 +128,7 @@ namespace sprint0
             }
             return closestApprox;
         }
-
-        public bool HasRecentlyHit(IEnemy enemy)
-        {
-            //no-op
-            return false;
-        }
-        public void RegisterHit(IEnemy enemy)
+        public void RegisterHit()
         {
             //no-op required
         }

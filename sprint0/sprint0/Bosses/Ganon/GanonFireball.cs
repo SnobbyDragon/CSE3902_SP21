@@ -18,7 +18,7 @@ namespace sprint0
         private int currFrame;
         private readonly int totalFrames, repeatedFrames, speed = 3;
         public Vector2 Direction { get; set; } // direction fireball travels
-        public bool IsDead { get; set; }
+        private bool hit;
 
         public int Damage { get; }
 
@@ -54,7 +54,7 @@ namespace sprint0
                 { "right",  SpriteEffects.FlipHorizontally },
                 { "up right", SpriteEffects.FlipHorizontally }
             };
-            IsDead = true; // start hidden
+            hit = true; // start hidden
             GetDirection();
         }
 
@@ -105,41 +105,28 @@ namespace sprint0
             return sources;
         }
 
-        public bool IsAlive() => !IsDead; // TODO clean up, we only need IsAlive()
-        public void Perish() => IsDead = true;
+        public bool IsAlive() => !hit; // TODO clean up, we only need IsAlive()
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!IsDead)
+            if (!hit)
                 spriteBatch.Draw(Texture, Location, dirToSourcesMap[type][currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), dirToEffectsMap[type], 0);
         }
 
         public void Update()
         {
-            if (!IsDead)
+            if (!hit)
             {
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 Rectangle loc = Location;
                 loc.Offset(speed * Direction);
                 Location = loc;
-
-                // checks if hit wall (left || right || up || down)
-                if (Location.X <= 0 || Location.X >= Game1.Width * Game1.Scale || Location.Y <= Game1.HUDHeight * Game1.Scale || Location.Y >= (Game1.HUDHeight + Game1.MapHeight) * Game1.Scale)
-                {
-                    IsDead = true;
-                }
             }
         }
 
-        public bool HasRecentlyHit(IEnemy enemy)
+        public void RegisterHit()
         {
-            //no-op required
-            return false;
-        }
-
-        public void RegisterHit(IEnemy enemy)
-        {
-            //no-op required
+            hit = true;
         }
     }
 }

@@ -61,7 +61,8 @@ namespace sprint0
             }
             else // somehow two is inside one
             {
-                return Collision.None; // TODO is just none for now; should make it go towards the nearest edge?
+                // return Collision.None; // TODO is just none for now; should make it go towards the nearest edge?
+                return DetermineCollisionBottom(intersection, one); // sword beam doesn't work unless I pick one of these? - Jesse
             }
         }
 
