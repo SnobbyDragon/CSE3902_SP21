@@ -16,9 +16,9 @@ namespace sprint0
         {
             this.game = game;
             controllerMappings = new Dictionary<Buttons, ICommand>();
-            movementButtons = new HashSet<Buttons> {Buttons.RightThumbstickUp, Buttons.RightThumbstickDown, Buttons.RightThumbstickLeft, Buttons.RightThumbstickRight};
+            movementButtons = new HashSet<Buttons> { Buttons.RightThumbstickUp, Buttons.RightThumbstickDown, Buttons.RightThumbstickLeft, Buttons.RightThumbstickRight };
             previousPressedButtons = getPressedButtons(GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex.One));
-            
+
             RegisterCommand(Buttons.Back, new QuitCommand(game));
             RegisterCommand(Buttons.Start, new ResetCommand(game));
             RegisterCommand(Buttons.RightThumbstickUp, new UpCommand(game));
@@ -26,17 +26,16 @@ namespace sprint0
             RegisterCommand(Buttons.RightThumbstickLeft, new LeftCommand(game));
             RegisterCommand(Buttons.RightThumbstickRight, new RightCommand(game));
             RegisterCommand(Buttons.X, new SwordCommand(game));
-            RegisterCommand(Buttons.A, new DamageCommand(game));
             RegisterCommand(Buttons.RightTrigger, new OneCommand(game));
             RegisterCommand(Buttons.LeftTrigger, new TwoCommand(game));
             RegisterCommand(Buttons.RightShoulder, new ThreeCommand(game));
 
         }
 
-        public List<Buttons> getPressedButtons (GamePadState state)
+        public List<Buttons> getPressedButtons(GamePadState state)
         {
-            List <Buttons> pressedButtons = new List<Buttons>();
-            foreach(Buttons button in Enum.GetValues( typeof(Buttons)))
+            List<Buttons> pressedButtons = new List<Buttons>();
+            foreach (Buttons button in Enum.GetValues(typeof(Buttons)))
             {
                 if (state.IsButtonDown(button))
                 {
@@ -56,7 +55,7 @@ namespace sprint0
             List<Buttons> pressedButtons = getPressedButtons(GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex.One));
 
             foreach (Buttons button in pressedButtons)
-                if (controllerMappings.ContainsKey(button) && (previousPressedButtons.IndexOf(button) == -1) || movementButtons.Contains(button) )
+                if (controllerMappings.ContainsKey(button) && (previousPressedButtons.IndexOf(button) == -1) || movementButtons.Contains(button))
                     controllerMappings[button].Execute();
             foreach (Buttons button in movementButtons)
                 if (previousPressedButtons.IndexOf(button) > -1 && pressedButtons.IndexOf(button) == -1)
