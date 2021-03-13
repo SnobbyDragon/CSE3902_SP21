@@ -57,5 +57,15 @@ namespace sprint0
         {
             // not necessary; unkillable
         }
+
+        public void TakeDamage(int damage)
+        {
+            //no-op
+        }
+
+        public void Perish()
+        {
+            //no-op
+        }
     }
 }

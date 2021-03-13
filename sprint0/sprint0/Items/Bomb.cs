@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Hannah Johnson
 
 /*
- * Last updated: 3/6/21 by li.10011
+ * Last updated: 3/13/21 by urick.9
  */
 
 //This code is not that pretty-if find extra time refactor
@@ -34,12 +34,14 @@ namespace sprint0
         private readonly int repeatedFrames;
         private readonly int totalFrames;
         private int currentFrame;
-
+        private bool dead;
         public Bomb(Texture2D texture, Vector2 location, Direction dir, int lifespan, IEntity shooter)
         {
+            dead = false;
             Shooter = shooter;
             int sourceAdjustX = 0;
             int sourceAdjustY = 0;
+
             /*
              * Adjust the source location based on the direction 
              */
@@ -103,7 +105,11 @@ namespace sprint0
 
         public void Perish()
         {
-            age = lifespan + 3 * repeatedFrames;
+            //The check here is so that the bomb won't parish twice and be reset in its animation
+            if (!dead) {
+                age = lifespan;
+                dead = true;
+              }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -112,6 +118,10 @@ namespace sprint0
             {
                 spriteBatch.Draw(Texture, Location, currentSource, Color.White);
             }
+        }
+        public void RegisterHit(IEnemy enemy)
+        {
+            //no-op required
         }
 
         public void Update()
@@ -129,6 +139,12 @@ namespace sprint0
                 currentSource = explosionSources[currentFrame / repeatedFrames];
                 currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             }
+        }
+
+        public bool HasRecentlyHit(IEnemy enemy)
+        {
+            return false;
+            //no-op is required
         }
     }
 }

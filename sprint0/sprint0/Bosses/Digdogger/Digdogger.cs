@@ -24,9 +24,12 @@ namespace sprint0
         private Vector2 destination; //TODO depends on link; runs away?
         private int moveCounter;
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < totalFrames*repeatedFrames
-
-        public Digdogger(Texture2D texture, Vector2 location)
+        private readonly Game1 game;
+        private int health;
+        public Digdogger(Texture2D texture, Vector2 location, Game1 game)
         {
+            health = 25;
+            this.game = game;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(bigSize * Game1.Scale), (int)(bigSize * Game1.Scale));
             //TODO size is variable
             Texture = texture;
@@ -85,6 +88,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             if (isBig)
             {
                 if (spikeCounter == spikeDelay)
@@ -124,9 +128,18 @@ namespace sprint0
             GenerateDest();
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
 
         // generates a new destination

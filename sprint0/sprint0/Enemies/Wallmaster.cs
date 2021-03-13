@@ -18,9 +18,12 @@ namespace sprint0
         private Direction direction; // wallmaster only moves n s e w (cannot move diagonal)
         private int moveCounter, dirChangeDelay;
         private Random rand;
-
-        public Wallmaster(Texture2D texture, Vector2 location)
+        private readonly Game1 game;
+        private int health;
+        public Wallmaster(Texture2D texture, Vector2 location, Game1 game)
         {
+            health = 50;
+            this.game = game;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             sources = new List<Rectangle>
@@ -85,6 +88,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             if (moveCounter == dirChangeDelay)
@@ -115,9 +119,18 @@ namespace sprint0
             ArbitraryDirection();
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
     }
 }

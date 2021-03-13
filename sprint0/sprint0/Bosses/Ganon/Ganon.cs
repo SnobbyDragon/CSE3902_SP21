@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 /*
- * Last updated: 3/4/21 by li.10011
+ * Last updated: 3/12/21 by urick.9
  */
 namespace sprint0
 {
@@ -24,9 +24,11 @@ namespace sprint0
         private Vector2 centerOffset; // fireball shoots from center of ganon
         private readonly int fireballRate = 100; //TODO currently arbitrary
         private int fireballCounter = 0;
+        private int health;
 
         public Ganon(Texture2D texture, Vector2 location, Game1 game)
         {
+            health = 25;
             width = height = 32;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
@@ -118,9 +120,18 @@ namespace sprint0
             // not necessary
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
 
         private bool CanShoot()

@@ -151,5 +151,15 @@ namespace sprint0
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
         }
+
+        public bool HasRecentlyHit(IEnemy enemy)
+        {
+            //no-op
+            return false;
+        }
+        public void RegisterHit(IEnemy enemy)
+        {
+            //no-op required
+        }
     }
 }

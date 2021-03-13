@@ -16,9 +16,12 @@ namespace sprint0
         private readonly SpriteEffects s = SpriteEffects.FlipHorizontally;
         private Direction direction;
         private readonly int width, height;
-
-        public Goriya(Texture2D texture, Vector2 location, string goriyaColor)
+        private int health;
+        private readonly Game1 game;
+        public Goriya(Texture2D texture, Vector2 location, string goriyaColor, Game1 game)
         {
+            this.game = game;
+            health = 50;
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
@@ -70,6 +73,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
 
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             if (direction == Direction.w)
@@ -105,7 +109,7 @@ namespace sprint0
                 }
             }
             else
-            {   //direction == Direction.up
+            {
                 //moves sprite up
                 Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height); ;
 
@@ -122,9 +126,18 @@ namespace sprint0
             direction = (Direction)random.Next(0, 4);
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
     }
 }

@@ -7,12 +7,13 @@ using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
     /*
-     * Last updated: 3/4/21 by urick.9 and li.10011
+     * Last updated: 3/13/21 by urick.9
      */
     public class Boomerang : IProjectile
     {
         public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
+        private List<IEnemy> recentlyHit;
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 290, yOffset = 11, width = 8, height = 16;
         private readonly List<Rectangle> sources;
@@ -26,12 +27,13 @@ namespace sprint0
         private Vector2 moveVector;
         private bool alive;
         private readonly int lifespan;
-
+        private int timeBetweenHits;
         public Boomerang(Texture2D texture, Vector2 location, Direction dir, int lfspn, IEntity shooter)
         {
+            timeBetweenHits = 20;
             Shooter = shooter;
             lifespan = lfspn;
-
+            recentlyHit = new List<IEnemy>();
             alive = true;
             if (lifespan >= 0)
             {
@@ -99,7 +101,9 @@ namespace sprint0
 
         public bool IsAlive() => alive;
         public void Perish() => alive = false;
-
+        public Boolean HasRecentlyHit(IEnemy enemy) {
+            return recentlyHit.Contains(enemy);
+        }
         public void Move()
         {
             //The plus six is required so the boomerang reaches link.
@@ -118,6 +122,9 @@ namespace sprint0
 
         public void Update()
         {
+            if (age % timeBetweenHits == 0) {
+                recentlyHit.Clear();
+            }
             if (alive)
             {
                 if (age > maxDistance)
@@ -133,6 +140,11 @@ namespace sprint0
             }
             else if (lifespan < 0)
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+        }
+
+        public void RegisterHit(IEnemy enemy)
+        {
+            recentlyHit.Add(enemy);
         }
     }
 }

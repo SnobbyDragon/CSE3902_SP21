@@ -18,13 +18,15 @@ namespace sprint0
         private string color;
         private Dictionary<string, List<Rectangle>> colorMap;
         private readonly int width = 8, height = 16;
-
+        private int health;
         private Direction direction = Direction.w;
         private int directionChangeCounter;
+        private readonly Game1 game;
 
-
-        public Gel(Texture2D texture, Vector2 location, string gelColor)
+        public Gel(Texture2D texture, Vector2 location, Game1 game, string gelColor)
         {
+            this.game = game;
+            health = 10;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             totalFrames = 2;
@@ -63,6 +65,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
             if (directionChangeCounter== 100) { ChangeDirection(); directionChangeCounter = 0; }
@@ -102,9 +105,18 @@ namespace sprint0
             direction = (Direction)random.Next(0, 4);
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
     }
 }

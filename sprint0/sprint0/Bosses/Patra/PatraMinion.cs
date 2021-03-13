@@ -19,9 +19,12 @@ namespace sprint0
         private int distance, angle; // curr distance; angle from center (0 is right of center)
         private int expansionTime, expansionCounter; // 0 = waiting, 1 - 6 = moving; odd = expanding to max dist, even = contract to min dist
         private readonly int expansionDelay = 200; // time between expansions
-
-        public PatraMinion(Texture2D texture, IEnemy center, int angle)
+        private int health;
+        private readonly Game1 game;
+        public PatraMinion(Texture2D texture, IEnemy center, int angle, Game1 game)
         {
+            this.game = game;
+            health = 25;
             Texture = texture;
             currFrame = 0;
             totalFrames = 2;
@@ -86,9 +89,18 @@ namespace sprint0
             // not necessary
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
 
         // keeps timings for expansions

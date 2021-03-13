@@ -23,9 +23,10 @@ namespace sprint0
         private Vector2 centerOffset; // fireball shoots from center of gohma
         private readonly int fireballRate = 100; //TODO currently arbitrary
         private int fireballCounter = 0;
-
+        private int health;
         public Gohma(Texture2D texture, Vector2 location, string color, Game1 game)
         {
+            health = 25;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             Texture = texture;
             this.game = game;
@@ -136,9 +137,18 @@ namespace sprint0
             // TODO
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
 
         private bool CanShoot()
