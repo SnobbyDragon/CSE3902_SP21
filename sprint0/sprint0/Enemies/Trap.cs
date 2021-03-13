@@ -16,13 +16,12 @@ namespace sprint0
         private Direction direction;
         private Game1 game;
         private Rectangle HomeLocation;
-        private Boolean isTriggered;
+  
 
         public Trap(Texture2D texture, Vector2 location, Game1 game)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             HomeLocation = Location;
-            isTriggered = false;
             Texture = texture;
             this.game = game;
 
