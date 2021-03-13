@@ -103,8 +103,25 @@ namespace sprint0
 
         public void ChangeDirection()
         {
-            Random random = new Random();
-            direction = (Direction)random.Next(0, 4);
+
+            if (direction == Direction.s && Location != HomeLocation)
+            {
+                direction = Direction.n;
+            }
+            else if (direction == Direction.w && Location != HomeLocation)
+            {
+                direction = Direction.e;
+            }
+            else if (direction == Direction.e && Location != HomeLocation)
+            {
+                direction = Direction.w;
+            }
+            else if(direction == Direction.n && Location != HomeLocation)
+            {
+                direction = Direction.s;
+            }
+
+
         }
 
         public void TakeDamage()
