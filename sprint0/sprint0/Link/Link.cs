@@ -53,6 +53,7 @@ namespace sprint0
         public void Shoot() {
             // Random time for arrows is neat :)
             int time = rand.Next(50, 65);
+            time *= (int)Game1.Scale;
             Vector2 offsetPos = position;
             switch (direction)
             {
@@ -94,7 +95,7 @@ namespace sprint0
                     offsetPos = new Vector2(position.X - 10, position.Y);
                     break;
             }
-            game.AddProjectile(offsetPos, direction, 30, "bomb", this);
+            game.AddProjectile(offsetPos, direction, (int) (30 * Game1.Scale), "bomb", this);
         }
 
         public void ThrowBoomerang()

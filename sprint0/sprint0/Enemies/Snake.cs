@@ -18,9 +18,12 @@ namespace sprint0
         private SpriteEffects spriteEffect;
         private readonly int width, height;
         private Direction direction = Direction.w;
-
-        public Snake(Texture2D texture, Vector2 location)
+        private readonly Game1 game;
+        private int health;
+        public Snake(Texture2D texture, Vector2 location, Game1 game)
         {
+            this.game = game;
+            health = 25;
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
@@ -47,6 +50,8 @@ namespace sprint0
 
         public void Update()
         {
+
+            CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             if (direction == Direction.w)
             {
@@ -96,9 +101,18 @@ namespace sprint0
             direction = (Direction)random.Next(0, 4);
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
     }
 }

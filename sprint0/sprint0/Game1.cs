@@ -39,9 +39,9 @@ namespace sprint0
         private ItemsWeaponsSpriteFactory itemFactory;
         private EnemiesSpriteFactory enemyFactory;
 
-        private List<IProjectile> projectiles;
+        private List<IProjectile> projectiles, projectilesToDie;
         private List<IBlock> blocks;
-        private List<IEnemy> enemies, enemiesToSpawn;
+        private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
         private AllCollisionHandler collisionHandler;
 
         private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
@@ -114,11 +114,13 @@ namespace sprint0
              * 2. loads sprites for the level
              */
 
+            projectilesToDie = new List<IProjectile>();
             (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>) roomElements = levelLoader.LoadLevel();
             roomSprites = roomElements.Item1;
             projectiles = roomElements.Item2;
             blocks = roomElements.Item3;
             enemies = roomElements.Item4;
+            enemiesToDie = new List<IEnemy>();
             enemiesToSpawn = new List<IEnemy>(); // used for spawning new enemies; avoids mutating enemies list during foreach
             roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
             {
@@ -154,6 +156,16 @@ namespace sprint0
         public void AddEnemy(Vector2 location, string enemy)
         {
             enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
+        }
+
+        public void RemoveEnemy(IEnemy enemy)
+        {
+            enemiesToDie.Add(enemy);
+        }
+
+        public void RemoveProjectile(IProjectile projectile)
+        {
+            projectilesToDie.Add(projectile);
         }
 
         protected override void Update(GameTime gameTime)
@@ -194,12 +206,23 @@ namespace sprint0
             // handles collisions
             collisionHandler.HandleAllCollisions(Player, enemies, projectiles, blocks);
 
+           
             // after all traversals, add new enemies
             if (enemiesToSpawn.Count > 0)
             {
                 enemies.AddRange(enemiesToSpawn);
                 enemiesToSpawn.Clear();
             }
+            foreach (IEnemy enemy in enemiesToDie) {
+                enemies.Remove(enemy);
+            }
+
+            foreach (IProjectile projectile in projectilesToDie)
+            {
+                projectiles.Remove(projectile);
+            }
+
+
 
             base.Update(gameTime);
         }

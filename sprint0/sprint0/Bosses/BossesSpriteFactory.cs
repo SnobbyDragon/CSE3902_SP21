@@ -22,14 +22,14 @@ namespace sprint0
             return spriteType switch
             {
                 "aquamentus" => new Aquamentus(texture, location, game),
-                "patra" => new Patra(texture, location),
+                "patra" => new Patra(texture, location, game),
                 "manhandla" => new Manhandla(texture, location, game),
                 "gleeok" => new Gleeok(texture, location, game),
                 "ganon" => new Ganon(texture, location, game),
                 "orange gohma" => new Gohma(texture, location, "orange", game),
                 "blue gohma" => new Gohma(texture, location, "blue", game),
-                "dodongo" => new Dodongo(texture, location),
-                "digdogger" => new Digdogger(texture, location),
+                "dodongo" => new Dodongo(texture, location, game),
+                "digdogger" => new Digdogger(texture, location, game),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }

@@ -22,9 +22,10 @@ namespace sprint0
         private Direction direction = Direction.w;
         private int spawnCounter;
         private readonly int spawnRate = 100; // arbitrary; spawns a gel every spawnRate
-
+        private int health;
         public Zol(Texture2D texture, Vector2 location, string gelColor, Game1 game)
         {
+            health = 250;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             totalFrames = 2;
@@ -66,6 +67,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             SpawnGel();
 
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
@@ -134,9 +136,18 @@ namespace sprint0
             direction = (Direction)random.Next(0, 4);
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
 
         private void SpawnGel()

@@ -63,9 +63,14 @@ namespace sprint0
             // not necessary
         }
 
-        public void TakeDamage()
+        public void TakeDamage(int damage)
         {
-            // TODO
+            //no-op
+        }
+
+        public void Perish()
+        {
+            //no-op
         }
     }
 }

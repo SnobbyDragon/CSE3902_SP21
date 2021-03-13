@@ -25,9 +25,10 @@ namespace sprint0
         private Vector2 headOffset; // offsets from top left to center of aquamentus' head (where fireballs come from)
         private readonly int fireballRate = 100; //TODO currently arbitrary
         private int fireballCounter = 0;
-
+        private int health;
         public Aquamentus(Texture2D texture, Vector2 location, Game1 game)
         {
+            health = 15;
             this.game = game;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
@@ -90,9 +91,18 @@ namespace sprint0
             // TODO
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
 
         private bool CanShoot()

@@ -21,9 +21,12 @@ namespace sprint0
         private readonly int sideLength = 16, width = 32;
         private readonly int scaledSideLength, scaledWidth;
         private int eatingCounter, eatingTime;
-
-        public Dodongo(Texture2D texture, Vector2 location)
+        private readonly Game1 game;
+        private int health;
+        public Dodongo(Texture2D texture, Vector2 location, Game1 game)
         {
+            health = 25;
+            this.game = game;
             scaledSideLength = (int)(sideLength * Game1.Scale);
             scaledWidth = (int)(width * Game1.Scale);
             direction = Direction.w;
@@ -81,6 +84,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             //handles movement
             if (eatingCounter == 0) // not eating
             {
@@ -222,9 +226,18 @@ namespace sprint0
             Location = new Rectangle(Location.X, Location.Y, scaledWidth, scaledSideLength); // change to horizontal dimensions
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
     }
 }

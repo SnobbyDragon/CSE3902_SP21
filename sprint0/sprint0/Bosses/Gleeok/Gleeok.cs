@@ -16,9 +16,10 @@ namespace sprint0
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
         private List<IEnemy> neck1, neck2;
-
+        private int health;
         public Gleeok(Texture2D texture, Vector2 location, Game1 game)
         {
+            health = 25;
             Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             this.game = game;
@@ -73,9 +74,18 @@ namespace sprint0
             // not necessary
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
     }
 }

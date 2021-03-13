@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class EnemiesSpriteFactory
     {
-        Game1 game;
+        private readonly Game1 game;
         private Texture2D texture;
 
         public EnemiesSpriteFactory(Game1 game)
@@ -22,28 +22,30 @@ namespace sprint0
 
             return spriteType switch
             {
-                "wallmaster" => new Wallmaster(texture, location),
-                "teal gel" => new Gel(texture, location, "teal"),
-                "blue gel" => new Gel(texture, location, "blue"),
-                "green gel" => new Gel(texture, location, "green"),
-                "blkgold gel" => new Gel(texture, location, "blkgold"),
-                "lime gel" => new Gel(texture, location, "lime"),
-                "brown gel" => new Gel(texture, location, "brown"),
-                "grey gel" => new Gel(texture, location, "grey"),
-                "blkwhite gel" => new Gel(texture, location, "blkwhite"),
+                "wallmaster" => new Wallmaster(texture, location, game),
+                "teal gel" => new Gel(texture, location, game, "teal"),
+                "blue gel" => new Gel(texture, location, game, "blue"),
+                "green gel" => new Gel(texture, location, game, "green"),
+                "blkgold gel" => new Gel(texture, location, game, "blkgold"),
+                "lime gel" => new Gel(texture, location, game, "lime"),
+                "brown gel" => new Gel(texture, location, game, "brown"),
+                "grey gel" => new Gel(texture, location, game, "grey"),
+                "blkwhite gel" => new Gel(texture, location, game, "blkwhite"),
                 "green zol" => new Zol(texture, location, "green", game),
                 "blkgold zol" => new Zol(texture, location, "blkgold", game),
                 "lime zol" => new Zol(texture, location, "lime", game),
                 "brown zol" => new Zol(texture, location, "brown", game),
                 "grey zol" => new Zol(texture, location, "grey", game),
                 "blkwhite zol" => new Zol(texture, location, "blkwhite", game),
-                "snake" => new Snake(texture, location),
-                "red goriya" => new Goriya(texture, location, "red"),
-                "blue goriya" => new Goriya(texture, location, "blue"),
-                "red keese" => new Keese(texture, location, "red"),
-                "blue keese" => new Keese(texture, location, "blue"),
-                "stalfos" => new Stalfos(texture, location),
+
+                "snake" => new Snake(texture, location,game),
+                "red goriya" => new Goriya(texture, location, "red", game),
+                "blue goriya" => new Goriya(texture, location, "blue", game),
+                "red keese" => new Keese(texture, location, "red", game),
+                "blue keese" => new Keese(texture, location, "blue", game),
+                "stalfos" => new Stalfos(texture, location, game),
                 "trap" => new Trap(texture, location, game),
+
                 //"goriya boomerang horizontal" => new GoriyaBoomerang(texture, location, 0), TODO move to projectile or change to enemy?
                 //"goriya boomerang vertical" => new GoriyaBoomerang(texture, location, 2),
                 //"goriya boomerang diagonal" => new GoriyaBoomerang(texture, location, 4),

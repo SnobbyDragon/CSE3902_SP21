@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class Manhandla : IEnemy
     {
-        private Game1 game;
+        private readonly Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int size = 16;
@@ -18,9 +18,10 @@ namespace sprint0
         //private int fireballRate; // TODO faster as limbs die; use this, currently shooting s.t. only 1 fireball on map at a time
         private Vector2 destination;
         private readonly Random rand;
-
+        private int health;
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {
+            health = 25;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             Texture = texture;
             this.game = game;
@@ -71,9 +72,18 @@ namespace sprint0
             GenerateDest();
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
 
         // generates a new destination

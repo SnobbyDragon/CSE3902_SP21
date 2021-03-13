@@ -164,5 +164,15 @@ namespace sprint0
                 }
             }
         }
+
+        public bool HasRecentlyHit(IEnemy enemy)
+        {
+            //no-op 
+            return false;
+        }
+        public void RegisterHit(IEnemy enemy)
+        {
+            //no-op required
+        }
     }
 }

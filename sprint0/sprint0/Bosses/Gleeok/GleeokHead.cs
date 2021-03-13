@@ -25,9 +25,10 @@ namespace sprint0
         private Vector2 destination;
         private readonly int fireballRate = 100; //TODO currently arbitrary
         private int fireballCounter = 0;
-
+        private int health;
         public GleeokHead(Texture2D texture, Vector2 anchor, Game1 game)
         {
+            health = 25;
             Texture = texture;
             this.game = game;
             currFrame = 0;
@@ -97,9 +98,18 @@ namespace sprint0
             // not necessary
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
 
         private bool CanShoot()

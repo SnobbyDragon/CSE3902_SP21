@@ -21,9 +21,12 @@ namespace sprint0
         private int moveCounter;
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < totalFrames*repeatedFrames
         private readonly int width = 16, height = 11;
-
-        public Patra(Texture2D texture, Vector2 location)
+        private int health;
+        private readonly Game1 game;
+        public Patra(Texture2D texture, Vector2 location, Game1 game)
         {
+            this.game = game;
+            health = 25;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)); Texture = texture;
             source = new Rectangle(1, 157, width, height);
             currFrame = 0;
@@ -41,7 +44,7 @@ namespace sprint0
             minions = new List<IEnemy>();
             for (int i = 0; i < totalMinions; i++)
             {
-                minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i));
+                minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i, game));
             }
 
             rand = new Random();
@@ -87,9 +90,18 @@ namespace sprint0
             GenerateDest();
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
 
         // generates a new destination

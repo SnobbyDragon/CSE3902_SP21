@@ -15,13 +15,15 @@ namespace sprint0
         private int currentFrame;
         private int repeatedFrames;
         private readonly int width = 16, height = 16;
-
+        private readonly Game1 game;
         //direction that stalfos is moving/'facing'
         Direction dir;
         private List<SpriteEffects> spriteEffects;
-
-        public Stalfos(Texture2D texture, Vector2 location)
+        int health;
+        public Stalfos(Texture2D texture, Vector2 location, Game1 game)
         {
+            this.game = game;
+            health = 100;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             totalFrames = 2;
@@ -48,6 +50,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
             //switch stalfos direction if needed; moving in rectangle
@@ -105,9 +108,18 @@ namespace sprint0
             dir = (Direction)random.Next(0, 4);
         }
 
-        public void TakeDamage()
+        private void CheckHealth()
         {
-            // TODO
+            if (health < 0) Perish();
+        }
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+        }
+
+        public void Perish()
+        {
+            game.RemoveEnemy(this);
         }
     }
 }

@@ -17,6 +17,35 @@ namespace sprint0
                     dodongo.EatBomb();
                     projectile.Perish();
                 }
+                else {
+                    if (projectile is Bomb) {
+                        enemy.TakeDamage(10);
+                        projectile.Perish();
+                    }
+                    
+
+                    if (projectile is Arrow)
+                    {
+                        enemy.TakeDamage(5);
+                        projectile.Perish();
+                    }
+                   
+
+                    if (projectile is Boomerang)
+                    {
+                       
+                        if (!projectile.HasRecentlyHit(enemy))
+                        {
+                            enemy.TakeDamage(2);
+                        }
+                        projectile.RegisterHit(enemy);
+
+                    }
+
+
+
+                }
+                
             }
         }
     }

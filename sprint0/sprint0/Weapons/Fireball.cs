@@ -78,5 +78,16 @@ namespace sprint0
                 Location.Y <= Game1.HUDHeight * Game1.Scale || // up
                 Location.Y >= (Game1.HUDHeight + Game1.MapHeight) * Game1.Scale; // down
         }
+
+        public bool HasRecentlyHit(IEnemy enemy)
+        {
+            //no-op
+            return false;
+        }
+        public void RegisterHit(IEnemy enemy)
+        {
+            //no-op required
+        }
     }
+
 }
