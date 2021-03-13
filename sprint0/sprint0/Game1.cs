@@ -264,10 +264,7 @@ namespace sprint0
         {
             // reset game timer
             ResetElapsedTime();
-
-            //reset player state
-            Player.Pos = new Vector2(200, 250);
-            Player.State = new UpIdleState(Player);
+            Initialize();
         }
     }
 }

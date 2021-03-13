@@ -17,7 +17,7 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/NPCs");
         }
 
-        public ISprite MakeSprite(String spriteType, Vector2 location)
+        public IBlock MakeSprite(string spriteType, Vector2 location)
         {
             
             switch (spriteType)
