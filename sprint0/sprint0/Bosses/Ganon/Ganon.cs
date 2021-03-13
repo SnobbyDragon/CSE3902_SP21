@@ -52,14 +52,14 @@ namespace sprint0
             centerOffset = new Vector2(width / 2 - 4, height / 2 - 5); // ganon size / 2 - fireball size / 2
             fireballExplosion = new List<GanonFireball>() 
             {
-                new GanonFireball(texture,new Vector2(Location.X, Location.Y), "up", this),
-                new GanonFireball(texture,new Vector2(Location.X, Location.Y), "up left", this),
-                new GanonFireball(texture,new Vector2(Location.X, Location.Y), "left", this),
-                new GanonFireball(texture,new Vector2(Location.X, Location.Y), "down left", this),
-                new GanonFireball(texture,new Vector2(Location.X, Location.Y), "down", this),
-                new GanonFireball(texture,new Vector2(Location.X, Location.Y), "down right", this),
-                new GanonFireball(texture,new Vector2(Location.X, Location.Y), "right", this),
-                new GanonFireball(texture, new Vector2(Location.X, Location.Y),"up right", this)
+                new GanonFireball(texture,location, "up", this),
+                new GanonFireball(texture,location, "up left", this),
+                new GanonFireball(texture,location, "left", this),
+                new GanonFireball(texture,location, "down left", this),
+                new GanonFireball(texture,location, "down", this),
+                new GanonFireball(texture,location, "down right", this),
+                new GanonFireball(texture,location, "right", this),
+                new GanonFireball(texture, location,"up right", this)
             };
         }
 
