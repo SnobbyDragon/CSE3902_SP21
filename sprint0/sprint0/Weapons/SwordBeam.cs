@@ -14,13 +14,12 @@ namespace sprint0
         private readonly Direction dir;
         private int xa, ya = 0;
         private int width, height;
-        private readonly int lifespan = 80;
+        private int lifespan = 15;
         private int currFrame, totalFrames;
         private readonly int repeatedFrames;
         private int age = 0;
 
         private readonly List<Rectangle> explodeSources;
-        private int framesSinceHit;
         private bool hit = false;
 
         public SwordBeam(Texture2D texture, Vector2 location, Direction dir, int lifespan, IEntity source)
@@ -81,20 +80,24 @@ namespace sprint0
 
         public bool IsAlive()
         {
-            return (age < lifespan || lifespan < 0);
+            return age < lifespan || lifespan < 0;
         }
 
-        public void Perish() => age = lifespan;
+        public void Perish() => Break();
 
         private void Move()
         {
-            Location = new Rectangle(Location.X + xa, Location.Y + ya, Location.Width, Location.Height);
+            if (!hit) Location = new Rectangle(Location.X + xa, Location.Y + ya, Location.Width, Location.Height);
+            else
+            {
+                xa += 2;
+                ya += 2;
+            }
         }
 
         private void Break()
         {
             hit = true;
-            framesSinceHit = 0;
             width = 8;
             height = 10;
             totalFrames = 3;
@@ -106,52 +109,47 @@ namespace sprint0
         {
             if (IsAlive())
             {
-                Rectangle destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                switch (dir)
+                if (!hit)
                 {
-                    case Direction.n:
-                        spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White);
-                        break;
-                    case Direction.s:
-                        spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 0);
-                        break;
-                    case Direction.e:
-                        spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White);
-                        break;
-                    case Direction.w:
-                        spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-                        break;
+                    Rectangle destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                    switch (dir)
+                    {
+                        case Direction.n:
+                            spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White);
+                            break;
+                        case Direction.s:
+                            spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 0);
+                            break;
+                        case Direction.e:
+                            spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White);
+                            break;
+                        case Direction.w:
+                            spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+                            break;
+                    }
                 }
-            }
-            else if (hit && framesSinceHit < 15)
-            {
-                Rectangle destinationNW = new Rectangle((int)Location.X - xa, (int)Location.Y - ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                Rectangle destinationNE = new Rectangle((int)Location.X + xa, (int)Location.Y - ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                Rectangle destinationSW = new Rectangle((int)Location.X - xa, (int)Location.Y + ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                Rectangle destinationSE = new Rectangle((int)Location.X + xa, (int)Location.Y + ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                spriteBatch.Draw(texture, destinationNW, explodeSources[currFrame / repeatedFrames], Color.White);
-                spriteBatch.Draw(texture, destinationNE, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-                spriteBatch.Draw(texture, destinationSW, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 0);
-                spriteBatch.Draw(texture, destinationSE, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally, 0);
+                else
+                {
+                    Rectangle destinationNW = new Rectangle((int)Location.X - xa, (int)Location.Y - ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                    Rectangle destinationNE = new Rectangle((int)Location.X + xa, (int)Location.Y - ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                    Rectangle destinationSW = new Rectangle((int)Location.X - xa, (int)Location.Y + ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                    Rectangle destinationSE = new Rectangle((int)Location.X + xa, (int)Location.Y + ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                    spriteBatch.Draw(texture, destinationNW, explodeSources[currFrame / repeatedFrames], Color.White);
+                    spriteBatch.Draw(texture, destinationNE, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(texture, destinationSW, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 0);
+                    spriteBatch.Draw(texture, destinationSE, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally, 0);
+                }
             }
         }
 
         public void Update()
         {
-            age++;
+            if(hit) age++; // sword beams go until they hit something
             if (IsAlive())
             {
                 Move();
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
-            else if (hit)
-            {
-                framesSinceHit++;
-                xa += 2;
-                ya += 2;
-                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            }
-            else Break(); // TODO: Have this break when it hits an enemy
         }
     }
 }
