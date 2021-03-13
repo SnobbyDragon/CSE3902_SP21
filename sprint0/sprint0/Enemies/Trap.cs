@@ -41,37 +41,45 @@ namespace sprint0
 
         public void Update()
         {
-            if (direction == Direction.ne) { //The trap is not moving so check if link triggered it
+
+            if (direction == Direction.ne)
+            { //The trap is not moving so check if link triggered it
                 direction = CheckIfTriggered();
             }
-
-            //move the traps
-            if (direction == Direction.s)
-            {
-                //moves sprite down
-                Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
-
-            }
-            else if (direction == Direction.w)
-            {
-                //moves sprite left
-                Location = new Rectangle(Location.X-1, Location.Y, Location.Width, Location.Height);
-
-            }else if (direction == Direction.e)
-            {
-                //moves sprite right
-                Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
-
-            }
             else
-            {   //direction == Direction.n
-                //moves sprite up
-                Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
+            {
+                //move the traps
+                if (direction == Direction.s)
+                {
+                    //moves sprite down
+                    Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
+
+                }
+                else if (direction == Direction.w)
+                {
+                    //moves sprite left
+                    Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
+
+                }
+                else if (direction == Direction.e)
+                {
+                    //moves sprite right
+                    Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
+
+                }
+                else
+                {   //direction == Direction.n
+                    //moves sprite up
+                    Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
+
+                }
+
+                //if the traps moved to their home location, make them still again
+                if (Location == HomeLocation) { direction = Direction.ne; }
 
             }
 
-            //if the traps moved to their home location, make them still again
-            if (Location == HomeLocation) { direction = Direction.ne; }
+           
         }
 
         //Checks if link triggered the trap, and if so returns the direction
