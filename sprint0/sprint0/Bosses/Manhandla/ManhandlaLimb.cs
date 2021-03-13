@@ -110,9 +110,25 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            Vector2 dir = game.Player.Pos - Location.Center.ToVector2();
-            dir.Normalize();
-            game.AddFireball(Location.Center.ToVector2(), dir, this);
+            Vector2 direction = Location.Center.ToVector2();
+            if (dir.Equals("up")){
+                 direction = new Vector2(0,-1);
+            }
+            else if (dir.Equals("down"))
+            {
+                direction = new Vector2(0, 1);
+            }
+            else if (dir.Equals("left"))
+            {
+                direction = new Vector2(-1,0);
+            }
+            else if (dir.Equals("right"))
+            {
+                direction = new Vector2(1,0) ;
+            }
+
+            direction.Normalize();
+            game.AddFireball(Location.Center.ToVector2(), direction, this);
         }
     }
 }
