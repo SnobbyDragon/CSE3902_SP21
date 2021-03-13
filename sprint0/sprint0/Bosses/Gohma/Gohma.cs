@@ -88,20 +88,21 @@ namespace sprint0
         {
             // draws the left leg
             spriteBatch.Draw(
-                Texture, new Rectangle(Location.X - size, Location.Y, size, size),
+                Texture, new Rectangle(Location.X - (int)(size * Game1.Scale), Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale)),
                 colorToLegMap[color][legCurrFrame / legRepeatedFrames],
                 Color.White, 0, new Vector2(0, 0),
                 leftLegEffects[legCurrFrame / legRepeatedFrames], 0);
 
-            // draws the head
-            spriteBatch.Draw(Texture, Location, colorToHeadMap[color][headCurrFrame / headRepeatedFrames], Color.White);
-
             // draws the right leg; left/right leg should be opposite frames
             spriteBatch.Draw(
-                Texture, new Rectangle(Location.X + size, Location.Y, size, size),
+                Texture, new Rectangle(Location.X + (int)(size * Game1.Scale), Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale)),
                 colorToLegMap[color][(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], // TODO refator: this is probably overly complicated
                 Color.White, 0, new Vector2(0, 0),
                 rightLegEffects[(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], 0);
+
+
+            // draws the head
+            spriteBatch.Draw(Texture, Location, colorToHeadMap[color][headCurrFrame / headRepeatedFrames], Color.White);
         }
 
         public void Update()
