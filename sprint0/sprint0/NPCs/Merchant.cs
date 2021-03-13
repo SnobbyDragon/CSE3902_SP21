@@ -5,13 +5,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Merchant : ISprite
+    public class Merchant : IBlock
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        public String Type { get; set; }
+        public string Type { get; set; }
         private readonly int xOffset = 109, yOffset = 11, width, height;
-        private Dictionary<String, Rectangle> typeRectMap;
+        private Dictionary<string, Rectangle> typeRectMap;
 
         public Merchant(Texture2D texture, Vector2 location, String type)
         {
@@ -19,7 +19,7 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             this.Type = type;
-            typeRectMap = new Dictionary<String, Rectangle> //TODO use GetFrames method when we make that static public
+            typeRectMap = new Dictionary<string, Rectangle> //TODO use GetFrames method when we make that static public
             {
                 { "green", new Rectangle(xOffset, yOffset, width, height) },
                 { "white", new Rectangle(xOffset + width + 1, yOffset, width, height) },
@@ -36,5 +36,8 @@ namespace sprint0
         {
             // does nothing for now; probably buy/sell stuff later???
         }
+
+        public bool IsWalkable() => false;
+        public bool IsMovable() => false;
     }
 }

@@ -5,13 +5,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class OldPerson : ISprite
+    public class OldPerson : IBlock
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        public String Type { get; set; }
+        public string Type { get; set; }
         private readonly int xOffset = 1, yOffset = 11, width, height;
-        private Dictionary<String, Rectangle> typeRectMap;
+        private Dictionary<string, Rectangle> typeRectMap;
 
         public OldPerson(Texture2D texture, Vector2 location, String type)
         {
@@ -36,5 +36,8 @@ namespace sprint0
         {
             // does nothing for now
         }
+
+        public bool IsWalkable() => false;
+        public bool IsMovable() => false;
     }
 }

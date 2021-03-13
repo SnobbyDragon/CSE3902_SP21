@@ -65,7 +65,7 @@ namespace sprint0
             return (sprites, projectiles, blocks, enemies);
         }
 
-        public Direction WeaponDirection(String dir)
+        public Direction WeaponDirection(string dir)
         {
             //converts direction string from xml into Direction enum
             return dir switch
@@ -108,9 +108,9 @@ namespace sprint0
                     if (roomReader.HasAttributes)
                         blocks.Add(dungeonFactory.MakeBlock(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
                     break;
-                case "NPC":
+                case "NPC": // NPCs have the same behaviour as blocks
                     if (roomReader.HasAttributes)
-                        sprites.Add(npcFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
+                        blocks.Add(npcFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
                     break;
                 case "Player":
                     if (roomReader.HasAttributes)
