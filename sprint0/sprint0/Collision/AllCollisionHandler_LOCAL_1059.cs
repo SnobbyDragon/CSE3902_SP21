@@ -9,9 +9,7 @@ namespace sprint0
         private readonly Dictionary<Collision, Direction> sideToDir;
         private readonly CollisionDetector collisionDetector;
         private readonly int linkSize = (int)(16 * Game1.Scale); // size of link
-
-        private readonly int offset = 4; // make hitbox slightly smaller
-
+        private readonly int offset = 3; // make hitbox slightly smaller
 
         public AllCollisionHandler()
         {
@@ -25,17 +23,15 @@ namespace sprint0
             collisionDetector = new CollisionDetector();
         }
 
-        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IWeapon> weapons, List<IProjectile> projectiles, List<IBlock> blocks)
+        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IProjectile> projectiles, List<IBlock> blocks)
         {
             HandleLinkProjectileCollisions(link, projectiles);
             HandleLinkBlockCollisions(link, blocks);
             HandleLinkEnemyCollisions(link, enemies);
             HandleEnemyBlockCollisions(enemies, blocks);
             HandleEnemyEnemyCollisions(enemies);
-            HandleEnemyProjectileCollisions(enemies, weapons);
             HandleEnemyProjectileCollisions(enemies, projectiles);
             HandleBlockBlockCollisions(blocks);
-            HandleProjectileGameBorderCollision(projectiles);
         }
 
         /*
@@ -128,30 +124,11 @@ namespace sprint0
         }
 
         /*
-         * Checks if enemies collide with any non-projectile weapons; handles collisions
-         */
-        private void HandleEnemyProjectileCollisions(List<IEnemy> enemies, List<IWeapon> weapons)
-        {
-            EnemyWeaponCollisionHandler collisionHandler = new EnemyWeaponCollisionHandler();
-            foreach (IEnemy enemy in enemies)
-            {
-                foreach (IWeapon projectile in weapons)
-                {
-                    Collision side = collisionDetector.DetectCollision(enemy, projectile);
-                    if (side != Collision.None)
-                    {
-                        collisionHandler.HandleCollision(enemy, projectile, sideToDir[side]);
-                    }
-                }
-            }
-        }
-
-        /*
          * Checks if enemies collide with any projectiles; handles collisions
          */
         private void HandleEnemyProjectileCollisions(List<IEnemy> enemies, List<IProjectile> projectiles)
         {
-            EnemyWeaponCollisionHandler collisionHandler = new EnemyWeaponCollisionHandler();
+            EnemyProjectileCollisionHandler collisionHandler = new EnemyProjectileCollisionHandler();
             foreach (IEnemy enemy in enemies)
             {
                 foreach (IProjectile projectile in projectiles)
@@ -180,19 +157,6 @@ namespace sprint0
                     {
                         collisionHandler.HandleCollision(blocks[i], blocks[j], sideToDir[side]);
                     }
-                }
-            }
-        }
-
-        private void HandleProjectileGameBorderCollision(List<IProjectile> projectiles)
-        {
-            foreach (IProjectile projectile in projectiles)
-            {
-                if(projectile.Location.Y <= Game1.HUDHeight * Game1.Scale 
-                    || projectile.Location.Y >= (Game1.MapHeight + Game1.HUDHeight)*Game1.Scale
-                    || projectile.Location.X <= 0 || projectile.Location.X >= Game1.Width * Game1.Scale)
-                {
-                    projectile.RegisterHit();
                 }
             }
         }
