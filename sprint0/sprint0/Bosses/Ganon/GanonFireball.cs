@@ -19,7 +19,6 @@ namespace sprint0
         private readonly int totalFrames, repeatedFrames, speed = 3;
         public Vector2 Direction { get; set; } // direction fireball travels
         private bool hit;
-        public bool IsDead { get; set; }
 
         public int Damage { get; }
 
@@ -123,6 +122,12 @@ namespace sprint0
                 loc.Offset(speed * Direction);
                 Location = loc;
             }
+        }
+
+        // TODO this is just a temporary fix to make fireball explosion show up
+        public void Unhit()
+        {
+            hit = false;
         }
 
         public void RegisterHit()
