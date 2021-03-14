@@ -9,7 +9,7 @@ namespace sprint0
     public class Rupee : IItem
     {
         public int PickedUpDuration { get; set; }
-		private readonly int maxPickedUpDuration = 40;
+        private readonly int maxPickedUpDuration = 40;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private List<Rectangle> sources;

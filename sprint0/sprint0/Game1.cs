@@ -18,7 +18,8 @@ namespace sprint0
         private IPlayer player;
         public IPlayer Player { get => player; set => player = value; }
 
-        private ItemsWeaponsSpriteFactory itemFactory;
+        private WeaponsSpriteFactory weaponFactory;
+        private ProjectileSpriteFactory projectileFactory;
         private EnemiesSpriteFactory enemyFactory;
 
         private List<IProjectile> projectiles, projectilesToDie;
@@ -83,7 +84,8 @@ namespace sprint0
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             DungeonFactory dungeonFactory = new DungeonFactory(this);
             HUDFactory hudFactory = new HUDFactory(this);
-            itemFactory = new ItemsWeaponsSpriteFactory(this);
+            weaponFactory = new WeaponsSpriteFactory(this);
+            projectileFactory = new ProjectileSpriteFactory(this);
             enemyFactory = new EnemiesSpriteFactory(this);
 
             weapons = new List<IWeapon>();
@@ -133,16 +135,16 @@ namespace sprint0
 
         public void AddWeapon(Vector2 Location, Direction dir, string item, IPlayer source)
         {
-            weapons.Add(itemFactory.MakeWeapon(item, Location, dir, source));
+            weapons.Add(weaponFactory.MakeWeapon(item, Location, dir, source));
         }
         public void AddProjectile(Vector2 Location, Direction dir, string item, IEntity source)
         {
-            projectiles.Add(itemFactory.MakeProjectile(item, Location, dir, source));
+            projectiles.Add(projectileFactory.MakeProjectile(item, Location, dir, source));
         }
 
         public void AddFireball(Vector2 location, Vector2 dir, IEntity source)
         {
-            projectiles.Add(itemFactory.MakeFireball(location, dir, source));
+            projectiles.Add(projectileFactory.MakeFireball(location, dir, source));
         }
 
         public void AddEnemy(Vector2 location, string enemy)
@@ -207,7 +209,7 @@ namespace sprint0
 
             // handles collisions
             collisionHandler.HandleAllCollisions(Player, enemies, weapons, projectiles, blocks, npcs, items);
-           
+
             // after all traversals, add new enemies
             if (enemiesToSpawn.Count > 0)
             {

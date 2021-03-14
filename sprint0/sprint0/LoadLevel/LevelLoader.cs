@@ -24,7 +24,7 @@ namespace sprint0
 
         private Game1 game1;
         private EnemiesSpriteFactory enemyFactory;
-        private ItemsWeaponsSpriteFactory itemFactory;
+        private ItemsSpriteFactory itemFactory;
         private DungeonFactory dungeonFactory;
         private BossesSpriteFactory bossFactory;
         private NpcsSpriteFactory npcFactory;
@@ -48,7 +48,7 @@ namespace sprint0
 
             //factories
             enemyFactory = new EnemiesSpriteFactory(this.game1);
-            itemFactory = new ItemsWeaponsSpriteFactory(this.game1);
+            itemFactory = new ItemsSpriteFactory(this.game1);
             dungeonFactory = new DungeonFactory(this.game1);
             bossFactory = new BossesSpriteFactory(this.game1);
             npcFactory = new NpcsSpriteFactory(this.game1);
