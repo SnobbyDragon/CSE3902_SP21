@@ -72,7 +72,7 @@ namespace sprint0
             player = new Link(this, new Vector2(200, 250));
 
             //note: the integer refers to the room number to load
-            changeRoom = true;
+            changeRoom =true;
             roomIndex = 1;
             levelLoader = new LevelLoader(this, roomIndex);
 
@@ -104,13 +104,7 @@ namespace sprint0
              */
             weaponsToDie = new List<IWeapon>();
             projectilesToDie = new List<IProjectile>();
-            (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements = levelLoader.LoadLevel();
-            roomSprites = roomElements.Item1;
-            projectiles = roomElements.Item2;
-            blocks = roomElements.Item3;
-            enemies = roomElements.Item4;
-            npcs = roomElements.Item5;
-            items = roomElements.Item6;
+           
             enemiesToDie = new List<IEnemy>();
             enemiesToSpawn = new List<IEnemy>(); // used for spawning new enemies; avoids mutating enemies list during foreach
             roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
@@ -154,7 +148,7 @@ namespace sprint0
 
         public void RegisterEnemies(List<IEnemy> unregEnemies)
         {
-            enemies.AddRange(unregEnemies);
+            enemiesToSpawn.AddRange(unregEnemies);
         }
 
         public void RemoveEnemy(IEnemy enemy)

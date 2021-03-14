@@ -45,7 +45,7 @@
     <Block ObjectName="block" LocationX="280" LocationY="380" />? 
     <Block ObjectName="block" LocationX="320" LocationY="380" />?  
         
-    <Boss ObjectName="manhandla" LocationX="360" LocationY="380" />? 
+   
     <Boss ObjectName="manhandla" LocationX="440" LocationY="260" />?  
     
     <Player ObjectName="Link" LocationX="300" LocationY="220" />?
