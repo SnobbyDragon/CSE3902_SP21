@@ -7,28 +7,19 @@
     <Dungeon ObjectName="left wall" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right locked door" LocationX="0" LocationY="320" />?
 
-<!--Only put blocks here when there is no door-->
-<Block ObjectName="invisible block" LocationX="40" LocationY="320" />?
+<!--Only put blocks here when there is no door--><Block ObjectName="invisible block" LocationX="40" LocationY="320" />?
 <Block ObjectName="invisible block" LocationX="40" LocationY="360" />?
 <Block ObjectName="invisible block" LocationX="0" LocationY="320" />?
 <Block ObjectName="invisible block" LocationX="0" LocationY="360" />?
-<!--Only put blocks here when there is no door-->
-
-<!--Only put blocks here when there is no door-->
-<Block ObjectName="invisible block" LocationX="560" LocationY="320" />?
+<!--Only put blocks here when there is no door--><!--Only put blocks here when there is no door--><Block ObjectName="invisible block" LocationX="560" LocationY="320" />?
 <Block ObjectName="invisible block" LocationX="560" LocationY="360" />?
 <Block ObjectName="invisible block" LocationX="600" LocationY="320" />?
 <Block ObjectName="invisible block" LocationX="600" LocationY="360" />?
-<!--Only put blocks here when there is no door-->
-
-<!--Only put blocks here when there is no door-->
-<Block ObjectName="invisible block" LocationX="280" LocationY="120" />?
+<!--Only put blocks here when there is no door--><!--Only put blocks here when there is no door--><Block ObjectName="invisible block" LocationX="280" LocationY="120" />?
 <Block ObjectName="invisible block" LocationX="320" LocationY="120" />?
 <Block ObjectName="invisible block" LocationX="280" LocationY="160" />?
 <Block ObjectName="invisible block" LocationX="320" LocationY="160" />?
-<!--Only put blocks here when there is no door-->
-
-	<Block ObjectName="water" LocationX="120" LocationY="260" />?
+<!--Only put blocks here when there is no door--><Block ObjectName="water" LocationX="120" LocationY="260" />?
     <Block ObjectName="water" LocationX="160" LocationY="260" />?
     <Block ObjectName="water" LocationX="200" LocationY="260" />?
 
@@ -60,7 +51,7 @@
     <Block ObjectName="water" LocationX="480" LocationY="420" />?
    
     
-    <ItemWeapon ObjectName="key" LocationX="280" LocationY="260" Direction="North" Lifespan="0" />?
+    <Item ObjectName="key" LocationX="280" LocationY="260" />?
 
     <Enemy ObjectName="red goriya" LocationX="360" LocationY="260" />?
     <Enemy ObjectName="red goriya" LocationX="360" LocationY="220" />?

@@ -170,6 +170,6 @@
     
     <Enemy ObjectName="blue keese" LocationX="360" LocationY="330" />?
     <Enemy ObjectName="red keese" LocationX="200" LocationY="460" />?
-    <ItemWeapon ObjectName="bow" LocationX="332" LocationY="330" Direction="North" Lifespan="0" />? 
+    <Item ObjectName="bow" LocationX="332" LocationY="330" />? 
    <Player ObjectName="Link" LocationX="120" LocationY="140" />?
 ?</XnaContent>
