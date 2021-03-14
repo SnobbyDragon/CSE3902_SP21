@@ -16,16 +16,15 @@ namespace sprint0
         private readonly List<Rectangle> sources;
         private readonly int xOffset = 154, yOffset = 0, width = 5, height = 16;
         private int currFrame;
-        private readonly int totalFrames, repeatedFrames;
         private readonly Direction dir;
         //xa is x adjust, ya is y adjust
         private float xa, ya;
         //Lifespan is the number of updates before it dies. 
         //For now, it just stops rendering
-        private readonly int lifespan;
         //Age is the current number of updates
-        private int age;
-        public Arrow(Texture2D texture, Vector2 location, Direction dir, int lifespan, IEntity shooter)
+        private bool hit = false;
+
+        public Arrow(Texture2D texture, Vector2 location, Direction dir, IEntity shooter)
         {
             Shooter = shooter;
 
@@ -55,15 +54,12 @@ namespace sprint0
             Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             this.dir = dir;
-            this.lifespan = lifespan;
             sources = new List<Rectangle>
             {
                 new Rectangle(xOffset, yOffset, width, height),
                 new Rectangle(xOffset, yOffset+height+1, width, height)
             };
             currFrame = 0;
-            totalFrames = 2;
-            repeatedFrames = 8;
             origin = new Vector2(width / 2, height / 2);
             rotation = 0;
             rotate180 = (float)Math.PI;
@@ -71,17 +67,7 @@ namespace sprint0
 
         public bool IsAlive()
         {
-            if (age < lifespan || lifespan < 0)
-            {
-                age++;
-                return true;
-            }
-            return false;
-        }
-
-        public void Perish()
-        {
-            age = lifespan;
+            return !hit;
         }
 
         private void Move()
@@ -95,7 +81,7 @@ namespace sprint0
         {
             if (IsAlive())
             {
-                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White, rotation, origin, SpriteEffects.None, 0);
+                spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White, rotation, origin, SpriteEffects.None, 0);
             }
         }
 
@@ -128,20 +114,12 @@ namespace sprint0
                         break;
                 }
                 Move();
-
-                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+                // currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
-
-        public bool HasRecentlyHit(IEnemy enemy)
+        public void RegisterHit()
         {
-            //no-op
-            return false;
-        }
-        public void RegisterHit(IEnemy enemy)
-        {
-            //no-op required
+            hit = true;
         }
     }
 }

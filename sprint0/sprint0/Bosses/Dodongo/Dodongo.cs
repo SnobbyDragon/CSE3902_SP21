@@ -11,21 +11,28 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private List<Rectangle> upDownSources, rightLeftSources;
-        private int totalFramesUD, currentFrameUD, repeatedFrames;
-        private int totalFramesRL, currentFrameRL;
-        private int totalSpriteEffects, currentSpriteEffect;
-        private List<SpriteEffects> spriteEffects;
+
+        private readonly List<Rectangle> upDownSources;
+        private readonly List<Rectangle> rightLeftSources;
+        private readonly int totalFramesUD;
+        private int currentFrameUD;
+        private readonly int repeatedFrames;
+        private readonly int totalFramesRL;
+        private int currentFrameRL;
+        private readonly int totalSpriteEffects;
+        private int currentSpriteEffect;
+        private readonly List<SpriteEffects> spriteEffects;
         public Vector2 Destination { get; set; }
         private Direction direction;
         private readonly int sideLength = 16, width = 32;
         private readonly int scaledSideLength, scaledWidth;
-        private int eatingCounter, eatingTime;
+        private int eatingCounter;
+        private readonly int eatingTime;
         private readonly Game1 game;
         private int health;
         public Dodongo(Texture2D texture, Vector2 location, Game1 game)
         {
-            health = 25;
+            health = 50;
             this.game = game;
             scaledSideLength = (int)(sideLength * Game1.Scale);
             scaledWidth = (int)(width * Game1.Scale);

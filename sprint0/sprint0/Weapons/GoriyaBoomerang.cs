@@ -167,15 +167,9 @@ namespace sprint0
                 }
             }
         }
-
-        public bool HasRecentlyHit(IEnemy enemy)
+        public void RegisterHit()
         {
-            //no-op 
-            return false;
-        }
-        public void RegisterHit(IEnemy enemy)
-        {
-            //no-op required
+            // no-op : TODO change this to come back like Link's boomerang
         }
     }
 }

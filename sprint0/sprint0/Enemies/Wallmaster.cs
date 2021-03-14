@@ -11,13 +11,13 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 393, yOffset = 11, width = 16, height = 16;
-        private List<Rectangle> sources;
+        private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private SpriteEffects s; // could be flipped horizontally, vertically, or both
+        private readonly SpriteEffects s; // could be flipped horizontally, vertically, or both
         private Direction direction; // wallmaster only moves n s e w (cannot move diagonal)
         private int moveCounter, dirChangeDelay;
-        private Random rand;
+        private readonly Random rand;
         private readonly Game1 game;
         private int health;
         public Wallmaster(Texture2D texture, Vector2 location, Game1 game)
@@ -55,30 +55,12 @@ namespace sprint0
 
         private void ArbitraryDirection()
         {
-            // changes to an arbitrary direction; if in wall, go into room, else random direction
-            // TODO 32 is a magic number for room border / wall width... make static variable in Game1?
             moveCounter = 0;
-            if (Location.X <= 32 * Game1.Scale) // in the left wall, move right
-            {
-                direction = Direction.e;
-            }
-            else if (Location.X >= (Game1.Width - 32) * Game1.Scale) // in the right wall, move left
-            {
-                direction = Direction.w;
-            }
-            else if (Location.Y <= (Game1.HUDHeight + 32) * Game1.Scale) // in the top wall, move down
-            {
-                direction = Direction.s;
-            }
-            else if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale) // in the bottom wall, move up
-            {
-                direction = Direction.n;
-            }
-            else // not in a wall, move in random direction
             {
                 direction = (Direction)rand.Next(0, 4);
             }
-            dirChangeDelay = rand.Next(10, 50); //TODO may still go into the wall... not sure if that's okay?
+            dirChangeDelay = rand.Next(80, 200);
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -40,6 +40,7 @@ namespace sprint0
         private EnemiesSpriteFactory enemyFactory;
 
         private List<IProjectile> projectiles, projectilesToDie;
+        private List<IWeapon> weapons, weaponsToDie;
         private List<IBlock> blocks;
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
         private List<INpc> npcs;
@@ -103,6 +104,7 @@ namespace sprint0
             itemFactory = new ItemsWeaponsSpriteFactory(this);
             enemyFactory = new EnemiesSpriteFactory(this);
 
+            weapons = new List<IWeapon>();
             projectiles = new List<IProjectile>();
             blocks = new List<IBlock>();
             enemies = new List<IEnemy>();
@@ -116,7 +118,7 @@ namespace sprint0
              * 1. separates out hud and the base elements of the room (plain floor and room border)
              * 2. loads sprites for the level
              */
-
+            weaponsToDie = new List<IWeapon>();
             projectilesToDie = new List<IProjectile>();
             (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements = levelLoader.LoadLevel();
             roomSprites = roomElements.Item1;
@@ -147,9 +149,13 @@ namespace sprint0
             text = new Text(this);
         }
 
-        public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item, IEntity source)
+        public void AddWeapon(Vector2 Location, Direction dir, string item, IPlayer source)
         {
-            projectiles.Add(itemFactory.MakeProjectile(item, Location, dir, lifespan, source));
+            weapons.Add(itemFactory.MakeWeapon(item, Location, dir, source));
+        }
+        public void AddProjectile(Vector2 Location, Direction dir, string item, IEntity source)
+        {
+            projectiles.Add(itemFactory.MakeProjectile(item, Location, dir, source));
         }
 
         public void AddFireball(Vector2 location, Vector2 dir, IEntity source)
@@ -170,6 +176,10 @@ namespace sprint0
         public void RemoveProjectile(IProjectile projectile)
         {
             projectilesToDie.Add(projectile);
+        }
+        public void RemoveWeapon(IWeapon weapon)
+        {
+            weaponsToDie.Add(weapon);
         }
 
         protected override void Update(GameTime gameTime)
@@ -202,6 +212,8 @@ namespace sprint0
                 _sprite.Update();
             foreach (IProjectile projectile in projectiles)
                 projectile.Update();
+            foreach (IWeapon weapon in weapons)
+                weapon.Update();
             foreach (IBlock block in blocks)
                 block.Update();
             foreach (IEnemy enemy in enemies)
@@ -212,8 +224,7 @@ namespace sprint0
                 item.Update();
 
             // handles collisions
-            collisionHandler.HandleAllCollisions(Player, enemies, projectiles, blocks, npcs);
-
+            collisionHandler.HandleAllCollisions(Player, enemies, weapons, projectiles, blocks, npcs);
            
             // after all traversals, add new enemies
             if (enemiesToSpawn.Count > 0)
@@ -226,11 +237,27 @@ namespace sprint0
                 enemies.Remove(enemy);
             }
 
+            foreach (IWeapon weapon in weapons)
+            {
+                if (!weapon.IsAlive()) RemoveWeapon(weapon);
+            }
+            foreach (IProjectile projectile in projectiles)
+            {
+                if (!projectile.IsAlive()) RemoveProjectile(projectile);
+            }
+            foreach (IWeapon weapon in weaponsToDie)
+            {
+                weapons.Remove(weapon);
+            }
             foreach (IProjectile projectile in projectilesToDie)
             {
                 projectiles.Remove(projectile);
             }
 
+            foreach (IWeapon weapon in weaponsToDie)
+            {
+                weapons.Remove(weapon);
+            }
             base.Update(gameTime);
         }
 
@@ -248,6 +275,8 @@ namespace sprint0
                 _sprite.Draw(_spriteBatch);
             foreach (IBlock block in blocks)
                 block.Draw(_spriteBatch);
+            foreach (IWeapon weapon in weapons)
+                weapon.Draw(_spriteBatch);
             foreach (IProjectile projectile in projectiles)
                 projectile.Draw(_spriteBatch);
             foreach (IEnemy enemy in enemies)

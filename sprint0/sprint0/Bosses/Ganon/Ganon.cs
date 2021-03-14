@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 /*
- * updated: 3/12/21 by urick.9
  * Last updated: 3/13/21 by johnson.7510
  */
 namespace sprint0
@@ -137,7 +136,15 @@ namespace sprint0
 
         private void CheckHealth()
         {
-           if (health < 0) isDead=true;
+            if (health < 0) {
+                isDead = true;
+                foreach (GanonFireball fireball in fireballExplosion)
+                {
+      
+                    fireball.RegisterHit();
+                }
+
+            }
             if (health < 20) currFrame = 5;
         }
         public void TakeDamage(int damage)
@@ -173,7 +180,7 @@ namespace sprint0
             {
                 Vector2 recLoc = Location.Location.ToVector2() + centerOffset;
                 fireball.Location = new Rectangle((int)recLoc.X, (int)recLoc.Y, (int)(8 * Game1.Scale), (int)(10 * Game1.Scale));
-                fireball.IsDead = false;
+                fireball.Unhit();
             }
             
         }

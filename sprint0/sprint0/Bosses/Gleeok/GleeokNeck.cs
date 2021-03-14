@@ -39,7 +39,7 @@ namespace sprint0
         {
             Vector2 dist = head.Location.Location.ToVector2() - anchor; //TODO clean up?
             Vector2 loc = anchor + dist / 4 * segmentNumber;
-            Location = new Rectangle((int)loc.X, (int)loc.Y, width, height);
+            Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             if (segmentNumber > 0)
             {
                 Rectangle loc2 = Location;

@@ -13,7 +13,7 @@ namespace sprint0
         private IPlayerState state;
         public static Vector2 position;
         private int health = 32;
-        private int maxHealth = 32;
+        private readonly int maxHealth = 32;
         private readonly int speed = 2;
         private Boolean isAlive;
         private Direction direction = Direction.n;
@@ -55,9 +55,6 @@ namespace sprint0
         }
 
         public void Shoot() {
-            // Random time for arrows is neat :)
-            int time = rand.Next(50, 65);
-            time *= (int)Game1.Scale;
             Vector2 offsetPos = position;
             switch (direction)
             {
@@ -75,7 +72,7 @@ namespace sprint0
                     offsetPos = new Vector2(position.X, position.Y);
                     break;
             }
-            game.AddProjectile(offsetPos, direction, time, "arrow", this);
+            game.AddProjectile(offsetPos, direction, "arrow", this);
         }
 
         private void Die() {
@@ -99,7 +96,7 @@ namespace sprint0
                     offsetPos = new Vector2(position.X - 10, position.Y);
                     break;
             }
-            game.AddProjectile(offsetPos, direction, (int) (30 * Game1.Scale), "bomb", this);
+            game.AddWeapon(offsetPos, direction, "bomb", this);
         }
 
         public void ThrowBoomerang()
@@ -120,7 +117,7 @@ namespace sprint0
                     offsetPos = new Vector2(position.X, position.Y + 6);
                     break;
             }
-            game.AddProjectile(offsetPos, direction, 0, "boomerang", this);
+            game.AddProjectile(offsetPos, direction, "boomerang", this);
         }
 
         public void Stop()
@@ -167,10 +164,10 @@ namespace sprint0
                     offsetPos = new Vector2(position.X, position.Y + 15);
                     break;
             }
-            game.AddProjectile(offsetPos, direction, 0, "sword", this);
+            game.AddWeapon(offsetPos, direction, "sword", this);
             if (health == maxHealth)
             {
-                game.AddProjectile(offsetPos, direction, 0, "sword beam", this);
+                game.AddProjectile(offsetPos, direction, "sword beam", this);
             }
         }
 
