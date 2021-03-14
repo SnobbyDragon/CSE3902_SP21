@@ -37,19 +37,13 @@ namespace sprint0
                 "brown zol" => new Zol(texture, location, "brown", game),
                 "grey zol" => new Zol(texture, location, "grey", game),
                 "blkwhite zol" => new Zol(texture, location, "blkwhite", game),
-
-                "snake" => new Snake(texture, location,game),
+                "snake" => new Snake(texture, location, game),
                 "red goriya" => new Goriya(texture, location, "red", game),
                 "blue goriya" => new Goriya(texture, location, "blue", game),
                 "red keese" => new Keese(texture, location, "red", game),
                 "blue keese" => new Keese(texture, location, "blue", game),
                 "stalfos" => new Stalfos(texture, location, game),
-                "trap" => new Trap(texture, location),
-                "trapparatus" => new Trapparatus(texture, location, game),
-
-                //"goriya boomerang horizontal" => new GoriyaBoomerang(texture, location, 0), TODO move to projectile or change to enemy?
-                //"goriya boomerang vertical" => new GoriyaBoomerang(texture, location, 2),
-                //"goriya boomerang diagonal" => new GoriyaBoomerang(texture, location, 4),
+                "trap" => new Trap(texture, location, game),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }

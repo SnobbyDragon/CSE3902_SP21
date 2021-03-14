@@ -12,10 +12,7 @@ namespace sprint0
 
 
         private readonly int delay;
-
         private int delayCounter;
-
-
         private int spawnCounter;
         private readonly int spawnRate = 1500; // arbitrary; spawns a gel every spawnRate
 
@@ -34,18 +31,15 @@ namespace sprint0
             delayCounter = 0;
             colorMap = new Dictionary<string, List<Rectangle>>
             {
-                { "green", GetFrames(77, 11, 2)},
-                { "blkgold", GetFrames(111, 11, 2)},
-                { "lime", GetFrames(145, 11, 2)},
-                { "brown", GetFrames(77, 28, 2)},
-                { "grey", GetFrames(111, 28, 2)},
-                { "blkwhite", GetFrames(145, 28, 2)},
+                { "green", SpritesheetHelper.GetFramesH(77, 11, width, height, totalFrames) },
+                { "blkgold", SpritesheetHelper.GetFramesH(111, 11, width, height, totalFrames) },
+                { "lime", SpritesheetHelper.GetFramesH(145, 11, width, height, totalFrames) },
+                { "brown", SpritesheetHelper.GetFramesH(77, 28, width, height, totalFrames) },
+                { "grey", SpritesheetHelper.GetFramesH(111, 28, width, height, totalFrames) },
+                { "blkwhite", SpritesheetHelper.GetFramesH(145, 28, width, height, totalFrames) },
             };
-
-            spawnCounter =(int) spawnRate/4;
+            spawnCounter = spawnRate / 4;
         }
-
-
 
         public new void Draw(SpriteBatch spriteBatch)
         {
@@ -100,18 +94,11 @@ namespace sprint0
             delayCounter++;
         }
 
-       
-
-
-
         private void SpawnGel()
         {
-            // makes gel babies lol
             if (spawnCounter == spawnRate)
             {
-                // TODO gel collides with zol, but maybe they should be able to be on top of each other?
-                Vector2 spawnLoc = Location.Location.ToVector2();
-                spawnLoc += new Vector2(-39, 0);
+                Vector2 spawnLoc = Location.Location.ToVector2() + new Vector2(-39, 0);
                 game.AddEnemy(spawnLoc, color + " gel");
                 spawnCounter = 0;
             }

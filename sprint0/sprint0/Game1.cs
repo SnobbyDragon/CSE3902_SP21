@@ -42,11 +42,11 @@ namespace sprint0
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
 
-        // map width and height in pixels (does not include HUD) TODO scale up?
+        // map width and height in pixels (does not include HUD)
         public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
         public static int HUDHeight { get; } = 56;
-        public static float Scale { get; } = 2.5f; //TODO change later?
+        public static float Scale { get; } = 2.5f;
 
         public Game1()
         {
@@ -139,6 +139,7 @@ namespace sprint0
         {
             weapons.Add(weaponFactory.MakeWeapon(item, Location, dir, source));
         }
+
         public void AddProjectile(Vector2 Location, Direction dir, string item, IEntity source)
         {
             projectiles.Add(projectileFactory.MakeProjectile(item, Location, dir, source));
@@ -154,7 +155,7 @@ namespace sprint0
             enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
         }
 
-        public void RegisterEnemies(List<IEnemy> unregEnemies)
+        public void RegisterEnemies(IEnumerable<IEnemy> unregEnemies)
         {
             enemiesToSpawn.AddRange(unregEnemies);
         }
@@ -168,6 +169,7 @@ namespace sprint0
         {
             projectilesToDie.Add(projectile);
         }
+
         public void RemoveWeapon(IWeapon weapon)
         {
             weaponsToDie.Add(weapon);
