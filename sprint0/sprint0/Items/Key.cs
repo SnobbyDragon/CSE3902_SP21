@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
-    public class Key : ISprite
+    public class Key : IItem
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -43,6 +43,11 @@ namespace sprint0
         {
             //switches between two versions of the key (not sure if that's correct)
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+        }
+
+        public void PickedUp()
+        {
+
         }
     }
 }

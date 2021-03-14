@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class TriforcePiece : ISprite
+    public class TriforcePiece : IItem
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -52,6 +52,11 @@ namespace sprint0
         {
             // animates all the time for now
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+        }
+
+        public void PickedUp()
+        {
+
         }
     }
 }

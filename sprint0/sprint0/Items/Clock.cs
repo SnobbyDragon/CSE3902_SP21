@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Clock : ISprite
+    public class Clock : IItem
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -30,6 +30,11 @@ namespace sprint0
         public void Update()
         {
             //Does nothing
+        }
+
+        public void PickedUp()
+        {
+
         }
     }
 }

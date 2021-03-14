@@ -23,7 +23,7 @@ namespace sprint0
             collisionDetector = new CollisionDetector();
         }
 
-        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IProjectile> projectiles, List<IBlock> blocks)
+        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IProjectile> projectiles, List<IBlock> blocks, List<INpc> npcs)
         {
             HandleLinkProjectileCollisions(link, projectiles);
             HandleLinkBlockCollisions(link, blocks);
@@ -32,6 +32,7 @@ namespace sprint0
             HandleEnemyEnemyCollisions(enemies);
             HandleEnemyProjectileCollisions(enemies, projectiles);
             HandleBlockBlockCollisions(blocks);
+            HandleLinkNpcsCollisions(link, npcs);
         }
 
         /*
@@ -81,6 +82,23 @@ namespace sprint0
                 if (side != Collision.None)
                 {
                     collisionHandler.HandleCollision(link, block, sideToDir[side]);
+                }
+            }
+        }
+
+        /*
+         * Checks if link collides with any npcs; handles collisions
+         */
+        private void HandleLinkNpcsCollisions(IPlayer link, List<INpc> npcs)
+        {
+            LinkNpcCollisionHandler collisionHandler = new LinkNpcCollisionHandler();
+            Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
+            foreach (INpc npc in npcs)
+            {
+                Collision side = collisionDetector.DetectCollision(linkHitbox, npc);
+                if (side != Collision.None)
+                {
+                    collisionHandler.HandleCollision(link, npc, sideToDir[side]);
                 }
             }
         }

@@ -11,28 +11,24 @@ namespace sprint0
         {
             if (projectile.IsAlive() && projectile.Shooter != enemy)
             {
-                if (enemy is Dodongo dodongo && projectile is Bomb)
+                if (projectile is Boomerang || projectile is SwordBeam)
                 {
-                    // special case; dodongo eats bombs. TODO this is bad (I think?): move this and increase cohesion?
-                    dodongo.EatBomb();
+                    if (!projectile.HasRecentlyHit(enemy))
+                    {
+                        enemy.TakeDamage(projectile.Damage);
+                    }
+                    projectile.RegisterHit(enemy);
                 }
                 else
                 {
-                    if (projectile is Boomerang || projectile is SwordBeam)
+                    if (enemy is Dodongo dodongo && projectile is Bomb)
                     {
-                        if (!projectile.HasRecentlyHit(enemy))
-                        {
-                            enemy.TakeDamage(projectile.Damage);
-                        }
-                        projectile.RegisterHit(enemy);
+                        // special case; dodongo eats bombs. TODO this is bad (I think?): move this and increase cohesion?
+                        dodongo.EatBomb();
                     }
-                    else
-                    {
-                        enemy.TakeDamage(projectile.Damage);
-                        projectile.Perish();
-                    }
-                 }
-                
+                    enemy.TakeDamage(projectile.Damage);
+                    projectile.Perish();
+                }
             }
         }
     }

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
-    public class Rupee : ISprite
+    public class Rupee : IItem
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -44,6 +44,11 @@ namespace sprint0
         {
             //Switches between colors
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+        }
+
+        public void PickedUp()
+        {
+
         }
     }
 }

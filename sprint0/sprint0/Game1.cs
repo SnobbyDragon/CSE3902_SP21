@@ -42,6 +42,8 @@ namespace sprint0
         private List<IProjectile> projectiles, projectilesToDie;
         private List<IBlock> blocks;
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
+        private List<INpc> npcs;
+        private List<IItem> items;
         private AllCollisionHandler collisionHandler;
 
         private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
@@ -104,6 +106,7 @@ namespace sprint0
             projectiles = new List<IProjectile>();
             blocks = new List<IBlock>();
             enemies = new List<IEnemy>();
+            npcs = new List<INpc>();
 
             collisionHandler = new AllCollisionHandler();
 
@@ -115,11 +118,13 @@ namespace sprint0
              */
 
             projectilesToDie = new List<IProjectile>();
-            (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>) roomElements = levelLoader.LoadLevel();
+            (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements = levelLoader.LoadLevel();
             roomSprites = roomElements.Item1;
             projectiles = roomElements.Item2;
             blocks = roomElements.Item3;
             enemies = roomElements.Item4;
+            npcs = roomElements.Item5;
+            items = roomElements.Item6;
             enemiesToDie = new List<IEnemy>();
             enemiesToSpawn = new List<IEnemy>(); // used for spawning new enemies; avoids mutating enemies list during foreach
             roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
@@ -140,7 +145,6 @@ namespace sprint0
             };
 
             text = new Text(this);
-            
         }
 
         public void AddProjectile(Vector2 Location, Direction dir, int lifespan, string item, IEntity source)
@@ -174,20 +178,20 @@ namespace sprint0
                 Exit();
 
             foreach (IController controller in controllerList)
-            {
                 controller.Update();
-            }
             player.Update();
 
             //NOTE: changes room if needed
             if (changeRoom)
             {
                 levelLoader = new LevelLoader(this, roomIndex);
-                (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>) roomElements = levelLoader.LoadLevel();
+                (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements = levelLoader.LoadLevel();
                 roomSprites = roomElements.Item1;
                 projectiles = roomElements.Item2;
                 blocks = roomElements.Item3;
                 enemies = roomElements.Item4;
+                npcs = roomElements.Item5;
+                items = roomElements.Item6;
                 changeRoom = false;
             }
 
@@ -202,9 +206,11 @@ namespace sprint0
                 block.Update();
             foreach (IEnemy enemy in enemies)
                 enemy.Update();
+            foreach (INpc npc in npcs)
+                npc.Update();
 
             // handles collisions
-            collisionHandler.HandleAllCollisions(Player, enemies, projectiles, blocks);
+            collisionHandler.HandleAllCollisions(Player, enemies, projectiles, blocks, npcs);
 
            
             // after all traversals, add new enemies
@@ -221,8 +227,6 @@ namespace sprint0
             {
                 projectiles.Remove(projectile);
             }
-
-
 
             base.Update(gameTime);
         }
@@ -245,6 +249,8 @@ namespace sprint0
                 projectile.Draw(_spriteBatch);
             foreach (IEnemy enemy in enemies)
                 enemy.Draw(_spriteBatch);
+            foreach (INpc npc in npcs)
+                npc.Draw(_spriteBatch);
             foreach (IProjectile projectile in projectiles)
                 projectile.Draw(_spriteBatch);
             player.Draw(_spriteBatch);
@@ -256,8 +262,6 @@ namespace sprint0
 
             _spriteBatch.End();
             base.Draw(gameTime);
-
-            
         }
 
         public void ResetGame()

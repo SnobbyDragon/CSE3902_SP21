@@ -29,15 +29,23 @@ namespace sprint0
                 "half heart" => new Heart(texture1, location, "half"),
                 "pink heart" => new Heart(texture1, location, "pink"),
                 "blue heart" => new Heart(texture1, location, "blue"),
-                "heart container" => new HeartContainer(texture1, location),
+                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+            };
+        }
+
+        public IItem MakeItem(string spriteType, Vector2 location, Direction dir, int lifespan)
+        {
+            return spriteType switch
+            {
                 "clock" => new Clock(texture1, location),
                 "bow" => new Bow(texture1, location),
+                "heart container" => new HeartContainer(texture1, location),
                 "gold triforce piece" => new TriforcePiece(texture1, location, "gold"),
                 "blue triforce piece" => new TriforcePiece(texture1, location, "blue"),
                 "compass" => new Compass(texture1, location),
                 "key" => new Key(texture1, location),
                 "rupee" => new Rupee(texture1, location),
-                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }
 

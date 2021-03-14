@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
-    public class Compass : ISprite
+    public class Compass : IItem
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -32,6 +32,11 @@ namespace sprint0
         public void Update()
         {
             //Does nothing
+        }
+
+        public void PickedUp()
+        {
+
         }
     }
 }

@@ -19,6 +19,8 @@ namespace sprint0
         private List<IProjectile> projectiles;
         private List<IBlock> blocks;
         private List<IEnemy> enemies;
+        private List<INpc> npcs;
+        private List<IItem> items;
 
         private Game1 game1;
         private EnemiesSpriteFactory enemyFactory;
@@ -40,6 +42,8 @@ namespace sprint0
             projectiles = new List<IProjectile>();
             blocks = new List<IBlock>();
             enemies = new List<IEnemy>();
+            npcs = new List<INpc>();
+            items = new List<IItem>();
             this.game1 = game1;
 
             //factories
@@ -50,7 +54,7 @@ namespace sprint0
             npcFactory = new NpcsSpriteFactory(this.game1);
         }
 
-        public (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>) LoadLevel()
+        public (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) LoadLevel()
         {
             using (roomReader)
             {
@@ -62,7 +66,7 @@ namespace sprint0
                     }
                 }
             }
-            return (sprites, projectiles, blocks, enemies);
+            return (sprites, projectiles, blocks, enemies, npcs, items);
         }
 
         public Direction WeaponDirection(string dir)
@@ -89,7 +93,7 @@ namespace sprint0
                 case "ItemWeapon":
                     Direction dir = WeaponDirection(roomReader.GetAttribute("Direction"));
                     int lifespan = int.Parse(roomReader.GetAttribute("Lifespan"));
-                    sprites.Add(itemFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir, lifespan));
+                    items.Add(itemFactory.MakeItem(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir, lifespan));
                     break;
                 case "Projectile":
                     Direction dir1 = WeaponDirection(roomReader.GetAttribute("Direction"));
@@ -110,7 +114,7 @@ namespace sprint0
                     break;
                 case "NPC": // NPCs have the same behaviour as blocks
                     if (roomReader.HasAttributes)
-                        blocks.Add(npcFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
+                        npcs.Add(npcFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
                     break;
                 case "Player":
                     if (roomReader.HasAttributes)

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class HeartContainer : ISprite
+    public class HeartContainer : IItem
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -27,6 +27,11 @@ namespace sprint0
         public void Update()
         {
             // does nothing for now
+        }
+
+        public void PickedUp()
+        {
+            
         }
     }
 }
