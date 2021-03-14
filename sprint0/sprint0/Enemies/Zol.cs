@@ -9,15 +9,18 @@ namespace sprint0
 {
     public class Zol : IEnemy
     {
-        private Game1 game;
+        private readonly Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private int totalFrames;
+        private readonly int totalFrames;
         private int currentFrame;
-        private int repeatedFrames = 10;
-        private string color;
-        private Dictionary<string, List<Rectangle>> colorMap;
-        private int delay, delayCounter;
+        private readonly int repeatedFrames = 10;
+        private readonly string color;
+        private readonly Dictionary<string, List<Rectangle>> colorMap;
+        private readonly int delay;
+        private int moveCounter, dirChangeDelay;
+        private readonly Random rand;
+        private int delayCounter;
         private readonly int width = 16, height = 16;
         private Direction direction = Direction.w;
         private int spawnCounter;
@@ -33,7 +36,7 @@ namespace sprint0
             color = gelColor;
             delay = 50;
             delayCounter = 0;
-
+            rand = new Random();
             colorMap = new Dictionary<string, List<Rectangle>>
             {
                 { "green", GetFrames(77, 11, 2)},
@@ -68,10 +71,14 @@ namespace sprint0
         public void Update()
         {
             CheckHealth();
+            moveCounter++;
             SpawnGel();
 
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-
+            if (moveCounter == dirChangeDelay)
+            {
+                ArbitraryDirection();
+            }
             switch (direction)
             {
                 case Direction.w:
@@ -81,12 +88,6 @@ namespace sprint0
                         Location = new Rectangle(Location.X - 40, Location.Y, Location.Width, Location.Height);
                         delayCounter = 0;
                     }
-
-                    if (Location.X <= 50 * Game1.Scale)
-                    {
-                        direction = Direction.s;
-
-                    }
                     break;
                 case Direction.e:
                     if (delayCounter == delay)
@@ -95,22 +96,12 @@ namespace sprint0
                         delayCounter = 0;
                     }
 
-                    if (Location.X >= (Game1.Width - 50) * Game1.Scale)
-                    {
-                        direction = Direction.n;
-
-                    }
                     break;
                 case Direction.s:
                     if (delayCounter == delay)
                     {
                         Location = new Rectangle(Location.X, Location.Y + 40, Location.Width, Location.Height);
                         delayCounter = 0;
-                    }
-                    if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
-                    {
-                        direction = Direction.e;
-
                     }
                     break;
                 case Direction.n:
@@ -119,21 +110,43 @@ namespace sprint0
                         Location = new Rectangle(Location.X, Location.Y - 40, Location.Width, Location.Height);
                         delayCounter = 0;
                     }
-                    if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
-                    {
-                        direction = Direction.w;
-
-                    }
                     break;
 
             };
             delayCounter++;
         }
 
+        private void ArbitraryDirection()
+        {
+            // changes to an arbitrary direction; if in wall, go into room, else random direction
+            // TODO 32 is a magic number for room border / wall width... make static variable in Game1?
+            moveCounter = 0;
+            if (Location.X <= 32 * Game1.Scale) // in the left wall, move right
+            {
+                direction = Direction.e;
+            }
+            else if (Location.X >= (Game1.Width - 32) * Game1.Scale) // in the right wall, move left
+            {
+                direction = Direction.w;
+            }
+            else if (Location.Y <= (Game1.HUDHeight + 32) * Game1.Scale) // in the top wall, move down
+            {
+                direction = Direction.s;
+            }
+            else if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale) // in the bottom wall, move up
+            {
+                direction = Direction.n;
+            }
+            else // not in a wall, move in random direction
+            {
+                direction = (Direction)rand.Next(0, 4);
+            }
+            dirChangeDelay = rand.Next(10, 50); //TODO may still go into the wall... not sure if that's okay?
+        }
+
         public void ChangeDirection()
         {
-            Random random = new Random();
-            direction = (Direction)random.Next(0, 4);
+            ArbitraryDirection();
         }
 
         private void CheckHealth()

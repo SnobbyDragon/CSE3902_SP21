@@ -48,6 +48,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5) // floating point errors
             {

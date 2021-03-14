@@ -11,13 +11,13 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 393, yOffset = 11, width = 16, height = 16;
-        private List<Rectangle> sources;
+        private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private SpriteEffects s; // could be flipped horizontally, vertically, or both
+        private readonly SpriteEffects s; // could be flipped horizontally, vertically, or both
         private Direction direction; // wallmaster only moves n s e w (cannot move diagonal)
         private int moveCounter, dirChangeDelay;
-        private Random rand;
+        private readonly Random rand;
         private readonly Game1 game;
         private int health;
         public Wallmaster(Texture2D texture, Vector2 location, Game1 game)
