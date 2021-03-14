@@ -48,7 +48,7 @@
     <Block ObjectName="block" LocationX="480" LocationY="460" />?
     <Block ObjectName="block" LocationX="520" LocationY="460" />?
 
-    <Boss ObjectName="aquamentus" LocationX="400" LocationY="340" />?
+    <Boss ObjectName="aquamentus" LocationX="380" LocationY="300" />?
 
     <Item ObjectName="heart container" LocationX="482" LocationY="342" />?
     <Player ObjectName="Link" LocationX="310" LocationY="460" />?

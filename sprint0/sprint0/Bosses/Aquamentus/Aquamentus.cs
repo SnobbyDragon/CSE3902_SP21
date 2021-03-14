@@ -89,8 +89,7 @@ namespace sprint0
 
         public void ChangeDirection()
         {
-           // Random random = new Random();
-            //direction = (Direction)random.Next(0, 2); //TODO: make movement depend on direction
+           //no-op
         }
 
         private void CheckHealth()
