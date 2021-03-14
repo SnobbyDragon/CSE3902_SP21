@@ -12,6 +12,8 @@ namespace sprint0
         public Rectangle Location { get; set; }
         private Vector2 preciseLocation;
         public Texture2D Texture { get; set; }
+        public int Damage { get => 1; }
+
         private bool isDead;
         private readonly int width = 8, height = 10;
         private readonly List<Rectangle> sources;

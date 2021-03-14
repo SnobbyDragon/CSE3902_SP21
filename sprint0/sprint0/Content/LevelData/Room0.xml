@@ -2,6 +2,9 @@
 <XnaContent>?    
     
     <Dungeon ObjectName="darkness" LocationX="80" LocationY="220" />?
+
+     <Block ObjectName="invisible block" LocationX="120" LocationY="100" />?
+
     <Block ObjectName="brick" LocationX="0" LocationY="180" />?
     <Block ObjectName="brick" LocationX="40" LocationY="180" />?
     <Block ObjectName="brick" LocationX="80" LocationY="180" />?

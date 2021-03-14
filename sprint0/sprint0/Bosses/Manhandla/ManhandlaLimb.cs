@@ -17,12 +17,14 @@ namespace sprint0
         private Dictionary<String, Vector2> dirToLocationMap;
         private Dictionary<String, List<Rectangle>> dirToSourcesMap;
         private string dir;
+        private int health;
         private IEnemy center; // center of manhandla
         private readonly int fireballRate = 100; //TODO currently arbitrary
         private int fireballCounter = 0;
 
         public ManhandlaLimb(Texture2D texture, IEnemy center, String dir, Game1 game)
         {
+            health = 25;
             Texture = texture;
             this.game = game;
             this.center = center;
@@ -75,6 +77,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             Location = new Rectangle(center.Location.X + (int)dirToLocationMap[dir].X, center.Location.Y + (int)dirToLocationMap[dir].Y, size, size);
@@ -93,7 +96,13 @@ namespace sprint0
 
         public void TakeDamage(int damage)
         {
-            //no-op
+            health -= damage;
+        }
+
+        public int CheckHealth()
+        {
+            if (health < 0) Perish();
+            return health;
         }
 
         public void Perish()
@@ -110,9 +119,25 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            Vector2 dir = game.Player.Pos - Location.Center.ToVector2();
-            dir.Normalize();
-            game.AddFireball(Location.Center.ToVector2(), dir, this);
+            Vector2 direction = Location.Center.ToVector2();
+            if (dir.Equals("up")){
+                 direction = new Vector2(0,-1);
+            }
+            else if (dir.Equals("down"))
+            {
+                direction = new Vector2(0, 1);
+            }
+            else if (dir.Equals("left"))
+            {
+                direction = new Vector2(-1,0);
+            }
+            else if (dir.Equals("right"))
+            {
+                direction = new Vector2(1,0) ;
+            }
+
+            direction.Normalize();
+            game.AddFireball(Location.Center.ToVector2(), direction, this);
         }
     }
 }

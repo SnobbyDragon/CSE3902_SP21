@@ -13,6 +13,7 @@ namespace sprint0
     {
         public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
+        public int Damage { get => 1; }
         private List<IEnemy> recentlyHit;
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 290, yOffset = 11, width = 8, height = 16;
@@ -26,6 +27,7 @@ namespace sprint0
         private readonly SpriteEffects h = SpriteEffects.FlipHorizontally, v = SpriteEffects.FlipVertically;
         private Vector2 moveVector;
         private bool alive;
+        private bool hit = false;
         private readonly int lifespan;
         private int timeBetweenHits;
         public Boomerang(Texture2D texture, Vector2 location, Direction dir, int lfspn, IEntity shooter)
@@ -127,7 +129,7 @@ namespace sprint0
             }
             if (alive)
             {
-                if (age > maxDistance)
+                if (age > maxDistance || hit)
                 {
                     moveVector = Link.position - Location.Location.ToVector2();
                     moveVector.Normalize();
@@ -145,6 +147,7 @@ namespace sprint0
         public void RegisterHit(IEnemy enemy)
         {
             recentlyHit.Add(enemy);
+            hit = true;
         }
     }
 }
