@@ -18,7 +18,6 @@ namespace sprint0
         private int currFrame;
         private readonly int totalFrames, repeatedFrames, speed = 3;
         public Vector2 Direction { get; set; } // direction fireball travels
-        private bool hit;
         public bool IsDead { get; set; }
 
         public int Damage { get; }
@@ -55,7 +54,7 @@ namespace sprint0
                 { "right",  SpriteEffects.FlipHorizontally },
                 { "up right", SpriteEffects.FlipHorizontally }
             };
-            hit = true; // start hidden
+            IsDead = true; // start hidden
             GetDirection();
         }
 
@@ -106,17 +105,17 @@ namespace sprint0
             return sources;
         }
 
-        public bool IsAlive() => !hit; // TODO clean up, we only need IsAlive()
+        public bool IsAlive() => !IsDead; // TODO clean up, we only need IsAlive()
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!hit)
+            if (!IsDead)
                 spriteBatch.Draw(Texture, Location, dirToSourcesMap[type][currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), dirToEffectsMap[type], 0);
         }
 
         public void Update()
         {
-            if (!hit)
+            if (!IsDead)
             {
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 Rectangle loc = Location;
@@ -127,7 +126,7 @@ namespace sprint0
 
         public void RegisterHit()
         {
-            hit = true;
+            IsDead = true;
         }
     }
 }
