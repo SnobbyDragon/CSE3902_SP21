@@ -6,35 +6,23 @@
     <Dungeon ObjectName="left locked door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right wall" LocationX="0" LocationY="320" />?
 
-    <!--Only put blocks here when there is no door-->
-    <Block ObjectName="invisible block" LocationX="40" LocationY="320" />?
+    <!--Only put blocks here when there is no door--><Block ObjectName="invisible block" LocationX="40" LocationY="320" />?
     <Block ObjectName="invisible block" LocationX="40" LocationY="360" />?
 	<Block ObjectName="invisible block" LocationX="0" LocationY="320" />?
 	<Block ObjectName="invisible block" LocationX="0" LocationY="360" />?
-	<!--Only put blocks here when there is no door-->
-
-    <!--Only put blocks here when there is no door-->
-    <Block ObjectName="invisible block" LocationX="560" LocationY="320" />?
+	<!--Only put blocks here when there is no door--><!--Only put blocks here when there is no door--><Block ObjectName="invisible block" LocationX="560" LocationY="320" />?
     <Block ObjectName="invisible block" LocationX="560" LocationY="360" />?
 	<Block ObjectName="invisible block" LocationX="600" LocationY="320" />?
 	<Block ObjectName="invisible block" LocationX="600" LocationY="360" />?
-	<!--Only put blocks here when there is no door-->
-
-    <!--Only put blocks here when there is no door-->
-    <Block ObjectName="invisible block" LocationX="280" LocationY="120" />?
+	<!--Only put blocks here when there is no door--><!--Only put blocks here when there is no door--><Block ObjectName="invisible block" LocationX="280" LocationY="120" />?
     <Block ObjectName="invisible block" LocationX="320" LocationY="120" />?
 	<Block ObjectName="invisible block" LocationX="280" LocationY="160" />?
 	<Block ObjectName="invisible block" LocationX="320" LocationY="160" />?
-	<!--Only put blocks here when there is no door-->
-
-    <!--Only put blocks here when there is no door-->
-    <Block ObjectName="invisible block" LocationX="280" LocationY="500" />?
+	<!--Only put blocks here when there is no door--><!--Only put blocks here when there is no door--><Block ObjectName="invisible block" LocationX="280" LocationY="500" />?
     <Block ObjectName="invisible block" LocationX="320" LocationY="500" />?
 	<Block ObjectName="invisible block" LocationX="280" LocationY="540" />?
 	<Block ObjectName="invisible block" LocationX="320" LocationY="540" />?
-	<!--Only put blocks here when there is no door-->
-
-<Block ObjectName="block" LocationX="320" LocationY="260" />?   
+	<!--Only put blocks here when there is no door--><Block ObjectName="block" LocationX="320" LocationY="260" />?   
     <Block ObjectName="block" LocationX="280" LocationY="300" />?  
     <Block ObjectName="block" LocationX="360" LocationY="300" />? 
   
@@ -51,7 +39,7 @@
     <Enemy ObjectName="trap" LocationX="520" LocationY="460" />?
     
    
-    <ItemWeapon ObjectName="fairy" LocationX="200" LocationY="200" Direction="North" Lifespan="0" />?
+    <Item ObjectName="fairy" LocationX="200" LocationY="200" />?
 
      <Player ObjectName="Link" LocationX="520" LocationY="340" />?
 ?</XnaContent>

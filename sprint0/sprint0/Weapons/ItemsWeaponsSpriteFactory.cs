@@ -33,7 +33,7 @@ namespace sprint0
             };
         }
 
-        public IItem MakeItem(string spriteType, Vector2 location, Direction dir, int lifespan)
+        public IItem MakeItem(string spriteType, Vector2 location)
         {
             return spriteType switch
             {

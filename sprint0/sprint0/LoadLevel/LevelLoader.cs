@@ -6,7 +6,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 //Author: Stuti Shah
-//Updated: 03/13/21 by Jesse He
+//Updated: 03/14/21 by Stuti Shah
 namespace sprint0
 {
     public class LevelLoader
@@ -14,7 +14,7 @@ namespace sprint0
         private XmlReader roomReader;
         private FileStream roomStream;
         private string path;
-
+        private int roomNo;
         private List<ISprite> sprites;
         private List<IProjectile> projectiles;
         private List<IBlock> blocks;
@@ -37,7 +37,7 @@ namespace sprint0
             path += ".xml";
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
-
+            this.roomNo = roomNo;
             sprites = new List<ISprite>();
             projectiles = new List<IProjectile>();
             blocks = new List<IBlock>();
@@ -66,60 +66,42 @@ namespace sprint0
                     }
                 }
             }
-            AddRoomBorderBlocks();
+            if (roomNo != 0) AddRoomBorderBlocks();
             return (sprites, projectiles, blocks, enemies, npcs, items);
-        }
-
-        public Direction WeaponDirection(string dir)
-        {
-            //converts direction string from xml into Direction enum
-            return dir switch
-            {
-                "North" => Direction.n,
-                "East" => Direction.e,
-                "West" => Direction.w,
-                "South" => Direction.s,
-                _ => Direction.n,
-            };
         }
 
         public void AddElement()
         {
+            Vector2 location = new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")));
+            String objectName = roomReader.GetAttribute("ObjectName");
             //add element depending on the type of element
             switch (roomReader.Name.ToString())
             {
                 case "Enemy":
-                    enemies.Add(enemyFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
+                    enemies.Add(enemyFactory.MakeSprite(objectName, location));
                     break;
-                case "ItemWeapon":
-                    Direction dir = WeaponDirection(roomReader.GetAttribute("Direction"));
-                    int lifespan = int.Parse(roomReader.GetAttribute("Lifespan"));
-                    items.Add(itemFactory.MakeItem(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir, lifespan));
-                    break;
-                case "Projectile":
-                    Direction dir1 = WeaponDirection(roomReader.GetAttribute("Direction"));
-                    int lifespan1 = int.Parse(roomReader.GetAttribute("Lifespan"));
-                    projectiles.Add(itemFactory.MakeProjectile(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY"))), dir1, null)); //TODO randomly null for now
+                case "Item":
+                    items.Add(itemFactory.MakeItem(objectName, location));
                     break;
                 case "Boss":
                     if (roomReader.HasAttributes)
-                        enemies.Add(bossFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
+                        enemies.Add(bossFactory.MakeSprite(objectName, location));
                     break;
                 case "Dungeon":
                     if (roomReader.HasAttributes)
-                        sprites.Add(dungeonFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
+                        sprites.Add(dungeonFactory.MakeSprite(objectName, location));
                     break;
                 case "Block":
                     if (roomReader.HasAttributes)
-                        blocks.Add(dungeonFactory.MakeBlock(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
+                        blocks.Add(dungeonFactory.MakeBlock(objectName, location));
                     break;
                 case "NPC": // NPCs have the same behaviour as blocks
                     if (roomReader.HasAttributes)
-                        npcs.Add(npcFactory.MakeSprite(roomReader.GetAttribute("ObjectName"), new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")))));
+                        npcs.Add(npcFactory.MakeSprite(objectName, location));
                     break;
                 case "Player":
                     if (roomReader.HasAttributes)
-                        game1.Player.Pos = new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")));
+                        game1.Player.Pos = location;
                     break;
                 default:
                     throw new ArgumentException("Invalid sprite! Level loading failed.");
@@ -174,7 +156,7 @@ namespace sprint0
             blocks.Add(dungeonFactory.MakeBlock("invisible block", new Vector2(480, bottomBorder)));
             blocks.Add(dungeonFactory.MakeBlock("invisible block", new Vector2(520, bottomBorder)));
 
-            for(int i = (int) (Game1.HUDHeight*Game1.Scale); i <= (int)((Game1.HUDHeight + Game1.MapHeight) * Game1.Scale); i += blockSize)
+            for (int i = (int)(Game1.HUDHeight * Game1.Scale); i <= (int)((Game1.HUDHeight + Game1.MapHeight) * Game1.Scale); i += blockSize)
             {
                 blocks.Add(dungeonFactory.MakeBlock("invisible block", new Vector2(leftBorder - blockSize, i)));
                 blocks.Add(dungeonFactory.MakeBlock("invisible block", new Vector2(rightBorder + blockSize, i)));
