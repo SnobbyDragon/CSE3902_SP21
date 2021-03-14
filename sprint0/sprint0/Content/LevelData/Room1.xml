@@ -33,13 +33,13 @@
     <Block ObjectName="movable block" LocationX="240" LocationY="340" />?
     <Block ObjectName="stairs" LocationX="320" LocationY="340" />?  
     
-    <Enemy ObjectName="trap" LocationX="82" LocationY="220" />?    
-    <Enemy ObjectName="trap" LocationX="520" LocationY="220" />?    
-    <Enemy ObjectName="trap" LocationX="82" LocationY="460" />?    
-    <Enemy ObjectName="trap" LocationX="520" LocationY="460" />?
+    <!--<Enemy ObjectName="trap" LocationX="82" LocationY="220" />? --> 
+    <!--<Enemy ObjectName="trap" LocationX="520" LocationY="220" />?-->    
+    <!--<Enemy ObjectName="trap" LocationX="82" LocationY="460" />?  -->  
+    <!--<Enemy ObjectName="trap" LocationX="520" LocationY="460" />?-->
     
-   
-    <Item ObjectName="fairy" LocationX="200" LocationY="200" />?
+   <Item ObjectName="fairy" LocationX="520" LocationY="460" />?
+    <Enemy ObjectName="trap aparatus" LocationX="301" LocationY="340" />?
 
      <Player ObjectName="Link" LocationX="520" LocationY="340" />?
 ?</XnaContent>

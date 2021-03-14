@@ -41,12 +41,12 @@ namespace sprint0
         public void Update()
         {
 
-            if (direction == Direction.ne)
-            { //The trap is not moving so check if link triggered it
-                direction = CheckIfTriggered();
-            }
-            else
-            {
+            //if (direction == Direction.ne)
+            //{ //The trap is not moving so check if link triggered it
+            //    direction = CheckIfTriggered();
+            //}
+            //else
+            //{
                 //move the traps
                 if (direction == Direction.s)
                 {
@@ -76,7 +76,7 @@ namespace sprint0
                 //if the traps moved to their home location, make them still again
                 if (Location == HomeLocation) { direction = Direction.ne; }
 
-            }
+            //}
 
            
         }
@@ -106,6 +106,10 @@ namespace sprint0
             }
 
             return moveDirection;
+        }
+
+        public bool IsMoving() {
+            return !(direction == Direction.ne);
         }
 
         public void ChangeDirection()
