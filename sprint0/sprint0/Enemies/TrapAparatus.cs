@@ -32,39 +32,48 @@ namespace sprint0
                 new Trap(Texture,center+ new Vector2(xOffset, yOffset), game),
                 new Trap(Texture,center+ new Vector2(-xOffset, yOffset), game),
                 new Trap(Texture,center+ new Vector2(-xOffset, -yOffset), game),
-                new Trap(Texture,center+ new Vector2(-xOffset, yOffset), game)
+                new Trap(Texture,center+ new Vector2(xOffset, -yOffset), game),
+                
 
             };
-            //register limbs as enemies for collision handeling
+            //register traps as enemies for collision handeling
             game.RegisterEnemies(traps);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach(IEnemy trap in traps){
+            foreach(Trap trap in traps){
                 trap.Draw(spriteBatch);
             }
         }
 
         public void Update()
         {
-            foreach (Trap trap in traps)
+            for(int i=0;i<traps.Count;i++)
             {
+                Trap trap = (Trap)traps[i];
                 if (!trap.IsMoving() && !NeighborsMoving(trap)) {
-                    trap.CheckIfTriggered();
+                  
+                    trap.setDirection(trap.CheckIfTriggered());
                 }
+               
+            }
+            for (int i = 0; i < traps.Count; i++)
+            {
+                Trap trap = (Trap)traps[i];
                 trap.Update();
             }
-            
 
-        }
+
+
+         }
 
         private bool NeighborsMoving(Trap trap)
         {
             
             int currentTrap=traps.IndexOf(trap);
-            Trap neighbor1 = (Trap)traps[(currentTrap + 1) % 4];
-            Trap neighbor2 = (Trap)traps[(currentTrap + -1 +4) % 4];
+            Trap neighbor1 = (Trap)traps[(currentTrap + 1) % traps.Count];
+            Trap neighbor2 = (Trap)traps[(currentTrap + -1 +traps.Count) % traps.Count];
             if (neighbor1.IsMoving() || neighbor2.IsMoving()) {
                 return true;
             }

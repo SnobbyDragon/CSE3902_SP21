@@ -47,8 +47,8 @@ namespace sprint0
             //}
             //else
             //{
-                //move the traps
-                if (direction == Direction.s)
+            //move the traps
+            if (direction == Direction.s)
                 {
                     //moves sprite down
                     Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
@@ -66,7 +66,7 @@ namespace sprint0
                     Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
 
                 }
-                else
+                else if(direction == Direction.n)
                 {   //direction == Direction.n
                     //moves sprite up
                     Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
@@ -110,6 +110,11 @@ namespace sprint0
 
         public bool IsMoving() {
             return !(direction == Direction.ne);
+
+        }
+
+        public void setDirection(Direction dir) {
+            direction = dir;
         }
 
         public void ChangeDirection()
