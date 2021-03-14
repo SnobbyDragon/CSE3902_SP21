@@ -24,7 +24,7 @@ namespace sprint0
         private readonly int width = 16, height = 16;
         private Direction direction = Direction.w;
         private int spawnCounter;
-        private readonly int spawnRate = 100; // arbitrary; spawns a gel every spawnRate
+        private readonly int spawnRate = 1500; // arbitrary; spawns a gel every spawnRate
         private int health;
         public Zol(Texture2D texture, Vector2 location, string gelColor, Game1 game)
         {
@@ -47,7 +47,7 @@ namespace sprint0
                 { "blkwhite", GetFrames(145, 28, 2)},
             };
 
-            spawnCounter = 0;
+            spawnCounter =(int) spawnRate/4;
             this.game = game;
         }
 
@@ -85,14 +85,14 @@ namespace sprint0
                     //moves sprite left but in a halting manner
                     if (delayCounter == delay)
                     {
-                        Location = new Rectangle(Location.X - 40, Location.Y, Location.Width, Location.Height);
+                        Location = new Rectangle(Location.X - 39, Location.Y, Location.Width, Location.Height);
                         delayCounter = 0;
                     }
                     break;
                 case Direction.e:
                     if (delayCounter == delay)
                     {
-                        Location = new Rectangle(Location.X + 40, Location.Y, Location.Width, Location.Height);
+                        Location = new Rectangle(Location.X + 39, Location.Y, Location.Width, Location.Height);
                         delayCounter = 0;
                     }
 
@@ -100,14 +100,14 @@ namespace sprint0
                 case Direction.s:
                     if (delayCounter == delay)
                     {
-                        Location = new Rectangle(Location.X, Location.Y + 40, Location.Width, Location.Height);
+                        Location = new Rectangle(Location.X, Location.Y + 39, Location.Width, Location.Height);
                         delayCounter = 0;
                     }
                     break;
                 case Direction.n:
                     if (delayCounter == delay)
                     {
-                        Location = new Rectangle(Location.X, Location.Y - 40, Location.Width, Location.Height);
+                        Location = new Rectangle(Location.X, Location.Y - 39, Location.Width, Location.Height);
                         delayCounter = 0;
                     }
                     break;
@@ -118,8 +118,8 @@ namespace sprint0
 
         private void ArbitraryDirection()
         {
-            // changes to an arbitrary direction; if in wall, go into room, else random direction
-            // TODO 32 is a magic number for room border / wall width... make static variable in Game1?
+            //// changes to an arbitrary direction; if in wall, go into room, else random direction
+            //// TODO 32 is a magic number for room border / wall width... make static variable in Game1?
             moveCounter = 0;
             if (Location.X <= 32 * Game1.Scale) // in the left wall, move right
             {
@@ -139,9 +139,12 @@ namespace sprint0
             }
             else // not in a wall, move in random direction
             {
-                direction = (Direction)rand.Next(0, 4);
+               
+             direction = (Direction)rand.Next(0, 4);
+                
             }
             dirChangeDelay = rand.Next(10, 50); //TODO may still go into the wall... not sure if that's okay?
+
         }
 
         public void ChangeDirection()
@@ -169,7 +172,9 @@ namespace sprint0
             if (spawnCounter == spawnRate)
             {
                 // TODO gel collides with zol, but maybe they should be able to be on top of each other?
-                game.AddEnemy(Location.Location.ToVector2(), color + " gel");
+                Vector2 spawnLoc = Location.Location.ToVector2();
+                spawnLoc += new Vector2(-39, 0);
+                game.AddEnemy(spawnLoc, color + " gel");
                 spawnCounter = 0;
             }
             else
