@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Flame : IBlock
+    public class Flame : INpc
     {
 
         public Rectangle Location { get; set; }
@@ -46,8 +46,5 @@ namespace sprint0
             }
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
         }
-
-        public bool IsWalkable() => false;
-        public bool IsMovable() => false;
     }
 }

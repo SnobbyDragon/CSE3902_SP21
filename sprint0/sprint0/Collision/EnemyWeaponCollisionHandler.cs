@@ -9,10 +9,13 @@ namespace sprint0
 
         public void HandleCollision(IEnemy enemy, IWeapon weapon, Direction side)
         {
-            if (weapon is IProjectile projectile && projectile.IsAlive() && projectile.Shooter != enemy)
+            if (weapon is IProjectile projectile)
             {
-                projectile.RegisterHit();
-                enemy.TakeDamage(weapon.Damage);
+                if (projectile.IsAlive() && projectile.Shooter != enemy)
+                {
+                    projectile.RegisterHit();
+                    enemy.TakeDamage(weapon.Damage);
+                }
             }
             else if (weapon is Bomb bomb)
             {

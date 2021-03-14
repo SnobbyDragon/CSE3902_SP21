@@ -6,8 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
-    public class Key : ISprite
+    public class Key : IItem
     {
+        public bool PickedUp { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private List<Rectangle> sources;

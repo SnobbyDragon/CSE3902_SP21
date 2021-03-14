@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class OldPerson : IBlock
+    public class OldPerson : INpc
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -36,8 +36,5 @@ namespace sprint0
         {
             // does nothing for now
         }
-
-        public bool IsWalkable() => false;
-        public bool IsMovable() => false;
     }
 }

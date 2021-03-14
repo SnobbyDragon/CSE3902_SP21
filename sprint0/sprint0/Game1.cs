@@ -43,13 +43,15 @@ namespace sprint0
         private List<IWeapon> weapons, weaponsToDie;
         private List<IBlock> blocks;
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
+        private List<INpc> npcs;
+        private List<IItem> items;
         private AllCollisionHandler collisionHandler;
 
         private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
         private LevelLoader levelLoader;
         public bool changeRoom;
         public int roomIndex;
-        public readonly int numRooms=18;
+        public readonly int numRooms = 18;
         private Text text;
 
         private ISprite sprite;
@@ -88,7 +90,7 @@ namespace sprint0
 
             //note: the integer refers to the room number to load
             changeRoom = true;
-            roomIndex = 12;
+            roomIndex = 1;
             levelLoader = new LevelLoader(this, roomIndex);
 
             base.Initialize();
@@ -106,6 +108,7 @@ namespace sprint0
             projectiles = new List<IProjectile>();
             blocks = new List<IBlock>();
             enemies = new List<IEnemy>();
+            npcs = new List<INpc>();
 
             collisionHandler = new AllCollisionHandler();
 
@@ -117,11 +120,13 @@ namespace sprint0
              */
             weaponsToDie = new List<IWeapon>();
             projectilesToDie = new List<IProjectile>();
-            (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>) roomElements = levelLoader.LoadLevel();
+            (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements = levelLoader.LoadLevel();
             roomSprites = roomElements.Item1;
             projectiles = roomElements.Item2;
             blocks = roomElements.Item3;
             enemies = roomElements.Item4;
+            npcs = roomElements.Item5;
+            items = roomElements.Item6;
             enemiesToDie = new List<IEnemy>();
             enemiesToSpawn = new List<IEnemy>(); // used for spawning new enemies; avoids mutating enemies list during foreach
             roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
@@ -142,7 +147,6 @@ namespace sprint0
             };
 
             text = new Text(this);
-            
         }
 
         public void AddWeapon(Vector2 Location, Direction dir, string item, IPlayer source)
@@ -184,20 +188,20 @@ namespace sprint0
                 Exit();
 
             foreach (IController controller in controllerList)
-            {
                 controller.Update();
-            }
             player.Update();
 
             //NOTE: changes room if needed
             if (changeRoom)
             {
                 levelLoader = new LevelLoader(this, roomIndex);
-                (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>) roomElements = levelLoader.LoadLevel();
+                (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements = levelLoader.LoadLevel();
                 roomSprites = roomElements.Item1;
                 projectiles = roomElements.Item2;
                 blocks = roomElements.Item3;
                 enemies = roomElements.Item4;
+                npcs = roomElements.Item5;
+                items = roomElements.Item6;
                 changeRoom = false;
             }
 
@@ -214,10 +218,13 @@ namespace sprint0
                 block.Update();
             foreach (IEnemy enemy in enemies)
                 enemy.Update();
+            foreach (INpc npc in npcs)
+                npc.Update();
+            foreach (IItem item in items)
+                item.Update();
 
             // handles collisions
-            collisionHandler.HandleAllCollisions(Player, enemies, weapons, projectiles, blocks);
-
+            collisionHandler.HandleAllCollisions(Player, enemies, weapons, projectiles, blocks, npcs);
            
             // after all traversals, add new enemies
             if (enemiesToSpawn.Count > 0)
@@ -225,7 +232,8 @@ namespace sprint0
                 enemies.AddRange(enemiesToSpawn);
                 enemiesToSpawn.Clear();
             }
-            foreach (IEnemy enemy in enemiesToDie) {
+            foreach (IEnemy enemy in enemiesToDie)
+            {
                 enemies.Remove(enemy);
             }
 
@@ -245,6 +253,7 @@ namespace sprint0
             {
                 projectiles.Remove(projectile);
             }
+
             foreach (IWeapon weapon in weaponsToDie)
             {
                 weapons.Remove(weapon);
@@ -272,6 +281,10 @@ namespace sprint0
                 projectile.Draw(_spriteBatch);
             foreach (IEnemy enemy in enemies)
                 enemy.Draw(_spriteBatch);
+            foreach (INpc npc in npcs)
+                npc.Draw(_spriteBatch);
+            foreach (IItem item in items)
+                item.Draw(_spriteBatch);
             foreach (IProjectile projectile in projectiles)
                 projectile.Draw(_spriteBatch);
             player.Draw(_spriteBatch);
@@ -283,8 +296,6 @@ namespace sprint0
 
             _spriteBatch.End();
             base.Draw(gameTime);
-
-            
         }
 
         public void ResetGame()

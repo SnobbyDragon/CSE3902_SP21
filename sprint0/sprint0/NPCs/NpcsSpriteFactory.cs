@@ -17,7 +17,7 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/NPCs");
         }
 
-        public IBlock MakeSprite(string spriteType, Vector2 location)
+        public INpc MakeSprite(string spriteType, Vector2 location)
         {
             
             switch (spriteType)
@@ -37,7 +37,7 @@ namespace sprint0
                 case "flame":
                     return new Flame(texture, location);
                 default:
-                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
+                    throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed.");
             }
         }
     }
