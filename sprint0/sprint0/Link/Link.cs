@@ -13,7 +13,7 @@ namespace sprint0
         private IPlayerState state;
         public static Vector2 position;
         private int health = 32;
-        private int maxHealth = 32;
+        private readonly int maxHealth = 32;
         private readonly int speed = 2;
         private Boolean isAlive;
         private Direction direction = Direction.n;
