@@ -22,7 +22,7 @@ namespace sprint0
         private int currentSpriteEffect;
         private readonly List<SpriteEffects> spriteEffects;
         public Vector2 Destination { get; set; }
-        protected readonly int sideLength = 16, width = 32;
+        protected readonly int sideLength = 16;
         private readonly int scaledSideLength, scaledWidth;
         private int eatingCounter;
         private readonly int eatingTime;
@@ -30,6 +30,7 @@ namespace sprint0
         
         public Dodongo(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
+            width = 32;
             health = 50;
             scaledSideLength = (int)(sideLength * Game1.Scale);
             scaledWidth = (int)(width * Game1.Scale);

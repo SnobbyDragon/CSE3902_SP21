@@ -9,8 +9,7 @@ namespace sprint0
 {
     public class Snake : Enemy, IEnemy
     {
-        public Rectangle Location { get; set; }
-        public Texture2D Texture { get; set; }
+
         private readonly List<Rectangle> sources;
         private SpriteEffects spriteEffect;
 
@@ -48,7 +47,7 @@ namespace sprint0
             moveCounter++;
             if (moveCounter == dirChangeDelay)
             {
-                ArbitraryDirection(2000,200000);
+                ArbitraryDirection(200,3300);
             }
 
             CheckHealth();
