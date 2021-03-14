@@ -136,7 +136,15 @@ namespace sprint0
 
         private void CheckHealth()
         {
-           if (health < 0) isDead=true;
+            if (health < 0) {
+                isDead = true;
+                foreach (GanonFireball fireball in fireballExplosion)
+                {
+      
+                    fireball.RegisterHit();
+                }
+
+            }
             if (health < 20) currFrame = 5;
         }
         public void TakeDamage(int damage)
