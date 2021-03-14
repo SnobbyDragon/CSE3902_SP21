@@ -118,8 +118,8 @@ namespace sprint0
 
         private void ArbitraryDirection()
         {
-            // changes to an arbitrary direction; if in wall, go into room, else random direction
-            // TODO 32 is a magic number for room border / wall width... make static variable in Game1?
+            //// changes to an arbitrary direction; if in wall, go into room, else random direction
+            //// TODO 32 is a magic number for room border / wall width... make static variable in Game1?
             moveCounter = 0;
             if (Location.X <= 32 * Game1.Scale) // in the left wall, move right
             {
@@ -139,9 +139,12 @@ namespace sprint0
             }
             else // not in a wall, move in random direction
             {
-                direction = (Direction)rand.Next(0, 4);
+               
+             direction = (Direction)rand.Next(0, 4);
+                
             }
             dirChangeDelay = rand.Next(10, 50); //TODO may still go into the wall... not sure if that's okay?
+
         }
 
         public void ChangeDirection()
