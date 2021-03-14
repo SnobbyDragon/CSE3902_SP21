@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 /*
- * updated: 3/12/21 by urick.9
  * Last updated: 3/13/21 by johnson.7510
  */
 namespace sprint0
