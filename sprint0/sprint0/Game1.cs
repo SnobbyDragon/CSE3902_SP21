@@ -152,6 +152,11 @@ namespace sprint0
             enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
         }
 
+        public void RegisterEnemies(List<IEnemy> unregEnemies)
+        {
+            enemies.AddRange(unregEnemies);
+        }
+
         public void RemoveEnemy(IEnemy enemy)
         {
             enemiesToDie.Add(enemy);
