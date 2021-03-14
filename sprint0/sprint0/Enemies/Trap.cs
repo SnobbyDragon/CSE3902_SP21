@@ -14,7 +14,7 @@ namespace sprint0
         private Rectangle source;
         private readonly int width = 16, height = 16;
         private Direction direction;
-        private Game1 game;
+        private readonly Game1 game;
         private Rectangle HomeLocation;
         private Boolean isTriggered;
 

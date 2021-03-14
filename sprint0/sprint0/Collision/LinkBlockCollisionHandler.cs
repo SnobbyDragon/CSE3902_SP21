@@ -5,7 +5,6 @@ namespace sprint0
 {
     public class LinkBlockCollisionHandler
     {
-
         private readonly int linkSize = (int)(16 * Game1.Scale);
         public LinkBlockCollisionHandler()
         {

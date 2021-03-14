@@ -9,7 +9,7 @@ namespace sprint0
         private readonly Dictionary<Collision, Direction> sideToDir;
         private readonly CollisionDetector collisionDetector;
         private readonly int linkSize = (int)(16 * Game1.Scale); // size of link
-        private readonly int offset = 2; // make hitbox slightly smaller
+        private readonly int offset = 3; // make hitbox slightly smaller
 
         public AllCollisionHandler()
         {

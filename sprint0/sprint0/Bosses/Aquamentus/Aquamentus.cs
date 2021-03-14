@@ -61,6 +61,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             if (!isDead)
             { // only moves and animates if alive
                 Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
