@@ -20,7 +20,7 @@ namespace sprint0
         public Gleeok(Texture2D texture, Vector2 location, Game1 game)
         {
             health = 25;
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             this.game = game;
             currFrame = 0;
@@ -40,7 +40,7 @@ namespace sprint0
         private List<IEnemy> GenerateNeck()
         {
             List<IEnemy> neck = new List<IEnemy>();
-            Vector2 anchor = Location.Location.ToVector2() + new Vector2(width / 2 - 4, height - 6);
+            Vector2 anchor = Location.Location.ToVector2() + new Vector2(Location.Width / 3, (float)(Location.Height * 0.8));
             IEnemy head = new GleeokHead(Texture, anchor, game);
             for (int i = 0; i < 4; i++)
             {
