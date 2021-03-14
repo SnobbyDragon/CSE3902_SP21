@@ -8,6 +8,7 @@ namespace sprint0
 {
     public class Key : IItem
     {
+        public bool PickedUp { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private List<Rectangle> sources;
@@ -43,11 +44,6 @@ namespace sprint0
         {
             //switches between two versions of the key (not sure if that's correct)
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-        }
-
-        public void PickedUp()
-        {
-
         }
     }
 }

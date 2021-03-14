@@ -8,6 +8,7 @@ namespace sprint0
 {
     public class Compass : IItem
     {
+        public bool PickedUp { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
@@ -23,7 +24,6 @@ namespace sprint0
 
         }
 
-
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, source, Color.White);
@@ -32,11 +32,6 @@ namespace sprint0
         public void Update()
         {
             //Does nothing
-        }
-
-        public void PickedUp()
-        {
-
         }
     }
 }

@@ -50,7 +50,7 @@ namespace sprint0
         private LevelLoader levelLoader;
         public bool changeRoom;
         public int roomIndex;
-        public readonly int numRooms=18;
+        public readonly int numRooms = 18;
         private Text text;
 
         private ISprite sprite;
@@ -89,7 +89,7 @@ namespace sprint0
 
             //note: the integer refers to the room number to load
             changeRoom = true;
-            roomIndex = 12;
+            roomIndex = 1;
             levelLoader = new LevelLoader(this, roomIndex);
 
             base.Initialize();
@@ -208,6 +208,8 @@ namespace sprint0
                 enemy.Update();
             foreach (INpc npc in npcs)
                 npc.Update();
+            foreach (IItem item in items)
+                item.Update();
 
             // handles collisions
             collisionHandler.HandleAllCollisions(Player, enemies, projectiles, blocks, npcs);
@@ -219,7 +221,8 @@ namespace sprint0
                 enemies.AddRange(enemiesToSpawn);
                 enemiesToSpawn.Clear();
             }
-            foreach (IEnemy enemy in enemiesToDie) {
+            foreach (IEnemy enemy in enemiesToDie)
+            {
                 enemies.Remove(enemy);
             }
 
@@ -251,6 +254,8 @@ namespace sprint0
                 enemy.Draw(_spriteBatch);
             foreach (INpc npc in npcs)
                 npc.Draw(_spriteBatch);
+            foreach (IItem item in items)
+                item.Draw(_spriteBatch);
             foreach (IProjectile projectile in projectiles)
                 projectile.Draw(_spriteBatch);
             player.Draw(_spriteBatch);

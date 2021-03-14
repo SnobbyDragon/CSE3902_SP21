@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Fairy : IProjectile // fairy is projectile lol !
+    public class Fairy : IItem
     {
-        public IEntity Shooter { get; }
+        public bool PickedUp { get; set; }
         public Rectangle Location { get; set; }
         public int Damage { get => Int32.MaxValue; }
         public Texture2D Texture { get; set; }
@@ -22,9 +22,8 @@ namespace sprint0
         private Vector2 destination;
         private readonly Random rand;
 
-        public Fairy(Texture2D texture, Vector2 location, IEntity shooter)
+        public Fairy(Texture2D texture, Vector2 location)
         {
-            Shooter = shooter;
             Texture = texture;
             totalFrames = 2;
             currentFrame = 0; repeatedFrames = 10; //moveCounter = 0;
@@ -37,9 +36,6 @@ namespace sprint0
             rand = new Random();
             GenerateDest();
         }
-
-        public bool IsAlive() => true; // fairy lives F O R E V E R !
-        public void Perish() { } // again, fairy NEVER DIES!
 
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -94,7 +94,7 @@ namespace sprint0
                     return new HeartHUD(texture, new Vector2(location.X + 176 * Game1.Scale, location.Y + 32 * Game1.Scale), heartNum);
 
                 default:
-                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
+                    throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed.");
             }
         }
     }

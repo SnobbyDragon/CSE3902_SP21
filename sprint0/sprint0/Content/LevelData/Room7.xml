@@ -71,7 +71,7 @@
     <Boss ObjectName="digdogger" LocationX="360" LocationY="380" />?
     
 
-    <Projectile ObjectName="boomerang" LocationX="320" LocationY="120" Direction="North" Lifespan="0" />?
+    <ItemWeapon ObjectName="boomerang" LocationX="320" LocationY="300" Direction="North" Lifespan="0" />?
     <Player ObjectName="Link" LocationX="82" LocationY="340" />?
 
 ?</XnaContent>

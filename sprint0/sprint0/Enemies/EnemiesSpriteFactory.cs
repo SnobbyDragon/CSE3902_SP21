@@ -49,7 +49,7 @@ namespace sprint0
                 //"goriya boomerang horizontal" => new GoriyaBoomerang(texture, location, 0), TODO move to projectile or change to enemy?
                 //"goriya boomerang vertical" => new GoriyaBoomerang(texture, location, 2),
                 //"goriya boomerang diagonal" => new GoriyaBoomerang(texture, location, 4),
-                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }
     }

@@ -37,7 +37,7 @@ namespace sprint0
                 case "flame":
                     return new Flame(texture, location);
                 default:
-                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
+                    throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed.");
             }
         }
     }
