@@ -9,8 +9,6 @@ namespace sprint0
 {
     public class Gel : Enemy, IEnemy
     {
-        private readonly Dictionary<string, List<Rectangle>> colorMap;
-
         private int directionChangeCounter;
 
         public Gel(Texture2D texture, Vector2 location, Game1 gm, string gelColor) : base(texture, location, gm)
@@ -38,7 +36,7 @@ namespace sprint0
                 { "blkwhite", SpritesheetHelper.GetFramesH(55, 28, width, height, totalFrames) },
             };
         }
-
+        
         public new void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);

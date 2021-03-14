@@ -13,7 +13,7 @@ namespace sprint0
         protected string color;
         protected int totalFrames;
         protected int repeatedFrames;
-        private readonly Dictionary<string, List<Rectangle>> colorMap;
+        protected readonly Dictionary<string, List<Rectangle>> colorMap;
         private readonly SpriteEffects s = SpriteEffects.FlipHorizontally;
         protected Direction direction;
         protected int width, height;
@@ -35,7 +35,6 @@ namespace sprint0
                 { "blue", SpritesheetHelper.GetFramesH(222, 28, width, height, 4)}
             };
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             if (direction == Direction.w)

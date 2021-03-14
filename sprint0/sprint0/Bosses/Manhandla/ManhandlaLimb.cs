@@ -24,7 +24,7 @@ namespace sprint0
 
         public ManhandlaLimb(Texture2D texture, IEnemy center, String dir, Game1 game)
         {
-            health = 25;
+            health = 5;
             Texture = texture;
             this.game = game;
             this.center = center;
@@ -78,6 +78,7 @@ namespace sprint0
         public void Update()
         {
             CheckHealth();
+        
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             Location = new Rectangle(center.Location.X + (int)(dirToLocationMap[dir].X * Game1.Scale), center.Location.Y + (int)(dirToLocationMap[dir].Y * Game1.Scale), (int)(size * Game1.Scale), (int)(size * Game1.Scale));
@@ -97,17 +98,18 @@ namespace sprint0
         public void TakeDamage(int damage)
         {
             health -= damage;
+          
         }
 
         public int CheckHealth()
         {
-            if (health < 0) Perish();
-            return health;
+            if (health < 0) { Perish(); }
+           return health;
         }
 
         public void Perish()
         {
-            //no-op
+            game.RemoveEnemy(this);
         }
 
         private bool CanShoot()
@@ -123,6 +125,7 @@ namespace sprint0
             if (dir.Equals("up"))
             {
                 direction = new Vector2(0, -1);
+               
             }
             else if (dir.Equals("down"))
             {

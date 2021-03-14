@@ -18,6 +18,7 @@ namespace sprint0
         //private int fireballRate; // TODO faster as limbs die; use this, currently shooting s.t. only 1 fireball on map at a time
         private Vector2 destination;
         private readonly Random rand;
+        
 
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -27,6 +28,7 @@ namespace sprint0
             source = new Rectangle(69, 89, size, size); //center
             speed = 1; // starting speed; TODO might actually need to be slower...
             //fireballRate = 100; // TODO currently arbitrary
+            
             limbs = new List<IEnemy>
             {
                 new ManhandlaLimb(Texture, this, "up", game),
@@ -34,6 +36,8 @@ namespace sprint0
                 new ManhandlaLimb(Texture, this, "left", game),
                 new ManhandlaLimb(Texture, this, "right", game)
             };
+            //register limbs as enemies for collision handeling
+            game.RegisterEnemies(limbs);
             rand = new Random();
             GenerateDest();
         }
@@ -48,6 +52,7 @@ namespace sprint0
 
         public void Update()
         {
+           
             CheckHealth();
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5) // floating point errors
@@ -76,12 +81,21 @@ namespace sprint0
         private void CheckHealth()
         {
             int health = 0;
+            ManhandlaLimb toRemove=null;
             foreach (ManhandlaLimb limb in limbs)
             {
                 health += limb.CheckHealth();
+                if (limb.CheckHealth() < 0) toRemove=limb;
             }
+            RemoveLimb(toRemove);
             if (health < 0) Perish();
         }
+
+        private void RemoveLimb(ManhandlaLimb limb) {
+            limbs.Remove(limb);
+            
+        }
+
         public void TakeDamage(int damage)
         {
             //no-op
