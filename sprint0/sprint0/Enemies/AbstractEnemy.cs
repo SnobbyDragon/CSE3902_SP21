@@ -13,7 +13,7 @@ namespace sprint0
         protected string color;
         protected int totalFrames;
         protected int repeatedFrames;
-        protected readonly Dictionary<string, List<Rectangle>> colorMap;
+        protected Dictionary<string, List<Rectangle>> colorMap;
         private readonly SpriteEffects s = SpriteEffects.FlipHorizontally;
         protected Direction direction;
         protected int width, height;
