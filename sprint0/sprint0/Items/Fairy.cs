@@ -9,9 +9,9 @@ namespace sprint0
 {
     public class Fairy : IItem
     {
-        public bool PickedUp { get; set; }
+        public int PickedUpDuration { get; set; }
         public Rectangle Location { get; set; }
-        public int Damage { get => Int32.MaxValue; }
+        public int Damage { get => int.MaxValue; }
         public Texture2D Texture { get; set; }
         private readonly List<Rectangle> sources;
         private readonly int totalFrames;
@@ -25,6 +25,7 @@ namespace sprint0
         public Fairy(Texture2D texture, Vector2 location)
         {
             Texture = texture;
+			PickedUpDuration = -2; // not picked up, no special animation
             totalFrames = 2;
             currentFrame = 0; repeatedFrames = 10; //moveCounter = 0;
             sources = new List<Rectangle>();

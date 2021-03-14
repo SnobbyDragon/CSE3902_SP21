@@ -6,7 +6,6 @@ namespace sprint0
 {
     public class AllCollisionHandler
     {
-        private readonly Dictionary<Collision, Direction> sideToDir;
         private readonly CollisionDetector collisionDetector;
         private readonly int linkSize = (int)(16 * Game1.Scale); // size of link
 
@@ -15,27 +14,21 @@ namespace sprint0
 
         public AllCollisionHandler()
         {
-            sideToDir = new Dictionary<Collision, Direction>
-            {
-                { Collision.Left, Direction.w },
-                { Collision.Right, Direction.e },
-                { Collision.Top, Direction.n },
-                { Collision.Bottom, Direction.s },
-            };
             collisionDetector = new CollisionDetector();
         }
 
-        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IWeapon> weapons, List<IProjectile> projectiles, List<IBlock> blocks, List<INpc> npcs)
+        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IWeapon> weapons, List<IProjectile> projectiles, List<IBlock> blocks, List<INpc> npcs, List<IItem> items)
         {
             HandleLinkProjectileCollisions(link, projectiles);
             HandleLinkBlockCollisions(link, blocks);
             HandleLinkEnemyCollisions(link, enemies);
+            HandleLinkItemCollisions(link, items);
             HandleEnemyBlockCollisions(enemies, blocks);
             HandleEnemyEnemyCollisions(enemies);
             HandleEnemyWeaponCollisions(enemies, weapons);
             HandleEnemyProjectileCollisions(enemies, projectiles);
             HandleBlockBlockCollisions(blocks);
-            HandleLinkNpcsCollisions(link, npcs);
+            HandleLinkNpcCollisions(link, npcs);
             HandleProjectileGameBorderCollision(projectiles);
         }
 
@@ -51,7 +44,7 @@ namespace sprint0
                 Collision side = collisionDetector.DetectCollision(linkHitbox, enemy);
                 if (side != Collision.None)
                 {
-                    collisionHandler.HandleCollision(link, enemy, sideToDir[side]);
+                    collisionHandler.HandleCollision(link, enemy, side.ToDirection());
                 }
             }
         }
@@ -68,7 +61,7 @@ namespace sprint0
                 Collision side = collisionDetector.DetectCollision(linkHitbox, projectile);
                 if (side != Collision.None)
                 {
-                    collisionHandler.HandleCollision(link, projectile, sideToDir[side]);
+                    collisionHandler.HandleCollision(link, projectile, side.ToDirection());
                 }
             }
         }
@@ -85,7 +78,7 @@ namespace sprint0
                 Collision side = collisionDetector.DetectCollision(linkHitbox, block);
                 if (side != Collision.None)
                 {
-                    collisionHandler.HandleCollision(link, block, sideToDir[side]);
+                    collisionHandler.HandleCollision(link, block, side.ToDirection());
                 }
             }
         }
@@ -93,7 +86,7 @@ namespace sprint0
         /*
          * Checks if link collides with any npcs; handles collisions
          */
-        private void HandleLinkNpcsCollisions(IPlayer link, List<INpc> npcs)
+        private void HandleLinkNpcCollisions(IPlayer link, List<INpc> npcs)
         {
             LinkNpcCollisionHandler collisionHandler = new LinkNpcCollisionHandler();
             Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
@@ -102,7 +95,24 @@ namespace sprint0
                 Collision side = collisionDetector.DetectCollision(linkHitbox, npc);
                 if (side != Collision.None)
                 {
-                    collisionHandler.HandleCollision(link, npc, sideToDir[side]);
+                    collisionHandler.HandleCollision(link, npc, side.ToDirection());
+                }
+            }
+        }
+
+        /*
+         * Checks if link collides with any items; handles collisions
+         */
+        private void HandleLinkItemCollisions(IPlayer link, List<IItem> items)
+        {
+            LinkItemCollisionHandler collisionHandler = new LinkItemCollisionHandler();
+            Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
+            foreach (IItem item in items)
+            {
+                Collision side = collisionDetector.DetectCollision(linkHitbox, item);
+                if (side != Collision.None)
+                {
+                    collisionHandler.HandleCollision(link, item, side.ToDirection());
                 }
             }
         }
@@ -120,7 +130,7 @@ namespace sprint0
                     Collision side = collisionDetector.DetectCollision(enemy, block);
                     if (side != Collision.None)
                     {
-                        collisionHandler.HandleCollision(enemy, block, sideToDir[side]);
+                        collisionHandler.HandleCollision(enemy, block, side.ToDirection());
                     }
                 }
             }
@@ -139,7 +149,7 @@ namespace sprint0
                     Collision side = collisionDetector.DetectCollision(enemies[i], enemies[j]);
                     if (side != Collision.None)
                     {
-                        collisionHandler.HandleCollision(enemies[i], enemies[j], sideToDir[side]);
+                        collisionHandler.HandleCollision(enemies[i], enemies[j], side.ToDirection());
                     }
                 }
             }
@@ -158,7 +168,7 @@ namespace sprint0
                     Collision side = collisionDetector.DetectCollision(enemy, projectile);
                     if (side != Collision.None)
                     {
-                        collisionHandler.HandleCollision(enemy, projectile, sideToDir[side]);
+                        collisionHandler.HandleCollision(enemy, projectile, side.ToDirection());
                     }
                 }
             }
@@ -177,7 +187,7 @@ namespace sprint0
                     Collision side = collisionDetector.DetectCollision(enemy, projectile);
                     if (side != Collision.None)
                     {
-                        collisionHandler.HandleCollision(enemy, projectile, sideToDir[side]);
+                        collisionHandler.HandleCollision(enemy, projectile, side.ToDirection());
                     }
                 }
             }
@@ -196,7 +206,7 @@ namespace sprint0
                     Collision side = collisionDetector.DetectCollision(blocks[i], blocks[j]);
                     if (side != Collision.None)
                     {
-                        collisionHandler.HandleCollision(blocks[i], blocks[j], sideToDir[side]);
+                        collisionHandler.HandleCollision(blocks[i], blocks[j], side.ToDirection());
                     }
                 }
             }

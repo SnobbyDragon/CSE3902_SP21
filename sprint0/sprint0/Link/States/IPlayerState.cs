@@ -11,6 +11,7 @@ namespace sprint0
         void HandleRight() { }
         void HandleSword() { }
         void UseItem() { }
+        void PickUpItem() { }
         void Update();
         void Draw(SpriteBatch spritebatch);
     }

@@ -15,7 +15,7 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/Link");
         }
 
-        public ISprite MakeSprite(String spriteType, Vector2 location)
+        public ISprite MakeSprite(string spriteType, Vector2 location)
         {
             return spriteType switch
             {
@@ -35,7 +35,8 @@ namespace sprint0
                 "link down item" => new DownUseItemSprite(texture, location),
                 "link left item" => new LeftUseItemSprite(texture, location),
                 "link right item" => new RightUseItemSprite(texture, location),
-                _ => throw new ArgumentException("Invalid sprite! Player sprite factory failed."),
+                "link pick up item" => new PickUpItemSprite(texture, location),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Player sprite factory failed."),
             };
         }
     }

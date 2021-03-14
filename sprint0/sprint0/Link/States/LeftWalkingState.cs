@@ -7,6 +7,7 @@ namespace sprint0
     {
         private readonly IPlayer player;
         private readonly ISprite sprite;
+
         public LeftWalkingState(IPlayer player)
         {
             this.player = player;
@@ -21,6 +22,11 @@ namespace sprint0
         public void UseItem()
         {
             player.State = new LeftUseItemState(player);
+        }
+
+        public void PickUpItem()
+        {
+            player.State = new PickUpItemState(player);
         }
 
         public void HandleSword()

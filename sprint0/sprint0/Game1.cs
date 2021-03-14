@@ -6,26 +6,8 @@ using System.Collections.Generic;
 
 namespace sprint0
 {
-    public enum Direction { n, s, e, w, ne, nw, se, sw };
-    public enum Collision { Left, Right, Top, Bottom, None };
-
     public class Game1 : Game
     {
-        public static Direction OppositeDirection(Direction direction)
-        {
-            return direction switch
-            {
-                Direction.n => Direction.s,
-                Direction.s => Direction.n,
-                Direction.e => Direction.s,
-                Direction.w => Direction.s,
-                Direction.ne => Direction.sw,
-                Direction.nw => Direction.se,
-                Direction.se => Direction.nw,
-                Direction.sw => Direction.ne,
-                _ => throw new ArgumentException("Invalid direction! No opposite direction.")
-            };
-        }
 
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -224,7 +206,7 @@ namespace sprint0
                 item.Update();
 
             // handles collisions
-            collisionHandler.HandleAllCollisions(Player, enemies, weapons, projectiles, blocks, npcs);
+            collisionHandler.HandleAllCollisions(Player, enemies, weapons, projectiles, blocks, npcs, items);
            
             // after all traversals, add new enemies
             if (enemiesToSpawn.Count > 0)

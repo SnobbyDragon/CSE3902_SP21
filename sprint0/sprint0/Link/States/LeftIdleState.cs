@@ -37,10 +37,17 @@ namespace sprint0
             player.Direction = Direction.e;
             player.State = new RightWalkingState(player);
         }
+
         public void UseItem()
         {
             player.State = new LeftUseItemState(player);
         }
+
+        public void PickUpItem()
+        {
+            player.State = new PickUpItemState(player);
+        }
+
         public void HandleSword()
         {
             player.State = new LeftWoodSwordState(player);

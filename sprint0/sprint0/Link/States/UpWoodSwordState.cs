@@ -14,7 +14,6 @@ namespace sprint0
             sprite = Game1.PlayerFactory.MakeSprite("link up sword", player.Pos);
         }
 
-
         public void Update()
         {
             if (count > 24) {

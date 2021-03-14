@@ -16,6 +16,7 @@ namespace sprint0
             this.player = player;
             sprite = Game1.PlayerFactory.MakeSprite("link up idle", player.Pos);
         }
+
         public void HandleUp()
         {
             player.Direction = Direction.n;
@@ -55,9 +56,15 @@ namespace sprint0
         {
             sprite.Draw(spritebatch);
         }
+
         public void UseItem()
         {
             player.State = new UpUseItemState(player);
+        }
+
+        public void PickUpItem()
+        {
+            player.State = new PickUpItemState(player);
         }
     }
 }

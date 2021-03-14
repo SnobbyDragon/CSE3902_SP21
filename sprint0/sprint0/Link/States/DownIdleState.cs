@@ -48,6 +48,11 @@ namespace sprint0
             player.State = new DownUseItemState(player);
         }
 
+        public void PickUpItem()
+        {
+            player.State = new PickUpItemState(player);
+        }
+
         public void Update()
         {
             sprite.Location = new Rectangle((int)player.Pos.X, (int)player.Pos.Y, sprite.Location.Width, sprite.Location.Height);
