@@ -13,7 +13,7 @@ namespace sprint0
         private readonly string color;
         private readonly int totalFrames;
         private readonly int repeatedFrames;
-        private Dictionary<string, List<Rectangle>> colorMap;
+        private readonly Dictionary<string, List<Rectangle>> colorMap;
         private readonly SpriteEffects s = SpriteEffects.FlipHorizontally;
         private Direction direction;
         private readonly int width, height;
@@ -21,6 +21,7 @@ namespace sprint0
         private int moveCounter, dirChangeDelay;
         private readonly Random rand;
         private readonly Game1 game;
+
         public Goriya(Texture2D texture, Vector2 location, string goriyaColor, Game1 game)
         {
             rand = new Random();
@@ -37,20 +38,9 @@ namespace sprint0
 
             colorMap = new Dictionary<string, List<Rectangle>>
             {
-                { "red", GetFrames(222, 11, 4)},
-                { "blue", GetFrames(222, 28, 4)}
+                { "red", SpritesheetHelper.GetFramesH(222, 11, width, height, totalFrames) },
+                { "blue", SpritesheetHelper.GetFramesH(222, 28, width, height, totalFrames) }
             };
-        }
-
-        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
-        {
-            List<Rectangle> sources = new List<Rectangle>();
-            for (int i = 0; i < numFrames; i++)
-            {
-                sources.Add(new Rectangle(xPos, yPos, width, height));
-                xPos += width + 1;
-            }
-            return sources;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -58,7 +48,6 @@ namespace sprint0
             if (direction == Direction.w)
             {
                 spriteBatch.Draw(Texture, Location, colorMap[color][(currentFrame / repeatedFrames) % 2 + 2], Color.White, 0, new Vector2(0, 0), s, 0);
-                //TODO GoriyaBoomerang boomboom = new GoriyaBoomerang(Texture, new Vector2(0, 231));
             }
             else if (direction == Direction.e)
             {
@@ -81,6 +70,7 @@ namespace sprint0
             if (moveCounter == dirChangeDelay)
             {
                 ArbitraryDirection();
+                game.AddProjectile(Location.Center.ToVector2(), direction, "boomerang", this); // TODO change behaviour to throw boomerangs
             }
             CheckHealth();
 
@@ -92,24 +82,21 @@ namespace sprint0
             }
             else if (direction == Direction.e)
             {
-
                 //moves sprite right
                 Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
-
             }
             else if (direction == Direction.s)
             {
                 //moves sprite down
                 Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height); ;
-
             }
             else
             {
                 //moves sprite up
                 Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height); ;
-
             }
         }
+
         private void ArbitraryDirection()
         {
             // changes to an arbitrary direction; if in wall, go into room, else random direction

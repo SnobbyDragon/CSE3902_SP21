@@ -40,8 +40,8 @@ namespace sprint0
 
             colorToLegMap = new Dictionary<string, List<Rectangle>>
             {
-                { "orange", GetFrames(196, 105, legTotalFrames) },
-                { "blue", GetFrames(196, 122, legTotalFrames) }
+                { "orange", SpritesheetHelper.GetFramesH(196, 105, size, size, legTotalFrames) },
+                { "blue", SpritesheetHelper.GetFramesH(196, 122, size, size, legTotalFrames) }
             };
             leftLegEffects = new List<SpriteEffects>
             {
@@ -55,8 +55,8 @@ namespace sprint0
             };
             colorToHeadMap = new Dictionary<string, List<Rectangle>>
             {
-                { "orange", GetFrames(230, 105, headTotalFrames) },
-                { "blue", GetFrames(230, 122, headTotalFrames) }
+                { "orange", SpritesheetHelper.GetFramesH(230, 105, size, size, headTotalFrames) },
+                { "blue", SpritesheetHelper.GetFramesH(230, 122, size, size, headTotalFrames) }
             };
 
             currDest = 0;
@@ -69,19 +69,7 @@ namespace sprint0
                 location + new Vector2(0,100)
             };
 
-            //fireball = new ManhandlaFireball(texture); TODO
             centerOffset = new Vector2(size / 2 - 4, size / 2 - 5); // gohma size / 2 - fireball size / 2
-        }
-
-        //TODO make a utility class so we can reuse this code??? this is in a lot of places rn
-        public List<Rectangle> GetFrames(int xOffset, int yOffset, int totalFrames)
-        {
-            List<Rectangle> sources = new List<Rectangle>();
-            for (int frame = 0; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xOffset + frame * (size + 1), yOffset, size, size));
-            };
-            return sources;
         }
 
         public void Draw(SpriteBatch spriteBatch)

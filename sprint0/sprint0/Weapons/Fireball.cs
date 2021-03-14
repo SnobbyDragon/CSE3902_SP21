@@ -16,8 +16,8 @@ namespace sprint0
         private readonly int width = 8, height = 10;
         private readonly List<Rectangle> sources;
         private int currFrame;
-        private readonly int totalFrames, repeatedFrames, speed = 3; // fast fireballs
-        private readonly Vector2 direction; // direction fireball travels
+        private readonly int totalFrames, repeatedFrames, speed = 3;
+        private readonly Vector2 direction;
         private bool hit = false;
 
         public Fireball(Texture2D texture, Vector2 location, Vector2 direction, IEntity shooter)
@@ -31,17 +31,7 @@ namespace sprint0
             currFrame = 0;
             totalFrames = 4;
             repeatedFrames = 2;
-            sources = GetFrames(231, 62); // in enemies sprite sheet; all fireballs are the same
-        }
-
-        private List<Rectangle> GetFrames(int xOffset, int yOffset)
-        {
-            List<Rectangle> sources = new List<Rectangle>();
-            for (int frame = 0; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xOffset + frame * (width + 1), yOffset, width, height));
-            };
-            return sources;
+            sources = SpritesheetHelper.GetFramesH(231, 62, width, height, totalFrames);
         }
 
         public bool IsAlive() => !hit;

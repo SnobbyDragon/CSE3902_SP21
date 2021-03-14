@@ -9,9 +9,7 @@ namespace sprint0
 {
     public class Gel : Enemy, IEnemy
     {
-
-
-        private Dictionary<string, List<Rectangle>> colorMap;
+        private readonly Dictionary<string, List<Rectangle>> colorMap;
 
         private int directionChangeCounter;
 
@@ -30,26 +28,15 @@ namespace sprint0
 
             colorMap = new Dictionary<string, List<Rectangle>>
             {
-                { "teal", GetFrames(1,11,2)},
-                { "blue", GetFrames(19, 11, 2)},
-                { "green", GetFrames(37, 11, 2)},
-                { "blkgold", GetFrames(55, 11, 2)},
-                { "lime", GetFrames(1, 28, 2)},
-                { "brown", GetFrames(19, 28, 2)},
-                { "grey", GetFrames(37, 28, 2)},
-                { "blkwhite", GetFrames(55, 28, 2)},
+                { "teal", SpritesheetHelper.GetFramesH(1, 11, width, height, totalFrames) },
+                { "blue", SpritesheetHelper.GetFramesH(19, 11, width, height, totalFrames) },
+                { "green", SpritesheetHelper.GetFramesH(37, 11, width, height, totalFrames) },
+                { "blkgold", SpritesheetHelper.GetFramesH(55, 11, width, height, totalFrames) },
+                { "lime", SpritesheetHelper.GetFramesH(1, 28, width, height, totalFrames) },
+                { "brown", SpritesheetHelper.GetFramesH(19, 28, width, height, totalFrames) },
+                { "grey", SpritesheetHelper.GetFramesH(37, 28, width, height, totalFrames) },
+                { "blkwhite", SpritesheetHelper.GetFramesH(55, 28, width, height, totalFrames) },
             };
-        }
-
-        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
-        {
-            List<Rectangle> sources = new List<Rectangle>();
-            for (int i = 0; i < numFrames; i++)
-            {
-                sources.Add(new Rectangle(xPos, yPos, width, height));
-                xPos += width + 1;
-            }
-            return sources;
         }
 
         public new void Draw(SpriteBatch spriteBatch)
@@ -73,31 +60,23 @@ namespace sprint0
             {
                 //moves sprite left
                 Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
-               
             }
             else if (direction == Direction.e)
             {
                 //moves sprite right
                 Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
-                
             }
             else if (direction == Direction.s)
             {
                 //moves sprite down
                 Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
-                
             }
             else
             {   //direction == Direction.n
                 //moves sprite up
                 Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
-                
             }
-
             directionChangeCounter++;
-
         }
-
-
     }
 }
