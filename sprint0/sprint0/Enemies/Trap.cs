@@ -4,81 +4,70 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
-//Movemnet added by Hannah Johnson
+//Movement added by Hannah Johnson
 namespace sprint0
 {
-    public class Trap : IEnemy
+    public class Trap : Enemy, IEnemy
     {
-        public Rectangle Location { get; set; }
-        public Texture2D Texture { get; set; }
+
         private Rectangle source;
-        private readonly int width = 16, height = 16;
-        private Direction direction;
-        private readonly Game1 game;
+<<<<<<< Updated upstream
         private Rectangle HomeLocation;
   
+        public Trap(Texture2D texture, Vector2 location, Game1 game): base(texture, location, game)
+=======
+        private readonly int width = 16, height = 16;
+        private Direction direction;
+        private Rectangle HomeLocation;
 
-        public Trap(Texture2D texture, Vector2 location, Game1 game)
+        public Trap(Texture2D texture, Vector2 location)
+>>>>>>> Stashed changes
         {
+            width = 16;
+            height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             HomeLocation = Location;
             Texture = texture;
-            this.game = game;
 
             //Initialy does not move
             //Let ne be the direction trap "moves" if it is not moving
             direction = Direction.ne;
-           
+
             //load sprite
             source = new Rectangle(164, 59, width, height);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, source, Color.White);
         }
 
-        public void Update()
+        public new void Update()
         {
-
-            //if (direction == Direction.ne)
-            //{ //The trap is not moving so check if link triggered it
-            //    direction = CheckIfTriggered();
-            //}
-            //else
-            //{
-            //move the traps
             if (direction == Direction.s)
-                {
-                    //moves sprite down
-                    Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
+            {
+                //moves sprite down
+                Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
+            }
+            else if (direction == Direction.w)
+            {
+                //moves sprite left
+                Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
+            }
+            else if (direction == Direction.e)
+            {
+                //moves sprite right
+                Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
+            }
+            else if (direction == Direction.n)
+            {   //direction == Direction.n
+                //moves sprite up
+                Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
+            }
 
-                }
-                else if (direction == Direction.w)
-                {
-                    //moves sprite left
-                    Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
+            //if the traps moved to their home location, make them still again
+            if (Location == HomeLocation) { direction = Direction.ne; }
 
-                }
-                else if (direction == Direction.e)
-                {
-                    //moves sprite right
-                    Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
-
-                }
-                else if(direction == Direction.n)
-                {   //direction == Direction.n
-                    //moves sprite up
-                    Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
-
-                }
-
-                //if the traps moved to their home location, make them still again
-                if (Location == HomeLocation) { direction = Direction.ne; }
-
-            //}
-
-           
         }
 
         //Checks if link triggered the trap, and if so returns the direction
@@ -87,7 +76,8 @@ namespace sprint0
         {
             //If not triggered return north east, since traps can only move in n, s, w, e
             Direction moveDirection = Direction.ne;
-            Vector2 playerPos=game.Player.Pos;
+            Vector2 playerPos = Link.position;
+
             if (playerPos.X == Location.X && playerPos.Y >= Location.Y)
             { //Link is directly under  trap
                 moveDirection = Direction.s;
@@ -108,18 +98,8 @@ namespace sprint0
             return moveDirection;
         }
 
-        public bool IsMoving() {
-            return !(direction == Direction.ne);
-
-        }
-
-        public void setDirection(Direction dir) {
-            direction = dir;
-        }
-
-        public void ChangeDirection()
+        public new void ChangeDirection()
         {
-
             if (direction == Direction.s && Location != HomeLocation)
             {
                 direction = Direction.n;
@@ -132,27 +112,11 @@ namespace sprint0
             {
                 direction = Direction.w;
             }
-            else if(direction == Direction.n && Location != HomeLocation)
+            else if (direction == Direction.n && Location != HomeLocation)
             {
                 direction = Direction.s;
             }
-
-
         }
 
-        public void TakeDamage()
-        {
-            // not necessary; unkillable
-        }
-
-        public void TakeDamage(int damage)
-        {
-            //no-op
-        }
-
-        public void Perish()
-        {
-            //no-op
-        }
     }
 }

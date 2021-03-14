@@ -72,7 +72,7 @@ namespace sprint0
             player = new Link(this, new Vector2(200, 250));
 
             //note: the integer refers to the room number to load
-            changeRoom = true;
+            changeRoom = false;
             roomIndex = 1;
             levelLoader = new LevelLoader(this, roomIndex);
 
@@ -102,8 +102,12 @@ namespace sprint0
              * 1. separates out hud and the base elements of the room (plain floor and room border)
              * 2. loads sprites for the level
              */
+            // avoids mutating enemies list during foreach
             weaponsToDie = new List<IWeapon>();
             projectilesToDie = new List<IProjectile>();
+            enemiesToDie = new List<IEnemy>();
+            enemiesToSpawn = new List<IEnemy>();
+
             (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements = levelLoader.LoadLevel();
             roomSprites = roomElements.Item1;
             projectiles = roomElements.Item2;
@@ -111,8 +115,6 @@ namespace sprint0
             enemies = roomElements.Item4;
             npcs = roomElements.Item5;
             items = roomElements.Item6;
-            enemiesToDie = new List<IEnemy>();
-            enemiesToSpawn = new List<IEnemy>(); // used for spawning new enemies; avoids mutating enemies list during foreach
             roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
             {
                 dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
@@ -154,7 +156,7 @@ namespace sprint0
 
         public void RegisterEnemies(List<IEnemy> unregEnemies)
         {
-            enemies.AddRange(unregEnemies);
+            enemiesToSpawn.AddRange(unregEnemies);
         }
 
         public void RemoveEnemy(IEnemy enemy)

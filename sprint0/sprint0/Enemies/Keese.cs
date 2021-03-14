@@ -8,7 +8,6 @@ namespace sprint0
     public class Keese : Enemy, IEnemy
     { 
 
-        private readonly Dictionary<string, List<Rectangle>> colorMap;
         public Keese(Texture2D texture, Vector2 location, String keeseColor, Game1 game): base(texture, location, game)
         {
             dirChangeDelay = 5;
@@ -27,17 +26,6 @@ namespace sprint0
                 { "blue", GetFrames(183, 11, 2)},
                 { "red", GetFrames(183, 28, 2)}
             };
-        }
-
-        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
-        {
-            List<Rectangle> sources = new List<Rectangle>();
-            for (int i = 0; i < numFrames; i++)
-            {
-                sources.Add(new Rectangle(xPos, yPos, width, height));
-                xPos += width + 1;
-            }
-            return sources;
         }
 
         public new void Draw(SpriteBatch spriteBatch)

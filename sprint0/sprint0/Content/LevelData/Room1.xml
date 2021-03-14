@@ -39,7 +39,7 @@
     <!--<Enemy ObjectName="trap" LocationX="520" LocationY="460" />?-->
     
    <Item ObjectName="fairy" LocationX="520" LocationY="460" />?
-    <Enemy ObjectName="trap aparatus" LocationX="301" LocationY="340" />?
+    <Enemy ObjectName="trapparatus" LocationX="301" LocationY="340" />?
 
      <Player ObjectName="Link" LocationX="520" LocationY="340" />?
 ?</XnaContent>

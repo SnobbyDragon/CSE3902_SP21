@@ -13,7 +13,7 @@ namespace sprint0
         protected string color;
         protected int totalFrames;
         protected int repeatedFrames;
-        private Dictionary<string, List<Rectangle>> colorMap;
+        protected Dictionary<string, List<Rectangle>> colorMap;
         private readonly SpriteEffects s = SpriteEffects.FlipHorizontally;
         protected Direction direction;
         protected int width, height;
@@ -30,14 +30,9 @@ namespace sprint0
             health = 50;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            colorMap = new Dictionary<string, List<Rectangle>>
-            {
-                { "red", GetFrames(222, 11, 4)},
-                { "blue", GetFrames(222, 28, 4)}
-            };
         }
 
-        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
+        public List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
         {
             List<Rectangle> sources = new List<Rectangle>();
             for (int i = 0; i < numFrames; i++)
@@ -107,11 +102,7 @@ namespace sprint0
         }
         protected void ArbitraryDirection(int low, int high)
         {
-            // changes to an arbitrary direction; if in wall, go into room, else random direction
-            // TODO 32 is a magic number for room border / wall width... make static variable in Game1?
             moveCounter = 0;
-
-            
                 direction = (Direction)rand.Next(0, 4);
             
             dirChangeDelay = rand.Next(low, high); //TODO may still go into the wall... not sure if that's okay?

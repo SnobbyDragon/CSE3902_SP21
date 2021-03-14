@@ -17,7 +17,7 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/DungeonEnemies");
         }
 
-        public IEnemy MakeSprite(String spriteType, Vector2 location)
+        public IEnemy MakeSprite(string spriteType, Vector2 location)
         {
 
             return spriteType switch
@@ -44,8 +44,8 @@ namespace sprint0
                 "red keese" => new Keese(texture, location, "red", game),
                 "blue keese" => new Keese(texture, location, "blue", game),
                 "stalfos" => new Stalfos(texture, location, game),
-                "trap" => new Trap(texture, location, game),
-                "trap aparatus" => new TrapAparatus(texture, location, game),
+                "trap" => new Trap(texture, location),
+                "trapparatus" => new Trapparatus(texture, location, game),
 
                 //"goriya boomerang horizontal" => new GoriyaBoomerang(texture, location, 0), TODO move to projectile or change to enemy?
                 //"goriya boomerang vertical" => new GoriyaBoomerang(texture, location, 2),

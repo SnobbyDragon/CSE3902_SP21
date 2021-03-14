@@ -11,30 +11,28 @@ namespace sprint0
 {
     public class LevelLoader
     {
-        private XmlReader roomReader;
-        private FileStream roomStream;
-        private string path;
-        private int roomNo;
-        private List<ISprite> sprites;
-        private List<IProjectile> projectiles;
-        private List<IBlock> blocks;
-        private List<IEnemy> enemies;
-        private List<INpc> npcs;
-        private List<IItem> items;
+        private readonly XmlReader roomReader;
+        private readonly FileStream roomStream;
+        private readonly string path;
+        private readonly int roomNo;
+        private readonly List<ISprite> sprites;
+        private readonly List<IProjectile> projectiles;
+        private readonly List<IBlock> blocks;
+        private readonly List<IEnemy> enemies;
+        private readonly List<INpc> npcs;
+        private readonly List<IItem> items;
 
-        private Game1 game1;
-        private EnemiesSpriteFactory enemyFactory;
-        private ItemsSpriteFactory itemFactory;
-        private DungeonFactory dungeonFactory;
-        private BossesSpriteFactory bossFactory;
-        private NpcsSpriteFactory npcFactory;
+        private readonly Game1 game1;
+        private readonly EnemiesSpriteFactory enemyFactory;
+        private readonly ItemsSpriteFactory itemFactory;
+        private readonly DungeonFactory dungeonFactory;
+        private readonly BossesSpriteFactory bossFactory;
+        private readonly NpcsSpriteFactory npcFactory;
 
         public LevelLoader(Game1 game1, int roomNo)
         {
             //path, open stream, open file to read
-            path = Path.GetFullPath(@"../../../Content/LevelData/Room");
-            path += roomNo.ToString();
-            path += ".xml";
+            path = Path.GetFullPath(@"../../../Content/LevelData/Room") + roomNo.ToString() + ".xml";
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
             this.roomNo = roomNo;
@@ -73,7 +71,7 @@ namespace sprint0
         public void AddElement()
         {
             Vector2 location = new Vector2(int.Parse(roomReader.GetAttribute("LocationX")), int.Parse(roomReader.GetAttribute("LocationY")));
-            String objectName = roomReader.GetAttribute("ObjectName");
+            string objectName = roomReader.GetAttribute("ObjectName");
             //add element depending on the type of element
             switch (roomReader.Name.ToString())
             {

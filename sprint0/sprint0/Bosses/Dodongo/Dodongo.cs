@@ -26,10 +26,11 @@ namespace sprint0
         private readonly int scaledSideLength, scaledWidth;
         private int eatingCounter;
         private readonly int eatingTime;
-
-        
+        private readonly int MAX_NUM_OF_BOMBS_TO_EAT = 3;
+        private int bombsEaten;
         public Dodongo(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
+            bombsEaten = 0;
             width = 32;
             health = 50;
             scaledSideLength = (int)(sideLength * Game1.Scale);
@@ -85,6 +86,8 @@ namespace sprint0
 
         public new void Update()
         {
+
+          
            
             moveCounter++;
             if (moveCounter == dirChangeDelay)
@@ -161,6 +164,11 @@ namespace sprint0
                     //FaceDirection(direction);
 
                 }
+
+            }
+            if (bombsEaten >= MAX_NUM_OF_BOMBS_TO_EAT && eatingCounter == 0)
+            {
+                Perish();
             }
         }
 
@@ -187,6 +195,7 @@ namespace sprint0
 
         public void EatBomb()
         {
+            bombsEaten++;
             eatingCounter = 1;
             if (direction == Direction.s) // south
             {
