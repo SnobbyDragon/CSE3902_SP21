@@ -19,7 +19,7 @@ namespace sprint0
         private Vector2 anchor; // where the neck attaches to the body
         private Random rand;
         private readonly int size = 16; // head size
-        private readonly int maxDistance = 50; // max distance head can be from anchor TODO might need adjusting
+        private readonly int maxDistance = 100; // max distance head can be from anchor TODO might need adjusting
         private readonly int moveDelay; // delay to make slower bc floats mess up drawings
         private int moveCounter;
         private Vector2 destination;
@@ -47,7 +47,7 @@ namespace sprint0
             rand = new Random();
             // randomly generates head location
             Vector2 randLoc = RandomLocation();
-            Location = new Rectangle((int)randLoc.X, (int)randLoc.Y, 8, size);
+            Location = new Rectangle((int)randLoc.X, (int)randLoc.Y, (int)(8 * Game1.Scale), (int)(size * Game1.Scale));
             destination = RandomLocation();
         }
 
@@ -65,7 +65,8 @@ namespace sprint0
             {
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 //TODO movement for angry
-            } else
+            }
+            else
             {
                 Vector2 dist = destination - Location.Location.ToVector2();
                 if (dist.Length() < 2)

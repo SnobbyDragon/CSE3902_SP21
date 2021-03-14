@@ -20,7 +20,8 @@
     <Block ObjectName="brick" LocationX="480" LocationY="180" />?
     <Block ObjectName="brick" LocationX="520" LocationY="180" />?
     <Block ObjectName="brick" LocationX="560" LocationY="180" />?
-     <Block ObjectName="brick" LocationX="600" LocationY="180" />?
+    <Block ObjectName="brick" LocationX="600" LocationY="180" />?
+    
     <Block ObjectName="brick" LocationX="0" LocationY="140" />?
     <Block ObjectName="brick" LocationX="40" LocationY="140" />?
     <Block ObjectName="brick" LocationX="80" LocationY="140" />?
@@ -36,6 +37,7 @@
     <Block ObjectName="brick" LocationX="480" LocationY="140" />?
     <Block ObjectName="brick" LocationX="520" LocationY="140" />?
     <Block ObjectName="brick" LocationX="560" LocationY="140" />?
+    
     <Block ObjectName="brick" LocationX="600" LocationY="140" />?
     <Block ObjectName="brick" LocationX="0" LocationY="220" />?
     <Block ObjectName="brick" LocationX="40" LocationY="220" />?
@@ -55,6 +57,7 @@
     <Block ObjectName="brick" LocationX="600" LocationY="220" />?
     <Block ObjectName="brick" LocationX="0" LocationY="260" />?
     <Block ObjectName="brick" LocationX="40" LocationY="260" />?
+    
     <Block ObjectName="brick" LocationX="560" LocationY="260" />?
     <Block ObjectName="brick" LocationX="600" LocationY="260" />?
     <Block ObjectName="brick" LocationX="80" LocationY="260" />?
@@ -165,11 +168,8 @@
     <Block ObjectName="brick" LocationX="560" LocationY="540" />?
     <Block ObjectName="brick" LocationX="600" LocationY="540" />? 
     
-    <Enemy ObjectName="blue keese" LocationX="82" LocationY="220" />?    
-    <Enemy ObjectName="red keese" LocationX="520" LocationY="220" />?    
-    <Enemy ObjectName="blue keese" LocationX="82" LocationY="460" />?    
-    <Enemy ObjectName="red keese" LocationX="520" LocationY="460" />?
-    
-    <ItemWeapon ObjectName="bow" LocationX="332" LocationY="340" Direction="North" Lifespan="0" />?
+    <Enemy ObjectName="blue keese" LocationX="360" LocationY="330" />?
+    <Enemy ObjectName="red keese" LocationX="200" LocationY="460" />?
+    <ItemWeapon ObjectName="bow" LocationX="332" LocationY="330" Direction="North" Lifespan="0" />? 
    <Player ObjectName="Link" LocationX="120" LocationY="140" />?
 ?</XnaContent>

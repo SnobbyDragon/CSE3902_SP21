@@ -27,7 +27,8 @@ namespace sprint0
         {
             this.game = game;
             health = 25;
-            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)); Texture = texture;
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+            Texture = texture;
             source = new Rectangle(1, 157, width, height);
             currFrame = 0;
             totalFrames = 2;

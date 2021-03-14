@@ -7,7 +7,6 @@
     <Dungeon ObjectName="down bombed opening" LocationX="280" LocationY="140" />?    
     <Dungeon ObjectName="left wall" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />? 
-	
     <!--Only put blocks here when there is no door-->
     <!--<Block ObjectName="invisible block" LocationX="40" LocationY="320" />?
     <Block ObjectName="invisible block" LocationX="40" LocationY="360" />?
@@ -44,7 +43,7 @@
     
     <ItemWeapon ObjectName="compass" LocationX="480" LocationY="340" Direction="North" Lifespan="0" />?
     
-    <Boss ObjectName="gleeok" LocationX="520" LocationY="340" />? 
+    <Boss ObjectName="gleeok" LocationX="280" LocationY="275" />? 
     
     <Player ObjectName="Link" LocationX="80" LocationY="340" />?
     
