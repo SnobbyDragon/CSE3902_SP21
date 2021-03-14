@@ -7,25 +7,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Snake : IEnemy
+    public class Snake : Enemy, IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly List<Rectangle> sources;
-        private readonly int totalFrames;
-        private int currentFrame;
-        private readonly int repeatedFrames;
         private SpriteEffects spriteEffect;
-        private readonly int width, height;
-        private int moveCounter, dirChangeDelay;
-        private readonly Random rand;
-        private Direction direction = Direction.w;
-        private readonly Game1 game;
-        private int health;
-        public Snake(Texture2D texture, Vector2 location, Game1 game)
+
+        public Snake(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
-            rand = new Random();
-            this.game = game;
+            dirChangeDelay = 25;
             health = 25;
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
@@ -44,29 +35,18 @@ namespace sprint0
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
 
             spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames],
                     Color.White, 0, new Vector2(0, 0), spriteEffect, 0);
         }
-
-        private void ArbitraryDirection()
-        {
-            // changes to an arbitrary direction; if in wall, go into room, else random direction
-            // TODO 32 is a magic number for room border / wall width... make static variable in Game1?
-            moveCounter = 0;
-            {
-                direction = (Direction)rand.Next(0, 4);
-            }
-            dirChangeDelay = rand.Next(80, 200); //TODO may still go into the wall... not sure if that's okay?
-        }
-        public void Update()
+        public new void Update()
         {
             moveCounter++;
             if (moveCounter == dirChangeDelay)
             {
-                ArbitraryDirection();
+                ArbitraryDirection(2000,200000);
             }
 
             CheckHealth();
@@ -101,23 +81,5 @@ namespace sprint0
             }
         }
 
-        public void ChangeDirection()
-        {
-            ArbitraryDirection();
-        }
-
-        private void CheckHealth()
-        {
-            if (health < 0) Perish();
-        }
-        public void TakeDamage(int damage)
-        {
-            health -= damage;
-        }
-
-        public void Perish()
-        {
-            game.RemoveEnemy(this);
-        }
     }
 }

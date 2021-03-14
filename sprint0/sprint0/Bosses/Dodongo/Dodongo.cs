@@ -7,33 +7,30 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Dodongo : IEnemy
+    public class Dodongo : Enemy, IEnemy
     {
-        public Rectangle Location { get; set; }
-        public Texture2D Texture { get; set; }
+
 
         private readonly List<Rectangle> upDownSources;
         private readonly List<Rectangle> rightLeftSources;
         private readonly int totalFramesUD;
         private int currentFrameUD;
-        private readonly int repeatedFrames;
+  
         private readonly int totalFramesRL;
         private int currentFrameRL;
         private readonly int totalSpriteEffects;
         private int currentSpriteEffect;
         private readonly List<SpriteEffects> spriteEffects;
         public Vector2 Destination { get; set; }
-        private Direction direction;
-        private readonly int sideLength = 16, width = 32;
+        protected readonly int sideLength = 16, width = 32;
         private readonly int scaledSideLength, scaledWidth;
         private int eatingCounter;
         private readonly int eatingTime;
-        private readonly Game1 game;
-        private int health;
-        public Dodongo(Texture2D texture, Vector2 location, Game1 game)
+
+        
+        public Dodongo(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
             health = 50;
-            this.game = game;
             scaledSideLength = (int)(sideLength * Game1.Scale);
             scaledWidth = (int)(width * Game1.Scale);
             direction = Direction.w;
@@ -59,7 +56,6 @@ namespace sprint0
                 rightLeftSources.Add(new Rectangle(xPos, yPos, width, sideLength));
                 xPos += width + 1;
             }
-
             //Creates sprite effect list
             totalSpriteEffects = 2; currentSpriteEffect = 0;
             spriteEffects = new List<SpriteEffects> {
@@ -67,15 +63,12 @@ namespace sprint0
                 SpriteEffects.FlipHorizontally
             };
 
-            //sets Destination-later can make a set destination method
-            //TODO:make movement dependent on destination
-            Destination = new Vector2(700, 300);
 
             eatingCounter = 0; // not eating a bomb
             eatingTime = 20; // arbitrary; total time it takes to eat the bomb
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
             if (direction == Direction.w || direction == Direction.e)
             {
@@ -89,8 +82,16 @@ namespace sprint0
             }
         }
 
-        public void Update()
+        public new void Update()
         {
+           
+            moveCounter++;
+            if (moveCounter == dirChangeDelay)
+            {
+               ArbitraryDirection(30,50);
+            }
+            FaceDirection(direction);
+
             CheckHealth();
             //handles movement
             if (eatingCounter == 0) // not eating
@@ -106,8 +107,8 @@ namespace sprint0
                     //moves sprite left
                     Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
                     if (Location.X <= 50 * Game1.Scale)
-                    {
-                        FaceSouth();
+                    { 
+                        //FaceSouth();
                     }
                 }
                 else if (direction == Direction.e)
@@ -122,7 +123,7 @@ namespace sprint0
                     Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
                     if (Location.X >= (Game1.Width - 50) * Game1.Scale)
                     {
-                        FaceNorth();
+                       // FaceNorth();
                     }
                 }
                 else if (direction == Direction.s)
@@ -134,12 +135,11 @@ namespace sprint0
                     Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
                     if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 50) * Game1.Scale)
                     {
-                        FaceEast();
+                        //FaceEast();
                     }
                 }
                 else
-                {   //direction == Direction.n
-
+                {  
                     //animates sprite by flipping after every repeatedFrames frames
                     currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
 
@@ -147,7 +147,8 @@ namespace sprint0
                     Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
                     if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                     {
-                        FaceWest();
+
+                       // FaceWest();
                     }
                 }
             }
@@ -156,7 +157,8 @@ namespace sprint0
                 eatingCounter = (eatingCounter + 1) % eatingTime;
                 if (eatingCounter == 0) // done eating; return to normal frames
                 {
-                    FaceDirection(direction);
+                    //FaceDirection(direction);
+
                 }
             }
         }
@@ -198,12 +200,7 @@ namespace sprint0
                 currentFrameRL = 2 * repeatedFrames;
             }
         }
-
-        public void ChangeDirection()
-        {
-            Random random = new Random();
-            FaceDirection((Direction)random.Next(0, 4));
-        }
+        
 
         private void FaceNorth()
         {
@@ -233,18 +230,6 @@ namespace sprint0
             Location = new Rectangle(Location.X, Location.Y, scaledWidth, scaledSideLength); // change to horizontal dimensions
         }
 
-        private void CheckHealth()
-        {
-            if (health < 0) Perish();
-        }
-        public void TakeDamage(int damage)
-        {
-            health -= damage;
-        }
 
-        public void Perish()
-        {
-            game.RemoveEnemy(this);
-        }
     }
 }

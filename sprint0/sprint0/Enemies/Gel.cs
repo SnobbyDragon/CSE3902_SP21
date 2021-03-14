@@ -7,27 +7,19 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Gel : IEnemy
+    public class Gel : Enemy, IEnemy
     {
 
-        public Rectangle Location { get; set; }
-        public Texture2D Texture { get; set; }
-        private readonly int totalFrames;
-        private int currentFrame;
-        private readonly int repeatedFrames = 10;
-        private readonly string color;
+
         private Dictionary<string, List<Rectangle>> colorMap;
-        private readonly int width = 8, height = 16;
-        private int health;
-        private Direction direction = Direction.w;
+
         private int directionChangeCounter;
-        private readonly Game1 game;
-        private int moveCounter, dirChangeDelay;
-        private readonly Random rand;
-        public Gel(Texture2D texture, Vector2 location, Game1 game, string gelColor)
+
+        public Gel(Texture2D texture, Vector2 location, Game1 gm, string gelColor) : base(texture, location, gm)
         {
-            rand = new Random();
-            this.game = game;
+            width = 8;
+            height = 16;
+            repeatedFrames = 10;
             health = 10;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
@@ -60,17 +52,17 @@ namespace sprint0
             return sources;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
         }
 
-        public void Update()
+        public new void Update()
         {
             moveCounter++;
             if (moveCounter == dirChangeDelay)
             {
-                ArbitraryDirection();
+                ArbitraryDirection(30, 50);
             }
             CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
@@ -105,50 +97,7 @@ namespace sprint0
             directionChangeCounter++;
 
         }
-        private void ArbitraryDirection()
-        {
-            // changes to an arbitrary direction; if in wall, go into room, else random direction
-            // TODO 32 is a magic number for room border / wall width... make static variable in Game1?
-            moveCounter = 0;
-            if (Location.X <= 32 * Game1.Scale) // in the left wall, move right
-            {
-                direction = Direction.e;
-            }
-            else if (Location.X >= (Game1.Width - 32) * Game1.Scale) // in the right wall, move left
-            {
-                direction = Direction.w;
-            }
-            else if (Location.Y <= (Game1.HUDHeight + 32) * Game1.Scale) // in the top wall, move down
-            {
-                direction = Direction.s;
-            }
-            else if (Location.Y >= (Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale) // in the bottom wall, move up
-            {
-                direction = Direction.n;
-            }
-            else // not in a wall, move in random direction
-            {
-                direction = (Direction)rand.Next(0, 4);
-            }
-            dirChangeDelay = rand.Next(30, 50); //TODO may still go into the wall... not sure if that's okay?
-        }
-        public void ChangeDirection()
-        {
-            ArbitraryDirection();
-        }
 
-        private void CheckHealth()
-        {
-            if (health < 0) Perish();
-        }
-        public void TakeDamage(int damage)
-        {
-            health -= damage;
-        }
 
-        public void Perish()
-        {
-            game.RemoveEnemy(this);
-        }
     }
 }
