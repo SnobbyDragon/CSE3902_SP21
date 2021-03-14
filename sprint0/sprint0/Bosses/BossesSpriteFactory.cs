@@ -30,7 +30,7 @@ namespace sprint0
                 "blue gohma" => new Gohma(texture, location, "blue", game),
                 "dodongo" => new Dodongo(texture, location, game),
                 "digdogger" => new Digdogger(texture, location, game),
-                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }
     }

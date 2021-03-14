@@ -180,7 +180,7 @@ namespace sprint0
             {
                 Vector2 recLoc = Location.Location.ToVector2() + centerOffset;
                 fireball.Location = new Rectangle((int)recLoc.X, (int)recLoc.Y, (int)(8 * Game1.Scale), (int)(10 * Game1.Scale));
-                fireball.IsDead = false;
+                fireball.Unhit();
             }
             
         }

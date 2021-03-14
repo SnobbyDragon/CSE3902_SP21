@@ -20,6 +20,7 @@ namespace sprint0
         public Vector2 Direction { get; set; } // direction fireball travels
         public bool IsDead { get; set; }
 
+
         public int Damage { get; }
 
         public GanonFireball(Texture2D texture, Vector2 location, string type, IEntity shooter)
@@ -122,6 +123,12 @@ namespace sprint0
                 loc.Offset(speed * Direction);
                 Location = loc;
             }
+        }
+
+        // TODO this is just a temporary fix to make fireball explosion show up
+        public void Unhit()
+        {
+            hit = false;
         }
 
         public void RegisterHit()

@@ -25,16 +25,17 @@ namespace sprint0
             collisionDetector = new CollisionDetector();
         }
 
-        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IWeapon> weapons, List<IProjectile> projectiles, List<IBlock> blocks)
+        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IWeapon> weapons, List<IProjectile> projectiles, List<IBlock> blocks, List<INpc> npcs)
         {
             HandleLinkProjectileCollisions(link, projectiles);
             HandleLinkBlockCollisions(link, blocks);
             HandleLinkEnemyCollisions(link, enemies);
             HandleEnemyBlockCollisions(enemies, blocks);
             HandleEnemyEnemyCollisions(enemies);
-            HandleEnemyProjectileCollisions(enemies, weapons);
+            HandleEnemyWeaponCollisions(enemies, weapons);
             HandleEnemyProjectileCollisions(enemies, projectiles);
             HandleBlockBlockCollisions(blocks);
+            HandleLinkNpcsCollisions(link, npcs);
             HandleProjectileGameBorderCollision(projectiles);
         }
 
@@ -90,6 +91,23 @@ namespace sprint0
         }
 
         /*
+         * Checks if link collides with any npcs; handles collisions
+         */
+        private void HandleLinkNpcsCollisions(IPlayer link, List<INpc> npcs)
+        {
+            LinkNpcCollisionHandler collisionHandler = new LinkNpcCollisionHandler();
+            Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
+            foreach (INpc npc in npcs)
+            {
+                Collision side = collisionDetector.DetectCollision(linkHitbox, npc);
+                if (side != Collision.None)
+                {
+                    collisionHandler.HandleCollision(link, npc, sideToDir[side]);
+                }
+            }
+        }
+
+        /*
          * Checks if enemies collide with any blocks; handles collisions
          */
         private void HandleEnemyBlockCollisions(List<IEnemy> enemies, List<IBlock> blocks)
@@ -130,7 +148,7 @@ namespace sprint0
         /*
          * Checks if enemies collide with any non-projectile weapons; handles collisions
          */
-        private void HandleEnemyProjectileCollisions(List<IEnemy> enemies, List<IWeapon> weapons)
+        private void HandleEnemyWeaponCollisions(List<IEnemy> enemies, List<IWeapon> weapons)
         {
             EnemyWeaponCollisionHandler collisionHandler = new EnemyWeaponCollisionHandler();
             foreach (IEnemy enemy in enemies)
