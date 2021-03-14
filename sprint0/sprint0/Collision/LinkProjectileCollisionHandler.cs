@@ -12,6 +12,11 @@ namespace sprint0
         {
             if (projectile.Shooter != null && !projectile.Shooter.Equals(link)) // can only hit link if he didn't throw it
                 link.TakeDamage(side, projectile.Damage);
+            else if (projectile.Shooter == link && projectile is Boomerang boomerang && boomerang.CanBeCaught)
+            {
+                boomerang.Perish();
+                link.ReceiveBoomerang(1);
+            }
         }
     }
 }

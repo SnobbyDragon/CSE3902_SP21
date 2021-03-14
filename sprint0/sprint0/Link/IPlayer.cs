@@ -28,6 +28,7 @@ namespace sprint0
         void HandleSword();
         void HandleShoot();
         void HandleBomb();
+        void HandleCandle();
 
         void ReceiveBomb(int n);
         void ReceiveArrow(int n);

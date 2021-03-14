@@ -91,6 +91,10 @@ namespace sprint0
             decoratedLink.HandleBoomerang();
         }
 
+        public void HandleCandle()
+        {
+            decoratedLink.HandleCandle();
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {

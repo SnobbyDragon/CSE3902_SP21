@@ -23,7 +23,7 @@ namespace sprint0
          */
         private int arrowCount = -1;
         private int bombCount = -1;
-        private int boomerangCount = -1;
+        private int boomerangCount = 1;
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
         Direction IPlayer.Direction { get => direction; set => direction = value; }
@@ -126,7 +126,7 @@ namespace sprint0
 
         public void Stop()
         {
-                State.Stop();
+            State.Stop();
         }
 
         public void HandleUp()
@@ -229,6 +229,31 @@ namespace sprint0
                     ThrowBoomerang();
                     State.UseItem();
                 }
+            }
+        }
+
+        public void HandleCandle()
+        {
+            if (isAlive)
+            {
+                Vector2 offsetPos = position;
+                switch (direction)
+                {
+                    case Direction.n:
+                        offsetPos = new Vector2(position.X, position.Y - 16);
+                        break;
+                    case Direction.s:
+                        offsetPos = new Vector2(position.X, position.Y + 16);
+                        break;
+                    case Direction.e:
+                        offsetPos = new Vector2(position.X + 16, position.Y);
+                        break;
+                    case Direction.w:
+                        offsetPos = new Vector2(position.X - 16, position.Y);
+                        break;
+                }
+                game.AddProjectile(offsetPos, direction, "flame", this);
+                State.UseItem();
             }
         }
 

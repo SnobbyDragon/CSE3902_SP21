@@ -18,9 +18,7 @@ namespace sprint0
             texture2 = game.Content.Load<Texture2D>("Images/Link");
             texture3 = game.Content.Load<Texture2D>("Images/DungeonEnemies");
         }
-        /*
-         * Note: if the lifespan is predetermined (for instance with "bomb", use 0)
-         */
+
         public IProjectile MakeProjectile(string spriteType, Vector2 location, Direction dir, IEntity shooter)
         {
             return spriteType switch
@@ -28,6 +26,7 @@ namespace sprint0
                 "boomerang" => new Boomerang(texture3, location, dir, shooter),
                 "arrow" => new Arrow(texture1, location, dir, shooter),
                 "sword beam" => new SwordBeam(texture2, location, dir, shooter),
+                "flame" => new FlameProjectile(texture2, location, dir, shooter),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
