@@ -43,6 +43,11 @@ namespace sprint0
             player.State = new RightUseItemState(player);
         }
 
+        public void PickUpItem()
+        {
+            player.State = new PickUpItemState(player);
+        }
+
         public void HandleSword()
         {
             player.State = new RightWoodSwordState(player);

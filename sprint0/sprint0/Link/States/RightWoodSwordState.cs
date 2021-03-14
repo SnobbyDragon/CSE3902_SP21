@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace sprint0
 {
-    internal class RightWoodSwordState : IPlayerState
+    class RightWoodSwordState : IPlayerState
     {
         private readonly IPlayer player;
         private readonly ISprite sprite;

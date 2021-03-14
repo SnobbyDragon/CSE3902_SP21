@@ -36,6 +36,11 @@ namespace sprint0
             // no-op: does not take damage
         }
 
+        public void PickUpItem()
+        {
+            // no-op: does not pick up items
+        }
+
         public void RemoveDecorator()
         {
             game.Player = decoratedLink;

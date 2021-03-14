@@ -48,7 +48,6 @@ namespace sprint0
                 "map" => new Map(texture1, location),
                 "blue potion" => new BluePotion(texture1, location),
                 "potion" => new Potion(texture1, location),
-                "blue rupee" => new BlueRupee(texture1, location),
                 "rupee" => new Rupee(texture1, location),
                 "clock" => new Clock(texture1, location),
                 "bow" => new Bow(texture1, location),

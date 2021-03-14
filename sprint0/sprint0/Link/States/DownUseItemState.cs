@@ -7,7 +7,10 @@ namespace sprint0
     {
         private readonly IPlayer player;
         private readonly ISprite sprite;
+
         private int count = 0;
+        private readonly int maxCount = 12; // animation time for use item sprite
+
         public DownUseItemState(IPlayer player)
         {
             this.player = player;
@@ -16,7 +19,7 @@ namespace sprint0
 
         public void Update()
         {
-            if (count > 12)
+            if (count > maxCount)
             {
                 player.State = new DownIdleState(player);
             }

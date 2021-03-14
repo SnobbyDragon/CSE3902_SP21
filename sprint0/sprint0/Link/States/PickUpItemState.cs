@@ -3,18 +3,34 @@ using Microsoft.Xna.Framework;
 
 namespace sprint0
 {
-    internal class DownWoodSwordState : IPlayerState
+    class PickUpItemState : IPlayerState
     {
         private readonly IPlayer player;
         private readonly ISprite sprite;
 
-        private int count = 0;
-        private readonly int maxCount = 24; // animation time for sword sprite
+        private int count;
+        private readonly int maxCount = 40; // time for pick up item sprite to animate once
 
-        public DownWoodSwordState(IPlayer player)
+        public PickUpItemState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link down sword", player.Pos);
+            sprite = Game1.PlayerFactory.MakeSprite("link pick up item", player.Pos);
+            count = 0;
+        }
+
+        public void Stop()
+        {
+            
+        }
+
+        public void UseItem()
+        {
+            
+        }
+
+        public void HandleSword()
+        {
+            
         }
 
         public void Update()
@@ -23,7 +39,6 @@ namespace sprint0
             {
                 player.State = new DownIdleState(player);
             }
-            sprite.Location = new Rectangle((int)player.Pos.X, (int)player.Pos.Y, sprite.Location.Width, sprite.Location.Height);
             sprite.Update();
             count++;
         }

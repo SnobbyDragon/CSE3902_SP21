@@ -15,8 +15,9 @@ namespace sprint0
         private int health = 32;
         private readonly int maxHealth = 32;
         private readonly int speed = 2;
-        private Boolean isAlive;
+        private bool isAlive;
         private Direction direction = Direction.n;
+
         /*
          * Note! A count of any number less than 0 is infinite.
          */
@@ -25,7 +26,6 @@ namespace sprint0
         private int boomerangCount = -1;
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
-        private readonly Random rand;
         Direction IPlayer.Direction { get => direction; set => direction = value; }
 
         // TODO Make this change with different color of sword
@@ -38,7 +38,6 @@ namespace sprint0
             this.game = game;
             position = pos;
             State = new UpIdleState(this);
-            rand = new Random();
             speed = 2;
         }
 
@@ -54,12 +53,16 @@ namespace sprint0
             if (health < 0) Die();
         }
 
+        public void PickUpItem()
+        {
+            State.PickUpItem();
+        }
+
         public void Shoot() {
             Vector2 offsetPos = position;
             switch (direction)
             {
                 case Direction.n:
-                    // 11 was smallest num s.t. arrow does not trigger collision with link TODO not necessary with source for projectiles
                     offsetPos = new Vector2(position.X + 6, position.Y - 11);
                     break;
                 case Direction.s:
@@ -78,6 +81,7 @@ namespace sprint0
         private void Die() {
             isAlive = false;
         }
+
         public void ThrowBomb()
         {
             Vector2 offsetPos = position;

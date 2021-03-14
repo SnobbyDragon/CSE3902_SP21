@@ -20,6 +20,7 @@ namespace sprint0
         void Move(int x, int y);
         void Stop();
         void TakeDamage(Direction direction, int damage);
+        void PickUpItem();
         void HandleUp();
         void HandleDown();
         void HandleLeft();
