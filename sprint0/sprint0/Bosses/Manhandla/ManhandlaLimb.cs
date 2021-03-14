@@ -67,7 +67,7 @@ namespace sprint0
                 }
             };
             Location = new Rectangle(0, 0, (int)(size * Game1.Scale), (int)(size * Game1.Scale)); //TODO clean up
-            Location = new Rectangle(center.Location.X + (int)dirToLocationMap[dir].X, center.Location.Y + (int)dirToLocationMap[dir].Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
+            Location = new Rectangle(center.Location.X + (int)(dirToLocationMap[dir].X * Game1.Scale), center.Location.Y + (int)(dirToLocationMap[dir].Y * Game1.Scale), (int)(size * Game1.Scale), (int)(size * Game1.Scale));
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -80,7 +80,7 @@ namespace sprint0
             CheckHealth();
             // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            Location = new Rectangle(center.Location.X + (int)dirToLocationMap[dir].X, center.Location.Y + (int)dirToLocationMap[dir].Y, size, size);
+            Location = new Rectangle(center.Location.X + (int)(dirToLocationMap[dir].X * Game1.Scale), center.Location.Y + (int)(dirToLocationMap[dir].Y * Game1.Scale), (int)(size * Game1.Scale), (int)(size * Game1.Scale));
 
             // shoot fireball
             if (CanShoot())
@@ -120,8 +120,9 @@ namespace sprint0
         private void ShootFireball()
         {
             Vector2 direction = Location.Center.ToVector2();
-            if (dir.Equals("up")){
-                 direction = new Vector2(0,-1);
+            if (dir.Equals("up"))
+            {
+                direction = new Vector2(0, -1);
             }
             else if (dir.Equals("down"))
             {
@@ -129,11 +130,11 @@ namespace sprint0
             }
             else if (dir.Equals("left"))
             {
-                direction = new Vector2(-1,0);
+                direction = new Vector2(-1, 0);
             }
             else if (dir.Equals("right"))
             {
-                direction = new Vector2(1,0) ;
+                direction = new Vector2(1, 0);
             }
 
             direction.Normalize();

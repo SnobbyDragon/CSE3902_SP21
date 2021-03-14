@@ -53,8 +53,8 @@ namespace sprint0
         public void Update()
         {
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames); // animate flying
-            Vector2 loc = center.Location.Center.ToVector2() + new Vector2((float)(distance * Math.Cos(DegreesToRadians(angle))), (float)(distance * Math.Sin(DegreesToRadians(angle))));
-            Location = new Rectangle((int)loc.X, (int)loc.Y, width, height);
+            Vector2 loc = center.Location.Center.ToVector2() + new Vector2((float)(distance * Math.Cos(DegreesToRadians(angle)) - (width * Game1.Scale * .5)), (float)(distance * Math.Sin(DegreesToRadians(angle)) - (height * Game1.Scale * .5)));
+            Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
 
             // spins fast, no need for delay
             angle = (angle - 3) % 360; // spin counterclockwise

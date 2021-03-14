@@ -53,7 +53,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             if (!isDead)
-                spriteBatch.Draw(Texture, preciseLocation, sources[currFrame / repeatedFrames], Color.White);
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
         }
 
         public void Update()
