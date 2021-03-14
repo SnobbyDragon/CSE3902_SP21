@@ -25,7 +25,7 @@ namespace sprint0
         private int health;
         public Dodongo(Texture2D texture, Vector2 location, Game1 game)
         {
-            health = 25;
+            health = 50;
             this.game = game;
             scaledSideLength = (int)(sideLength * Game1.Scale);
             scaledWidth = (int)(width * Game1.Scale);

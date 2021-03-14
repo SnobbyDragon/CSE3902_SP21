@@ -13,13 +13,12 @@ namespace sprint0
         private Vector2 preciseLocation;
         public Texture2D Texture { get; set; }
         public int Damage { get => 1; }
-
-        private bool isDead;
         private readonly int width = 8, height = 10;
         private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames, speed = 3; // fast fireballs
         private readonly Vector2 direction; // direction fireball travels
+        private bool hit = false;
 
         public Fireball(Texture2D texture, Vector2 location, Vector2 direction, IEntity shooter)
         {
@@ -33,8 +32,6 @@ namespace sprint0
             totalFrames = 4;
             repeatedFrames = 2;
             sources = GetFrames(231, 62); // in enemies sprite sheet; all fireballs are the same
-
-            isDead = false;
         }
 
         private List<Rectangle> GetFrames(int xOffset, int yOffset)
@@ -47,48 +44,28 @@ namespace sprint0
             return sources;
         }
 
-        public bool IsAlive() => !isDead;
-        public void Perish() => isDead = true;
+        public bool IsAlive() => !hit;
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!isDead)
+            if (!hit)
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+
         }
 
         public void Update()
         {
-            if (!isDead)
+            if (!hit)
             {   // alive and traveling
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 preciseLocation += speed * direction;
                 Location = new Rectangle((int)preciseLocation.X, (int)preciseLocation.Y, Location.Width, Location.Height);
-
-                if (HitWall())
-                {
-                    isDead = true;
-                }
             }
         }
 
-        // checks if hit wall (left || right || up || down); TODO account for size of fireball?
-        private bool HitWall()
+        public void RegisterHit()
         {
-            return
-                Location.X <= 0 || // left
-                Location.X >= Game1.Width * Game1.Scale || // right
-                Location.Y <= Game1.HUDHeight * Game1.Scale || // up
-                Location.Y >= (Game1.HUDHeight + Game1.MapHeight) * Game1.Scale; // down
-        }
-
-        public bool HasRecentlyHit(IEnemy enemy)
-        {
-            //no-op
-            return false;
-        }
-        public void RegisterHit(IEnemy enemy)
-        {
-            //no-op required
+            hit = true;
         }
     }
 
