@@ -10,9 +10,9 @@ namespace sprint0
     public class TrapAparatus : IEnemy
     {
         public Rectangle Location { get; set; }
-        private readonly int width = 16, height = 16;
+       
         public Texture2D Texture { get; set; }
-        private Direction direction;
+      
         private readonly Game1 game;
         private List<IEnemy> traps;
 
@@ -52,6 +52,7 @@ namespace sprint0
             for(int i=0;i<traps.Count;i++)
             {
                 Trap trap = (Trap)traps[i];
+                trap.CheckIfTriggered();
                 if (!trap.IsMoving() && !NeighborsMoving(trap)) {
                   
                     trap.setDirection(trap.CheckIfTriggered());
