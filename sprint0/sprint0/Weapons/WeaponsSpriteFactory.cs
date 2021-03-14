@@ -16,9 +16,6 @@ namespace sprint0
         {
             texture2 = game.Content.Load<Texture2D>("Images/Link");
         }
-        /*
-         * Note: if the lifespan is predetermined (for instance with "bomb", use 0)
-         */
 
         public IWeapon MakeWeapon(string spriteType, Vector2 location, Direction dir, IPlayer player)
         {

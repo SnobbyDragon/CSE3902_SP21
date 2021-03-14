@@ -42,6 +42,8 @@ namespace sprint0
                 "compass" => new Compass(texture1, location),
                 "key" => new Key(texture1, location),
                 "fairy" => new Fairy(texture1, location),
+                "arrow" => new ArrowItem(texture1, location),
+                "bomb" => new BombItem(texture1, location),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }

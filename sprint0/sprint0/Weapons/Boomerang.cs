@@ -7,13 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
     /*
-     * Last updated: 3/13/21 by urick.9
+     * Last updated: 3/14/21 by he.1528
      */
     public class Boomerang : IProjectile
     {
         public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         public int Damage { get => 1; }
+        public bool CanBeCaught { get => age > maxDistance || hit; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 290, yOffset = 11, width = 8, height = 16;
         private readonly List<Rectangle> sources;
