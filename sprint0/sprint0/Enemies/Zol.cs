@@ -9,7 +9,7 @@ namespace sprint0
 {
     public class Zol : IEnemy
     {
-        private Game1 game;
+        private readonly Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int totalFrames;
