@@ -7,23 +7,22 @@ using Microsoft.Xna.Framework.Graphics;
 //Movemnet added by Hannah Johnson
 namespace sprint0
 {
-    public class Trap : IEnemy
+    public class Trap : Enemy, IEnemy
     {
-        public Rectangle Location { get; set; }
-        public Texture2D Texture { get; set; }
+
         private Rectangle source;
-        private readonly int width = 16, height = 16;
-        private Direction direction;
-        private readonly Game1 game;
+
+
         private Rectangle HomeLocation;
   
 
-        public Trap(Texture2D texture, Vector2 location, Game1 game)
+        public Trap(Texture2D texture, Vector2 location, Game1 game): base(texture, location, game)
         {
+            width = 16;
+            height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             HomeLocation = Location;
             Texture = texture;
-            this.game = game;
 
             //Initialy does not move
             //Let ne be the direction trap "moves" if it is not moving
@@ -33,12 +32,12 @@ namespace sprint0
             source = new Rectangle(164, 59, width, height);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, source, Color.White);
         }
 
-        public void Update()
+        public new void Update()
         {
 
             if (direction == Direction.ne)
@@ -108,7 +107,7 @@ namespace sprint0
             return moveDirection;
         }
 
-        public void ChangeDirection()
+        public new void ChangeDirection()
         {
 
             if (direction == Direction.s && Location != HomeLocation)
@@ -131,19 +130,5 @@ namespace sprint0
 
         }
 
-        public void TakeDamage()
-        {
-            // not necessary; unkillable
-        }
-
-        public void TakeDamage(int damage)
-        {
-            //no-op
-        }
-
-        public void Perish()
-        {
-            //no-op
-        }
     }
 }

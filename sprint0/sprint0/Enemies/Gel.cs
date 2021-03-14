@@ -11,8 +11,7 @@ namespace sprint0
     {
 
 
-        private Dictionary<string, List<Rectangle>> colorMap;
-
+      
         private int directionChangeCounter;
 
         public Gel(Texture2D texture, Vector2 location, Game1 gm, string gelColor) : base(texture, location, gm)
@@ -41,16 +40,6 @@ namespace sprint0
             };
         }
 
-        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
-        {
-            List<Rectangle> sources = new List<Rectangle>();
-            for (int i = 0; i < numFrames; i++)
-            {
-                sources.Add(new Rectangle(xPos, yPos, width, height));
-                xPos += width + 1;
-            }
-            return sources;
-        }
 
         public new void Draw(SpriteBatch spriteBatch)
         {
