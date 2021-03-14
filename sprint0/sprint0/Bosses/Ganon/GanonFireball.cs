@@ -34,14 +34,14 @@ namespace sprint0
             repeatedFrames = 2;
             dirToSourcesMap = new Dictionary<string, List<Rectangle>>
             {
-                { "up", GetFrames(276, 157) },
-                { "up left", GetFrames(276, 174) },
-                { "left", GetFrames(276, 192) },
-                { "down left", GetFrames(276, 174) },
-                { "down", GetFrames(276, 157) },
-                { "down right", GetFrames(276, 174)},
-                { "right",  GetFrames(276, 192) },
-                { "up right", GetFrames(276, 174) }
+                { "up", SpritesheetHelper.GetFramesH(276, 157, width, height, totalFrames) },
+                { "up left", SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames) },
+                { "left", SpritesheetHelper.GetFramesH(276, 192, width, height, totalFrames) },
+                { "down left", SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames) },
+                { "down", SpritesheetHelper.GetFramesH(276, 157, width, height, totalFrames) },
+                { "down right", SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames)},
+                { "right",  SpritesheetHelper.GetFramesH(276, 192, width, height, totalFrames) },
+                { "up right", SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames) }
             };
             dirToEffectsMap = new Dictionary<string, SpriteEffects>
             {
@@ -50,7 +50,7 @@ namespace sprint0
                 { "left", SpriteEffects.None },
                 { "down left", SpriteEffects.FlipVertically },
                 { "down", SpriteEffects.FlipVertically },
-                { "down right", SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally},
+                { "down right", SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally },
                 { "right",  SpriteEffects.FlipHorizontally },
                 { "up right", SpriteEffects.FlipHorizontally }
             };
@@ -94,17 +94,6 @@ namespace sprint0
                 Direction.Normalize();
         }
 
-        //TODO make a utility class so we can reuse this code??? this is in a lot of places rn
-        public List<Rectangle> GetFrames(int xOffset, int yOffset)
-        {
-            List<Rectangle> sources = new List<Rectangle>();
-            for (int frame = 0; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xOffset + frame * (width + 1), yOffset, width, height));
-            };
-            return sources;
-        }
-
         public bool IsAlive() => !hit; // TODO clean up, we only need IsAlive()
 
         public void Draw(SpriteBatch spriteBatch)
@@ -124,7 +113,6 @@ namespace sprint0
             }
         }
 
-        // TODO this is just a temporary fix to make fireball explosion show up
         public void Unhit()
         {
             hit = false;

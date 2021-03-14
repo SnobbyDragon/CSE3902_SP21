@@ -5,6 +5,8 @@ namespace sprint0
     public class LinkItemCollisionHandler
     {
         private readonly int linkSize = (int)(16 * Game1.Scale);
+        private readonly int pickUpAnimationTime = 40;
+
         public LinkItemCollisionHandler()
         {
         }
@@ -23,7 +25,7 @@ namespace sprint0
                 }
                 else // no special animation on pick up
                 {
-                    item.PickedUpDuration = 40; // TODO magic number
+                    item.PickedUpDuration = pickUpAnimationTime;
                 }
             }
         }
