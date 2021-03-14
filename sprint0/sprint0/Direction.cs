@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace sprint0
@@ -36,6 +37,44 @@ namespace sprint0
                 Direction.se => ToVector2(Direction.s) + ToVector2(Direction.e),
                 Direction.sw => ToVector2(Direction.s) + ToVector2(Direction.w),
                 _ => throw new ArgumentException("Invalid direction! No opposite direction.")
+            };
+        }
+
+        /*
+         * Gets adjacent directions of the opposite type (cardinal / ordinal).
+         */
+        public static List<Direction> AdjacentDirectionsDiffType(this Direction direction)
+        {
+            return direction switch
+            {
+                Direction.n => new List<Direction> { Direction.nw, Direction.ne },
+                Direction.s => new List<Direction> { Direction.sw, Direction.se },
+                Direction.e => new List<Direction> { Direction.ne, Direction.se },
+                Direction.w => new List<Direction> { Direction.nw, Direction.sw },
+                Direction.ne => new List<Direction> { Direction.n, Direction.e },
+                Direction.nw => new List<Direction> { Direction.n, Direction.w },
+                Direction.se => new List<Direction> { Direction.e, Direction.s },
+                Direction.sw => new List<Direction> { Direction.w, Direction.s },
+                _ => throw new ArgumentException("Invalid direction! No adjacent directions with diff type (cardinal / ordinal).")
+            };
+        }
+
+        /*
+         * Gets adjacent directions of the same type (cardinal / ordinal)
+         */
+        public static List<Direction> AdjacentDirectionsSameType(this Direction direction)
+        {
+            return direction switch
+            {
+                Direction.n => new List<Direction> { Direction.w, Direction.e },
+                Direction.s => new List<Direction> { Direction.w, Direction.e },
+                Direction.e => new List<Direction> { Direction.n, Direction.s },
+                Direction.w => new List<Direction> { Direction.n, Direction.s },
+                Direction.ne => new List<Direction> { Direction.nw, Direction.se },
+                Direction.nw => new List<Direction> { Direction.ne, Direction.sw },
+                Direction.se => new List<Direction> { Direction.ne, Direction.sw },
+                Direction.sw => new List<Direction> { Direction.nw, Direction.se },
+                _ => throw new ArgumentException("Invalid direction! No adjacent directions with same type (cardinal / ordinal).")
             };
         }
     }
