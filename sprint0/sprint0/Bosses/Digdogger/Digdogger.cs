@@ -123,6 +123,7 @@ namespace sprint0
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
         }
 
+
         public void ChangeDirection()
         {
             GenerateDest();
