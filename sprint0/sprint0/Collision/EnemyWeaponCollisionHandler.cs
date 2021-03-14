@@ -11,7 +11,7 @@ namespace sprint0
         {
             if (weapon is IProjectile projectile)
             {
-                if (projectile.IsAlive() && projectile.Shooter != enemy)
+                if (projectile.IsAlive() && !(projectile.Shooter is IEnemy))
                 {
                     projectile.RegisterHit();
                     enemy.TakeDamage(weapon.Damage);
