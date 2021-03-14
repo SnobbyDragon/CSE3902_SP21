@@ -56,7 +56,7 @@ namespace sprint0
                 "up bombed opening" => new BombedOpening(texture, location, "up"),
                 "movable block" => new MovableBlock(texture, location),
                 "invisible block" => new InvisibleBlock(location),
-                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }
 
@@ -76,7 +76,7 @@ namespace sprint0
                 "right statue" => new Statue(texture, location, "right", game),
                 "movable block" => new MovableBlock(texture, location),
                 "invisible block" => new InvisibleBlock(location),
-                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }
     }

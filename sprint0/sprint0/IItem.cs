@@ -1,8 +1,8 @@
 ﻿using System;
 namespace sprint0
 {
-    public interface IItem
+    public interface IItem : ISprite
     {
-        public void PickedUp();
+        public bool PickedUp { get; set; }
     }
 }

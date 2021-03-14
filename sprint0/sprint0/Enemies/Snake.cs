@@ -41,7 +41,9 @@ namespace sprint0
             spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames],
                     Color.White, 0, new Vector2(0, 0), spriteEffect, 0);
         }
+
         public new void Update()
+
         {
             moveCounter++;
             if (moveCounter == dirChangeDelay)

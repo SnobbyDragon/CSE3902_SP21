@@ -1,22 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Author: Angela Li
 namespace sprint0
 {
-    public class HeartContainer : ISprite
+    public class BlueRupee : IItem
     {
+        public bool PickedUp { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        private readonly int width, height;
+        private readonly int xOffset = 72, yOffset = 16, width = 8, height = 16;
 
-        public HeartContainer(Texture2D texture, Vector2 location)
+        public BlueRupee(Texture2D texture, Vector2 location)
         {
-            width = height = 13;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            source = new Rectangle(25, 0, width, height);
+
+            //load sprites
+            source = new Rectangle(xOffset, yOffset, width, height);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -26,7 +30,7 @@ namespace sprint0
 
         public void Update()
         {
-            // does nothing for now
+
         }
     }
 }

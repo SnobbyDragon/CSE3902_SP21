@@ -5,8 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class TriforcePiece : ISprite
+    public class TriforcePiece : IItem
     {
+        public bool PickedUp { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private int currentFrame;

@@ -6,8 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
-    public class Compass : ISprite
+    public class Compass : IItem
     {
+        public bool PickedUp { get; set; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
@@ -22,7 +23,6 @@ namespace sprint0
             source = new Rectangle(258, 1, width, height);
 
         }
-
 
         public void Draw(SpriteBatch spriteBatch)
         {
