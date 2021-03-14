@@ -39,7 +39,6 @@ namespace sprint0
                 { "blkwhite", SpritesheetHelper.GetFramesH(145, 28, width, height, totalFrames) },
             };
             spawnCounter = spawnRate / 4;
-            this.game = game;
         }
 
         public new void Draw(SpriteBatch spriteBatch)
