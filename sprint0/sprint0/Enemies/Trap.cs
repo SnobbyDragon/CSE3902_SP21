@@ -11,17 +11,9 @@ namespace sprint0
     {
 
         private Rectangle source;
-<<<<<<< Updated upstream
         private Rectangle HomeLocation;
   
         public Trap(Texture2D texture, Vector2 location, Game1 game): base(texture, location, game)
-=======
-        private readonly int width = 16, height = 16;
-        private Direction direction;
-        private Rectangle HomeLocation;
-
-        public Trap(Texture2D texture, Vector2 location)
->>>>>>> Stashed changes
         {
             width = 16;
             height = 16;
