@@ -31,7 +31,7 @@ namespace sprint0
             };
 
             //register traps as enemies for collision handeling
-            game.RegisterEnemies(traps.Values);
+            game.Room.RegisterEnemies(traps.Values);
         }
 
         public void Draw(SpriteBatch spriteBatch) {}

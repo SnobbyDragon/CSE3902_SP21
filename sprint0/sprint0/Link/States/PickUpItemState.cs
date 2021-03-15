@@ -14,7 +14,7 @@ namespace sprint0
         public PickUpItemState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link pick up item", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite("link pick up item", player.Pos);
             count = 0;
         }
 

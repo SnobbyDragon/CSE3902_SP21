@@ -87,6 +87,7 @@ namespace sprint0
                 Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height); ;
             }
         }
+
         protected void ArbitraryDirection(int low, int high)
         {
             // changes to an arbitrary direction; if in wall, go into room, else random direction
@@ -111,7 +112,7 @@ namespace sprint0
 
         public void Perish()
         {
-            game.RemoveEnemy(this);
+            game.Room.RemoveEnemy(this);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace sprint0
         public UpWoodSwordState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link up sword", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite("link up sword", player.Pos);
         }
 
         public void Update()

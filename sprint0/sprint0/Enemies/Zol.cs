@@ -99,7 +99,7 @@ namespace sprint0
             if (spawnCounter == spawnRate)
             {
                 Vector2 spawnLoc = Location.Location.ToVector2() + new Vector2(-39, 0);
-                game.AddEnemy(spawnLoc, color + " gel");
+                game.Room.AddEnemy(spawnLoc, color + " gel");
                 spawnCounter = 0;
             }
             else

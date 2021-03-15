@@ -34,10 +34,10 @@ namespace sprint0
                     offsetPos = new Vector2(link.Pos.X, link.Pos.Y + 15);
                     break;
             }
-            game.AddWeapon(offsetPos, link.Direction, "sword", link);
+            game.Room.AddWeapon(offsetPos, link.Direction, "sword", link);
             if (beam)
             {
-                game.AddProjectile(offsetPos, link.Direction, "sword beam", link);
+                game.Room.AddProjectile(offsetPos, link.Direction, "sword beam", link);
             }
         }
 
@@ -79,7 +79,7 @@ namespace sprint0
                     offsetPos = new Vector2(link.Pos.X, link.Pos.Y);
                     break;
             }
-            game.AddProjectile(offsetPos, link.Direction, "arrow", link);
+            game.Room.AddProjectile(offsetPos, link.Direction, "arrow", link);
         }
 
         private void UseBomb()
@@ -100,7 +100,7 @@ namespace sprint0
                     offsetPos = new Vector2(link.Pos.X - 10, link.Pos.Y);
                     break;
             }
-            game.AddWeapon(offsetPos, link.Direction, "bomb", link);
+            game.Room.AddWeapon(offsetPos, link.Direction, "bomb", link);
         }
 
         private void UseBoomerang()
@@ -121,7 +121,7 @@ namespace sprint0
                     offsetPos = new Vector2(link.Pos.X, link.Pos.Y + 6);
                     break;
             }
-            game.AddProjectile(offsetPos, link.Direction, "boomerang", link);
+            game.Room.AddProjectile(offsetPos, link.Direction, "boomerang", link);
         }
 
         private void UseCandle()
@@ -142,7 +142,7 @@ namespace sprint0
                     offsetPos = new Vector2(link.Pos.X - 16, link.Pos.Y);
                     break;
             }
-            game.AddProjectile(offsetPos, link.Direction, "flame", link);
+            game.Room.AddProjectile(offsetPos, link.Direction, "flame", link);
         }
     }
 }

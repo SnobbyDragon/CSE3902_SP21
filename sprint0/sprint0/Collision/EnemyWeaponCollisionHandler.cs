@@ -19,7 +19,6 @@ namespace sprint0
             }
             else if (weapon is Bomb bomb)
             {
-                // special case; dodongo eats bombs. TODO this is bad (I think?): move this and increase cohesion?
                 if (enemy is Dodongo dodongo) { dodongo.EatBomb(); bomb.Eaten = true; }
                 else if (bomb.Exploding) enemy.TakeDamage(bomb.Damage);
             }

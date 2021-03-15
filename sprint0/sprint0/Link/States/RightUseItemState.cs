@@ -11,7 +11,7 @@ namespace sprint0
         public RightUseItemState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link right item", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite("link right item", player.Pos);
         }
 
         public void Update()

@@ -100,7 +100,7 @@ namespace sprint0
 
         public void Perish()
         {
-            game.RemoveEnemy(this);
+            game.Room.RemoveEnemy(this);
         }
 
         // keeps timings for expansions

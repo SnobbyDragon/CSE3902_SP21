@@ -24,14 +24,14 @@ namespace sprint0
         private readonly List<INpc> npcs;
         private readonly List<IItem> items;
 
-        private readonly Game1 game1;
+        private readonly Game1 game;
         private readonly EnemiesSpriteFactory enemyFactory;
         private readonly ItemsSpriteFactory itemFactory;
         private readonly DungeonFactory dungeonFactory;
         private readonly BossesSpriteFactory bossFactory;
         private readonly NpcsSpriteFactory npcFactory;
 
-        public LevelLoader(Game1 game1, int roomNo)
+        public LevelLoader(Game1 game, int roomNo)
         {
             //path, open stream, open file to read
             path = Path.GetFullPath(@"../../../Content/LevelData/Room") + roomNo.ToString() + ".xml";
@@ -44,15 +44,16 @@ namespace sprint0
             enemies = new List<IEnemy>();
             npcs = new List<INpc>();
             items = new List<IItem>();
-            this.game1 = game1;
+            this.game = game;
             roomStreamInvisible = File.OpenRead(Path.GetFullPath(@"../../../Content/LevelData/RoomInvisible.xml"));
             roomReaderInvisible = XmlReader.Create(roomStreamInvisible);
+
             //factories
-            enemyFactory = new EnemiesSpriteFactory(this.game1);
-            itemFactory = new ItemsSpriteFactory(this.game1);
-            dungeonFactory = new DungeonFactory(this.game1);
-            bossFactory = new BossesSpriteFactory(this.game1);
-            npcFactory = new NpcsSpriteFactory(this.game1);
+            enemyFactory = new EnemiesSpriteFactory(this.game);
+            itemFactory = new ItemsSpriteFactory(this.game);
+            dungeonFactory = new DungeonFactory(this.game);
+            bossFactory = new BossesSpriteFactory(this.game);
+            npcFactory = new NpcsSpriteFactory(this.game);
         }
 
         public void RoomSetup(XmlReader xmlReader, FileStream fileStream)
@@ -101,7 +102,7 @@ namespace sprint0
                     npcs.Add(npcFactory.MakeSprite(objectName, location));
                     break;
                 case "Player":
-                    game1.Player.Pos = location;
+                    game.Room.Player.Pos = location;
                     break;
                 default:
                     throw new ArgumentException("Invalid sprite! Level loading failed.");

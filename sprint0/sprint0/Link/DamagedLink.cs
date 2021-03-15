@@ -42,7 +42,7 @@ namespace sprint0
 
         public void RemoveDecorator()
         {
-            game.Player = decoratedLink;
+            game.Room.Player = decoratedLink;
         }
 
         public void Stop()

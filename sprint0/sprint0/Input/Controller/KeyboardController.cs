@@ -50,7 +50,7 @@ namespace sprint0
                     controllerMappings[key].Execute();
             foreach (Keys key in movementKeys)
                 if (Array.IndexOf(previousPressedKeys, key) > -1 && Array.IndexOf(pressedKeys, key) == -1)
-                    game.Player.Stop();
+                    game.Room.Player.Stop();
             previousPressedKeys = pressedKeys;
         }
     }

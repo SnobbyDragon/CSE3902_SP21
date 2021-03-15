@@ -47,7 +47,7 @@ namespace sprint0
 
         public void TakeDamage(Direction direction, int damage)
         {
-            game.Player = new DamagedLink(this, game, direction);
+            game.Room.Player = new DamagedLink(this, game, direction);
             health -= damage;
             if (health < 0) Die();
         }
