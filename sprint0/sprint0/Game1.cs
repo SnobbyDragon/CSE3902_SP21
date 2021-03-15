@@ -42,11 +42,11 @@ namespace sprint0
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
 
-        // map width and height in pixels (does not include HUD) TODO scale up?
+        // map width and height in pixels (does not include HUD)
         public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
         public static int HUDHeight { get; } = 56;
-        public static float Scale { get; } = 2.5f; //TODO change later?
+        public static float Scale { get; } = 2.5f;
 
         public Game1()
         {
@@ -96,24 +96,20 @@ namespace sprint0
 
             collisionHandler = new AllCollisionHandler();
 
-            /*
-             * below code was commented out so it's not confusing when testing. The following code is stuff for after we get all of the level loading stuff done/to test level loading
-             * commented out code:
-             * 1. separates out hud and the base elements of the room (plain floor and room border)
-             * 2. loads sprites for the level
-             */
+            // avoids mutating enemies list during foreach
             weaponsToDie = new List<IWeapon>();
             projectilesToDie = new List<IProjectile>();
-           
+
             enemiesToDie = new List<IEnemy>();
-            enemiesToSpawn = new List<IEnemy>(); // used for spawning new enemies; avoids mutating enemies list during foreach
-            roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
+            enemiesToSpawn = new List<IEnemy>();
+
+            roomBaseSprites = new List<ISprite>
             {
                 dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
                 dungeonFactory.MakeSprite("room floor plain", new Vector2(32*Scale, HUDHeight * Scale + 32*Scale)), // location = borderX + 32*scale, borderY + 32*scale
             };
 
-            hudSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
+            hudSprites = new List<ISprite>
             {
                 hudFactory.MakeSprite("hudM", new Vector2(0,0)),
                 hudFactory.MakeSprite("rin 15", new Vector2(0,0)),
@@ -131,6 +127,7 @@ namespace sprint0
         {
             weapons.Add(weaponFactory.MakeWeapon(item, Location, dir, source));
         }
+
         public void AddProjectile(Vector2 Location, Direction dir, string item, IEntity source)
         {
             projectiles.Add(projectileFactory.MakeProjectile(item, Location, dir, source));
@@ -146,7 +143,7 @@ namespace sprint0
             enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
         }
 
-        public void RegisterEnemies(List<IEnemy> unregEnemies)
+        public void RegisterEnemies(IEnumerable<IEnemy> unregEnemies)
         {
             enemiesToSpawn.AddRange(unregEnemies);
         }
@@ -160,6 +157,7 @@ namespace sprint0
         {
             projectilesToDie.Add(projectile);
         }
+
         public void RemoveWeapon(IWeapon weapon)
         {
             weaponsToDie.Add(weapon);
@@ -219,7 +217,6 @@ namespace sprint0
             {
                 enemies.Remove(enemy);
             }
-
             foreach (IWeapon weapon in weapons)
             {
                 if (!weapon.IsAlive()) RemoveWeapon(weapon);
@@ -236,7 +233,6 @@ namespace sprint0
             {
                 projectiles.Remove(projectile);
             }
-
             foreach (IWeapon weapon in weaponsToDie)
             {
                 weapons.Remove(weapon);

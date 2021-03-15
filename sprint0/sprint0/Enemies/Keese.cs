@@ -7,8 +7,6 @@ namespace sprint0
 {
     public class Keese : Enemy, IEnemy
     { 
-
-        private readonly Dictionary<string, List<Rectangle>> colorMap;
         public Keese(Texture2D texture, Vector2 location, String keeseColor, Game1 game): base(texture, location, game)
         {
             dirChangeDelay = 5;
@@ -21,32 +19,16 @@ namespace sprint0
             repeatedFrames = 8;
             direction = Direction.n;
 
-
             colorMap = new Dictionary<string, List<Rectangle>>
             {
-                { "blue", GetFrames(183, 11, 2)},
-                { "red", GetFrames(183, 28, 2)}
+                { "blue", SpritesheetHelper.GetFramesH(183, 11, width, height, totalFrames) },
+                { "red", SpritesheetHelper.GetFramesH(183, 28, width, height, totalFrames) }
             };
-        }
-
-        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
-        {
-            List<Rectangle> sources = new List<Rectangle>();
-            for (int i = 0; i < numFrames; i++)
-            {
-                sources.Add(new Rectangle(xPos, yPos, width, height));
-                xPos += width + 1;
-            }
-            return sources;
         }
 
         public new void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
         }
-       
-       
-
-     
     }
 }

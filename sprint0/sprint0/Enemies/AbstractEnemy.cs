@@ -13,7 +13,7 @@ namespace sprint0
         protected string color;
         protected int totalFrames;
         protected int repeatedFrames;
-        private Dictionary<string, List<Rectangle>> colorMap;
+        protected Dictionary<string, List<Rectangle>> colorMap;
         private readonly SpriteEffects s = SpriteEffects.FlipHorizontally;
         protected Direction direction;
         protected int width, height;
@@ -21,7 +21,6 @@ namespace sprint0
         protected int moveCounter, dirChangeDelay;
         protected readonly Random rand;
         protected readonly Game1 game;
-        
 
         public Enemy(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -32,22 +31,10 @@ namespace sprint0
             Texture = texture;
             colorMap = new Dictionary<string, List<Rectangle>>
             {
-                { "red", GetFrames(222, 11, 4)},
-                { "blue", GetFrames(222, 28, 4)}
+                { "red", SpritesheetHelper.GetFramesH(222, 11, width, height, 4)},
+                { "blue", SpritesheetHelper.GetFramesH(222, 28, width, height, 4)}
             };
         }
-
-        private List<Rectangle> GetFrames(int xPos, int yPos, int numFrames)
-        {
-            List<Rectangle> sources = new List<Rectangle>();
-            for (int i = 0; i < numFrames; i++)
-            {
-                sources.Add(new Rectangle(xPos, yPos, width, height));
-                xPos += width + 1;
-            }
-            return sources;
-        }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             if (direction == Direction.w)
@@ -74,8 +61,7 @@ namespace sprint0
             moveCounter++;
             if (moveCounter == dirChangeDelay)
             {
-                ArbitraryDirection(30,50);
-                
+                ArbitraryDirection(30, 50);
             }
             CheckHealth();
 
@@ -87,34 +73,26 @@ namespace sprint0
             }
             else if (direction == Direction.e)
             {
-
                 //moves sprite right
                 Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
-
             }
             else if (direction == Direction.s)
             {
                 //moves sprite down
                 Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height); ;
-
             }
             else
             {
                 //moves sprite up
                 Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height); ;
-
             }
         }
         protected void ArbitraryDirection(int low, int high)
         {
             // changes to an arbitrary direction; if in wall, go into room, else random direction
-            // TODO 32 is a magic number for room border / wall width... make static variable in Game1?
             moveCounter = 0;
-
-            
-                direction = (Direction)rand.Next(0, 4);
-            
-            dirChangeDelay = rand.Next(low, high); //TODO may still go into the wall... not sure if that's okay?
+            direction = (Direction)rand.Next(0, 4);
+            dirChangeDelay = rand.Next(low, high);
         }
 
         public void ChangeDirection()

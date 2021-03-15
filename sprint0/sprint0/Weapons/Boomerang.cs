@@ -7,13 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
     /*
-     * Last updated: 3/13/21 by urick.9
+     * Last updated: 3/14/21 by he.1528
      */
     public class Boomerang : IProjectile
     {
         public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
         public int Damage { get => 1; }
+        public bool CanBeCaught { get => age > maxDistance || hit; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 290, yOffset = 11, width = 8, height = 16;
         private readonly List<Rectangle> sources;
@@ -27,6 +28,7 @@ namespace sprint0
         private Vector2 moveVector;
         private bool alive;
         private bool hit = false;
+
         public Boomerang(Texture2D texture, Vector2 location, Direction dir, IEntity shooter)
         {
             Shooter = shooter;
@@ -49,15 +51,10 @@ namespace sprint0
             moveVector = new Vector2(xa, ya);
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            sources = new List<Rectangle>
-            {
-                new Rectangle(xOffset, yOffset, width, height),
-                new Rectangle(xOffset + width + 1, yOffset, width, height),
-                new Rectangle(xOffset + width*2 + 2, yOffset, width, height)
-            };
             currFrame = 0;
             totalFrames = 8;
             repeatedFrames = 4;
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -107,7 +104,6 @@ namespace sprint0
             {
                 alive = false;
             }
-
         }
 
         public void Update()
@@ -116,7 +112,14 @@ namespace sprint0
             {
                 if (age > maxDistance || hit)
                 {
-                    moveVector = Link.position - Location.Location.ToVector2();
+                    if (Shooter is IPlayer)
+                    {
+                        moveVector = Link.position - Location.Location.ToVector2();
+                    }
+                    else if (Shooter is Goriya goriya)
+                    {
+                        moveVector = goriya.Location.Center.ToVector2() - Location.Center.ToVector2();
+                    }
                     moveVector.Normalize();
                     moveVector = 6 * moveVector;
                 }
@@ -126,6 +129,7 @@ namespace sprint0
                 age++;
             }
         }
+
         public void RegisterHit()
         {
             hit = true;
