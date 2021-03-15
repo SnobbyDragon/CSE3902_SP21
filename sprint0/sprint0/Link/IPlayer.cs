@@ -1,12 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 // Authors: Jesse He and Jacob Urick
 namespace sprint0
 {
+    public enum PlayerItems
+    {
+        None = -2, Arrow = 0, Bomb = 1, Boomerang = 2, Candle = -1
+    }
     public interface IPlayer : IEntity
     {
-
         Direction Direction { get; set; }
 
         //Pos is deprecated
@@ -14,6 +18,8 @@ namespace sprint0
         IPlayerState State { get; set; }
 
         int WeaponDamage { get; set; }
+        PlayerItems CurrentItem { get; set; }
+        public List<int> ItemCounts { get; }
 
         //Use position, not Pos
         static Vector2 Position;
@@ -26,14 +32,9 @@ namespace sprint0
         void HandleLeft();
         void HandleRight();
         void HandleSword();
-        void HandleShoot();
-        void HandleBomb();
-        void HandleCandle();
+        void HandleItem();
 
-        void ReceiveBomb(int n);
-        void ReceiveArrow(int n);
-        void ReceiveBoomerang(int n);
-        void HandleBoomerang();
+        void ReceiveItem(int n, PlayerItems item);
         void Draw(SpriteBatch spriteBatch);
         void Update();
     }

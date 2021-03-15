@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -17,18 +16,15 @@ namespace sprint0
         private readonly int speed = 2;
         private bool isAlive;
         private Direction direction = Direction.n;
-
+        private LinkUseItemHelper itemHelper;
         /*
          * Note! A count of any number less than 0 is infinite.
          */
-        private int arrowCount = -1;
-        private int bombCount = -1;
-        private int boomerangCount = 1;
+        public List<int> ItemCounts { get; }
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
-        Direction IPlayer.Direction { get => direction; set => direction = value; }
-
-        // TODO Make this change with different color of sword
+        public Direction Direction { get => direction; set => direction = value; }
+        public PlayerItems CurrentItem { get; set; }
         public int WeaponDamage { get; set; }
 
         public Link(Game1 game, Vector2 pos)
@@ -38,6 +34,9 @@ namespace sprint0
             this.game = game;
             position = pos;
             State = new UpIdleState(this);
+            ItemCounts = new List<int> { -1, -1, 1 };
+            itemHelper = new LinkUseItemHelper(game, this);
+            CurrentItem = PlayerItems.None;
             speed = 2;
         }
 
@@ -58,72 +57,9 @@ namespace sprint0
             State.PickUpItem();
         }
 
-        public void Shoot()
-        {
-            Vector2 offsetPos = position;
-            switch (direction)
-            {
-                case Direction.n:
-                    offsetPos = new Vector2(position.X + 6, position.Y - 11);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2(position.X + 6, position.Y + 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2(position.X + 16, position.Y);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(position.X, position.Y);
-                    break;
-            }
-            game.AddProjectile(offsetPos, direction, "arrow", this);
-        }
-
         private void Die()
         {
             isAlive = false;
-        }
-
-        public void ThrowBomb()
-        {
-            Vector2 offsetPos = position;
-            switch (direction)
-            {
-                case Direction.n:
-                    offsetPos = new Vector2(position.X + 3, position.Y - 16);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2(position.X + 5, position.Y + 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2(position.X + 16, position.Y);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(position.X - 10, position.Y);
-                    break;
-            }
-            game.AddWeapon(offsetPos, direction, "bomb", this);
-        }
-
-        public void ThrowBoomerang()
-        {
-            Vector2 offsetPos = position;
-            switch (direction)
-            {
-                case Direction.n:
-                    offsetPos = new Vector2(position.X + 3, position.Y);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2(position.X + 5, position.Y + 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2(position.X + 16, position.Y + 6);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(position.X, position.Y + 6);
-                    break;
-            }
-            game.AddProjectile(offsetPos, direction, "boomerang", this);
         }
 
         public void Stop()
@@ -153,30 +89,21 @@ namespace sprint0
 
         public void HandleSword()
         {
-            State.HandleSword();
-            Vector2 offsetPos = position;
-            switch (direction)
+            if (isAlive)
             {
-                case Direction.n:
-                    offsetPos = new Vector2(position.X + 8, position.Y);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2(position.X + 12, position.Y + 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2(position.X + Game1.BorderThickness, position.Y + 15);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(position.X, position.Y + 15);
-                    break;
-            }
-            game.AddWeapon(offsetPos, direction, "sword", this);
-            if (health == maxHealth)
-            {
-                game.AddProjectile(offsetPos, direction, "sword beam", this);
+                itemHelper.UseSword(health == maxHealth);
             }
         }
 
+        public void HandleItem()
+        {
+            if (isAlive)
+            {
+                if (CurrentItem != PlayerItems.None && CurrentItem != PlayerItems.Candle)
+                    ItemCounts[(int)CurrentItem]--;
+                itemHelper.UseItem();
+            }
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -195,83 +122,9 @@ namespace sprint0
             }
         }
 
-        public void HandleShoot()
+        public void ReceiveItem(int n, PlayerItems item)
         {
-            if (isAlive)
-            {
-                if (arrowCount != 0)
-                {
-                    arrowCount--;
-                    Shoot();
-                    State.UseItem();
-                }
-            }
-        }
-
-        public void HandleBomb()
-        {
-            if (isAlive)
-            {
-                if (bombCount != 0)
-                {
-                    bombCount--;
-                    ThrowBomb();
-                    State.UseItem();
-                }
-            }
-        }
-
-        public void HandleBoomerang()
-        {
-            if (isAlive)
-            {
-                if (boomerangCount != 0)
-                {
-                    boomerangCount--;
-                    ThrowBoomerang();
-                    State.UseItem();
-                }
-            }
-        }
-
-        public void HandleCandle()
-        {
-            if (isAlive)
-            {
-                Vector2 offsetPos = position;
-                switch (direction)
-                {
-                    case Direction.n:
-                        offsetPos = new Vector2(position.X, position.Y - 16);
-                        break;
-                    case Direction.s:
-                        offsetPos = new Vector2(position.X, position.Y + 16);
-                        break;
-                    case Direction.e:
-                        offsetPos = new Vector2(position.X + 16, position.Y);
-                        break;
-                    case Direction.w:
-                        offsetPos = new Vector2(position.X - 16, position.Y);
-                        break;
-                }
-                game.AddProjectile(offsetPos, direction, "flame", this);
-                State.UseItem();
-            }
-        }
-
-        public void ReceiveBomb(int n)
-        {
-            bombCount += n;
-        }
-
-        public void ReceiveArrow(int n)
-        {
-            arrowCount += n;
-        }
-
-        public void ReceiveBoomerang(int n)
-        {
-            boomerangCount += n;
+            ItemCounts[(int)item] += n;
         }
     }
 }

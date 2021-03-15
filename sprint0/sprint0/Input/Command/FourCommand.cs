@@ -11,7 +11,8 @@ namespace sprint0
 
         public void Execute()
         {
-            game.Player.HandleCandle();
+            game.Player.CurrentItem = PlayerItems.Candle;
+            game.Player.HandleItem();
         }
     }
 }
