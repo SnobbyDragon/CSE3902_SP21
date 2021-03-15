@@ -24,14 +24,8 @@ namespace sprint0
             totalFrames = 2;
             currentFrame = 0;
             repeatedFrames = 10;
-            sources = new List<Rectangle>();
             int xPos = 126, yPos = 59;
-            //add frames to list
-            for (int frame = 0; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xPos, yPos, width, height));
-                xPos += width + 1;
-            }
+            sources = SpritesheetHelper.GetFramesH(xPos, yPos, width, height, totalFrames);
         }
 
         public new void Draw(SpriteBatch spriteBatch)
@@ -42,38 +36,31 @@ namespace sprint0
         }
 
         public new void Update()
-
         {
             moveCounter++;
             if (moveCounter == dirChangeDelay)
             {
-                ArbitraryDirection(200,3300);
+                ArbitraryDirection(200, 3300);
             }
 
             CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             if (direction == Direction.w)
             {
-                //sets sprite effect so snake faces left
                 spriteEffect = SpriteEffects.FlipHorizontally;
-                //moves sprite left
                 Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
             }
             else if (direction == Direction.e)
             {
-                //sets sprite effect so snake faces right
                 spriteEffect = SpriteEffects.None;
-                //moves sprite right
                 Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
             }
             else if (direction == Direction.s)
             {
-                //moves sprite down
                 Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
             }
             else
-            { //direction == Direction.n
-                //moves sprite up
+            {
                 Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
                 if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                 {
@@ -81,6 +68,5 @@ namespace sprint0
                 }
             }
         }
-
     }
 }
