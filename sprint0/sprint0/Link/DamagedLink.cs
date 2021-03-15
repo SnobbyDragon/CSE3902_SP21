@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
+using System.Collections.Generic;
 
-// Author: Jesse He
-/*
- * Last updated: 2/22/21 by he.1528
- */
 namespace sprint0
 {
     class DamagedLink : IPlayer
@@ -18,6 +14,9 @@ namespace sprint0
         public IPlayerState State { get => decoratedLink.State; set => decoratedLink.State = value; }
         Direction IPlayer.Direction { get => decoratedLink.Direction; set => decoratedLink.Direction = value; }
         public int WeaponDamage { get => decoratedLink.WeaponDamage; set => decoratedLink.WeaponDamage = value; }
+        public PlayerItems CurrentItem { get => decoratedLink.CurrentItem; set => decoratedLink.CurrentItem = value; }
+
+        public List<int> ItemCounts => decoratedLink.ItemCounts;
 
         public DamagedLink(IPlayer decoratedLink, Game1 game, Direction direction)
         {
@@ -76,25 +75,6 @@ namespace sprint0
             decoratedLink.HandleSword();
         }
 
-        public void HandleShoot()
-        {
-            decoratedLink.HandleShoot();
-        }
-
-        public void HandleBomb()
-        {
-            decoratedLink.HandleBomb();
-        }
-
-        public void HandleBoomerang()
-        {
-            decoratedLink.HandleBoomerang();
-        }
-
-        public void HandleCandle()
-        {
-            decoratedLink.HandleCandle();
-        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -130,19 +110,14 @@ namespace sprint0
             decoratedLink.Update();
         }
 
-        public void ReceiveBomb(int n)
+        public void HandleItem()
         {
-            decoratedLink.ReceiveBomb(n);
+            decoratedLink.HandleItem();
         }
 
-        public void ReceiveArrow(int n)
+        public void ReceiveItem(int n, PlayerItems item)
         {
-            decoratedLink.ReceiveArrow(n);
-        }
-
-        public void ReceiveBoomerang(int n)
-        {
-            decoratedLink.ReceiveBoomerang(n);
+            decoratedLink.ReceiveItem(n, item);
         }
     }
 }

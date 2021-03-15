@@ -15,7 +15,7 @@ namespace sprint0
             else if (projectile.Shooter == link && projectile is Boomerang boomerang && boomerang.CanBeCaught)
             {
                 boomerang.Perish();
-                link.ReceiveBoomerang(1);
+                link.ReceiveItem(1, PlayerItems.Boomerang);
             }
         }
     }
