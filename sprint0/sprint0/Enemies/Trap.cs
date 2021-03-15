@@ -12,9 +12,9 @@ namespace sprint0
         private Rectangle source;
         private Rectangle HomeLocation;
         public bool IsMoving { get; set; }
-        private readonly int speed = 5;
+        private readonly int speed = 4;
   
-        public Trap(Texture2D texture, Vector2 location, Game1 game): base(texture, location, game)
+        public Trap(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
             width = 16;
             height = 16;
@@ -34,8 +34,6 @@ namespace sprint0
         {
             if (IsMoving)
                 Move();
-
-            if (Location == HomeLocation) { IsMoving = false; }
         }
 
         private void Move()
@@ -43,8 +41,11 @@ namespace sprint0
             Rectangle loc = Location;
             loc.Offset(speed * direction.ToVector2());
             float nextDistToHome = DistSquared(HomeLocation, loc);
-            if (nextDistToHome < speed && DistSquared(HomeLocation, Location) > nextDistToHome)
+            if (nextDistToHome <= speed && DistSquared(HomeLocation, Location) >= nextDistToHome)
+            {
                 Location = HomeLocation;
+                IsMoving = false;
+            }
             else
                 Location = loc;
         }

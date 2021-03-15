@@ -85,7 +85,7 @@ namespace sprint0
 
         public void TakeDamage()
         {
-            // not necessary; unkillable
+            //no-op
         }
 
         public void TakeDamage(int damage)
