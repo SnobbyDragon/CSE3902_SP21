@@ -44,6 +44,7 @@ namespace sprint0
                 "blue keese" => new Keese(texture, location, "blue", game),
                 "stalfos" => new Stalfos(texture, location, game),
                 "trap" => new Trap(texture, location, game),
+                "trapparatus" => new Trapparatus(texture, location, game),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }

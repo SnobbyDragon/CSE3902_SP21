@@ -96,30 +96,19 @@ namespace sprint0
 
             collisionHandler = new AllCollisionHandler();
 
-            /*
-             * below code was commented out so it's not confusing when testing. The following code is stuff for after we get all of the level loading stuff done/to test level loading
-             * commented out code:
-             * 1. separates out hud and the base elements of the room (plain floor and room border)
-             * 2. loads sprites for the level
-             */
+            // avoids mutating enemies list during foreach
             weaponsToDie = new List<IWeapon>();
             projectilesToDie = new List<IProjectile>();
-            (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements = levelLoader.LoadLevel();
-            roomSprites = roomElements.Item1;
-            projectiles = roomElements.Item2;
-            blocks = roomElements.Item3;
-            enemies = roomElements.Item4;
-            npcs = roomElements.Item5;
-            items = roomElements.Item6;
             enemiesToDie = new List<IEnemy>();
-            enemiesToSpawn = new List<IEnemy>(); // used for spawning new enemies; avoids mutating enemies list during foreach
-            roomBaseSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
+            enemiesToSpawn = new List<IEnemy>();
+
+            roomBaseSprites = new List<ISprite>
             {
                 dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
                 dungeonFactory.MakeSprite("room floor plain", new Vector2(32*Scale, HUDHeight * Scale + 32*Scale)), // location = borderX + 32*scale, borderY + 32*scale
             };
 
-            hudSprites = new List<ISprite> // miscellaneous sprites that are not controlled by anything
+            hudSprites = new List<ISprite>
             {
                 hudFactory.MakeSprite("hudM", new Vector2(0,0)),
                 hudFactory.MakeSprite("rin 15", new Vector2(0,0)),
@@ -153,9 +142,9 @@ namespace sprint0
             enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
         }
 
-        public void RegisterEnemies(List<IEnemy> unregEnemies)
+        public void RegisterEnemies(IEnumerable<IEnemy> unregEnemies)
         {
-            enemies.AddRange(unregEnemies);
+            enemiesToSpawn.AddRange(unregEnemies);
         }
 
         public void RemoveEnemy(IEnemy enemy)
@@ -227,7 +216,6 @@ namespace sprint0
             {
                 enemies.Remove(enemy);
             }
-
             foreach (IWeapon weapon in weapons)
             {
                 if (!weapon.IsAlive()) RemoveWeapon(weapon);
@@ -244,7 +232,6 @@ namespace sprint0
             {
                 projectiles.Remove(projectile);
             }
-
             foreach (IWeapon weapon in weaponsToDie)
             {
                 weapons.Remove(weapon);
