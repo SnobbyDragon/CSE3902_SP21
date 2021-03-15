@@ -77,5 +77,16 @@ namespace sprint0
                 _ => throw new ArgumentException("Invalid direction! No adjacent directions with same type (cardinal / ordinal).")
             };
         }
+
+        public static Direction ApproxDirection(this Vector2 v)
+        {
+            Direction closestApprox = Direction.n;
+            foreach (Direction direction in Enum.GetValues(typeof(Direction)))
+            {
+                if ((direction.ToVector2() - v).LengthSquared() < (closestApprox.ToVector2() - v).LengthSquared())
+                    closestApprox = direction;
+            }
+            return closestApprox;
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace sprint0
         {
          
             Location = new Vector2(170,270);
-            Text1 =game.Content.Load<SpriteFont>("Font");
+            Text1 = game.Content.Load<SpriteFont>("Font");
 
         }
 

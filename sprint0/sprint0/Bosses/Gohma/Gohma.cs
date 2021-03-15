@@ -107,7 +107,7 @@ namespace sprint0
                 // has not reached destination, move towards it
                 dist.Normalize();
                 Rectangle loc = Location;
-                loc.Offset(ApproximateDirection(dist));
+                loc.Offset(dist.ApproxDirection().ToVector2());
                 Location = loc;
             }
 
@@ -153,36 +153,6 @@ namespace sprint0
             Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + centerOffset);
             dir.Normalize();
             game.AddFireball(Location.Center.ToVector2(), dir, this);
-        }
-
-        private Vector2 ApproximateDirection(Vector2 dir)
-        {
-            //TODO currently using vectors; maybe make IDirection interface?
-            //Direction closestApprox;
-            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
-            List<Vector2> vectors = new List<Vector2>
-            {
-                new Vector2(1, 0),
-                new Vector2(-1, 0),
-                new Vector2(0, 1),
-                new Vector2(0, -1),
-                new Vector2(1, 1),
-                new Vector2(1, -1),
-                new Vector2(-1, 1),
-                new Vector2(-1, -1),
-            };
-            Vector2 closestApprox = vectors[0];
-            float closestDist = (closestApprox - dir).LengthSquared();
-            foreach (Vector2 v in vectors)
-            {
-                float dist = (v - dir).LengthSquared();
-                if (dist < closestDist)
-                {
-                    closestApprox = v;
-                    closestDist = dist;
-                }
-            }
-            return closestApprox;
         }
     }
 }

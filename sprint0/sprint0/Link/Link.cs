@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-     class Link : IPlayer
+    class Link : IPlayer
     {
         private readonly Game1 game;
         private IPlayerState state;
@@ -43,7 +43,7 @@ namespace sprint0
 
         public void Move(int x, int y)
         {
-            position += new Vector2(speed*x, speed*y);
+            position += new Vector2(speed * x, speed * y);
         }
 
         public void TakeDamage(Direction direction, int damage)
@@ -58,7 +58,8 @@ namespace sprint0
             State.PickUpItem();
         }
 
-        public void Shoot() {
+        public void Shoot()
+        {
             Vector2 offsetPos = position;
             switch (direction)
             {
@@ -78,7 +79,8 @@ namespace sprint0
             game.AddProjectile(offsetPos, direction, "arrow", this);
         }
 
-        private void Die() {
+        private void Die()
+        {
             isAlive = false;
         }
 
@@ -162,7 +164,7 @@ namespace sprint0
                     offsetPos = new Vector2(position.X + 12, position.Y + 16);
                     break;
                 case Direction.e:
-                    offsetPos = new Vector2(position.X + 32, position.Y + 15);
+                    offsetPos = new Vector2(position.X + Game1.BorderThickness, position.Y + 15);
                     break;
                 case Direction.w:
                     offsetPos = new Vector2(position.X, position.Y + 15);
@@ -175,14 +177,14 @@ namespace sprint0
             }
         }
 
-        
+
         public void Draw(SpriteBatch spriteBatch)
         {
             if (isAlive)
             {
                 State.Draw(spriteBatch);
             }
-            
+
         }
 
         public void Update()

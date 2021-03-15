@@ -12,6 +12,7 @@ namespace sprint0
         private Rectangle source;
         private Rectangle HomeLocation;
         public bool IsMoving { get; set; }
+        private readonly int speed = 5;
   
         public Trap(Texture2D texture, Vector2 location, Game1 game): base(texture, location, game)
         {
@@ -32,13 +33,25 @@ namespace sprint0
         public new void Update()
         {
             if (IsMoving)
-            {
-                Rectangle loc = Location;
-                loc.Offset(direction.ToVector2());
-                Location = loc;
-            }
+                Move();
 
             if (Location == HomeLocation) { IsMoving = false; }
+        }
+
+        private void Move()
+        {
+            Rectangle loc = Location;
+            loc.Offset(speed * direction.ToVector2());
+            float nextDistToHome = DistSquared(HomeLocation, loc);
+            if (nextDistToHome < speed && DistSquared(HomeLocation, Location) > nextDistToHome)
+                Location = HomeLocation;
+            else
+                Location = loc;
+        }
+
+        private float DistSquared(Rectangle one, Rectangle two)
+        {
+            return (one.Center.ToVector2() - two.Center.ToVector2()).LengthSquared();
         }
 
         public void SetDirection(Direction direction)

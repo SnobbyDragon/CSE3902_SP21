@@ -13,17 +13,18 @@ namespace sprint0
         private readonly int xOffset = 1, yOffset = 11, width, height;
         private Dictionary<string, Rectangle> typeRectMap;
 
-        public OldPerson(Texture2D texture, Vector2 location, String type)
+        public OldPerson(Texture2D texture, Vector2 location, string type)
         {
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             Type = type;
-            typeRectMap = new Dictionary<String, Rectangle> //TODO use GetFrames method when we make that static public
+            List<Rectangle> sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, 3);
+            typeRectMap = new Dictionary<string, Rectangle>
             {
-                { "man 1", new Rectangle(xOffset, yOffset, width, height) },
-                { "man 2", new Rectangle(xOffset + width + 1, yOffset, width, height) },
-                { "woman", new Rectangle(xOffset + 2 * (width + 1), yOffset, width, height) }
+                { "man 1", sources[0] },
+                { "man 2", sources[1] },
+                { "woman", sources[2] }
             };
         }
 

@@ -13,17 +13,17 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle defaultSource;
         private bool isAngry; // if head is severed / angry, has different frames; TODO maybe change to state pattern later?
-        private List<Rectangle> angrySources;
+        private readonly List<Rectangle> angrySources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private Vector2 anchor; // where the neck attaches to the body
-        private Random rand;
-        private readonly int size = 16; // head size
-        private readonly int maxDistance = 100; // max distance head can be from anchor TODO might need adjusting
-        private readonly int moveDelay; // delay to make slower bc floats mess up drawings
+        private Vector2 anchor;
+        private readonly Random rand;
+        private readonly int size = 16;
+        private readonly int maxDistance = 100;
+        private readonly int moveDelay;
         private int moveCounter;
         private Vector2 destination;
-        private readonly int fireballRate = 100; //TODO currently arbitrary
+        private readonly int fireballRate = 100;
         private int fireballCounter = 0;
         private int health;
         public GleeokHead(Texture2D texture, Vector2 anchor, Game1 game)
@@ -38,14 +38,10 @@ namespace sprint0
             moveCounter = 0;
             defaultSource = new Rectangle(280, 11, 8, 16);
             isAngry = false;
-            angrySources = new List<Rectangle>
-            {
-                new Rectangle(289, 11, size, size),
-                new Rectangle(306, 11, size, size)
-            };
+            angrySources = SpritesheetHelper.GetFramesH(289, 11, size, size, 2);
             this.anchor = anchor;
             rand = new Random();
-            // randomly generates head location
+
             Vector2 randLoc = RandomLocation();
             Location = new Rectangle((int)randLoc.X, (int)randLoc.Y, (int)(8 * Game1.Scale), (int)(size * Game1.Scale));
             destination = RandomLocation();
@@ -71,23 +67,19 @@ namespace sprint0
                 Vector2 dist = destination - Location.Location.ToVector2();
                 if (dist.Length() < 2)
                 {
-                    // reached destination, so pick a new destination
                     destination = RandomLocation();
                 }
                 else if (moveCounter == moveDelay)
                 {
-                    // has not reached destination, move towards it
                     dist.Normalize();
                     Rectangle loc = Location;
-                    loc.Offset(ApproximateDirection(dist));
+                    loc.Offset(dist.ApproxDirection().ToVector2());
                     Location = loc;
                     moveCounter = 0;
                 }
                 moveCounter++;
             }
 
-            //TODO
-            // fireballs move and animate regardless
             if (CanShoot())
             {
                 ShootFireball();
@@ -134,36 +126,6 @@ namespace sprint0
             Vector2 dir = new Vector2(rand.Next(-100, 100), rand.Next(0, 100)); // location can only below anchor
             dir.Normalize();
             return anchor + rand.Next(0, maxDistance) * dir;
-        }
-
-        private Vector2 ApproximateDirection(Vector2 dir)
-        {
-            //TODO currently using vectors; maybe make IDirection interface?
-            //Direction closestApprox;
-            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
-            List<Vector2> vectors = new List<Vector2>
-            {
-                new Vector2(1, 0),
-                new Vector2(-1, 0),
-                new Vector2(0, 1),
-                new Vector2(0, -1),
-                new Vector2(1, 1),
-                new Vector2(1, -1),
-                new Vector2(-1, 1),
-                new Vector2(-1, -1),
-            };
-            Vector2 closestApprox = vectors[0];
-            float closestDist = (closestApprox - dir).LengthSquared();
-            foreach (Vector2 v in vectors)
-            {
-                float dist = (v - dir).LengthSquared();
-                if (dist < closestDist)
-                {
-                    closestApprox = v;
-                    closestDist = dist;
-                }
-            }
-            return closestApprox;
         }
     }
 }

@@ -98,7 +98,6 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // TODO: Change sprites to hurt pallates?--for now Link flashes on every frame
             if (timer % 2 == 0)
                 decoratedLink.Draw(spriteBatch);
         }

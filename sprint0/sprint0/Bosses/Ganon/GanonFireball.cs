@@ -94,17 +94,17 @@ namespace sprint0
                 Direction.Normalize();
         }
 
-        public bool IsAlive() => !hit; // TODO clean up, we only need IsAlive()
+        public bool IsAlive() => !hit;
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!hit)
+            if (IsAlive())
                 spriteBatch.Draw(Texture, Location, dirToSourcesMap[type][currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), dirToEffectsMap[type], 0);
         }
 
         public void Update()
         {
-            if (!hit)
+            if (IsAlive())
             {
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 Rectangle loc = Location;

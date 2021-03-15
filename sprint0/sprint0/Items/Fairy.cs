@@ -57,7 +57,7 @@ namespace sprint0
             {
                 // has not reached destination, move towards it
                 dist.Normalize();
-                dist = ApproximateDirection(dist);
+                dist = dist.ApproxDirection().ToVector2();
                 Location = new Rectangle((int)(Location.X + dist.X), (int)(Location.Y + dist.Y), Location.Width, Location.Height);
             }
 
@@ -72,21 +72,21 @@ namespace sprint0
             int yupperBound = Location.X + 200;
 
             //if destination is off screen resets to screen bounds
-            if (xlowerBound < 32 * Game1.Scale)
+            if (xlowerBound < Game1.BorderThickness * Game1.Scale)
             {
-                xlowerBound = (int)(32 * Game1.Scale);
+                xlowerBound = (int)(Game1.BorderThickness * Game1.Scale);
             }
-            if (xupperBound > (Game1.Width - 32) * Game1.Scale)
+            if (xupperBound > (Game1.Width - Game1.BorderThickness) * Game1.Scale)
             {
-                xupperBound = (int)((Game1.Width - 32) * Game1.Scale);
+                xupperBound = (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale);
             }
-            if (ylowerBound < (Game1.HUDHeight + 32) * Game1.Scale)
+            if (ylowerBound < (Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale)
             {
-                ylowerBound = (int)((Game1.HUDHeight + 32) * Game1.Scale);
+                ylowerBound = (int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale);
             }
-            if (yupperBound > (Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale)
+            if (yupperBound > (Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale)
             {
-                yupperBound = (int)((Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale);
+                yupperBound = (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale);
             }
             // picks a random destination 
 
@@ -96,35 +96,6 @@ namespace sprint0
                 );
         }
 
-        private Vector2 ApproximateDirection(Vector2 dir)
-        {
-            //TODO currently using vectors; maybe make IDirection interface?
-            //Direction closestApprox;
-            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
-            List<Vector2> vectors = new List<Vector2>
-            {
-                new Vector2(1, 0),
-                new Vector2(-1, 0),
-                new Vector2(0, 1),
-                new Vector2(0, -1),
-                new Vector2(1, 1),
-                new Vector2(1, -1),
-                new Vector2(-1, 1),
-                new Vector2(-1, -1),
-            };
-            Vector2 closestApprox = vectors[0];
-            float closestDist = (closestApprox - dir).LengthSquared();
-            foreach (Vector2 v in vectors)
-            {
-                float dist = (v - dir).LengthSquared();
-                if (dist < closestDist)
-                {
-                    closestApprox = v;
-                    closestDist = dist;
-                }
-            }
-            return closestApprox;
-        }
         public void RegisterHit()
         {
             //no-op required

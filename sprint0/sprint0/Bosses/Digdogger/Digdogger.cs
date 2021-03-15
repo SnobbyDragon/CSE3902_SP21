@@ -24,7 +24,7 @@ namespace sprint0
         private readonly Random rand;
         private Vector2 destination; //TODO depends on link; runs away?
         private int moveCounter;
-        private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < totalFrames*repeatedFrames
+        private readonly int moveDelay;
         private readonly Game1 game;
         private int health;
 
@@ -92,15 +92,13 @@ namespace sprint0
                 Vector2 dist = destination - Location.Location.ToVector2();
                 if (dist.Length() < 5)
                 {
-                    // reached destination, generate new destination; TODO change dir bc of link position
                     GenerateDest();
                 }
                 else if (moveCounter == moveDelay)
                 {
-                    // has not reached destination, move towards it
                     dist.Normalize();
                     Rectangle loc = Location;
-                    loc.Offset(ApproximateDirection(dist)); //TODO BUG: green background appears bc of floating point error; make a rounding method for vectors? or refactor movement
+                    loc.Offset(dist.ApproxDirection().ToVector2());
                     Location = loc;
                     moveCounter = 0;
                 }
@@ -138,42 +136,11 @@ namespace sprint0
         // generates a new destination
         private void GenerateDest()
         {
-            // currently picks a random destination TODO make 32 static variable? this is the wall width
             // TODO movement depends on where link is?
             destination = new Vector2(
-                rand.Next((int)(32 * Game1.Scale), (int)((Game1.Width - 32) * Game1.Scale)),
-                rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale))
+                rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
+                rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))
                 );
-        }
-
-        private Vector2 ApproximateDirection(Vector2 dir)
-        {
-            //TODO currently using vectors; maybe make IDirection interface?
-            //Direction closestApprox;
-            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
-            List<Vector2> vectors = new List<Vector2>
-            {
-                new Vector2(1, 0),
-                new Vector2(-1, 0),
-                new Vector2(0, 1),
-                new Vector2(0, -1),
-                new Vector2(1, 1),
-                new Vector2(1, -1),
-                new Vector2(-1, 1),
-                new Vector2(-1, -1),
-            };
-            Vector2 closestApprox = vectors[0];
-            float closestDist = (closestApprox - dir).LengthSquared();
-            foreach (Vector2 v in vectors)
-            {
-                float dist = (v - dir).LengthSquared();
-                if (dist < closestDist)
-                {
-                    closestApprox = v;
-                    closestDist = dist;
-                }
-            }
-            return closestApprox;
         }
     }
 }

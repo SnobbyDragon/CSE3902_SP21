@@ -15,7 +15,7 @@ namespace sprint0
         private Dictionary<string, Rectangle> colorMap;
         private readonly int width, height;
 
-        public TriforcePiece(Texture2D texture, Vector2 location, String triforceColor)
+        public TriforcePiece(Texture2D texture, Vector2 location, string triforceColor)
         {
             width = height = 14;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));

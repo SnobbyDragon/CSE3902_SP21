@@ -46,6 +46,7 @@ namespace sprint0
         public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
         public static int HUDHeight { get; } = 56;
+        public static int BorderThickness { get; } = 32;
         public static float Scale { get; } = 2.5f;
 
         public Game1()
@@ -106,7 +107,7 @@ namespace sprint0
             roomBaseSprites = new List<ISprite>
             {
                 dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
-                dungeonFactory.MakeSprite("room floor plain", new Vector2(32*Scale, HUDHeight * Scale + 32*Scale)), // location = borderX + 32*scale, borderY + 32*scale
+                dungeonFactory.MakeSprite("room floor plain", new Vector2(Game1.BorderThickness*Scale, HUDHeight * Scale + Game1.BorderThickness*Scale)), // location = borderX + Game1.BorderThickness*scale, borderY + Game1.BorderThickness*scale
             };
 
             hudSprites = new List<ISprite>
