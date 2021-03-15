@@ -8,41 +8,16 @@ namespace sprint0
 {
     public class Game1 : Game
     {
-
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
 
-        private static PlayerSpriteFactory playerFactory;
-        public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
-        private IPlayer player;
-        public IPlayer Player { get => player; set => player = value; }
-
-        private WeaponsSpriteFactory weaponFactory;
-        private ProjectileSpriteFactory projectileFactory;
-        private EnemiesSpriteFactory enemyFactory;
-
-        private List<IProjectile> projectiles, projectilesToDie;
-        private List<IWeapon> weapons, weaponsToDie;
-        private List<IBlock> blocks;
-        private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
-        private List<INpc> npcs;
-        private List<IItem> items;
-        private AllCollisionHandler collisionHandler;
-
-        private List<ISprite> roomSprites, hudSprites, roomBaseSprites;
-        private LevelLoader levelLoader;
-        public bool changeRoom;
+        public Room Room { get => room; }
+        private Room room;
+        public bool ChangeRoom { get; set; }
         public int roomIndex;
-        public readonly int numRooms = 18;
-        private Text text;
+        public int NumRooms { get; } = 18;
 
-        private ISprite sprite;
-        private SpriteFont font;
-        public ISprite Sprite { get => sprite; set => sprite = value; }
-        public SpriteFont Font { get => font; set => font = value; }
-
-        // map width and height in pixels (does not include HUD)
         public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
         public static int HUDHeight { get; } = 56;
@@ -64,104 +39,25 @@ namespace sprint0
             _graphics.PreferredBackBufferWidth = (int)(Width * Scale);
             _graphics.PreferredBackBufferHeight = (int)((HUDHeight + MapHeight) * Scale);
             _graphics.ApplyChanges();
+            _spriteBatch = new SpriteBatch(_graphics.GraphicsDevice);
+
             controllerList = new List<IController>
             {
                 new KeyboardController(this),
                 new MouseController(this)
             };
-            playerFactory = new PlayerSpriteFactory(this);
-            player = new Link(this, new Vector2(200, 250));
 
-            //note: the integer refers to the room number to load
-            changeRoom =true;
             roomIndex = 1;
-            levelLoader = new LevelLoader(this, roomIndex);
+            ChangeRoom = true;
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            DungeonFactory dungeonFactory = new DungeonFactory(this);
-            HUDFactory hudFactory = new HUDFactory(this);
-            weaponFactory = new WeaponsSpriteFactory(this);
-            projectileFactory = new ProjectileSpriteFactory(this);
-            enemyFactory = new EnemiesSpriteFactory(this);
-
-            weapons = new List<IWeapon>();
-            projectiles = new List<IProjectile>();
-            blocks = new List<IBlock>();
-            enemies = new List<IEnemy>();
-            npcs = new List<INpc>();
-
-            collisionHandler = new AllCollisionHandler();
-
-            // avoids mutating enemies list during foreach
-            weaponsToDie = new List<IWeapon>();
-            projectilesToDie = new List<IProjectile>();
-
-            enemiesToDie = new List<IEnemy>();
-            enemiesToSpawn = new List<IEnemy>();
-
-            roomBaseSprites = new List<ISprite>
-            {
-                dungeonFactory.MakeSprite("room border", new Vector2(0, HUDHeight * Scale)),
-                dungeonFactory.MakeSprite("room floor plain", new Vector2(Game1.BorderThickness*Scale, HUDHeight * Scale + Game1.BorderThickness*Scale)), // location = borderX + Game1.BorderThickness*scale, borderY + Game1.BorderThickness*scale
-            };
-
-            hudSprites = new List<ISprite>
-            {
-                hudFactory.MakeSprite("hudM", new Vector2(0,0)),
-                hudFactory.MakeSprite("rin 15", new Vector2(0,0)),
-                hudFactory.MakeSprite("kin 5", new Vector2(0,0)),
-                hudFactory.MakeSprite("bin 33", new Vector2(0,0)),
-                hudFactory.MakeSprite("hin 5,10", new Vector2(0,0)),
-                hudFactory.MakeSprite("hudA sword", new Vector2(0,0)),
-                hudFactory.MakeSprite("hudB magical boomerang", new Vector2(0,0)),
-            };
-
-            text = new Text(this);
-        }
-
-        public void AddWeapon(Vector2 Location, Direction dir, string item, IPlayer source)
-        {
-            weapons.Add(weaponFactory.MakeWeapon(item, Location, dir, source));
-        }
-
-        public void AddProjectile(Vector2 Location, Direction dir, string item, IEntity source)
-        {
-            projectiles.Add(projectileFactory.MakeProjectile(item, Location, dir, source));
-        }
-
-        public void AddFireball(Vector2 location, Vector2 dir, IEntity source)
-        {
-            projectiles.Add(projectileFactory.MakeFireball(location, dir, source));
-        }
-
-        public void AddEnemy(Vector2 location, string enemy)
-        {
-            enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
-        }
-
-        public void RegisterEnemies(IEnumerable<IEnemy> unregEnemies)
-        {
-            enemiesToSpawn.AddRange(unregEnemies);
-        }
-
-        public void RemoveEnemy(IEnemy enemy)
-        {
-            enemiesToDie.Add(enemy);
-        }
-
-        public void RemoveProjectile(IProjectile projectile)
-        {
-            projectilesToDie.Add(projectile);
-        }
-
-        public void RemoveWeapon(IWeapon weapon)
-        {
-            weaponsToDie.Add(weapon);
+            room = new Room(_spriteBatch, this, roomIndex);
+            room.LoadContent();
+            ChangeRoom = false;
         }
 
         protected override void Update(GameTime gameTime)
@@ -171,73 +67,10 @@ namespace sprint0
 
             foreach (IController controller in controllerList)
                 controller.Update();
-            player.Update();
 
-            //NOTE: changes room if needed
-            if (changeRoom)
-            {
-                levelLoader = new LevelLoader(this, roomIndex);
-                (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements = levelLoader.LoadLevel();
-                roomSprites = roomElements.Item1;
-                projectiles = roomElements.Item2;
-                blocks = roomElements.Item3;
-                enemies = roomElements.Item4;
-                npcs = roomElements.Item5;
-                items = roomElements.Item6;
-                changeRoom = false;
-            }
+            if (ChangeRoom) LoadContent();
 
-            //NOTE: to update level sprites and hud
-            foreach (ISprite _sprite in roomSprites)
-                _sprite.Update();
-            foreach (ISprite _sprite in hudSprites)
-                _sprite.Update();
-            foreach (IProjectile projectile in projectiles)
-                projectile.Update();
-            foreach (IWeapon weapon in weapons)
-                weapon.Update();
-            foreach (IBlock block in blocks)
-                block.Update();
-            foreach (IEnemy enemy in enemies)
-                enemy.Update();
-            foreach (INpc npc in npcs)
-                npc.Update();
-            foreach (IItem item in items)
-                item.Update();
-
-            // handles collisions
-            collisionHandler.HandleAllCollisions(Player, enemies, weapons, projectiles, blocks, npcs, items);
-
-            // after all traversals, add new enemies
-            if (enemiesToSpawn.Count > 0)
-            {
-                enemies.AddRange(enemiesToSpawn);
-                enemiesToSpawn.Clear();
-            }
-            foreach (IEnemy enemy in enemiesToDie)
-            {
-                enemies.Remove(enemy);
-            }
-            foreach (IWeapon weapon in weapons)
-            {
-                if (!weapon.IsAlive()) RemoveWeapon(weapon);
-            }
-            foreach (IProjectile projectile in projectiles)
-            {
-                if (!projectile.IsAlive()) RemoveProjectile(projectile);
-            }
-            foreach (IWeapon weapon in weaponsToDie)
-            {
-                weapons.Remove(weapon);
-            }
-            foreach (IProjectile projectile in projectilesToDie)
-            {
-                projectiles.Remove(projectile);
-            }
-            foreach (IWeapon weapon in weaponsToDie)
-            {
-                weapons.Remove(weapon);
-            }
+            room.Update();
             base.Update(gameTime);
         }
 
@@ -245,35 +78,7 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
-
-            //NOTE: draws room base, hud, and level elements
-            foreach (ISprite _sprite in roomBaseSprites)
-                _sprite.Draw(_spriteBatch);
-            foreach (ISprite _sprite in hudSprites)
-                _sprite.Draw(_spriteBatch);
-            foreach (ISprite _sprite in roomSprites)
-                _sprite.Draw(_spriteBatch);
-            foreach (IBlock block in blocks)
-                block.Draw(_spriteBatch);
-            foreach (IWeapon weapon in weapons)
-                weapon.Draw(_spriteBatch);
-            foreach (IProjectile projectile in projectiles)
-                projectile.Draw(_spriteBatch);
-            foreach (IEnemy enemy in enemies)
-                enemy.Draw(_spriteBatch);
-            foreach (INpc npc in npcs)
-                npc.Draw(_spriteBatch);
-            foreach (IItem item in items)
-                item.Draw(_spriteBatch);
-            foreach (IProjectile projectile in projectiles)
-                projectile.Draw(_spriteBatch);
-            player.Draw(_spriteBatch);
-
-            if (roomIndex == 4)
-            {
-                text.Draw(_spriteBatch);
-            }
-
+            room.Draw();
             _spriteBatch.End();
             base.Draw(gameTime);
         }

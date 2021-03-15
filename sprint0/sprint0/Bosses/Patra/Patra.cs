@@ -102,7 +102,7 @@ namespace sprint0
 
         public void Perish()
         {
-            game.RemoveEnemy(this);
+            game.Room.RemoveEnemy(this);
         }
 
         // generates a new destination

@@ -11,7 +11,7 @@ namespace sprint0
         public RightIdleState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link right idle", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite("link right idle", player.Pos);
         }
 
         public void HandleUp()

@@ -34,7 +34,7 @@ namespace sprint0
                 new ManhandlaLimb(Texture, this, Direction.e, game)
             };
             //register limbs as enemies for collision handling
-            game.RegisterEnemies(limbs);
+            game.Room.RegisterEnemies(limbs);
            
             rand = new Random();
             GenerateDest();
@@ -94,7 +94,7 @@ namespace sprint0
 
         public void Perish()
         {
-            game.RemoveEnemy(this);
+            game.Room.RemoveEnemy(this);
         }
 
         // generates a new destination

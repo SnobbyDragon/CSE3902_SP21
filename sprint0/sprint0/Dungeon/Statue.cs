@@ -63,7 +63,7 @@ namespace sprint0
                 direction = new Vector2(1, 0);
             }
             direction.Normalize();
-            game.AddFireball(Location.Center.ToVector2(), direction, this);
+            game.Room.AddFireball(Location.Center.ToVector2(), direction, this);
         }
 
         public bool IsWalkable()

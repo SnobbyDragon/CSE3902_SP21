@@ -10,7 +10,7 @@ namespace sprint0
         public RightWalkingState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link right walking", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite("link right walking", player.Pos);
         }
 
         public void Stop()

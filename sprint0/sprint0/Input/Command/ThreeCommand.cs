@@ -11,8 +11,8 @@ namespace sprint0
 
         public void Execute()
         {
-            game.Player.CurrentItem = PlayerItems.Boomerang;
-            game.Player.HandleItem();
+            game.Room.Player.CurrentItem = PlayerItems.Boomerang;
+            game.Room.Player.HandleItem();
         }
     }
 }

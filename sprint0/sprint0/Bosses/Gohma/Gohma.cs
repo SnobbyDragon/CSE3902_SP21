@@ -138,7 +138,7 @@ namespace sprint0
 
         public void Perish()
         {
-            game.RemoveEnemy(this);
+            game.Room.RemoveEnemy(this);
         }
 
         private bool CanShoot()
@@ -150,9 +150,9 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            Vector2 dir = game.Player.Pos - (Location.Location.ToVector2() + centerOffset);
+            Vector2 dir = game.Room.Player.Pos - (Location.Location.ToVector2() + centerOffset);
             dir.Normalize();
-            game.AddFireball(Location.Center.ToVector2(), dir, this);
+            game.Room.AddFireball(Location.Center.ToVector2(), dir, this);
         }
     }
 }

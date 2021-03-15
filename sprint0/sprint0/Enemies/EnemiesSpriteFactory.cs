@@ -9,7 +9,7 @@ namespace sprint0
     public class EnemiesSpriteFactory
     {
         private readonly Game1 game;
-        private Texture2D texture;
+        private readonly Texture2D texture;
 
         public EnemiesSpriteFactory(Game1 game)
         {

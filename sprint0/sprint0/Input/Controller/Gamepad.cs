@@ -59,7 +59,7 @@ namespace sprint0
                     controllerMappings[button].Execute();
             foreach (Buttons button in movementButtons)
                 if (previousPressedButtons.IndexOf(button) > -1 && pressedButtons.IndexOf(button) == -1)
-                    game.Player.Stop();
+                    game.Room.Player.Stop();
             previousPressedButtons = pressedButtons;
         }
     }

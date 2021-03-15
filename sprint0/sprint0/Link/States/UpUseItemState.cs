@@ -11,7 +11,7 @@ namespace sprint0
         public UpUseItemState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link up item", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite("link up item", player.Pos);
         }
 
         public void Update()

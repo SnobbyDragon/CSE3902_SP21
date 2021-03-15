@@ -13,7 +13,7 @@ namespace sprint0
         public UpWalkingState(IPlayer player)
         {
             this.player = player;
-            sprite = Game1.PlayerFactory.MakeSprite("link up walking", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite("link up walking", player.Pos);
         }
 
         public void Stop()

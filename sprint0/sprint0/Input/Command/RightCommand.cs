@@ -11,7 +11,7 @@ namespace sprint0
 
         public void Execute()
         {
-            game.Player.HandleRight();
+            game.Room.Player.HandleRight();
         }
     }
 }

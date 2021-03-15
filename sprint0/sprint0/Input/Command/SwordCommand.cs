@@ -10,7 +10,7 @@
 
         public void Execute()
         {
-            game.Player.HandleSword();
+            game.Room.Player.HandleSword();
         }
     }
 }

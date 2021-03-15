@@ -106,7 +106,7 @@ namespace sprint0
 
         public void Perish()
         {
-            game.RemoveEnemy(this);
+            game.Room.RemoveEnemy(this);
         }
 
         private bool CanShoot()
@@ -120,9 +120,9 @@ namespace sprint0
         {
             Vector2 dir = Link.position - Location.Center.ToVector2();
             dir.Normalize();
-            game.AddFireball(Location.Center.ToVector2(), dir, this);
-            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))), this); // 30 degrees up
-            game.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))), this); // 30 degrees down
+            game.Room.AddFireball(Location.Center.ToVector2(), dir, this);
+            game.Room.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))), this); // 30 degrees up
+            game.Room.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))), this); // 30 degrees down
         }
     }
 }
