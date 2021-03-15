@@ -21,6 +21,7 @@ namespace sprint0
         protected int moveCounter, dirChangeDelay;
         protected readonly Random rand;
         protected readonly Game1 game;
+        private int damageTimer = 0;
 
         public Enemy(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -33,22 +34,22 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (direction == Direction.w)
-            {
-                spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White, 0, new Vector2(0, 0), s, 0);
-            }
-            else if (direction == Direction.e)
-            {
-                spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White);
-            }
-            else if (direction == Direction.s)
-            {
-                spriteBatch.Draw(Texture, Location, colorMap[color][0], Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(Texture, Location, colorMap[color][1], Color.White);
-            }
+            if(damageTimer % 2 == 0)
+                switch (direction)
+                {
+                    case Direction.w:
+                        spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White, 0, new Vector2(0, 0), s, 0);
+                        break;
+                    case Direction.e:
+                        spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White);
+                        break;
+                    case Direction.s:
+                        spriteBatch.Draw(Texture, Location, colorMap[color][0], Color.White);
+                        break;
+                    case Direction.n:
+                        spriteBatch.Draw(Texture, Location, colorMap[color][1], Color.White);
+                        break;
+                }
         }
 
         public void Update()
@@ -58,6 +59,7 @@ namespace sprint0
             {
                 ArbitraryDirection(30, 50);
             }
+            if (damageTimer > 0) damageTimer--;
             CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             Rectangle loc = Location;
@@ -84,7 +86,11 @@ namespace sprint0
 
         public void TakeDamage(int damage)
         {
-            health -= damage;
+            if (damageTimer == 0)
+            {
+                health -= damage;
+                damageTimer = 15;
+            }
         }
 
         public void Perish()
