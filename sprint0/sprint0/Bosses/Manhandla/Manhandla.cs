@@ -79,20 +79,19 @@ namespace sprint0
 
         private void CheckHealth()
         {
-            int health = 0;
+            int limbCount = 0;
             ManhandlaLimb toRemove=null;
             foreach (ManhandlaLimb limb in limbs)
             {
-                health += limb.CheckHealth();
+                limbCount++;
                 if (limb.CheckHealth() < 0) toRemove=limb;
             }
             RemoveLimb(toRemove);
-            if (health < 0) Perish();
+            if (limbCount == 0) Perish();
         }
 
         private void RemoveLimb(ManhandlaLimb limb) {
             limbs.Remove(limb);
-            
             
         }
 
