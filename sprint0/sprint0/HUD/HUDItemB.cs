@@ -19,7 +19,7 @@ namespace sprint0
 
         public HUDItemB(Texture2D texture, Vector2 location, string itemName)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height); // TODO use this for drawing?
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             Item = itemName;
             int yPos = 137;

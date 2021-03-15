@@ -9,8 +9,6 @@ namespace sprint0
 {
     public class Dodongo : Enemy, IEnemy
     {
-
-
         private readonly List<Rectangle> upDownSources;
         private readonly List<Rectangle> rightLeftSources;
         private readonly int totalFramesUD;
@@ -22,12 +20,15 @@ namespace sprint0
         private int currentSpriteEffect;
         private readonly List<SpriteEffects> spriteEffects;
         public Vector2 Destination { get; set; }
+
         protected readonly int sideLength = 16;
         private readonly int scaledSideLength, scaledWidth;
+
         private int eatingCounter;
         private readonly int eatingTime;
         private readonly int MAX_NUM_OF_BOMBS_TO_EAT = 3;
         private int bombsEaten;
+
         public Dodongo(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
             bombsEaten = 0;

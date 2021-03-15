@@ -9,12 +9,13 @@ namespace sprint0
 {
     class ResetCommand : ICommand
     {
-        Game1 game;
+        readonly Game1 game;
         public ResetCommand(Game1 game)
         {
             this.game = game;
         }
-        public void Execute() //TODO move to game in a reset method
+
+        public void Execute()
         {
             game.ResetGame();
         }

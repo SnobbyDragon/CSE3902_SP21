@@ -66,14 +66,14 @@ namespace sprint0
 
         private Collision DetectLinkByWall()
         {
-            // TODO 32 wall width magic number
-            if (Link.position.Y <= (Game1.HUDHeight + 32) * Game1.Scale + traps[Direction.nw].Location.Height)
+            // TODO 16 link size magic number
+            if (Link.position.Y <= (Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale + traps[Direction.nw].Location.Height)
                 return Collision.Top;
-            if (Link.position.Y >= (Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale - traps[Direction.nw].Location.Height)
+            if (Link.position.Y >= (Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness - 16) * Game1.Scale - traps[Direction.nw].Location.Height)
                 return Collision.Bottom;
-            if (Link.position.X <= 32 * Game1.Scale + traps[Direction.nw].Location.Width)
+            if (Link.position.X <= Game1.BorderThickness * Game1.Scale + traps[Direction.nw].Location.Width)
                 return Collision.Left;
-            if (Link.position.X >= Game1.Width * Game1.Scale - traps[Direction.nw].Location.Width - 32 * Game1.Scale)
+            if (Link.position.X >= Game1.Width * Game1.Scale - traps[Direction.nw].Location.Width - (Game1.BorderThickness + 16) * Game1.Scale)
                 return Collision.Right;
             return Collision.None;
         }

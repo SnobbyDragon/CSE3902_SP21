@@ -11,7 +11,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int xOffset = 1018, yOffset = 11, width = 16, height = 16;
-        private readonly int fireballRate = 100; //TODO currently arbitrary
+        private readonly int fireballRate = 100;
         private int fireballCounter = 0;
         private string dir;
 

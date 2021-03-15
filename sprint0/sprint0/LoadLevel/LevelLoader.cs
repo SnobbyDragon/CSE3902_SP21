@@ -110,9 +110,9 @@ namespace sprint0
         {
             int blockSize = (int)(16 * Game1.Scale);
             int leftBorder = (int)(16 * Game1.Scale);
-            int rightBorder = (int)((Game1.Width - 32) * Game1.Scale);
+            int rightBorder = (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale);
             int topBorder = (int)((Game1.HUDHeight + 16) * Game1.Scale);
-            int bottomBorder = (int)((Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale);
+            int bottomBorder = (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale);
             // TODO: Figure out better formula for magic number coords
             blocks.Add(dungeonFactory.MakeBlock("invisible block", new Vector2(leftBorder, 200)));
             blocks.Add(dungeonFactory.MakeBlock("invisible block", new Vector2(leftBorder, 240)));

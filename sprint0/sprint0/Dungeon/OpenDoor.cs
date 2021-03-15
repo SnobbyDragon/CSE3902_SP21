@@ -11,7 +11,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         //private Rectangle destination;
-        private readonly int xOffset = 848, yOffset = 11, size = 32;
+        private readonly int xOffset = 848, yOffset = 11, size = Game1.BorderThickness;
 
         public OpenDoor(Texture2D texture, Vector2 location, string dir)
         {

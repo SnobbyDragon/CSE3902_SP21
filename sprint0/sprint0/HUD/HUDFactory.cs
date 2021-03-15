@@ -17,7 +17,7 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/HUDPauseScreen");
         }
 
-        public ISprite MakeSprite(String spriteType, Vector2 location)
+        public ISprite MakeSprite(string spriteType, Vector2 location)
         {
             /*
              * spriteType format for HUD:
@@ -32,8 +32,8 @@ namespace sprint0
              */
 
             //note: wherever the location is modified is how far the corresponding object is from the top-left corner of the HUD
-            String subSpriteType = spriteType.Substring(0, nameLen);
-            String numString = spriteType[nameLen..];
+            string subSpriteType = spriteType.Substring(0, nameLen);
+            string numstring = spriteType[nameLen..];
             switch (subSpriteType)
             {
                 //hud
@@ -54,7 +54,7 @@ namespace sprint0
                     int rupeeNum;
 
                     //get number of rupees
-                    int.TryParse(numString, out rupeeNum);
+                    int.TryParse(numstring, out rupeeNum);
                     return new RupeeHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 16 * Game1.Scale), rupeeNum);
 
                 //key inventory
@@ -62,27 +62,27 @@ namespace sprint0
                     int keyNum;
 
                     //get number of keys
-                    int.TryParse(numString, out keyNum);
-                    return new KeyHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 32 * Game1.Scale), keyNum);
+                    int.TryParse(numstring, out keyNum);
+                    return new KeyHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + Game1.BorderThickness * Game1.Scale), keyNum);
 
                 //bomb inventory
                 case "bin ":
                     int bombNum;
 
                     //get number of bombs
-                    int.TryParse(numString, out bombNum);
+                    int.TryParse(numstring, out bombNum);
                     return new BombHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 40 * Game1.Scale), bombNum);
 
 
                 //heart state
                 case "hin ": //heart inventory/state
-                    String[] heartNumString = numString.Split(',');
+                    string[] heartNumstring = numstring.Split(',');
                     int[] heartNum = { 0, 0, 0 }; //array that stores the number of empty, half, and full hearts
                     int sum = 16; //total number of hearts
 
-                    for (int i = 0; i < heartNumString.Length; i++)
+                    for (int i = 0; i < heartNumstring.Length; i++)
                     {
-                        int.TryParse(heartNumString[i], out heartNum[i + 1]);
+                        int.TryParse(heartNumstring[i], out heartNum[i + 1]);
                         sum -= heartNum[i + 1];
                     }
                     heartNum[0] = sum;
@@ -91,7 +91,7 @@ namespace sprint0
                      * heartNum[1] : # of half hearts
                      * heartNum[2] : # of full hearts
                     */
-                    return new HeartHUD(texture, new Vector2(location.X + 176 * Game1.Scale, location.Y + 32 * Game1.Scale), heartNum);
+                    return new HeartHUD(texture, new Vector2(location.X + 176 * Game1.Scale, location.Y + Game1.BorderThickness * Game1.Scale), heartNum);
 
                 default:
                     throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed.");

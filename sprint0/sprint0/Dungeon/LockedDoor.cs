@@ -10,7 +10,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        private readonly int xOffset = 881, yOffset = 11, size = 32;
+        private readonly int xOffset = 881, yOffset = 11, size = Game1.BorderThickness;
 
         public LockedDoor(Texture2D texture, Vector2 location, string dir)
         {

@@ -23,6 +23,7 @@ namespace sprint0
         private readonly int width = 16, height = 11;
         private int health;
         private readonly Game1 game;
+
         public Patra(Texture2D texture, Vector2 location, Game1 game)
         {
             this.game = game;
@@ -68,15 +69,13 @@ namespace sprint0
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
             {
-                // reached destination, generate new destination; TODO change dir bc of link position
                 GenerateDest();
             }
             else if (moveCounter == moveDelay)
             {
-                // has not reached destination, move towards it
                 dist.Normalize();
                 Rectangle loc = Location;
-                loc.Offset(ApproximateDirection(dist));
+                loc.Offset(dist.ApproxDirection().ToVector2());
                 Location = loc;
                 moveCounter = 0;
             }
@@ -112,39 +111,9 @@ namespace sprint0
             // currently picks a random destination TODO change location bounds
             // TODO movement depends on where link is?
             destination = new Vector2(
-                rand.Next((int)(32 * Game1.Scale), (int)((Game1.Width - 32) * Game1.Scale)),
-                rand.Next((int)((Game1.HUDHeight + 32) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - 32) * Game1.Scale))
+                rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
+                rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))
                 );
-        }
-
-        private Vector2 ApproximateDirection(Vector2 dir)
-        {
-            //TODO currently using vectors; maybe make IDirection interface?
-            //Direction closestApprox;
-            //foreach (Direction d in Enum.GetValues(typeof(Direction))) {}
-            List<Vector2> vectors = new List<Vector2>
-            {
-                new Vector2(1, 0),
-                new Vector2(-1, 0),
-                new Vector2(0, 1),
-                new Vector2(0, -1),
-                new Vector2(1, 1),
-                new Vector2(1, -1),
-                new Vector2(-1, 1),
-                new Vector2(-1, -1),
-            };
-            Vector2 closestApprox = vectors[0];
-            float closestDist = (closestApprox - dir).LengthSquared();
-            foreach (Vector2 v in vectors)
-            {
-                float dist = (v - dir).LengthSquared();
-                if (dist < closestDist)
-                {
-                    closestApprox = v;
-                    closestDist = dist;
-                }
-            }
-            return closestApprox;
         }
     }
 }
