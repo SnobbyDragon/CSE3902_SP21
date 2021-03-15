@@ -16,7 +16,7 @@ namespace sprint0
         private readonly int speed = 2;
         private bool isAlive;
         private Direction direction = Direction.n;
-        private LinkUseItemHelper itemHelper;
+        private readonly LinkUseItemHelper itemHelper;
         /*
          * Note! A count of any number less than 0 is infinite.
          */

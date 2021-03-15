@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
     /*
-     * Last updated: 3/14/21 by he.1528
+     * Last updated: 3/15/21 by li.10011
      */
     public class Boomerang : IProjectile
     {
@@ -20,11 +20,10 @@ namespace sprint0
         private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private readonly int xa;
-        private readonly int ya = 0;
+        private readonly int speed = 6;
         private readonly int maxDistance = 25;
         private int age = 0;
-        private readonly SpriteEffects h = SpriteEffects.FlipHorizontally, v = SpriteEffects.FlipVertically;
+        private readonly List<SpriteEffects> spriteEffects;
         private Vector2 moveVector;
         private bool alive;
         private bool hit = false;
@@ -33,60 +32,35 @@ namespace sprint0
         {
             Shooter = shooter;
             alive = true;
-            switch (dir)
-            {
-                case Direction.n:
-                    ya = -6;
-                    break;
-                case Direction.s:
-                    ya = 6;
-                    break;
-                case Direction.e:
-                    xa = 6;
-                    break;
-                case Direction.w:
-                    xa = -6;
-                    break;
-            }
-            moveVector = new Vector2(xa, ya);
+            moveVector = speed * dir.ToVector2();
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             currFrame = 0;
             totalFrames = 8;
             repeatedFrames = 4;
-            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, 3);
+            sources.Add(sources[1]);
+            spriteEffects = new List<SpriteEffects>
+            {
+                SpriteEffects.None,
+                SpriteEffects.None,
+                SpriteEffects.None,
+                SpriteEffects.FlipHorizontally,
+                SpriteEffects.FlipHorizontally,
+                SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically,
+                SpriteEffects.FlipVertically,
+                SpriteEffects.FlipVertically
+            };
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             if (alive)
-            {
-                int tempFrame = currFrame / repeatedFrames;
-                if (tempFrame == 3)
-                {
-                    spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), h, 0);
-                }
-                else if (tempFrame == 4)
-                {
-                    spriteBatch.Draw(Texture, Location, sources[0], Color.White, 0, new Vector2(0, 0), h, 0);
-                }
-                else if (tempFrame == 5)
-                {
-                    spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), v | h, 0);
-                }
-                else if (tempFrame == 6)
-                {
-                    spriteBatch.Draw(Texture, Location, sources[2], Color.White, 0, new Vector2(0, 0), v, 0);
-                }
-                else if (tempFrame == 7)
-                {
-                    spriteBatch.Draw(Texture, Location, sources[1], Color.White, 0, new Vector2(0, 0), v, 0);
-                }
-                else
-                {
-                    spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
-                }
-            }
+                spriteBatch.Draw(
+                    Texture, Location,
+                    sources[currFrame / repeatedFrames % sources.Count],
+                    Color.White, 0, new Vector2(0, 0),
+                    spriteEffects[currFrame / repeatedFrames], 0);
         }
 
         public bool IsAlive() => alive;
@@ -110,7 +84,7 @@ namespace sprint0
         {
             if (alive)
             {
-                if (age > maxDistance || hit)
+                if (CanBeCaught)
                 {
                     if (Shooter is IPlayer)
                     {
@@ -121,10 +95,9 @@ namespace sprint0
                         moveVector = goriya.Location.Center.ToVector2() - Location.Center.ToVector2();
                     }
                     moveVector.Normalize();
-                    moveVector = 6 * moveVector;
+                    moveVector = speed * moveVector;
                 }
                 Move();
-                // animates all the time for now
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 age++;
             }

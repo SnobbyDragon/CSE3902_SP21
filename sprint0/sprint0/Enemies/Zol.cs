@@ -9,8 +9,6 @@ namespace sprint0
 {
     public class Zol : Enemy, IEnemy
     {
-
-
         private readonly int delay;
         private int delayCounter;
         private int spawnCounter;

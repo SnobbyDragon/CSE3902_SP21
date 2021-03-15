@@ -6,9 +6,7 @@ namespace sprint0
 {
     public class Room
     {
-
-        private SpriteBatch _spriteBatch;
-        private Game1 game;
+        private readonly Game1 game;
 
         private static PlayerSpriteFactory playerFactory;
         public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
@@ -38,25 +36,36 @@ namespace sprint0
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
 
-        public Room(SpriteBatch spriteBatch, Game1 game, int roomIndex)
+        public Room(Game1 game, int roomIndex)
         {
             this.game = game;
-            _spriteBatch = spriteBatch;
-
             this.roomIndex = roomIndex;
         }
 
         public void LoadContent()
         {
-            playerFactory = new PlayerSpriteFactory(game);
+            LoadFactories();
             player = new Link(game, new Vector2(200, 250));
+            LoadSpriteLists();
+            collisionHandler = new AllCollisionHandler();
+            LoadLevelSprites();
+            LoadRoomBaseSprites();
+            LoadHUDSprites();
+            text = new Text(game);
+        }
 
+        private void LoadFactories()
+        {
+            playerFactory = new PlayerSpriteFactory(game);
             weaponFactory = new WeaponsSpriteFactory(game);
             projectileFactory = new ProjectileSpriteFactory(game);
             enemyFactory = new EnemiesSpriteFactory(game);
             dungeonFactory = new DungeonFactory(game);
             hudFactory = new HUDFactory(game);
+        }
 
+        private void LoadSpriteLists()
+        {
             // avoids mutating enemies list during foreach
             weaponsToDie = new List<IWeapon>();
             projectilesToDie = new List<IProjectile>();
@@ -68,14 +77,6 @@ namespace sprint0
             blocks = new List<IBlock>();
             enemies = new List<IEnemy>();
             npcs = new List<INpc>();
-
-            collisionHandler = new AllCollisionHandler();
-
-            LoadLevelSprites();
-            LoadRoomBaseSprites();
-            LoadHUDSprites();
-
-            text = new Text(game);
         }
 
         private void LoadLevelSprites()
@@ -182,33 +183,33 @@ namespace sprint0
                 weapons.Remove(weapon);
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
             foreach (ISprite _sprite in roomBaseSprites)
-                _sprite.Draw(_spriteBatch);
+                _sprite.Draw(spriteBatch);
             foreach (ISprite _sprite in hudSprites)
-                _sprite.Draw(_spriteBatch);
+                _sprite.Draw(spriteBatch);
             foreach (ISprite _sprite in roomSprites)
-                _sprite.Draw(_spriteBatch);
+                _sprite.Draw(spriteBatch);
             foreach (IBlock block in blocks)
-                block.Draw(_spriteBatch);
+                block.Draw(spriteBatch);
             foreach (IWeapon weapon in weapons)
-                weapon.Draw(_spriteBatch);
+                weapon.Draw(spriteBatch);
             foreach (IProjectile projectile in projectiles)
-                projectile.Draw(_spriteBatch);
+                projectile.Draw(spriteBatch);
             foreach (IEnemy enemy in enemies)
-                enemy.Draw(_spriteBatch);
+                enemy.Draw(spriteBatch);
             foreach (INpc npc in npcs)
-                npc.Draw(_spriteBatch);
+                npc.Draw(spriteBatch);
             foreach (IItem item in items)
-                item.Draw(_spriteBatch);
+                item.Draw(spriteBatch);
             foreach (IProjectile projectile in projectiles)
-                projectile.Draw(_spriteBatch);
-            player.Draw(_spriteBatch);
+                projectile.Draw(spriteBatch);
+            player.Draw(spriteBatch);
 
             if (roomIndex == 4)
             {
-                text.Draw(_spriteBatch);
+                text.Draw(spriteBatch);
             }
         }
     }
