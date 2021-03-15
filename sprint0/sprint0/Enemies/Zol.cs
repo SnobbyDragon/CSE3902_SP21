@@ -12,7 +12,7 @@ namespace sprint0
         private readonly int delay;
         private int delayCounter;
         private int spawnCounter;
-        private readonly int spawnRate = 1500; // arbitrary; spawns a gel every spawnRate
+        private readonly int spawnRate =1500; // arbitrary; spawns a gel every spawnRate
 
         public Zol(Texture2D texture, Vector2 location, string gelColor, Game1 game): base(texture, location, game)
         {

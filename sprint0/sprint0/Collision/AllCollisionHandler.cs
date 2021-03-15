@@ -23,8 +23,8 @@ namespace sprint0
             HandleLinkBlockCollisions(link, blocks);
             HandleLinkEnemyCollisions(link, enemies);
             HandleLinkItemCollisions(link, items);
-            HandleEnemyBlockCollisions(enemies, blocks);
             HandleEnemyEnemyCollisions(enemies);
+            HandleEnemyBlockCollisions(enemies, blocks);
             HandleEnemyWeaponCollisions(enemies, weapons);
             HandleEnemyProjectileCollisions(enemies, projectiles);
             HandleBlockBlockCollisions(blocks);
