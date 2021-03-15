@@ -38,6 +38,7 @@ namespace sprint0
             };
             //register limbs as enemies for collision handeling
             game.RegisterEnemies(limbs);
+           
             rand = new Random();
             GenerateDest();
         }
@@ -45,8 +46,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, source, Color.White);
-            foreach (ManhandlaLimb limb in limbs)
-                limb.Draw(spriteBatch);
+            
 
         }
 
@@ -69,8 +69,7 @@ namespace sprint0
                 Location = loc;
             }
 
-            foreach (IEnemy limb in limbs)
-                limb.Update();
+          
         }
 
         public void ChangeDirection()
@@ -80,15 +79,15 @@ namespace sprint0
 
         private void CheckHealth()
         {
-            int health = 0;
+            int limbCount = 0;
             ManhandlaLimb toRemove=null;
             foreach (ManhandlaLimb limb in limbs)
             {
-                health += limb.CheckHealth();
+                limbCount++;
                 if (limb.CheckHealth() < 0) toRemove=limb;
             }
             RemoveLimb(toRemove);
-            if (health < 0) Perish();
+            if (limbCount == 0) Perish();
         }
 
         private void RemoveLimb(ManhandlaLimb limb) {

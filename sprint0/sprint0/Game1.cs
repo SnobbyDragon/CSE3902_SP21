@@ -72,7 +72,7 @@ namespace sprint0
             player = new Link(this, new Vector2(200, 250));
 
             //note: the integer refers to the room number to load
-            changeRoom = true;
+            changeRoom =true;
             roomIndex = 1;
             levelLoader = new LevelLoader(this, roomIndex);
 
@@ -99,6 +99,7 @@ namespace sprint0
             // avoids mutating enemies list during foreach
             weaponsToDie = new List<IWeapon>();
             projectilesToDie = new List<IProjectile>();
+
             enemiesToDie = new List<IEnemy>();
             enemiesToSpawn = new List<IEnemy>();
 
