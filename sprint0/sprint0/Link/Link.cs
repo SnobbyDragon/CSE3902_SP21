@@ -17,9 +17,6 @@ namespace sprint0
         private bool isAlive;
         private Direction direction = Direction.n;
         private readonly LinkUseItemHelper itemHelper;
-        /*
-         * Note! A count of any number less than 0 is infinite.
-         */
         public List<int> ItemCounts { get; }
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
@@ -97,11 +94,12 @@ namespace sprint0
 
         public void HandleItem()
         {
-            if (isAlive)
+            if (isAlive && CurrentItem != PlayerItems.None)
             {
-                if (CurrentItem != PlayerItems.None && CurrentItem != PlayerItems.Candle)
+                if (CurrentItem == PlayerItems.Candle || ItemCounts[(int)CurrentItem] != 0)
+                    itemHelper.UseItem();
+                if ((int)CurrentItem >= 0 && ItemCounts[(int)CurrentItem] != 0)
                     ItemCounts[(int)CurrentItem]--;
-                itemHelper.UseItem();
             }
         }
 

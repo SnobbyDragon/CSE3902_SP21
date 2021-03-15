@@ -15,11 +15,12 @@
 <Block ObjectName="invisible block" LocationX="560" LocationY="360" />?
 <Block ObjectName="invisible block" LocationX="600" LocationY="320" />?
 <Block ObjectName="invisible block" LocationX="600" LocationY="360" />?
-<!--Only put blocks here when there is no door--><!--Only put blocks here when there is no door--><Block ObjectName="invisible block" LocationX="280" LocationY="120" />?
-<Block ObjectName="invisible block" LocationX="320" LocationY="120" />?
-<Block ObjectName="invisible block" LocationX="280" LocationY="160" />?
-<Block ObjectName="invisible block" LocationX="320" LocationY="160" />?
-<!--Only put blocks here when there is no door--><!--Only put blocks here when there is no door--><Block ObjectName="invisible block" LocationX="280" LocationY="500" />?
+<!--Only put blocks here when there is no door-->
+	<!--Only put blocks here when there is no door-->
+	<Block ObjectName="invisible block" LocationX="280" LocationY="180" />?
+	<Block ObjectName="invisible block" LocationX="320" LocationY="180" />?
+	<!--Only put blocks here when there is no door-->
+	<!--Only put blocks here when there is no door--><Block ObjectName="invisible block" LocationX="280" LocationY="500" />?
 <Block ObjectName="invisible block" LocationX="320" LocationY="500" />?
 <Block ObjectName="invisible block" LocationX="280" LocationY="540" />?
 <Block ObjectName="invisible block" LocationX="320" LocationY="540" />?
