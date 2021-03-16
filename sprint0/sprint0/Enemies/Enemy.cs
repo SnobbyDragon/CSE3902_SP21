@@ -21,7 +21,7 @@ namespace sprint0
         protected int moveCounter, dirChangeDelay;
         protected readonly Random rand;
         protected readonly Game1 game;
-        private int damageTimer = 0;
+        protected int damageTimer = 0;
 
         public Enemy(Texture2D texture, Vector2 location, Game1 game)
         {

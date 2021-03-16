@@ -19,7 +19,7 @@ namespace sprint0
             width = 16;
             height = 16;
             repeatedFrames = 10;
-            health = 250;
+            health = 10;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             totalFrames = 2;
@@ -41,7 +41,8 @@ namespace sprint0
 
         public new void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
+            if(damageTimer % 2 == 0)
+                spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
         }
 
         public new void Update()
