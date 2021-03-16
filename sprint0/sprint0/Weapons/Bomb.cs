@@ -26,10 +26,8 @@ namespace sprint0
         private readonly int xPos = 138, yPos = 184, width = 17, height = 18;
         private bool exploding = false;
 
-        //Age is the current number of updates
         private int age;
 
-        //Lifespan is the number of updates before it dies. For now, it just stops rendering
         private readonly int lifespan;
 
         private readonly int repeatedFrames;
@@ -45,7 +43,6 @@ namespace sprint0
              */
             switch (dir)
             {
-                //based on the direction link is facing the bomb is thrown 4 ways
                 case Direction.n:
                     sourceAdjustX = -4;
                     sourceAdjustY = -4;
@@ -68,12 +65,7 @@ namespace sprint0
 
             //add frames to explosion sources
             totalFrames = 3; currentFrame = 0;
-            explosionSources = new List<Rectangle>();
-            for (int frame = 0; frame < totalFrames; frame++)
-            {
-                explosionSources.Add(new Rectangle(xPos, yPos, width, height));
-                xPos += width + 1;
-            }
+            explosionSources = SpritesheetHelper.GetFramesH(xPos, yPos, width, height, totalFrames);
             Vector2 loc = location + new Vector2(sourceAdjustX, sourceAdjustY);
             Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(10 * Game1.Scale), (int)(height * Game1.Scale));
         }
@@ -95,10 +87,8 @@ namespace sprint0
         public void Update()
         {
             currentSource = source;
-            //the bomb is being thrown
             if (age < lifespan + 3 * repeatedFrames && age >= lifespan && lifespan > 0)
-            {   //age == lifespan so the bomb reached destination
-                //animates bomb to explode
+            {
                 exploding = true;
                 Location = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)); // explosion size diff from pre-explosion
                 currentSource = explosionSources[currentFrame / repeatedFrames];

@@ -88,5 +88,22 @@ namespace sprint0
             }
             return closestApprox;
         }
+
+        public static float ToRadians(this Direction direction)
+        {
+            double rad = direction switch
+            {
+                Direction.n => Math.PI / 2,
+                Direction.s => -Math.PI / 2,
+                Direction.e => 0,
+                Direction.w => Math.PI,
+                Direction.ne => Math.PI / 4,
+                Direction.nw => Math.PI * 3 / 4,
+                Direction.se => -Math.PI / 4,
+                Direction.sw => -Math.PI * 3 / 4,
+                _ => throw new ArgumentException("Invalid direction! Cannot convert to radians.")
+            };
+            return (float)rad;
+        }
     }
 }
