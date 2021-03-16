@@ -16,7 +16,7 @@ namespace sprint0
         private Room room;
         public bool ChangeRoom { get; set; }
         public int roomIndex;
-        public int NumRooms { get; } = 18;
+        public int NumRooms { get; } = 19;
 
         public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
