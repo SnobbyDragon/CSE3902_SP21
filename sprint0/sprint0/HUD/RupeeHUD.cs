@@ -50,7 +50,6 @@ namespace sprint0
                 Update();
             }
             else ResetNum();
-
         }
         public void Increment()
         {
@@ -72,7 +71,6 @@ namespace sprint0
             rupeeNum = reset;
             rupeeNumTens = rupeeNum;
             rupeeNumOnes = rupeeNum;
-
         }
     }
 }

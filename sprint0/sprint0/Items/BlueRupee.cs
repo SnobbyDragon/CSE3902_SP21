@@ -12,24 +12,29 @@ namespace sprint0
         private readonly int maxPickedUpDuration = 40;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private Rectangle source;
-        private readonly int xOffset = 72, yOffset = 16, width = 8, height = 16;
+        private readonly List<Rectangle> sources;
+        private readonly int xOffset = 72, yOffset = 0, width = 8, height = 16;
+        private int currFrame;
+        private readonly int totalFrames = 2, repeatedFrames = 8;
 
         public BlueRupee(Texture2D texture, Vector2 location)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            source = new Rectangle(xOffset, yOffset, width, height);
+            sources = SpritesheetHelper.GetFramesV(xOffset, yOffset, width, height, totalFrames);
+            PickedUpDuration = -2;
+            currFrame = 0;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             if (PickedUpDuration < maxPickedUpDuration)
-                spriteBatch.Draw(Texture, Location, source, Color.White);
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
         }
 
         public void Update()
         {
+            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             if (PickedUpDuration >= 0) PickedUpDuration++;
         }
     }

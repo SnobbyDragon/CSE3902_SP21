@@ -24,7 +24,7 @@ namespace sprint0
             for (int i = 0; i < numFrames; i++)
             {
                 sources.Add(new Rectangle(xOffset, yOffset, width, height));
-                xOffset += width + 1;
+                yOffset += height + 1;
             }
             return sources;
         }

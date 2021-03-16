@@ -32,7 +32,7 @@ namespace sprint0
             }
         }
 
-        public void CheckItem(IItem item)
+        private void CheckItem(IItem item)
         {
             if (item is Key key) key.Increment();
             else if (item is BombItem bomb) bomb.Increment();

@@ -9,7 +9,7 @@ namespace sprint0
 {
     public class ManageHUDInventory
     {
-        private Dictionary<HUDItems, IHUDInventory> Inventory;
+        private readonly Dictionary<HUDItems, IHUDInventory> Inventory;
         public ManageHUDInventory(PopulateHUDInventory hudPop)
         {
             Inventory = hudPop.GetInventory();
