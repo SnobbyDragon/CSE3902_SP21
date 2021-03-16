@@ -33,7 +33,6 @@ namespace sprint0
             health = 25;
             this.game = game;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(bigSize * Game1.Scale), (int)(bigSize * Game1.Scale));
-            //TODO size is variable
             Texture = texture;
             currFrame = 0;
             bigTotalFrames = 5;

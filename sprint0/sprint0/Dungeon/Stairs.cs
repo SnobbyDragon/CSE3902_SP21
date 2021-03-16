@@ -20,8 +20,6 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             source = new Rectangle(1035, 28, width, height);
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)

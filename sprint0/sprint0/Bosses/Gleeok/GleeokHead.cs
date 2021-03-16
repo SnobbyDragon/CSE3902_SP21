@@ -26,6 +26,7 @@ namespace sprint0
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
         private int health;
+
         public GleeokHead(Texture2D texture, Vector2 anchor, Game1 game)
         {
             health = 25;

@@ -17,7 +17,7 @@ namespace sprint0
         private readonly int totalFrames;
         private int currentFrame;
         private readonly int repeatedFrames;
-
+        private readonly int xPos = 40, yPos = 0, width = 7, height = 16;
         private Vector2 destination;
         private readonly Random rand;
 
@@ -27,12 +27,8 @@ namespace sprint0
             PickedUpDuration = -2;
             totalFrames = 2;
             currentFrame = 0; repeatedFrames = 10;
-            sources = new List<Rectangle>();
-            int xPos = 40, yPos = 0, width = 7, height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-            sources.Add(new Rectangle(xPos, yPos, width, height));
-            sources.Add(new Rectangle(xPos + width + 1, yPos, width, height));
-
+            sources = SpritesheetHelper.GetFramesH(xPos, yPos, width, height, totalFrames);
             rand = new Random();
             GenerateDest();
         }

@@ -8,7 +8,7 @@ namespace sprint0
 {
     class Sword : IWeapon
     {
-        private IPlayer player;
+        private readonly IPlayer player;
 
         public Rectangle Location { get; set; }
 

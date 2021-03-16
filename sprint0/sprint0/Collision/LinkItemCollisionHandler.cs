@@ -37,6 +37,7 @@ namespace sprint0
             if (item is Key key) key.Increment();
             else if (item is BombItem bomb) bomb.Increment();
             else if (item is Rupee rupee) rupee.Increment();
+            else if (item is BlueRupee blueRupee) blueRupee.ChangeNum(BlueRupee.Value);
         }
     }
 }

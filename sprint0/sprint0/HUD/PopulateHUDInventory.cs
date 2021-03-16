@@ -11,10 +11,12 @@ namespace sprint0
     {
         Key, Rupee, Bomb, Heart
     }
+
     public class PopulateHUDInventory
     {
-        private HUDFactory hudFactory;
-        private Dictionary<HUDItems, IHUDInventory> Inventory;
+        private readonly HUDFactory hudFactory;
+        private Dictionary<HUDItems, IHUDInventory> inventory;
+
         public PopulateHUDInventory(Game1 game)
         {
             hudFactory = new HUDFactory(game);
@@ -22,7 +24,7 @@ namespace sprint0
 
         public void PopulateInventoryHUD()
         {
-            Inventory = new Dictionary<HUDItems, IHUDInventory>()
+            inventory = new Dictionary<HUDItems, IHUDInventory>()
             {
                 {HUDItems.Bomb, hudFactory.MakeHUDItem("bomb inventory", new Vector2(0,0))},
                 {HUDItems.Key,hudFactory.MakeHUDItem("key inventory", new Vector2(0,0))},
@@ -33,7 +35,7 @@ namespace sprint0
 
         public void DrawItemHUD(SpriteBatch spriteBatch)
         {
-            foreach (KeyValuePair<HUDItems, IHUDInventory> hudElement in Inventory)
+            foreach (KeyValuePair<HUDItems, IHUDInventory> hudElement in inventory)
             {
                 hudElement.Value.Draw(spriteBatch);
             }
@@ -41,7 +43,7 @@ namespace sprint0
 
         public Dictionary<HUDItems, IHUDInventory> GetInventory()
         {
-            return Inventory;
+            return inventory;
         }
 
         public void AddHUDFunction(IItem item, ManageHUDInventory manage)
@@ -49,6 +51,7 @@ namespace sprint0
             if (item is Key key) key.GetPopulate(manage);
             else if (item is BombItem bomb) bomb.GetPopulate(manage);
             else if (item is Rupee rupee) rupee.GetPopulate(manage);
+            else if (item is BlueRupee blueRupee) blueRupee.GetPopulate(manage);
         }
 
     }

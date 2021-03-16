@@ -7,10 +7,11 @@ namespace sprint0
 {
     class KeyboardController : IController
     {
-        Game1 game;
-        private Dictionary<Keys, ICommand> controllerMappings;
+        private readonly Game1 game;
+        private readonly Dictionary<Keys, ICommand> controllerMappings;
         private Keys[] previousPressedKeys;
-        private HashSet<Keys> movementKeys;
+        private readonly HashSet<Keys> movementKeys;
+
         public KeyboardController(Game1 game)
         {
             this.game = game;

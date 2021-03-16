@@ -35,8 +35,8 @@
       <Item ObjectName="clock" LocationX="120" LocationY="460" />?
      <Item ObjectName="bow" LocationX="160" LocationY="460" />?
       <Item ObjectName="heart container" LocationX="200" LocationY="460" />?
-      <Item ObjectName="gold triforce piece" LocationX="240" LocationY="460" />?
-      <Item ObjectName="blue triforce piece" LocationX="280" LocationY="460" />?
+      <Item ObjectName="triforce piece" LocationX="240" LocationY="460" />?
+      <Item ObjectName="triforce piece" LocationX="280" LocationY="460" />?
       <Item ObjectName="compass" LocationX="320" LocationY="460" />?
       <Item ObjectName="key" LocationX="360" LocationY="460" />?
        <Item ObjectName="fairy" LocationX="400" LocationY="460" />?

@@ -14,7 +14,7 @@ namespace sprint0
         private List<SpriteEffects> effects;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private List<IEnemy> minions;
+        private readonly List<IEnemy> minions;
         private readonly int totalMinions = 8;
         private Vector2 destination; //TODO depends on link. i think it keeps optimal distance so minions can hit link
         private readonly Random rand;

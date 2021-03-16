@@ -9,8 +9,6 @@ namespace sprint0
 {
     class DownUseItemSprite : ISprite
     {
-
-
         public Texture2D Texture { get => texture; set => texture = value; }
         public Rectangle Location { get; set; }
         private Texture2D texture;

@@ -3,7 +3,8 @@ namespace sprint0
 {
     class LeftCommand : ICommand
     {
-        private Game1 game;
+        private readonly Game1 game;
+
         public LeftCommand(Game1 game)
         {
             this.game = game;

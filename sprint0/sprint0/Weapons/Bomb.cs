@@ -3,12 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Hannah Johnson
-
 /*
  * Last updated: 3/13/21 by urick.9
  */
-
-
 namespace sprint0
 {
     public class Bomb : IWeapon
@@ -32,6 +29,7 @@ namespace sprint0
         private readonly int repeatedFrames;
         private readonly int totalFrames;
         private int currentFrame;
+
         public Bomb(Texture2D texture, Vector2 location, Direction dir)
         {
             int sourceAdjustX = 0;

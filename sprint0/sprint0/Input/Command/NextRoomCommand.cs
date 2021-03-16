@@ -3,7 +3,8 @@ namespace sprint0
 {
     internal class NextRoomCommand : ICommand
     {
-        private Game1 game;
+        private readonly Game1 game;
+
         public NextRoomCommand(Game1 game)
         {
             this.game = game;
@@ -11,7 +12,7 @@ namespace sprint0
 
         public void Execute()
         {
-            game.roomIndex = ((game.roomIndex + 1) % game.NumRooms);
+            game.RoomIndex = ((game.RoomIndex + 1) % game.NumRooms);
             game.ChangeRoom = true;
         }
     }

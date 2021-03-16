@@ -16,8 +16,8 @@ namespace sprint0
         private readonly int speed = 2;
         private bool isAlive;
         private Direction direction = Direction.n;
-        private LinkUseItemHelper itemHelper;
-        private LinkDamageControl damageControl;
+        private readonly LinkUseItemHelper itemHelper;
+        private readonly LinkDamageControl damageControl;
         public List<int> ItemCounts { get; }
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }

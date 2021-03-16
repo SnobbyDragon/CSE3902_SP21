@@ -8,7 +8,7 @@ namespace sprint0
 {
     public class PlayerSpriteFactory
     {
-        readonly Texture2D texture;
+        private readonly Texture2D texture;
 
         public PlayerSpriteFactory(Game1 game)
         {

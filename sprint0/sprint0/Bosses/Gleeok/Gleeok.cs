@@ -12,11 +12,12 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 196, yOffset = 11, width = 24, height = 32;
-        private List<Rectangle> sources;
+        private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
         private List<IEnemy> neck1, neck2;
         private int health;
+
         public Gleeok(Texture2D texture, Vector2 location, Game1 game)
         {
             health = 25;
@@ -26,11 +27,7 @@ namespace sprint0
             currFrame = 0;
             totalFrames = 3;
             repeatedFrames = 12;
-            sources = new List<Rectangle>();
-            for (int frame = 0; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xOffset + frame * (width + 1), yOffset, width, height));
-            };
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
             sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height));
 
             neck1 = GenerateNeck();

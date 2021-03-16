@@ -9,31 +9,32 @@ namespace sprint0
     {
         None = -2, Arrow = 0, Bomb = 1, Boomerang = 2, Candle = -1
     }
+
     public interface IPlayer : IEntity
     {
-        Direction Direction { get; set; }
+        public Direction Direction { get; set; }
 
-        Vector2 Pos { get; set; }
-        IPlayerState State { get; set; }
+        public Vector2 Pos { get; set; }
+        public IPlayerState State { get; set; }
 
-        int WeaponDamage { get; set; }
-        PlayerItems CurrentItem { get; set; }
+        public int WeaponDamage { get; set; }
+        public PlayerItems CurrentItem { get; set; }
         public List<int> ItemCounts { get; }
 
-        static Vector2 Position;
-        void Move(int x, int y);
-        void Stop();
-        void TakeDamage(Direction direction, int damage);
-        void PickUpItem();
-        void HandleUp();
-        void HandleDown();
-        void HandleLeft();
-        void HandleRight();
-        void HandleSword();
-        void HandleItem();
+        public static Vector2 Position;
+        public void Move(int x, int y);
+        public void Stop();
+        public void TakeDamage(Direction direction, int damage);
+        public void PickUpItem();
+        public void HandleUp();
+        public void HandleDown();
+        public void HandleLeft();
+        public void HandleRight();
+        public void HandleSword();
+        public void HandleItem();
 
-        void ReceiveItem(int n, PlayerItems item);
-        void Draw(SpriteBatch spriteBatch);
-        void Update();
+        public void ReceiveItem(int n, PlayerItems item);
+        public void Draw(SpriteBatch spriteBatch);
+        public void Update();
     }
 }

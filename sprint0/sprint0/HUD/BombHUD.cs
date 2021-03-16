@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
-//Updated: 03/15/21 by shah.1440
+//Updated: 03/16/21 by li.10011
 namespace sprint0
 {
     public class BombHUD : IHUDInventory
@@ -21,19 +21,14 @@ namespace sprint0
             Texture = texture;
             ResetNum();
             int totalFrames = mod;
-            sources = new List<Rectangle>();
-            for (int frame = reset; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xOffset, yOffset, sideLength, sideLength));
-                xOffset += sideLength + 1;
-            }
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, sideLength, sideLength, totalFrames);
             sources.Add(new Rectangle(519, yOffset, sideLength, sideLength));
         }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[10], Color.White);
+            spriteBatch.Draw(Texture, new Rectangle(Location.X, Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[10], Color.White);
             spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[bombNumTens], Color.White);
             spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + 2 * sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[bombNumOnes], Color.White);
         }

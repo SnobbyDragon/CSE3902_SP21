@@ -2,7 +2,8 @@
 {
     class DownCommand : ICommand
     {
-        private Game1 game;
+        private readonly Game1 game;
+
         public DownCommand(Game1 game)
         {
             this.game = game;

@@ -55,7 +55,7 @@
     
     <Enemy ObjectName="snake" LocationX="280" LocationY="260" />?
 
-    <Item ObjectName="gold triforce piece" LocationX="315" LocationY="360" />?
+    <Item ObjectName="triforce piece" LocationX="315" LocationY="360" />?
     <Player ObjectName="Link" LocationX="82" LocationY="340" />?
 
 ?</XnaContent>

@@ -3,7 +3,8 @@ namespace sprint0
 {
     class RightCommand : ICommand
     {
-        private Game1 game;
+        private readonly Game1 game;
+
         public RightCommand(Game1 game)
         {
             this.game = game;

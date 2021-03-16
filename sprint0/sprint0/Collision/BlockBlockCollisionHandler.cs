@@ -7,6 +7,7 @@ namespace sprint0
     {
 
         private readonly int base_size = 16;
+
         public BlockBlockCollisionHandler()
         {
         }

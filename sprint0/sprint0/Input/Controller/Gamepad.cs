@@ -8,10 +8,11 @@ namespace sprint0
 {
     class GamepadController : IController
     {
-        Game1 game;
-        private Dictionary<Buttons, ICommand> controllerMappings;
+        private readonly Game1 game;
+        private readonly Dictionary<Buttons, ICommand> controllerMappings;
         private List<Buttons> previousPressedButtons;
-        private HashSet<Buttons> movementButtons;
+        private readonly HashSet<Buttons> movementButtons;
+
         public GamepadController(Game1 game)
         {
             this.game = game;

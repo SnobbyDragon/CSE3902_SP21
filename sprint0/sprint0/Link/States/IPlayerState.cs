@@ -4,15 +4,15 @@ namespace sprint0
 {
     public interface IPlayerState
     {
-        void Stop() { }
-        void HandleUp() { }
-        void HandleDown() { }
-        void HandleLeft() { }
-        void HandleRight() { }
-        void HandleSword() { }
-        void UseItem() { }
-        void PickUpItem() { }
-        void Update();
-        void Draw(SpriteBatch spritebatch);
+        public void Stop() { }
+        public void HandleUp() { }
+        public void HandleDown() { }
+        public void HandleLeft() { }
+        public void HandleRight() { }
+        public void HandleSword() { }
+        public void UseItem() { }
+        public void PickUpItem() { }
+        public void Update();
+        public void Draw(SpriteBatch spritebatch);
     }
 }

@@ -11,7 +11,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         public string Type { get; set; }
         private readonly int xOffset = 1, yOffset = 11, width, height;
-        private Dictionary<string, Rectangle> typeRectMap;
+        private readonly Dictionary<string, Rectangle> typeRectMap;
 
         public OldPerson(Texture2D texture, Vector2 location, string type)
         {

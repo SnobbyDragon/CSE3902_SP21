@@ -13,7 +13,7 @@ namespace sprint0
 
         private readonly List<Rectangle> frames;
         private int currentFrame;
-        private readonly int repeatFrames;
+        private readonly int repeatedFrames;
         private readonly int totalFrames;
         private readonly int size = 16;
 
@@ -22,20 +22,19 @@ namespace sprint0
             this.texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             currentFrame = 0;
-            repeatFrames = 8;
-            totalFrames = 2 * repeatFrames;
-            frames = new List<Rectangle> { new Rectangle(35, 11, size, size), new Rectangle(52, 11, size, size) };
+            repeatedFrames = 8;
+            totalFrames = 2;
+            frames = SpritesheetHelper.GetFramesH(35, 11, size, size, totalFrames);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Location, frames[currentFrame / repeatFrames], Color.White);
+            spriteBatch.Draw(texture, Location, frames[currentFrame / repeatedFrames], Color.White);
         }
 
         public void Update()
         {
-            currentFrame++;
-            currentFrame %= totalFrames;
+            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
         }
     }
 }

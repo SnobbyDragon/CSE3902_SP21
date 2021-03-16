@@ -3,7 +3,8 @@ namespace sprint0
 {
     class UpCommand : ICommand
     {
-        private Game1 game;
+        private readonly Game1 game;
+
         public UpCommand(Game1 game)
         {
             this.game = game;

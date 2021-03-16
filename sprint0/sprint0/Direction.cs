@@ -40,7 +40,6 @@ namespace sprint0
             };
         }
 
-
         public static List<Direction> AdjacentDirectionsDiffType(this Direction direction)
         {
             return direction switch

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 
 namespace sprint0
@@ -15,7 +14,7 @@ namespace sprint0
         public Room Room { get => room; }
         private Room room;
         public bool ChangeRoom { get; set; }
-        public int roomIndex;
+        public int RoomIndex { get; set; }
         public int NumRooms { get; } = 19;
 
         public static int Width { get; } = 256;
@@ -47,7 +46,7 @@ namespace sprint0
                 new MouseController(this)
             };
 
-            roomIndex = 18;
+            RoomIndex = 18;
             ChangeRoom = true;
 
             base.Initialize();
@@ -55,7 +54,7 @@ namespace sprint0
 
         protected override void LoadContent()
         {
-            room = new Room(_spriteBatch, this, roomIndex);
+            room = new Room(_spriteBatch, this, RoomIndex);
             room.LoadContent();
             ChangeRoom = false;
         }

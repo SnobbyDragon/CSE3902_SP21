@@ -22,8 +22,6 @@ namespace sprint0
         public Arrow(Texture2D texture, Vector2 location, Direction dir, IEntity shooter)
         {
             Shooter = shooter;
-
-
             int sourceAdjustX = 0;
             int sourceAdjustY = 0;
             switch (dir)

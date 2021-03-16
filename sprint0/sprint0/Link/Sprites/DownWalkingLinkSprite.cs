@@ -11,10 +11,9 @@ namespace sprint0
 
         private Texture2D texture;
 
-        private List<Rectangle> frames;
+        private readonly List<Rectangle> frames;
         private int currentFrame;
-        private int repeatFrames;
-        private int totalFrames;
+        private readonly int repeatFrames, totalFrames;
         private readonly int size = 16;
 
         public DownWalkingLinkSprite(Texture2D texture, Vector2 location)
@@ -24,7 +23,7 @@ namespace sprint0
             currentFrame = 0;
             repeatFrames = 8;
             totalFrames = 2 * repeatFrames;
-            frames = new List<Rectangle> { new Rectangle(1, 11, size, size), new Rectangle(18, 11, size, size) };
+            frames = SpritesheetHelper.GetFramesH(1, 11, size, size, 2);
         }
 
         public void Draw(SpriteBatch spriteBatch)

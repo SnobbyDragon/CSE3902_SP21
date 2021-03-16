@@ -5,7 +5,8 @@ namespace sprint0
 {
     public class LinkDamageControl
     {
-        private ManageHUDInventory manager;
+        private readonly ManageHUDInventory manager;
+
         public LinkDamageControl(ManageHUDInventory manage)
         {
             manager = manage;

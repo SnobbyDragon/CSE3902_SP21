@@ -9,8 +9,9 @@ namespace sprint0
 {
     public class MainHUD
     {
-        private HUDFactory hudFactory;
-        List<IHUD> hudMainItems;
+        private readonly HUDFactory hudFactory;
+        private List<IHUD> hudMainItems;
+
         public MainHUD(Game1 game)
         {
             hudFactory = new HUDFactory(game);

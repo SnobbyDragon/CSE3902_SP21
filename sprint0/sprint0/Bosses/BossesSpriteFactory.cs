@@ -6,8 +6,8 @@ namespace sprint0
 {
     public class BossesSpriteFactory
     {
-        Game1 game;
-        private Texture2D texture;
+        private readonly Game1 game;
+        private readonly Texture2D texture;
         
 
         public BossesSpriteFactory(Game1 game)

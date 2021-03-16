@@ -14,8 +14,7 @@ namespace sprint0
         private Rectangle source;
         private SpriteEffects s = SpriteEffects.FlipHorizontally;
         private int currentFrame;
-        private int repeatedFrames;
-        private int totalFrames;
+        private readonly int repeatedFrames, totalFrames;
         private readonly int width, height;
 
         public Flame(Texture2D texture, Vector2 location)

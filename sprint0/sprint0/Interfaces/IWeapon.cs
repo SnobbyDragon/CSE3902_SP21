@@ -6,8 +6,7 @@ namespace sprint0
 {
     public interface IWeapon : ISprite
     {
-        int Damage { get; }
-
-        bool IsAlive();
+        public int Damage { get; }
+        public bool IsAlive();
     }
 }

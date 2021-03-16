@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
-//Updated: 03/15/21 by shah.1440
+//Updated: 03/16/21 by li.10011
 namespace sprint0
 {
     public class HeartHUD : IHUDInventory
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private int[] heartState;
+        private readonly int[] heartState;
         private readonly List<Rectangle> sources;
         private readonly int sideLength = 8, maxHealth = 32, heartType = 3, heartsPerRow = 8, numHearts = 16, healthToHeart = 2, reset = 0, xOffset = 627, yOffset = 117;
         private int currentHealth;
@@ -23,12 +23,7 @@ namespace sprint0
             heartState = new int[3] { reset, reset, numHearts };
             ResetNum();
             int totalFrames = 3;
-            sources = new List<Rectangle>();
-            for (int frame = reset; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xOffset, yOffset, sideLength, sideLength));
-                xOffset += sideLength + 1;
-            }
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, sideLength, sideLength, totalFrames);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -63,6 +58,7 @@ namespace sprint0
             heartState[1] = currentHealth % healthToHeart;
             heartState[0] = numHearts - heartState[2] - heartState[1];
         }
+
         public void Increment()
         {
         }

@@ -5,12 +5,13 @@ namespace sprint0
 {
     class MouseController : IController
     {
-        Game1 game;
-        ButtonState lButtonState;
-        ButtonState rButtonState;
-        List<ButtonState> previousStates;
-        NextRoomCommand next;
-        PreviousRoomCommand previous;
+        private readonly Game1 game;
+        private ButtonState lButtonState;
+        private ButtonState rButtonState;
+        private readonly List<ButtonState> previousStates;
+        private readonly NextRoomCommand next;
+        private readonly PreviousRoomCommand previous;
+
         public MouseController(Game1 game)
         {
             this.game = game;
