@@ -56,17 +56,17 @@ namespace sprint0
         }
         public void Increment()
         {
-            manageHUDInventory.IncrementItem(HUDItems.Bomb);
+            manageHUDInventory.IncrementItem(HUDItems.Rupee);
         }
 
         public void Decrement()
         {
-            manageHUDInventory.DecrementItem(HUDItems.Bomb);
+            manageHUDInventory.DecrementItem(HUDItems.Rupee);
         }
 
         public void ChangeNum(int num)
         {
-            manageHUDInventory.ChangeNum(HUDItems.Bomb, num);
+            manageHUDInventory.ChangeNum(HUDItems.Rupee, num);
         }
     }
 }
