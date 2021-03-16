@@ -10,11 +10,15 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int width, height;
+        private Vector2 homeLocation;
+        private bool isMovable;
 
         public MovableBlock(Texture2D texture, Vector2 location)
         {
             width = height = 16;
+            isMovable = true;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+            homeLocation = Location.Location.ToVector2();
             Texture = texture;
             source = new Rectangle(1001, 11, width, height);
 
@@ -27,7 +31,7 @@ namespace sprint0
 
         public void Update()
         {
-            //No movement for now
+           //no-op
         }
 
         public bool IsWalkable()
@@ -37,7 +41,17 @@ namespace sprint0
 
         public bool IsMovable()
         {
-            return true;
+            return isMovable;
+        }
+
+        public void SetIsMovable()
+        {
+            Vector2 changeLoc = Location.Location.ToVector2() - homeLocation;
+            if (changeLoc.Length() >= 2*width)
+            {
+                isMovable = false;
+            }
+            
         }
     }
 }

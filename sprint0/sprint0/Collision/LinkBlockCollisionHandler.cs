@@ -42,6 +42,8 @@ namespace sprint0
                     block.Location = new Rectangle((int)link.Pos.X - block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
                     break;
             }
+            block.SetIsMovable();
+
         }
 
         private void HandleImmovableBlock(IPlayer link, IBlock block, Direction side)
