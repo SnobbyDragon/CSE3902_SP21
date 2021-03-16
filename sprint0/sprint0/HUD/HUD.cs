@@ -4,9 +4,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
+//Updated: 03/15/21 by shah.1440
 namespace sprint0
 {
-    public class HUD : ISprite
+    public class HUD : IHUD
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -29,6 +30,10 @@ namespace sprint0
         }
 
         public void Update()
+        {
+            //Does nothing
+        }
+        public void SetItem(String item)
         {
             //Does nothing
         }

@@ -55,7 +55,7 @@ namespace sprint0
 
         protected override void LoadContent()
         {
-            room = new Room(this, roomIndex);
+            room = new Room(_spriteBatch, this, roomIndex);
             room.LoadContent();
             ChangeRoom = false;
         }
@@ -78,7 +78,7 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
-            room.Draw(_spriteBatch);
+            room.Draw();
             _spriteBatch.End();
             base.Draw(gameTime);
         }

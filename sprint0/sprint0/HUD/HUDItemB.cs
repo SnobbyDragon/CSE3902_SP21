@@ -4,9 +4,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
+//Updated: 03/15/21 by shah.1440
 namespace sprint0
 {
-    public class HUDItemB : ISprite
+    public class HUDItemB : IHUD
     {
 
         public Rectangle Location { get; set; }
@@ -17,11 +18,11 @@ namespace sprint0
         private readonly int width = 8;
         private readonly int height = 16;
 
-        public HUDItemB(Texture2D texture, Vector2 location, string itemName)
+        public HUDItemB(Texture2D texture, Vector2 location)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height); // TODO use this for drawing?
             Texture = texture;
-            Item = itemName;
+            Item = "";
             int yPos = 137;
 
             //add items to list
@@ -61,12 +62,18 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)), itemMap[Item], Color.White);
+            if (Item.Length != 0) spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)), itemMap[Item], Color.White);
         }
 
         public void Update()
         {
             //todo: switch between objects and based on link
         }
+        public void SetItem(String item)
+        {
+            Item = item;
+        }
+
+
     }
 }

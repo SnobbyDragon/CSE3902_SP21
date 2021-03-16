@@ -3,98 +3,49 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
+//Updated: 03/15/21 by shah.1440
 namespace sprint0
 {
     public class HUDFactory
     {
-        readonly Game1 game;
+        Game1 game1;
         readonly Texture2D texture;
-        readonly int nameLen = 4;
 
         public HUDFactory(Game1 game)
         {
-            this.game = game;
+            this.game1 = game;
             texture = game.Content.Load<Texture2D>("Images/HUDPauseScreen");
         }
 
-        public ISprite MakeSprite(string spriteType, Vector2 location)
+        public IHUDInventory MakeHUDItem(String spriteType, Vector2 location)
         {
-            /*
-             * spriteType format for HUD:
-             * 
-             * hud: N/A
-             * item A: hudA <itemName>
-             * item B: hudB <itemName>
-             * rupee inventopry: rin <rupeeAmount>
-             * key inventory: kin <keyAmount>
-             * bomb inventory: bin <bombAmount>
-             * heart state: hin <halfHeartAmount>,<fullHeartAmount>
-             */
-
-            //note: wherever the location is modified is how far the corresponding object is from the top-left corner of the HUD
-            string subSpriteType = spriteType.Substring(0, nameLen);
-            string numstring = spriteType[nameLen..];
-            switch (subSpriteType)
+            switch (spriteType)
             {
-                //hud
-                case "hudM":
-                    return new HUD(texture, location);
-
-
-                //item A
-                case "hudA":
-                    return new HUDItemA(texture, new Vector2(location.X + 153 * Game1.Scale, location.Y + 24 * Game1.Scale), spriteType[(nameLen + 1)..]);
-
-                //item B
-                case "hudB":
-                    return new HUDItemB(texture, new Vector2(location.X + 128 * Game1.Scale, location.Y + 24 * Game1.Scale), spriteType[(nameLen + 1)..]);
-
-                //rupee inventory
-                case "rin ":
-                    int rupeeNum;
-
-                    //get number of rupees
-                    int.TryParse(numstring, out rupeeNum);
-                    return new RupeeHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 16 * Game1.Scale), rupeeNum);
-
-                //key inventory
-                case "kin ":
-                    int keyNum;
-
-                    //get number of keys
-                    int.TryParse(numstring, out keyNum);
-                    return new KeyHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + Game1.BorderThickness * Game1.Scale), keyNum);
-
-                //bomb inventory
-                case "bin ":
-                    int bombNum;
-
-                    //get number of bombs
-                    int.TryParse(numstring, out bombNum);
-                    return new BombHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 40 * Game1.Scale), bombNum);
-
-
-                //heart state
-                case "hin ": //heart inventory/state
-                    string[] heartNumstring = numstring.Split(',');
-                    int[] heartNum = { 0, 0, 0 }; //array that stores the number of empty, half, and full hearts
-                    int sum = 16; //total number of hearts
-
-                    for (int i = 0; i < heartNumstring.Length; i++)
-                    {
-                        int.TryParse(heartNumstring[i], out heartNum[i + 1]);
-                        sum -= heartNum[i + 1];
-                    }
-                    heartNum[0] = sum;
-                    /* 
-                     * heartNum[0] : # of empty hearts 
-                     * heartNum[1] : # of half hearts
-                     * heartNum[2] : # of full hearts
-                    */
-                    return new HeartHUD(texture, new Vector2(location.X + 176 * Game1.Scale, location.Y + Game1.BorderThickness * Game1.Scale), heartNum);
-
+                case "rupee inventory":
+                    return new RupeeHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 16 * Game1.Scale));
+                case "key inventory":
+                    return new KeyHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 32 * Game1.Scale));
+                case "bomb inventory":
+                    return new BombHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 40 * Game1.Scale));
+                case "heart":
+                    return new HeartHUD(texture, new Vector2(location.X + 176 * Game1.Scale, location.Y + 32 * Game1.Scale));
                 default:
-                    throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed.");
+                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
+            }
+        }
+
+        public IHUD MakeHUD(String spriteType, Vector2 location)
+        {
+            switch (spriteType)
+            {
+                case "hud":
+                    return new HUD(texture, location);
+                case "hudA":
+                    return new HUDItemA(texture, new Vector2(location.X + 153 * Game1.Scale, location.Y + 24 * Game1.Scale));
+                case "hudB":
+                    return new HUDItemB(texture, new Vector2(location.X + 128 * Game1.Scale, location.Y + 24 * Game1.Scale));
+                default:
+                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
             }
         }
     }
