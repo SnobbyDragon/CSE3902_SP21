@@ -60,12 +60,7 @@ namespace sprint0
             source = new Rectangle(127, 184, 10, 17);
 
             totalFrames = 3; currentFrame = 0;
-            explosionSources = new List<Rectangle>();
-            for (int frame = 0; frame < totalFrames; frame++)
-            {
-                explosionSources.Add(new Rectangle(xPos, yPos, width, height));
-                xPos += width + 1;
-            }
+            explosionSources = SpritesheetHelper.GetFramesH(xPos, yPos, width, height, totalFrames);
             Vector2 loc = location + new Vector2(sourceAdjustX, sourceAdjustY);
             Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(10 * Game1.Scale), (int)(height * Game1.Scale));
         }

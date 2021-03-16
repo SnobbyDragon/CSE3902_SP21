@@ -14,7 +14,7 @@ namespace sprint0
         private int width, height;
         private Rectangle source;
         private ManageHUDInventory manageHUDInventory;
-
+        private readonly int maxPickedUpDuration = 40;
         public BombItem(Texture2D texture, Vector2 location)
         {
             this.texture = texture;
@@ -27,11 +27,13 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Location, source, Color.White);
+            if (PickedUpDuration < maxPickedUpDuration)
+                spriteBatch.Draw(texture, Location, source, Color.White);
         }
 
         public void Update()
         {
+            if (PickedUpDuration >= 0) PickedUpDuration++;
         }
         public void GetPopulate(ManageHUDInventory HUDInventory)
         {
