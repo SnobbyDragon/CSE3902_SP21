@@ -3,63 +3,52 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-//Stuti Shah
+//Author: Stuti Shah
+//Updated: 03/15/21 by shah.1440
 namespace sprint0
 {
-    public class HeartHUD : ISprite
+    public class HeartHUD : IHUDInventory
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        public int[] heartState { get; set; }
+        private int[] heartState;
         private readonly List<Rectangle> sources;
-        private readonly int sideLength;
+        private readonly int sideLength = 8, maxHealth = 32, heartType = 3, heartsPerRow = 8, numHearts = 16, healthToHeart = 2, reset = 0, xOffset = 627, yOffset = 117;
+        private int currentHealth;
 
-        public HeartHUD(Texture2D texture, Vector2 location, int[] heartNum)
+        public HeartHUD(Texture2D texture, Vector2 location)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, 0, 0); // this rectangle is just a point
+            Location = new Rectangle((int)location.X, (int)location.Y, 0, 0);
             Texture = texture;
-
             //heartState[0] : number of empty hearts
             //heartState[1] : number of half hearts
             //heartState[2] : number of full hearts
-            //note: total number of hearts : 16
-            heartState = heartNum;
-
+            heartState = new int[3] { reset, reset, numHearts };
+            ResetNum();
             int totalFrames = 3;
-            int xPos = 627, yPos = 117;
             sources = new List<Rectangle>();
-            sideLength = 8;
-
-            //add empty, half, and full heart sprites
-            for (int frame = 0; frame < totalFrames; frame++)
+            for (int frame = reset; frame < totalFrames; frame++)
             {
-                sources.Add(new Rectangle(xPos, yPos, sideLength, sideLength));
-                xPos += sideLength + 1;
+                sources.Add(new Rectangle(xOffset, yOffset, sideLength, sideLength));
+                xOffset += sideLength + 1;
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int xShift = 0;
-            int yShift = 0;
-            int heartCount = 0;
-
-            //go through empty, half, and full hearts
-            for (int i = 0; i < heartState.Length; i++)
+            int xShift = reset;
+            int yShift = reset;
+            int heartCount = reset;
+            for (int i = reset; i < heartType; i++)
             {
-                //go through number of hearts for empty, half, or full hearts
-                for (int num = 0; num < heartState[i]; num++)
+                for (int num = reset; num < heartState[i]; num++)
                 {
-                    //if first row of hearts is full, reset xShift and change yShift to start second row
-                    if (heartCount == 8)
+                    if (heartCount == heartsPerRow)
                     {
-                        xShift = 0;
+                        xShift = reset;
                         yShift = (int)(sideLength * Game1.Scale);
                     }
-
-                    //draw hearts
                     spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + xShift), (int)(Location.Y + yShift), (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[i], Color.White);
-
                     xShift += (int)(sideLength * Game1.Scale);
                     heartCount++;
                 }
@@ -68,7 +57,26 @@ namespace sprint0
 
         public void Update()
         {
-            //change heartState based on link's damage
+        }
+
+        public void ChangeNum(int damage)
+        {
+            currentHealth -= damage;
+            heartState[2] = currentHealth / healthToHeart;
+            heartState[1] = currentHealth % healthToHeart;
+            heartState[0] = numHearts - heartState[2] - heartState[1];
+        }
+        public void Increment()
+        {
+        }
+
+        public void Decrement()
+        {
+        }
+
+        public void ResetNum()
+        {
+            currentHealth = maxHealth;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+//Updated: 03/15/21 by shah.1440
 namespace sprint0
 {
     public class LinkItemCollisionHandler
@@ -13,9 +14,9 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, IItem item, Direction side)
         {
-            if (item.PickedUpDuration < 0) // has not been picked up yet
+            if (item.PickedUpDuration < 0)
             {
-                if (item.PickedUpDuration == -1) // has special animation on pick up
+                if (item.PickedUpDuration == -1)
                 {
                     link.PickUpItem();
                     int itemX = (int)link.Pos.X + linkSize / 2 - item.Location.Width / 2;
@@ -23,11 +24,19 @@ namespace sprint0
                     item.Location = new Rectangle(itemX, itemY, item.Location.Width, item.Location.Height);
                     item.PickedUpDuration = 0;
                 }
-                else // no special animation on pick up
+                else
                 {
                     item.PickedUpDuration = pickUpAnimationTime;
                 }
+                CheckItem(item);
             }
+        }
+
+        public void CheckItem(IItem item)
+        {
+            if (item is Key key) key.Increment();
+            else if (item is BombItem bomb) bomb.Increment();
+            else if (item is Rupee rupee) rupee.Increment();
         }
     }
 }

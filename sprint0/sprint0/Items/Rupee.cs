@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
+//Updated: 03/15/21 by shah.1440
 namespace sprint0
 {
     public class Rupee : IItem
@@ -16,6 +17,7 @@ namespace sprint0
         private readonly int xOffset = 72, yOffset = 0, width = 8, height = 16;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
+        private ManageHUDInventory manageHUDInventory;
 
         public Rupee(Texture2D texture, Vector2 location)
         {
@@ -46,6 +48,25 @@ namespace sprint0
             // rupee flashes colors
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             if (PickedUpDuration >= 0) PickedUpDuration++;
+        }
+
+        public void GetPopulate(ManageHUDInventory HUDInventory)
+        {
+            manageHUDInventory = HUDInventory;
+        }
+        public void Increment()
+        {
+            manageHUDInventory.IncrementItem(HUDItems.Bomb);
+        }
+
+        public void Decrement()
+        {
+            manageHUDInventory.DecrementItem(HUDItems.Bomb);
+        }
+
+        public void ChangeNum(int num)
+        {
+            manageHUDInventory.ChangeNum(HUDItems.Bomb, num);
         }
     }
 }

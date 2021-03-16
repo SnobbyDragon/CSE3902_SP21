@@ -6,7 +6,7 @@ namespace sprint0
 {
     class DamagedLink : IPlayer
     {
-        readonly Game1 game;
+        readonly Room game;
         private readonly IPlayer decoratedLink;
         readonly Direction direction;
         int timer = 80;
@@ -18,7 +18,7 @@ namespace sprint0
 
         public List<int> ItemCounts => decoratedLink.ItemCounts;
 
-        public DamagedLink(IPlayer decoratedLink, Game1 game, Direction direction)
+        public DamagedLink(IPlayer decoratedLink, Room game, Direction direction)
         {
             this.game = game;
             this.decoratedLink = decoratedLink;
@@ -42,7 +42,7 @@ namespace sprint0
 
         public void RemoveDecorator()
         {
-            game.Room.Player = decoratedLink;
+            game.Player = decoratedLink;
         }
 
         public void Stop()
@@ -87,7 +87,8 @@ namespace sprint0
             timer--;
             if (timer > 75)
             {
-                switch (direction) {
+                switch (direction)
+                {
                     case Direction.n:
                         decoratedLink.Move(0, 6);
                         break;

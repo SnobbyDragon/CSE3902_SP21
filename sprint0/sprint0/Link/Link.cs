@@ -8,7 +8,7 @@ namespace sprint0
 {
     class Link : IPlayer
     {
-        private readonly Game1 game;
+        private readonly Room game;
         private IPlayerState state;
         public static Vector2 position;
         private int health = 32;
@@ -16,7 +16,11 @@ namespace sprint0
         private readonly int speed = 2;
         private bool isAlive;
         private Direction direction = Direction.n;
-        private readonly LinkUseItemHelper itemHelper;
+        private LinkUseItemHelper itemHelper;
+        private LinkDamageControl damageControl;
+        /*
+         * Note! A count of any number less than 0 is infinite.
+         */
         public List<int> ItemCounts { get; }
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
@@ -24,7 +28,7 @@ namespace sprint0
         public PlayerItems CurrentItem { get; set; }
         public int WeaponDamage { get; set; }
 
-        public Link(Game1 game, Vector2 pos)
+        public Link(Room game, Vector2 pos)
         {
             WeaponDamage = 2;
             isAlive = true;
@@ -35,6 +39,7 @@ namespace sprint0
             itemHelper = new LinkUseItemHelper(game, this);
             CurrentItem = PlayerItems.None;
             speed = 2;
+            damageControl = new LinkDamageControl(game.GetManager());
         }
 
         public void Move(int x, int y)
@@ -44,8 +49,9 @@ namespace sprint0
 
         public void TakeDamage(Direction direction, int damage)
         {
-            game.Room.Player = new DamagedLink(this, game, direction);
+            game.Player = new DamagedLink(this, game, direction);
             health -= damage;
+            damageControl.TakeDamage(damage);
             if (health < 0) Die();
         }
 
@@ -94,12 +100,11 @@ namespace sprint0
 
         public void HandleItem()
         {
-            if (isAlive && CurrentItem != PlayerItems.None)
+            if (isAlive)
             {
-                if (CurrentItem == PlayerItems.Candle || ItemCounts[(int)CurrentItem] != 0)
-                    itemHelper.UseItem();
-                if ((int)CurrentItem >= 0 && ItemCounts[(int)CurrentItem] != 0)
+                if (CurrentItem != PlayerItems.None && CurrentItem != PlayerItems.Candle)
                     ItemCounts[(int)CurrentItem]--;
+                itemHelper.UseItem();
             }
         }
 
@@ -109,7 +114,6 @@ namespace sprint0
             {
                 State.Draw(spriteBatch);
             }
-
         }
 
         public void Update()
