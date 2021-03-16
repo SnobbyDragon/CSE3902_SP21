@@ -15,6 +15,8 @@ namespace sprint0
         private readonly FileStream roomStream;
         private readonly XmlReader roomReaderInvisible;
         private readonly FileStream roomStreamInvisible;
+        private readonly string genericPath = "../../../Content/LevelData/Room";
+        private readonly string xmlExtension = ".xml";
         private readonly string path;
         private readonly int roomNo;
         private readonly List<ISprite> sprites;
@@ -33,7 +35,7 @@ namespace sprint0
 
         public LevelLoader(Game1 game, int roomNo)
         {
-            path = Path.GetFullPath(@"../../../Content/LevelData/Room") + roomNo.ToString() + ".xml";
+            path = Path.GetFullPath(@genericPath) + roomNo.ToString() + xmlExtension;
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
             this.roomNo = roomNo;
@@ -44,7 +46,7 @@ namespace sprint0
             npcs = new List<INpc>();
             items = new List<IItem>();
             this.game = game;
-            roomStreamInvisible = File.OpenRead(Path.GetFullPath(@"../../../Content/LevelData/RoomInvisible.xml"));
+            roomStreamInvisible = File.OpenRead(Path.GetFullPath(@genericPath + "Invisible" + xmlExtension));
             roomReaderInvisible = XmlReader.Create(roomStreamInvisible);
 
             enemyFactory = new EnemiesSpriteFactory(this.game);
