@@ -34,7 +34,6 @@ namespace sprint0
 
         public void Update()
         {
-            // does nothing for now
         }
     }
 }

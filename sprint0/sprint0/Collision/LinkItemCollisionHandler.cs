@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-//Updated: 03/15/21 by shah.1440
+
 namespace sprint0
 {
     public class LinkItemCollisionHandler

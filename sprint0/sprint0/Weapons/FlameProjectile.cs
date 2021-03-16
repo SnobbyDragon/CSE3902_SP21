@@ -47,7 +47,6 @@ namespace sprint0
 
         public void RegisterHit()
         {
-            // no-op
         }
 
         public void Move()
@@ -60,7 +59,7 @@ namespace sprint0
         public void Update()
         {
             age++;
-            if(age < maxDistance) Move();
+            if (age < maxDistance) Move();
             if (currentFrame / repeatedFrames == 0)
             {
                 s = SpriteEffects.FlipHorizontally;

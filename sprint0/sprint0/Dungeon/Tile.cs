@@ -30,7 +30,6 @@ namespace sprint0
 
         public void Update()
         {
-            //No movement 
         }
 
         public bool IsWalkable()

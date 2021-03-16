@@ -17,7 +17,6 @@ namespace sprint0
         private readonly int totalFrames;
         private int currentFrame;
         private readonly int repeatedFrames;
-        //private int moveCounter;
 
         private Vector2 destination;
         private readonly Random rand;
@@ -25,9 +24,9 @@ namespace sprint0
         public Fairy(Texture2D texture, Vector2 location)
         {
             Texture = texture;
-			PickedUpDuration = -2; // not picked up, no special animation
+            PickedUpDuration = -2;
             totalFrames = 2;
-            currentFrame = 0; repeatedFrames = 10; //moveCounter = 0;
+            currentFrame = 0; repeatedFrames = 10;
             sources = new List<Rectangle>();
             int xPos = 40, yPos = 0, width = 7, height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
@@ -50,12 +49,10 @@ namespace sprint0
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
             {
-                // reached destination, generate new destination;
                 GenerateDest();
             }
             else
             {
-                // has not reached destination, move towards it
                 dist.Normalize();
                 dist = dist.ApproxDirection().ToVector2();
                 Location = new Rectangle((int)(Location.X + dist.X), (int)(Location.Y + dist.Y), Location.Width, Location.Height);
@@ -63,7 +60,6 @@ namespace sprint0
 
         }
 
-        // generates a new destination
         private void GenerateDest()
         {
             int xlowerBound = Location.X - 200;
@@ -71,7 +67,6 @@ namespace sprint0
             int xupperBound = Location.X + 200;
             int yupperBound = Location.X + 200;
 
-            //if destination is off screen resets to screen bounds
             if (xlowerBound < Game1.BorderThickness * Game1.Scale)
             {
                 xlowerBound = (int)(Game1.BorderThickness * Game1.Scale);
@@ -88,7 +83,6 @@ namespace sprint0
             {
                 yupperBound = (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale);
             }
-            // picks a random destination 
 
             destination = new Vector2(
                 rand.Next(xlowerBound, xupperBound),
@@ -98,7 +92,6 @@ namespace sprint0
 
         public void RegisterHit()
         {
-            //no-op required
         }
     }
 }

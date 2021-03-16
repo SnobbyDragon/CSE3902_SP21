@@ -20,12 +20,10 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // No-op -- is invisible
         }
 
         public void Update()
         {
-            // No-op -- does not move
         }
 
         public bool IsWalkable()

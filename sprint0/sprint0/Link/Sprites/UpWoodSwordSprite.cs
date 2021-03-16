@@ -26,9 +26,6 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             sources = GetFrames();
-            /*
-             * Ugly pixel math is unavoidable with the current spritesheet
-             */
             locations = new List<Vector2>
             {
 
@@ -49,9 +46,6 @@ namespace sprint0
 
         private List<Rectangle> GetFrames()
         {
-            /*
-             * Ugly pixel math is unavoidable with the current spritesheet
-             */
             int xPos, yPos;
             List<Rectangle> sources = new List<Rectangle>();
             width = 16;
@@ -77,7 +71,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (currFrame < 4) 
+            if (currFrame < 4)
             {
                 Location = new Rectangle((int)locations[currFrame].X, (int)locations[currFrame].Y, (int)(width * Game1.Scale), (int)(ySizes[currFrame] * Game1.Scale));
                 spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);

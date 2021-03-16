@@ -20,9 +20,6 @@ namespace sprint0
         {
             Location = new Rectangle((int)location.X, (int)location.Y, 0, 0);
             Texture = texture;
-            //heartState[0] : number of empty hearts
-            //heartState[1] : number of half hearts
-            //heartState[2] : number of full hearts
             heartState = new int[3] { reset, reset, numHearts };
             ResetNum();
             int totalFrames = 3;

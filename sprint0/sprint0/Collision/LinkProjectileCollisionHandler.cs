@@ -10,7 +10,7 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, IProjectile projectile, Direction side)
         {
-            if (projectile.Shooter != null && !(projectile.Shooter is IPlayer)) // can only hit link if he didn't throw it
+            if (projectile.Shooter != null && !(projectile.Shooter is IPlayer))
                 link.TakeDamage(side, projectile.Damage);
             else if (projectile.Shooter is IPlayer && projectile is Boomerang boomerang && boomerang.CanBeCaught)
             {

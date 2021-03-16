@@ -35,7 +35,6 @@ namespace sprint0
 
         public void Update()
         {
-            // does nothing for now; probably buy/sell stuff later???
         }
     }
 }

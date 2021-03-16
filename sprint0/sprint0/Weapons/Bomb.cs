@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
  * Last updated: 3/13/21 by urick.9
  */
 
-//This code is not that pretty-if find extra time refactor
 
 namespace sprint0
 {
@@ -18,7 +17,7 @@ namespace sprint0
         public int Damage { get => 20; }
         public Texture2D Texture { get; set; }
         public bool Exploding { get => exploding; }
-        public bool Eaten { get ; set; }
+        public bool Eaten { get; set; }
 
         private Rectangle source;
         private readonly List<Rectangle> explosionSources;
@@ -38,9 +37,6 @@ namespace sprint0
             int sourceAdjustX = 0;
             int sourceAdjustY = 0;
 
-            /*
-             * Adjust the source location based on the direction 
-             */
             switch (dir)
             {
                 case Direction.n:
@@ -63,7 +59,6 @@ namespace sprint0
             this.lifespan = 120;
             source = new Rectangle(127, 184, 10, 17);
 
-            //add frames to explosion sources
             totalFrames = 3; currentFrame = 0;
             explosionSources = SpritesheetHelper.GetFramesH(xPos, yPos, width, height, totalFrames);
             Vector2 loc = location + new Vector2(sourceAdjustX, sourceAdjustY);
@@ -90,7 +85,7 @@ namespace sprint0
             if (age < lifespan + 3 * repeatedFrames && age >= lifespan && lifespan > 0)
             {
                 exploding = true;
-                Location = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)); // explosion size diff from pre-explosion
+                Location = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
                 currentSource = explosionSources[currentFrame / repeatedFrames];
                 currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             }

@@ -108,8 +108,8 @@ namespace sprint0
             width = 8;
             height = 10;
             totalFrames = 3;
-            xa = (int)(width * Game1.Scale);  // once broken, the beam no longer moves, so repurpose
-            ya = (int)(height * Game1.Scale); // xa and ya to move each component of the explosion
+            xa = (int)(width * Game1.Scale);
+            ya = (int)(height * Game1.Scale);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -151,7 +151,7 @@ namespace sprint0
 
         public void Update()
         {
-            if(hit) age++; // sword beams go until they hit something
+            if (hit) age++;
             if (IsAlive())
             {
                 Move();

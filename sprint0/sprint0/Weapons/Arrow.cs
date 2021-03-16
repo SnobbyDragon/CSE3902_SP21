@@ -23,9 +23,7 @@ namespace sprint0
         {
             Shooter = shooter;
 
-            /*
-             * Adjust the source location based on the direction 
-             */
+
             int sourceAdjustX = 0;
             int sourceAdjustY = 0;
             switch (dir)

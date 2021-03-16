@@ -11,7 +11,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private IEnemy head;
-        private int segmentNumber; // 0 = anchor to body, 3 = closest to head
+        private int segmentNumber;
         private Vector2 anchor;
         private Random rand;
         private readonly int xWiggleLimit = 2, yWiggleLimit = 1, wiggleDelay = 20;
@@ -37,7 +37,7 @@ namespace sprint0
 
         public void Update()
         {
-            Vector2 dist = head.Location.Location.ToVector2() - anchor; //TODO clean up?
+            Vector2 dist = head.Location.Location.ToVector2() - anchor;
             Vector2 loc = anchor + dist / 4 * segmentNumber;
             Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             if (segmentNumber > 0)
@@ -60,17 +60,14 @@ namespace sprint0
 
         public void ChangeDirection()
         {
-            // not necessary
         }
 
         public void TakeDamage(int damage)
         {
-            //no-op
         }
 
         public void Perish()
         {
-            //no-op
         }
     }
 }

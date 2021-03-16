@@ -8,22 +8,18 @@
     <Dungeon ObjectName="left open door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right locked door" LocationX="0" LocationY="320" />?
 	
-    <!--Only put blocks here when there is no door-->
 	<Block ObjectName="invisible block" LocationX="40" LocationY="320" />?
     <Block ObjectName="invisible block" LocationX="40" LocationY="360" />?
     <Block ObjectName="invisible block" LocationX="0" LocationY="320" />?
     <Block ObjectName="invisible block" LocationX="0" LocationY="360" />?
-    <!--Only put blocks here when there is no door-->
-	<!--Only put blocks here when there is no door-->
+
 	<Block ObjectName="invisible block" LocationX="280" LocationY="180" />?
 	<Block ObjectName="invisible block" LocationX="320" LocationY="180" />?
-	<!--Only put blocks here when there is no door-->
-	<!--Bombed openings are narrower than doors-->
+
 	<Block ObjectName="invisible block" LocationX="250" LocationY="500" />?
 	<Block ObjectName="invisible block" LocationX="330" LocationY="500" />?
 	<Block ObjectName="invisible block" LocationX="250" LocationY="540" />?
 	<Block ObjectName="invisible block" LocationX="330" LocationY="540" />?
-	<!--Bombed openings are narrower than doors-->
 	<Block ObjectName="block" LocationX="160" LocationY="380" />?
     <Block ObjectName="block" LocationX="440" LocationY="380" />?
     <Block ObjectName="block" LocationX="160" LocationY="300" />?

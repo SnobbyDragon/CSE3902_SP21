@@ -29,7 +29,6 @@ namespace sprint0
 
         public void Update()
         {
-            //Nothing here
         }
     }
 }

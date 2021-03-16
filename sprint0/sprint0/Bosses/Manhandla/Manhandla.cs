@@ -14,10 +14,10 @@ namespace sprint0
         private readonly int size = 16;
         private Rectangle source;
         private readonly List<IEnemy> limbs;
-        private int speed; // TODO faster as limbs die
+        private int speed;
         private Vector2 destination;
         private readonly Random rand;
-        
+
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
@@ -25,7 +25,7 @@ namespace sprint0
             this.game = game;
             source = new Rectangle(69, 89, size, size); //center
             speed = 1;
-            
+
             limbs = new List<IEnemy>
             {
                 new ManhandlaLimb(Texture, this, Direction.n, game),
@@ -33,9 +33,8 @@ namespace sprint0
                 new ManhandlaLimb(Texture, this, Direction.w, game),
                 new ManhandlaLimb(Texture, this, Direction.e, game)
             };
-            //register limbs as enemies for collision handling
             game.Room.RegisterEnemies(limbs);
-           
+
             rand = new Random();
             GenerateDest();
         }
@@ -47,7 +46,7 @@ namespace sprint0
 
         public void Update()
         {
-           
+
             CheckHealth();
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
@@ -62,7 +61,7 @@ namespace sprint0
                 Location = loc;
             }
 
-          
+
         }
 
         public void ChangeDirection()
@@ -73,23 +72,23 @@ namespace sprint0
         private void CheckHealth()
         {
             int limbCount = 0;
-            ManhandlaLimb toRemove=null;
+            ManhandlaLimb toRemove = null;
             foreach (ManhandlaLimb limb in limbs)
             {
                 limbCount++;
-                if (limb.CheckHealth() < 0) toRemove=limb;
+                if (limb.CheckHealth() < 0) toRemove = limb;
             }
             RemoveLimb(toRemove);
             if (limbCount == 0) Perish();
         }
 
-        private void RemoveLimb(ManhandlaLimb limb) {
+        private void RemoveLimb(ManhandlaLimb limb)
+        {
             limbs.Remove(limb);
         }
 
         public void TakeDamage(int damage)
         {
-            //no-op
         }
 
         public void Perish()
@@ -97,10 +96,8 @@ namespace sprint0
             game.Room.RemoveEnemy(this);
         }
 
-        // generates a new destination
         private void GenerateDest()
         {
-            // TODO movement depends on where link is?
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))

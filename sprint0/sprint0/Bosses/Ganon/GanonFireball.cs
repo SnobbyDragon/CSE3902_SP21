@@ -17,7 +17,7 @@ namespace sprint0
         private readonly string type;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames, speed = 3;
-        public Vector2 Direction { get; set; } // direction fireball travels
+        public Vector2 Direction { get; set; }
         private bool hit;
 
         public int Damage { get; }
@@ -27,7 +27,7 @@ namespace sprint0
             Shooter = shooter;
             Damage = 1;
             Texture = texture;
-            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width*Game1.Scale), (int)(height*Game1.Scale));
+            Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             this.type = type;
             currFrame = 0;
             totalFrames = 4;
@@ -54,7 +54,7 @@ namespace sprint0
                 { "right",  SpriteEffects.FlipHorizontally },
                 { "up right", SpriteEffects.FlipHorizontally }
             };
-            hit = true; // start hidden
+            hit = true;
             GetDirection();
         }
 
@@ -87,7 +87,6 @@ namespace sprint0
                     Direction = new Vector2(1, -1);
                     break;
                 default:
-                    // do nothing for none (determined by Link's position)
                     break;
             }
             if (!type.Equals("none"))

@@ -29,17 +29,15 @@ namespace sprint0
                 { Direction.nw, new Trap(Texture, center + new Vector2(-xOffset, -yOffset), game) },
                 { Direction.ne, new Trap(Texture, center + new Vector2(xOffset, -yOffset), game) }
             };
-
-            //register traps as enemies for collision handeling
             game.Room.RegisterEnemies(traps.Values);
         }
 
-        public void Draw(SpriteBatch spriteBatch) {}
+        public void Draw(SpriteBatch spriteBatch) { }
 
         public void Update()
         {
             Collision linkByWall = DetectLinkByWall();
-            if (linkByWall != Collision.None) // try to activate traps
+            if (linkByWall != Collision.None)
             {
                 List<Direction> trapDirs = linkByWall.ToDirection().AdjacentDirectionsDiffType();
                 if (!traps[trapDirs[0]].IsMoving && !traps[trapDirs[1]].IsMoving)
@@ -66,7 +64,6 @@ namespace sprint0
 
         private Collision DetectLinkByWall()
         {
-            // TODO 16 link size magic number
             if (Link.position.Y <= (Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale + traps[Direction.nw].Location.Height)
                 return Collision.Top;
             if (Link.position.Y >= (Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness - 16) * Game1.Scale - traps[Direction.nw].Location.Height)
@@ -80,22 +77,18 @@ namespace sprint0
 
         public void ChangeDirection()
         {
-            //no-op
         }
 
         public void TakeDamage()
         {
-            //no-op
         }
 
         public void TakeDamage(int damage)
         {
-            //no-op
         }
 
         public void Perish()
         {
-            //no-op
         }
     }
 }

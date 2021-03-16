@@ -33,7 +33,6 @@ namespace sprint0
 
         public LevelLoader(Game1 game, int roomNo)
         {
-            //path, open stream, open file to read
             path = Path.GetFullPath(@"../../../Content/LevelData/Room") + roomNo.ToString() + ".xml";
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
@@ -48,7 +47,6 @@ namespace sprint0
             roomStreamInvisible = File.OpenRead(Path.GetFullPath(@"../../../Content/LevelData/RoomInvisible.xml"));
             roomReaderInvisible = XmlReader.Create(roomStreamInvisible);
 
-            //factories
             enemyFactory = new EnemiesSpriteFactory(this.game);
             itemFactory = new ItemsSpriteFactory(this.game);
             dungeonFactory = new DungeonFactory(this.game);

@@ -40,9 +40,7 @@ namespace sprint0
             };
         }
 
-        /*
-         * Gets adjacent directions of the opposite type (cardinal / ordinal).
-         */
+
         public static List<Direction> AdjacentDirectionsDiffType(this Direction direction)
         {
             return direction switch
@@ -59,9 +57,7 @@ namespace sprint0
             };
         }
 
-        /*
-         * Gets adjacent directions of the same type (cardinal / ordinal)
-         */
+
         public static List<Direction> AdjacentDirectionsSameType(this Direction direction)
         {
             return direction switch

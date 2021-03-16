@@ -9,7 +9,7 @@ namespace sprint0
     public class Gohma : IEnemy
     {
         private Game1 game;
-        public Rectangle Location { get; set; } // location of the head
+        public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private readonly int size = 16;
         private Dictionary<string, List<Rectangle>> colorToLegMap, colorToHeadMap;
@@ -18,10 +18,10 @@ namespace sprint0
         private int headCurrFrame, legCurrFrame;
         private readonly int headTotalFrames, headRepeatedFrames, legTotalFrames, legRepeatedFrames;
         private int currDest;
-        private readonly int moveDelay; // delay to make slower bc floats mess up drawings; must be < legTotalFrames*legRepeatedFrames
-        private List<Vector2> destinations; // gohma moves to predetermined destinations
-        private Vector2 centerOffset; // fireball shoots from center of gohma
-        private readonly int fireballRate = 100; //TODO currently arbitrary
+        private readonly int moveDelay;
+        private List<Vector2> destinations;
+        private Vector2 centerOffset;
+        private readonly int fireballRate = 100;
         private int fireballCounter = 0;
         private int health;
         public Gohma(Texture2D texture, Vector2 location, string color, Game1 game)
@@ -60,7 +60,7 @@ namespace sprint0
             };
 
             currDest = 0;
-            moveDelay = 2; //slow spooder
+            moveDelay = 2;
             destinations = new List<Vector2>
             {
                 location,
@@ -69,27 +69,21 @@ namespace sprint0
                 location + new Vector2(0,100)
             };
 
-            centerOffset = new Vector2(size / 2 - 4, size / 2 - 5); // gohma size / 2 - fireball size / 2
+            centerOffset = new Vector2(size / 2 - 4, size / 2 - 5);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // draws the left leg
             spriteBatch.Draw(
                 Texture, new Rectangle(Location.X - (int)(size * Game1.Scale), Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale)),
                 colorToLegMap[color][legCurrFrame / legRepeatedFrames],
                 Color.White, 0, new Vector2(0, 0),
                 leftLegEffects[legCurrFrame / legRepeatedFrames], 0);
-
-            // draws the right leg; left/right leg should be opposite frames
             spriteBatch.Draw(
                 Texture, new Rectangle(Location.X + (int)(size * Game1.Scale), Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale)),
                 colorToLegMap[color][(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], // TODO refator: this is probably overly complicated
                 Color.White, 0, new Vector2(0, 0),
                 rightLegEffects[(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], 0);
-
-
-            // draws the head
             spriteBatch.Draw(Texture, Location, colorToHeadMap[color][headCurrFrame / headRepeatedFrames], Color.White);
         }
 
@@ -97,25 +91,20 @@ namespace sprint0
         {
             CheckHealth();
             Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
-            if (dist.Length() == 0) // can use exact bc no floating point errors for whole numbers
+            if (dist.Length() == 0)
             {
-                // reached destination, so pick a new destination
                 currDest = (currDest + 1) % destinations.Count;
             }
             else if (legCurrFrame % moveDelay == 0)
             {
-                // has not reached destination, move towards it
                 dist.Normalize();
                 Rectangle loc = Location;
                 loc.Offset(dist.ApproxDirection().ToVector2());
                 Location = loc;
             }
-
-            // animates all the time for now
             headCurrFrame = (headCurrFrame + 1) % (headTotalFrames * headRepeatedFrames);
             legCurrFrame = (legCurrFrame + 1) % (legTotalFrames * legRepeatedFrames);
 
-            // shoot fireball
             if (CanShoot())
             {
                 ShootFireball();
@@ -124,7 +113,6 @@ namespace sprint0
 
         public void ChangeDirection()
         {
-            // TODO
         }
 
         private void CheckHealth()

@@ -31,7 +31,7 @@ namespace sprint0
             {
                 sources.Add(new Rectangle(xOffset + frame * (width + 1), yOffset, width, height));
             };
-            sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height)); // animation = left middle right middle ...
+            sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height));
 
             neck1 = GenerateNeck();
             neck2 = GenerateNeck();
@@ -62,7 +62,6 @@ namespace sprint0
         public void Update()
         {
             CheckHealth();
-            // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             foreach (IEnemy sprite in neck1)
                 sprite.Update();
@@ -72,7 +71,6 @@ namespace sprint0
 
         public void ChangeDirection()
         {
-            // not necessary
         }
 
         private void CheckHealth()

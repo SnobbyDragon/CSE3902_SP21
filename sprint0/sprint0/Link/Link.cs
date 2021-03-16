@@ -18,9 +18,6 @@ namespace sprint0
         private Direction direction = Direction.n;
         private LinkUseItemHelper itemHelper;
         private LinkDamageControl damageControl;
-        /*
-         * Note! A count of any number less than 0 is infinite.
-         */
         public List<int> ItemCounts { get; }
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }

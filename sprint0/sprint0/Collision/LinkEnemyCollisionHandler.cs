@@ -10,7 +10,7 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, IEnemy enemy, Direction side)
         {
-            link.TakeDamage(side, 1); // TODO give enemies a damage property
+            link.TakeDamage(side, 1);
         }
     }
 }

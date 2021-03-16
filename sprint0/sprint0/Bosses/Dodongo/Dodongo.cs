@@ -84,7 +84,7 @@ namespace sprint0
             }
             CheckHealth();
 
-            if (eatingCounter == 0) // not eating
+            if (eatingCounter == 0)
             {
                 if (direction == Direction.w)
                 {
@@ -103,16 +103,16 @@ namespace sprint0
                     currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
                     Location = new Rectangle(Location.X, Location.Y + 1, scaledSideLength, scaledSideLength);
                 }
-                else // direction == Direction.n
+                else
                 {
                     currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
                     Location = new Rectangle(Location.X, Location.Y - 1, scaledSideLength, scaledSideLength);
                 }
             }
-            else // eating; do not move
+            else
             {
                 eatingCounter = (eatingCounter + 1) % eatingTime;
-                if (eatingCounter == 0) // done eating; return to normal frames
+                if (eatingCounter == 0)
                 {
                     if (bombsEaten >= MAX_NUM_OF_BOMBS_TO_EAT)
                     {
@@ -127,15 +127,15 @@ namespace sprint0
         {
             bombsEaten++;
             eatingCounter = 1;
-            if (direction == Direction.s) // south
+            if (direction == Direction.s)
             {
                 currentFrameUD = repeatedFrames;
             }
-            else if (direction == Direction.n) // north
+            else if (direction == Direction.n)
             {
                 currentFrameUD = 3 * repeatedFrames;
             }
-            else // right-left movement
+            else
             {
                 currentFrameRL = 2 * repeatedFrames;
             }
@@ -172,28 +172,28 @@ namespace sprint0
         {
             direction = Direction.n;
             currentFrameUD = 2 * repeatedFrames;
-            Location = new Rectangle(Location.X, Location.Y, scaledSideLength, scaledSideLength); // change to vertical dimensions
+            Location = new Rectangle(Location.X, Location.Y, scaledSideLength, scaledSideLength);
         }
 
         private void FaceSouth()
         {
             direction = Direction.s;
             currentFrameUD = 0;
-            Location = new Rectangle(Location.X, Location.Y, scaledSideLength, scaledSideLength); // change to vertical dimensions
+            Location = new Rectangle(Location.X, Location.Y, scaledSideLength, scaledSideLength);
         }
 
         private void FaceEast()
         {
             direction = Direction.e;
             currentFrameRL = 0;
-            Location = new Rectangle(Location.X, Location.Y, scaledWidth, scaledSideLength); // change to horizontal dimensions
+            Location = new Rectangle(Location.X, Location.Y, scaledWidth, scaledSideLength);
         }
 
         private void FaceWest()
         {
             direction = Direction.w;
             currentFrameRL = repeatedFrames;
-            Location = new Rectangle(Location.X, Location.Y, scaledWidth, scaledSideLength); // change to horizontal dimensions
+            Location = new Rectangle(Location.X, Location.Y, scaledWidth, scaledSideLength);
         }
     }
 }

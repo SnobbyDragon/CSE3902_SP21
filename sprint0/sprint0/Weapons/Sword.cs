@@ -32,10 +32,9 @@ namespace sprint0
             }
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
         }
-        
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            // no-op: the sword is drawn by the Link sprite
         }
 
         public bool IsAlive()
@@ -45,7 +44,6 @@ namespace sprint0
 
         public void Update()
         {
-            // no-op
         }
     }
 }

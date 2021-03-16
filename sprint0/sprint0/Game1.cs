@@ -85,7 +85,6 @@ namespace sprint0
 
         public void ResetGame()
         {
-            // reset game timer
             ResetElapsedTime();
             Initialize();
         }

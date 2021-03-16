@@ -23,9 +23,7 @@ namespace sprint0
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            PickedUpDuration = -2; // not picked up, no special animation
-
-            //load sprites
+            PickedUpDuration = -2;
             sources = new List<Rectangle>()
             {
                 new Rectangle(xOffset, yOffset, width, height),
@@ -45,7 +43,6 @@ namespace sprint0
 
         public void Update()
         {
-            // rupee flashes colors
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             if (PickedUpDuration >= 0) PickedUpDuration++;
         }

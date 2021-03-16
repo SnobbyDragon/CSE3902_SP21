@@ -8,7 +8,7 @@ namespace sprint0
     public class TriforcePiece : IItem
     {
         public int PickedUpDuration { get; set; }
-		private readonly int maxPickedUpDuration = 40;
+        private readonly int maxPickedUpDuration = 40;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private string color;
@@ -20,7 +20,7 @@ namespace sprint0
             width = height = 14;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-			PickedUpDuration = -1; // not picked up, special animation
+            PickedUpDuration = -1;
             color = triforceColor;
 
             colorMap = new Dictionary<string, Rectangle>

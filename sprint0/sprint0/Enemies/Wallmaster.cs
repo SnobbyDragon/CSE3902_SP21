@@ -11,7 +11,7 @@ namespace sprint0
 
         private readonly int xOffset = 393, yOffset = 11;
         private readonly List<Rectangle> sources;
-        private readonly SpriteEffects s; // could be flipped horizontally, vertically, or both
+        private readonly SpriteEffects s;
 
         public Wallmaster(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
@@ -24,18 +24,18 @@ namespace sprint0
             totalFrames = 2;
             repeatedFrames = 8;
 
-            if (Location.X <= Game1.Width / 2) // if coming from the left, then faces right
+            if (Location.X <= Game1.Width / 2)
             {
                 s = SpriteEffects.None;
             }
-            else // if coming from the right, then faces left
+            else
             {
                 s = SpriteEffects.FlipHorizontally;
             }
-            if (Location.Y < Game1.MapHeight / 2 + Game1.HUDHeight) // if coming from above, faces down
+            if (Location.Y < Game1.MapHeight / 2 + Game1.HUDHeight)
             {
                 s |= SpriteEffects.FlipVertically;
-            } // otherwise (coming from below), faces up
+            }
 
             ChangeDirection();
         }

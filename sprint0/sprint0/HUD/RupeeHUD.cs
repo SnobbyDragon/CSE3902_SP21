@@ -21,14 +21,12 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, reset, reset);
             Texture = texture;
             ResetNum();
-            //Add number frames sources[0] = 0, ..., sources[9] = 9
             sources = new List<Rectangle>();
             for (int frame = reset; frame < totalFrames; frame++)
             {
                 sources.Add(new Rectangle(xOffset, yOffset, sideLength, sideLength));
                 xOffset += sideLength + 1;
             }
-            //'x' that comes before the number (eg. x15) (sources[10])
             sources.Add(new Rectangle(519, yOffset, sideLength, sideLength));
         }
 

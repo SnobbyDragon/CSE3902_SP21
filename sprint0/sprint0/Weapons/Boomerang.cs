@@ -67,7 +67,6 @@ namespace sprint0
         public void Perish() => alive = false;
         public void Move()
         {
-            //The plus six is required so the boomerang reaches link.
             if (age < (maxDistance * 2) + 6)
             {
                 Rectangle loc = Location;
