@@ -43,5 +43,10 @@ namespace sprint0
         {
             return false;
         }
+
+        public void SetIsMovable()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
