@@ -47,6 +47,7 @@ namespace sprint0
 
         public new void Update()
         {
+            if (damageTimer > 0) damageTimer--;
             CheckHealth();
             moveCounter++;
             SpawnGel();
