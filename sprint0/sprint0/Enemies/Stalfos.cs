@@ -44,8 +44,6 @@ namespace sprint0
             if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), spriteEffects[currentFrame / repeatedFrames], 0);
         }
-
-       
     
     }
 }

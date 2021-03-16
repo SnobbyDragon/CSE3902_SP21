@@ -11,17 +11,16 @@ namespace sprint0
 
         public Rectangle Location { get; set; }
 
-        private Texture2D texture;
-        private Rectangle source;
+        private readonly Texture2D texture;
+        private readonly Rectangle source;
         private SpriteEffects s = SpriteEffects.FlipHorizontally;
         private int currentFrame;
-        private int repeatedFrames;
-        private int totalFrames;
+        private readonly int repeatedFrames, totalFrames;
         private readonly int width, height;
         private int age = 0;
-        private int maxDistance = (int)(32 * Game1.Scale);
-        private int xOffset, yOffset = 0;
-        private int lifespan = 480;
+        private readonly int maxDistance = (int)(32 * Game1.Scale);
+        private readonly int lifespan = 480;
+        private readonly Direction direction;
 
         public FlameProjectile(Texture2D texture, Vector2 location, Direction dir, IEntity shooter)
         {
@@ -33,21 +32,7 @@ namespace sprint0
             currentFrame = 0;
             repeatedFrames = 8;
             totalFrames = 2;
-            switch (dir)
-            {
-                case Direction.n:
-                    yOffset = -1;
-                    break;
-                case Direction.s:
-                    yOffset = 1;
-                    break;
-                case Direction.e:
-                    xOffset = 1;
-                    break;
-                case Direction.w:
-                    xOffset = -1;
-                    break;
-            }
+            direction = dir;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -64,9 +49,12 @@ namespace sprint0
         {
             // no-op
         }
+
         public void Move()
         {
-            Location = new Rectangle((int)Location.X + xOffset, (int)Location.Y + yOffset, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+            Rectangle loc = Location;
+            loc.Offset(direction.ToVector2());
+            Location = loc;
         }
 
         public void Update()

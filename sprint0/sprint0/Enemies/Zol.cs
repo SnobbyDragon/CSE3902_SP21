@@ -12,7 +12,8 @@ namespace sprint0
         private readonly int delay;
         private int delayCounter;
         private int spawnCounter;
-        private readonly int spawnRate =1500; // arbitrary; spawns a gel every spawnRate
+        private readonly int spawnRate = 1500; // arbitrary; spawns a gel every spawnRate
+        private readonly int speed = 39;
 
         public Zol(Texture2D texture, Vector2 location, string gelColor, Game1 game): base(texture, location, game)
         {
@@ -56,40 +57,13 @@ namespace sprint0
             {
                 ArbitraryDirection(20, 80);
             }
-            switch (direction)
+            if (delayCounter == delay)
             {
-                case Direction.w:
-                    //moves sprite left but in a halting manner
-                    if (delayCounter == delay)
-                    {
-                        Location = new Rectangle(Location.X - 39, Location.Y, Location.Width, Location.Height);
-                        delayCounter = 0;
-                    }
-                    break;
-                case Direction.e:
-                    if (delayCounter == delay)
-                    {
-                        Location = new Rectangle(Location.X + 39, Location.Y, Location.Width, Location.Height);
-                        delayCounter = 0;
-                    }
-
-                    break;
-                case Direction.s:
-                    if (delayCounter == delay)
-                    {
-                        Location = new Rectangle(Location.X, Location.Y + 39, Location.Width, Location.Height);
-                        delayCounter = 0;
-                    }
-                    break;
-                case Direction.n:
-                    if (delayCounter == delay)
-                    {
-                        Location = new Rectangle(Location.X, Location.Y - 39, Location.Width, Location.Height);
-                        delayCounter = 0;
-                    }
-                    break;
-
-            };
+                Rectangle loc = Location;
+                loc.Offset(speed * direction.ToVector2());
+                Location = loc;
+                delayCounter = 0;
+            }
             delayCounter++;
         }
 
