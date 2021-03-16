@@ -16,12 +16,9 @@ namespace sprint0
 
         public HUD(Texture2D texture, Vector2 location)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, 0, 0); // this rectangle is just a point
+            Location = new Rectangle((int)location.X, (int)location.Y, 0, 0);
             Texture = texture;
-
-            //load HUD sprite
             source = new Rectangle(258, 11, Game1.Width, Game1.HUDHeight);
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -31,11 +28,9 @@ namespace sprint0
 
         public void Update()
         {
-            //Does nothing
         }
         public void SetItem(String item)
         {
-            //Does nothing
         }
     }
 }

@@ -12,9 +12,9 @@ namespace sprint0
         private readonly int delay;
         private int delayCounter;
         private int spawnCounter;
-        private readonly int spawnRate =1500; // arbitrary; spawns a gel every spawnRate
+        private readonly int spawnRate = 1500;
 
-        public Zol(Texture2D texture, Vector2 location, string gelColor, Game1 game): base(texture, location, game)
+        public Zol(Texture2D texture, Vector2 location, string gelColor, Game1 game) : base(texture, location, game)
         {
             width = 16;
             height = 16;
@@ -41,7 +41,7 @@ namespace sprint0
 
         public new void Draw(SpriteBatch spriteBatch)
         {
-            if(damageTimer % 2 == 0)
+            if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
         }
 
@@ -59,7 +59,6 @@ namespace sprint0
             switch (direction)
             {
                 case Direction.w:
-                    //moves sprite left but in a halting manner
                     if (delayCounter == delay)
                     {
                         Location = new Rectangle(Location.X - 39, Location.Y, Location.Width, Location.Height);

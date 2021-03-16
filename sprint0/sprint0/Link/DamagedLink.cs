@@ -32,12 +32,10 @@ namespace sprint0
 
         public void TakeDamage(Direction direction, int damage)
         {
-            // no-op: does not take damage
         }
 
         public void PickUpItem()
         {
-            // no-op: does not pick up items
         }
 
         public void RemoveDecorator()

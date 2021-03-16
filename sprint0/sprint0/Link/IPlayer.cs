@@ -13,7 +13,6 @@ namespace sprint0
     {
         Direction Direction { get; set; }
 
-        //Pos is deprecated
         Vector2 Pos { get; set; }
         IPlayerState State { get; set; }
 
@@ -21,7 +20,6 @@ namespace sprint0
         PlayerItems CurrentItem { get; set; }
         public List<int> ItemCounts { get; }
 
-        //Use position, not Pos
         static Vector2 Position;
         void Move(int x, int y);
         void Stop();

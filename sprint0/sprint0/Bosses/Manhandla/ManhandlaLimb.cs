@@ -17,7 +17,7 @@ namespace sprint0
         private readonly Dictionary<Direction, List<Rectangle>> dirToSourcesMap;
         private readonly Direction dir;
         private int health;
-        private readonly IEnemy center; // center of manhandla
+        private readonly IEnemy center;
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
 
@@ -73,16 +73,12 @@ namespace sprint0
         public void Update()
         {
             CheckHealth();
-
-            // animates all the time for now
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             Location = new Rectangle(
                 center.Location.X + (int)(size * dir.ToVector2().X * Game1.Scale),
                 center.Location.Y + (int)(size * dir.ToVector2().Y * Game1.Scale),
                 (int)(size * Game1.Scale),
                 (int)(size * Game1.Scale));
-
-            // shoot fireball
             if (CanShoot())
             {
                 ShootFireball();
@@ -91,7 +87,6 @@ namespace sprint0
 
         public void ChangeDirection()
         {
-            // not necessary
         }
 
         public void TakeDamage(int damage)

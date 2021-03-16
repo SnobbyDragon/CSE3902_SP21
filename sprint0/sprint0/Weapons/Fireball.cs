@@ -46,7 +46,7 @@ namespace sprint0
         public void Update()
         {
             if (!hit)
-            {   // alive and traveling
+            {
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 preciseLocation += speed * direction;
                 Location = new Rectangle((int)preciseLocation.X, (int)preciseLocation.Y, Location.Width, Location.Height);

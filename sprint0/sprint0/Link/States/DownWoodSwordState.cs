@@ -9,7 +9,7 @@ namespace sprint0
         private readonly ISprite sprite;
 
         private int count = 0;
-        private readonly int maxCount = 24; // animation time for sword sprite
+        private readonly int maxCount = 24;
 
         public DownWoodSwordState(IPlayer player)
         {

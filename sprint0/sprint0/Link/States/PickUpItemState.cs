@@ -9,7 +9,7 @@ namespace sprint0
         private readonly ISprite sprite;
 
         private int count;
-        private readonly int maxCount = 40; // time for pick up item sprite to animate once
+        private readonly int maxCount = 40;
 
         public PickUpItemState(IPlayer player)
         {
@@ -20,17 +20,17 @@ namespace sprint0
 
         public void Stop()
         {
-            
+
         }
 
         public void UseItem()
         {
-            
+
         }
 
         public void HandleSword()
         {
-            
+
         }
 
         public void Update()

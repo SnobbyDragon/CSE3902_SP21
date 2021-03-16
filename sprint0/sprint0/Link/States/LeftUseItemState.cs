@@ -9,7 +9,7 @@ namespace sprint0
         private readonly ISprite sprite;
 
         private int count = 0;
-        private readonly int maxCount = 12; // animation time for use item
+        private readonly int maxCount = 12;
 
         public LeftUseItemState(IPlayer player)
         {

@@ -31,7 +31,6 @@ namespace sprint0
 
         public void Update()
         {
-           //no-op
         }
 
         public bool IsWalkable()
@@ -47,11 +46,11 @@ namespace sprint0
         public void SetIsMovable()
         {
             Vector2 changeLoc = Location.Location.ToVector2() - homeLocation;
-            if (changeLoc.Length() >= 2*width)
+            if (changeLoc.Length() >= 2 * width)
             {
                 isMovable = false;
             }
-            
+
         }
     }
 }

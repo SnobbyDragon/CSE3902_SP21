@@ -16,7 +16,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 40, yOffset = 154, width, height;
         private readonly List<Rectangle> sources;
-        private int currFrame, counter, deathCounter; // counts the time
+        private int currFrame, counter, deathCounter;
         private readonly int totalFrames, invisibleTime = 200, visibleTime = 100, teleportTime = 50;
         private bool isVisible, isDead;
         private readonly Random rand;
@@ -63,8 +63,6 @@ namespace sprint0
         {
             if (isVisible && !isDead)
                 spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
-
-            //fireballs should draw after death 
             foreach (GanonFireball fireball in fireballExplosion)
             {
                 fireball.Draw(spriteBatch);
@@ -123,7 +121,6 @@ namespace sprint0
 
         public void ChangeDirection()
         {
-            // not necessary
         }
 
         private void CheckHealth()
@@ -167,7 +164,6 @@ namespace sprint0
 
         private void FireballExplosion()
         {
-            // shoots 8 fireballs in all directions
             foreach (GanonFireball fireball in fireballExplosion)
             {
                 Vector2 recLoc = Location.Center.ToVector2();
@@ -179,7 +175,6 @@ namespace sprint0
 
         public void Teleport()
         {
-            // TODO depends on where link is?
             Vector2 loc = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness - width) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness - height) * Game1.Scale))

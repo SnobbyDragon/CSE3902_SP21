@@ -30,7 +30,6 @@ namespace sprint0
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
-        // need different method because has vector direction
         public IProjectile MakeFireball(Vector2 location, Vector2 direction, IEntity source)
         {
             return new Fireball(texture3, location, direction, source);

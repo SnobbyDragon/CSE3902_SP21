@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
  * Last updated: 3/13/21 by urick.9
  */
 
-//This code is not that pretty-if find extra time refactor
 
 namespace sprint0
 {
@@ -18,7 +17,7 @@ namespace sprint0
         public int Damage { get => 20; }
         public Texture2D Texture { get; set; }
         public bool Exploding { get => exploding; }
-        public bool Eaten { get ; set; }
+        public bool Eaten { get; set; }
 
         private Rectangle source;
         private readonly List<Rectangle> explosionSources;
@@ -26,10 +25,8 @@ namespace sprint0
         private readonly int xPos = 138, yPos = 184, width = 17, height = 18;
         private bool exploding = false;
 
-        //Age is the current number of updates
         private int age;
 
-        //Lifespan is the number of updates before it dies. For now, it just stops rendering
         private readonly int lifespan;
 
         private readonly int repeatedFrames;
@@ -40,12 +37,8 @@ namespace sprint0
             int sourceAdjustX = 0;
             int sourceAdjustY = 0;
 
-            /*
-             * Adjust the source location based on the direction 
-             */
             switch (dir)
             {
-                //based on the direction link is facing the bomb is thrown 4 ways
                 case Direction.n:
                     sourceAdjustX = -4;
                     sourceAdjustY = -4;
@@ -66,7 +59,6 @@ namespace sprint0
             this.lifespan = 120;
             source = new Rectangle(127, 184, 10, 17);
 
-            //add frames to explosion sources
             totalFrames = 3; currentFrame = 0;
             explosionSources = new List<Rectangle>();
             for (int frame = 0; frame < totalFrames; frame++)
@@ -95,12 +87,10 @@ namespace sprint0
         public void Update()
         {
             currentSource = source;
-            //the bomb is being thrown
             if (age < lifespan + 3 * repeatedFrames && age >= lifespan && lifespan > 0)
-            {   //age == lifespan so the bomb reached destination
-                //animates bomb to explode
+            {
                 exploding = true;
-                Location = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)); // explosion size diff from pre-explosion
+                Location = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
                 currentSource = explosionSources[currentFrame / repeatedFrames];
                 currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             }

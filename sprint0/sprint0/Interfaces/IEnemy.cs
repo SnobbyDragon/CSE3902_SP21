@@ -3,9 +3,9 @@ namespace sprint0
 {
     public interface IEnemy : ISprite
     {
-        public void ChangeDirection(); // change direction / destination due to block/enemy collision
-        public void TakeDamage(int damage); // take damage due to projectile / link sword
+        public void ChangeDirection();
+        public void TakeDamage(int damage);
 
-        public void Perish(); // kills this enemy
+        public void Perish();
     }
 }

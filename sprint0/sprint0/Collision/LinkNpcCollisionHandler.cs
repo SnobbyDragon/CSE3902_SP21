@@ -15,16 +15,16 @@ namespace sprint0
         {
             switch (side)
             {
-                case Direction.n: // if collide above, then move down
+                case Direction.n:
                     link.Pos += new Vector2(0, npc.Location.Bottom - link.Pos.Y);
                     break;
-                case Direction.s: // if collide below, then move up
+                case Direction.s:
                     link.Pos += new Vector2(0, npc.Location.Top - (link.Pos.Y + linkSize));
                     break;
-                case Direction.e: // if collide right, then move left
+                case Direction.e:
                     link.Pos += new Vector2(npc.Location.Left - (link.Pos.X + linkSize), 0);
                     break;
-                case Direction.w: // if collide left, then move right
+                case Direction.w:
                     link.Pos += new Vector2(npc.Location.Right - link.Pos.X, 0);
                     break;
             }

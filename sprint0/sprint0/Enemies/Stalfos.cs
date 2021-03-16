@@ -6,14 +6,14 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
-    public class Stalfos : Enemy,  IEnemy
+    public class Stalfos : Enemy, IEnemy
     {
 
         private Rectangle source;
 
         private readonly List<SpriteEffects> spriteEffects;
 
-        public Stalfos(Texture2D texture, Vector2 location, Game1 game): base(texture, location,game)
+        public Stalfos(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
             width = 16;
             height = 16;
@@ -24,20 +24,13 @@ namespace sprint0
             totalFrames = 2;
             currentFrame = 0;
             repeatedFrames = 7;
-
-            //adds sprite
             source = new Rectangle(1, 59, width, height);
-
-            //initializes direction
             direction = Direction.n;
-
-            //Creates sprite effect list
             spriteEffects = new List<SpriteEffects> {
                 SpriteEffects.None,
                 SpriteEffects.FlipHorizontally
             };
         }
-
 
         public new void Draw(SpriteBatch spriteBatch)
         {
@@ -45,7 +38,7 @@ namespace sprint0
                 spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), spriteEffects[currentFrame / repeatedFrames], 0);
         }
 
-       
-    
+
+
     }
 }

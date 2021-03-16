@@ -20,12 +20,10 @@ namespace sprint0
 
         public HUDItemB(Texture2D texture, Vector2 location)
         {
-            Location = new Rectangle((int)location.X, (int)location.Y, width, height); // TODO use this for drawing?
+            Location = new Rectangle((int)location.X, (int)location.Y, width, height);
             Texture = texture;
             Item = "";
             int yPos = 137;
-
-            //add items to list
             itemMap = new Dictionary<string, Rectangle>
             {
                 { "sword", GetSource(555, yPos)},
@@ -54,7 +52,6 @@ namespace sprint0
 
         private Rectangle GetSource(int xPos, int yPos)
         {
-            //get sprite
             source = new Rectangle();
             source = new Rectangle(xPos, yPos, width, height);
             return source;
@@ -67,7 +64,6 @@ namespace sprint0
 
         public void Update()
         {
-            //todo: switch between objects and based on link
         }
         public void SetItem(String item)
         {

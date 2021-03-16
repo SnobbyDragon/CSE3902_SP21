@@ -64,7 +64,6 @@ namespace sprint0
             enemyFactory = new EnemiesSpriteFactory(game);
             dungeonFactory = new DungeonFactory(game);
 
-            // avoids mutating enemies list during foreach
             weaponsToDie = new List<IWeapon>();
             projectilesToDie = new List<IProjectile>();
             enemiesToDie = new List<IEnemy>();

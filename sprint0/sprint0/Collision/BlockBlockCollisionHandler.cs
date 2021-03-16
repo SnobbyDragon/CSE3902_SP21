@@ -11,15 +11,15 @@ namespace sprint0
         {
         }
 
-        public void HandleCollision(IBlock block1, IBlock block2, Direction side) 
+        public void HandleCollision(IBlock block1, IBlock block2, Direction side)
         {
-            if (!block2.IsWalkable()) // cannot walk on it
+            if (!block2.IsWalkable())
             {
-                if (block2.IsMovable()) // can push it
+                if (block2.IsMovable())
                 {
                     HandleMovableBlock(block1, block2, side);
                 }
-                else // can neither walk on nor push it
+                else
                 {
                     HandleImmovableBlock(block1, block2, side);
                 }
@@ -30,16 +30,16 @@ namespace sprint0
         {
             switch (side)
             {
-                case Direction.n: // if collide above, then push up
+                case Direction.n:
                     block2.Location = new Rectangle(block2.Location.X, block1.Location.Top - block2.Location.Height, block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.s: // if collide below, then push down
-                    block2.Location = new Rectangle(block2.Location.X, block1.Location.Top + (int)(base_size*Game1.Scale), block2.Location.Width, block2.Location.Height); 
+                case Direction.s:
+                    block2.Location = new Rectangle(block2.Location.X, block1.Location.Top + (int)(base_size * Game1.Scale), block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.e: // if collide right, then push right
-                    block2.Location = new Rectangle(block1.Location.Left + (int)(base_size * Game1.Scale), block2.Location.Y, block2.Location.Width, block2.Location.Height); 
+                case Direction.e:
+                    block2.Location = new Rectangle(block1.Location.Left + (int)(base_size * Game1.Scale), block2.Location.Y, block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.w: // if collide left, then push left
+                case Direction.w:
                     block2.Location = new Rectangle(block1.Location.Left - block2.Location.Width, block2.Location.Y, block2.Location.Width, block2.Location.Height);
                     break;
             }
@@ -49,16 +49,16 @@ namespace sprint0
         {
             switch (side)
             {
-                case Direction.n: // if collide above, then move down
+                case Direction.n:
                     block1.Location = new Rectangle(block1.Location.X, block2.Location.Bottom - block1.Location.Top, block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.s: // if collide below, then move up
+                case Direction.s:
                     block1.Location = new Rectangle(block1.Location.X, block2.Location.Top - (block1.Location.Top + (int)(base_size * Game1.Scale)), block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.e: // if collide right, then move left
+                case Direction.e:
                     block1.Location = new Rectangle(block2.Location.Left - (block1.Location.Left + (int)(base_size * Game1.Scale)), block1.Location.Y, block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.w: // if collide left, then move right
+                case Direction.w:
                     block1.Location = new Rectangle(block2.Location.Right - block1.Location.Left, block1.Location.Y, block2.Location.Width, block2.Location.Height);
                     break;
             }

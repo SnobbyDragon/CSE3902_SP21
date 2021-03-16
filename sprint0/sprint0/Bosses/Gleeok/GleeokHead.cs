@@ -12,7 +12,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle defaultSource;
-        private bool isAngry; // if head is severed / angry, has different frames; TODO maybe change to state pattern later?
+        private bool isAngry;
         private readonly List<Rectangle> angrySources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
@@ -60,7 +60,6 @@ namespace sprint0
             if (isAngry)
             {
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-                //TODO movement for angry
             }
             else
             {
@@ -88,7 +87,6 @@ namespace sprint0
 
         public void ChangeDirection()
         {
-            // not necessary
         }
 
         private void CheckHealth()
@@ -119,11 +117,9 @@ namespace sprint0
             game.Room.AddFireball(Location.Center.ToVector2(), dir, this);
         }
 
-        // generates random location
         private Vector2 RandomLocation()
         {
-            // TODO depends on where link is?
-            Vector2 dir = new Vector2(rand.Next(-100, 100), rand.Next(0, 100)); // location can only below anchor
+            Vector2 dir = new Vector2(rand.Next(-100, 100), rand.Next(0, 100));
             dir.Normalize();
             return anchor + rand.Next(0, maxDistance) * dir;
         }

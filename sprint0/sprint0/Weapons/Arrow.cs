@@ -17,20 +17,14 @@ namespace sprint0
         private readonly int xOffset = 154, yOffset = 0, width = 5, height = 16;
         private int currFrame;
         private readonly Direction dir;
-        //xa is x adjust, ya is y adjust
         private float xa, ya;
-        //Lifespan is the number of updates before it dies. 
-        //For now, it just stops rendering
-        //Age is the current number of updates
         private bool hit = false;
 
         public Arrow(Texture2D texture, Vector2 location, Direction dir, IEntity shooter)
         {
             Shooter = shooter;
 
-            /*
-             * Adjust the source location based on the direction 
-             */
+
             int sourceAdjustX = 0;
             int sourceAdjustY = 0;
             switch (dir)
@@ -114,7 +108,6 @@ namespace sprint0
                         break;
                 }
                 Move();
-                // currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
         }
         public void RegisterHit()

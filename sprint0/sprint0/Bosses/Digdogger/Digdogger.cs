@@ -16,13 +16,13 @@ namespace sprint0
         private readonly int bigSize = 32, smallSize = 16;
         private readonly List<Rectangle> smallSources;
         private readonly Dictionary<Spikes, List<Rectangle>> dirToBigSource;
-        private int currFrame, spikeDelay, spikeCounter; // randomly switch spike direction after a delay
+        private int currFrame, spikeDelay, spikeCounter;
         private readonly int bigTotalFrames, repeatedFrames, smallTotalFrames;
         private readonly bool isBig;
         private enum Spikes { none, left, right };
         private Spikes currSpikes;
         private readonly Random rand;
-        private Vector2 destination; //TODO depends on link; runs away?
+        private Vector2 destination;
         private int moveCounter;
         private readonly int moveDelay;
         private readonly Game1 game;
@@ -42,9 +42,9 @@ namespace sprint0
             List<Rectangle> bigSources = SpritesheetHelper.GetFramesH(196, 58, bigSize, bigSize, bigTotalFrames);
             dirToBigSource = new Dictionary<Spikes, List<Rectangle>>
             {
-                { Spikes.none, new List<Rectangle> { bigSources[0] } }, // no spikes
-                { Spikes.left, new List<Rectangle> { bigSources[1], bigSources[3] } }, // spikes on the left
-                { Spikes.right, new List<Rectangle> { bigSources[2], bigSources[4] } }, // spikes on the right
+                { Spikes.none, new List<Rectangle> { bigSources[0] } },
+                { Spikes.left, new List<Rectangle> { bigSources[1], bigSources[3] } },
+                { Spikes.right, new List<Rectangle> { bigSources[2], bigSources[4] } },
             };
             smallSources = SpritesheetHelper.GetFramesH(361, 58, smallSize, smallSize, smallTotalFrames);
             isBig = true;
@@ -53,14 +53,14 @@ namespace sprint0
             SwitchSpikeDir();
             GenerateDest();
             moveCounter = 0;
-            moveDelay = 4; // slow
+            moveDelay = 4;
         }
 
         public void SwitchSpikeDir()
         {
             spikeDelay = rand.Next(repeatedFrames * smallTotalFrames, repeatedFrames * smallTotalFrames * 2);
             spikeCounter = 0;
-            if (rand.Next(0, 2) == 0) // 50% chance to switch; 0 <= rand integer < 2
+            if (rand.Next(0, 2) == 0)
             {
                 currSpikes = Spikes.left;
             }
@@ -104,12 +104,6 @@ namespace sprint0
                 }
                 moveCounter++;
             }
-            else
-            {
-                // TODO bounce around the room; run away from link?
-
-            }
-
             currFrame = (currFrame + 1) % (smallTotalFrames * repeatedFrames);
         }
 
@@ -133,10 +127,8 @@ namespace sprint0
             game.Room.RemoveEnemy(this);
         }
 
-        // generates a new destination
         private void GenerateDest()
         {
-            // TODO movement depends on where link is?
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))

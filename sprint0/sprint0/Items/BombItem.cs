@@ -32,7 +32,6 @@ namespace sprint0
 
         public void Update()
         {
-            //no-op
         }
         public void GetPopulate(ManageHUDInventory HUDInventory)
         {

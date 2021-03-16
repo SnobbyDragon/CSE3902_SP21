@@ -31,7 +31,6 @@ namespace sprint0
 
         public void Update()
         {
-            //no-op
         }
     }
 }

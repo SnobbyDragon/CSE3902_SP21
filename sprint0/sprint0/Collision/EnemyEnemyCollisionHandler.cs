@@ -11,22 +11,22 @@ namespace sprint0
 
         public void HandleCollision(IEnemy enemy1, IEnemy enemy2, Direction side)
         {
-           if (!(enemy1 is ManhandlaLimb && enemy2 is Manhandla)&& !(enemy2 is ManhandlaLimb  && enemy1 is Manhandla)
-                && !(enemy1 is Zol && enemy2 is Gel) && !(enemy2 is Zol && enemy1 is Gel) && !(enemy1 is Zol && enemy2 is Zol))
+            if (!(enemy1 is ManhandlaLimb && enemy2 is Manhandla) && !(enemy2 is ManhandlaLimb && enemy1 is Manhandla)
+                 && !(enemy1 is Zol && enemy2 is Gel) && !(enemy2 is Zol && enemy1 is Gel) && !(enemy1 is Zol && enemy2 is Zol))
             {
 
                 switch (side)
                 {
-                    case Direction.n: // if collide above, then move down
+                    case Direction.n:
                         enemy1.Location = new Rectangle(enemy1.Location.X, enemy2.Location.Bottom, enemy1.Location.Width, enemy1.Location.Height);
                         break;
-                    case Direction.s: // if collide below, then move up
+                    case Direction.s:
                         enemy1.Location = new Rectangle(enemy1.Location.X, enemy2.Location.Top - enemy1.Location.Height, enemy1.Location.Width, enemy1.Location.Height);
                         break;
-                    case Direction.e: // if collide right, then move left
+                    case Direction.e:
                         enemy1.Location = new Rectangle(enemy2.Location.Left - enemy1.Location.Width, enemy1.Location.Y, enemy1.Location.Width, enemy1.Location.Height);
                         break;
-                    case Direction.w: // if collide left, then move right
+                    case Direction.w:
                         enemy1.Location = new Rectangle(enemy2.Location.Right, enemy1.Location.Y, enemy1.Location.Width, enemy1.Location.Height);
                         break;
                 }

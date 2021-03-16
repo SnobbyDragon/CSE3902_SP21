@@ -29,7 +29,6 @@ namespace sprint0
         {
             lButtonState = Mouse.GetState().LeftButton;
             rButtonState = Mouse.GetState().RightButton;
-            //If right click exit the game
             if (rButtonState == ButtonState.Pressed && previousStates[1] != ButtonState.Pressed)
             {
                 next.Execute();
@@ -45,7 +44,6 @@ namespace sprint0
 
         public void Initialize()
         {
-            // no-op for now
         }
     }
 }

@@ -22,11 +22,11 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             if (dir.Equals("right"))
-            { // creates a right facing statue
+            {
                 source = new Rectangle(xOffset, yOffset, width, height);
             }
             else if (dir.Equals("left"))
-            { // creates a left facing statue
+            {
                 source = new Rectangle(xOffset + width + 1, yOffset, width, height);
             }
         }

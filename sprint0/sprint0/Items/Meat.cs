@@ -9,7 +9,7 @@ namespace sprint0
     public class Meat : IItem
     {
         public int PickedUpDuration { get; set; }
-		private readonly int maxPickedUpDuration = 40;
+        private readonly int maxPickedUpDuration = 40;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
@@ -19,9 +19,8 @@ namespace sprint0
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-			PickedUpDuration = -2; // not picked up, no special animation
+            PickedUpDuration = -2;
 
-            //load sprites
             source = new Rectangle(xOffset, yOffset, width, height);
         }
 
