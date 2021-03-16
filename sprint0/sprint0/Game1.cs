@@ -47,7 +47,7 @@ namespace sprint0
                 new MouseController(this)
             };
 
-            roomIndex = 1;
+            roomIndex = 18;
             ChangeRoom = true;
 
             base.Initialize();

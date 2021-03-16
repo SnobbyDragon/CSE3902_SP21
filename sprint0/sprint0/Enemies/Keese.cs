@@ -28,7 +28,8 @@ namespace sprint0
 
         public new void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
+            if (damageTimer % 2 == 0)
+                spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
         }
     }
 }

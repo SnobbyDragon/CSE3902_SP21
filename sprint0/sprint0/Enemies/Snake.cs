@@ -30,8 +30,8 @@ namespace sprint0
 
         public new void Draw(SpriteBatch spriteBatch)
         {
-
-            spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames],
+            if (damageTimer % 2 == 0)
+                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames],
                     Color.White, 0, new Vector2(0, 0), spriteEffect, 0);
         }
 
