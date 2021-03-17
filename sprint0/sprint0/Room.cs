@@ -33,7 +33,7 @@ namespace sprint0
         private AllCollisionHandler collisionHandler;
 
         private List<ISprite> roomSprites, roomBaseSprites;
-        private readonly int roomIndex;
+        private readonly int RoomIndex;
         private Text text;
 
         private ISprite sprite;
@@ -41,12 +41,12 @@ namespace sprint0
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
 
-        public Room(SpriteBatch spriteBatch, Game1 game, int roomIndex)
+        public Room(SpriteBatch spriteBatch, Game1 game, int RoomIndex)
         {
             this.game = game;
             _spriteBatch = spriteBatch;
 
-            this.roomIndex = roomIndex;
+            this.RoomIndex = RoomIndex;
         }
 
         public void LoadContent()
@@ -84,7 +84,7 @@ namespace sprint0
 
         private void LoadLevelSprites()
         {
-            LevelLoader levelLoader = new LevelLoader(game, roomIndex);
+            LevelLoader levelLoader = new LevelLoader(game, RoomIndex);
             (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements = levelLoader.LoadLevel();
             roomSprites = roomElements.Item1;
             projectiles = roomElements.Item2;
@@ -209,7 +209,7 @@ namespace sprint0
             player.Draw(_spriteBatch);
             mainHUD.DrawMainHUD(mainHUDElements, _spriteBatch);
             populateHUDInventory.DrawItemHUD(_spriteBatch);
-            if (roomIndex == 4)
+            if (RoomIndex == 4)
             {
                 text.Draw(_spriteBatch);
             }

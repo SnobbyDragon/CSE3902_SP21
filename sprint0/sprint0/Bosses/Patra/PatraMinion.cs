@@ -21,6 +21,7 @@ namespace sprint0
         private readonly int expansionDelay = 200; // time between expansions
         private int health;
         private readonly Game1 game;
+
         public PatraMinion(Texture2D texture, IEnemy center, int angle, Game1 game)
         {
             this.game = game;
@@ -29,11 +30,7 @@ namespace sprint0
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 3;
-            sources = new List<Rectangle>();
-            for (int frame = 0; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xOffset + frame * (width + 1), yOffset, width, height));
-            };
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
             this.center = center;
             this.angle = angle;
             distance = minDistance; // starts close

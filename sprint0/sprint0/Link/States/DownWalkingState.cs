@@ -7,6 +7,7 @@ namespace sprint0
     {
         private readonly IPlayer player;
         private readonly ISprite sprite;
+
         public DownWalkingState(IPlayer player)
         {
             this.player = player;

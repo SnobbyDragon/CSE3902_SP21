@@ -20,15 +20,10 @@ namespace sprint0
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             this.texture = texture;
-            sources = new List<Rectangle>
-            {
-                new Rectangle(xOffset, yOffset, size, size),
-                new Rectangle(xOffset + size + 1, yOffset, size, size)
-            };
-
             currentFrame = 0;
             repeatedFrames = 20;
             totalFrames = 2;
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, size, size, totalFrames);
         }
 
         public void Draw(SpriteBatch spriteBatch)

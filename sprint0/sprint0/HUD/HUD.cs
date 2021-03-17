@@ -13,7 +13,6 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
 
-
         public HUD(Texture2D texture, Vector2 location)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, 0, 0);

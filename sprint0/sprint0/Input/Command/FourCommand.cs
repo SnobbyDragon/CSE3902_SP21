@@ -3,7 +3,8 @@ namespace sprint0
 {
     class FourCommand : ICommand
     {
-        private Game1 game;
+        private readonly Game1 game;
+
         public FourCommand(Game1 game)
         {
             this.game = game;

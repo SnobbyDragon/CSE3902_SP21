@@ -10,10 +10,11 @@ namespace sprint0
     {
         public int PickedUpDuration { get; set; }
         public Rectangle Location { get; set; }
-        private Texture2D texture;
-        private int width, height;
+        private readonly Texture2D texture;
+        private readonly int width, height;
         private Rectangle source;
         private readonly int maxPickedUpDuration = 40;
+
         public ArrowItem(Texture2D texture, Vector2 location)
         {
             this.texture = texture;

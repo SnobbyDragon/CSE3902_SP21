@@ -7,8 +7,9 @@ namespace sprint0
 {
     class LinkUseItemHelper
     {
-        private Room game;
-        private IPlayer link;
+        private readonly Room game;
+        private readonly IPlayer link;
+
         public LinkUseItemHelper(Room game, IPlayer link)
         {
             this.game = game;
@@ -126,22 +127,7 @@ namespace sprint0
 
         private void UseCandle()
         {
-            Vector2 offsetPos = link.Pos;
-            switch (link.Direction)
-            {
-                case Direction.n:
-                    offsetPos = new Vector2(link.Pos.X, link.Pos.Y - 16);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2(link.Pos.X, link.Pos.Y + 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2(link.Pos.X + 16, link.Pos.Y);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(link.Pos.X - 16, link.Pos.Y);
-                    break;
-            }
+            Vector2 offsetPos = link.Pos + 16*link.Direction.ToVector2();
             game.AddProjectile(offsetPos, link.Direction, "flame", link);
         }
     }

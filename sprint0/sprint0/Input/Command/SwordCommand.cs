@@ -2,7 +2,8 @@
 {
     class SwordCommand : ICommand
     {
-        private Game1 game;
+        private readonly Game1 game;
+
         public SwordCommand(Game1 game)
         {
             this.game = game;

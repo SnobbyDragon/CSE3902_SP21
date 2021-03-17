@@ -15,6 +15,7 @@ namespace sprint0
 
         private readonly Rectangle source;
         private readonly int xOffset = 124, yOffset = 11, size = 16;
+
         public LeftUseItemSprite(Texture2D texture, Vector2 location)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));

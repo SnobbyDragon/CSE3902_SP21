@@ -10,13 +10,10 @@ namespace sprint0
         public Vector2 Location { get; set; }
         public SpriteFont Text1 { get; set; }
 
-
         public Text(Game1 game)
         {
-
             Location = new Vector2(170, 270);
             Text1 = game.Content.Load<SpriteFont>("Font");
-
         }
 
         public void Draw(SpriteBatch spriteBatch)

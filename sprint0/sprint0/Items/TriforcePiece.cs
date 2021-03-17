@@ -11,33 +11,34 @@ namespace sprint0
         private readonly int maxPickedUpDuration = 40;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private string color;
-        private Dictionary<string, Rectangle> colorMap;
+        private readonly List<Rectangle> sources;
         private readonly int width, height;
+        private int currFrame;
+        private readonly int totalFrames = 2, repeatedFrames = 8;
 
-        public TriforcePiece(Texture2D texture, Vector2 location, string triforceColor)
+        public TriforcePiece(Texture2D texture, Vector2 location)
         {
-            width = height = 14;
+            width = height = 10;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             PickedUpDuration = -1;
-            color = triforceColor;
-
-            colorMap = new Dictionary<string, Rectangle>
+            sources = new List<Rectangle>
             {
-                { "gold", new Rectangle(271, 1, width, height) },
-                { "blue", new Rectangle(271, 17, width, height) }
+                new Rectangle(275, 3, width, height),
+                new Rectangle(275, 19, width, height)
             };
+            currFrame = 0;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             if (PickedUpDuration < maxPickedUpDuration)
-                spriteBatch.Draw(Texture, Location, colorMap[color], Color.White);
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
         }
 
         public void Update()
         {
+            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             if (PickedUpDuration >= 0) PickedUpDuration++;
         }
     }

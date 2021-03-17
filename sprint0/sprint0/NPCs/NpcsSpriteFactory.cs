@@ -3,13 +3,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Hannah Johnson and co
-
 namespace sprint0
 {
     public class NpcsSpriteFactory
     {
-        Game1 game;
-        Texture2D texture;
+        private readonly Game1 game;
+        private readonly Texture2D texture;
 
         public NpcsSpriteFactory(Game1 game)
         {
@@ -19,26 +18,18 @@ namespace sprint0
 
         public INpc MakeSprite(string spriteType, Vector2 location)
         {
-            
-            switch (spriteType)
+
+            return spriteType switch
             {
-                case "old man 1":
-                    return new OldPerson(texture, location, "man 1");
-                case "old man 2":
-                    return new OldPerson(texture, location, "man 2");
-                case "old woman":
-                    return new OldPerson(texture, location, "woman");
-                case "green merchant":
-                    return new Merchant(texture, location, "green");
-                case "white merchant":
-                    return new Merchant(texture, location, "white");
-                case "red merchant":
-                    return new Merchant(texture, location, "red");
-                case "flame":
-                    return new Flame(texture, location);
-                default:
-                    throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed.");
-            }
+                "old man 1" => new OldPerson(texture, location, "man 1"),
+                "old man 2" => new OldPerson(texture, location, "man 2"),
+                "old woman" => new OldPerson(texture, location, "woman"),
+                "green merchant" => new Merchant(texture, location, "green"),
+                "white merchant" => new Merchant(texture, location, "white"),
+                "red merchant" => new Merchant(texture, location, "red"),
+                "flame" => new Flame(texture, location),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
+            };
         }
     }
 }

@@ -8,6 +8,7 @@ namespace sprint0
         private readonly ISprite sprite;
         private readonly IPlayer player;
         private int count = 0;
+
         public UpWoodSwordState(IPlayer player)
         {
             this.player = player;

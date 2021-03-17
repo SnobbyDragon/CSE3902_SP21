@@ -9,7 +9,6 @@ namespace sprint0
 {
     class UpWoodSwordSprite : ISprite
     {
-
         public Texture2D Texture { get => texture; set => texture = value; }
         public Rectangle Location { get; set; }
         private readonly List<Rectangle> sources;
@@ -28,7 +27,6 @@ namespace sprint0
             sources = GetFrames();
             locations = new List<Vector2>
             {
-
                 location,
                 new Vector2(Location.X, Location.Y - 11 * Game1.Scale),
                 new Vector2(Location.X, Location.Y - 10 * Game1.Scale),
@@ -65,7 +63,6 @@ namespace sprint0
             yPos = 106;
             height = 19;
             sources.Add(new Rectangle(xPos, yPos, width, height));
-
             return sources;
         }
 

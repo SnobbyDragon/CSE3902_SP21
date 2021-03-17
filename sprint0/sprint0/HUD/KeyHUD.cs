@@ -13,7 +13,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private int keyNumTens, keyNumOnes, keyNum;
         private readonly int xOffset = 528, yOffset = 117, reset = 0, mod = 10;
-        private List<Rectangle> sources;
+        private readonly List<Rectangle> sources;
         private readonly int sideLength = 8;
 
         public KeyHUD(Texture2D texture, Vector2 location)
@@ -22,12 +22,7 @@ namespace sprint0
             Texture = texture;
             ResetNum();
             int totalFrames = mod;
-            sources = new List<Rectangle>();
-            for (int frame = 0; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xOffset, yOffset, sideLength, sideLength));
-                xOffset += sideLength + 1;
-            }
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, sideLength, sideLength, totalFrames);
             sources.Add(new Rectangle(519, yOffset, sideLength, sideLength));
         }
 
@@ -43,6 +38,7 @@ namespace sprint0
             keyNumTens = keyNum / mod;
             keyNumOnes = keyNum % mod;
         }
+
         public void ChangeNum(int change)
         {
             if ((keyNum += change) >= reset)
@@ -51,6 +47,7 @@ namespace sprint0
             }
             else ResetNum();
         }
+
         public void Increment()
         {
             keyNum++;

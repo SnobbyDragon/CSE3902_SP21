@@ -14,8 +14,8 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private string Item { get; set; }
-        private Dictionary<string, Rectangle> itemMap;
-        private int width = 8, height = 16;
+        private readonly Dictionary<string, Rectangle> itemMap;
+        private readonly int width = 8, height = 16;
 
         public HUDItemA(Texture2D texture, Vector2 location)
         {
@@ -51,20 +51,20 @@ namespace sprint0
 
         private Rectangle GetSource(int xPos, int yPos)
         {
-            source = new Rectangle();
             source = new Rectangle(xPos, yPos, width, height);
             return source;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (Item.Length != 0) spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)), itemMap[Item], Color.White);
+            if (Item.Length != 0) spriteBatch.Draw(Texture, new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale)), itemMap[Item], Color.White);
         }
 
         public void Update()
         {
         }
-        public void SetItem(String item)
+
+        public void SetItem(string item)
         {
             Item = item;
         }

@@ -34,11 +34,7 @@ namespace sprint0
             this.game = game;
             currFrame = 0;
             totalFrames = 6;
-            sources = new List<Rectangle>();
-            for (int frame = 0; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xOffset + frame * (width + 1), yOffset, width, height));
-            };
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
             rand = new Random();
 
             isVisible = true;

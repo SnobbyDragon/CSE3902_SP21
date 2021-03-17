@@ -6,10 +6,11 @@ namespace sprint0
 {
     class DamagedLink : IPlayer
     {
-        readonly Room game;
+        private readonly Room game;
         private readonly IPlayer decoratedLink;
-        readonly Direction direction;
-        int timer = 80;
+        private readonly Direction direction;
+        private int timer = 80;
+        private readonly int speed = 6;
         public Vector2 Pos { get => decoratedLink.Pos; set => decoratedLink.Pos = value; }
         public IPlayerState State { get => decoratedLink.State; set => decoratedLink.State = value; }
         Direction IPlayer.Direction { get => decoratedLink.Direction; set => decoratedLink.Direction = value; }
@@ -85,21 +86,8 @@ namespace sprint0
             timer--;
             if (timer > 75)
             {
-                switch (direction)
-                {
-                    case Direction.n:
-                        decoratedLink.Move(0, 6);
-                        break;
-                    case Direction.s:
-                        decoratedLink.Move(0, -6);
-                        break;
-                    case Direction.e:
-                        decoratedLink.Move(-6, 0);
-                        break;
-                    case Direction.w:
-                        decoratedLink.Move(6, 0);
-                        break;
-                }
+                Vector2 move = speed * direction.OppositeDirection().ToVector2();
+                decoratedLink.Move((int)move.X, (int)move.Y);
             }
             else if (timer == 0)
             {

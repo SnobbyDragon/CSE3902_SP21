@@ -18,7 +18,7 @@ namespace sprint0
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            this.Type = type;
+            Type = type;
             List<Rectangle> sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, 3);
             typeRectMap = new Dictionary<string, Rectangle>
             {

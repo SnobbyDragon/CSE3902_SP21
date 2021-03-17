@@ -5,7 +5,6 @@ namespace sprint0
     {
         public void ChangeDirection();
         public void TakeDamage(int damage);
-
         public void Perish();
     }
 }

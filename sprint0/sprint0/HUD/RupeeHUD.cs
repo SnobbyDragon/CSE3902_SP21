@@ -21,15 +21,9 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, reset, reset);
             Texture = texture;
             ResetNum();
-            sources = new List<Rectangle>();
-            for (int frame = reset; frame < totalFrames; frame++)
-            {
-                sources.Add(new Rectangle(xOffset, yOffset, sideLength, sideLength));
-                xOffset += sideLength + 1;
-            }
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, sideLength, sideLength, totalFrames);
             sources.Add(new Rectangle(519, yOffset, sideLength, sideLength));
         }
-
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -43,6 +37,7 @@ namespace sprint0
             rupeeNumTens = rupeeNum / mod;
             rupeeNumOnes = rupeeNum % mod;
         }
+
         public void ChangeNum(int change)
         {
             if ((rupeeNum += change) >= reset)
@@ -51,6 +46,7 @@ namespace sprint0
             }
             else ResetNum();
         }
+
         public void Increment()
         {
             rupeeNum++;

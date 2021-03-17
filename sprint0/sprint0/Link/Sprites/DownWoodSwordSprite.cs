@@ -17,34 +17,19 @@ namespace sprint0
         private readonly int xOffset = 1, yOffset = 47;
         private readonly int width = 16;
         private readonly int height = 30;
+        private readonly int totalFrames = 4;
 
         public DownWoodSwordSprite(Texture2D texture, Vector2 location)
         {
 
             this.texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-            sources = GetFrames();
-        }
-
-        private List<Rectangle> GetFrames()
-        {
-            int xPos, yPos;
-            List<Rectangle> sources = new List<Rectangle>();
-            xPos = xOffset;
-            yPos = yOffset;
-            sources.Add(new Rectangle(xPos, yPos, width, height));
-            xPos += width + 1;
-            sources.Add(new Rectangle(xPos, yPos, width, height));
-            xPos += width + 1;
-            sources.Add(new Rectangle(xPos, yPos, width, height));
-            xPos += width + 1;
-            sources.Add(new Rectangle(xPos, yPos, width, height));
-            return sources;
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (currFrame < 4)
+            if (currFrame < totalFrames)
             {
                 spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
             }
@@ -53,7 +38,7 @@ namespace sprint0
         public void Update()
         {
             slow++;
-            if (slow % 8 == 0)
+            if (slow % (totalFrames*2) == 0)
             {
                 currFrame += 1;
             }

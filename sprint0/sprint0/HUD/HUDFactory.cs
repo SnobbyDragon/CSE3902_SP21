@@ -8,45 +8,36 @@ namespace sprint0
 {
     public class HUDFactory
     {
-        Game1 game1;
-        readonly Texture2D texture;
+        private readonly Game1 game;
+        private readonly Texture2D texture;
 
         public HUDFactory(Game1 game)
         {
-            this.game1 = game;
+            this.game = game;
             texture = game.Content.Load<Texture2D>("Images/HUDPauseScreen");
         }
 
-        public IHUDInventory MakeHUDItem(String spriteType, Vector2 location)
+        public IHUDInventory MakeHUDItem(string spriteType, Vector2 location)
         {
-            switch (spriteType)
+            return spriteType switch
             {
-                case "rupee inventory":
-                    return new RupeeHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 16 * Game1.Scale));
-                case "key inventory":
-                    return new KeyHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 32 * Game1.Scale));
-                case "bomb inventory":
-                    return new BombHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 40 * Game1.Scale));
-                case "heart":
-                    return new HeartHUD(texture, new Vector2(location.X + 176 * Game1.Scale, location.Y + 32 * Game1.Scale));
-                default:
-                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
-            }
+                "rupee inventory" => new RupeeHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 16 * Game1.Scale)),
+                "key inventory" => new KeyHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 32 * Game1.Scale)),
+                "bomb inventory" => new BombHUD(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 40 * Game1.Scale)),
+                "heart" => new HeartHUD(texture, new Vector2(location.X + 176 * Game1.Scale, location.Y + 32 * Game1.Scale)),
+                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+            };
         }
 
-        public IHUD MakeHUD(String spriteType, Vector2 location)
+        public IHUD MakeHUD(string spriteType, Vector2 location)
         {
-            switch (spriteType)
+            return spriteType switch
             {
-                case "hud":
-                    return new HUD(texture, location);
-                case "hudA":
-                    return new HUDItemA(texture, new Vector2(location.X + 153 * Game1.Scale, location.Y + 24 * Game1.Scale));
-                case "hudB":
-                    return new HUDItemB(texture, new Vector2(location.X + 128 * Game1.Scale, location.Y + 24 * Game1.Scale));
-                default:
-                    throw new ArgumentException("Invalid sprite! Sprite factory failed.");
-            }
+                "hud" => new HUD(texture, location),
+                "hudA" => new HUDItemA(texture, new Vector2(location.X + 153 * Game1.Scale, location.Y + 24 * Game1.Scale)),
+                "hudB" => new HUDItemB(texture, new Vector2(location.X + 128 * Game1.Scale, location.Y + 24 * Game1.Scale)),
+                _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
+            };
         }
     }
 }

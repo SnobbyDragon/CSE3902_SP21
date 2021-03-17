@@ -7,6 +7,7 @@ namespace sprint0
     {
 
         private readonly int linkSize = (int)(16 * Game1.Scale);
+
         public LinkNpcCollisionHandler()
         {
         }
