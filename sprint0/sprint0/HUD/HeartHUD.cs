@@ -58,10 +58,13 @@ namespace sprint0
 
         public void ChangeNum(int damage)
         {
-            currentHealth -= damage;
-            heartState[2] = currentHealth / healthToHeart;
-            heartState[1] = currentHealth % healthToHeart;
-            heartState[0] = numHearts - heartState[2] - heartState[1];
+            if ((currentHealth -= damage) >= reset)
+            {
+                heartState[2] = currentHealth / healthToHeart;
+                heartState[1] = currentHealth % healthToHeart;
+                heartState[0] = numHearts - heartState[2] - heartState[1];
+            }
+            else ZeroHealth();
         }
         public void Increment()
         {
@@ -74,6 +77,15 @@ namespace sprint0
         public void ResetNum()
         {
             currentHealth = maxHealth;
+        }
+        public void ZeroHealth()
+        {
+            currentHealth = reset;
+            heartState[reset] = numHearts;
+            for (int i = reset + 1; i < heartState.Length; i++)
+            {
+                heartState[i] = reset;
+            }
         }
     }
 }
