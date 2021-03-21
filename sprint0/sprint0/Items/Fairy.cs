@@ -10,6 +10,7 @@ namespace sprint0
     public class Fairy : IItem
     {
         public int PickedUpDuration { get; set; }
+        private readonly int maxPickedUpDuration = 40;
         public Rectangle Location { get; set; }
         public int Damage { get => int.MaxValue; }
         public Texture2D Texture { get; set; }
@@ -20,9 +21,11 @@ namespace sprint0
         private readonly int xPos = 40, yPos = 0, width = 7, height = 16;
         private Vector2 destination;
         private readonly Random rand;
+        private readonly Game1 game;
 
-        public Fairy(Texture2D texture, Vector2 location)
+        public Fairy(Texture2D texture, Vector2 location, Game1 game)
         {
+            this.game = game;
             Texture = texture;
             PickedUpDuration = -2;
             totalFrames = 2;
@@ -30,22 +33,32 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             sources = SpritesheetHelper.GetFramesH(xPos, yPos, width, height, totalFrames);
             rand = new Random();
-            GenerateDest();
+            GenerateDest(200);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
+            if (PickedUpDuration < maxPickedUpDuration) { 
+
+                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
+            }
+            else {
+                //fairy becomes small on purpose
+                spriteBatch.Draw(Texture, game.Room.Player.Pos+ new Vector2(-8,-8), sources[currentFrame / repeatedFrames], Color.White);
+            }
+         
         }
 
         public void Update()
         {
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
+            int offset = 200;
+
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
             {
-                GenerateDest();
+                GenerateDest(offset);
             }
             else
             {
@@ -53,15 +66,16 @@ namespace sprint0
                 dist = dist.ApproxDirection().ToVector2();
                 Location = new Rectangle((int)(Location.X + dist.X), (int)(Location.Y + dist.Y), Location.Width, Location.Height);
             }
+            if (PickedUpDuration >= 0) PickedUpDuration++;
 
         }
 
-        private void GenerateDest()
+        private void GenerateDest(int offset)
         {
-            int xlowerBound = Location.X - 200;
-            int ylowerBound = Location.Y - 200;
-            int xupperBound = Location.X + 200;
-            int yupperBound = Location.X + 200;
+            int xlowerBound = Location.X - offset;
+            int ylowerBound = Location.Y - offset;
+            int xupperBound = Location.X + offset;
+            int yupperBound = Location.X + offset;
 
             if (xlowerBound < Game1.BorderThickness * Game1.Scale)
             {
