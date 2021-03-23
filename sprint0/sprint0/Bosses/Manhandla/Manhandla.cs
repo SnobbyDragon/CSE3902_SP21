@@ -14,7 +14,7 @@ namespace sprint0
         private readonly int size = 16;
         private Rectangle source;
         private readonly List<IEnemy> limbs;
-        private int speed;
+        private double speed;
         private Vector2 destination;
         private readonly Random rand;
 
@@ -57,7 +57,7 @@ namespace sprint0
             {
                 dist.Normalize();
                 Rectangle loc = Location;
-                loc.Offset(speed * dist.ApproxDirection().ToVector2());
+                loc.Offset((int)(speed * dist.ApproxDirection().ToVector2().X), (int)(speed * dist.ApproxDirection().ToVector2().Y));
                 Location = loc;
             }
 
@@ -76,15 +76,23 @@ namespace sprint0
             foreach (ManhandlaLimb limb in limbs)
             {
                 limbCount++;
-                if (limb.CheckHealth() < 0) toRemove = limb;
+                if (limb.CheckHealth() < 0) {
+                    toRemove = limb;
+                } 
             }
-            RemoveLimb(toRemove);
+            if(toRemove!=null)RemoveLimb(toRemove);
             if (limbCount == 0) Perish();
         }
 
-        private void RemoveLimb(ManhandlaLimb limb)
+        private void RemoveLimb(ManhandlaLimb limb1)
         {
-            limbs.Remove(limb);
+            limbs.Remove(limb1);
+            //Manhandala becomes more powerful as limbs die
+            foreach (ManhandlaLimb limb in limbs) {
+                limb.IncreaseFireballRate();
+            }
+            double speedIncreaseRate = 1.5;
+            speed*=speedIncreaseRate;
         }
 
         public void TakeDamage(int damage)
