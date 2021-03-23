@@ -6,14 +6,16 @@ namespace sprint0
 {
     public class AllCollisionHandler
     {
+        private readonly Room room;
         private readonly CollisionDetector collisionDetector;
         private readonly int linkSize = (int)(16 * Game1.Scale);
 
         private readonly int offset = 4;
 
 
-        public AllCollisionHandler()
+        public AllCollisionHandler(Room room)
         {
+            this.room = room;
             collisionDetector = new CollisionDetector();
         }
 
@@ -88,7 +90,7 @@ namespace sprint0
 
         private void HandleLinkItemCollisions(IPlayer link, List<IItem> items)
         {
-            LinkItemCollisionHandler collisionHandler = new LinkItemCollisionHandler();
+            LinkItemCollisionHandler collisionHandler = new LinkItemCollisionHandler(room);
             Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
             foreach (IItem item in items)
             {

@@ -11,6 +11,11 @@ namespace sprint0
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
 
+        public SoundFactory SoundFactory { get => soundFactory; }
+        private SoundFactory soundFactory;
+        public BackgroundMusic Music { get => music; }
+        private BackgroundMusic music;
+
         public Room Room { get => room; }
         private Room room;
         public bool ChangeRoom { get; set; }
@@ -45,6 +50,9 @@ namespace sprint0
                 new KeyboardController(this),
                 new MouseController(this)
             };
+
+            soundFactory = new SoundFactory(this);
+            music = SoundFactory.MakeBackgroundMusic();
 
             RoomIndex = 18;
             ChangeRoom = true;

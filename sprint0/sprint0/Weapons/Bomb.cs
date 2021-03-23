@@ -22,16 +22,17 @@ namespace sprint0
         private readonly int xPos = 138, yPos = 184, width = 17, height = 18;
         private bool exploding = false;
 
+        private readonly Room room;
         private int age;
-
         private readonly int lifespan;
 
         private readonly int repeatedFrames;
         private readonly int totalFrames;
         private int currentFrame;
 
-        public Bomb(Texture2D texture, Vector2 location, Direction dir)
+        public Bomb(Texture2D texture, Vector2 location, Direction dir, Room room)
         {
+            this.room = room;
             int sourceAdjustX = 0;
             int sourceAdjustY = 0;
 
@@ -54,7 +55,7 @@ namespace sprint0
             }
             Texture = texture;
             repeatedFrames = 5;
-            this.lifespan = 120;
+            lifespan = 120;
             source = new Rectangle(127, 184, 10, 17);
 
             totalFrames = 3; currentFrame = 0;
@@ -82,7 +83,11 @@ namespace sprint0
             currentSource = source;
             if (age < lifespan + 3 * repeatedFrames && age >= lifespan && lifespan > 0)
             {
-                exploding = true;
+                if (age == lifespan)
+                {
+                    room.AddSoundEffect("bomb explode");
+                    exploding = true;
+                }
                 Location = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
                 currentSource = explosionSources[currentFrame / repeatedFrames];
                 currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);

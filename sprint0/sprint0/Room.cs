@@ -8,7 +8,7 @@ namespace sprint0
     {
 
         private SpriteBatch _spriteBatch;
-        private Game1 game;
+        private readonly Game1 game;
 
         private static PlayerSpriteFactory playerFactory;
         public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
@@ -20,6 +20,7 @@ namespace sprint0
         private EnemiesSpriteFactory enemyFactory;
         private DungeonFactory dungeonFactory;
 
+        private List<AbstractSoundEffect> soundEffects, soundEffectsToDie;
         private List<IProjectile> projectiles, projectilesToDie;
         private List<IWeapon> weapons, weaponsToDie;
         private List<IBlock> blocks;
@@ -64,6 +65,8 @@ namespace sprint0
             enemyFactory = new EnemiesSpriteFactory(game);
             dungeonFactory = new DungeonFactory(game);
 
+            soundEffects = new List<AbstractSoundEffect>();
+            soundEffectsToDie = new List<AbstractSoundEffect>();
             weaponsToDie = new List<IWeapon>();
             projectilesToDie = new List<IProjectile>();
             enemiesToDie = new List<IEnemy>();
@@ -74,7 +77,7 @@ namespace sprint0
             blocks = new List<IBlock>();
             enemies = new List<IEnemy>();
             npcs = new List<INpc>();
-            collisionHandler = new AllCollisionHandler();
+            collisionHandler = new AllCollisionHandler(this);
 
             LoadLevelSprites();
             LoadRoomBaseSprites();
@@ -118,6 +121,12 @@ namespace sprint0
         {
             return manageHUDInventory;
         }
+
+        public void AddSoundEffect(string soundEffect)
+            => soundEffects.Add(game.SoundFactory.MakeSoundEffect(soundEffect));
+
+        public void RemoveSoundEffect(AbstractSoundEffect soundEffect)
+            => soundEffectsToDie.Add(soundEffect);
 
         public void AddWeapon(Vector2 Location, Direction dir, string item, IPlayer source)
             => weapons.Add(weaponFactory.MakeWeapon(item, Location, dir, source));
@@ -184,6 +193,14 @@ namespace sprint0
                 projectiles.Remove(projectile);
             foreach (IWeapon weapon in weaponsToDie)
                 weapons.Remove(weapon);
+            foreach (AbstractSoundEffect soundEffect in soundEffects)
+                if (soundEffect.IsDone()) RemoveSoundEffect(soundEffect);
+            foreach (AbstractSoundEffect soundEffect in soundEffectsToDie)
+                soundEffects.Remove(soundEffect);
+
+            weaponsToDie.Clear();
+            projectilesToDie.Clear();
+            soundEffectsToDie.Clear();
         }
 
         public void Draw()
