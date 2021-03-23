@@ -98,6 +98,7 @@ namespace sprint0
         public void TakeDamage(int damage)
         {
             health -= damage;
+            game.Room.AddSoundEffect("enemy damaged");
         }
 
         public void Perish()
@@ -108,8 +109,7 @@ namespace sprint0
         // generates a new destination
         private void GenerateDest()
         {
-            // currently picks a random destination TODO change location bounds
-            // TODO movement depends on where link is?
+            game.Room.AddSoundEffect(GetType().Name.ToLower());
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))

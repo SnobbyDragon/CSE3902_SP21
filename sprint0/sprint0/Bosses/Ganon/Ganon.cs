@@ -136,11 +136,11 @@ namespace sprint0
         {
             health -= damage;
             isVisible = true;
+            game.Room.AddSoundEffect("enemy damaged");
         }
 
         public void Perish()
         {
-
             game.Room.RemoveEnemy(this);
         }
 
@@ -153,6 +153,7 @@ namespace sprint0
 
         private void ShootFireball()
         {
+            game.Room.AddSoundEffect(GetType().Name.ToLower());
             Vector2 dir = game.Room.Player.Pos - Location.Center.ToVector2();
             dir.Normalize();
             game.Room.AddFireball(Location.Location.ToVector2(), dir, this);

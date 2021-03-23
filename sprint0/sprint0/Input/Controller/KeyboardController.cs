@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Microsoft.Xna.Framework.Input;
 
 namespace sprint0
@@ -34,7 +33,8 @@ namespace sprint0
             RegisterCommand(Keys.D2, new TwoCommand(game));
             RegisterCommand(Keys.D3, new ThreeCommand(game));
             RegisterCommand(Keys.D4, new FourCommand(game));
-
+            RegisterCommand(Keys.M, new ToggleMusicCommand(game));
+            RegisterCommand(Keys.OemComma, new ToggleSoundEffectsCommand());
         }
 
         public void RegisterCommand(Keys key, ICommand command)

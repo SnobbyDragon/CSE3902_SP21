@@ -74,6 +74,7 @@ namespace sprint0
         {
             if (health < 0) Perish();
         }
+
         public void TakeDamage(int damage)
         {
             health -= damage;

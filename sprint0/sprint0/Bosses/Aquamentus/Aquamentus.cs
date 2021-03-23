@@ -102,6 +102,7 @@ namespace sprint0
         public void TakeDamage(int damage)
         {
             health -= damage;
+            game.Room.AddSoundEffect("enemy damaged");
         }
 
         public void Perish()
@@ -118,6 +119,7 @@ namespace sprint0
 
         private void ShootFireballs()
         {
+            game.Room.AddSoundEffect(GetType().Name.ToLower());
             Vector2 dir = Link.position - Location.Center.ToVector2();
             dir.Normalize();
             game.Room.AddFireball(Location.Center.ToVector2(), dir, this);

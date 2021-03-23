@@ -8,7 +8,7 @@ namespace sprint0
 {
     class Link : IPlayer
     {
-        private readonly Room game;
+        private readonly Room room;
         private IPlayerState state;
         public static Vector2 position;
         private int health = 32;
@@ -25,18 +25,18 @@ namespace sprint0
         public PlayerItems CurrentItem { get; set; }
         public int WeaponDamage { get; set; }
 
-        public Link(Room game, Vector2 pos)
+        public Link(Room room, Vector2 pos)
         {
             WeaponDamage = 2;
             isAlive = true;
-            this.game = game;
+            this.room = room;
             position = pos;
             State = new UpIdleState(this);
             ItemCounts = new List<int> { -1, -1, 1 };
-            itemHelper = new LinkUseItemHelper(game, this);
+            itemHelper = new LinkUseItemHelper(room, this);
             CurrentItem = PlayerItems.None;
             speed = 2;
-            damageControl = new LinkDamageControl(game.GetManager());
+            damageControl = new LinkDamageControl(room.GetManager());
         }
 
         public void Move(int x, int y)
@@ -46,10 +46,14 @@ namespace sprint0
 
         public void TakeDamage(Direction direction, int damage)
         {
-            game.Player = new DamagedLink(this, game, direction);
-            health -= damage;
-            damageControl.TakeDamage(damage);
-            if (health < 0) Die();
+            if (isAlive)
+            {
+                room.Player = new DamagedLink(this, room, direction);
+                health -= damage;
+                damageControl.TakeDamage(damage);
+                room.AddSoundEffect("link damaged");
+                if (health < 0) Die();
+            }
         }
 
         public void PickUpItem()
@@ -60,6 +64,7 @@ namespace sprint0
         private void Die()
         {
             isAlive = false;
+            room.AddSoundEffect("link death");
         }
 
         public void Stop()
