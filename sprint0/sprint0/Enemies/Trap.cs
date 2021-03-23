@@ -13,7 +13,7 @@ namespace sprint0
         private Rectangle HomeLocation;
         public bool IsMoving { get; set; }
         private readonly int speed = 4;
-  
+
         public Trap(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
             width = 16;
@@ -21,6 +21,7 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             HomeLocation = Location;
             Texture = texture;
+            damage = 2;
 
             source = new Rectangle(164, 59, width, height);
         }

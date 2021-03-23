@@ -49,7 +49,7 @@ namespace sprint0
             game.Player = new DamagedLink(this, game, direction);
             health -= damage;
             damageControl.TakeDamage(damage);
-            if (health < 0) Die();
+            if (health <= 0) Die();
         }
 
         public void PickUpItem()

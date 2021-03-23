@@ -17,6 +17,7 @@ namespace sprint0
         private int speed;
         private Vector2 destination;
         private readonly Random rand;
+        public int Damage { get => 2; }
 
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {

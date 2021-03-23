@@ -9,6 +9,8 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
+        protected int damage = 0;
+        public int Damage { get => damage; }
         protected int currentFrame;
         protected string color;
         protected int totalFrames;
@@ -34,7 +36,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(damageTimer % 2 == 0)
+            if (damageTimer % 2 == 0)
                 switch (direction)
                 {
                     case Direction.w:

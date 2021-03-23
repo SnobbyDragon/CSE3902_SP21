@@ -45,6 +45,7 @@ namespace sprint0
             totalFramesUD = 4; currentFrameUD = 0;
             totalFramesRL = 3; currentFrameRL = 0;
             repeatedFrames = 10;
+            damage = 2;
 
             xOffsetRL = xOffsetUD + totalFramesUD * (1 + sideLength);
             upDownSources = SpritesheetHelper.GetFramesH(xOffsetUD, yOffset, sideLength, sideLength, totalFramesUD);

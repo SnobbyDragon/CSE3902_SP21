@@ -24,6 +24,7 @@ namespace sprint0
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
         private int health;
+        public int Damage { get => 8; }
 
         public Ganon(Texture2D texture, Vector2 location, Game1 game)
         {

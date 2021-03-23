@@ -10,6 +10,7 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
+        public int Damage { get; }
 
         private readonly Dictionary<Direction, Trap> traps;
 

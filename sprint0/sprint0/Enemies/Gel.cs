@@ -8,6 +8,7 @@ namespace sprint0
 {
     public class Gel : Enemy, IEnemy
     {
+
         public Gel(Texture2D texture, Vector2 location, Game1 gm, string gelColor) : base(texture, location, gm)
         {
             width = 8;
@@ -19,6 +20,7 @@ namespace sprint0
             totalFrames = 2;
             currentFrame = 0;
             color = gelColor;
+            damage = 1;
 
             colorMap = new Dictionary<string, List<Rectangle>>
             {
@@ -32,7 +34,7 @@ namespace sprint0
                 { "blkwhite", SpritesheetHelper.GetFramesH(55, 28, width, height, totalFrames) },
             };
         }
-        
+
         public new void Draw(SpriteBatch spriteBatch)
         {
             if (damageTimer % 2 == 0)

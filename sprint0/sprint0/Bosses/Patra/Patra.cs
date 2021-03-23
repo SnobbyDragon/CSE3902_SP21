@@ -23,6 +23,7 @@ namespace sprint0
         private readonly int width = 16, height = 11;
         private int health;
         private readonly Game1 game;
+        public int Damage { get => 4; }
 
         public Patra(Texture2D texture, Vector2 location, Game1 game)
         {

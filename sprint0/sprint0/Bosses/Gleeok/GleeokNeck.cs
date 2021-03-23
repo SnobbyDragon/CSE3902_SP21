@@ -17,6 +17,7 @@ namespace sprint0
         private readonly int xWiggleLimit = 2, yWiggleLimit = 1, wiggleDelay = 20;
         private int xWiggle, yWiggle, wiggleCount;
         private readonly int width = 8, height = 12;
+        public int Damage { get => 0; }
 
         public GleeokNeck(Texture2D texture, Vector2 anchor, IEnemy head, int segmentNumber)
         {
