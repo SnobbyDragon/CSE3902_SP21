@@ -33,6 +33,7 @@ namespace sprint0
                 { "new item", game.Content.Load<SoundEffect>("Sound/Fanfare") },
                 { "get item", game.Content.Load<SoundEffect>("Sound/Get_Item") },
                 { "get heart", game.Content.Load<SoundEffect>("Sound/Get_Heart") },
+                { "get key", game.Content.Load<SoundEffect>("Sound/Get_Heart") },
                 { "get rupee", game.Content.Load<SoundEffect>("Sound/Get_Rupee") },
                 { "refill", game.Content.Load<SoundEffect>("Sound/Refill_Loop") },
                 { "text appear", game.Content.Load<SoundEffect>("Sound/Text") },

@@ -77,7 +77,7 @@ namespace sprint0
             blocks = new List<IBlock>();
             enemies = new List<IEnemy>();
             npcs = new List<INpc>();
-            collisionHandler = new AllCollisionHandler();
+            collisionHandler = new AllCollisionHandler(this);
 
             LoadLevelSprites();
             LoadRoomBaseSprites();
@@ -143,11 +143,7 @@ namespace sprint0
         public void RegisterEnemies(IEnumerable<IEnemy> unregEnemies)
             => enemiesToSpawn.AddRange(unregEnemies);
 
-        public void RemoveEnemy(IEnemy enemy)
-        {
-            enemiesToDie.Add(enemy);
-            AddSoundEffect("enemy death");
-        }
+        public void RemoveEnemy(IEnemy enemy) => enemiesToDie.Add(enemy);
 
         public void RemoveProjectile(IProjectile projectile) => projectilesToDie.Add(projectile);
 

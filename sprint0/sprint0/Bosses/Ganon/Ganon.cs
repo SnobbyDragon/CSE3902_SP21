@@ -142,6 +142,7 @@ namespace sprint0
         public void Perish()
         {
             game.Room.RemoveEnemy(this);
+            game.Room.AddSoundEffect("enemy death");
         }
 
         private bool CanShoot()
