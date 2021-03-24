@@ -13,7 +13,6 @@ namespace sprint0
         private Texture2D texture;
         private int width, height;
         private Rectangle source;
-        private ManageHUDInventory manageHUDInventory;
         private readonly int maxPickedUpDuration = 40;
         public BombItem(Texture2D texture, Vector2 location)
         {
@@ -34,24 +33,6 @@ namespace sprint0
         public void Update()
         {
             if (PickedUpDuration >= 0) PickedUpDuration++;
-        }
-        public void GetPopulate(ManageHUDInventory HUDInventory)
-        {
-            manageHUDInventory = HUDInventory;
-        }
-        public void Increment()
-        {
-            manageHUDInventory.IncrementItem(HUDItems.Bomb);
-        }
-
-        public void Decrement()
-        {
-            manageHUDInventory.DecrementItem(HUDItems.Bomb);
-        }
-
-        public void ChangeNum(int num)
-        {
-            manageHUDInventory.ChangeNum(HUDItems.Bomb, num);
         }
     }
 }

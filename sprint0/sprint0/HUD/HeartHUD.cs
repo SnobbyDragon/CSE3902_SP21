@@ -4,13 +4,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
-//Updated: 03/16/21 by li.10011
+//Updated: 03/24/21 by shah.1440
 namespace sprint0
 {
     public class HeartHUD : IHUDInventory
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
+        public int CurrentHealth { get => currentHealth; }
         private readonly int[] heartState;
         private readonly List<Rectangle> sources;
         private readonly int sideLength = 8, maxHealth = 32, heartType = 3, heartsPerRow = 8, numHearts = 16, healthToHeart = 2, reset = 0, xOffset = 627, yOffset = 117;
@@ -49,17 +50,14 @@ namespace sprint0
 
         public void Update()
         {
+            heartState[2] = currentHealth / healthToHeart;
+            heartState[1] = currentHealth % healthToHeart;
+            heartState[0] = numHearts - heartState[2] - heartState[1];
         }
 
         public void ChangeNum(int damage)
         {
-            if ((currentHealth -= damage) >= reset)
-            {
-                heartState[2] = currentHealth / healthToHeart;
-                heartState[1] = currentHealth % healthToHeart;
-                heartState[0] = numHearts - heartState[2] - heartState[1];
-            }
-            else ZeroHealth();
+            if ((currentHealth -= damage) <= reset) ZeroHealth();
         }
 
         public void Increment()

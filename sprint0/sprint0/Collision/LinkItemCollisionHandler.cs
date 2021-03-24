@@ -18,6 +18,7 @@ namespace sprint0
         {
             if (item.PickedUpDuration < 0)
             {
+                CheckItem(item, link);
                 room.AddSoundEffect("get item");
                 if (item.PickedUpDuration == -1)
                 {
@@ -32,32 +33,33 @@ namespace sprint0
                 {
                     item.PickedUpDuration = pickUpAnimationTime;
                 }
-                CheckItem(item);
             }
         }
 
-        private void CheckItem(IItem item)
+        private void CheckItem(IItem item, IPlayer link)
         {
-            if (item is Key key)
+            if (item is Key)
             {
-                key.Increment();
+                link.InventoryItem = PlayerItems.Key;
                 room.AddSoundEffect("get key");
             }
-            else if (item is BombItem bomb)
+            else if (item is BombItem)
             {
-                bomb.Increment();
+                link.InventoryItem = PlayerItems.Bomb;
                 room.AddSoundEffect("get key");
             }
-            else if (item is Rupee rupee)
+            else if (item is Rupee)
             {
-                rupee.Increment();
+                link.InventoryItem = PlayerItems.Rupee;
                 room.AddSoundEffect("get rupee");
             }
-            else if (item is BlueRupee blueRupee)
+            else if (item is BlueRupee)
             {
-                blueRupee.ChangeNum(BlueRupee.Value);
+                link.InventoryItem = PlayerItems.BlueRupee;
                 room.AddSoundEffect("get rupee");
             }
+            else link.InventoryItem = PlayerItems.None;
+            link.IncrementItem();
         }
     }
 }

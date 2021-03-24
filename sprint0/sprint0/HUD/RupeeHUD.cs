@@ -40,26 +40,17 @@ namespace sprint0
 
         public void ChangeNum(int change)
         {
-            if ((rupeeNum += change) >= reset)
-            {
-                Update();
-            }
-            else ResetNum();
+            if ((rupeeNum += change) < reset) ResetNum();
         }
 
         public void Increment()
         {
             rupeeNum++;
-            Update();
         }
 
         public void Decrement()
         {
-            if (rupeeNum-- >= reset)
-            {
-                Update();
-            }
-            else ResetNum();
+            if (rupeeNum-- < reset) ResetNum();
         }
 
         public void ResetNum()

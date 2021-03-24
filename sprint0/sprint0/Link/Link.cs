@@ -8,7 +8,7 @@ namespace sprint0
 {
     class Link : IPlayer
     {
-        private readonly Room room;
+        private readonly Game1 game;
         private IPlayerState state;
         public static Vector2 position;
         private int health = 32;
@@ -17,26 +17,28 @@ namespace sprint0
         private bool isAlive;
         private Direction direction = Direction.n;
         private readonly LinkUseItemHelper itemHelper;
-        private readonly LinkDamageControl damageControl;
+        private readonly PopulateHUDInventory linkInventory;
         public List<int> ItemCounts { get; }
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
         public Direction Direction { get => direction; set => direction = value; }
         public PlayerItems CurrentItem { get; set; }
+        public PlayerItems InventoryItem { get; set; }
         public int WeaponDamage { get; set; }
 
-        public Link(Room room, Vector2 pos)
+        public Link(Game1 game, Vector2 pos)
         {
             WeaponDamage = 2;
             isAlive = true;
-            this.room = room;
+            this.game = game;
             position = pos;
             State = new UpIdleState(this);
             ItemCounts = new List<int> { -1, -1, 1 };
-            itemHelper = new LinkUseItemHelper(room, this);
+            itemHelper = new LinkUseItemHelper(game.Room, this);
             CurrentItem = PlayerItems.None;
+            InventoryItem = PlayerItems.Key;
             speed = 2;
-            damageControl = new LinkDamageControl(room.GetManager());
+            linkInventory = this.game.hudManager.PopulateHUDInventory;
         }
 
         public void Move(int x, int y)
@@ -49,11 +51,11 @@ namespace sprint0
 
             if (isAlive)
             {
-                room.Player = new DamagedLink(this, room, direction);
-                health -= damage;
-                damageControl.TakeDamage(damage);
-                room.AddSoundEffect("link damaged");
-                if (health < 0) Die();
+                game.Room.Player = new DamagedLink(this, game.Room, direction);
+                linkInventory.ChangeNum(PlayerItems.Heart, damage);
+                health = linkInventory.GetHealth();
+                game.Room.AddSoundEffect("link damaged");
+                if (health <= 0) Die();
             }
         }
 
@@ -62,10 +64,20 @@ namespace sprint0
             State.PickUpItem();
         }
 
+        public void IncrementItem()
+        {
+            if (InventoryItem == PlayerItems.BlueRupee)
+            {
+                InventoryItem = PlayerItems.Rupee;
+                linkInventory.ChangeNum(InventoryItem, BlueRupee.Value);
+            }
+            else linkInventory.IncrementItem(InventoryItem);
+        }
+
         private void Die()
         {
             isAlive = false;
-            room.AddSoundEffect("link death");
+            game.Room.AddSoundEffect("link death");
         }
 
         public void Stop()
@@ -106,7 +118,10 @@ namespace sprint0
             if (isAlive)
             {
                 if (CurrentItem != PlayerItems.None && CurrentItem != PlayerItems.Candle)
+                {
                     ItemCounts[(int)CurrentItem]--;
+                    linkInventory.DecrementItem(CurrentItem);
+                }
                 itemHelper.UseItem();
             }
         }
@@ -130,6 +145,7 @@ namespace sprint0
         public void ReceiveItem(int n, PlayerItems item)
         {
             ItemCounts[(int)item] += n;
+            linkInventory.ChangeNum(item, n);
         }
     }
 }

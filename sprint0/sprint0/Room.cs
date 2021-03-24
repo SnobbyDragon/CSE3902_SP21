@@ -27,10 +27,6 @@ namespace sprint0
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
         private List<INpc> npcs;
         private List<IItem> items;
-        private PopulateHUDInventory populateHUDInventory;
-        private ManageHUDInventory manageHUDInventory;
-        private List<IHUD> mainHUDElements;
-        private MainHUD mainHUD;
         private AllCollisionHandler collisionHandler;
 
         private List<ISprite> roomSprites, roomBaseSprites;
@@ -52,13 +48,8 @@ namespace sprint0
 
         public void LoadContent()
         {
-            mainHUD = new MainHUD(game);
-            populateHUDInventory = new PopulateHUDInventory(game);
-            LoadHUD();
-            manageHUDInventory = new ManageHUDInventory(populateHUDInventory);
-
             playerFactory = new PlayerSpriteFactory(game);
-            player = new Link(this, new Vector2(200, 250));
+            player = new Link(game, new Vector2(200, 250));
 
             weaponFactory = new WeaponsSpriteFactory(game);
             projectileFactory = new ProjectileSpriteFactory(game);
@@ -81,7 +72,6 @@ namespace sprint0
 
             LoadLevelSprites();
             LoadRoomBaseSprites();
-            LoadHUDItemFunctionality();
             text = new Text(game);
         }
 
@@ -97,17 +87,6 @@ namespace sprint0
             items = roomElements.Item6;
         }
 
-        private void LoadHUD()
-        {
-            mainHUDElements = mainHUD.PopulateMainHUD();
-            populateHUDInventory.PopulateInventoryHUD();
-        }
-
-        private void LoadHUDItemFunctionality()
-        {
-            foreach (IItem item in items) populateHUDInventory.AddHUDFunction(item, manageHUDInventory);
-        }
-
         private void LoadRoomBaseSprites()
         {
             roomBaseSprites = new List<ISprite>
@@ -116,12 +95,6 @@ namespace sprint0
                 dungeonFactory.MakeSprite("room floor plain", new Vector2(32*Game1.Scale, Game1.HUDHeight * Game1.Scale + 32*Game1.Scale)),
             };
         }
-
-        public ManageHUDInventory GetManager()
-        {
-            return manageHUDInventory;
-        }
-
         public void AddSoundEffect(string soundEffect)
             => soundEffects.Add(game.SoundFactory.MakeSoundEffect(soundEffect));
 
@@ -224,8 +197,6 @@ namespace sprint0
             foreach (IProjectile projectile in projectiles)
                 projectile.Draw(_spriteBatch);
             player.Draw(_spriteBatch);
-            mainHUD.DrawMainHUD(mainHUDElements, _spriteBatch);
-            populateHUDInventory.DrawItemHUD(_spriteBatch);
             if (RoomIndex == 4)
             {
                 text.Draw(_spriteBatch);

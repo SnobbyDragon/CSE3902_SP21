@@ -7,7 +7,7 @@ namespace sprint0
 {
     public enum PlayerItems
     {
-        None = -2, Arrow = 0, Bomb = 1, Boomerang = 2, Candle = -1
+        None = -2, Arrow = 0, Bomb = 1, Boomerang = 2, Candle = -1, Key = 3, Rupee = 4, Heart = 5, BlueRupee = 6
     }
 
     public interface IPlayer : IEntity
@@ -19,6 +19,7 @@ namespace sprint0
 
         public int WeaponDamage { get; set; }
         public PlayerItems CurrentItem { get; set; }
+        public PlayerItems InventoryItem { get; set; }
         public List<int> ItemCounts { get; }
 
         public static Vector2 Position;
@@ -32,7 +33,7 @@ namespace sprint0
         public void HandleRight();
         public void HandleSword();
         public void HandleItem();
-
+        public void IncrementItem();
         public void ReceiveItem(int n, PlayerItems item);
         public void Draw(SpriteBatch spriteBatch);
         public void Update();
