@@ -16,7 +16,6 @@ namespace sprint0
         Direction IPlayer.Direction { get => decoratedLink.Direction; set => decoratedLink.Direction = value; }
         public int WeaponDamage { get => decoratedLink.WeaponDamage; set => decoratedLink.WeaponDamage = value; }
         public PlayerItems CurrentItem { get => decoratedLink.CurrentItem; set => decoratedLink.CurrentItem = value; }
-        public PlayerItems InventoryItem { get; set; }
 
         public List<int> ItemCounts => decoratedLink.ItemCounts;
 
@@ -37,9 +36,6 @@ namespace sprint0
         }
 
         public void PickUpItem()
-        {
-        }
-        public void IncrementItem()
         {
         }
         public void RemoveDecorator()

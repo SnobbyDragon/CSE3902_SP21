@@ -19,7 +19,6 @@ namespace sprint0
 
         public int WeaponDamage { get; set; }
         public PlayerItems CurrentItem { get; set; }
-        public PlayerItems InventoryItem { get; set; }
         public List<int> ItemCounts { get; }
 
         public static Vector2 Position;
@@ -37,6 +36,5 @@ namespace sprint0
         public void ReceiveItem(int n, PlayerItems item);
         public void Draw(SpriteBatch spriteBatch);
         public void Update();
-        public void IncrementItem();
     }
 }
