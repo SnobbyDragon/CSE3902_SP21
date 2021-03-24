@@ -28,6 +28,7 @@ namespace sprint0
             color = gelColor;
             delay = 50;
             delayCounter = 0;
+            damage = 2;
             colorMap = new Dictionary<string, List<Rectangle>>
             {
                 { "green", SpritesheetHelper.GetFramesH(77, 11, width, height, totalFrames) },

@@ -20,6 +20,7 @@ namespace sprint0
         private readonly IEnemy center;
         private int fireballRate;
         private int fireballCounter = 0;
+        public int Damage { get => 2; }
 
         public ManhandlaLimb(Texture2D texture, IEnemy center, Direction dir, Game1 game)
         {

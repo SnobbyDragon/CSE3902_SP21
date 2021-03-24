@@ -46,6 +46,7 @@ namespace sprint0
 
         public void TakeDamage(Direction direction, int damage)
         {
+
             if (isAlive)
             {
                 room.Player = new DamagedLink(this, room, direction);

@@ -24,6 +24,7 @@ namespace sprint0
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
         private int health;
+        public int Damage { get => 2; }
 
         public Gohma(Texture2D texture, Vector2 location, string color, Game1 game)
         {

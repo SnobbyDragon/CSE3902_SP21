@@ -23,6 +23,7 @@ namespace sprint0
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, 2);
             totalFrames = 2;
             repeatedFrames = 8;
+            damage = 1;
 
             if (Location.X <= Game1.Width / 2)
             {

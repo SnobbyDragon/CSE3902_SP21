@@ -26,6 +26,7 @@ namespace sprint0
             repeatedFrames = 7;
             source = new Rectangle(1, 59, width, height);
             direction = Direction.n;
+            damage = 1;
             spriteEffects = new List<SpriteEffects> {
                 SpriteEffects.None,
                 SpriteEffects.FlipHorizontally

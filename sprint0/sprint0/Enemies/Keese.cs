@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
     public class Keese : Enemy, IEnemy
-    { 
-        public Keese(Texture2D texture, Vector2 location, string keeseColor, Game1 game): base(texture, location, game)
+    {
+        public Keese(Texture2D texture, Vector2 location, string keeseColor, Game1 game) : base(texture, location, game)
         {
             dirChangeDelay = 5;
             width = height = 16;
@@ -18,6 +18,7 @@ namespace sprint0
             totalFrames = 2;
             repeatedFrames = 8;
             direction = Direction.n;
+            damage = 1;
 
             colorMap = new Dictionary<string, List<Rectangle>>
             {

@@ -21,6 +21,7 @@ namespace sprint0
         private readonly int expansionDelay = 200; // time between expansions
         private int health;
         private readonly Game1 game;
+        public int Damage { get => 2; }
 
         public PatraMinion(Texture2D texture, IEnemy center, int angle, Game1 game)
         {

@@ -17,6 +17,7 @@ namespace sprint0
         private readonly int totalFrames, repeatedFrames;
         private List<IEnemy> neck1, neck2;
         private int health;
+        public int Damage { get => 0; }
 
         public Gleeok(Texture2D texture, Vector2 location, Game1 game)
         {

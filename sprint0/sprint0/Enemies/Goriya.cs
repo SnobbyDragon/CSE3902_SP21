@@ -7,7 +7,7 @@ namespace sprint0
 {
     public class Goriya : Enemy, IEnemy
     {
-    
+
         public Goriya(Texture2D texture, Vector2 location, string goriyaColor, Game1 game) : base(texture, location, game)
         {
             health = 50;
@@ -19,6 +19,7 @@ namespace sprint0
             totalFrames = 4;
             repeatedFrames = 20;
             direction = Direction.n;
+            damage = 2;
 
             colorMap = new Dictionary<string, List<Rectangle>>
             {

@@ -26,6 +26,7 @@ namespace sprint0
             repeatedFrames = 10;
             int xPos = 126, yPos = 59;
             sources = SpritesheetHelper.GetFramesH(xPos, yPos, width, height, totalFrames);
+            damage = 1;
         }
 
         public new void Draw(SpriteBatch spriteBatch)

@@ -27,6 +27,7 @@ namespace sprint0
         private readonly int moveDelay;
         private readonly Game1 game;
         private int health;
+        public int Damage { get => 2; }
 
         public Digdogger(Texture2D texture, Vector2 location, Game1 game)
         {
