@@ -40,26 +40,26 @@ namespace sprint0
         {
             if (item is Key)
             {
-                ((Link)link).InventoryItem = PlayerItems.Key;
+                link.InventoryItem = PlayerItems.Key;
                 room.AddSoundEffect("get key");
             }
             else if (item is BombItem)
             {
-                ((Link)link).InventoryItem = PlayerItems.Bomb;
+                link.InventoryItem = PlayerItems.Bomb;
                 room.AddSoundEffect("get key");
             }
             else if (item is Rupee)
             {
-                ((Link)link).InventoryItem = PlayerItems.Rupee;
+                link.InventoryItem = PlayerItems.Rupee;
                 room.AddSoundEffect("get rupee");
             }
             else if (item is BlueRupee)
             {
-                ((Link)link).InventoryItem = PlayerItems.BlueRupee;
+                link.InventoryItem = PlayerItems.BlueRupee;
                 room.AddSoundEffect("get rupee");
             }
-            else ((Link)link).InventoryItem = PlayerItems.None;
-            ((Link)link).IncrementItem();
+            else link.InventoryItem = PlayerItems.None;
+            link.IncrementItem();
         }
     }
 }

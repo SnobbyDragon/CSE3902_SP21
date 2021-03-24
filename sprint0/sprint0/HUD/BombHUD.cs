@@ -36,12 +36,9 @@ namespace sprint0
 
         public void Update()
         {
-            if (bombNum >= reset)
-            {
-                bombNumTens = bombNum / mod;
-                bombNumOnes = bombNum % mod;
-            }
-            else ResetNum();
+            if (bombNum < reset) ResetNum();
+            bombNumTens = bombNum / mod;
+            bombNumOnes = bombNum % mod;
         }
 
         public void ChangeNum(int change)
