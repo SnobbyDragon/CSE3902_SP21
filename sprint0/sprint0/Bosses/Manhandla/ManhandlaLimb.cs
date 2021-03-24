@@ -18,7 +18,7 @@ namespace sprint0
         private readonly Direction dir;
         private int health;
         private readonly IEnemy center;
-        private readonly int fireballRate = 100;
+        private int fireballRate;
         private int fireballCounter = 0;
         public int Damage { get => 2; }
 
@@ -32,6 +32,7 @@ namespace sprint0
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 4;
+            fireballRate = 100;
             dirToSourcesMap = new Dictionary<Direction, List<Rectangle>>
             {
                 { Direction.n, new List<Rectangle>
@@ -112,6 +113,13 @@ namespace sprint0
             fireballCounter++;
             fireballCounter %= fireballRate;
             return fireballCounter == 0;
+        }
+
+        public void IncreaseFireballRate()
+        {
+            double decreaseRate =.5;
+            fireballRate=(int)(fireballRate*decreaseRate);
+
         }
 
         private void ShootFireball()

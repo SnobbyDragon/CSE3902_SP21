@@ -13,6 +13,10 @@
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
     <None Remove="Content\obj\DesktopGL\Content\.mgcontent" />
+    <None Remove="Content\bin\DesktopGL\Font.xnb" />
+    <None Remove="Content\obj\DesktopGL\Font.mgcontent" />
+    <None Remove="Content\obj\DesktopGL\Images\DungeonEnemies.mgcontent" />
+    <None Remove="Content\bin\DesktopGL\Images\DungeonEnemies.xnb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -38,5 +42,7 @@
     <Folder Include="LoadLevel\" />
     <Folder Include="Content\LevelData\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Sound\" />
+    <Folder Include="Sound\SoundEffects\" />
   </ItemGroup>
 </Project>

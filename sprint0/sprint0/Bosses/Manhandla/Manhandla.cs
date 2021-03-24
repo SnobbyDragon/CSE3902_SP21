@@ -14,7 +14,7 @@ namespace sprint0
         private readonly int size = 16;
         private Rectangle source;
         private readonly List<IEnemy> limbs;
-        private int speed;
+        private double speed;
         private Vector2 destination;
         private readonly Random rand;
         public int Damage { get => 2; }
@@ -58,7 +58,7 @@ namespace sprint0
             {
                 dist.Normalize();
                 Rectangle loc = Location;
-                loc.Offset(speed * dist.ApproxDirection().ToVector2());
+                loc.Offset((int)(speed * dist.ApproxDirection().ToVector2().X), (int)(speed * dist.ApproxDirection().ToVector2().Y));
                 Location = loc;
             }
 
@@ -77,15 +77,23 @@ namespace sprint0
             foreach (ManhandlaLimb limb in limbs)
             {
                 limbCount++;
-                if (limb.CheckHealth() < 0) toRemove = limb;
+                if (limb.CheckHealth() < 0) {
+                    toRemove = limb;
+                } 
             }
-            RemoveLimb(toRemove);
+            if(toRemove!=null)RemoveLimb(toRemove);
             if (limbCount == 0) Perish();
         }
 
-        private void RemoveLimb(ManhandlaLimb limb)
+        private void RemoveLimb(ManhandlaLimb limb1)
         {
-            limbs.Remove(limb);
+            limbs.Remove(limb1);
+            //Manhandala becomes more powerful as limbs die
+            foreach (ManhandlaLimb limb in limbs) {
+                limb.IncreaseFireballRate();
+            }
+            double speedIncreaseRate = 1.5;
+            speed*=speedIncreaseRate;
         }
 
         public void TakeDamage(int damage)
@@ -95,10 +103,12 @@ namespace sprint0
         public void Perish()
         {
             game.Room.RemoveEnemy(this);
+            game.Room.AddSoundEffect("enemy death");
         }
 
         private void GenerateDest()
         {
+            game.Room.AddSoundEffect(GetType().Name.ToLower());
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))

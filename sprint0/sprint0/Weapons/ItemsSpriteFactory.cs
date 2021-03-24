@@ -11,9 +11,11 @@ namespace sprint0
     public class ItemsSpriteFactory
     {
         private readonly Texture2D texture1;
+        private Game1 game;
 
         public ItemsSpriteFactory(Game1 game)
         {
+            this.game = game;
             texture1 = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
         }
 
@@ -40,7 +42,7 @@ namespace sprint0
                 "triforce piece" => new TriforcePiece(texture1, location),
                 "compass" => new Compass(texture1, location),
                 "key" => new Key(texture1, location),
-                "fairy" => new Fairy(texture1, location),
+                "fairy" => new Fairy(texture1, location, game),
                 "arrow" => new ArrowItem(texture1, location),
                 "bomb" => new BombItem(texture1, location),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),

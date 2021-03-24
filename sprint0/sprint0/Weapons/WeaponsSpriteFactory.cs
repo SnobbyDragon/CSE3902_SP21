@@ -10,10 +10,12 @@ namespace sprint0
 {
     public class WeaponsSpriteFactory
     {
+        private readonly Game1 game;
         private readonly Texture2D texture2;
 
         public WeaponsSpriteFactory(Game1 game)
         {
+            this.game = game;
             texture2 = game.Content.Load<Texture2D>("Images/Link");
         }
 
@@ -21,7 +23,7 @@ namespace sprint0
         {
             return spriteType switch
             {
-                "bomb" => new Bomb(texture2, location, dir),
+                "bomb" => new Bomb(texture2, location, dir, game.Room),
                 "sword" => new Sword(location, dir, player),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
