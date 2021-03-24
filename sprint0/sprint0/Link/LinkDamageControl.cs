@@ -5,16 +5,16 @@ namespace sprint0
 {
     public class LinkDamageControl
     {
-        private readonly ManageHUDInventory manager;
+        private readonly PopulateHUDInventory manager;
 
-        public LinkDamageControl(ManageHUDInventory manage)
+        public LinkDamageControl(PopulateHUDInventory manage)
         {
             manager = manage;
         }
 
         public void TakeDamage(int damage)
         {
-            manager.ChangeNum(HUDItems.Heart, damage);
+            manager.ChangeNum(PlayerItems.Heart, damage);
         }
     }
 }

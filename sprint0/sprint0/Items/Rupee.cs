@@ -15,7 +15,6 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private readonly Rectangle source;
         private readonly int xOffset = 72, yOffset = 0, width = 8, height = 16;
-        private ManageHUDInventory manageHUDInventory;
 
         public Rupee(Texture2D texture, Vector2 location)
         {
@@ -34,26 +33,6 @@ namespace sprint0
         public void Update()
         {
             if (PickedUpDuration >= 0) PickedUpDuration++;
-        }
-
-        public void GetPopulate(ManageHUDInventory HUDInventory)
-        {
-            manageHUDInventory = HUDInventory;
-        }
-
-        public void Increment()
-        {
-            manageHUDInventory.IncrementItem(HUDItems.Rupee);
-        }
-
-        public void Decrement()
-        {
-            manageHUDInventory.DecrementItem(HUDItems.Rupee);
-        }
-
-        public void ChangeNum(int num)
-        {
-            manageHUDInventory.ChangeNum(HUDItems.Rupee, num);
         }
     }
 }

@@ -41,26 +41,17 @@ namespace sprint0
 
         public void ChangeNum(int change)
         {
-            if ((keyNum += change) >= reset)
-            {
-                Update();
-            }
-            else ResetNum();
+            if ((keyNum += change) < reset) ResetNum();
         }
 
         public void Increment()
         {
             keyNum++;
-            Update();
         }
 
         public void Decrement()
         {
-            if (keyNum-- >= reset)
-            {
-                Update();
-            }
-            else ResetNum();
+            if (keyNum-- < reset) ResetNum();
         }
 
         public void ResetNum()

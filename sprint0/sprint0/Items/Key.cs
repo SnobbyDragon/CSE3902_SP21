@@ -15,8 +15,6 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle sources;
         private readonly int xOffset = 240, yOffset = 0, width = 8, height = 16;
-        private ManageHUDInventory manageHUDInventory;
-
 
         public Key(Texture2D texture, Vector2 location)
         {
@@ -34,25 +32,6 @@ namespace sprint0
 
         public void Update()
         {
-        }
-
-        public void GetPopulate(ManageHUDInventory HUDInventory)
-        {
-            manageHUDInventory = HUDInventory;
-        }
-        public void Increment()
-        {
-            manageHUDInventory.IncrementItem(HUDItems.Key);
-        }
-
-        public void Decrement()
-        {
-            manageHUDInventory.DecrementItem(HUDItems.Key);
-        }
-
-        public void ChangeNum(int num)
-        {
-            manageHUDInventory.ChangeNum(HUDItems.Key, num);
         }
     }
 }

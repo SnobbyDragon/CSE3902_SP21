@@ -28,40 +28,36 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, new Rectangle(Location.X, Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[10], Color.White);
+            spriteBatch.Draw(Texture, new Rectangle(Location.X, Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[mod], Color.White);
+            if (bombNum < reset || bombNumOnes < reset) ResetNum();
             spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[bombNumTens], Color.White);
             spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + 2 * sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[bombNumOnes], Color.White);
         }
 
         public void Update()
         {
-            bombNumTens = bombNum / mod;
-            bombNumOnes = bombNum % mod;
+            if (bombNum >= reset)
+            {
+                bombNumTens = bombNum / mod;
+                bombNumOnes = bombNum % mod;
+            }
+            else ResetNum();
         }
 
         public void ChangeNum(int change)
         {
-            if ((bombNum += change) >= reset)
-            {
-                Update();
-            }
-            else bombNum = reset;
+            if ((bombNum += change) < reset) bombNum = reset;
+
 
         }
         public void Increment()
         {
-
             bombNum++;
-            Update();
         }
 
         public void Decrement()
         {
-            if (bombNum-- >= reset)
-            {
-                Update();
-            }
-            else ResetNum();
+            if (bombNum-- < reset) ResetNum();
 
         }
 

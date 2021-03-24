@@ -15,6 +15,7 @@ namespace sprint0
         private SoundFactory soundFactory;
         public BackgroundMusic Music { get => music; }
         private BackgroundMusic music;
+        public HUDManager hudManager;
 
         public Room Room { get => room; }
         private Room room;
@@ -53,7 +54,8 @@ namespace sprint0
 
             soundFactory = new SoundFactory(this);
             music = SoundFactory.MakeBackgroundMusic();
-
+            hudManager = new HUDManager(this);
+            hudManager.LoadHUD();
             RoomIndex = 18;
             ChangeRoom = true;
 
@@ -78,6 +80,7 @@ namespace sprint0
             if (ChangeRoom) LoadContent();
 
             room.Update();
+            hudManager.Update();
             base.Update(gameTime);
         }
 
@@ -86,6 +89,7 @@ namespace sprint0
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
             room.Draw();
+            hudManager.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
