@@ -14,6 +14,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int xOffset = 129, yOffset = 19, width = 5, height = 8;
+        public PlayerItems PlayerItems { get => PlayerItems.MagicalBoomerang; }
 
         public BlueBoomerangItem(Texture2D texture, Vector2 location)
         {

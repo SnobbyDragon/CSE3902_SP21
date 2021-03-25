@@ -17,6 +17,7 @@ namespace sprint0
         private readonly int xOffset = 72, yOffset = 0, width = 8, height = 16;
         private int currFrame;
         private readonly int totalFrames = 2, repeatedFrames = 8;
+        public PlayerItems PlayerItems { get => PlayerItems.BlueRupee; }
 
         public BlueRupee(Texture2D texture, Vector2 location)
         {

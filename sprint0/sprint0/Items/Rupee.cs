@@ -15,6 +15,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private readonly Rectangle source;
         private readonly int xOffset = 72, yOffset = 0, width = 8, height = 16;
+        public PlayerItems PlayerItems { get => PlayerItems.Rupee; }
 
         public Rupee(Texture2D texture, Vector2 location)
         {

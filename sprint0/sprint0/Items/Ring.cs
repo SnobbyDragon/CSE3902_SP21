@@ -14,6 +14,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int xOffset = 169, yOffset = 3, width = 7, height = 9;
+        public PlayerItems PlayerItems { get => PlayerItems.RedRing; }
 
         public Ring(Texture2D texture, Vector2 location)
         {

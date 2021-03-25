@@ -3,11 +3,17 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 // Authors: Jesse He and Jacob Urick
+//Updated: 03/24/21 by shah.1440
 namespace sprint0
 {
     public enum PlayerItems
     {
-        None = -2, Arrow = 0, Bomb = 1, Boomerang = 2, Candle = -1, Key = 3, Rupee = 4, Heart = 5, BlueRupee = 6
+        None = -2, Arrow = 0, Bomb = 1, Boomerang = 2, BlueCandle = -1, Key = 3, Rupee = 4, Heart = 5, BlueRupee = 6,
+        Sword = 7, WhiteSword = 8, MagicalSword = 9, SilverArrow = 10, Bow = 11, RedCandle = 12, Flute = 13, Food = 14,
+        Letter = 15, BluePotion = 16, RedPotion = 17, MagicalRod = 18, BookOfMagic = 19, RedRing = 20, MagicalKey = 21,
+        PowerBracelet = 22, MagicalBoomerang = 23, Map = 24, Compass = 25, Clock = 26, Fairy = 27, HeartContainer = 28,
+        BlueRing = 29, Triforce = 30, Raft = 31, StepLadder = 32,
+        AItem, BItem, HUD
     }
 
     public interface IPlayer : IEntity
@@ -19,7 +25,6 @@ namespace sprint0
 
         public int WeaponDamage { get; set; }
         public PlayerItems CurrentItem { get; set; }
-        public PlayerItems InventoryItem { get; set; }
         public List<int> ItemCounts { get; }
 
         public static Vector2 Position;
@@ -33,7 +38,9 @@ namespace sprint0
         public void HandleRight();
         public void HandleSword();
         public void HandleItem();
-        public void IncrementItem();
+        public void IncrementItem(PlayerItems inventoryItem);
+        public void SetHUDItem(PlayerItems source, PlayerItems newItem);
+        public PlayerItems GetItem(PlayerItems source);
         public void ReceiveItem(int n, PlayerItems item);
         public void Draw(SpriteBatch spriteBatch);
         public void Update();

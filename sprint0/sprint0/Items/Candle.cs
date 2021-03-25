@@ -13,6 +13,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
+        public PlayerItems PlayerItems { get => PlayerItems.RedCandle; }
         private readonly int xOffset = 160, yOffset = 0, width = 8, height = 16;
 
         public Candle(Texture2D texture, Vector2 location)

@@ -12,6 +12,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
+        public PlayerItems Item { get; set; }
 
         public HUD(Texture2D texture, Vector2 location)
         {
@@ -28,7 +29,7 @@ namespace sprint0
         public void Update()
         {
         }
-        public void SetItem(String item)
+        public void SetItem(PlayerItems item)
         {
         }
     }

@@ -14,6 +14,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int xOffset = 160, yOffset = 16, width = 8, height = 16;
+        public PlayerItems PlayerItems { get => PlayerItems.BlueCandle; }
 
         public BlueCandle(Texture2D texture, Vector2 location)
         {

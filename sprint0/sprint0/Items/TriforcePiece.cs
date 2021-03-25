@@ -15,6 +15,7 @@ namespace sprint0
         private readonly int width, height;
         private int currFrame;
         private readonly int totalFrames = 2, repeatedFrames = 8;
+        public PlayerItems PlayerItems { get => PlayerItems.Triforce; }
 
         public TriforcePiece(Texture2D texture, Vector2 location)
         {

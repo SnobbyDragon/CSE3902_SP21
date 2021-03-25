@@ -15,6 +15,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int width = 13, height = 17;
+        public PlayerItems PlayerItems { get => PlayerItems.Clock; }
 
         public Clock(Texture2D texture, Vector2 location)
         {
