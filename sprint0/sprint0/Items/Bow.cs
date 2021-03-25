@@ -12,6 +12,7 @@ namespace sprint0
         private readonly int maxPickedUpDuration = 40;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
+        public PlayerItems PlayerItems { get => PlayerItems.Bow; }
         private readonly int xOffset = 144, yOffset = 0, width = 8, height = 16;
         private Rectangle source;
 

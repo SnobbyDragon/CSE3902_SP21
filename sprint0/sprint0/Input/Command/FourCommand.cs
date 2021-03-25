@@ -12,7 +12,7 @@ namespace sprint0
 
         public void Execute()
         {
-            game.Room.Player.CurrentItem = PlayerItems.Candle;
+            game.Room.Player.CurrentItem = PlayerItems.BlueCandle;
             game.Room.Player.HandleItem();
         }
     }

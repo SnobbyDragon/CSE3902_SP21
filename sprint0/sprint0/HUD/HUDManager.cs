@@ -11,9 +11,9 @@ namespace sprint0
     {
         private Game1 game;
         private PopulateHUDInventory populateHUDInventory;
-        public PopulateHUDInventory PopulateHUDInventory { get => populateHUDInventory; set => populateHUDInventory = value; }
-        private List<IHUD> mainHUDElements;
-        private readonly MainHUD mainHUD;
+        public PopulateHUDInventory PopulateHUDInventory { get => populateHUDInventory; }
+        private MainHUD mainHUD;
+        public MainHUD MainHUD { get => mainHUD; }
 
         public HUDManager(Game1 game)
         {
@@ -29,13 +29,14 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            mainHUD.DrawMainHUD(mainHUDElements, spriteBatch);
+            mainHUD.DrawMainHUD(spriteBatch);
             populateHUDInventory.DrawItemHUD(spriteBatch);
         }
 
         public void LoadHUD()
         {
-            mainHUDElements = mainHUD.PopulateMainHUD();
+            mainHUD.PopulateMainHUD();
+            mainHUD.SetItem(PlayerItems.AItem, PlayerItems.Sword);
             populateHUDInventory.PopulateInventoryHUD();
         }
     }

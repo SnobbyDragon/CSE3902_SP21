@@ -58,7 +58,7 @@ namespace sprint0
                 case PlayerItems.Boomerang:
                     UseBoomerang();
                     break;
-                case PlayerItems.Candle:
+                case PlayerItems.BlueCandle:
                     UseCandle();
                     break;
             }
@@ -132,7 +132,7 @@ namespace sprint0
 
         private void UseCandle()
         {
-            Vector2 offsetPos = link.Pos + 16*link.Direction.ToVector2();
+            Vector2 offsetPos = link.Pos + 16 * link.Direction.ToVector2();
             room.AddProjectile(offsetPos, link.Direction, "flame", link);
             room.AddSoundEffect("candle");
         }

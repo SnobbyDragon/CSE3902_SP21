@@ -14,6 +14,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int width = 11, height = 12;
+        public PlayerItems PlayerItems { get => PlayerItems.Compass; }
 
         public Compass(Texture2D texture, Vector2 location)
         {

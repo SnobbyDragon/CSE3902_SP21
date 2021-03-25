@@ -14,6 +14,7 @@ namespace sprint0
         private int width, height;
         private Rectangle source;
         private readonly int maxPickedUpDuration = 40;
+        public PlayerItems PlayerItems { get => PlayerItems.Bomb; }
         public BombItem(Texture2D texture, Vector2 location)
         {
             this.texture = texture;

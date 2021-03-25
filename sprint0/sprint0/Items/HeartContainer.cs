@@ -13,6 +13,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int width, height;
+        public PlayerItems PlayerItems { get => PlayerItems.HeartContainer; }
 
         public HeartContainer(Texture2D texture, Vector2 location)
         {

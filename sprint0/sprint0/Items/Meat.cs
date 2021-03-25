@@ -14,6 +14,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int xOffset = 96, yOffset = 0, width = 8, height = 16;
+        public PlayerItems PlayerItems { get => PlayerItems.Food; }
 
         public Meat(Texture2D texture, Vector2 location)
         {

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 // Authors: Jesse He and Jacob Urick
-
+//NOTE: make set a and b methods
 namespace sprint0
 {
     class Link : IPlayer
@@ -18,12 +18,12 @@ namespace sprint0
         private Direction direction = Direction.n;
         private readonly LinkUseItemHelper itemHelper;
         private readonly PopulateHUDInventory linkInventory;
+        private readonly MainHUD mainHUD;
         public List<int> ItemCounts { get; }
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
         public Direction Direction { get => direction; set => direction = value; }
         public PlayerItems CurrentItem { get; set; }
-        public PlayerItems InventoryItem { get; set; }
         public int WeaponDamage { get; set; }
 
         public Link(Game1 game, Vector2 pos)
@@ -36,9 +36,9 @@ namespace sprint0
             ItemCounts = new List<int> { -1, -1, 1 };
             itemHelper = new LinkUseItemHelper(game.Room, this);
             CurrentItem = PlayerItems.None;
-            InventoryItem = PlayerItems.Key;
             speed = 2;
             linkInventory = this.game.hudManager.PopulateHUDInventory;
+            mainHUD = this.game.hudManager.MainHUD;
         }
 
         public void Move(int x, int y)
@@ -64,14 +64,10 @@ namespace sprint0
             State.PickUpItem();
         }
 
-        public void IncrementItem()
+        public void IncrementItem(PlayerItems inventoryItem)
         {
-            if (InventoryItem == PlayerItems.BlueRupee)
-            {
-                InventoryItem = PlayerItems.Rupee;
-                linkInventory.ChangeNum(InventoryItem, BlueRupee.Value);
-            }
-            else linkInventory.IncrementItem(InventoryItem);
+            if (inventoryItem == PlayerItems.BlueRupee) linkInventory.ChangeNum(PlayerItems.Rupee, BlueRupee.Value);
+            else linkInventory.IncrementItem(inventoryItem);
         }
 
         private void Die()
@@ -117,7 +113,7 @@ namespace sprint0
         {
             if (isAlive)
             {
-                if (CurrentItem != PlayerItems.None && CurrentItem != PlayerItems.Candle)
+                if (CurrentItem != PlayerItems.None && CurrentItem != PlayerItems.BlueCandle)
                 {
                     ItemCounts[(int)CurrentItem]--;
                     linkInventory.DecrementItem(CurrentItem);
@@ -146,6 +142,16 @@ namespace sprint0
         {
             ItemCounts[(int)item] += n;
             linkInventory.ChangeNum(item, n);
+        }
+
+        public void SetHUDItem(PlayerItems source, PlayerItems newItem)
+        {
+            mainHUD.SetItem(source, newItem);
+        }
+
+        public PlayerItems GetItem(PlayerItems source)
+        {
+            return mainHUD.GetItem(source);
         }
     }
 }

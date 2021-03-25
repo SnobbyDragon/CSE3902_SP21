@@ -18,7 +18,8 @@ namespace sprint0
         {
             if (item.PickedUpDuration < 0)
             {
-                CheckItem(item, link);
+                CheckItemIncrement(item, link);
+                CheckItemAB(item, link);
                 room.AddSoundEffect("get item");
                 if (item.PickedUpDuration == -1)
                 {
@@ -36,30 +37,20 @@ namespace sprint0
             }
         }
 
-        private void CheckItem(IItem item, IPlayer link)
+        private void CheckItemIncrement(IItem item, IPlayer link)
         {
-            if (item is Key)
-            {
-                link.InventoryItem = PlayerItems.Key;
-                room.AddSoundEffect("get key");
-            }
-            else if (item is BombItem)
-            {
-                link.InventoryItem = PlayerItems.Bomb;
-                room.AddSoundEffect("get key");
-            }
-            else if (item is Rupee)
-            {
-                link.InventoryItem = PlayerItems.Rupee;
-                room.AddSoundEffect("get rupee");
-            }
-            else if (item is BlueRupee)
-            {
-                link.InventoryItem = PlayerItems.BlueRupee;
-                room.AddSoundEffect("get rupee");
-            }
-            else link.InventoryItem = PlayerItems.None;
-            link.IncrementItem();
+
+            if (item is Key || item is BombItem) room.AddSoundEffect("get key");
+            if (item is Rupee || item is BlueRupee) room.AddSoundEffect("get rupee");
+            link.IncrementItem(item.PlayerItems);
+        }
+
+        private void CheckItemAB(IItem item, IPlayer link)
+        {
+            if (link.GetItem(PlayerItems.AItem) == PlayerItems.None && (item.PlayerItems == PlayerItems.Sword || item.PlayerItems == PlayerItems.WhiteSword || item.PlayerItems == PlayerItems.MagicalSword)) link.SetHUDItem(PlayerItems.AItem, item.PlayerItems);
+            //if (link.GetItem(PlayerItems.BItem) == PlayerItems.None && !(item.PlayerItems == PlayerItems.Sword || item.PlayerItems == PlayerItems.WhiteSword || item.PlayerItems == PlayerItems.MagicalSword)) link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
+            /*keep the above comment. 90% chance that this will be used once the inventory is implemented.*/
+            if (!(item.PlayerItems == PlayerItems.Sword || item.PlayerItems == PlayerItems.WhiteSword || item.PlayerItems == PlayerItems.MagicalSword)) link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
         }
     }
 }

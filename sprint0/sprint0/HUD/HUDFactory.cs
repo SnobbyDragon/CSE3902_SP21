@@ -34,8 +34,8 @@ namespace sprint0
             return spriteType switch
             {
                 "hud" => new HUD(texture, location),
-                "hudA" => new HUDItemA(texture, new Vector2(location.X + 153 * Game1.Scale, location.Y + 24 * Game1.Scale)),
-                "hudB" => new HUDItemB(texture, new Vector2(location.X + 128 * Game1.Scale, location.Y + 24 * Game1.Scale)),
+                "hudA" => new HUDItem(texture, new Vector2((location.X + 153) * Game1.Scale, location.Y + 24 * Game1.Scale)),
+                "hudB" => new HUDItem(texture, new Vector2((location.X + 128) * Game1.Scale, location.Y + 24 * Game1.Scale)),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
