@@ -12,6 +12,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private int keyNumTens, keyNumOnes, keyNum;
+        public int CurrentNum { get => keyNum; }
         private readonly int xOffset = 528, yOffset = 117, reset = 0, mod = 10;
         private readonly List<Rectangle> sources;
         private readonly int sideLength = 8;

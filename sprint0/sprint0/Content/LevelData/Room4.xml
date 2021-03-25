@@ -22,6 +22,7 @@
 <Block ObjectName="invisible block" LocationX="320" LocationY="540" />?
 
 	<NPC ObjectName="old man 1" LocationX="300" LocationY="300" />?
+    <Item ObjectName="wooden sword" LocationX="310" LocationY="375" />?
     <NPC ObjectName="flame" LocationX="200" LocationY="300" />?
     <NPC ObjectName="flame" LocationX="400" LocationY="300" />?
       <Player ObjectName="Link" LocationX="310" LocationY="460" />?

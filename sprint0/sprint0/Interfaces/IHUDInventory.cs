@@ -8,6 +8,7 @@ namespace sprint0
 {
     public interface IHUDInventory : ISprite
     {
+        public int CurrentNum { get; }
         void ResetNum();
         void ChangeNum(int change);
         void Increment();

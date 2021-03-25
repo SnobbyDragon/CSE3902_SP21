@@ -11,6 +11,7 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
+        public int CurrentNum { get => bombNum; }
         private int bombNumTens, bombNumOnes, bombNum;
         private readonly int mod = 10, xOffset = 528, yOffset = 117, reset = 0, sideLength = 8;
         private readonly List<Rectangle> sources;

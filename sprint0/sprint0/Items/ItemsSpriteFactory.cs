@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 //Author: Hannah Johnson and co
 /*
- * Last updated: 3/24/21 by shah.1440
+ * Last updated: 3/25/21 by shah.1440
  */
 namespace sprint0
 {
@@ -50,6 +50,11 @@ namespace sprint0
                 "flute" => new Flute(texture1, location),
                 "raft" => new Raft(texture1, location),
                 "stepladder" => new StepLadder(texture1, location),
+                "magical key" => new MagicalKey(texture1, location),
+                "magical rod" => new MagicalRod(texture1, location),
+                "magical sword" => new MagicalSword(texture1, location),
+                "white sword" => new WhiteSword(texture1, location),
+                "wooden sword" => new WoodenSword(texture1, location),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }

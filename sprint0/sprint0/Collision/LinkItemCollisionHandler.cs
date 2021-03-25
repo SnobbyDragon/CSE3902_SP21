@@ -47,10 +47,16 @@ namespace sprint0
 
         private void CheckItemAB(IItem item, IPlayer link)
         {
-            if (link.GetItem(PlayerItems.AItem) == PlayerItems.None && (item.PlayerItems == PlayerItems.Sword || item.PlayerItems == PlayerItems.WhiteSword || item.PlayerItems == PlayerItems.MagicalSword)) link.SetHUDItem(PlayerItems.AItem, item.PlayerItems);
-            //if (link.GetItem(PlayerItems.BItem) == PlayerItems.None && !(item.PlayerItems == PlayerItems.Sword || item.PlayerItems == PlayerItems.WhiteSword || item.PlayerItems == PlayerItems.MagicalSword)) link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
+            if (IsSword(item.PlayerItems))
+                link.SetHUDItem(PlayerItems.AItem, item.PlayerItems);
+            //if (link.GetItem(PlayerItems.BItem) == PlayerItems.None && !IsSword(item.PlayerItems)) link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
             /*keep the above comment. 90% chance that this will be used once the inventory is implemented.*/
-            if (!(item.PlayerItems == PlayerItems.Sword || item.PlayerItems == PlayerItems.WhiteSword || item.PlayerItems == PlayerItems.MagicalSword)) link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
+            if (!IsSword(item.PlayerItems))
+                link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
+        }
+        private bool IsSword(PlayerItems item)
+        {
+            return item == PlayerItems.Sword || item == PlayerItems.WhiteSword || item == PlayerItems.MagicalSword;
         }
     }
 }

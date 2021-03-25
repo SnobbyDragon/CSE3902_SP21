@@ -49,6 +49,7 @@
     <Boss ObjectName="aquamentus" LocationX="380" LocationY="300" />?
 
     <Item ObjectName="heart container" LocationX="482" LocationY="342" />?
+    <Item ObjectName="magical sword" LocationX="300" LocationY="342" />?
     <Player ObjectName="Link" LocationX="310" LocationY="460" />?
 
 ?</XnaContent>

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 // Authors: Jesse He and Jacob Urick
-//NOTE: make set a and b methods
+//Updated: 03/25/21 by shah.1440
 namespace sprint0
 {
     class Link : IPlayer
@@ -53,7 +53,7 @@ namespace sprint0
             {
                 game.Room.Player = new DamagedLink(this, game.Room, direction);
                 linkInventory.ChangeNum(PlayerItems.Heart, damage);
-                health = linkInventory.GetHealth();
+                health = linkInventory.GetNum(PlayerItems.Heart);
                 game.Room.AddSoundEffect("link damaged");
                 if (health <= 0) Die();
             }
@@ -67,6 +67,7 @@ namespace sprint0
         public void IncrementItem(PlayerItems inventoryItem)
         {
             if (inventoryItem == PlayerItems.BlueRupee) linkInventory.ChangeNum(PlayerItems.Rupee, BlueRupee.Value);
+            else if (inventoryItem == PlayerItems.HeartContainer) linkInventory.IncrementItem(PlayerItems.Heart);
             else linkInventory.IncrementItem(inventoryItem);
         }
 

@@ -171,5 +171,6 @@
     <Enemy ObjectName="blue keese" LocationX="360" LocationY="330" />?
     <Enemy ObjectName="red keese" LocationX="200" LocationY="460" />?
     <Item ObjectName="bow" LocationX="332" LocationY="330" />? 
+    <Item ObjectName="magical key" LocationX="332" LocationY="460" />?
    <Player ObjectName="Link" LocationX="120" LocationY="140" />?
 ?</XnaContent>
