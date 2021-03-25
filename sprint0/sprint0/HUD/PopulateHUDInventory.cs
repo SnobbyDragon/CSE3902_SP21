@@ -60,9 +60,9 @@ namespace sprint0
             if (inventory.ContainsKey(item)) inventory[item].ChangeNum(num);
         }
 
-        public int GetHealth()
+        public int GetNum(PlayerItems item)
         {
-            return ((HeartHUD)inventory[PlayerItems.Heart]).CurrentHealth;
+            return inventory[item].CurrentNum;
         }
     }
 }

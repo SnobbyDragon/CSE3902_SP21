@@ -11,11 +11,11 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        public int CurrentHealth { get => currentHealth; }
+        public int CurrentNum { get => currentHealth; }
         private readonly int[] heartState;
         private readonly List<Rectangle> sources;
-        private readonly int sideLength = 8, maxHealth = 32, heartType = 3, heartsPerRow = 8, numHearts = 16, healthToHeart = 2, reset = 0, xOffset = 627, yOffset = 117;
-        private int currentHealth;
+        private readonly int sideLength = 8, heartType = 3, heartsPerRow = 8, healthToHeart = 2, reset = 0, xOffset = 627, yOffset = 117, maxPossibleHearts = 32;
+        private int currentHealth, numHearts = 15, maxHealth = 30;
 
         public HeartHUD(Texture2D texture, Vector2 location)
         {
@@ -58,10 +58,17 @@ namespace sprint0
         public void ChangeNum(int damage)
         {
             if ((currentHealth -= damage) <= reset) ZeroHealth();
+            else if (currentHealth > maxHealth) ResetNum();
         }
 
         public void Increment()
         {
+            if (maxHealth + healthToHeart <= maxPossibleHearts)
+            {
+                maxHealth += healthToHeart;
+                currentHealth += healthToHeart;
+                numHearts++;
+            }
         }
 
         public void Decrement()

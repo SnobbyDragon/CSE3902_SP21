@@ -27,6 +27,7 @@
     <Block ObjectName="block" LocationX="440" LocationY="420" />? 
     
     <Item ObjectName="compass" LocationX="480" LocationY="340" />?
+     <Item ObjectName="white sword" LocationX="200" LocationY="340" />?
     
     <Boss ObjectName="gleeok" LocationX="280" LocationY="275" />? 
     

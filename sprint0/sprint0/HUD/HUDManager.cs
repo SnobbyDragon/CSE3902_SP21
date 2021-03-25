@@ -36,7 +36,6 @@ namespace sprint0
         public void LoadHUD()
         {
             mainHUD.PopulateMainHUD();
-            mainHUD.SetItem(PlayerItems.AItem, PlayerItems.Sword);
             populateHUDInventory.PopulateInventoryHUD();
         }
     }

@@ -12,6 +12,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private int rupeeNumTens, rupeeNumOnes, rupeeNum;
+        public int CurrentNum { get => rupeeNum; }
         private readonly int mod = 10, xOffset = 528, yOffset = 117, reset = 0;
         private readonly List<Rectangle> sources;
         private readonly int sideLength = 8, totalFrames = 10;
