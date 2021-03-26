@@ -48,6 +48,9 @@ namespace sprint0
         {
             return PlayerItems.None;
         }
+        public void AddToInventory(PlayerItems newItem)
+        {
+        }
         public void RemoveDecorator()
         {
             game.Player = decoratedLink;

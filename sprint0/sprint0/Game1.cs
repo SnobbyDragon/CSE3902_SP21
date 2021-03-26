@@ -16,6 +16,8 @@ namespace sprint0
         public BackgroundMusic Music { get => music; }
         private BackgroundMusic music;
         public HUDManager hudManager;
+        public PauseScreenManager pauseScreenManager;
+        public bool PauseScreen { get; set; }
 
         public Room Room { get => room; }
         private Room room;
@@ -55,6 +57,7 @@ namespace sprint0
             soundFactory = new SoundFactory(this);
             music = SoundFactory.MakeBackgroundMusic();
             hudManager = new HUDManager(this);
+            pauseScreenManager = new PauseScreenManager(this);
             hudManager.LoadHUD();
             RoomIndex = 18;
             ChangeRoom = true;
@@ -67,6 +70,7 @@ namespace sprint0
             room = new Room(_spriteBatch, this, RoomIndex);
             room.LoadContent();
             ChangeRoom = false;
+            PauseScreen = false;
         }
 
         protected override void Update(GameTime gameTime)
@@ -77,9 +81,11 @@ namespace sprint0
             foreach (IController controller in controllerList)
                 controller.Update();
 
-            if (ChangeRoom) LoadContent();
-
-            room.Update();
+            if (!PauseScreen)
+            {
+                if (ChangeRoom) LoadContent();
+                room.Update();
+            }
             hudManager.Update();
             base.Update(gameTime);
         }
@@ -88,8 +94,11 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
-            room.Draw();
+            if (!PauseScreen)
+                room.Draw();
+            else pauseScreenManager.Draw(_spriteBatch);
             hudManager.Draw(_spriteBatch);
+
             _spriteBatch.End();
             base.Draw(gameTime);
         }

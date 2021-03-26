@@ -27,7 +27,7 @@ namespace sprint0
             };
         }
 
-        public void DrawMainHUD(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             foreach (KeyValuePair<PlayerItems, IHUD> hudElement in hudMainItems)
                 hudElement.Value.Draw(spriteBatch);

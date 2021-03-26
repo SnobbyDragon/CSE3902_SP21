@@ -29,7 +29,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            mainHUD.DrawMainHUD(spriteBatch);
+            mainHUD.Draw(spriteBatch);
             populateHUDInventory.DrawItemHUD(spriteBatch);
         }
 

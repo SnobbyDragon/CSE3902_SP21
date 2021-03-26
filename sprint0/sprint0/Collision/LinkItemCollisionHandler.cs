@@ -49,10 +49,9 @@ namespace sprint0
         {
             if (IsSword(item.PlayerItems))
                 link.SetHUDItem(PlayerItems.AItem, item.PlayerItems);
-            //if (link.GetItem(PlayerItems.BItem) == PlayerItems.None && !IsSword(item.PlayerItems)) link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
-            /*keep the above comment. 90% chance that this will be used once the inventory is implemented.*/
-            if (!IsSword(item.PlayerItems))
+            if (link.GetItem(PlayerItems.BItem) == PlayerItems.None && !IsSword(item.PlayerItems))
                 link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
+            link.AddToInventory(item.PlayerItems);
         }
         private bool IsSword(PlayerItems item)
         {
