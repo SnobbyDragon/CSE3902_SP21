@@ -19,6 +19,7 @@ namespace sprint0
         private readonly LinkUseItemHelper itemHelper;
         private readonly PopulateHUDInventory linkInventory;
         private readonly MainHUD mainHUD;
+        private readonly HUDInventory hudInventory;
         public List<int> ItemCounts { get; }
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
@@ -39,6 +40,7 @@ namespace sprint0
             speed = 2;
             linkInventory = this.game.hudManager.PopulateHUDInventory;
             mainHUD = this.game.hudManager.MainHUD;
+            hudInventory = this.game.pauseScreenManager.HUDInventory;
         }
 
         public void Move(int x, int y)
@@ -137,6 +139,7 @@ namespace sprint0
             {
                 State.Update();
             }
+            game.pauseScreenManager.HUDInventory = hudInventory;
         }
 
         public void ReceiveItem(int n, PlayerItems item)
@@ -148,6 +151,12 @@ namespace sprint0
         public void SetHUDItem(PlayerItems source, PlayerItems newItem)
         {
             mainHUD.SetItem(source, newItem);
+            hudInventory.SetItem(GetItem(PlayerItems.BItem));
+        }
+
+        public void AddToInventory(PlayerItems newItem)
+        {
+            hudInventory.AddItem(newItem);
         }
 
         public PlayerItems GetItem(PlayerItems source)
