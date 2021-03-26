@@ -9,12 +9,17 @@ namespace sprint0
 {
     public class HUDItemMapping
     {
-        protected readonly Dictionary<PlayerItems, Rectangle> itemMap;
+        protected readonly Dictionary<PlayerItems, Rectangle> itemMap, locationMapping;
         public Dictionary<PlayerItems, Rectangle> ItemMap { get => itemMap; }
+        public Dictionary<PlayerItems, Rectangle> LocationMapping { get => locationMapping; }
+        public Rectangle CurrentItem { get => currentItem; }
+        private readonly int height = 16, smallWidth = 8, bigWidth = 16, yPosTop = 24, yPosMiddle = 48, yPosBottom = 64, currentItemX = 68;
+        private readonly Rectangle currentItem;
         protected int Width { get => 8; }
         protected int Height { get => 16; }
         protected int YPos { get => 137; }
         protected Rectangle source;
+
         public HUDItemMapping()
         {
             itemMap = new Dictionary<PlayerItems, Rectangle>
@@ -45,22 +50,56 @@ namespace sprint0
                 { PlayerItems.Raft, GetSourceRaftLadder(520, YPos+19)},
                 { PlayerItems.StepLadder, GetSourceRaftLadder(560, YPos+19)},
             };
+
+            locationMapping = new Dictionary<PlayerItems, Rectangle>
+            {
+                { PlayerItems.Raft, GetSource(128, yPosTop, bigWidth, height)},
+                { PlayerItems.BookOfMagic, GetSource(152, yPosTop, smallWidth, height) },
+
+                { PlayerItems.RedRing, GetSource(164, yPosTop, smallWidth, height) },
+
+                { PlayerItems.StepLadder, GetSource(176, yPosTop, bigWidth, height) },
+                { PlayerItems.MagicalKey, GetSource(196, yPosTop, smallWidth, height) },
+                { PlayerItems.PowerBracelet, GetSource(208, yPosTop, smallWidth, height) },
+
+                { PlayerItems.MagicalBoomerang, GetSource(132, yPosMiddle, smallWidth, height) },
+                { PlayerItems.Boomerang, GetSource(132, yPosMiddle, smallWidth, height) },
+
+                { PlayerItems.Bomb, GetSource(156, yPosMiddle, smallWidth, height) },
+                { PlayerItems.Bow, GetSource(184, yPosMiddle, smallWidth, height) },
+
+                { PlayerItems.Arrow, GetSource(176, yPosMiddle, smallWidth, height) },
+                { PlayerItems.SilverArrow, GetSource(176, yPosMiddle, smallWidth, height) },
+
+                { PlayerItems.RedCandle, GetSource(204, yPosMiddle, smallWidth, height) },
+                { PlayerItems.BlueCandle, GetSource(204, yPosMiddle, smallWidth, height) },
+
+                { PlayerItems.Flute, GetSource(132, yPosBottom, smallWidth, height) },
+                { PlayerItems.Food, GetSource(157, yPosBottom, smallWidth, height) },
+
+                { PlayerItems.RedPotion, GetSource(180, yPosBottom, smallWidth, height) },
+                { PlayerItems.BluePotion, GetSource(180, yPosBottom, smallWidth, height) },
+
+                { PlayerItems.MagicalRod, GetSource(204, yPosBottom, smallWidth, height) },
+            };
+            currentItem = GetSource(currentItemX, yPosMiddle, smallWidth, height);
         }
 
         private Rectangle GetSource(int xPos, int yPos)
         {
-            source = new Rectangle(xPos, yPos, Width, Height);
-            return source;
+            return new Rectangle(xPos, yPos, Width, Height);
         }
         private Rectangle GetSourceCompass(int xPos, int yPos)
         {
-            source = new Rectangle(xPos, yPos, Width + 3, Height);
-            return source;
+            return new Rectangle(xPos, yPos, Width + 3, Height);
         }
         private Rectangle GetSourceRaftLadder(int xPos, int yPos)
         {
-            source = new Rectangle(xPos, yPos, Width * 2, Height);
-            return source;
+            return new Rectangle(xPos, yPos, Width * 2, Height);
+        }
+        private Rectangle GetSource(int xPos, int yPos, int width, int height)
+        {
+            return new Rectangle((int)(xPos * Game1.Scale), (int)((yPos + Game1.HUDHeight) * Game1.Scale), (int)(width * Game1.Scale), (int)(height * Game1.Scale));
         }
     }
 }

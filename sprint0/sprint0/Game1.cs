@@ -18,6 +18,7 @@ namespace sprint0
         public HUDManager hudManager;
         public PauseScreenManager pauseScreenManager;
         public bool PauseScreen { get; set; }
+        public bool TestMode { get; set; }
 
         public Room Room { get => room; }
         private Room room;
@@ -61,6 +62,8 @@ namespace sprint0
             hudManager.LoadHUD();
             RoomIndex = 18;
             ChangeRoom = true;
+            PauseScreen = false;
+            TestMode = false;
 
             base.Initialize();
         }
@@ -70,7 +73,6 @@ namespace sprint0
             room = new Room(_spriteBatch, this, RoomIndex);
             room.LoadContent();
             ChangeRoom = false;
-            PauseScreen = false;
         }
 
         protected override void Update(GameTime gameTime)

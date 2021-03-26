@@ -12,8 +12,11 @@ namespace sprint0
 
         public void Execute()
         {
-            game.RoomIndex = (game.RoomIndex - 1 + game.NumRooms) % game.NumRooms;
-            game.ChangeRoom = true;
+            if (game.TestMode)
+            {
+                game.RoomIndex = (game.RoomIndex - 1 + game.NumRooms) % game.NumRooms;
+                game.ChangeRoom = true;
+            }
         }
     }
 }
