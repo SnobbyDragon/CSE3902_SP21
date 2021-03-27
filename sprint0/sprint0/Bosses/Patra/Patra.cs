@@ -24,6 +24,7 @@ namespace sprint0
         private int health;
         private readonly Game1 game;
         public int Damage { get => 4; }
+        private bool canTakeDamage;
 
         public Patra(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -49,19 +50,21 @@ namespace sprint0
             {
                 minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i, game));
             }
+            game.Room.LoadLevel.RoomEnemies.RegisterEnemies(minions); 
 
             rand = new Random();
             GenerateDest();
 
             moveCounter = 0;
             moveDelay = 5; // slow
+
+            canTakeDamage = false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), effects[currFrame / repeatedFrames], 0);
-            foreach (IEnemy minion in minions)
-                minion.Draw(spriteBatch);
+            
         }
 
         public void Update()
@@ -83,9 +86,9 @@ namespace sprint0
             moveCounter++;
 
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            foreach (IEnemy minion in minions) //TODO maybe move to game
-                minion.Update();
+            
         }
+
 
         public void ChangeDirection()
         {
@@ -94,12 +97,40 @@ namespace sprint0
 
         private void CheckHealth()
         {
-            if (health < 0) Perish();
+           
+            int minionCount = 0;
+            PatraMinion toRemove = null;
+            foreach (PatraMinion minion in minions)
+            {
+                minionCount++;
+                if (minion.CheckHealth() < 0)
+                {
+                    toRemove = minion;
+                }
+            }
+            if (toRemove != null) RemoveMinion(toRemove);
+            if (minionCount == 0) {
+                canTakeDamage = true;
+                if (health < 0) Perish();
+                
+            }
+
+            
         }
+
+        private void RemoveMinion(PatraMinion minion1)
+        {
+            minions.Remove(minion1);
+        }
+
+
         public void TakeDamage(int damage)
         {
-            health -= damage;
-            game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            if (canTakeDamage)
+            {
+                health -= damage;
+                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            }
         }
 
         public void Perish()
