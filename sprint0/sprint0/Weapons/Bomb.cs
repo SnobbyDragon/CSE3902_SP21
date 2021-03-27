@@ -85,7 +85,7 @@ namespace sprint0
             {
                 if (age == lifespan)
                 {
-                    room.AddSoundEffect("bomb explode");
+                    room.LoadLevel.RoomSound.AddSoundEffect("bomb explode");
                     exploding = true;
                 }
                 Location = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));

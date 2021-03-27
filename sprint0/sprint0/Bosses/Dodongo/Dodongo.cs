@@ -126,7 +126,7 @@ namespace sprint0
 
         public void EatBomb()
         {
-            game.Room.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.LoadLevel.RoomSound.AddSoundEffect(GetType().Name.ToLower());
             bombsEaten++;
             eatingCounter = 1;
             if (direction == Direction.s)

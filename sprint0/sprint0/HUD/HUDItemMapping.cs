@@ -53,7 +53,7 @@ namespace sprint0
 
             locationMapping = new Dictionary<PlayerItems, Rectangle>
             {
-                { PlayerItems.Raft, GetSource(128, yPosTop, bigWidth, height)},
+                { PlayerItems.Raft, GetSource(129, yPosTop, bigWidth, height)},
                 { PlayerItems.BookOfMagic, GetSource(152, yPosTop, smallWidth, height) },
 
                 { PlayerItems.RedRing, GetSource(164, yPosTop, smallWidth, height) },
@@ -75,7 +75,7 @@ namespace sprint0
                 { PlayerItems.BlueCandle, GetSource(204, yPosMiddle, smallWidth, height) },
 
                 { PlayerItems.Flute, GetSource(132, yPosBottom, smallWidth, height) },
-                { PlayerItems.Food, GetSource(157, yPosBottom, smallWidth, height) },
+                { PlayerItems.Food, GetSource(156, yPosBottom, smallWidth, height) },
 
                 { PlayerItems.RedPotion, GetSource(180, yPosBottom, smallWidth, height) },
                 { PlayerItems.BluePotion, GetSource(180, yPosBottom, smallWidth, height) },

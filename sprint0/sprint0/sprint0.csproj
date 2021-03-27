@@ -44,5 +44,6 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Sound\" />
     <Folder Include="Sound\SoundEffects\" />
+    <Folder Include="RoomLoader\" />
   </ItemGroup>
 </Project>
