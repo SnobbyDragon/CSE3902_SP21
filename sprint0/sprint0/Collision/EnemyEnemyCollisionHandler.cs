@@ -12,7 +12,8 @@ namespace sprint0
         public void HandleCollision(IEnemy enemy1, IEnemy enemy2, Direction side)
         {
             if (!(enemy1 is ManhandlaLimb && enemy2 is Manhandla) && !(enemy2 is ManhandlaLimb && enemy1 is Manhandla)
-                 && !(enemy1 is Zol && enemy2 is Gel) && !(enemy2 is Zol && enemy1 is Gel) && !(enemy1 is Zol && enemy2 is Zol))
+                 && !(enemy1 is Zol && enemy2 is Gel) && !(enemy2 is Zol && enemy1 is Gel) && !(enemy1 is Zol && enemy2 is Zol)
+                 && !(enemy2 is PatraMinion && enemy1 is Patra) && !(enemy1 is PatraMinion && enemy2 is Patra))
             {
 
                 switch (side)
