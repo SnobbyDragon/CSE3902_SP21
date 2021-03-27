@@ -125,13 +125,13 @@ namespace sprint0
         public void TakeDamage(int damage)
         {
             health -= damage;
-            game.Room.AddSoundEffect("enemy damaged");
+            game.Room.LoadLevel.RoomSound.AddSoundEffect("enemy damaged");
         }
 
         public void Perish()
         {
-            game.Room.RemoveEnemy(this);
-            game.Room.AddSoundEffect("enemy death");
+            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.LoadLevel.RoomSound.AddSoundEffect("enemy death");
         }
 
         private bool CanShoot()
@@ -143,10 +143,10 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            game.Room.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.LoadLevel.RoomSound.AddSoundEffect(GetType().Name.ToLower());
             Vector2 dir = game.Room.Player.Pos - (Location.Location.ToVector2() + centerOffset);
             dir.Normalize();
-            game.Room.AddFireball(Location.Center.ToVector2(), dir, this);
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
         }
     }
 }

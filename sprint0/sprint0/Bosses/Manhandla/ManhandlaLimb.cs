@@ -105,7 +105,7 @@ namespace sprint0
 
         public void Perish()
         {
-            game.Room.RemoveEnemy(this);
+            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
         }
 
         private bool CanShoot()
@@ -117,14 +117,14 @@ namespace sprint0
 
         public void IncreaseFireballRate()
         {
-            double decreaseRate =.5;
-            fireballRate=(int)(fireballRate*decreaseRate);
+            double decreaseRate = .5;
+            fireballRate = (int)(fireballRate * decreaseRate);
 
         }
 
         private void ShootFireball()
         {
-            game.Room.AddFireball(Location.Center.ToVector2(), dir.ToVector2(), this);
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir.ToVector2(), this);
         }
     }
 }

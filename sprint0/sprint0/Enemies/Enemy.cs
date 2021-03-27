@@ -91,15 +91,15 @@ namespace sprint0
             if (damageTimer == 0)
             {
                 health -= damage;
-                game.Room.AddSoundEffect("enemy damaged");
+                game.Room.LoadLevel.RoomSound.AddSoundEffect("enemy damaged");
                 damageTimer = 15;
             }
         }
 
         public void Perish()
         {
-            game.Room.RemoveEnemy(this);
-            game.Room.AddSoundEffect("enemy death");
+            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.LoadLevel.RoomSound.AddSoundEffect("enemy death");
         }
     }
 }

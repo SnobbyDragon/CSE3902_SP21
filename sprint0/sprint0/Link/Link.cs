@@ -56,7 +56,7 @@ namespace sprint0
                 game.Room.Player = new DamagedLink(this, game.Room, direction);
                 linkInventory.ChangeNum(PlayerItems.Heart, damage);
                 health = linkInventory.GetNum(PlayerItems.Heart);
-                game.Room.AddSoundEffect("link damaged");
+                game.Room.LoadLevel.RoomSound.AddSoundEffect("link damaged");
                 if (health <= 0) Die();
             }
         }
@@ -76,7 +76,7 @@ namespace sprint0
         private void Die()
         {
             isAlive = false;
-            game.Room.AddSoundEffect("link death");
+            game.Room.LoadLevel.RoomSound.AddSoundEffect("link death");
         }
 
         public void Stop()
