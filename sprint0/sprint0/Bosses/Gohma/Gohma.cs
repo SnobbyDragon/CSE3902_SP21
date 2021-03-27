@@ -25,6 +25,8 @@ namespace sprint0
         private int fireballCounter = 0;
         private int health;
         public int Damage { get => 2; }
+        private ItemSpawner itemSpawner;
+
 
         public Gohma(Texture2D texture, Vector2 location, string color, Game1 game)
         {
@@ -72,6 +74,8 @@ namespace sprint0
             };
 
             centerOffset = new Vector2(size / 2 - 4, size / 2 - 5);
+            itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -130,6 +134,7 @@ namespace sprint0
 
         public void Perish()
         {
+            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }

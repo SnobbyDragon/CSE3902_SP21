@@ -25,6 +25,7 @@ namespace sprint0
         private readonly Game1 game;
         public int Damage { get => 4; }
         private bool canTakeDamage;
+        private ItemSpawner itemSpawner;
 
         public Patra(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -59,6 +60,7 @@ namespace sprint0
             moveDelay = 5; // slow
 
             canTakeDamage = false;
+            itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -135,6 +137,7 @@ namespace sprint0
 
         public void Perish()
         {
+            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }
