@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
+//Updated: 03/26/21 by shah.1440
 namespace sprint0
 {
     public class GleeokHead : IEnemy
@@ -99,13 +100,13 @@ namespace sprint0
         public void TakeDamage(int damage)
         {
             health -= damage;
-            game.Room.LoadLevel.RoomSound.AddSoundEffect("enemy damaged");
+            game.Room.RoomSound.AddSoundEffect("enemy damaged");
         }
 
         public void Perish()
         {
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.LoadLevel.RoomSound.AddSoundEffect("enemy death");
+            game.Room.RoomSound.AddSoundEffect("enemy death");
         }
 
         private bool CanShoot()
@@ -117,7 +118,7 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            game.Room.LoadLevel.RoomSound.AddSoundEffect("gleeok");
+            game.Room.RoomSound.AddSoundEffect("gleeok");
             Vector2 dir = game.Room.Player.Pos - Location.Center.ToVector2();
             dir.Normalize();
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);

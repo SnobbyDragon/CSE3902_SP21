@@ -11,7 +11,7 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private int rupeeNumTens, rupeeNumOnes, rupeeNum;
+        private int rupeeNumTens, rupeeNumOnes, rupeeNumHundreds, rupeeNum;
         public int CurrentNum { get => rupeeNum; }
         private readonly int mod = 10, xOffset = 528, yOffset = 117, reset = 0;
         private readonly List<Rectangle> sources;
@@ -28,7 +28,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[totalFrames], Color.White);
+            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[rupeeNumHundreds], Color.White);
             spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[rupeeNumTens], Color.White);
             spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + 2 * sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[rupeeNumOnes], Color.White);
         }
@@ -37,6 +37,7 @@ namespace sprint0
         {
             rupeeNumTens = rupeeNum / mod;
             rupeeNumOnes = rupeeNum % mod;
+            CheckHundreds();
         }
 
         public void ChangeNum(int change)
@@ -59,6 +60,20 @@ namespace sprint0
             rupeeNum = reset;
             rupeeNumTens = rupeeNum;
             rupeeNumOnes = rupeeNum;
+            rupeeNumHundreds = mod;
+        }
+
+        private void CheckHundreds()
+        {
+            if (rupeeNum > 99)
+            {
+                rupeeNumHundreds = rupeeNum / (mod * mod);
+                rupeeNumTens %= mod;
+            }
+            else
+            {
+                rupeeNumHundreds = mod;
+            }
         }
     }
 }

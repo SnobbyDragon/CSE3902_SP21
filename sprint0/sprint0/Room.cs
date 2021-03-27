@@ -14,6 +14,8 @@ namespace sprint0
         public IPlayer Player { get => player; set => player = value; }
         private LoadLevel loadLevel;
         public LoadLevel LoadLevel { get => loadLevel; set => loadLevel = value; }
+        public RoomSound RoomSound { get => roomSound; }
+        private RoomSound roomSound;
 
         private AllCollisionHandler collisionHandler;
         private readonly int RoomIndex;
@@ -35,6 +37,7 @@ namespace sprint0
         {
             playerFactory = new PlayerSpriteFactory(game);
             player = new Link(game, new Vector2(200, 250));
+            roomSound = new RoomSound(game);
             loadLevel = new LoadLevel(game);
             collisionHandler = new AllCollisionHandler(this);
             loadLevel.PopulateLists(new LevelLoader(game, RoomIndex).LoadLevel());
@@ -47,7 +50,9 @@ namespace sprint0
             loadLevel.Update();
             collisionHandler.HandleAllCollisions(Player, loadLevel.RoomEnemies.Enemies, loadLevel.RoomWeapon.Weapons, loadLevel.RoomProjectile.Projectiles, loadLevel.RoomBlocks.Blocks, loadLevel.RoomNPCs.NPCs, loadLevel.RoomItems.Items);
             loadLevel.RemoveDead();
+            roomSound.RemoveDead();
             loadLevel.Clear();
+            roomSound.Clear();
         }
 
         public void Draw()

@@ -39,7 +39,6 @@
     <Folder Include="Bosses\Dodongo\" />
     <Folder Include="Bosses\Gohma\" />
     <Folder Include="Bosses\Digdogger\" />
-    <Folder Include="LoadLevel\" />
     <Folder Include="Content\LevelData\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Sound\" />

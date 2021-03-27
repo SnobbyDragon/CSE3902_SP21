@@ -10,6 +10,9 @@ namespace sprint0
     public class HUDInventory : HUDItemMapping, IHUD
     {
         private Dictionary<PlayerItems, Rectangle> inventoryItems;
+        public Dictionary<PlayerItems, Rectangle> InventoryItems { get => inventoryItems; }
+        public List<PlayerItems> AItem { get => aItem; }
+        private List<PlayerItems> aItem;
         public Rectangle Location { get; set; }
         public PlayerItems Item { get; set; }
         private readonly int maxItems = 15;
@@ -18,6 +21,7 @@ namespace sprint0
         public HUDInventory(Game1 game)
         {
             inventoryItems = new Dictionary<PlayerItems, Rectangle>();
+            aItem = new List<PlayerItems>();
             Texture = new HUDFactory(game).Texture;
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -41,6 +45,12 @@ namespace sprint0
             ToSwitch(newItem);
             if (!inventoryItems.ContainsKey(newItem) && LocationMapping.ContainsKey(newItem) && inventoryItems.Count <= maxItems)
                 inventoryItems.Add(newItem, LocationMapping[newItem]);
+        }
+
+        public void AddAItem(PlayerItems newItem)
+        {
+            if (!aItem.Contains(newItem) && ItemMap.ContainsKey(newItem))
+                aItem.Add(newItem);
         }
 
         public void Update() { }

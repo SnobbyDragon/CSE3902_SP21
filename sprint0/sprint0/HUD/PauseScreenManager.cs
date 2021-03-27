@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 //Author: Stuti Shah
-//Updated: 03/25/21 by shah.1440
+//Updated: 03/26/21 by shah.1440
 namespace sprint0
 {
     public class PauseScreenManager
@@ -30,6 +30,15 @@ namespace sprint0
         public void Update()
         {
             hudInventory.SetItem(game.hudManager.MainHUD.GetItem(PlayerItems.BItem));
+        }
+
+        public Dictionary<PlayerItems, Rectangle> Inventory()
+        {
+            return hudInventory.InventoryItems;
+        }
+        public List<PlayerItems> AItems()
+        {
+            return hudInventory.AItem;
         }
     }
 }

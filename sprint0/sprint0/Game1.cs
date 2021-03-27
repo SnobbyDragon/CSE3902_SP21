@@ -57,8 +57,8 @@ namespace sprint0
 
             soundFactory = new SoundFactory(this);
             music = SoundFactory.MakeBackgroundMusic();
-            hudManager = new HUDManager(this);
             pauseScreenManager = new PauseScreenManager(this);
+            hudManager = new HUDManager(this);
             hudManager.LoadHUD();
             RoomIndex = 18;
             ChangeRoom = true;

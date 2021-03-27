@@ -12,8 +12,11 @@ namespace sprint0
 
         public void Execute()
         {
-            game.Room.Player.CurrentItem = PlayerItems.Boomerang;
-            game.Room.Player.HandleItem();
+            if (game.hudManager.HasBoomerang() || game.TestMode) //Take out TestMode when not needed
+            {
+                game.Room.Player.CurrentItem = PlayerItems.Boomerang;
+                game.Room.Player.HandleItem();
+            }
         }
     }
 }
