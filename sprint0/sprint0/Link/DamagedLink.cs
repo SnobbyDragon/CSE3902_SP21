@@ -1,15 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-
+//Updated: 03/27/21 by shah.1440
 namespace sprint0
 {
     class DamagedLink : IPlayer
     {
-        private readonly Room game;
+        private readonly Game1 game;
         private readonly IPlayer decoratedLink;
         private readonly Direction direction;
         private int timer = 80;
+        private readonly PopulateHUDInventory linkInventory;
+        private readonly MainHUD mainHUD;
+        private readonly HUDInventory hudInventory;
         private readonly int speed = 6;
         public Vector2 Pos { get => decoratedLink.Pos; set => decoratedLink.Pos = value; }
         public IPlayerState State { get => decoratedLink.State; set => decoratedLink.State = value; }
@@ -18,74 +21,58 @@ namespace sprint0
         public PlayerItems CurrentItem { get => decoratedLink.CurrentItem; set => decoratedLink.CurrentItem = value; }
         public List<int> ItemCounts => decoratedLink.ItemCounts;
 
-        public DamagedLink(IPlayer decoratedLink, Room game, Direction direction)
+        public DamagedLink(IPlayer decoratedLink, Game1 game, Direction direction)
         {
             this.game = game;
             this.decoratedLink = decoratedLink;
             this.direction = direction;
+            linkInventory = this.game.hudManager.PopulateHUDInventory;
+            mainHUD = this.game.hudManager.MainHUD;
+            hudInventory = this.game.pauseScreenManager.HUDInventory;
         }
 
-        public void Move(int x, int y)
-        {
-            decoratedLink.Move(x, y);
-        }
+        public void Move(int x, int y) => decoratedLink.Move(x, y);
 
-        public void TakeDamage(Direction direction, int damage)
-        {
-        }
+        public void TakeDamage(Direction direction, int damage) { }
 
-        public void PickUpItem()
-        {
-        }
+        public void PickUpItem() { }
 
         public void IncrementItem(PlayerItems inventoryItem)
         {
+            if (inventoryItem == PlayerItems.BlueRupee)
+                linkInventory.ChangeNum(PlayerItems.Rupee, BlueRupee.Value);
+            else if (inventoryItem == PlayerItems.HeartContainer)
+                linkInventory.IncrementItem(PlayerItems.Heart);
+            else linkInventory.IncrementItem(inventoryItem);
         }
+
         public void SetHUDItem(PlayerItems source, PlayerItems newItem)
         {
+            mainHUD.SetItem(source, newItem);
+            hudInventory.SetItem(GetItem(PlayerItems.BItem));
+            hudInventory.AddAItem(GetItem(PlayerItems.AItem));
         }
+
         public PlayerItems GetItem(PlayerItems source)
         {
-            return PlayerItems.None;
-        }
-        public void AddToInventory(PlayerItems newItem)
-        {
-        }
-        public void RemoveDecorator()
-        {
-            game.Player = decoratedLink;
+            return mainHUD.GetItem(source);
         }
 
-        public void Stop()
-        {
-            decoratedLink.Stop();
-        }
+        public void AddToInventory(PlayerItems newItem) => hudInventory.AddItem(newItem);
 
-        public void HandleUp()
-        {
-            decoratedLink.HandleUp();
-        }
+        public void RemoveDecorator() => game.Room.Player = decoratedLink;
 
-        public void HandleDown()
-        {
-            decoratedLink.HandleDown();
-        }
+        public void Stop() => decoratedLink.Stop();
 
-        public void HandleLeft()
-        {
-            decoratedLink.HandleLeft();
-        }
+        public void HandleUp() => decoratedLink.HandleUp();
 
-        public void HandleRight()
-        {
-            decoratedLink.HandleRight();
-        }
+        public void HandleDown() => decoratedLink.HandleDown();
 
-        public void HandleSword()
-        {
-            decoratedLink.HandleSword();
-        }
+        public void HandleLeft() => decoratedLink.HandleLeft();
 
+        public void HandleRight() => decoratedLink.HandleRight();
+
+        public void HandleSword() => decoratedLink.HandleSword();
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -102,21 +89,16 @@ namespace sprint0
                 decoratedLink.Move((int)move.X, (int)move.Y);
             }
             else if (timer == 0)
-            {
                 RemoveDecorator();
-            }
-
             decoratedLink.Update();
         }
 
-        public void HandleItem()
-        {
-            decoratedLink.HandleItem();
-        }
+        public void HandleItem() => decoratedLink.HandleItem();
 
         public void ReceiveItem(int n, PlayerItems item)
         {
             decoratedLink.ReceiveItem(n, item);
+            linkInventory.ChangeNum(item, n);
         }
     }
 }

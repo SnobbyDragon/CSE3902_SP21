@@ -13,7 +13,6 @@ namespace sprint0
         public RoomNPCs RoomNPCs { get => roomNPCs; }
         public RoomEnemies RoomEnemies { get => roomEnemies; }
         public RoomSprite RoomSprite { get => roomSprite; }
-        public RoomSound RoomSound { get => roomSound; }
         private RoomProjectile roomProjectile;
         private RoomWeapon roomWeapon;
         private RoomBlocks roomBlocks;
@@ -21,7 +20,6 @@ namespace sprint0
         private RoomNPCs roomNPCs;
         private RoomEnemies roomEnemies;
         private RoomSprite roomSprite;
-        private RoomSound roomSound;
         public LoadLevel(Game1 game)
         {
             roomProjectile = new RoomProjectile(game);
@@ -31,7 +29,7 @@ namespace sprint0
             roomNPCs = new RoomNPCs();
             roomEnemies = new RoomEnemies(game);
             roomSprite = new RoomSprite(game);
-            roomSound = new RoomSound(game);
+
         }
         public void PopulateLists((List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements)
         {
@@ -52,14 +50,12 @@ namespace sprint0
             roomWeapon.RemoveDeadTwo();
             roomProjectile.RemoveDeadTwo();
             roomWeapon.RemoveDeadTwo();
-            roomSound.RemoveDead();
         }
 
         public void Clear()
         {
             roomWeapon.Clear();
             roomProjectile.Clear();
-            roomSound.Clear();
         }
 
         public void Update()

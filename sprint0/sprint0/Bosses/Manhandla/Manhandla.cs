@@ -105,12 +105,12 @@ namespace sprint0
         public void Perish()
         {
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.LoadLevel.RoomSound.AddSoundEffect("enemy death");
+            game.Room.RoomSound.AddSoundEffect("enemy death");
         }
 
         private void GenerateDest()
         {
-            game.Room.LoadLevel.RoomSound.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))

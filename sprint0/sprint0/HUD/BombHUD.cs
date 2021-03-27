@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
-//Updated: 03/16/21 by li.10011
+//Updated: 03/27/21 by shah.1440
 namespace sprint0
 {
     public class BombHUD : IHUDInventory
@@ -12,7 +12,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public int CurrentNum { get => bombNum; }
-        private int bombNumTens, bombNumOnes, bombNum;
+        private int bombNumTens, bombNumOnes, bombNumHundreds, bombNum;
         private readonly int mod = 10, xOffset = 528, yOffset = 117, reset = 0, sideLength = 8;
         private readonly List<Rectangle> sources;
 
@@ -29,8 +29,9 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, new Rectangle(Location.X, Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[mod], Color.White);
+
             if (bombNum < reset || bombNumOnes < reset) ResetNum();
+            spriteBatch.Draw(Texture, new Rectangle(Location.X, Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[bombNumHundreds], Color.White);
             spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[bombNumTens], Color.White);
             spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + 2 * sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[bombNumOnes], Color.White);
         }
@@ -40,6 +41,7 @@ namespace sprint0
             if (bombNum < reset) ResetNum();
             bombNumTens = bombNum / mod;
             bombNumOnes = bombNum % mod;
+            CheckHundreds();
         }
 
         public void ChangeNum(int change)
@@ -64,6 +66,20 @@ namespace sprint0
             bombNum = reset;
             bombNumTens = bombNum;
             bombNumOnes = bombNum;
+            bombNumHundreds = mod;
+        }
+
+        private void CheckHundreds()
+        {
+            if (bombNum > 99)
+            {
+                bombNumHundreds = bombNum / (mod * mod);
+                bombNumTens %= mod;
+            }
+            else
+            {
+                bombNumHundreds = mod;
+            }
         }
     }
 }

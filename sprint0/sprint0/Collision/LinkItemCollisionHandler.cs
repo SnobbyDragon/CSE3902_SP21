@@ -20,7 +20,7 @@ namespace sprint0
             {
                 CheckItemIncrement(item, link);
                 CheckItemAB(item, link);
-                room.LoadLevel.RoomSound.AddSoundEffect("get item");
+                room.RoomSound.AddSoundEffect("get item");
                 if (item.PickedUpDuration == -1)
                 {
                     link.PickUpItem();
@@ -28,7 +28,7 @@ namespace sprint0
                     int itemY = (int)link.Pos.Y - item.Location.Height;
                     item.Location = new Rectangle(itemX, itemY, item.Location.Width, item.Location.Height);
                     item.PickedUpDuration = 0;
-                    room.LoadLevel.RoomSound.AddSoundEffect("new item");
+                    room.RoomSound.AddSoundEffect("new item");
                 }
                 else
                 {
@@ -40,8 +40,8 @@ namespace sprint0
         private void CheckItemIncrement(IItem item, IPlayer link)
         {
 
-            if (item is Key || item is BombItem) room.LoadLevel.RoomSound.AddSoundEffect("get key");
-            if (item is Rupee || item is BlueRupee) room.LoadLevel.RoomSound.AddSoundEffect("get rupee");
+            if (item is Key || item is BombItem) room.RoomSound.AddSoundEffect("get key");
+            if (item is Rupee || item is BlueRupee) room.RoomSound.AddSoundEffect("get rupee");
             link.IncrementItem(item.PlayerItems);
         }
 
