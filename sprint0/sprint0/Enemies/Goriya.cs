@@ -9,7 +9,7 @@ namespace sprint0
     {
         private Room room;
         private int throwCounter;
-        private readonly int throwMax = 50;
+        private readonly int throwMax = 100;
         public Goriya(Texture2D texture, Vector2 location, string goriyaColor, Game1 game) : base(texture, location, game)
         {
             health = 50;
@@ -35,21 +35,6 @@ namespace sprint0
         private void UseBoomerang()
         {
             Vector2 offsetPos = Location.Location.ToVector2();
-            switch (this.direction)
-            {
-                case Direction.n:
-                    offsetPos += new Vector2(3, 0);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2( 5, 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2( 16,  6);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(0,  6);
-                    break;
-            }
             room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, this.direction, "boomerang", this);
             room.RoomSound.AddSoundEffect("boomerang");
         }
