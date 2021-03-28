@@ -49,7 +49,6 @@
     <Block ObjectName="water" LocationX="480" LocationY="420" />?
    
     
-    <Item ObjectName="key" LocationX="280" LocationY="260" />?
 
     <Enemy ObjectName="red goriya" LocationX="360" LocationY="260" />?
     <Enemy ObjectName="red goriya" LocationX="360" LocationY="220" />?

@@ -11,21 +11,21 @@ namespace sprint0
 
         private readonly Random rand = new Random();
         private readonly Dictionary<string, string[]> enemyItemMap = new Dictionary<string, string[]> {
-            {"Gel", new string[] { "", "heart container", "rupee", "key" } },
-            {"Goriya",new string[] { "" } },
-            {"Keese",new string[] { "" } },
-            {"Snake",new string[] { "" } },
-            {"Stalfos",new string[] { "" } },
-            {"Wallmaster",new string[] { "" } },
+            {"Gel", new string[] { "", "arrow", "rupee"} },
+            {"Goriya",new string[] { "","rupee" , "bomb"} },
+            {"Keese",new string[] { "", "rupee", "meat" } },
+            {"Snake",new string[] { "", "raft", "stepladder", "rupee" ,"fairy"} },
+            {"Stalfos",new string[] { "", "rupee", "clock", "potion", "bomb" , "meat"} },
+            {"Wallmaster",new string[] { "","compass", "potion", "rupee", "clock", "ring", "meat" } },
             {"Zol",new string[] { "" } },
             {"Aquamentus",new string[] { "heart container" } },
-            {"Digdogger",new string[] { "" } },
-            {"Dodongo",new string[] { "" } },
-            {"Ganon",new string[] { "" } },
-            {"Gleeok",new string[] { "" } },
-            {"Ghoma",new string[] { "" } },
-            {"Manhandla",new string[] { "" } },
-            {"Patra",new string[] { "" } },
+            {"Digdogger",new string[] { "" , "blue rupee", "rupee"} },
+            {"Dodongo",new string[] { "", "raft", "flute", "book of magic", "bomb" } },
+            {"Ganon",new string[] { "", "white sword", "blue rupee","magical key","flute", "blue potion" } },
+            {"Gleeok",new string[] { "", "stepladder", "clock","blue rupee", "rupee" } },
+            {"Gohma",new string[] { "", "power bracelet", "book of magic", "meat", "raft" } },
+            {"Manhandla",new string[] { "", "blue candel", "blue potion", "blue rupee", "magical rod", "magical sword" } },
+            {"Patra",new string[] { "","blue ring", "blue candel","blue map","blue potion", "blue rupee" } },
         };
         private RoomItems roomItems;
 
