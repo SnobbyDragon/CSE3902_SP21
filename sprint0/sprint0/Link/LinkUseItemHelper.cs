@@ -1,40 +1,43 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
-
+// Updated: 3/28/21 by he.1528
 namespace sprint0
 {
     class LinkUseItemHelper
     {
         private readonly Room room;
         private readonly IPlayer link;
+        private readonly List<Vector2> swordOffsets;
+        private readonly List<Vector2> arrowOffsets;
+        private readonly List<Vector2> boomerangOffsets;
+        private readonly List<Vector2> bombOffsets;
 
         public LinkUseItemHelper(Room room, IPlayer link)
         {
             this.room = room;
             this.link = link;
+            swordOffsets = new List<Vector2>()
+            {
+                new Vector2(8, 0), new Vector2(12, 16), new Vector2(Game1.BorderThickness, 15), new Vector2(0, 15)
+            };
+            arrowOffsets = new List<Vector2>()
+            {
+                new Vector2(6, -11), new Vector2(6, 16), new Vector2(16, 0), new Vector2(0, 0)
+            };
+            boomerangOffsets = new List<Vector2>()
+            {
+                new Vector2(3, 0), new Vector2(5, 16), new Vector2(16, 6), new Vector2(0, 6),
+            };
+            bombOffsets = new List<Vector2>()
+            {
+                new Vector2(3, -16), new Vector2(5, 16), new Vector2(16, 0), new Vector2(-10, 0)
+            };
         }
 
         public void UseSword(bool beam)
         {
             link.State.HandleSword();
-            Vector2 offsetPos = link.Pos;
-            switch (link.Direction)
-            {
-                case Direction.n:
-                    offsetPos = new Vector2(link.Pos.X + 8, link.Pos.Y);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2(link.Pos.X + 12, link.Pos.Y + 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2(link.Pos.X + Game1.BorderThickness, link.Pos.Y + 15);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(link.Pos.X, link.Pos.Y + 15);
-                    break;
-            }
+            Vector2 offsetPos = link.Pos + swordOffsets[(int)link.Direction];
             room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, "sword", link);
             room.RoomSound.AddSoundEffect("sword slash");
             if (beam)
@@ -66,66 +69,21 @@ namespace sprint0
 
         private void UseArrow()
         {
-            Vector2 offsetPos = link.Pos;
-            switch (link.Direction)
-            {
-                case Direction.n:
-                    offsetPos = new Vector2(link.Pos.X + 6, link.Pos.Y - 11);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2(link.Pos.X + 6, link.Pos.Y + 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2(link.Pos.X + 16, link.Pos.Y);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(link.Pos.X, link.Pos.Y);
-                    break;
-            }
+            Vector2 offsetPos = link.Pos + arrowOffsets[(int)link.Direction];
             room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, "arrow", link);
             room.RoomSound.AddSoundEffect("arrow");
         }
 
         private void UseBomb()
         {
-            Vector2 offsetPos = link.Pos;
-            switch (link.Direction)
-            {
-                case Direction.n:
-                    offsetPos = new Vector2(link.Pos.X + 3, link.Pos.Y - 16);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2(link.Pos.X + 5, link.Pos.Y + 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2(link.Pos.X + 16, link.Pos.Y);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(link.Pos.X - 10, link.Pos.Y);
-                    break;
-            }
+            Vector2 offsetPos = link.Pos + bombOffsets[(int)link.Direction];
             room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, "bomb", link);
             room.RoomSound.AddSoundEffect("use bomb");
         }
 
         private void UseBoomerang()
         {
-            Vector2 offsetPos = link.Pos;
-            switch (link.Direction)
-            {
-                case Direction.n:
-                    offsetPos = new Vector2(link.Pos.X + 3, link.Pos.Y);
-                    break;
-                case Direction.s:
-                    offsetPos = new Vector2(link.Pos.X + 5, link.Pos.Y + 16);
-                    break;
-                case Direction.e:
-                    offsetPos = new Vector2(link.Pos.X + 16, link.Pos.Y + 6);
-                    break;
-                case Direction.w:
-                    offsetPos = new Vector2(link.Pos.X, link.Pos.Y + 6);
-                    break;
-            }
+            Vector2 offsetPos = link.Pos + boomerangOffsets[(int)link.Direction];
             room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, "boomerang", link);
             room.RoomSound.AddSoundEffect("boomerang");
         }
@@ -138,4 +96,3 @@ namespace sprint0
         }
     }
 }
-

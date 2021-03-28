@@ -4,16 +4,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 //Author: Hannah Johnson and co
 /*
- * Last updated: 3/14/21 by shah.1440
+ * Last updated: 3/28/21 by he.1528
  */
 namespace sprint0
 {
     public class ProjectileSpriteFactory
     {
         private readonly Texture2D texture1, texture2, texture3;
-
+        private readonly Game1 game;
         public ProjectileSpriteFactory(Game1 game)
         {
+            this.game = game;
             texture1 = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
             texture2 = game.Content.Load<Texture2D>("Images/Link");
             texture3 = game.Content.Load<Texture2D>("Images/DungeonEnemies");
@@ -23,9 +24,9 @@ namespace sprint0
         {
             return spriteType switch
             {
-                "boomerang" => new Boomerang(texture3, location, dir, shooter),
-                "arrow" => new Arrow(texture1, location, dir, shooter),
-                "sword beam" => new SwordBeam(texture2, location, dir, shooter),
+                "boomerang" => new Boomerang(texture3, location, dir, shooter, game.Room),
+                "arrow" => new Arrow(texture1, location, dir, shooter, game.Room),
+                "sword beam" => new SwordBeam(texture2, location, dir, shooter, game.Room),
                 "flame" => new FlameProjectile(texture2, location, dir, shooter),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
