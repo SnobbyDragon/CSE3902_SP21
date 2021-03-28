@@ -40,7 +40,7 @@
     <Block ObjectName="block" LocationX="400" LocationY="420" />?  
     <Block ObjectName="block" LocationX="480" LocationY="420" />? 
     
-    <Item ObjectName="key" LocationX="416" LocationY="462" Direction="North" Lifespan="0" />?
+    
     
     <Enemy ObjectName="wallmaster" LocationX="160" LocationY="220" />? 
     <Enemy ObjectName="wallmaster" LocationX="200" LocationY="220" />? 

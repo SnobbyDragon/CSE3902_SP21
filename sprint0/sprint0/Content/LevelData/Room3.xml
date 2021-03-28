@@ -76,7 +76,7 @@
     <Enemy ObjectName="stalfos" LocationX="320" LocationY="260" />?
     <Enemy ObjectName="stalfos" LocationX="320" LocationY="380" />?
 
-    <Item ObjectName="key" LocationX="520" LocationY="340" />?
+   
      <Player ObjectName="Link" LocationX="310" LocationY="220" />?
 
 ?</XnaContent>
