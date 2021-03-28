@@ -21,7 +21,7 @@ namespace sprint0
         protected readonly Random rand;
         protected readonly Game1 game;
         protected int damageTimer = 0;
-        private ItemSpawner itemSpawner;
+        private readonly ItemSpawner itemSpawner;
 
         public AbstractEnemy(Texture2D texture, Vector2 location, Game1 game)
         {

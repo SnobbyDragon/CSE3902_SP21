@@ -6,10 +6,11 @@ namespace sprint0
 {
     public class GanonAshes : ISprite
     {
-        public Rectangle Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Rectangle Location { get; set; }
 
-        public GanonAshes()
+        public GanonAshes(Texture2D texture, Vector2 location)
         {
+
         }
 
         public void Draw(SpriteBatch spriteBatch)

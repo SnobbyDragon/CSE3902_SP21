@@ -13,13 +13,14 @@ namespace sprint0
         public RoomNPCs RoomNPCs { get => roomNPCs; }
         public RoomEnemies RoomEnemies { get => roomEnemies; }
         public RoomSprite RoomSprite { get => roomSprite; }
-        private RoomProjectile roomProjectile;
-        private RoomWeapon roomWeapon;
-        private RoomBlocks roomBlocks;
-        private RoomItems roomItems;
-        private RoomNPCs roomNPCs;
-        private RoomEnemies roomEnemies;
-        private RoomSprite roomSprite;
+        private readonly RoomProjectile roomProjectile;
+        private readonly RoomWeapon roomWeapon;
+        private readonly RoomBlocks roomBlocks;
+        private readonly RoomItems roomItems;
+        private readonly RoomNPCs roomNPCs;
+        private readonly RoomEnemies roomEnemies;
+        private readonly RoomSprite roomSprite;
+
         public LoadLevel(Game1 game)
         {
             roomProjectile = new RoomProjectile(game);

@@ -7,6 +7,9 @@ namespace sprint0
 {
     public class Keese : AbstractEnemy
     {
+        private readonly Dictionary<string, List<Rectangle>> colorMap;
+        private readonly string color;
+
         public Keese(Texture2D texture, Vector2 location, string keeseColor, Game1 game) : base(texture, location, game)
         {
             dirChangeDelay = 5;
