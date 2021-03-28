@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
+//Last updated 3/28 by Hannah
 namespace sprint0
 {
     public class Gleeok : IEnemy
@@ -15,7 +16,7 @@ namespace sprint0
         private readonly List<Rectangle> sources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
-        private List<IEnemy> neck1, neck2;
+        private List<IEnemy> necks;
         private int health;
         public int Damage { get => 0; }
         private ItemSpawner itemSpawner;
@@ -32,41 +33,30 @@ namespace sprint0
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
             sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height));
 
-            neck1 = GenerateNeck();
-            neck2 = GenerateNeck();
+            necks = new List<IEnemy>() {
+                new GleeokNeck(Texture, game,Location),
+                new GleeokNeck(Texture, game,Location),
+            };
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
-        private List<IEnemy> GenerateNeck()
-        {
-            List<IEnemy> neck = new List<IEnemy>();
-            Vector2 anchor = Location.Location.ToVector2() + new Vector2(Location.Width / 3, (float)(Location.Height * 0.8));
-            IEnemy head = new GleeokHead(Texture, anchor, game);
-            for (int i = 0; i < 4; i++)
-            {
-                neck.Add(new GleeokNeck(Texture, anchor, head, i));
-            }
-            neck.Add(head);
-            return neck;
-        }
+        
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
-            foreach (IEnemy sprite in neck1)
+            foreach (IEnemy sprite in necks)
                 sprite.Draw(spriteBatch);
-            foreach (IEnemy sprite in neck2)
-                sprite.Draw(spriteBatch);
+            
         }
 
         public void Update()
         {
             CheckHealth();
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            foreach (IEnemy sprite in neck1)
+            foreach (IEnemy sprite in necks)
                 sprite.Update();
-            foreach (IEnemy sprite in neck2)
-                sprite.Update();
+           
         }
 
         public void ChangeDirection()
@@ -75,7 +65,11 @@ namespace sprint0
 
         private void CheckHealth()
         {
-            if (health < 0) Perish();
+            int countDeadNecks = 0;
+            foreach (GleeokNeck neck in necks) {
+                if(neck.IsDead()) countDeadNecks++;
+            }
+            if ((health < 0 && countDeadNecks == necks.Count) || countDeadNecks==necks.Count) Perish();
         }
 
         public void TakeDamage(int damage)
