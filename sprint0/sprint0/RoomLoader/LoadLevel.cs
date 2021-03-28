@@ -25,7 +25,7 @@ namespace sprint0
             roomProjectile = new RoomProjectile(game);
             roomWeapon = new RoomWeapon(game);
             roomBlocks = new RoomBlocks();
-            roomItems = new RoomItems();
+            roomItems = new RoomItems(game);
             roomNPCs = new RoomNPCs();
             roomEnemies = new RoomEnemies(game);
             roomSprite = new RoomSprite(game);
@@ -44,6 +44,7 @@ namespace sprint0
         public void RemoveDead()
         {
             roomEnemies.EnemySpawnUpdate();
+            roomItems.ItemSpawnUpdate();
             roomEnemies.RemoveDead();
             roomWeapon.RemoveDead();
             roomProjectile.RemoveDead();

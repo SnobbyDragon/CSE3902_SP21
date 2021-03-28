@@ -28,6 +28,7 @@ namespace sprint0
         private readonly Game1 game;
         private int health;
         public int Damage { get => 2; }
+        private ItemSpawner itemSpawner;
 
         public Digdogger(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -54,6 +55,7 @@ namespace sprint0
             GenerateDest();
             moveCounter = 0;
             moveDelay = 4;
+            itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
         public void SwitchSpikeDir()
@@ -126,6 +128,7 @@ namespace sprint0
 
         public void Perish()
         {
+            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }

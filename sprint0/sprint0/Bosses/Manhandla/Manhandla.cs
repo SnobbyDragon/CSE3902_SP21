@@ -18,6 +18,8 @@ namespace sprint0
         private Vector2 destination;
         private readonly Random rand;
         public int Damage { get => 2; }
+        private ItemSpawner itemSpawner;
+
 
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -38,6 +40,7 @@ namespace sprint0
 
             rand = new Random();
             GenerateDest();
+            itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -104,6 +107,7 @@ namespace sprint0
 
         public void Perish()
         {
+            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }
