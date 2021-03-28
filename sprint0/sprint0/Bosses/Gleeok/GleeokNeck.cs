@@ -1,74 +1,94 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-// Author: Angela Li
+// Author: Hannah Johnson
 namespace sprint0
 {
     public class GleeokNeck : IEnemy
     {
+        private Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private Rectangle source;
-        private IEnemy head;
-        private int segmentNumber;
-        private Vector2 anchor;
-        private Random rand;
-        private readonly int xWiggleLimit = 2, yWiggleLimit = 1, wiggleDelay = 20;
-        private int xWiggle, yWiggle, wiggleCount;
-        private readonly int width = 8, height = 12;
+        private List<IEnemy> neck;
         public int Damage { get => 0; }
+        private bool isDead;
 
-        public GleeokNeck(Texture2D texture, Vector2 anchor, IEnemy head, int segmentNumber)
+        public GleeokNeck(Texture2D texture, Game1 game,Rectangle location)
         {
+            isDead = false;
             Texture = texture;
-            source = new Rectangle(271, 13, width, height);
-            this.head = head;
-            this.segmentNumber = segmentNumber;
-            this.anchor = anchor;
-            rand = new Random();
-            wiggleCount = rand.Next(0, 20);
-            xWiggle = yWiggle = 0;
+            this.game = game;
+            Location = location;
+            neck = new List<IEnemy>();
+            Vector2 anchor = Location.Location.ToVector2() + new Vector2(Location.Width / 3, (float)(Location.Height * 0.8));
+            IEnemy head = new GleeokHead(Texture, anchor, game);
+            for (int i = 0; i < 4; i++)
+            {
+                neck.Add(new GleeokNeckpeice(Texture, anchor, head, i, game));
+            }
+            neck.Add(head);
+            game.Room.LoadLevel.RoomEnemies.RegisterEnemies(neck);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
+            
         }
 
         public void Update()
         {
-            Vector2 dist = head.Location.Location.ToVector2() - anchor;
-            Vector2 loc = anchor + dist / 4 * segmentNumber;
-            Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-            if (segmentNumber > 0)
-            {
-                Rectangle loc2 = Location;
-                loc2.Offset(xWiggle, yWiggle);
-                Location = loc2;
-                if (wiggleCount == wiggleDelay)
-                {
-                    xWiggle = rand.Next(-xWiggleLimit, xWiggleLimit);
-                    yWiggle = rand.Next(-yWiggleLimit, yWiggleLimit);
-                    wiggleCount = 0;
-                }
-                else
-                {
-                    wiggleCount++;
-                }
-            }
+            CheckHealth();
+           
         }
 
         public void ChangeDirection()
         {
         }
 
-        public void TakeDamage(int damage)
+        private void CheckHealth()
         {
+            int neckHealth = 0;
+            foreach (IEnemy neckpeice1 in neck)
+            {
+                if (neckpeice1 is GleeokHead)
+                {
+                    GleeokHead head = (GleeokHead)neckpeice1;
+                    neckHealth += head.CheckHealth();
+                }
+                else if(neckpeice1 is GleeokNeckpeice)
+                {
+                    GleeokNeckpeice neckpeice = (GleeokNeckpeice)neckpeice1;
+                    neckHealth += neckpeice.CheckHealth();
+                }
+               
+                
+            }
+            if (neckHealth < 0) Perish();
+        }
+
+        public void TakeDamage(int damage)
+        { 
+        }
+
+        public bool IsDead()
+        {
+            return isDead;
         }
 
         public void Perish()
         {
+            while (neck.Count != 0)
+            {
+                IEnemy neckpeice = neck[0];
+                neck.RemoveAt(0);
+                game.Room.LoadLevel.RoomEnemies.RemoveEnemy(neckpeice);
+            }
+            isDead = true;
         }
+
+           
+        
     }
 }

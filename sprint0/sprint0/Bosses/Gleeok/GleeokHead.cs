@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 //Updated: 03/26/21 by shah.1440
+//Last updated 3/28 by Hannah
 namespace sprint0
 {
     public class GleeokHead : IEnemy
@@ -92,9 +93,9 @@ namespace sprint0
         {
         }
 
-        private void CheckHealth()
+        public int CheckHealth()
         {
-            if (health < 0) Perish();
+            return health;
         }
 
         public void TakeDamage(int damage)
@@ -105,8 +106,7 @@ namespace sprint0
 
         public void Perish()
         {
-            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.RoomSound.AddSoundEffect("enemy death");
+            
         }
 
         private bool CanShoot()
