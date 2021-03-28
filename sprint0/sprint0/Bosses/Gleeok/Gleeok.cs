@@ -18,6 +18,7 @@ namespace sprint0
         private List<IEnemy> neck1, neck2;
         private int health;
         public int Damage { get => 0; }
+        private ItemSpawner itemSpawner;
 
         public Gleeok(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -33,6 +34,7 @@ namespace sprint0
 
             neck1 = GenerateNeck();
             neck2 = GenerateNeck();
+            itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
         private List<IEnemy> GenerateNeck()
@@ -79,13 +81,14 @@ namespace sprint0
         public void TakeDamage(int damage)
         {
             health -= damage;
-            game.Room.AddSoundEffect("enemy damaged");
+            game.Room.RoomSound.AddSoundEffect("enemy damaged");
         }
 
         public void Perish()
         {
-            game.Room.RemoveEnemy(this);
-            game.Room.AddSoundEffect("enemy death");
+            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
+            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.RoomSound.AddSoundEffect("enemy death");
         }
     }
 }

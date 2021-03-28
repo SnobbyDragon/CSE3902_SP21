@@ -21,6 +21,7 @@ namespace sprint0
         protected readonly Random rand;
         protected readonly Game1 game;
         protected int damageTimer = 0;
+        private ItemSpawner itemSpawner;
 
         public AbstractEnemy(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -29,6 +30,7 @@ namespace sprint0
             health = 50;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
+            itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);
@@ -70,15 +72,16 @@ namespace sprint0
             if (damageTimer == 0)
             {
                 health -= damage;
-                game.Room.AddSoundEffect("enemy damaged");
+                game.Room.RoomSound.AddSoundEffect("enemy damaged");
                 damageTimer = 15;
             }
         }
 
         public void Perish()
         {
-            game.Room.RemoveEnemy(this);
-            game.Room.AddSoundEffect("enemy death");
+            itemSpawner.SpawnItem(this.GetType().Name,this.Location.Location.ToVector2());
+            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.RoomSound.AddSoundEffect("enemy death");
         }
     }
 }

@@ -73,7 +73,7 @@ namespace sprint0
                 loc.Offset(moveVector);
                 Location = loc;
             }
-            else
+            else 
             {
                 alive = false;
             }

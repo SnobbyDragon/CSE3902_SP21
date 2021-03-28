@@ -12,12 +12,14 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
+        public PlayerItems Item { get; set; }
+        private readonly int xOffset = 258, yOffset = 11;
 
         public HUD(Texture2D texture, Vector2 location)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, 0, 0);
             Texture = texture;
-            source = new Rectangle(258, 11, Game1.Width, Game1.HUDHeight);
+            source = new Rectangle(xOffset, yOffset, Game1.Width, Game1.HUDHeight);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -28,7 +30,7 @@ namespace sprint0
         public void Update()
         {
         }
-        public void SetItem(String item)
+        public void SetItem(PlayerItems item)
         {
         }
     }

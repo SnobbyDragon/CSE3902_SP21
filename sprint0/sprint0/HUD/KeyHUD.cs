@@ -11,7 +11,8 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private int keyNumTens, keyNumOnes, keyNum;
+        private int keyNumTens, keyNumOnes, keyNumHundreds, keyNum;
+        public int CurrentNum { get => keyNum; }
         private readonly int xOffset = 528, yOffset = 117, reset = 0, mod = 10;
         private readonly List<Rectangle> sources;
         private readonly int sideLength = 8;
@@ -28,7 +29,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[10], Color.White);
+            spriteBatch.Draw(Texture, new Rectangle((int)Location.X, (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[keyNumHundreds], Color.White);
             spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[keyNumTens], Color.White);
             spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + 2 * sideLength * Game1.Scale), (int)Location.Y, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[keyNumOnes], Color.White);
         }
@@ -37,30 +38,22 @@ namespace sprint0
         {
             keyNumTens = keyNum / mod;
             keyNumOnes = keyNum % mod;
+            CheckHundreds();
         }
 
         public void ChangeNum(int change)
         {
-            if ((keyNum += change) >= reset)
-            {
-                Update();
-            }
-            else ResetNum();
+            if ((keyNum += change) < reset) ResetNum();
         }
 
         public void Increment()
         {
             keyNum++;
-            Update();
         }
 
         public void Decrement()
         {
-            if (keyNum-- >= reset)
-            {
-                Update();
-            }
-            else ResetNum();
+            if (keyNum-- < reset) ResetNum();
         }
 
         public void ResetNum()
@@ -68,6 +61,20 @@ namespace sprint0
             keyNum = reset;
             keyNumTens = keyNum;
             keyNumOnes = keyNum;
+            keyNumHundreds = mod;
+        }
+
+        private void CheckHundreds()
+        {
+            if (keyNum > 99)
+            {
+                keyNumHundreds = keyNum / (mod * mod);
+                keyNumTens %= mod;
+            }
+            else
+            {
+                keyNumHundreds = mod;
+            }
         }
     }
 }

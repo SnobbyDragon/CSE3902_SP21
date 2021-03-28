@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 /*
- * Last updated: 3/14/21 by li.10011
+ * Last updated: 3/26/21 by shah.1440
  */
 namespace sprint0
 {
@@ -30,6 +30,7 @@ namespace sprint0
         private int fireballCounter = 0;
         private int health;
         public int Damage { get; }
+        private ItemSpawner itemSpawner;
 
 
         public Aquamentus(Texture2D texture, Vector2 location, Game1 game)
@@ -48,6 +49,7 @@ namespace sprint0
             moveCount = 0;
 
             isDead = false;
+            itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -104,13 +106,14 @@ namespace sprint0
         public void TakeDamage(int damage)
         {
             health -= damage;
-            game.Room.AddSoundEffect("enemy damaged");
+            game.Room.RoomSound.AddSoundEffect("enemy damaged");
         }
 
         public void Perish()
         {
-            game.Room.RemoveEnemy(this);
-            game.Room.AddSoundEffect("enemy death");
+            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
+            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.RoomSound.AddSoundEffect("enemy death");
         }
 
         private bool CanShoot()
@@ -122,12 +125,12 @@ namespace sprint0
 
         private void ShootFireballs()
         {
-            game.Room.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
             Vector2 dir = Link.position - Location.Center.ToVector2();
             dir.Normalize();
-            game.Room.AddFireball(Location.Center.ToVector2(), dir, this);
-            game.Room.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))), this); // 30 degrees up
-            game.Room.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))), this); // 30 degrees down
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))), this); // 30 degrees up
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))), this); // 30 degrees down
         }
     }
 }

@@ -20,6 +20,7 @@
 <Item ObjectName="key" LocationX="416" LocationY="462" />?
     
     <Boss ObjectName="blue gohma" LocationX="200" LocationY="300" />? 
+    <Item ObjectName="stepladder" LocationX="350" LocationY="350" />? 
     
     <Player ObjectName="Link" LocationX="520" LocationY="340" />?
     

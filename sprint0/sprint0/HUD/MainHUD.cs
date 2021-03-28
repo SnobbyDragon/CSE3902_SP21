@@ -4,34 +4,44 @@ using System;
 using System.Collections.Generic;
 
 //Author: Stuti Shah
-//Updated: 03/15/21 by shah.1440
+//Updated: 03/24/21 by shah.1440
 namespace sprint0
 {
     public class MainHUD
     {
         private readonly HUDFactory hudFactory;
-        private List<IHUD> hudMainItems;
+        private Dictionary<PlayerItems, IHUD> hudMainItems;
 
         public MainHUD(Game1 game)
         {
             hudFactory = new HUDFactory(game);
         }
 
-        public List<IHUD> PopulateMainHUD()
+        public void PopulateMainHUD()
         {
-            hudMainItems = new List<IHUD>
+            hudMainItems = new Dictionary<PlayerItems, IHUD>
             {
-                hudFactory.MakeHUD("hud", new Vector2(0,0)),
-                hudFactory.MakeHUD("hudA", new Vector2(0,0)),
-                hudFactory.MakeHUD("hudB", new Vector2(0,0)),
+                {PlayerItems.HUD, hudFactory.MakeHUD("hud", new Vector2(0,0)) },
+                {PlayerItems.AItem, hudFactory.MakeHUD("hudA", new Vector2(0,0)) },
+                {PlayerItems.BItem, hudFactory.MakeHUD("hudB", new Vector2(0,0)) },
             };
-            return hudMainItems;
         }
 
-        public void DrawMainHUD(List<IHUD> hudItems, SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (IHUD hudElement in hudItems)
-                hudElement.Draw(spriteBatch);
+            foreach (KeyValuePair<PlayerItems, IHUD> hudElement in hudMainItems)
+                hudElement.Value.Draw(spriteBatch);
+        }
+
+        public PlayerItems GetItem(PlayerItems item)
+        {
+            if (hudMainItems.ContainsKey(item)) return hudMainItems[item].Item;
+            else return PlayerItems.None;
+        }
+
+        public void SetItem(PlayerItems source, PlayerItems newItem)
+        {
+            if (hudMainItems.ContainsKey(source)) hudMainItems[source].SetItem(newItem);
         }
     }
 }

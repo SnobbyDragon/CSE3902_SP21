@@ -17,7 +17,7 @@ namespace sprint0
         private readonly int xOffset = 72, yOffset = 0, width = 8, height = 16;
         private int currFrame;
         private readonly int totalFrames = 2, repeatedFrames = 8;
-        private ManageHUDInventory manageHUDInventory;
+        public PlayerItems PlayerItems { get => PlayerItems.BlueRupee; }
 
         public BlueRupee(Texture2D texture, Vector2 location)
         {
@@ -38,26 +38,6 @@ namespace sprint0
         {
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             if (PickedUpDuration >= 0) PickedUpDuration++;
-        }
-
-        public void GetPopulate(ManageHUDInventory HUDInventory)
-        {
-            manageHUDInventory = HUDInventory;
-        }
-
-        public void Increment()
-        {
-            manageHUDInventory.IncrementItem(HUDItems.Rupee);
-        }
-
-        public void Decrement()
-        {
-            manageHUDInventory.DecrementItem(HUDItems.Rupee);
-        }
-
-        public void ChangeNum(int num)
-        {
-            manageHUDInventory.ChangeNum(HUDItems.Rupee, num);
         }
     }
 }

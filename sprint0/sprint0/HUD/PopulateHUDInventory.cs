@@ -4,18 +4,14 @@ using System;
 using System.Collections.Generic;
 
 //Author: Stuti Shah
-//Updated: 03/15/21 by shah.1440
+//Updated: 03/24/21 by shah.1440
 namespace sprint0
 {
-    public enum HUDItems
-    {
-        Key, Rupee, Bomb, Heart
-    }
 
     public class PopulateHUDInventory
     {
         private readonly HUDFactory hudFactory;
-        private Dictionary<HUDItems, IHUDInventory> inventory;
+        private Dictionary<PlayerItems, IHUDInventory> inventory;
 
         public PopulateHUDInventory(Game1 game)
         {
@@ -24,35 +20,49 @@ namespace sprint0
 
         public void PopulateInventoryHUD()
         {
-            inventory = new Dictionary<HUDItems, IHUDInventory>()
+            inventory = new Dictionary<PlayerItems, IHUDInventory>()
             {
-                {HUDItems.Bomb, hudFactory.MakeHUDItem("bomb inventory", new Vector2(0,0))},
-                {HUDItems.Key,hudFactory.MakeHUDItem("key inventory", new Vector2(0,0))},
-                {HUDItems.Rupee, hudFactory.MakeHUDItem("rupee inventory", new Vector2(0,0))},
-                {HUDItems.Heart, hudFactory.MakeHUDItem("heart", new Vector2(0,0))}
+                {PlayerItems.Bomb, hudFactory.MakeHUDItem("bomb inventory", new Vector2(0,0))},
+                {PlayerItems.Key,hudFactory.MakeHUDItem("key inventory", new Vector2(0,0))},
+                {PlayerItems.Rupee, hudFactory.MakeHUDItem("rupee inventory", new Vector2(0,0))},
+                {PlayerItems.Heart, hudFactory.MakeHUDItem("heart", new Vector2(0,0))}
             };
         }
 
         public void DrawItemHUD(SpriteBatch spriteBatch)
         {
-            foreach (KeyValuePair<HUDItems, IHUDInventory> hudElement in inventory)
+            foreach (KeyValuePair<PlayerItems, IHUDInventory> hudElement in inventory)
             {
                 hudElement.Value.Draw(spriteBatch);
             }
         }
 
-        public Dictionary<HUDItems, IHUDInventory> GetInventory()
+        public void Update()
         {
-            return inventory;
+            foreach (KeyValuePair<PlayerItems, IHUDInventory> hudElement in inventory)
+            {
+                hudElement.Value.Update();
+            }
         }
 
-        public void AddHUDFunction(IItem item, ManageHUDInventory manage)
+        public void IncrementItem(PlayerItems item)
         {
-            if (item is Key key) key.GetPopulate(manage);
-            else if (item is BombItem bomb) bomb.GetPopulate(manage);
-            else if (item is Rupee rupee) rupee.GetPopulate(manage);
-            else if (item is BlueRupee blueRupee) blueRupee.GetPopulate(manage);
+            if (inventory.ContainsKey(item)) inventory[item].Increment();
         }
 
+        public void DecrementItem(PlayerItems item)
+        {
+            if (inventory.ContainsKey(item)) inventory[item].Decrement();
+        }
+
+        public void ChangeNum(PlayerItems item, int num)
+        {
+            if (inventory.ContainsKey(item)) inventory[item].ChangeNum(num);
+        }
+
+        public int GetNum(PlayerItems item)
+        {
+            return inventory[item].CurrentNum;
+        }
     }
 }

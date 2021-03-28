@@ -14,6 +14,7 @@ namespace sprint0
         private readonly int width, height;
         private Rectangle source;
         private readonly int maxPickedUpDuration = 40;
+        public PlayerItems PlayerItems { get => PlayerItems.Arrow; }
 
         public ArrowItem(Texture2D texture, Vector2 location)
         {

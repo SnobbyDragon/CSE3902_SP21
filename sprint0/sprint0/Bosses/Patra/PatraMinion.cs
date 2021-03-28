@@ -26,7 +26,7 @@ namespace sprint0
         public PatraMinion(Texture2D texture, IEnemy center, int angle, Game1 game)
         {
             this.game = game;
-            health = 25;
+            health = 3;
             Texture = texture;
             currFrame = 0;
             totalFrames = 2;
@@ -50,6 +50,7 @@ namespace sprint0
 
         public void Update()
         {
+            CheckHealth();
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames); // animate flying
             Vector2 loc = center.Location.Center.ToVector2() + new Vector2((float)(distance * Math.Cos(DegreesToRadians(angle)) - (width * Game1.Scale * .5)), (float)(distance * Math.Sin(DegreesToRadians(angle)) - (height * Game1.Scale * .5)));
             Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
@@ -87,21 +88,22 @@ namespace sprint0
             // not necessary
         }
 
-        private void CheckHealth()
+        public int CheckHealth()
         {
-            if (health < 0) Perish();
+            if (health < 0) { Perish(); }
+            return health;
         }
 
         public void TakeDamage(int damage)
         {
             health -= damage;
-            game.Room.AddSoundEffect("enemy damaged");
+            game.Room.RoomSound.AddSoundEffect("enemy damaged");
         }
 
         public void Perish()
         {
-            game.Room.RemoveEnemy(this);
-            game.Room.AddSoundEffect("enemy death");
+            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.RoomSound.AddSoundEffect("enemy death");
         }
 
         // keeps timings for expansions

@@ -25,6 +25,7 @@ namespace sprint0
         private int fireballCounter = 0;
         private int health;
         public int Damage { get => 8; }
+        private ItemSpawner itemSpawner;
 
         public Ganon(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -54,6 +55,8 @@ namespace sprint0
                 new GanonFireball(texture,location, "right", this),
                 new GanonFireball(texture, location,"up right", this)
             };
+            itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -137,13 +140,14 @@ namespace sprint0
         {
             health -= damage;
             isVisible = true;
-            game.Room.AddSoundEffect("enemy damaged");
+            game.Room.RoomSound.AddSoundEffect("enemy damaged");
         }
 
         public void Perish()
         {
-            game.Room.RemoveEnemy(this);
-            game.Room.AddSoundEffect("enemy death");
+            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
+            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.RoomSound.AddSoundEffect("enemy death");
         }
 
         private bool CanShoot()
@@ -155,10 +159,10 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            game.Room.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
             Vector2 dir = game.Room.Player.Pos - Location.Center.ToVector2();
             dir.Normalize();
-            game.Room.AddFireball(Location.Location.ToVector2(), dir, this);
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Location.ToVector2(), dir, this);
         }
 
         private void FireballExplosion()

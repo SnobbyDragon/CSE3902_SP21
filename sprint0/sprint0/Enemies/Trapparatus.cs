@@ -30,7 +30,7 @@ namespace sprint0
                 { Direction.nw, new Trap(Texture, center + new Vector2(-xOffset, -yOffset), game) },
                 { Direction.ne, new Trap(Texture, center + new Vector2(xOffset, -yOffset), game) }
             };
-            game.Room.RegisterEnemies(traps.Values);
+            game.Room.LoadLevel.RoomEnemies.RegisterEnemies(traps.Values);
         }
 
         public void Draw(SpriteBatch spriteBatch) { }

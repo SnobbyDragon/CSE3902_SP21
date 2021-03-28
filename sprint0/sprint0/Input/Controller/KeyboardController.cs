@@ -33,6 +33,9 @@ namespace sprint0
             RegisterCommand(Keys.D2, new TwoCommand(game));
             RegisterCommand(Keys.D3, new ThreeCommand(game));
             RegisterCommand(Keys.D4, new FourCommand(game));
+            RegisterCommand(Keys.E, new PauseCommand(game));
+            RegisterCommand(Keys.Space, new ToggleTestModeCommand(game));
+
             RegisterCommand(Keys.M, new ToggleMusicCommand(game));
             RegisterCommand(Keys.OemComma, new ToggleSoundEffectsCommand());
         }

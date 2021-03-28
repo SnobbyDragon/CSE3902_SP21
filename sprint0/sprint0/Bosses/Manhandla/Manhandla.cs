@@ -18,6 +18,8 @@ namespace sprint0
         private Vector2 destination;
         private readonly Random rand;
         public int Damage { get => 2; }
+        private ItemSpawner itemSpawner;
+
 
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -34,10 +36,11 @@ namespace sprint0
                 new ManhandlaLimb(Texture, this, Direction.w, game),
                 new ManhandlaLimb(Texture, this, Direction.e, game)
             };
-            game.Room.RegisterEnemies(limbs);
+            game.Room.LoadLevel.RoomEnemies.RegisterEnemies(limbs);
 
             rand = new Random();
             GenerateDest();
+            itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -77,11 +80,12 @@ namespace sprint0
             foreach (ManhandlaLimb limb in limbs)
             {
                 limbCount++;
-                if (limb.CheckHealth() < 0) {
+                if (limb.CheckHealth() < 0)
+                {
                     toRemove = limb;
-                } 
+                }
             }
-            if(toRemove!=null)RemoveLimb(toRemove);
+            if (toRemove != null) RemoveLimb(toRemove);
             if (limbCount == 0) Perish();
         }
 
@@ -89,11 +93,12 @@ namespace sprint0
         {
             limbs.Remove(limb1);
             //Manhandala becomes more powerful as limbs die
-            foreach (ManhandlaLimb limb in limbs) {
+            foreach (ManhandlaLimb limb in limbs)
+            {
                 limb.IncreaseFireballRate();
             }
             double speedIncreaseRate = 1.5;
-            speed*=speedIncreaseRate;
+            speed *= speedIncreaseRate;
         }
 
         public void TakeDamage(int damage)
@@ -102,13 +107,14 @@ namespace sprint0
 
         public void Perish()
         {
-            game.Room.RemoveEnemy(this);
-            game.Room.AddSoundEffect("enemy death");
+            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
+            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.RoomSound.AddSoundEffect("enemy death");
         }
 
         private void GenerateDest()
         {
-            game.Room.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))

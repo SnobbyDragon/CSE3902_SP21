@@ -11,7 +11,10 @@
 
         public void Execute()
         {
-            game.Room.Player.HandleSword();
+            if (game.hudManager.HasSword() || game.TestMode) //Take out TestMode when not needed
+            {
+                game.Room.Player.HandleSword();
+            }
         }
     }
 }

@@ -25,6 +25,8 @@ namespace sprint0
         private int fireballCounter = 0;
         private int health;
         public int Damage { get => 2; }
+        private ItemSpawner itemSpawner;
+
 
         public Gohma(Texture2D texture, Vector2 location, string color, Game1 game)
         {
@@ -72,6 +74,8 @@ namespace sprint0
             };
 
             centerOffset = new Vector2(size / 2 - 4, size / 2 - 5);
+            itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -125,13 +129,14 @@ namespace sprint0
         public void TakeDamage(int damage)
         {
             health -= damage;
-            game.Room.AddSoundEffect("enemy damaged");
+            game.Room.RoomSound.AddSoundEffect("enemy damaged");
         }
 
         public void Perish()
         {
-            game.Room.RemoveEnemy(this);
-            game.Room.AddSoundEffect("enemy death");
+            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
+            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.RoomSound.AddSoundEffect("enemy death");
         }
 
         private bool CanShoot()
@@ -143,10 +148,10 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            game.Room.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
             Vector2 dir = game.Room.Player.Pos - (Location.Location.ToVector2() + centerOffset);
             dir.Normalize();
-            game.Room.AddFireball(Location.Center.ToVector2(), dir, this);
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
         }
     }
 }
