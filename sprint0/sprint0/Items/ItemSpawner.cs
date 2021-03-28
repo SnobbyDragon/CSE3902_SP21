@@ -24,8 +24,8 @@ namespace sprint0
             {"Ganon",new string[] { "", "white sword", "blue rupee","magical key","flute", "blue potion" } },
             {"Gleeok",new string[] { "", "stepladder", "clock","blue rupee", "rupee" } },
             {"Gohma",new string[] { "", "power bracelet", "book of magic", "meat", "raft" } },
-            {"Manhandla",new string[] { "", "blue candel", "blue potion", "blue rupee", "magical rod", "magical sword" } },
-            {"Patra",new string[] { "","blue ring", "blue candel","blue map","blue potion", "blue rupee" } },
+            {"Manhandla",new string[] { "", "blue candle", "blue potion", "blue rupee", "magical rod", "magical sword" } },
+            {"Patra",new string[] { "","blue ring", "blue candle","blue map","blue potion", "blue rupee" } },
         };
         private RoomItems roomItems;
 
