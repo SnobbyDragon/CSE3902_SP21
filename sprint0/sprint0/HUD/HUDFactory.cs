@@ -42,5 +42,9 @@ namespace sprint0
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
+        public HUDMiniMap MakeMiniMap()
+        {
+            return new HUDMiniMap(game);
+        }
     }
 }

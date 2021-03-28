@@ -10,6 +10,7 @@ namespace sprint0
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
+        public List<int> VisitedRooms;
 
         public SoundFactory SoundFactory { get => soundFactory; }
         private SoundFactory soundFactory;
@@ -64,12 +65,15 @@ namespace sprint0
             ChangeRoom = true;
             PauseScreen = false;
             TestMode = false;
+            VisitedRooms = new List<int>();
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            if (!VisitedRooms.Contains(RoomIndex))
+                VisitedRooms.Add(RoomIndex);
             room = new Room(_spriteBatch, this, RoomIndex);
             room.LoadContent();
             ChangeRoom = false;
@@ -89,6 +93,7 @@ namespace sprint0
                 room.Update();
             }
             hudManager.Update();
+            pauseScreenManager.Update();
             base.Update(gameTime);
         }
 

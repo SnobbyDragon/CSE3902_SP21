@@ -12,6 +12,7 @@ namespace sprint0
         private readonly Game1 game;
         private readonly PauseScreen pauseScreen;
         private HUDInventory hudInventory;
+        private PauseScreenMap pauseScreenMap;
         public HUDInventory HUDInventory { get => hudInventory; set => hudInventory = value; }
 
         public PauseScreenManager(Game1 game)
@@ -19,17 +20,20 @@ namespace sprint0
             this.game = game;
             pauseScreen = new PauseScreen(this.game);
             hudInventory = new HUDInventory(this.game);
+            pauseScreenMap = new PauseScreenMap(this.game);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             pauseScreen.Draw(spriteBatch);
             hudInventory.Draw(spriteBatch);
+            pauseScreenMap.Draw(spriteBatch);
         }
 
         public void Update()
         {
             hudInventory.SetItem(game.hudManager.MainHUD.GetItem(PlayerItems.BItem));
+            pauseScreenMap.Update();
         }
 
         public Dictionary<PlayerItems, Rectangle> Inventory()
