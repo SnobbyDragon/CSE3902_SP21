@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 // Author: Angela Li
 namespace sprint0
 {
-    public class Wallmaster : Enemy, IEnemy
+    public class Wallmaster : AbstractEnemy
     {
 
         private readonly int xOffset = 393, yOffset = 11;
@@ -41,7 +41,7 @@ namespace sprint0
             ChangeDirection();
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), s, 0);
         }

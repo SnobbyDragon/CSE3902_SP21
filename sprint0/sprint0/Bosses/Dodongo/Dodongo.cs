@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Dodongo : Enemy, IEnemy
+    public class Dodongo : AbstractEnemy
     {
         private readonly List<Rectangle> upDownSources;
         private readonly List<Rectangle> rightLeftSources;
@@ -62,7 +62,7 @@ namespace sprint0
             eatingTime = 20;
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (direction == Direction.w || direction == Direction.e)
             {
@@ -76,7 +76,7 @@ namespace sprint0
             }
         }
 
-        public new void Update()
+        public override void Update()
         {
             moveCounter++;
             if (moveCounter == dirChangeDelay)
@@ -143,7 +143,7 @@ namespace sprint0
             }
         }
 
-        public new void ChangeDirection()
+        public override void ChangeDirection()
         {
             base.ChangeDirection();
             FaceDirection(direction);

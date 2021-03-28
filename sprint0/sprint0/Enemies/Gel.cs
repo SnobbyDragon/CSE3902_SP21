@@ -6,8 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Hannah Johnson
 namespace sprint0
 {
-    public class Gel : Enemy, IEnemy
+    public class Gel : AbstractEnemy
     {
+        private readonly Dictionary<string, List<Rectangle>> colorMap;
+        private readonly string color;
 
         public Gel(Texture2D texture, Vector2 location, Game1 gm, string gelColor) : base(texture, location, gm)
         {
@@ -35,7 +37,7 @@ namespace sprint0
             };
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);

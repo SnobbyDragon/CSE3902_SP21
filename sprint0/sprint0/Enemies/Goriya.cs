@@ -5,8 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Goriya : Enemy, IEnemy
+    public class Goriya : AbstractEnemy
     {
+        private readonly Dictionary<string, List<Rectangle>> colorMap;
+        private readonly string color;
 
         public Goriya(Texture2D texture, Vector2 location, string goriyaColor, Game1 game) : base(texture, location, game)
         {
@@ -26,6 +28,26 @@ namespace sprint0
                 { "red", SpritesheetHelper.GetFramesH(222, 11, width, height, totalFrames) },
                 { "blue", SpritesheetHelper.GetFramesH(222, 28, width, height, totalFrames) }
             };
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (damageTimer % 2 == 0)
+                switch (direction)
+                {
+                    case Direction.w:
+                        spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+                        break;
+                    case Direction.e:
+                        spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White);
+                        break;
+                    case Direction.s:
+                        spriteBatch.Draw(Texture, Location, colorMap[color][0], Color.White);
+                        break;
+                    case Direction.n:
+                        spriteBatch.Draw(Texture, Location, colorMap[color][1], Color.White);
+                        break;
+                }
         }
     }
 }

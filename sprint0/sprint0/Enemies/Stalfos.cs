@@ -6,11 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
-    public class Stalfos : Enemy, IEnemy
+    public class Stalfos : AbstractEnemy
     {
 
-        private Rectangle source;
-
+        private readonly Rectangle source;
         private readonly List<SpriteEffects> spriteEffects;
 
         public Stalfos(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
@@ -33,7 +32,7 @@ namespace sprint0
             };
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), spriteEffects[currentFrame / repeatedFrames], 0);

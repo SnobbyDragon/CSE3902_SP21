@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Keese : Enemy, IEnemy
+    public class Keese : AbstractEnemy
     {
         public Keese(Texture2D texture, Vector2 location, string keeseColor, Game1 game) : base(texture, location, game)
         {
@@ -27,7 +27,7 @@ namespace sprint0
             };
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);

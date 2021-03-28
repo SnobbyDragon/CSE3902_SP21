@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 //Authors: Stuti Shah, Hannah Johnson, Angela Li
 namespace sprint0
 {
-    public class Trap : Enemy, IEnemy
+    public class Trap : AbstractEnemy
     {
 
         private Rectangle source;
@@ -26,12 +26,12 @@ namespace sprint0
             source = new Rectangle(164, 59, width, height);
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, source, Color.White);
         }
 
-        public new void Update()
+        public override void Update()
         {
             if (IsMoving)
                 Move();
