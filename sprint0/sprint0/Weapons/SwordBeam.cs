@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace sprint0
 {
-    class SwordBeam : IProjectile
+    public class SwordBeam : IProjectile
     {
         public IEntity Shooter { get; }
         public Rectangle Location { get; set; }
@@ -15,42 +14,23 @@ namespace sprint0
         private readonly Texture2D texture;
         private readonly List<Rectangle> sources;
         private readonly Direction dir;
-        private int xa, ya = 0;
+        private Vector2 adjust;
         private int width, height;
-        private int lifespan = 20;
-        private int currFrame, totalFrames;
-        private readonly int repeatedFrames;
-        private int age = 0;
-
-        private readonly List<Rectangle> explodeSources;
+        private int currFrame = 0;
+        private readonly int repeatedFrames = 8, totalFrames = 2;
         private bool hit = false;
-
-        public SwordBeam(Texture2D texture, Vector2 location, Direction dir, IEntity source)
+        private Room room;
+        private readonly List<SpriteEffects> spriteEffects;
+        public SwordBeam(Texture2D texture, Vector2 location, Direction dir, IEntity source, Room room)
         {
             if (source is IPlayer link) Damage = link.WeaponDamage;
             else Damage = 2;
             Shooter = source;
+            this.room = room;
             this.dir = dir;
             this.texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-            currFrame = 0;
-            totalFrames = 2;
-            repeatedFrames = 8;
-            switch (dir)
-            {
-                case Direction.n:
-                    ya = (int)(-2 * Game1.Scale);
-                    break;
-                case Direction.s:
-                    ya = (int)(2 * Game1.Scale);
-                    break;
-                case Direction.e:
-                    xa = (int)(2 * Game1.Scale);
-                    break;
-                case Direction.w:
-                    xa = (int)(-2 * Game1.Scale);
-                    break;
-            }
+            adjust = 4 * DirectionMethods.ToVector2(dir);
             if (dir == Direction.n || dir == Direction.s)
             {
                 width = 7;
@@ -75,83 +55,35 @@ namespace sprint0
                     new Rectangle(115, 159, width, height)
                 };
             }
-            explodeSources = new List<Rectangle>
-            {
-                new Rectangle(27, 157, 8,10),
-                new Rectangle(62, 157, 8,10),
-                new Rectangle(97, 157, 8,10)
-            };
+            spriteEffects = new List<SpriteEffects>() { 0, SpriteEffects.FlipVertically, 0, SpriteEffects.FlipHorizontally };
         }
 
         public bool IsAlive()
         {
-            return age < lifespan || lifespan < 0;
+            return !hit;
         }
 
         private void Move()
         {
-            if (!hit)
+            if (IsAlive())
             {
                 Rectangle tempLoc = Location;
-                tempLoc.Offset(xa, ya);
+                tempLoc.Offset(adjust.X, adjust.Y);
                 Location = tempLoc;
             }
-            else
-            {
-                xa += 2;
-                ya += 2;
-            }
-        }
-
-        private void Break()
-        {
-            width = 8;
-            height = 10;
-            totalFrames = 3;
-            xa = (int)(width * Game1.Scale);
-            ya = (int)(height * Game1.Scale);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             if (IsAlive())
             {
-                if (!hit)
-                {
-                    Rectangle destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                    switch (dir)
-                    {
-                        case Direction.n:
-                            spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White);
-                            break;
-                        case Direction.s:
-                            spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 0);
-                            break;
-                        case Direction.e:
-                            spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White);
-                            break;
-                        case Direction.w:
-                            spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-                            break;
-                    }
-                }
-                else
-                {
-                    Rectangle destinationNW = new Rectangle((int)Location.X - xa, (int)Location.Y - ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                    Rectangle destinationNE = new Rectangle((int)Location.X + xa, (int)Location.Y - ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                    Rectangle destinationSW = new Rectangle((int)Location.X - xa, (int)Location.Y + ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                    Rectangle destinationSE = new Rectangle((int)Location.X + xa, (int)Location.Y + ya, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                    spriteBatch.Draw(texture, destinationNW, explodeSources[currFrame / repeatedFrames], Color.White);
-                    spriteBatch.Draw(texture, destinationNE, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-                    spriteBatch.Draw(texture, destinationSW, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically, 0);
-                    spriteBatch.Draw(texture, destinationSE, explodeSources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally, 0);
-                }
+                Rectangle destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), spriteEffects[(int)dir], 0);
             }
         }
 
         public void Update()
         {
-            if (hit) age++;
             if (IsAlive())
             {
                 Move();
@@ -161,7 +93,7 @@ namespace sprint0
         public void RegisterHit()
         {
             hit = true;
-            Break();
+            room.LoadLevel.RoomMisc.AddMisc(new Vector2(Location.X, Location.Y), "sword beam explode");
         }
     }
 }

@@ -13,6 +13,7 @@ namespace sprint0
         public RoomNPCs RoomNPCs { get => roomNPCs; }
         public RoomEnemies RoomEnemies { get => roomEnemies; }
         public RoomSprite RoomSprite { get => roomSprite; }
+        public RoomMisc RoomMisc { get => roomMisc; }
         private RoomProjectile roomProjectile;
         private RoomWeapon roomWeapon;
         private RoomBlocks roomBlocks;
@@ -20,6 +21,7 @@ namespace sprint0
         private RoomNPCs roomNPCs;
         private RoomEnemies roomEnemies;
         private RoomSprite roomSprite;
+        private RoomMisc roomMisc;
         public LoadLevel(Game1 game)
         {
             roomProjectile = new RoomProjectile(game);
@@ -29,7 +31,7 @@ namespace sprint0
             roomNPCs = new RoomNPCs();
             roomEnemies = new RoomEnemies(game);
             roomSprite = new RoomSprite(game);
-
+            roomMisc = new RoomMisc(game);
         }
         public void PopulateLists((List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements)
         {
@@ -68,6 +70,7 @@ namespace sprint0
             roomEnemies.Update();
             roomNPCs.Update();
             roomItems.Update();
+            roomMisc.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -80,6 +83,7 @@ namespace sprint0
             roomNPCs.Draw(spriteBatch);
             roomItems.Draw(spriteBatch);
             roomProjectile.Draw(spriteBatch);
+            roomMisc.Draw(spriteBatch);
         }
     }
 }
