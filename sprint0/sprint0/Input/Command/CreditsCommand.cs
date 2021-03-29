@@ -1,18 +1,18 @@
-﻿// Author: Stuti Shah
+﻿// Author: Jesse He
 namespace sprint0
 {
-    class PauseCommand : ICommand
+    class CreditsCommand : ICommand
     {
         private readonly Game1 game;
 
-        public PauseCommand(Game1 game)
+        public CreditsCommand(Game1 game)
         {
             this.game = game;
         }
 
         public void Execute()
         {
-            game.stateMachine.HandlePause();
+            game.stateMachine.HandleCredits();
         }
     }
 }

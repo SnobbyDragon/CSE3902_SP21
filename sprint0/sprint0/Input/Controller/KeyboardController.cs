@@ -19,6 +19,7 @@ namespace sprint0
             previousPressedKeys = Keyboard.GetState().GetPressedKeys();
             RegisterCommand(Keys.Q, new QuitCommand(game));
             RegisterCommand(Keys.R, new ResetCommand(game));
+            RegisterCommand(Keys.C, new CreditsCommand(game));
             RegisterCommand(Keys.W, new UpCommand(game));
             RegisterCommand(Keys.S, new DownCommand(game));
             RegisterCommand(Keys.A, new LeftCommand(game));

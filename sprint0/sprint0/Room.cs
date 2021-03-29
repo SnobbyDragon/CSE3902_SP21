@@ -7,7 +7,8 @@ namespace sprint0
     {
         private SpriteBatch _spriteBatch;
         public readonly Game1 game;
-
+        private readonly string message = "EASTMOST PRNINSULA IS THE SECRET.";
+        private readonly Vector2 messageLoc= new Vector2(170,170);
         private static PlayerSpriteFactory playerFactory;
         public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
         private IPlayer player;
@@ -16,6 +17,9 @@ namespace sprint0
         public LoadLevel LoadLevel { get => loadLevel; set => loadLevel = value; }
         public RoomSound RoomSound { get => roomSound; }
         private RoomSound roomSound;
+
+        private readonly int LinkDefaultX = 250;
+        private readonly int LinkDefaultY = 250;
 
         private AllCollisionHandler collisionHandler;
         private readonly int RoomIndex;
@@ -36,12 +40,13 @@ namespace sprint0
         public void LoadContent()
         {
             playerFactory = new PlayerSpriteFactory(game);
-            player = new Link(game, new Vector2(200, 250));
+            Player = new Link(game, new Vector2(LinkDefaultX, LinkDefaultY));
             roomSound = new RoomSound(game);
             loadLevel = new LoadLevel(game);
             collisionHandler = new AllCollisionHandler(this);
             loadLevel.PopulateLists(new LevelLoader(game, RoomIndex).LoadLevel());
-            text = new Text(game);
+            text = new Text(game, message, messageLoc, Color.White);
+
         }
 
         public void Update()

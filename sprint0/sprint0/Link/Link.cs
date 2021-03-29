@@ -73,6 +73,7 @@ namespace sprint0
         {
             isAlive = false;
             game.Room.RoomSound.AddSoundEffect("link death");
+            game.stateMachine.HandleDeath();
         }
 
         public void Stop() => State.Stop();

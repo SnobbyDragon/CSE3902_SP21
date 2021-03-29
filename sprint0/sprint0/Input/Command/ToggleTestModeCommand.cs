@@ -12,7 +12,7 @@ namespace sprint0
 
         public void Execute()
         {
-            game.TestMode = !game.TestMode;
+            game.stateMachine.HandleTest();
         }
     }
 }

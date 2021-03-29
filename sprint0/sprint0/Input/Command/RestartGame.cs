@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
-
-//Author: Hannah Johnson
-
+﻿// Author: Jacob Urick
+/*
+ *  Note well: this class serves a different, albeit similar, purpose to ResetCommand. 
+ */
 namespace sprint0
 {
-    class ResetCommand : ICommand
+    class RestartCommand : ICommand
     {
         private readonly Game1 game;
 
-        public ResetCommand(Game1 game)
+        public RestartCommand(Game1 game)
         {
             this.game = game;
         }

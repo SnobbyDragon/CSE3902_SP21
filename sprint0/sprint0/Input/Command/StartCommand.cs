@@ -1,18 +1,18 @@
-﻿// Author: Stuti Shah
+﻿// Author: Jacob Urick
 namespace sprint0
 {
-    class PauseCommand : ICommand
+    class StartCommand : ICommand
     {
         private readonly Game1 game;
 
-        public PauseCommand(Game1 game)
+        public StartCommand(Game1 game)
         {
             this.game = game;
         }
 
         public void Execute()
         {
-            game.stateMachine.HandlePause();
+            game.stateMachine.HandlePlay();
         }
     }
 }
