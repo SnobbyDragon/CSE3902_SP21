@@ -7,11 +7,12 @@ namespace sprint0
 {
     public class RoomEnemies
     {
-        private EnemiesSpriteFactory enemyFactory;
+        private readonly EnemiesSpriteFactory enemyFactory;
         public List<IEnemy> Enemies { get => enemies; set => enemies = value; }
         public List<IEnemy> EnemiesToDie { get => enemiesToDie; set => enemiesToDie = value; }
         public List<IEnemy> EnemiesToSpawn { get => enemiesToSpawn; set => enemiesToSpawn = value; }
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
+
         public RoomEnemies(Game1 game)
         {
             enemyFactory = new EnemiesSpriteFactory(game);

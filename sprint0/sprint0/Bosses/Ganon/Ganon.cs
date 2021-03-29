@@ -56,7 +56,10 @@ namespace sprint0
             if (isDead)
             {
 
-                if (deathCounter == 0) new GanonFireballExplosion(Texture, this, game);
+                if (deathCounter == 0)
+                {
+                    new GanonFireballExplosion(Texture, this, game);
+                }
                 deathCounter++;
                 if (deathCounter == 70) Perish();
 
