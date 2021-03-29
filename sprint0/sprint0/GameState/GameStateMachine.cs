@@ -25,10 +25,9 @@ namespace sprint0
         {
             if (state == State.test)
             {
-
                 state = State.play;
             }
-            if (state == State.play)
+            else if (state == State.play)
             {
                 state = State.test;
             }
@@ -38,7 +37,6 @@ namespace sprint0
         {
             if (state == State.pause)
             {
-
                 state = State.play;
             }
             else if (state == State.play)

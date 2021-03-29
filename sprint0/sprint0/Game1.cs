@@ -25,6 +25,7 @@ namespace sprint0
         public CreditsScreenManager creditsScreenManager;
         public Room Room { get => room; }
         private Room room;
+        public bool ChangeRoom { get; set; }
         public int RoomIndex { get; set; }
         public int NumRooms { get; } = 19;
 
@@ -78,6 +79,7 @@ namespace sprint0
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
             RoomIndex = 18;
+            ChangeRoom = true;
             base.Initialize();
         }
 
@@ -85,6 +87,7 @@ namespace sprint0
             ResetElapsedTime();
             VisitedRooms.Clear();
             RoomIndex = 18;
+            ChangeRoom = true;
             room.Player =  new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
         }
 
@@ -94,6 +97,7 @@ namespace sprint0
                 VisitedRooms.Add(RoomIndex);
             room = new Room(_spriteBatch, this, RoomIndex);
             room.LoadContent();
+            ChangeRoom = false;
         }
 
         protected override void Update(GameTime gameTime)
