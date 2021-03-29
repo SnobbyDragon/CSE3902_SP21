@@ -13,6 +13,8 @@ namespace sprint0
         public void Execute()
         {
             game.stateMachine.HandleTest();
+            game.stateMachine.HandlePlay();
+
         }
     }
 }
