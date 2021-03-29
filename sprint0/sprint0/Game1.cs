@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace sprint0
 {
@@ -23,7 +25,6 @@ namespace sprint0
         public CreditsScreenManager creditsScreenManager;
         public Room Room { get => room; }
         private Room room;
-        public bool ChangeRoom { get; set; }
         public int RoomIndex { get; set; }
         public int NumRooms { get; } = 19;
 
@@ -42,6 +43,7 @@ namespace sprint0
 
         public Game1()
         {
+
             stateMachine = new GameStateMachine(this);
             _graphics = new GraphicsDeviceManager(this)
             {
@@ -76,7 +78,6 @@ namespace sprint0
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
             RoomIndex = 18;
-            ChangeRoom = true;
             base.Initialize();
         }
 
@@ -84,7 +85,6 @@ namespace sprint0
             ResetElapsedTime();
             VisitedRooms.Clear();
             RoomIndex = 18;
-            ChangeRoom = true;
             room.Player =  new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
         }
 
@@ -94,19 +94,24 @@ namespace sprint0
                 VisitedRooms.Add(RoomIndex);
             room = new Room(_spriteBatch, this, RoomIndex);
             room.LoadContent();
-            ChangeRoom = false;
         }
 
         protected override void Update(GameTime gameTime)
         {
-             state = stateMachine.getState();
+
+            state = stateMachine.getState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             foreach (IController controller in controllerList)
                 controller.Update();
-            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test)) {
+            if (state.Equals(GameStateMachine.State.test)) {
+
                 if (ChangeRoom) LoadContent();
+                
+            }
+            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test)) {
+               
                 room.Update();
                 hudManager.Update();
             }
