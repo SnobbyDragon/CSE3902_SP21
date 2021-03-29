@@ -22,7 +22,6 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, new Rectangle((int)((baseX - sideLength) * Game1.Scale), (int)((baseY - sideLength) * Game1.Scale), (int)(sideLength * 9 * Game1.Scale), (int)(sideLength * 9 * Game1.Scale)), sources[(int)RoomDirection.Empty], Color.White);
             if (game.hudManager.HasMap())
                 DrawMap(spriteBatch);
             if (game.hudManager.HasCompass())
