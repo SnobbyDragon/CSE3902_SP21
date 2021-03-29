@@ -44,8 +44,8 @@ namespace sprint0
             };
             rowMapping3 = new Dictionary<int, int>
             {
-                {14, (int)RoomPosition.Bottom},
-                {15, (int)RoomPosition.Both },
+                {15, (int)RoomPosition.Bottom },
+                {14, (int)RoomPosition.Both},
                 {17, (int)RoomPosition.Bottom },
             };
             overlap = new Dictionary<int, int>
@@ -55,6 +55,8 @@ namespace sprint0
                 {12, 6},
                 {13, 7},
                 {16, 14},
+                {15, 15},
+                {17, 17},
             };
             fullMapping = new List<Dictionary<int, int>>
             {
