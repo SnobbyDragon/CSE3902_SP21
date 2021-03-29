@@ -40,7 +40,7 @@ namespace sprint0
             speed = 2;
             linkInventory = this.game.hudManager.PopulateHUDInventory;
             mainHUD = this.game.hudManager.MainHUD;
-            hudInventory = this.game.pauseScreenManager.HUDInventory;
+            hudInventory = this.game.universalScreenManager.pauseScreenManager.HUDInventory;
         }
 
         public void Move(int x, int y) => position += new Vector2(speed * x, speed * y);
@@ -115,7 +115,7 @@ namespace sprint0
         {
             if (isAlive)
                 State.Update();
-            game.pauseScreenManager.HUDInventory = hudInventory;
+            game.universalScreenManager.pauseScreenManager.HUDInventory = hudInventory;
         }
 
         public void ReceiveItem(int n, PlayerItems item)
