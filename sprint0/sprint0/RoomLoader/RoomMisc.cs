@@ -17,6 +17,8 @@ namespace sprint0
         public void AddMisc(Vector2 location, string sprite)
             => RoomMiscs.Add(miscFactory.MakeSprite(sprite, location));
 
+        public void AddMisc(ISprite misc) => RoomMiscs.Add(misc);
+
         public void Update()
         {
             foreach (ISprite _sprite in RoomMiscs)
