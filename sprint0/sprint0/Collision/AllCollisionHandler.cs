@@ -9,7 +9,6 @@ namespace sprint0
         private readonly Room room;
         private readonly CollisionDetector collisionDetector;
         private readonly int linkSize = (int)(16 * Game1.Scale);
-
         private readonly int offset = 4;
 
 

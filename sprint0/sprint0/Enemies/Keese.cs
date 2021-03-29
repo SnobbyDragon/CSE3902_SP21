@@ -7,10 +7,10 @@ namespace sprint0
 {
     public class Keese : AbstractEnemy
     {
-        private readonly Dictionary<string, List<Rectangle>> colorMap;
-        private readonly string color;
+        private readonly Dictionary<Color, List<Rectangle>> colorMap;
+        private readonly Color color;
 
-        public Keese(Texture2D texture, Vector2 location, string keeseColor, Game1 game) : base(texture, location, game)
+        public Keese(Texture2D texture, Vector2 location, Color keeseColor, Game1 game) : base(texture, location, game)
         {
             dirChangeDelay = 5;
             width = height = 16;
@@ -23,10 +23,10 @@ namespace sprint0
             direction = Direction.n;
             damage = 1;
 
-            colorMap = new Dictionary<string, List<Rectangle>>
+            colorMap = new Dictionary<Color, List<Rectangle>>
             {
-                { "blue", SpritesheetHelper.GetFramesH(183, 11, width, height, totalFrames) },
-                { "red", SpritesheetHelper.GetFramesH(183, 28, width, height, totalFrames) }
+                { Color.Blue, SpritesheetHelper.GetFramesH(183, 11, width, height, totalFrames) },
+                { Color.Red, SpritesheetHelper.GetFramesH(183, 28, width, height, totalFrames) }
             };
         }
 

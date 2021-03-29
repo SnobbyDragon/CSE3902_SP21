@@ -127,6 +127,7 @@ namespace sprint0
             {
                 gameOverScreenManager.Update();
             }
+            music.Update();
 
             base.Update(gameTime);
         }

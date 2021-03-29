@@ -7,13 +7,13 @@ namespace sprint0
 {
     public class Goriya : AbstractEnemy
     {
-        private readonly Dictionary<string, List<Rectangle>> colorMap;
-        private readonly string color;
+        private readonly Dictionary<Color, List<Rectangle>> colorMap;
+        private readonly Color color;
         private readonly Room room;
         private int throwCounter;
         private readonly int throwMax = 100;
 
-        public Goriya(Texture2D texture, Vector2 location, string goriyaColor, Game1 game) : base(texture, location, game)
+        public Goriya(Texture2D texture, Vector2 location, Color goriyaColor, Game1 game) : base(texture, location, game)
         {
             health = 50;
             width = height = 16;
@@ -28,10 +28,10 @@ namespace sprint0
             room = game.Room;
             throwCounter = 0;
 
-            colorMap = new Dictionary<string, List<Rectangle>>
+            colorMap = new Dictionary<Color, List<Rectangle>>
             {
-                { "red", SpritesheetHelper.GetFramesH(222, 11, width, height, totalFrames) },
-                { "blue", SpritesheetHelper.GetFramesH(222, 28, width, height, totalFrames) }
+                { Color.Red, SpritesheetHelper.GetFramesH(222, 11, width, height, totalFrames) },
+                { Color.Blue, SpritesheetHelper.GetFramesH(222, 28, width, height, totalFrames) }
             };
         }
 

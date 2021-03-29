@@ -38,6 +38,7 @@ namespace sprint0
             RegisterCommand(Keys.Space, new ToggleTestModeCommand(game));
 
             RegisterCommand(Keys.M, new ToggleMusicCommand(game));
+            RegisterCommand(Keys.OemPeriod, new SkipSongCommand(game));
             RegisterCommand(Keys.OemComma, new ToggleSoundEffectsCommand());
         }
 
