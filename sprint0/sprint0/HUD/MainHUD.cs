@@ -11,6 +11,7 @@ namespace sprint0
     {
         private readonly HUDFactory hudFactory;
         private Dictionary<PlayerItems, IHUD> hudMainItems;
+        private HUDMiniMap hudMiniMap;
 
         public MainHUD(Game1 game)
         {
@@ -25,12 +26,14 @@ namespace sprint0
                 {PlayerItems.AItem, hudFactory.MakeHUD("hudA", new Vector2(0,0)) },
                 {PlayerItems.BItem, hudFactory.MakeHUD("hudB", new Vector2(0,0)) },
             };
+            hudMiniMap = hudFactory.MakeMiniMap();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (KeyValuePair<PlayerItems, IHUD> hudElement in hudMainItems)
                 hudElement.Value.Draw(spriteBatch);
+            hudMiniMap.Draw(spriteBatch);
         }
 
         public PlayerItems GetItem(PlayerItems item)
@@ -42,6 +45,11 @@ namespace sprint0
         public void SetItem(PlayerItems source, PlayerItems newItem)
         {
             if (hudMainItems.ContainsKey(source)) hudMainItems[source].SetItem(newItem);
+        }
+
+        public void Update()
+        {
+            hudMiniMap.Update();
         }
     }
 }

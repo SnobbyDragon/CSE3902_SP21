@@ -12,6 +12,9 @@ namespace sprint0
         public List<IEnemy> EnemiesToDie { get => enemiesToDie; set => enemiesToDie = value; }
         public List<IEnemy> EnemiesToSpawn { get => enemiesToSpawn; set => enemiesToSpawn = value; }
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
+        private int roomNum;
+        private bool endBehaviorExecuted;
+        private Game1 game;
 
         public RoomEnemies(Game1 game)
         {
@@ -19,6 +22,9 @@ namespace sprint0
             enemiesToSpawn = new List<IEnemy>();
             enemies = new List<IEnemy>();
             enemiesToDie = new List<IEnemy>();
+            roomNum = game.RoomIndex;
+            this.game = game;
+            endBehaviorExecuted = false;
         }
 
         public void AddEnemy(Vector2 location, string enemy)
@@ -31,14 +37,20 @@ namespace sprint0
 
         public void RemoveDead()
         {
-            foreach (IEnemy enemy in enemiesToDie)
-                enemies.Remove(enemy);
+            foreach (IEnemy enemy in enemiesToDie) { 
+                enemies.Remove(enemy);}
         }
 
         public void Update()
         {
             foreach (IEnemy enemy in enemies)
+            {
                 enemy.Update();
+            }
+            if (enemies.Count == 0 && !endBehaviorExecuted)
+            {
+                RoomEndBehavior();
+            }
         }
         public void EnemySpawnUpdate()
         {
@@ -53,6 +65,23 @@ namespace sprint0
         {
             foreach (IEnemy enemy in enemies)
                 enemy.Draw(spriteBatch);
+        }
+
+        private void RoomEndBehavior() {
+            List<int> roomWithKey = new List<int> { 15, 17, 12, 3, 2, 10 };
+            int roomWithBoomerang = 7;
+            int roomWithMovableBlock = 5;
+            Vector2 location = new Vector2(400,300);
+            if (roomWithKey.Contains(roomNum)){
+                game.Room.LoadLevel.RoomItems.AddItem(location,"key");
+            }else if (roomNum == roomWithBoomerang)
+            {
+                game.Room.LoadLevel.RoomItems.AddItem(location, "boomerang");
+            }
+            else if (roomNum ==roomWithMovableBlock) {
+               //TODO game.Room.LoadLevel.RoomBlocks.UnlockBlock(); idk how to do this
+            }
+            endBehaviorExecuted = true;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-//Updated: 03/27/21 by shah.1440
+//Updated: 03/28/21 by he.1528
 namespace sprint0
 {
     class DamagedLink : IPlayer
@@ -59,21 +59,13 @@ namespace sprint0
         }
 
         public void AddToInventory(PlayerItems newItem) => hudInventory.AddItem(newItem);
-
         public void RemoveDecorator() => game.Room.Player = decoratedLink;
-
         public void Stop() => decoratedLink.Stop();
-
         public void HandleUp() => decoratedLink.HandleUp();
-
         public void HandleDown() => decoratedLink.HandleDown();
-
         public void HandleLeft() => decoratedLink.HandleLeft();
-
         public void HandleRight() => decoratedLink.HandleRight();
-
         public void HandleSword() => decoratedLink.HandleSword();
-
         public void Draw(SpriteBatch spriteBatch)
         {
             if (timer % 2 == 0)

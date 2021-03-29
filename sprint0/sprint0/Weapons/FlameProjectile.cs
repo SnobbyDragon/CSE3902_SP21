@@ -26,6 +26,7 @@ namespace sprint0
         {
             Shooter = shooter;
             width = height = 16;
+            Damage = 1;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             this.texture = texture;
             source = new Rectangle(191, 185, width, height);

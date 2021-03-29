@@ -13,7 +13,7 @@ namespace sprint0
         public Dictionary<PlayerItems, Rectangle> ItemMap { get => itemMap; }
         public Dictionary<PlayerItems, Rectangle> LocationMapping { get => locationMapping; }
         public Rectangle CurrentItem { get => currentItem; }
-        private readonly int height = 16, smallWidth = 8, bigWidth = 16, yPosTop = 24, yPosMiddle = 48, yPosBottom = 64, currentItemX = 68;
+        private readonly int height = 16, smallWidth = 8, bigWidth = 16, yPosTop = 24, yPosMiddle = 48, yPosBottom = 64, currentItemX = 68, mapHeight = 88;
         private readonly Rectangle currentItem;
         protected int Width { get => 8; }
         protected int Height { get => 16; }
@@ -37,7 +37,7 @@ namespace sprint0
                 { PlayerItems.RedCandle, GetSource(653, YPos)},
                 { PlayerItems.Flute, GetSource(664, YPos)},
                 { PlayerItems.Food, GetSource(675, YPos)},
-                { PlayerItems.Map, GetSource(686, YPos)},
+                { PlayerItems.Letter, GetSource(686, YPos)},
                 { PlayerItems.BluePotion, GetSource(695, YPos)},
                 { PlayerItems.RedPotion, GetSource(704, YPos)},
                 { PlayerItems.MagicalRod, GetSource(715, YPos)},
@@ -45,7 +45,7 @@ namespace sprint0
                 { PlayerItems.RedRing, GetSource(549, YPos+19)},
                 { PlayerItems.MagicalKey, GetSource(579, YPos+19)},
                 { PlayerItems.PowerBracelet, GetSource(590, YPos+19)},
-                { PlayerItems.Letter, GetSource(601, YPos+19)},
+                { PlayerItems.Map, GetSource(601, YPos+19)},
                 { PlayerItems.Compass, GetSourceCompass(614, YPos+19)},
                 { PlayerItems.Raft, GetSourceRaftLadder(520, YPos+19)},
                 { PlayerItems.StepLadder, GetSourceRaftLadder(560, YPos+19)},
@@ -81,6 +81,8 @@ namespace sprint0
                 { PlayerItems.BluePotion, GetSource(180, yPosBottom, smallWidth, height) },
 
                 { PlayerItems.MagicalRod, GetSource(204, yPosBottom, smallWidth, height) },
+                { PlayerItems.Map, GetSource(48, yPosTop+mapHeight, smallWidth, height) },
+                { PlayerItems.Compass, GetSource(44, yPosBottom+mapHeight, bigWidth-1, height) },
             };
             currentItem = GetSource(currentItemX, yPosMiddle, smallWidth, height);
         }

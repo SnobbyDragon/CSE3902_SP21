@@ -31,6 +31,7 @@ namespace sprint0
             inventory = game.pauseScreenManager.Inventory();
             aItem = game.pauseScreenManager.AItems();
             populateHUDInventory.Update();
+            mainHUD.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -68,6 +69,16 @@ namespace sprint0
         public bool HasBoomerang()
         {
             return inventory.ContainsKey(PlayerItems.MagicalBoomerang) || inventory.ContainsKey(PlayerItems.Boomerang);
+        }
+
+        public bool HasMap()
+        {
+            return inventory.ContainsKey(PlayerItems.Map);
+        }
+
+        public bool HasCompass()
+        {
+            return inventory.ContainsKey(PlayerItems.Compass);
         }
     }
 }

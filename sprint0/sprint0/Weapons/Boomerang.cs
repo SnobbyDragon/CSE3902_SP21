@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
 {
     /*
-     * Last updated: 3/15/21 by li.10011
+     * Last updated: 3/28/21 by he.1528
      */
     public class Boomerang : IProjectile
     {
@@ -18,26 +16,24 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private readonly int xOffset = 290, yOffset = 11, width = 8, height = 16;
         private readonly List<Rectangle> sources;
-        private int currFrame;
-        private readonly int totalFrames, repeatedFrames;
-        private readonly int speed = 6;
-        private readonly int maxDistance = 25;
+        private int currFrame = 0;
+        private readonly int totalFrames = 8, repeatedFrames = 4;
+        private readonly int speed = 6, maxDistance = 25;
         private int age = 0;
         private readonly List<SpriteEffects> spriteEffects;
         private Vector2 moveVector;
         private bool alive;
         private bool hit = false;
+        private readonly Room room;
 
-        public Boomerang(Texture2D texture, Vector2 location, Direction dir, IEntity shooter)
+        public Boomerang(Texture2D texture, Vector2 location, Direction dir, IEntity shooter, Room room)
         {
+            this.room = room;
             Shooter = shooter;
             alive = true;
             moveVector = speed * dir.ToVector2();
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            currFrame = 0;
-            totalFrames = 8;
-            repeatedFrames = 4;
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, 3);
             sources.Add(sources[1]);
             spriteEffects = new List<SpriteEffects>
@@ -67,16 +63,9 @@ namespace sprint0
         public void Perish() => alive = false;
         public void Move()
         {
-            if (age < (maxDistance * 2) + 6)
-            {
-                Rectangle loc = Location;
-                loc.Offset(moveVector);
-                Location = loc;
-            }
-            else 
-            {
-                alive = false;
-            }
+            Rectangle loc = Location;
+            loc.Offset(moveVector);
+            Location = loc;
         }
 
         public void Update()
@@ -86,13 +75,9 @@ namespace sprint0
                 if (CanBeCaught)
                 {
                     if (Shooter is IPlayer)
-                    {
                         moveVector = Link.position - Location.Location.ToVector2();
-                    }
                     else if (Shooter is Goriya goriya)
-                    {
                         moveVector = goriya.Location.Center.ToVector2() - Location.Center.ToVector2();
-                    }
                     moveVector.Normalize();
                     moveVector = speed * moveVector;
                 }
@@ -105,6 +90,7 @@ namespace sprint0
         public void RegisterHit()
         {
             hit = true;
+            room.LoadLevel.RoomMisc.AddMisc(new Vector2(Location.X, Location.Y), "hit sprite");
         }
     }
 }
