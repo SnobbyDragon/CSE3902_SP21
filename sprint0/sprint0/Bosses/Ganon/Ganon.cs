@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 /*
- * Last updated: 3/14/21 by li.10011
+ * Last updated: 3/27/21 by li.10011
  */
 namespace sprint0
 {
@@ -20,12 +20,11 @@ namespace sprint0
         private readonly int totalFrames, invisibleTime = 200, visibleTime = 100, teleportTime = 50;
         private bool isVisible, isDead;
         private readonly Random rand;
-        private readonly List<GanonFireball> fireballExplosion;
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
         private int health;
         public int Damage { get => 8; }
-        private ItemSpawner itemSpawner;
+        private readonly ItemSpawner itemSpawner;
 
         public Ganon(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -38,35 +37,17 @@ namespace sprint0
             totalFrames = 6;
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
             rand = new Random();
-
             isVisible = true;
             isDead = false;
             counter = 0;
             deathCounter = 0;
-
-            fireballExplosion = new List<GanonFireball>()
-            {
-                new GanonFireball(texture,location, "up", this),
-                new GanonFireball(texture,location, "up left", this),
-                new GanonFireball(texture,location, "left", this),
-                new GanonFireball(texture,location, "down left", this),
-                new GanonFireball(texture,location, "down", this),
-                new GanonFireball(texture,location, "down right", this),
-                new GanonFireball(texture,location, "right", this),
-                new GanonFireball(texture, location,"up right", this)
-            };
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             if (isVisible && !isDead)
                 spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
-            foreach (GanonFireball fireball in fireballExplosion)
-            {
-                fireball.Draw(spriteBatch);
-            }
         }
 
         public void Update()
@@ -75,7 +56,12 @@ namespace sprint0
             if (isDead)
             {
 
-                if (deathCounter == 0) FireballExplosion();
+                if (deathCounter == 0)
+                {
+                    new GanonFireballExplosion(Texture, this, game);
+                    game.Room.LoadLevel.RoomMisc.AddMisc(new GanonAshes(Texture, Location.Center.ToVector2()));
+                    game.Room.LoadLevel.RoomMisc.AddMisc(new GanonDeathCloud(Texture, Location.Center.ToVector2()));
+                }
                 deathCounter++;
                 if (deathCounter == 70) Perish();
 
@@ -110,13 +96,6 @@ namespace sprint0
             {
                 ShootFireball();
             }
-            else
-            {
-                foreach (GanonFireball fireball in fireballExplosion)
-                {
-                    fireball.Update();
-                }
-            }
         }
 
         public void ChangeDirection()
@@ -125,15 +104,7 @@ namespace sprint0
 
         private void CheckHealth()
         {
-            if (health < 0)
-            {
-                isDead = true;
-                foreach (GanonFireball fireball in fireballExplosion)
-                {
-                    fireball.RegisterHit();
-                }
-
-            }
+            if (health < 0) isDead = true;
             if (health < 20) currFrame = 5;
         }
         public void TakeDamage(int damage)
@@ -145,7 +116,7 @@ namespace sprint0
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
+            itemSpawner.SpawnItem(GetType().Name, Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }
@@ -163,17 +134,6 @@ namespace sprint0
             Vector2 dir = game.Room.Player.Pos - Location.Center.ToVector2();
             dir.Normalize();
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Location.ToVector2(), dir, this);
-        }
-
-        private void FireballExplosion()
-        {
-            foreach (GanonFireball fireball in fireballExplosion)
-            {
-                Vector2 recLoc = Location.Center.ToVector2();
-                fireball.Location = new Rectangle((int)recLoc.X, (int)recLoc.Y, (int)(8 * Game1.Scale), (int)(10 * Game1.Scale));
-                fireball.Unhit();
-            }
-
         }
 
         public void Teleport()

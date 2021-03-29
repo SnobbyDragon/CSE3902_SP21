@@ -24,6 +24,9 @@ namespace sprint0
         public void AddFireball(Vector2 location, Vector2 dir, IEntity source)
             => projectiles.Add(projectileFactory.MakeFireball(location, dir, source));
 
+        public void RegisterProjectiles(IEnumerable<IProjectile> unregProjectiles)
+            => projectiles.AddRange(unregProjectiles);
+
         public void RemoveProjectile(IProjectile projectile) => projectilesToDie.Add(projectile);
 
         public void RemoveDead()
@@ -48,8 +51,6 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (IProjectile projectile in projectiles)
-                projectile.Draw(spriteBatch);
             foreach (IProjectile projectile in projectiles)
                 projectile.Draw(spriteBatch);
         }

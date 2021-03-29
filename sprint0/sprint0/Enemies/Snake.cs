@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Snake : Enemy, IEnemy
+    public class Snake : AbstractEnemy
     {
 
         private readonly List<Rectangle> sources;
@@ -29,14 +29,14 @@ namespace sprint0
             damage = 1;
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames],
                     Color.White, 0, new Vector2(0, 0), spriteEffect, 0);
         }
 
-        public new void Update()
+        public override void Update()
         {
             moveCounter++;
             if (moveCounter == dirChangeDelay)

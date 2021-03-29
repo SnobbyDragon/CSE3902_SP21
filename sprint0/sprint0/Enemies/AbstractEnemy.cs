@@ -5,18 +5,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Enemy : IEnemy
+    public abstract class AbstractEnemy : IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         protected int damage = 0;
         public int Damage { get => damage; }
         protected int currentFrame;
-        protected string color;
         protected int totalFrames;
         protected int repeatedFrames;
-        protected Dictionary<string, List<Rectangle>> colorMap;
-        private readonly SpriteEffects s = SpriteEffects.FlipHorizontally;
         protected Direction direction;
         protected int width, height;
         protected int health;
@@ -24,9 +21,9 @@ namespace sprint0
         protected readonly Random rand;
         protected readonly Game1 game;
         protected int damageTimer = 0;
-        private ItemSpawner itemSpawner;
+        private readonly ItemSpawner itemSpawner;
 
-        public Enemy(Texture2D texture, Vector2 location, Game1 game)
+        public AbstractEnemy(Texture2D texture, Vector2 location, Game1 game)
         {
             rand = new Random();
             this.game = game;
@@ -36,27 +33,9 @@ namespace sprint0
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if (damageTimer % 2 == 0)
-                switch (direction)
-                {
-                    case Direction.w:
-                        spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White, 0, new Vector2(0, 0), s, 0);
-                        break;
-                    case Direction.e:
-                        spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White);
-                        break;
-                    case Direction.s:
-                        spriteBatch.Draw(Texture, Location, colorMap[color][0], Color.White);
-                        break;
-                    case Direction.n:
-                        spriteBatch.Draw(Texture, Location, colorMap[color][1], Color.White);
-                        break;
-                }
-        }
+        public abstract void Draw(SpriteBatch spriteBatch);
 
-        public void Update()
+        public virtual void Update()
         {
             moveCounter++;
             if (moveCounter == dirChangeDelay)
@@ -78,7 +57,7 @@ namespace sprint0
             dirChangeDelay = rand.Next(low, high);
         }
 
-        public void ChangeDirection()
+        public virtual void ChangeDirection()
         {
             ArbitraryDirection(30, 50);
         }

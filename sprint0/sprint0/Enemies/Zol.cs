@@ -7,13 +7,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Zol : Enemy, IEnemy
+    public class Zol : AbstractEnemy
     {
         private readonly int delay;
         private int delayCounter;
         private int spawnCounter;
-        private readonly int spawnRate = 1500; // arbitrary; spawns a gel every spawnRate
+        private readonly int spawnRate = 1500;
         private readonly int speed = 39;
+        private readonly Dictionary<string, List<Rectangle>> colorMap;
+        private readonly string color;
 
         public Zol(Texture2D texture, Vector2 location, string gelColor, Game1 game) : base(texture, location, game)
         {
@@ -41,13 +43,13 @@ namespace sprint0
             spawnCounter = spawnRate / 4;
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
         }
 
-        public new void Update()
+        public override void Update()
         {
             if (damageTimer > 0) damageTimer--;
             CheckHealth();

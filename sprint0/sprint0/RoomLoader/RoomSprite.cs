@@ -8,8 +8,10 @@ namespace sprint0
     public class RoomSprite
     {
         public List<ISprite> RoomSprites { get => roomSprites; set => roomSprites = value; }
-        private List<ISprite> roomSprites, roomBaseSprites;
+        private List<ISprite> roomSprites;
+        private readonly List<ISprite> roomBaseSprites;
         private readonly DungeonFactory dungeonFactory;
+
         public RoomSprite(Game1 game)
         {
             dungeonFactory = new DungeonFactory(game);

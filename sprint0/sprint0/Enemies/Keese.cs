@@ -5,8 +5,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Keese : Enemy, IEnemy
+    public class Keese : AbstractEnemy
     {
+        private readonly Dictionary<string, List<Rectangle>> colorMap;
+        private readonly string color;
+
         public Keese(Texture2D texture, Vector2 location, string keeseColor, Game1 game) : base(texture, location, game)
         {
             dirChangeDelay = 5;
@@ -27,7 +30,7 @@ namespace sprint0
             };
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
