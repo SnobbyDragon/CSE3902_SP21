@@ -1,7 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
+﻿using System;
+using System.Diagnostics;
 
 namespace sprint0
 {
@@ -41,7 +39,7 @@ namespace sprint0
             {
                 state = State.play;
             }
-            else
+            else if (state == State.play)
             {
                 state = State.pause;
             }
@@ -79,6 +77,7 @@ namespace sprint0
         }
         public State getState()
         {
+
             return state;
         }
     }

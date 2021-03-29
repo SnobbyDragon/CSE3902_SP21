@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace sprint0
 {
@@ -39,6 +41,7 @@ namespace sprint0
 
         public Game1()
         {
+
             stateMachine = new GameStateMachine(this);
             _graphics = new GraphicsDeviceManager(this)
             {
@@ -99,15 +102,21 @@ namespace sprint0
 
         protected override void Update(GameTime gameTime)
         {
+
             state = stateMachine.getState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             foreach (IController controller in controllerList)
                 controller.Update();
+
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
                 if (ChangeRoom) LoadContent();
+                
+            }
+            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test)) {
+               
                 room.Update();
             }
             if (ChangeHUD())
