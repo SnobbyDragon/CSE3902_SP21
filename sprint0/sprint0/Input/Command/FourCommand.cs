@@ -12,7 +12,7 @@ namespace sprint0
 
         public void Execute()
         {
-            if (game.hudManager.HasBlueCandle() || game.TestMode) //Take out TestMode when not needed
+            if (game.hudManager.HasBlueCandle() || game.stateMachine.getState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
             {
                 game.Room.Player.CurrentItem = PlayerItems.BlueCandle;
                 game.Room.Player.HandleItem();

@@ -18,15 +18,22 @@ namespace sprint0
         private BackgroundMusic music;
         public HUDManager hudManager;
         public PauseScreenManager pauseScreenManager;
-        public bool PauseScreen { get; set; }
-        public bool TestMode { get; set; }
-
+        public GameOverScreenManager gameOverScreenManager;
+        public StartScreenManager startScreenManager;
+        public CreditsScreenManager creditsScreenManager;
         public Room Room { get => room; }
         private Room room;
         public bool ChangeRoom { get; set; }
         public int RoomIndex { get; set; }
         public int NumRooms { get; } = 19;
 
+        public readonly GameStateMachine stateMachine;
+
+        private readonly int LinkDefaultX = 250;
+        private readonly int LinkDefaultY = 250;
+
+
+        private GameStateMachine.State state;
         public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
         public static int HUDHeight { get; } = 56;
@@ -35,6 +42,7 @@ namespace sprint0
 
         public Game1()
         {
+            stateMachine = new GameStateMachine(this);
             _graphics = new GraphicsDeviceManager(this)
             {
                 IsFullScreen = false,
@@ -59,15 +67,25 @@ namespace sprint0
             soundFactory = new SoundFactory(this);
             music = SoundFactory.MakeBackgroundMusic();
             pauseScreenManager = new PauseScreenManager(this);
+            gameOverScreenManager = new GameOverScreenManager(this);
+            creditsScreenManager = new CreditsScreenManager(this);
+            startScreenManager = new StartScreenManager(this);
             hudManager = new HUDManager(this);
             hudManager.LoadHUD();
+
+            stateMachine.HandleStart();
+            VisitedRooms = new List<int>();
             RoomIndex = 18;
             ChangeRoom = true;
-            PauseScreen = false;
-            TestMode = false;
-            VisitedRooms = new List<int>();
-
             base.Initialize();
+        }
+
+        public void RestartGame() {
+            ResetElapsedTime();
+            VisitedRooms.Clear();
+            RoomIndex = 18;
+            ChangeRoom = true;
+            room.Player =  new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
         }
 
         protected override void LoadContent()
@@ -81,19 +99,35 @@ namespace sprint0
 
         protected override void Update(GameTime gameTime)
         {
+             state = stateMachine.getState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             foreach (IController controller in controllerList)
                 controller.Update();
-
-            if (!PauseScreen)
-            {
+            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test)) {
                 if (ChangeRoom) LoadContent();
                 room.Update();
+                hudManager.Update();
             }
-            hudManager.Update();
-            pauseScreenManager.Update();
+            else if (state.Equals(GameStateMachine.State.pause))
+            {
+                pauseScreenManager.Update();
+                hudManager.Update();
+            }
+            else if (state.Equals(GameStateMachine.State.credits))
+            {
+                creditsScreenManager.Update();
+            }
+            else if (state.Equals(GameStateMachine.State.start))
+            {
+                startScreenManager.Update();
+            }
+            else if (state.Equals(GameStateMachine.State.over))
+            {
+                gameOverScreenManager.Update();
+            }
+
             base.Update(gameTime);
         }
 
@@ -101,15 +135,43 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
-            if (!PauseScreen)
+            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
+            {
                 room.Draw();
-            else pauseScreenManager.Draw(_spriteBatch);
-            hudManager.Draw(_spriteBatch);
+                hudManager.Draw(_spriteBatch);
+            }
+            else if (state.Equals(GameStateMachine.State.pause))
+            {
+                pauseScreenManager.Draw(_spriteBatch);
+                hudManager.Draw(_spriteBatch);
+
+            }
+            else if (state.Equals(GameStateMachine.State.over))
+            {
+                gameOverScreenManager.Draw(_spriteBatch);
+
+            }
+            else if (state.Equals(GameStateMachine.State.start))
+            {
+                startScreenManager.Draw(_spriteBatch);
+
+            }
+            else if (state.Equals(GameStateMachine.State.credits))
+            {
+                creditsScreenManager.Draw(_spriteBatch);
+
+            }
+
+
 
             _spriteBatch.End();
             base.Draw(gameTime);
         }
 
+
+        /*
+         *  This is deprecated.
+         */
         public void ResetGame()
         {
             ResetElapsedTime();

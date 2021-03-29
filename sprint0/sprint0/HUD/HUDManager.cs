@@ -80,5 +80,12 @@ namespace sprint0
         {
             return inventory.ContainsKey(PlayerItems.Compass);
         }
+
+        public void Refresh()
+        {
+            populateHUDInventory = new PopulateHUDInventory(game);
+            inventory = game.pauseScreenManager.Inventory();
+            aItem = game.pauseScreenManager.AItems();
+        }
     }
 }
