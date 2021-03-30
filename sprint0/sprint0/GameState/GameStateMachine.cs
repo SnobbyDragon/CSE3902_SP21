@@ -48,7 +48,7 @@ namespace sprint0
 
         public void HandleRunItBack()
         {
-            if (state == State.over || state == State.play || state == State.win)
+            if (state == State.over || state == State.play || state == State.win || state == State.test)
             {
                 game.RestartGame();
                 state = State.play;
