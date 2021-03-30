@@ -26,6 +26,7 @@ namespace sprint0
         public int Damage { get => 4; }
         private bool canTakeDamage;
         private ItemSpawner itemSpawner;
+        public EnemyType Type { get => EnemyType.Patra; }
 
         public Patra(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -51,7 +52,7 @@ namespace sprint0
             {
                 minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i, game));
             }
-            game.Room.LoadLevel.RoomEnemies.RegisterEnemies(minions); 
+            game.Room.LoadLevel.RoomEnemies.RegisterEnemies(minions);
 
             rand = new Random();
             GenerateDest();
@@ -66,7 +67,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), effects[currFrame / repeatedFrames], 0);
-            
+
         }
 
         public void Update()
@@ -88,7 +89,7 @@ namespace sprint0
             moveCounter++;
 
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            
+
         }
 
 
@@ -99,7 +100,7 @@ namespace sprint0
 
         private void CheckHealth()
         {
-           
+
             int minionCount = 0;
             PatraMinion toRemove = null;
             foreach (PatraMinion minion in minions)
@@ -111,13 +112,14 @@ namespace sprint0
                 }
             }
             if (toRemove != null) RemoveMinion(toRemove);
-            if (minionCount == 0) {
+            if (minionCount == 0)
+            {
                 canTakeDamage = true;
                 if (health < 0) Perish();
-                
+
             }
 
-            
+
         }
 
         private void RemoveMinion(PatraMinion minion1)

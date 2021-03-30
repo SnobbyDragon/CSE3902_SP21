@@ -18,6 +18,7 @@ namespace sprint0
         private readonly int totalFrames, repeatedFrames;
         private List<IEnemy> necks;
         private int health;
+        public EnemyType Type { get => EnemyType.Gleeok; }
         public int Damage { get => 0; }
         private ItemSpawner itemSpawner;
 
@@ -40,14 +41,14 @@ namespace sprint0
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
-        
+
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
             foreach (IEnemy sprite in necks)
                 sprite.Draw(spriteBatch);
-            
+
         }
 
         public void Update()
@@ -56,7 +57,7 @@ namespace sprint0
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             foreach (IEnemy sprite in necks)
                 sprite.Update();
-           
+
         }
 
         public void ChangeDirection()
@@ -66,10 +67,11 @@ namespace sprint0
         private void CheckHealth()
         {
             int countDeadNecks = 0;
-            foreach (GleeokNeck neck in necks) {
-                if(neck.IsDead()) countDeadNecks++;
+            foreach (GleeokNeck neck in necks)
+            {
+                if (neck.IsDead()) countDeadNecks++;
             }
-            if ((health < 0 && countDeadNecks == necks.Count) || countDeadNecks==necks.Count) Perish();
+            if ((health < 0 && countDeadNecks == necks.Count) || countDeadNecks == necks.Count) Perish();
         }
 
         public void TakeDamage(int damage)

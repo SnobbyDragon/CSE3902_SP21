@@ -13,6 +13,7 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
+        public EnemyType Type { get => EnemyType.None; }
         private readonly int bigSize = 32, smallSize = 16;
         private readonly List<Rectangle> smallSources;
         private readonly Dictionary<Spikes, List<Rectangle>> dirToBigSource;

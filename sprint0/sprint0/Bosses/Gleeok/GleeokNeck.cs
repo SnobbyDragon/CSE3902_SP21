@@ -14,8 +14,9 @@ namespace sprint0
         private List<IEnemy> neck;
         public int Damage { get => 0; }
         private bool isDead;
+        public EnemyType Type { get => EnemyType.Gleeok; }
 
-        public GleeokNeck(Texture2D texture, Game1 game,Rectangle location)
+        public GleeokNeck(Texture2D texture, Game1 game, Rectangle location)
         {
             isDead = false;
             Texture = texture;
@@ -34,13 +35,13 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+
         }
 
         public void Update()
         {
             CheckHealth();
-           
+
         }
 
         public void ChangeDirection()
@@ -57,19 +58,19 @@ namespace sprint0
                     GleeokHead head = (GleeokHead)neckpeice1;
                     neckHealth += head.CheckHealth();
                 }
-                else if(neckpeice1 is GleeokNeckPiece)
+                else if (neckpeice1 is GleeokNeckPiece)
                 {
                     GleeokNeckPiece neckpeice = (GleeokNeckPiece)neckpeice1;
                     neckHealth += neckpeice.CheckHealth();
                 }
-               
-                
+
+
             }
             if (neckHealth < 0) Perish();
         }
 
         public void TakeDamage(int damage)
-        { 
+        {
         }
 
         public bool IsDead()
@@ -88,7 +89,7 @@ namespace sprint0
             isDead = true;
         }
 
-           
-        
+
+
     }
 }

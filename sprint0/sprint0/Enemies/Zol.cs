@@ -16,6 +16,7 @@ namespace sprint0
         private readonly int speed = 39;
         private readonly Dictionary<Color, List<Rectangle>> colorMap;
         private readonly Color color;
+        public new EnemyType Type { get => EnemyType.Gel; }
 
         public Zol(Texture2D texture, Vector2 location, Color gelColor, Game1 game) : base(texture, location, game)
         {
