@@ -11,6 +11,7 @@ namespace sprint0
             xOffset = 947;
             yOffset = 11;
             GetSource();
+            game.Room.Overlay.AddOverlay(new BorderFillingOverlay(this));
         }
     }
 }

@@ -24,6 +24,7 @@ namespace sprint0
                 { 15, new Dictionary<Direction, int> { { Direction.e, 16 } } },
                 { 16, new Dictionary<Direction, int> { { Direction.w, 15 }, { Direction.e, 17 } } }, //TODO does south door go somewhere?
                 { 17, new Dictionary<Direction, int> { { Direction.w, 16 } } },
+                { 18, new Dictionary<Direction, int> { { Direction.e, 0 } } }
             };
 
         public static int GetAdjacentRoom(int currRoomIndex, Direction side)

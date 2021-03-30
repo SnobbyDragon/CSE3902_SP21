@@ -7,8 +7,9 @@ namespace sprint0
     public abstract class AbstractBorderFilling : ISprite
     {
         public Rectangle Location { get; set; }
-        protected readonly Texture2D texture;
+        public Texture2D Texture { get; }
         protected Rectangle source;
+        public Rectangle Source { get => source; }
         protected readonly int size = Game1.BorderThickness;
         protected int xOffset, yOffset;
         public Direction Side { get; }
@@ -17,7 +18,7 @@ namespace sprint0
         public AbstractBorderFilling(Texture2D texture, Vector2 location, Direction dir, Game1 game)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
-            this.texture = texture;
+            Texture = texture;
             Side = dir;
             this.game = game;
         }
@@ -36,7 +37,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Location, source, Color.White);
+            spriteBatch.Draw(Texture, Location, source, Color.White);
         }
 
         public void Update() { }

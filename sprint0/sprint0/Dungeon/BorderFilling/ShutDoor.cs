@@ -15,5 +15,11 @@ namespace sprint0
             GetSource();
             CollisionBox = game.Room.LoadLevel.RoomBlocks.AddBlock(location, "invisible block", size, size);
         }
+
+        public void OpenDoor()
+        {
+            game.Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
+            // TODO switch this into an open door
+        }
     }
 }
