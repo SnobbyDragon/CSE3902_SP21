@@ -14,7 +14,7 @@ namespace sprint0
         private readonly string message2 = "Its authors include:\n\nNeha Gupta,\n\nJesse He,\n\nHannah Johnson,\n\nAngela Li,\n\nStutti Shah,\n\nJacob Urick";
         private readonly string message3 = "We hope you enjoy it :)";
         private readonly string message4 = "Special thanks to Grace McKenzie and Dr. Matt Bogus for lots of invaluable feedback.";
-        private readonly List<Text> textList;
+        private List<Text> textList;
         private readonly int xCoord = 25;
         private readonly int yCoord = 100;
         private readonly int firstOffset = 2;
@@ -37,11 +37,18 @@ namespace sprint0
                 new Text(game, message4, new Vector2(xCoord, yCoord*fourthOffset), Color.Black)
             };
         }
-
-        public void Update()
-        {
-            if (counter > mandatoryCreditsTimer)
-            {
+      
+        public void Update() {
+            if (counter > mandatoryCreditsTimer) {
+                counter = 0;
+                textList = new List<Text>
+                {
+                    new Text(game, message0, new Vector2(xCoord, yCoord), Color.Black),
+                    new Text(game, message1, new Vector2(xCoord, yCoord*firstOffset), Color.Black),
+                    new Text(game, message2, new Vector2(xCoord, yCoord*secondOffset), Color.Black),
+                    new Text(game, message3, new Vector2(xCoord, yCoord*thirdOffset), Color.Black),
+                    new Text(game, message4, new Vector2(xCoord, yCoord*fourthOffset), Color.Black)
+                };
                 game.stateMachine.HandleStart();
             }
             counter++;

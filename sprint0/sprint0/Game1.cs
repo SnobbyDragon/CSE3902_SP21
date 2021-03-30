@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace sprint0
 {
@@ -16,11 +18,8 @@ namespace sprint0
         private SoundFactory soundFactory;
         public BackgroundMusic Music { get => music; }
         private BackgroundMusic music;
+        public UniversalScreenManager universalScreenManager;
         public HUDManager hudManager;
-        public PauseScreenManager pauseScreenManager;
-        public GameOverScreenManager gameOverScreenManager;
-        public StartScreenManager startScreenManager;
-        public CreditsScreenManager creditsScreenManager;
         public Room Room { get => room; }
         private Room room;
         public bool ChangeRoom { get; set; }
@@ -41,6 +40,7 @@ namespace sprint0
 
         public Game1()
         {
+
             stateMachine = new GameStateMachine(this);
             _graphics = new GraphicsDeviceManager(this)
             {
@@ -65,13 +65,7 @@ namespace sprint0
 
             soundFactory = new SoundFactory(this);
             music = SoundFactory.MakeBackgroundMusic();
-            pauseScreenManager = new PauseScreenManager(this);
-            gameOverScreenManager = new GameOverScreenManager(this);
-            creditsScreenManager = new CreditsScreenManager(this);
-            startScreenManager = new StartScreenManager(this);
-            hudManager = new HUDManager(this);
-            hudManager.LoadHUD();
-
+            ResetManagers();
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
             RoomIndex = 18;
@@ -80,12 +74,21 @@ namespace sprint0
             base.Initialize();
         }
 
-        public void RestartGame() {
+        private void ResetManagers()
+        {
+            universalScreenManager = new UniversalScreenManager(this);
+            hudManager = new HUDManager(this);
+            hudManager.LoadHUD();
+        }
+
+        public void RestartGame()
+        {
             ResetElapsedTime();
             VisitedRooms.Clear();
             RoomIndex = 18;
             ChangeRoom = true;
-            room.Player =  new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
+            ResetManagers();
+            room.Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
         }
 
         protected override void LoadContent()
@@ -99,37 +102,26 @@ namespace sprint0
 
         protected override void Update(GameTime gameTime)
         {
-             state = stateMachine.getState();
+
+            state = stateMachine.getState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             foreach (IController controller in controllerList)
                 controller.Update();
+
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
                 if (ChangeRoom) LoadContent();
+                
+            }
+            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test)) {
+               
                 room.Update();
+            }
+            if (ChangeHUD())
                 hudManager.Update();
-            }
-            else if (state.Equals(GameStateMachine.State.pause))
-            {
-                pauseScreenManager.Update();
-                hudManager.Update();
-            }
-            else if (state.Equals(GameStateMachine.State.credits))
-            {
-                creditsScreenManager.Update();
-            }
-            else if (state.Equals(GameStateMachine.State.start))
-            {
-                startScreenManager.Update();
-            }
-            else if (state.Equals(GameStateMachine.State.over))
-            {
-                gameOverScreenManager.Update();
-            }
-            music.Update();
-
+            universalScreenManager.Update(state);
             base.Update(gameTime);
         }
 
@@ -138,33 +130,21 @@ namespace sprint0
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
-            {
                 room.Draw();
+            if (ChangeHUD())
                 hudManager.Draw(_spriteBatch);
-            }
-            else if (state.Equals(GameStateMachine.State.pause))
-            {
-                pauseScreenManager.Draw(_spriteBatch);
-                hudManager.Draw(_spriteBatch);
-            }
-            else if (state.Equals(GameStateMachine.State.over))
-            {
-                gameOverScreenManager.Draw(_spriteBatch);
-            }
-            else if (state.Equals(GameStateMachine.State.start))
-            {
-                startScreenManager.Draw(_spriteBatch);
-            }
-            else if (state.Equals(GameStateMachine.State.credits))
-            {
-                creditsScreenManager.Draw(_spriteBatch);
-            }
+            universalScreenManager.Draw(_spriteBatch, state);
 
             _spriteBatch.End();
             base.Draw(gameTime);
         }
 
-
+        private bool ChangeHUD()
+        {
+            return state.Equals(GameStateMachine.State.play) ||
+                state.Equals(GameStateMachine.State.test) ||
+                state.Equals(GameStateMachine.State.pause);
+        }
         /*
          *  This is deprecated.
          */

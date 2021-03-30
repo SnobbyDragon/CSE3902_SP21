@@ -22,14 +22,14 @@ namespace sprint0
             this.game = game;
             mainHUD = new MainHUD(this.game);
             populateHUDInventory = new PopulateHUDInventory(this.game);
-            inventory = game.pauseScreenManager.Inventory();
-            aItem = game.pauseScreenManager.AItems();
+            inventory = game.universalScreenManager.pauseScreenManager.Inventory();
+            aItem = game.universalScreenManager.pauseScreenManager.AItems();
         }
 
         public void Update()
         {
-            inventory = game.pauseScreenManager.Inventory();
-            aItem = game.pauseScreenManager.AItems();
+            inventory = game.universalScreenManager.pauseScreenManager.Inventory();
+            aItem = game.universalScreenManager.pauseScreenManager.AItems();
             populateHUDInventory.Update();
             mainHUD.Update();
         }
@@ -84,8 +84,8 @@ namespace sprint0
         public void Refresh()
         {
             populateHUDInventory = new PopulateHUDInventory(game);
-            inventory = game.pauseScreenManager.Inventory();
-            aItem = game.pauseScreenManager.AItems();
+            inventory = game.universalScreenManager.pauseScreenManager.Inventory();
+            aItem = game.universalScreenManager.pauseScreenManager.AItems();
         }
     }
 }

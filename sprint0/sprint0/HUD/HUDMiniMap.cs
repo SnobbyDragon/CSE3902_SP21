@@ -22,14 +22,8 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             if (game.hudManager.HasMap())
-            {
                 DrawMap(spriteBatch);
-            }
-            if (!overlap.ContainsKey(currentRoom))
-                spriteBatch.Draw(Texture, roomPos[currentRoom], source[(int)RoomPosition.Location], Color.White);
-            else spriteBatch.Draw(Texture, new Rectangle(roomPos[overlap[currentRoom]].X, roomPos[overlap[currentRoom]].Y + sideLength / 4 + 2,
-                roomPos[overlap[currentRoom]].Width, roomPos[overlap[currentRoom]].Height), source[(int)RoomPosition.Location], Color.White);
-            spriteBatch.Draw(Texture, new Rectangle((int)(64 * Game1.Scale), (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), source[(int)RoomPosition.LevelNum], Color.White);
+            DrawLocation(spriteBatch);
         }
 
         private void DrawMap(SpriteBatch spriteBatch)
@@ -42,5 +36,13 @@ namespace sprint0
         }
 
         public void Update() => currentRoom = game.RoomIndex;
+        public void DrawLocation(SpriteBatch spriteBatch)
+        {
+            if (!overlap.ContainsKey(currentRoom))
+                spriteBatch.Draw(Texture, roomPos[currentRoom], source[(int)RoomPosition.Location], Color.White);
+            else spriteBatch.Draw(Texture, new Rectangle(roomPos[overlap[currentRoom]].X, roomPos[overlap[currentRoom]].Y + sideLength / 4 + 6,
+                roomPos[overlap[currentRoom]].Width, roomPos[overlap[currentRoom]].Height), source[(int)RoomPosition.Location], Color.White);
+            spriteBatch.Draw(Texture, new Rectangle((int)(64 * Game1.Scale), (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), source[(int)RoomPosition.LevelNum], Color.White);
+        }
     }
 }

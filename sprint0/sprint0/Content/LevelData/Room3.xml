@@ -61,7 +61,7 @@
     <Block ObjectName="water" LocationX="520" LocationY="460" />?
     
      <Enemy ObjectName="stalfos" LocationX="120" LocationY="340" />?
-    <Enemy ObjectName="stalfos" LocationX="320" LocationY="260" />?
+    <Enemy ObjectName="stalfos" LocationX="320" LocationY="300" />?
     <Enemy ObjectName="stalfos" LocationX="320" LocationY="380" />?
    
      <Player ObjectName="Link" LocationX="310" LocationY="220" />?

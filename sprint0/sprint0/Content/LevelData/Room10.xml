@@ -29,12 +29,6 @@
     <Block ObjectName="block" LocationX="400" LocationY="420" />?  
     <Block ObjectName="block" LocationX="480" LocationY="420" />? 
     
-    
-    
-    <Enemy ObjectName="wallmaster" LocationX="160" LocationY="220" />? 
-    <Enemy ObjectName="wallmaster" LocationX="200" LocationY="220" />? 
-    <Enemy ObjectName="wallmaster" LocationX="80" LocationY="340" />? 
-    <Enemy ObjectName="wallmaster" LocationX="80" LocationY="420" />? 
     <Enemy ObjectName="wallmaster" LocationX="520" LocationY="380" />? 
     <Enemy ObjectName="wallmaster" LocationX="520" LocationY="460" />? 
     <Enemy ObjectName="wallmaster" LocationX="520" LocationY="220" />? 

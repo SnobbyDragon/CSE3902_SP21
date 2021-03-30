@@ -28,7 +28,7 @@ namespace sprint0
             this.direction = direction;
             linkInventory = this.game.hudManager.PopulateHUDInventory;
             mainHUD = this.game.hudManager.MainHUD;
-            hudInventory = this.game.pauseScreenManager.HUDInventory;
+            hudInventory = this.game.universalScreenManager.pauseScreenManager.HUDInventory;
         }
 
         public void Move(int x, int y) => decoratedLink.Move(x, y);

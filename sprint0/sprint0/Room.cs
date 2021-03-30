@@ -8,7 +8,7 @@ namespace sprint0
         private readonly SpriteBatch _spriteBatch;
         public readonly Game1 game;
         private readonly string message = "EASTMOST PENINSULA IS THE SECRET.";
-        private readonly Vector2 messageLoc = new Vector2(170,170);
+        private readonly Vector2 messageLoc= new Vector2(170,250);
         private static PlayerSpriteFactory playerFactory;
         public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
         private IPlayer player;
