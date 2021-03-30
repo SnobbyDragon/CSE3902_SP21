@@ -8,7 +8,7 @@ namespace sprint0
     public class GameStateMachine
     {
         private Game1 game;
-        public enum State { start, play, pause, test, over, credits };
+        public enum State { start, play, pause, test, over, credits, win };
         private State state;
         public GameStateMachine(Game1 game)
         {
@@ -48,7 +48,7 @@ namespace sprint0
 
         public void HandleRunItBack()
         {
-            if (state == State.over)
+            if (state == State.over || state == State.play || state == State.win)
             {
                 game.RestartGame();
                 state = State.play;
@@ -63,6 +63,12 @@ namespace sprint0
             }
         }
 
+
+        public void HandleVictory()
+        {
+            state = State.win;
+        }
+
         public void HandleStart()
         {
             state = State.start;
@@ -75,7 +81,7 @@ namespace sprint0
                 state = State.play;
             }
         }
-        public State getState()
+        public State GetState()
         {
 
             return state;

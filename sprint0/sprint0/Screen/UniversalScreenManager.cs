@@ -9,8 +9,11 @@ namespace sprint0
         public GameOverScreenManager gameOverScreenManager;
         public StartScreenManager startScreenManager;
         public CreditsScreenManager creditsScreenManager;
+        public VictoryScreenManager victorScreenManager;
+
         public UniversalScreenManager(Game1 game)
         {
+            victorScreenManager = new VictoryScreenManager(game);
             pauseScreenManager = new PauseScreenManager(game);
             gameOverScreenManager = new GameOverScreenManager(game);
             creditsScreenManager = new CreditsScreenManager(game);
@@ -19,8 +22,7 @@ namespace sprint0
 
         public void Update(GameStateMachine.State state)
         {
-            if (false) { }
-            else if (state.Equals(GameStateMachine.State.pause))
+            if (state.Equals(GameStateMachine.State.pause))
                 pauseScreenManager.Update();
             else if (state.Equals(GameStateMachine.State.over))
                 gameOverScreenManager.Update();
@@ -28,13 +30,14 @@ namespace sprint0
                 creditsScreenManager.Update();
             else if (state.Equals(GameStateMachine.State.start))
                 startScreenManager.Update();
+            else if (state.Equals(GameStateMachine.State.win))
+                victorScreenManager.Update();
         }
 
         public void Draw(SpriteBatch _spriteBatch, GameStateMachine.State state)
         {
 
-            if (false) { }
-            else if (state.Equals(GameStateMachine.State.pause))
+            if (state.Equals(GameStateMachine.State.pause))
                 pauseScreenManager.Draw(_spriteBatch);
             else if (state.Equals(GameStateMachine.State.over))
                 gameOverScreenManager.Draw(_spriteBatch);
@@ -42,6 +45,8 @@ namespace sprint0
                 startScreenManager.Draw(_spriteBatch);
             else if (state.Equals(GameStateMachine.State.credits))
                 creditsScreenManager.Draw(_spriteBatch);
+            else if (state.Equals(GameStateMachine.State.win))
+                victorScreenManager.Draw(_spriteBatch);
         }
     }
 }

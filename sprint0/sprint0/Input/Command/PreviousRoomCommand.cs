@@ -12,7 +12,7 @@ namespace sprint0
 
         public void Execute()
         {
-            if (game.stateMachine.getState().Equals(GameStateMachine.State.test))
+            if (game.stateMachine.GetState().Equals(GameStateMachine.State.test))
             {
                 game.RoomIndex = (game.RoomIndex - 1 + game.NumRooms) % game.NumRooms;
                 game.ChangeRoom = true;

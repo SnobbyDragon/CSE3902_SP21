@@ -12,7 +12,7 @@ namespace sprint0
 
         public void Execute()
         {
-            if (game.hudManager.HasBoomerang() || game.stateMachine.getState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
+            if (game.hudManager.HasBoomerang() || game.stateMachine.GetState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
             {
                 game.Room.Player.CurrentItem = PlayerItems.Boomerang;
                 game.Room.Player.HandleItem();

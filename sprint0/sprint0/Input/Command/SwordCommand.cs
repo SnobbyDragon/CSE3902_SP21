@@ -11,7 +11,7 @@
 
         public void Execute()
         {
-            if (game.hudManager.HasSword() || game.stateMachine.getState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
+            if (game.hudManager.HasSword() || game.stateMachine.GetState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
             {
                 game.Room.Player.HandleSword();
             }

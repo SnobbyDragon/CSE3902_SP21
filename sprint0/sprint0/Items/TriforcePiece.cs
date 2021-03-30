@@ -15,10 +15,12 @@ namespace sprint0
         private readonly int width, height;
         private int currFrame;
         private readonly int totalFrames = 2, repeatedFrames = 8;
-        public PlayerItems PlayerItems { get => PlayerItems.Triforce; }
 
-        public TriforcePiece(Texture2D texture, Vector2 location)
+        private readonly Game1 game;
+        public PlayerItems PlayerItems { get => PlayerItems.Triforce; }
+        public TriforcePiece(Texture2D texture, Vector2 location, Game1 gm)
         {
+            this.game = gm;
             width = height = 10;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
@@ -30,11 +32,16 @@ namespace sprint0
             };
             currFrame = 0;
         }
-
+        
         public void Draw(SpriteBatch spriteBatch)
         {
             if (PickedUpDuration < maxPickedUpDuration)
+            {
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+            }
+            else { 
+                game.stateMachine.HandleVictory(); 
+            }
         }
 
         public void Update()
