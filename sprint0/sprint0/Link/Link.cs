@@ -92,6 +92,7 @@ namespace sprint0
                 itemHelper.UseSword(health == maxHealth);
         }
 
+
         public void HandleItem()
         {
             if (isAlive)

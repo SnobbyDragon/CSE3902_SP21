@@ -12,7 +12,7 @@ namespace sprint0
 
         public void Execute()
         {
-            if (game.hudManager.CanUseBomb() || game.stateMachine.getState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
+            if (game.hudManager.CanUseBomb() || game.stateMachine.GetState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
             {
                 game.Room.Player.CurrentItem = PlayerItems.Bomb;
                 game.Room.Player.HandleItem();

@@ -11,7 +11,7 @@ namespace sprint0
     public class ItemsSpriteFactory
     {
         private readonly Texture2D texture1;
-        private Game1 game;
+        private readonly Game1 game;
 
         public ItemsSpriteFactory(Game1 game)
         {
@@ -39,7 +39,7 @@ namespace sprint0
                 "clock" => new Clock(texture1, location),
                 "bow" => new Bow(texture1, location),
                 "heart container" => new HeartContainer(texture1, location),
-                "triforce piece" => new TriforcePiece(texture1, location),
+                "triforce piece" => new TriforcePiece(texture1, location, game),
                 "compass" => new Compass(texture1, location),
                 "key" => new Key(texture1, location),
                 "fairy" => new Fairy(texture1, location, game),

@@ -12,7 +12,7 @@ namespace sprint0
 
         public void Execute()
         {
-            if (game.hudManager.HasBowAndArrow() || game.stateMachine.getState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
+            if (game.hudManager.HasBowAndArrow() || game.stateMachine.GetState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
             {
                 game.Room.Player.CurrentItem = PlayerItems.Arrow;
                 game.Room.Player.HandleItem();
