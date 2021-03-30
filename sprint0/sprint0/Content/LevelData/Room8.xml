@@ -7,20 +7,6 @@
     <Dungeon ObjectName="left shut door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right wall" LocationX="0" LocationY="320" />?
 
-    <Block ObjectName="invisible block" LocationX="40" LocationY="320" />?
-<Block ObjectName="invisible block" LocationX="40" LocationY="360" />?
-<Block ObjectName="invisible block" LocationX="0" LocationY="320" />?
-<Block ObjectName="invisible block" LocationX="0" LocationY="360" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="320" />?
-<Block ObjectName="invisible block" LocationX="560" LocationY="360" />?
-<Block ObjectName="invisible block" LocationX="600" LocationY="320" />?
-<Block ObjectName="invisible block" LocationX="600" LocationY="360" />?
-	<Block ObjectName="invisible block" LocationX="280" LocationY="180" />?
-	<Block ObjectName="invisible block" LocationX="320" LocationY="180" />?
-<Block ObjectName="invisible block" LocationX="280" LocationY="500" />?
-<Block ObjectName="invisible block" LocationX="320" LocationY="500" />?
-<Block ObjectName="invisible block" LocationX="280" LocationY="540" />?
-<Block ObjectName="invisible block" LocationX="320" LocationY="540" />?
 <Block ObjectName="block" LocationX="360" LocationY="220" />?
     <Block ObjectName="block" LocationX="400" LocationY="220" />?
     <Block ObjectName="block" LocationX="440" LocationY="220" />?

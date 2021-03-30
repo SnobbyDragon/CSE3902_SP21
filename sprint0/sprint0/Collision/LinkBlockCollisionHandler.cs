@@ -6,6 +6,7 @@ namespace sprint0
     public class LinkBlockCollisionHandler
     {
         private readonly int linkSize = (int)(16 * Game1.Scale);
+        private readonly int offset = 4;
 
         public LinkBlockCollisionHandler()
         {
@@ -44,7 +45,6 @@ namespace sprint0
                     break;
             }
             block.SetIsMovable();
-
         }
 
         private void HandleImmovableBlock(IPlayer link, IBlock block, Direction side)
@@ -52,16 +52,16 @@ namespace sprint0
             switch (side)
             {
                 case Direction.n:
-                    link.Pos += new Vector2(0, block.Location.Bottom - link.Pos.Y);
+                    link.Pos += new Vector2(0, block.Location.Bottom - (link.Pos.Y + offset));
                     break;
                 case Direction.s:
-                    link.Pos += new Vector2(0, block.Location.Top - (link.Pos.Y + linkSize));
+                    link.Pos += new Vector2(0, block.Location.Top - (link.Pos.Y + linkSize - offset));
                     break;
                 case Direction.e:
-                    link.Pos += new Vector2(block.Location.Left - (link.Pos.X + linkSize), 0);
+                    link.Pos += new Vector2(block.Location.Left - (link.Pos.X + linkSize - offset), 0);
                     break;
                 case Direction.w:
-                    link.Pos += new Vector2(block.Location.Right - link.Pos.X, 0);
+                    link.Pos += new Vector2(block.Location.Right - (link.Pos.X + offset), 0);
                     break;
             }
         }

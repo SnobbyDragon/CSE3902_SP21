@@ -27,13 +27,14 @@ namespace sprint0
         {
             roomProjectile = new RoomProjectile(game);
             roomWeapon = new RoomWeapon(game);
-            roomBlocks = new RoomBlocks();
+            roomBlocks = new RoomBlocks(game);
             roomItems = new RoomItems(game);
             roomNPCs = new RoomNPCs();
             roomEnemies = new RoomEnemies(game);
-            roomSprite = new RoomSprite(game);
+            roomSprite = new RoomSprite();
             roomMisc = new RoomMisc(game);
         }
+
         public void PopulateLists((List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements)
         {
             roomSprite.RoomSprites = roomElements.Item1;
@@ -44,9 +45,14 @@ namespace sprint0
             roomItems.Items = roomElements.Item6;
         }
 
-        public void RemoveDead()
+        public void AddNew()
         {
             roomEnemies.EnemySpawnUpdate();
+            roomBlocks.AddNew();
+        }
+
+        public void RemoveDead()
+        {
             roomItems.ItemSpawnUpdate();
             roomEnemies.RemoveDead();
             roomWeapon.RemoveDead();
@@ -54,6 +60,7 @@ namespace sprint0
             roomWeapon.RemoveDeadTwo();
             roomProjectile.RemoveDeadTwo();
             roomWeapon.RemoveDeadTwo();
+            roomBlocks.RemoveDestroyed();
         }
 
         public void Clear()

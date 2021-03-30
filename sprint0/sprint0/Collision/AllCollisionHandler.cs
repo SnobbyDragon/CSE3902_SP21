@@ -6,20 +6,20 @@ namespace sprint0
 {
     public class AllCollisionHandler
     {
+        private readonly Game1 game;
         private readonly Room room;
         private readonly CollisionDetector collisionDetector;
         private readonly int linkSize = (int)(16 * Game1.Scale);
-
         private readonly int offset = 4;
 
-
-        public AllCollisionHandler(Room room)
+        public AllCollisionHandler(Game1 game, Room room)
         {
+            this.game = game;
             this.room = room;
             collisionDetector = new CollisionDetector();
         }
 
-        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IWeapon> weapons, List<IProjectile> projectiles, List<IBlock> blocks, List<INpc> npcs, List<IItem> items)
+        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IWeapon> weapons, List<IProjectile> projectiles, List<IBlock> blocks, List<INpc> npcs, List<IItem> items, List<ISprite> overlays)
         {
             HandleLinkProjectileCollisions(link, projectiles);
             HandleLinkBlockCollisions(link, blocks);
@@ -32,6 +32,7 @@ namespace sprint0
             HandleBlockBlockCollisions(blocks);
             HandleLinkNpcCollisions(link, npcs);
             HandleProjectileGameBorderCollision(projectiles);
+            HandleLinkOverlayCollision(link, overlays);
         }
 
         private void HandleLinkEnemyCollisions(IPlayer link, List<IEnemy> enemies)
@@ -102,6 +103,20 @@ namespace sprint0
             }
         }
 
+        private void HandleLinkOverlayCollision(IPlayer link, List<ISprite> overlays)
+        {
+            LinkOverlayCollisionHandler collisionHandler = new LinkOverlayCollisionHandler(game);
+            Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
+            foreach (ISprite overlay in overlays)
+            {
+                Collision side = collisionDetector.DetectCollision(linkHitbox, overlay);
+                if (side != Collision.None)
+                {
+                    collisionHandler.HandleCollision(link, overlay, side.ToDirection());
+                }
+            }
+        }
+
         private void HandleEnemyBlockCollisions(List<IEnemy> enemies, List<IBlock> blocks)
         {
             EnemyBlockCollisionHandler collisionHandler = new EnemyBlockCollisionHandler();
@@ -117,6 +132,7 @@ namespace sprint0
                 }
             }
         }
+
         private void HandleEnemyEnemyCollisions(List<IEnemy> enemies)
         {
             EnemyEnemyCollisionHandler collisionHandler = new EnemyEnemyCollisionHandler();
@@ -132,6 +148,7 @@ namespace sprint0
                 }
             }
         }
+
         private void HandleEnemyWeaponCollisions(List<IEnemy> enemies, List<IWeapon> weapons)
         {
             EnemyWeaponCollisionHandler collisionHandler = new EnemyWeaponCollisionHandler();

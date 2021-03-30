@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework.Media;
 
 namespace sprint0
 {
     public class BackgroundMusic
     {
-        private readonly Song song;
+        private readonly List<Song> songs;
+        private int currSong;
 
-        public BackgroundMusic(Song song)
+        public BackgroundMusic(List<Song> songs)
         {
-            this.song = song;
-            MediaPlayer.IsRepeating = true;
+            this.songs = songs;
+            currSong = 1;
             Play();
         }
 
@@ -22,12 +24,26 @@ namespace sprint0
                 Play();
         }
 
+        public void SkipSong()
+        {
+            MediaPlayer.Stop();
+        }
+
+        public void Update()
+        {
+            if (MediaPlayer.State.Equals(MediaState.Stopped))
+                Play();
+        }
+
         private void Play()
         {
             if (MediaPlayer.State.Equals(MediaState.Paused))
                 MediaPlayer.Resume();
-            else
-                MediaPlayer.Play(song);
+            else if (MediaPlayer.State.Equals(MediaState.Stopped))
+            {
+                MediaPlayer.Play(songs[currSong]);
+                currSong = (currSong + 1) % songs.Count;
+            }
         }
 
         private void Stop()

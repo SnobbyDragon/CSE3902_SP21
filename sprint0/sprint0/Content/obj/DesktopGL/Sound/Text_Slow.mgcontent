@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>/Users/angli/Desktop/cse 3902/CSE3902_SP21/sprint0/sprint0/Content/Sound/Text_Slow.wav</SourceFile>
-  <SourceTime>2021-03-20T21:46:35.3823629-04:00</SourceTime>
+  <SourceTime>2021-03-23T21:32:23.6625654-04:00</SourceTime>
   <DestFile>/Users/angli/Desktop/cse 3902/CSE3902_SP21/sprint0/sprint0/Content/bin/DesktopGL/Sound/Text_Slow.xnb</DestFile>
-  <DestTime>2021-03-22T18:27:29.3662067-04:00</DestTime>
+  <DestTime>2021-03-29T20:27:57.072941-04:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-12-08T11:35:14-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

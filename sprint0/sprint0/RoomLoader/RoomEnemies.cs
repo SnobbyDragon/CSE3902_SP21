@@ -12,9 +12,9 @@ namespace sprint0
         public List<IEnemy> EnemiesToDie { get => enemiesToDie; set => enemiesToDie = value; }
         public List<IEnemy> EnemiesToSpawn { get => enemiesToSpawn; set => enemiesToSpawn = value; }
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
-        private int roomNum;
+        private readonly int roomNum;
         private bool endBehaviorExecuted;
-        private Game1 game;
+        private readonly Game1 game;
 
         public RoomEnemies(Game1 game)
         {
@@ -52,6 +52,7 @@ namespace sprint0
                 RoomEndBehavior();
             }
         }
+
         public void EnemySpawnUpdate()
         {
             if (enemiesToSpawn.Count > 0)
@@ -78,7 +79,7 @@ namespace sprint0
             {
                 game.Room.LoadLevel.RoomItems.AddItem(location, "boomerang");
             }
-            else if (roomNum ==roomWithMovableBlock) {
+            else if (roomNum == roomWithMovableBlock) {
                //TODO game.Room.LoadLevel.RoomBlocks.UnlockBlock(); idk how to do this
             }
             endBehaviorExecuted = true;

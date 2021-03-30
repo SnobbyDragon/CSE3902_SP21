@@ -7,12 +7,17 @@ namespace sprint0
 {
     public class SoundLoader
     {
-        private readonly Song song;
+        private readonly List<Song> songs;
         private readonly Dictionary<string, SoundEffect> soundEffects;
 
         public SoundLoader(Game1 game)
         {
-            song = game.Content.Load<Song>("Sound/music1");
+            songs = new List<Song>
+            {
+                game.Content.Load<Song>("Sound/music1"),
+                game.Content.Load<Song>("Sound/music2"),
+                game.Content.Load<Song>("Sound/music3"),
+            };
             soundEffects = new Dictionary<string, SoundEffect>
             {
                 { "sword slash", game.Content.Load<SoundEffect>("Sound/Sword_Slash") },
@@ -27,7 +32,8 @@ namespace sprint0
                 { "recorder", game.Content.Load<SoundEffect>("Sound/Recorder") },
                 { "enemy damaged", game.Content.Load<SoundEffect>("Sound/Enemy_Hit") },
                 { "enemy death", game.Content.Load<SoundEffect>("Sound/Enemy_Die") },
-                { "link damaged", game.Content.Load<SoundEffect>("Sound/Link_Hurt") },
+                //{ "link damaged", game.Content.Load<SoundEffect>("Sound/Link_Hurt") },
+                { "link damaged", game.Content.Load<SoundEffect>("Sound/ow") },
                 { "link death", game.Content.Load<SoundEffect>("Sound/Link_Die") },
                 { "low health", game.Content.Load<SoundEffect>("Sound/LowHealth") },
                 { "new item", game.Content.Load<SoundEffect>("Sound/Fanfare") },
@@ -54,9 +60,9 @@ namespace sprint0
             };
         }
 
-        public Song GetMusic()
+        public List<Song> GetMusic()
         {
-            return song;
+            return songs;
         }
 
         public SoundEffect GetSoundEffect(string soundEffectType)

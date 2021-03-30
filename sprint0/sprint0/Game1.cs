@@ -31,7 +31,6 @@ namespace sprint0
         private readonly int LinkDefaultX = 250;
         private readonly int LinkDefaultY = 250;
 
-
         private GameStateMachine.State state;
         public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
@@ -71,6 +70,7 @@ namespace sprint0
             VisitedRooms = new List<int>();
             RoomIndex = 18;
             ChangeRoom = true;
+
             base.Initialize();
         }
 

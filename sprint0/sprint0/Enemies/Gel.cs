@@ -8,10 +8,10 @@ namespace sprint0
 {
     public class Gel : AbstractEnemy
     {
-        private readonly Dictionary<string, List<Rectangle>> colorMap;
-        private readonly string color;
+        private readonly Dictionary<Color, List<Rectangle>> colorMap;
+        private readonly Color color;
 
-        public Gel(Texture2D texture, Vector2 location, Game1 gm, string gelColor) : base(texture, location, gm)
+        public Gel(Texture2D texture, Vector2 location, Game1 gm, Color gelColor) : base(texture, location, gm)
         {
             width = 8;
             height = 16;
@@ -24,16 +24,16 @@ namespace sprint0
             color = gelColor;
             damage = 1;
 
-            colorMap = new Dictionary<string, List<Rectangle>>
+            colorMap = new Dictionary<Color, List<Rectangle>>
             {
-                { "teal", SpritesheetHelper.GetFramesH(1, 11, width, height, totalFrames) },
-                { "blue", SpritesheetHelper.GetFramesH(19, 11, width, height, totalFrames) },
-                { "green", SpritesheetHelper.GetFramesH(37, 11, width, height, totalFrames) },
-                { "blkgold", SpritesheetHelper.GetFramesH(55, 11, width, height, totalFrames) },
-                { "lime", SpritesheetHelper.GetFramesH(1, 28, width, height, totalFrames) },
-                { "brown", SpritesheetHelper.GetFramesH(19, 28, width, height, totalFrames) },
-                { "grey", SpritesheetHelper.GetFramesH(37, 28, width, height, totalFrames) },
-                { "blkwhite", SpritesheetHelper.GetFramesH(55, 28, width, height, totalFrames) },
+                { Color.Teal, SpritesheetHelper.GetFramesH(1, 11, width, height, totalFrames) },
+                { Color.Blue, SpritesheetHelper.GetFramesH(19, 11, width, height, totalFrames) },
+                { Color.Green, SpritesheetHelper.GetFramesH(37, 11, width, height, totalFrames) },
+                { Color.Gold, SpritesheetHelper.GetFramesH(55, 11, width, height, totalFrames) },
+                { Color.Lime, SpritesheetHelper.GetFramesH(1, 28, width, height, totalFrames) },
+                { Color.Brown, SpritesheetHelper.GetFramesH(19, 28, width, height, totalFrames) },
+                { Color.Gray, SpritesheetHelper.GetFramesH(37, 28, width, height, totalFrames) },
+                { Color.White, SpritesheetHelper.GetFramesH(55, 28, width, height, totalFrames) },
             };
         }
 

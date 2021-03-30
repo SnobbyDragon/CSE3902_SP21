@@ -8,11 +8,6 @@
     <Dungeon ObjectName="down bombed opening" LocationX="280" LocationY="140" />?    
     <Dungeon ObjectName="left open door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />?
-	
-	<Block ObjectName="invisible block" LocationX="250" LocationY="160" />?
-	<Block ObjectName="invisible block" LocationX="330" LocationY="160" />?
-	<Block ObjectName="invisible block" LocationX="250" LocationY="120" />?
-	<Block ObjectName="invisible block" LocationX="330" LocationY="120" />?
 
 
 	<Block ObjectName="block" LocationX="160" LocationY="300" />? 
