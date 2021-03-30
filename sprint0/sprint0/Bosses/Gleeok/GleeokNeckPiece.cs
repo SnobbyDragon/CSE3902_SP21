@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 //Last updated 3/28 by Hannah
 namespace sprint0
 {
-    public class GleeokNeckpeice : IEnemy
+    public class GleeokNeckPiece : IEnemy
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -22,7 +22,7 @@ namespace sprint0
         public int Damage { get => 0; }
         private Game1 game;
 
-        public GleeokNeckpeice(Texture2D texture, Vector2 anchor, IEnemy head, int segmentNumber, Game1 game)
+        public GleeokNeckPiece(Texture2D texture, Vector2 anchor, IEnemy head, int segmentNumber, Game1 game)
         {
             this.game = game;
             Texture = texture;
@@ -68,10 +68,12 @@ namespace sprint0
         public void ChangeDirection()
         {
         }
+
         public int CheckHealth()
         {
             return health;
         }
+
         public void TakeDamage(int damage)
         {
             health -= damage;

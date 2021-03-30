@@ -8,7 +8,6 @@ namespace sprint0
 {
     public class Trap : AbstractEnemy
     {
-
         private Rectangle source;
         private Rectangle HomeLocation;
         public bool IsMoving { get; set; }
@@ -61,7 +60,7 @@ namespace sprint0
             this.direction = direction;
         }
 
-        public new void ChangeDirection()
+        public override void ChangeDirection()
         {
             direction = direction.OppositeDirection();
         }

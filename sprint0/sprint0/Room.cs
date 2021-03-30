@@ -5,10 +5,10 @@ namespace sprint0
 {
     public class Room
     {
-        private SpriteBatch _spriteBatch;
+        private readonly SpriteBatch _spriteBatch;
         public readonly Game1 game;
-        private readonly string message = "EASTMOST PRNINSULA IS THE SECRET.";
-        private readonly Vector2 messageLoc= new Vector2(170,170);
+        private readonly string message = "EASTMOST PENINSULA IS THE SECRET.";
+        private readonly Vector2 messageLoc = new Vector2(170,170);
         private static PlayerSpriteFactory playerFactory;
         public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
         private IPlayer player;
@@ -46,7 +46,6 @@ namespace sprint0
             collisionHandler = new AllCollisionHandler(this);
             loadLevel.PopulateLists(new LevelLoader(game, RoomIndex).LoadLevel());
             text = new Text(game, message, messageLoc, Color.White);
-
         }
 
         public void Update()
@@ -55,6 +54,7 @@ namespace sprint0
             loadLevel.Update();
             collisionHandler.HandleAllCollisions(Player, loadLevel.RoomEnemies.Enemies, loadLevel.RoomWeapon.Weapons, loadLevel.RoomProjectile.Projectiles, loadLevel.RoomBlocks.Blocks, loadLevel.RoomNPCs.NPCs, loadLevel.RoomItems.Items);
             loadLevel.RemoveDead();
+            loadLevel.AddNew();
             roomSound.RemoveDead();
             loadLevel.Clear();
             roomSound.Clear();

@@ -7,21 +7,6 @@
     <Dungeon ObjectName="down open door" LocationX="280" LocationY="140" />?    
     <Dungeon ObjectName="left locked door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />?
-	
-<Block ObjectName="invisible block" LocationX="40" LocationY="320" />?
-<Block ObjectName="invisible block" LocationX="40" LocationY="360" />?
-<Block ObjectName="invisible block" LocationX="0" LocationY="320" />?
-<Block ObjectName="invisible block" LocationX="0" LocationY="360" />?
-
-<Block ObjectName="invisible block" LocationX="560" LocationY="320" />?
-<Block ObjectName="invisible block" LocationX="560" LocationY="360" />?
-<Block ObjectName="invisible block" LocationX="600" LocationY="320" />?
-<Block ObjectName="invisible block" LocationX="600" LocationY="360" />?
-
-<Block ObjectName="invisible block" LocationX="280" LocationY="500" />?
-<Block ObjectName="invisible block" LocationX="320" LocationY="500" />?
-<Block ObjectName="invisible block" LocationX="280" LocationY="540" />?
-<Block ObjectName="invisible block" LocationX="320" LocationY="540" />?
 
 	<Block ObjectName="block" LocationX="120" LocationY="260" />?
     <Block ObjectName="block" LocationX="160" LocationY="260" />?
@@ -31,13 +16,11 @@
     <Block ObjectName="block" LocationX="280" LocationY="340" />?
     <Block ObjectName="block" LocationX="320" LocationY="340" />?
     
-
     <Block ObjectName="block" LocationX="120" LocationY="420" />?
     <Block ObjectName="block" LocationX="160" LocationY="420" />?
     <Block ObjectName="block" LocationX="440" LocationY="420" />?
     <Block ObjectName="block" LocationX="480" LocationY="420" />? 
-
-
+    
      <Enemy ObjectName="blkgold zol" LocationX="160" LocationY="220" />?
     <Enemy ObjectName="green zol" LocationX="200" LocationY="300" />?
     <Enemy ObjectName="lime zol" LocationX="360" LocationY="220" />?

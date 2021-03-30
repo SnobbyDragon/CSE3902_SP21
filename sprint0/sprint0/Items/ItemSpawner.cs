@@ -42,13 +42,12 @@ namespace sprint0
             string[] itemArray= enemyItemMap.GetValueOrDefault(enemy);
             int randPos = rand.Next(itemArray.Length);
             string item = itemArray[randPos];
-            if(item!="") roomItems.AddItem(location, item);
+            if (item != "") roomItems.AddItem(location, item);
         }
 
         //Adds specific item
         public void SpawnItem(Vector2 location, String item)
         {
-           
             if (item != "") roomItems.AddItem(location, item);
         }
 

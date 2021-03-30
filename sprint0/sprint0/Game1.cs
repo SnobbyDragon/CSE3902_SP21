@@ -32,7 +32,6 @@ namespace sprint0
         private readonly int LinkDefaultX = 250;
         private readonly int LinkDefaultY = 250;
 
-
         private GameStateMachine.State state;
         public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
@@ -77,6 +76,7 @@ namespace sprint0
             VisitedRooms = new List<int>();
             RoomIndex = 18;
             ChangeRoom = true;
+
             base.Initialize();
         }
 
@@ -105,7 +105,8 @@ namespace sprint0
 
             foreach (IController controller in controllerList)
                 controller.Update();
-            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test)) {
+            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
+            {
                 if (ChangeRoom) LoadContent();
                 room.Update();
                 hudManager.Update();
@@ -145,25 +146,19 @@ namespace sprint0
             {
                 pauseScreenManager.Draw(_spriteBatch);
                 hudManager.Draw(_spriteBatch);
-
             }
             else if (state.Equals(GameStateMachine.State.over))
             {
                 gameOverScreenManager.Draw(_spriteBatch);
-
             }
             else if (state.Equals(GameStateMachine.State.start))
             {
                 startScreenManager.Draw(_spriteBatch);
-
             }
             else if (state.Equals(GameStateMachine.State.credits))
             {
                 creditsScreenManager.Draw(_spriteBatch);
-
             }
-
-
 
             _spriteBatch.End();
             base.Draw(gameTime);

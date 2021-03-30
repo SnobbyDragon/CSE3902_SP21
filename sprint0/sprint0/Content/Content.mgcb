@@ -248,6 +248,12 @@
 /processorParam:Quality=Best
 /build:Sound/music3.mp3
 
+#begin Sound/ow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/ow.wav
+
 #begin Sound/Recorder.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

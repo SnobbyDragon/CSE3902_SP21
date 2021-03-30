@@ -13,19 +13,19 @@ namespace sprint0
         private readonly int xOffset = 1018, yOffset = 11, width = 16, height = 16;
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
-        private string dir;
+        private readonly Direction dir;
 
-        public Statue(Texture2D texture, Vector2 location, string direction, Game1 game)
+        public Statue(Texture2D texture, Vector2 location, Direction direction, Game1 game)
         {
             this.game = game;
             dir = direction;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            if (dir.Equals("right"))
+            if (dir == Direction.e)
             {
                 source = new Rectangle(xOffset, yOffset, width, height);
             }
-            else if (dir.Equals("left"))
+            else if (dir == Direction.w)
             {
                 source = new Rectangle(xOffset + width + 1, yOffset, width, height);
             }
@@ -53,17 +53,7 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            Vector2 direction = Location.Center.ToVector2();
-            if (dir.Equals("left"))
-            {
-                direction = new Vector2(-1, 0);
-            }
-            else if (dir.Equals("right"))
-            {
-                direction = new Vector2(1, 0);
-            }
-            direction.Normalize();
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), direction, this);
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir.ToVector2(), this);
         }
 
         public bool IsWalkable()

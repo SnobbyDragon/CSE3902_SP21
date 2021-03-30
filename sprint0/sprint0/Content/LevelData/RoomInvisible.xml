@@ -1,108 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<XnaContent>?    
-    <Block ObjectName="invisible block" LocationX="40" LocationY="200" />?
-    <Block ObjectName="invisible block" LocationX="40" LocationY="240" />?
-    <Block ObjectName="invisible block" LocationX="40" LocationY="280" />?
+<XnaContent>?
+    <Block ObjectName="invisible block" LocationX="0" LocationY="140" Width="120" Height="32"/>?
+    <Block ObjectName="invisible block" LocationX="340" LocationY="140" Width="120" Height="32"/>?
     
-    <Block ObjectName="invisible block" LocationX="40" LocationY="400" />?
-    <Block ObjectName="invisible block" LocationX="40" LocationY="440" />?
-    <Block ObjectName="invisible block" LocationX="40" LocationY="480" />?
+    <Block ObjectName="invisible block" LocationX="560" LocationY="140" Width="32" Height="80"/>?
+    <Block ObjectName="invisible block" LocationX="560" LocationY="380" Width="32" Height="80"/>?
     
-    <Block ObjectName="invisible block" LocationX="560" LocationY="200" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="240" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="280" />?
+    <Block ObjectName="invisible block" LocationX="0" LocationY="500" Width="120" Height="32"/>?
+    <Block ObjectName="invisible block" LocationX="340" LocationY="500" Width="120" Height="32"/>?
     
-    <Block ObjectName="invisible block" LocationX="560" LocationY="400" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="440" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="480" />?
-    
-    <Block ObjectName="invisible block" LocationX="80" LocationY="180" />?
-    <Block ObjectName="invisible block" LocationX="120" LocationY="180" />?
-    <Block ObjectName="invisible block" LocationX="160" LocationY="180" />?
-    <Block ObjectName="invisible block" LocationX="200" LocationY="180" />?
-    <Block ObjectName="invisible block" LocationX="240" LocationY="180" />?
-  
-    <Block ObjectName="invisible block" LocationX="360" LocationY="180" />?
-    <Block ObjectName="invisible block" LocationX="400" LocationY="180" />?
-    <Block ObjectName="invisible block" LocationX="440" LocationY="180" />?
-    <Block ObjectName="invisible block" LocationX="480" LocationY="180" />?
-    <Block ObjectName="invisible block" LocationX="520" LocationY="180" />?
-   
-    <Block ObjectName="invisible block" LocationX="80" LocationY="500" />?
-    <Block ObjectName="invisible block" LocationX="120" LocationY="500" />?
-    <Block ObjectName="invisible block" LocationX="160" LocationY="500" />?
-    <Block ObjectName="invisible block" LocationX="200" LocationY="500" />?
-    <Block ObjectName="invisible block" LocationX="240" LocationY="500" />?
-  
-    <Block ObjectName="invisible block" LocationX="360" LocationY="500" />?
-    <Block ObjectName="invisible block" LocationX="400" LocationY="500" />?
-    <Block ObjectName="invisible block" LocationX="440" LocationY="500" />?
-    <Block ObjectName="invisible block" LocationX="480" LocationY="500" />?
-    <Block ObjectName="invisible block" LocationX="520" LocationY="500" />?
-    
-    
-    <Block ObjectName="invisible block" LocationX="0" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="180" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="220" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="260" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="300" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="340" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="380" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="420" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="460" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="500" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="580" />?
-
-    <Block ObjectName="invisible block" LocationX="560" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="180" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="220" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="260" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="300" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="340" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="380" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="420" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="460" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="500" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="580" />?
-    
-    <Block ObjectName="invisible block" LocationX="-40" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="40" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="80" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="120" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="160" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="200" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="240" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="280" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="320" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="360" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="400" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="440" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="480" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="520" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="600" LocationY="140" />?
-    <Block ObjectName="invisible block" LocationX="640" LocationY="140" />?
-    
-    <Block ObjectName="invisible block" LocationX="-40" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="0" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="40" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="80" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="120" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="160" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="200" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="240" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="280" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="320" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="360" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="400" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="440" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="480" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="520" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="560" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="600" LocationY="540" />?
-    <Block ObjectName="invisible block" LocationX="640" LocationY="540" />?
-    
+    <Block ObjectName="invisible block" LocationX="0" LocationY="140" Width="32" Height="80"/>?
+    <Block ObjectName="invisible block" LocationX="0" LocationY="380" Width="32" Height="80"/>?
 ?</XnaContent>

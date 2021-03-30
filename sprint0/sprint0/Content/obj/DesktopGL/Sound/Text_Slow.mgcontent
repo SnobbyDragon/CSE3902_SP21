@@ -3,7 +3,7 @@
   <SourceFile>/Users/angli/Desktop/cse 3902/CSE3902_SP21/sprint0/sprint0/Content/Sound/Text_Slow.wav</SourceFile>
   <SourceTime>2021-03-23T21:32:23.6625654-04:00</SourceTime>
   <DestFile>/Users/angli/Desktop/cse 3902/CSE3902_SP21/sprint0/sprint0/Content/bin/DesktopGL/Sound/Text_Slow.xnb</DestFile>
-  <DestTime>2021-03-29T10:08:05.5110306-04:00</DestTime>
+  <DestTime>2021-03-29T20:27:57.072941-04:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-12-08T11:35:14-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

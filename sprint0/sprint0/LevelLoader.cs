@@ -96,7 +96,12 @@ namespace sprint0
                     sprites.Add(dungeonFactory.MakeSprite(objectName, location));
                     break;
                 case "Block":
-                    blocks.Add(dungeonFactory.MakeBlock(objectName, location));
+                    string width = xmlReader.GetAttribute("Width");
+                    string height = xmlReader.GetAttribute("Height");
+                    if (width != null && height != null)
+                        blocks.Add(dungeonFactory.MakeBlock(objectName, location, int.Parse(width), int.Parse(height)));
+                    else
+                        blocks.Add(dungeonFactory.MakeBlock(objectName, location));
                     break;
                 case "NPC":
                     npcs.Add(npcFactory.MakeSprite(objectName, location));

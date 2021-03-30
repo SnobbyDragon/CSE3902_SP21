@@ -11,7 +11,7 @@ namespace sprint0
     {
         private readonly string message0 = "This game is based on the original Zelda.";
         private readonly string message1 = "It was created for CSE 3902 in Spring 2021 at the OSU";
-        private readonly string message2 = "It's authors include:\n\nNeha Gupta,\n\nJesse He,\n\nHannah Johnson,\n\nAngela Li,\n\nStutti Shah,\n\nJacob Urick";
+        private readonly string message2 = "Its authors include:\n\nNeha Gupta,\n\nJesse He,\n\nHannah Johnson,\n\nAngela Li,\n\nStutti Shah,\n\nJacob Urick";
         private readonly string message3 = "We hope you enjoy it :)";
         private readonly string message4 = "Special thanks to Grace McKenzie and Dr. Matt Bogus for lots of invaluable feedback.";
         private readonly List<Text> textList;
@@ -35,27 +35,24 @@ namespace sprint0
                 new Text(game, message2, new Vector2(xCoord, yCoord*secondOffset), Color.Black),
                 new Text(game, message3, new Vector2(xCoord, yCoord*thirdOffset), Color.Black),
                 new Text(game, message4, new Vector2(xCoord, yCoord*fourthOffset), Color.Black)
-
-        };
-
+            };
         }
 
-        public void Update() {
-            if (counter > mandatoryCreditsTimer) {
+        public void Update()
+        {
+            if (counter > mandatoryCreditsTimer)
+            {
                 game.stateMachine.HandleStart();
             }
             counter++;
             foreach (Text text in textList)
-            {
                 text.Location = new Vector2(xCoord, text.Location.Y - 1);
-            }
         }
-        public void Draw(SpriteBatch spriteBatch) 
+
+        public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Text text in textList)
-            {
                 text.Draw(spriteBatch);
-            }
         }
     }
 }

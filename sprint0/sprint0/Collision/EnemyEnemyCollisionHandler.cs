@@ -16,10 +16,10 @@ namespace sprint0
             if (!(enemy1 is ManhandlaLimb && enemy2 is Manhandla) && !(enemy2 is ManhandlaLimb && enemy1 is Manhandla)
                  && !(enemy1 is Zol && enemy2 is Gel) && !(enemy2 is Zol && enemy1 is Gel) && !(enemy1 is Zol && enemy2 is Zol)
                  && !(enemy2 is PatraMinion && enemy1 is Patra) && !(enemy1 is PatraMinion && enemy2 is Patra)
-                 && !(enemy1 is Gleeok && enemy2 is GleeokNeckpeice) && !(enemy2 is Gleeok && enemy1 is GleeokNeckpeice)
+                 && !(enemy1 is Gleeok && enemy2 is GleeokNeckPiece) && !(enemy2 is Gleeok && enemy1 is GleeokNeckPiece)
                  && !(enemy1 is Gleeok && enemy2 is GleeokHead) && !(enemy2 is Gleeok && enemy1 is GleeokHead)
-                 && !(enemy1 is GleeokNeckpeice && enemy2 is GleeokHead) && !(enemy2 is GleeokNeckpeice && enemy1 is GleeokHead)
-                 &&!(enemy2 is GleeokNeckpeice && enemy1 is GleeokNeckpeice) && !(enemy2 is GleeokHead && enemy1 is GleeokHead))
+                 && !(enemy1 is GleeokNeckPiece && enemy2 is GleeokHead) && !(enemy2 is GleeokNeckPiece && enemy1 is GleeokHead)
+                 &&!(enemy2 is GleeokNeckPiece && enemy1 is GleeokNeckPiece) && !(enemy2 is GleeokHead && enemy1 is GleeokHead))
             {
 
                 switch (side)

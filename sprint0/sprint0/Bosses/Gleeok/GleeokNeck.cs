@@ -26,7 +26,7 @@ namespace sprint0
             IEnemy head = new GleeokHead(Texture, anchor, game);
             for (int i = 0; i < 4; i++)
             {
-                neck.Add(new GleeokNeckpeice(Texture, anchor, head, i, game));
+                neck.Add(new GleeokNeckPiece(Texture, anchor, head, i, game));
             }
             neck.Add(head);
             game.Room.LoadLevel.RoomEnemies.RegisterEnemies(neck);
@@ -57,9 +57,9 @@ namespace sprint0
                     GleeokHead head = (GleeokHead)neckpeice1;
                     neckHealth += head.CheckHealth();
                 }
-                else if(neckpeice1 is GleeokNeckpeice)
+                else if(neckpeice1 is GleeokNeckPiece)
                 {
-                    GleeokNeckpeice neckpeice = (GleeokNeckpeice)neckpeice1;
+                    GleeokNeckPiece neckpeice = (GleeokNeckPiece)neckpeice1;
                     neckHealth += neckpeice.CheckHealth();
                 }
                

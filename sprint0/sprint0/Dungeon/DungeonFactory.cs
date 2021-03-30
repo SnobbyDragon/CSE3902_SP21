@@ -8,8 +8,8 @@ namespace sprint0
 {
     public class DungeonFactory
     {
-        private Game1 game;
-        private Texture2D texture;
+        private readonly Game1 game;
+        private readonly Texture2D texture;
 
         public DungeonFactory(Game1 game)
         {
@@ -24,43 +24,32 @@ namespace sprint0
                 "room floor plain" => new RoomFloor(texture, location),
                 "room border" => new RoomBorder(texture, location),
                 "darkness" => new Darkness(texture, location),
-                "block" => new Block(texture, location),
-                "tile" => new Tile(texture, location),
-                "gap" => new Gap(texture, location),
-                "water" => new Water(texture, location),
-                "floor" => new Floor(texture, location),
-                "stairs" => new Stairs(texture, location),
                 "ladder" => new Ladder(texture, location),
-                "brick" => new Brick(texture, location),
-                "left statue" => new Statue(texture, location, "left", game),
-                "right statue" => new Statue(texture, location, "right", game),
-                "down wall" => new Wall(texture, location, "down"),
-                "right wall" => new Wall(texture, location, "right"),
-                "left wall" => new Wall(texture, location, "left"),
-                "up wall" => new Wall(texture, location, "up"),
-                "down open door" => new OpenDoor(texture, location, "down"),
-                "right open door" => new OpenDoor(texture, location, "right"),
-                "left open door" => new OpenDoor(texture, location, "left"),
-                "up open door" => new OpenDoor(texture, location, "up"),
-                "down locked door" => new LockedDoor(texture, location, "down"),
-                "right locked door" => new LockedDoor(texture, location, "right"),
-                "left locked door" => new LockedDoor(texture, location, "left"),
-                "up locked door" => new LockedDoor(texture, location, "up"),
-                "down shut door" => new ShutDoor(texture, location, "down"),
-                "right shut door" => new ShutDoor(texture, location, "right"),
-                "left shut door" => new ShutDoor(texture, location, "left"),
-                "up shut door" => new ShutDoor(texture, location, "up"),
-                "down bombed opening" => new BombedOpening(texture, location, "down"),
-                "right bombed opening" => new BombedOpening(texture, location, "right"),
-                "left bombed opening" => new BombedOpening(texture, location, "left"),
-                "up bombed opening" => new BombedOpening(texture, location, "up"),
-                "movable block" => new MovableBlock(texture, location),
-                "invisible block" => new InvisibleBlock(location),
+                "down wall" => new Wall(texture, location, Direction.n, game),
+                "right wall" => new Wall(texture, location, Direction.w, game),
+                "left wall" => new Wall(texture, location, Direction.e, game),
+                "up wall" => new Wall(texture, location, Direction.s, game),
+                "down open door" => new OpenDoor(texture, location, Direction.n, game),
+                "right open door" => new OpenDoor(texture, location, Direction.w, game),
+                "left open door" => new OpenDoor(texture, location, Direction.e, game),
+                "up open door" => new OpenDoor(texture, location, Direction.s, game),
+                "down locked door" => new LockedDoor(texture, location, Direction.n, game),
+                "right locked door" => new LockedDoor(texture, location, Direction.w, game),
+                "left locked door" => new LockedDoor(texture, location, Direction.e, game),
+                "up locked door" => new LockedDoor(texture, location, Direction.s, game),
+                "down shut door" => new ShutDoor(texture, location, Direction.n, game),
+                "right shut door" => new ShutDoor(texture, location, Direction.w, game),
+                "left shut door" => new ShutDoor(texture, location, Direction.e, game),
+                "up shut door" => new ShutDoor(texture, location, Direction.s, game),
+                "down bombed opening" => new BombedOpening(texture, location, Direction.n, game),
+                "right bombed opening" => new BombedOpening(texture, location, Direction.w, game),
+                "left bombed opening" => new BombedOpening(texture, location, Direction.e, game),
+                "up bombed opening" => new BombedOpening(texture, location, Direction.s, game),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }
 
-        public IBlock MakeBlock(string spriteType, Vector2 location)
+        public IBlock MakeBlock(string spriteType, Vector2 location, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
         {
             return spriteType switch
             {
@@ -70,12 +59,11 @@ namespace sprint0
                 "water" => new Water(texture, location),
                 "floor" => new Floor(texture, location),
                 "stairs" => new Stairs(texture, location),
-                "ladder" => new Ladder(texture, location),
                 "brick" => new Brick(texture, location),
-                "left statue" => new Statue(texture, location, "left", game),
-                "right statue" => new Statue(texture, location, "right", game),
+                "left statue" => new Statue(texture, location, Direction.e, game),
+                "right statue" => new Statue(texture, location, Direction.w, game),
                 "movable block" => new MovableBlock(texture, location),
-                "invisible block" => new InvisibleBlock(location),
+                "invisible block" => new InvisibleBlock(location, width, height),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }
