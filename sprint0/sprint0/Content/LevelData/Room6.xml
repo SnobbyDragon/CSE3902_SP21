@@ -21,10 +21,10 @@
     <Block ObjectName="block" LocationX="440" LocationY="420" />?
     <Block ObjectName="block" LocationX="480" LocationY="420" />? 
     
-     <Enemy ObjectName="blkgold zol" LocationX="160" LocationY="220" />?
+     <Enemy ObjectName="gold zol" LocationX="160" LocationY="220" />?
     <Enemy ObjectName="green zol" LocationX="200" LocationY="300" />?
     <Enemy ObjectName="lime zol" LocationX="360" LocationY="220" />?
-    <Enemy ObjectName="grey zol" LocationX="200" LocationY="400" />?
+    <Enemy ObjectName="gray zol" LocationX="200" LocationY="400" />?
     <Enemy ObjectName="brown zol" LocationX="420" LocationY="340" />?
     
     <Player ObjectName="Link" LocationX="82" LocationY="340" />?

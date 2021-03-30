@@ -6,15 +6,13 @@ namespace sprint0
 {
     public class AllCollisionHandler
     {
-        private readonly Game1 game;
         private readonly Room room;
         private readonly CollisionDetector collisionDetector;
         private readonly int linkSize = (int)(16 * Game1.Scale);
         private readonly int offset = 4;
 
-        public AllCollisionHandler(Game1 game, Room room)
+        public AllCollisionHandler(Room room)
         {
-            this.game = game;
             this.room = room;
             collisionDetector = new CollisionDetector();
         }
@@ -105,7 +103,7 @@ namespace sprint0
 
         private void HandleLinkOverlayCollision(IPlayer link, List<ISprite> overlays)
         {
-            LinkOverlayCollisionHandler collisionHandler = new LinkOverlayCollisionHandler(game);
+            LinkOverlayCollisionHandler collisionHandler = new LinkOverlayCollisionHandler(room.Game);
             Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
             foreach (ISprite overlay in overlays)
             {

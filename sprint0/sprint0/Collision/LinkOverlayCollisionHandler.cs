@@ -19,7 +19,8 @@ namespace sprint0
             {
                 if (borderFilling.Location.Contains(new Rectangle((int)link.Pos.X, (int)link.Pos.Y, linkSize, linkSize)))
                 {
-                    game.RoomIndex = AdjacentRooms.GetAdjacentRoom(game.RoomIndex, borderFilling.BorderFilling.Side);
+                    int newRoom = AdjacentRooms.GetAdjacentRoom(game.RoomIndex, borderFilling.BorderFilling.Side);
+                    game.RoomIndex = newRoom;
                     game.ChangeRoom = true;
                 }
             }

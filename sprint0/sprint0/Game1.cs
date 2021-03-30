@@ -122,6 +122,7 @@ namespace sprint0
             if (ChangeHUD())
                 hudManager.Update();
             universalScreenManager.Update(state);
+            music.Update();
             base.Update(gameTime);
         }
 
