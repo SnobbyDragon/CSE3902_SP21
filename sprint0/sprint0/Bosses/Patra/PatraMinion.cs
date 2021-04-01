@@ -22,6 +22,7 @@ namespace sprint0
         private int health;
         private readonly Game1 game;
         public int Damage { get => 2; }
+        public EnemyType Type { get => EnemyType.Patra; }
 
         public PatraMinion(Texture2D texture, IEnemy center, int angle, Game1 game)
         {

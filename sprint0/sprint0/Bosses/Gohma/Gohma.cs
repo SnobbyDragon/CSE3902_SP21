@@ -25,6 +25,7 @@ namespace sprint0
         private int fireballCounter = 0;
         private int health;
         public int Damage { get => 2; }
+        public EnemyType Type { get => EnemyType.None; }
         private ItemSpawner itemSpawner;
 
 

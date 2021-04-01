@@ -28,6 +28,7 @@ namespace sprint0
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
         private int health;
+        public EnemyType Type { get => EnemyType.Gleeok; }
         public int Damage { get => 0; }
 
         public GleeokHead(Texture2D texture, Vector2 anchor, Game1 game)
@@ -106,7 +107,7 @@ namespace sprint0
 
         public void Perish()
         {
-            
+
         }
 
         private bool CanShoot()

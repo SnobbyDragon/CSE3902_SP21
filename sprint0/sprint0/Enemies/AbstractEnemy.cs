@@ -21,6 +21,7 @@ namespace sprint0
         protected readonly Random rand;
         protected readonly Game1 game;
         protected int damageTimer = 0;
+        public EnemyType Type { get => EnemyType.None; }
         private readonly ItemSpawner itemSpawner;
 
         public AbstractEnemy(Texture2D texture, Vector2 location, Game1 game)
@@ -79,7 +80,7 @@ namespace sprint0
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(this.GetType().Name,this.Location.Location.ToVector2());
+            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }

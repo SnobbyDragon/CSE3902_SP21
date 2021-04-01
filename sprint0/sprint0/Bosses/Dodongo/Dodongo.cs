@@ -29,8 +29,6 @@ namespace sprint0
         private readonly int eatingTime;
         private readonly int MAX_NUM_OF_BOMBS_TO_EAT = 3;
         private int bombsEaten;
-        
-
 
         public Dodongo(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
@@ -62,9 +60,6 @@ namespace sprint0
 
             eatingCounter = 0;
             eatingTime = 20;
-
-            
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -11,6 +11,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public int Damage { get; }
+        public EnemyType Type { get => EnemyType.None; }
 
         private readonly Dictionary<Direction, Trap> traps;
 
