@@ -9,13 +9,14 @@ namespace sprint0
 {
     public class Zol : AbstractEnemy
     {
-        private readonly int delay;
+        private int delay;
         private int delayCounter;
         private int spawnCounter;
         private readonly int spawnRate = 1500;
-        private readonly int speed = 39;
+        private readonly int speed = 3;
         private readonly Dictionary<Color, List<Rectangle>> colorMap;
         private readonly Color color;
+        private int pauseCount=0;
 
         public Zol(Texture2D texture, Vector2 location, Color gelColor, Game1 game) : base(texture, location, game)
         {
@@ -28,7 +29,7 @@ namespace sprint0
             totalFrames = 2;
             currentFrame = 0;
             color = gelColor;
-            delay = 50;
+            delay = 5;
             delayCounter = 0;
             damage = 2;
             colorMap = new Dictionary<Color, List<Rectangle>>
@@ -73,10 +74,13 @@ namespace sprint0
             {
                 frameSpawn++;
             }
-            if (moveCounter == dirChangeDelay)
+            if (pauseCount==0)
+            {
+                if (moveCounter == dirChangeDelay)
             {
                 ArbitraryDirection(20, 80);
-            }
+                pauseCount = 30;
+             }
             if (delayCounter == delay)
             {
                 Rectangle loc = Location;
@@ -85,13 +89,19 @@ namespace sprint0
                 delayCounter = 0;
             }
             delayCounter++;
+            }
+            else
+            {
+                pauseCount--;
+            }
+            
         }
 
         private void SpawnGel()
         {
             if (spawnCounter == spawnRate)
             {
-                Vector2 spawnLoc = Location.Location.ToVector2() + new Vector2(-39, 0);
+                Vector2 spawnLoc = Location.Location.ToVector2() + new Vector2(-1, 0);
                 game.Room.LoadLevel.RoomEnemies.AddEnemy(spawnLoc, color.GetName() + " gel");
                 spawnCounter = 0;
             }
