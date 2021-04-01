@@ -22,6 +22,7 @@ namespace sprint0
             repeatedFrames = 8;
             direction = Direction.n;
             damage = 1;
+            health = 2;
 
             colorMap = new Dictionary<Color, List<Rectangle>>
             {

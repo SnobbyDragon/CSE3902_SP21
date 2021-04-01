@@ -16,7 +16,7 @@ namespace sprint0
         public Snake(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
             dirChangeDelay = 25;
-            health = 25;
+            health = 16;
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;

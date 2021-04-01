@@ -17,7 +17,7 @@ namespace sprint0
             width = 16;
             height = 16;
             dirChangeDelay = 20;
-            health = 20;
+            health = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             totalFrames = 2;

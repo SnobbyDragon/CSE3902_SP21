@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
@@ -13,7 +12,7 @@ namespace sprint0
         public RoomNPCs RoomNPCs { get => roomNPCs; }
         public RoomEnemies RoomEnemies { get => roomEnemies; }
         public RoomSprite RoomSprite { get => roomSprite; }
-        public RoomMisc RoomMisc { get => roomMisc; }
+        public RoomEffect RoomMisc { get => roomEffect; }
         private readonly RoomProjectile roomProjectile;
         private readonly RoomWeapon roomWeapon;
         private readonly RoomBlocks roomBlocks;
@@ -21,7 +20,7 @@ namespace sprint0
         private readonly RoomNPCs roomNPCs;
         private readonly RoomEnemies roomEnemies;
         private readonly RoomSprite roomSprite;
-        private readonly RoomMisc roomMisc;
+        private readonly RoomEffect roomEffect;
 
         public LoadLevel(Game1 game)
         {
@@ -32,7 +31,7 @@ namespace sprint0
             roomNPCs = new RoomNPCs();
             roomEnemies = new RoomEnemies(game);
             roomSprite = new RoomSprite();
-            roomMisc = new RoomMisc(game);
+            roomEffect = new RoomEffect(game);
         }
 
         public void PopulateLists((List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements)
@@ -57,9 +56,11 @@ namespace sprint0
             roomEnemies.RemoveDead();
             roomWeapon.RemoveDead();
             roomProjectile.RemoveDead();
+            roomEffect.RemoveDead();
             roomWeapon.RemoveDeadTwo();
             roomProjectile.RemoveDeadTwo();
             roomWeapon.RemoveDeadTwo();
+            roomEffect.RemoveDeadTwo();
             roomBlocks.RemoveDestroyed();
         }
 
@@ -67,6 +68,7 @@ namespace sprint0
         {
             roomWeapon.Clear();
             roomProjectile.Clear();
+            roomEffect.Clear();
         }
 
         public void Update()
@@ -78,7 +80,7 @@ namespace sprint0
             roomEnemies.Update();
             roomNPCs.Update();
             roomItems.Update();
-            roomMisc.Update();
+            roomEffect.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -91,7 +93,7 @@ namespace sprint0
             roomNPCs.Draw(spriteBatch);
             roomItems.Draw(spriteBatch);
             roomProjectile.Draw(spriteBatch);
-            roomMisc.Draw(spriteBatch);
+            roomEffect.Draw(spriteBatch);
         }
     }
 }

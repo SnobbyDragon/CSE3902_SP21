@@ -32,7 +32,8 @@ namespace sprint0
         private int health;
         public int Damage { get; }
         private ItemSpawner itemSpawner;
-
+        private int damageTimer = 0;
+        private readonly int damageTime = 10;
 
         public Aquamentus(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -55,7 +56,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!isDead)
+            if (!isDead && damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
         }
 
@@ -70,6 +71,8 @@ namespace sprint0
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 if (CanShoot())
                     ShootFireballs();
+                if (damageTimer > 0)
+                    damageTimer--;
             }
         }
 
@@ -106,8 +109,12 @@ namespace sprint0
 
         public void TakeDamage(int damage)
         {
-            health -= damage;
-            game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            if (damageTimer == 0)
+            {
+                health -= damage;
+                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+                damageTimer = damageTime;
+            }
         }
 
         public void Perish()

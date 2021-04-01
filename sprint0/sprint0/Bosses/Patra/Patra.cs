@@ -27,6 +27,8 @@ namespace sprint0
         private bool canTakeDamage;
         private ItemSpawner itemSpawner;
         public EnemyType Type { get => EnemyType.Patra; }
+        private int damageTimer = 0;
+        private readonly int damageTime = 10;
 
         public Patra(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -66,8 +68,8 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), effects[currFrame / repeatedFrames], 0);
-
+            if(damageTimer % 2 == 0)
+                spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), effects[currFrame / repeatedFrames], 0);
         }
 
         public void Update()
@@ -87,9 +89,9 @@ namespace sprint0
                 moveCounter = 0;
             }
             moveCounter++;
-
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-
+            if (damageTimer > 0)
+                damageTimer--;
         }
 
 
@@ -130,8 +132,9 @@ namespace sprint0
 
         public void TakeDamage(int damage)
         {
-            if (canTakeDamage)
+            if (canTakeDamage && damageTimer == 0)
             {
+                damageTimer = damageTime;
                 health -= damage;
                 game.Room.RoomSound.AddSoundEffect("enemy damaged");
             }

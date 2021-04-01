@@ -15,7 +15,7 @@ namespace sprint0
 
         public Goriya(Texture2D texture, Vector2 location, Color goriyaColor, Game1 game) : base(texture, location, game)
         {
-            health = 50;
+            health = 6;
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
