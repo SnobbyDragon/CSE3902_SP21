@@ -31,9 +31,19 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (damageTimer % 2 == 0)
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
+            {
+                if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames],
                     Color.White, 0, new Vector2(0, 0), spriteEffect, 0);
+            }
+            else
+            {
+                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+                {
+                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
+                }
+            }
         }
 
         public override void Update()
@@ -46,6 +56,10 @@ namespace sprint0
 
             CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+            {
+                frameSpawn++;
+            }
             if (direction == Direction.w)
             {
                 spriteEffect = SpriteEffects.FlipHorizontally;

@@ -31,11 +31,22 @@ namespace sprint0
                 SpriteEffects.FlipHorizontally
             };
         }
-
+         
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (damageTimer % 2 == 0)
-                spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), spriteEffects[currentFrame / repeatedFrames], 0);
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
+            {
+                if (damageTimer % 2 == 0)
+                    spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), spriteEffects[currentFrame / repeatedFrames], 0);
+
+            }
+            else
+            {
+                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+                {
+                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
+                }
+            }
         }
     }
 }

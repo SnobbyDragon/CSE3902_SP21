@@ -109,6 +109,7 @@ namespace sprint0
         {
             itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.LoadLevel.RoomMisc.AddMisc(new DeathCloud(game.Content.Load<Texture2D>("Images/Link"), Location.Center.ToVector2()));
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }
 

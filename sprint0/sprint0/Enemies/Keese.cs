@@ -32,8 +32,18 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (damageTimer % 2 == 0)
-                spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
+            
+            if (frameSpawn >= totalFramesSpawn*repeatedFramesSpawn) {
+                if (damageTimer % 2 == 0){
+                    spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
+                }
+            }
+            else {
+                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+                {
+                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
+                }
+            }
         }
     }
 }

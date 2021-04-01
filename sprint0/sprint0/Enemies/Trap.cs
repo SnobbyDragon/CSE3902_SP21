@@ -27,13 +27,30 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
+            {
+                spriteBatch.Draw(Texture, Location, source, Color.White);
+            }
+            else
+            {
+                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+                {
+                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
+                }
+            }
         }
 
         public override void Update()
         {
-            if (IsMoving)
-                Move();
+            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn) {
+                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+                {
+                    frameSpawn++;
+                }
+            } else {
+                if (IsMoving)
+                    Move();
+            }
         }
 
         private void Move()

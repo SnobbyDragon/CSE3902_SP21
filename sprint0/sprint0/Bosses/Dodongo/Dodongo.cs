@@ -69,17 +69,28 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (direction == Direction.w || direction == Direction.e)
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
             {
-                spriteBatch.Draw(Texture, Location, rightLeftSources[currentFrameRL / repeatedFrames],
-                    Color.White, 0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
+                if (direction == Direction.w || direction == Direction.e)
+                {
+                    spriteBatch.Draw(Texture, Location, rightLeftSources[currentFrameRL / repeatedFrames],
+                        Color.White, 0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
+                }
+                else
+                {
+                    spriteBatch.Draw(Texture, Location, upDownSources[currentFrameUD / repeatedFrames], Color.White,
+                        0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
+                }
             }
             else
             {
-                spriteBatch.Draw(Texture, Location, upDownSources[currentFrameUD / repeatedFrames], Color.White,
-                    0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
+                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+                {
+                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
+                }
             }
-        }
+
+            }
 
         public override void Update()
         {
@@ -89,7 +100,10 @@ namespace sprint0
                 ChangeDirection();
             }
             CheckHealth();
-
+            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+            {
+                frameSpawn++;
+            }
             if (eatingCounter == 0)
             {
                 if (direction == Direction.w)

@@ -22,6 +22,9 @@ namespace sprint0
         protected readonly Game1 game;
         protected int damageTimer = 0;
         private readonly ItemSpawner itemSpawner;
+        protected int xOffsetSpawn = 138, yOffsetSpawn = 185, sizeSpawn = 16, totalFramesSpawn = 3, repeatedFramesSpawn = 6;
+        protected int frameSpawn = 0;
+        protected List<Rectangle> sourcesSpawn;
 
         public AbstractEnemy(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -31,9 +34,11 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
+            sourcesSpawn = SpritesheetHelper.GetFramesH(xOffsetSpawn, yOffsetSpawn, sizeSpawn, sizeSpawn, totalFramesSpawn);
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);
+
 
         public virtual void Update()
         {
@@ -45,6 +50,10 @@ namespace sprint0
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+            {
+                frameSpawn++;
+            }
             Rectangle loc = Location;
             loc.Offset(direction.ToVector2());
             Location = loc;
@@ -81,6 +90,7 @@ namespace sprint0
         {
             itemSpawner.SpawnItem(this.GetType().Name,this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.LoadLevel.RoomMisc.AddMisc(new DeathCloud(game.Content.Load<Texture2D>("Images/Link"), Location.Center.ToVector2()));
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }
     }

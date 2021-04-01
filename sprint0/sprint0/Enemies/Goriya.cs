@@ -37,7 +37,10 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (damageTimer % 2 == 0)
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
+            {
+                if (damageTimer % 2 == 0)
+                {
                 switch (direction)
                 {
                     case Direction.w:
@@ -53,6 +56,15 @@ namespace sprint0
                         spriteBatch.Draw(Texture, Location, colorMap[color][1], Color.White);
                         break;
                 }
+            }
+            }
+            else
+            {
+                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+                {
+                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
+                }
+            }
         }
 
         private void UseBoomerang()
@@ -72,6 +84,10 @@ namespace sprint0
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+            {
+                frameSpawn++;
+            }
             Rectangle loc = Location;
             loc.Offset(direction.ToVector2());
             Location = loc;
