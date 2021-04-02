@@ -52,8 +52,7 @@ namespace sprint0
         public void RemoveDead()
         {
             foreach (IEnemy enemy in enemiesToDie) {
-                if ((int)enemy.Type != 5)
-                    game.Room.LoadLevel.RoomMisc.AddEffect(enemy.Location.Location.ToVector2(), "death");
+                game.Room.LoadLevel.RoomMisc.AddEffect(enemy.Location.Location.ToVector2(), "death");
                 enemies.Remove(enemy);
                 
             }

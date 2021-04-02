@@ -26,6 +26,7 @@ namespace sprint0
         private readonly List<IEnemy> enemies;
         private readonly List<INpc> npcs;
         private readonly List<IItem> items;
+        private readonly List<IEffect> effects;
 
         private readonly Game1 game;
         private readonly EnemiesSpriteFactory enemyFactory;
@@ -33,6 +34,7 @@ namespace sprint0
         private readonly DungeonFactory dungeonFactory;
         private readonly BossesSpriteFactory bossFactory;
         private readonly NpcsSpriteFactory npcFactory;
+        private readonly EffectSpriteFactory effectFactory;
 
         public LevelLoader(Game1 game, int roomNo)
         {
@@ -46,11 +48,13 @@ namespace sprint0
             enemies = new List<IEnemy>();
             npcs = new List<INpc>();
             items = new List<IItem>();
+            effects = new List<IEffect>();
             this.game = game;
             roomStreamInvisible = File.OpenRead(Path.GetFullPath(@genericPath + "Invisible" + xmlExtension));
             roomReaderInvisible = XmlReader.Create(roomStreamInvisible);
 
             enemyFactory = new EnemiesSpriteFactory(this.game);
+            effectFactory = new EffectSpriteFactory(this.game);
             itemFactory = new ItemsSpriteFactory(this.game);
             dungeonFactory = new DungeonFactory(this.game);
             bossFactory = new BossesSpriteFactory(this.game);
@@ -71,11 +75,11 @@ namespace sprint0
             fileStream.Close();
         }
 
-        public (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) LoadLevel()
+        public (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>, List<IEffect>) LoadLevel()
         {
             RoomSetup(roomReader, roomStream);
             if (roomNo != 0) RoomSetup(roomReaderInvisible, roomStreamInvisible);
-            return (sprites, projectiles, blocks, enemies, npcs, items);
+            return (sprites, projectiles, blocks, enemies, npcs, items,effects);
         }
 
         public void AddElement(XmlReader xmlReader)
@@ -85,7 +89,7 @@ namespace sprint0
             switch (xmlReader.Name.ToString())
             {
                 case "Enemy":
-                    enemies.Add(enemyFactory.MakeSpawn(objectName, location));
+                    effects.Add(effectFactory.MakeSpawn(objectName, location));
                     break;
                 case "Item":
                     items.Add(itemFactory.MakeItem(objectName, location));
@@ -93,7 +97,7 @@ namespace sprint0
                 case "Boss":
                     if (objectName.Equals("dodongo") || objectName.Equals("aquamentus"))
                     {
-                        enemies.Add(enemyFactory.MakeSpawn(objectName, location));
+                        effects.Add(effectFactory.MakeSpawn(objectName, location));
                     }
                     else
                     {

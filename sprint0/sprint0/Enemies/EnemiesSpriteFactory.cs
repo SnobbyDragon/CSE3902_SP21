@@ -10,13 +10,11 @@ namespace sprint0
     {
         private readonly Game1 game;
         private readonly Texture2D texture;
-        private readonly Texture2D textureSpawn;
 
         public EnemiesSpriteFactory(Game1 game)
         {
             this.game = game;
             texture = game.Content.Load<Texture2D>("Images/DungeonEnemies");
-            textureSpawn = game.Content.Load<Texture2D>("Images/Link");
         }
 
         public IEnemy MakeSprite(string spriteType, Vector2 location)
@@ -51,9 +49,5 @@ namespace sprint0
             };
         }
 
-        public IEnemy MakeSpawn(string enemy, Vector2 location)
-        {
-            return new SpawnCloud(textureSpawn, location, game, enemy);
-        }
     }
 }

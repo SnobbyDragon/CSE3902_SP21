@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class SpawnCloud : IEnemy
+    public class SpawnCloud : IEffect
     {
         protected readonly Game1 game;
         public Rectangle Location { get; set; }
@@ -13,7 +13,6 @@ namespace sprint0
         private readonly int xOffset = 138, yOffset = 185, size = 16, totalFrames = 3, repeatedFrames = 6;
         private readonly List<Rectangle> sources;
         private int frame;
-        public EnemyType Type { get => EnemyType.Spawn; }
         public String enemyAfter;
         protected int damage=0;
         public int Damage { get => damage; }
@@ -57,8 +56,9 @@ namespace sprint0
             {
                 frame++;
             }
-            else
+            else if (frame == totalFrames * repeatedFrames)
             {
+                frame++;
                 Perish();
            }
         }
@@ -66,15 +66,14 @@ namespace sprint0
 
         public void Perish()
         {
-                game.Room.LoadLevel.RoomEnemies.AddEnemy(Location.Location.ToVector2(), enemyAfter);
-                game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-      
+            game.Room.LoadLevel.RoomMisc.RemoveDeadTwo();
+            if (!enemyAfter.Equals(""))
+            game.Room.LoadLevel.RoomEnemies.AddEnemy(Location.Location.ToVector2(), enemyAfter);
         }
 
-        public void TakeDamage(int damage)
+        public bool IsAlive()
         {
+            return true;
         }
-
-        public void ChangeDirection() { }
     }
 }
