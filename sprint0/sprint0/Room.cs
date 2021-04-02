@@ -20,8 +20,9 @@ namespace sprint0
         public Overlay Overlay { get => overlay; }
         private Overlay overlay;
 
-        private readonly int LinkDefaultX = 250;
-        private readonly int LinkDefaultY = 250;
+        private readonly Vector2 linkInitialPos;
+        private const int LinkDefaultPos = 300;
+        private readonly bool loadedPos;
 
         private AllCollisionHandler collisionHandler;
         private readonly int RoomIndex;
@@ -32,23 +33,27 @@ namespace sprint0
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
 
-        public Room(SpriteBatch spriteBatch, Game1 game, int RoomIndex)
+        public Room(SpriteBatch spriteBatch, Game1 game, int RoomIndex, float linkX = LinkDefaultPos, float linkY = LinkDefaultPos, bool loadedPos = false)
         {
             Game = game;
             _spriteBatch = spriteBatch;
             this.RoomIndex = RoomIndex;
+            linkInitialPos = new Vector2(linkX, linkY);
+            this.loadedPos = loadedPos;
         }
 
         public void LoadContent()
         {
             overlay = new Overlay();
             playerFactory = new PlayerSpriteFactory(Game);
-            Player = new Link(Game, new Vector2(LinkDefaultX, LinkDefaultY));
+            Player = new Link(Game, linkInitialPos);
             collisionHandler = new AllCollisionHandler(this);
             roomSound = new RoomSound(Game);
             loadLevel = new LoadLevel(Game);
             loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex).LoadLevel());
             text = new Text(Game, message, messageLoc, Color.White);
+            if (!loadedPos)
+                Player.Pos = linkInitialPos;
         }
 
         public void Update()

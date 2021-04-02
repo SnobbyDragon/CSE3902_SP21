@@ -16,6 +16,7 @@ namespace sprint0
             {
                 game.RoomIndex = ((game.RoomIndex + 1) % game.NumRooms);
                 game.ChangeRoom = true;
+                game.UseLoadedPos = true;
             }
         }
     }

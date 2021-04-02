@@ -23,5 +23,5 @@
     <Item ObjectName="flute" LocationX="300" LocationY="340" />?
     <Enemy ObjectName="trapparatus" LocationX="301" LocationY="340" />?
 
-     <Player ObjectName="Link" LocationX="440" LocationY="340" />?
+     <Player ObjectName="Link" LocationX="280" LocationY="340" />?
 ?</XnaContent>

@@ -22,6 +22,7 @@ namespace sprint0
             HandleLinkProjectileCollisions(link, projectiles);
             HandleLinkBlockCollisions(link, blocks);
             HandleLinkEnemyCollisions(link, enemies);
+            HandleLinkBlockCollisions(link, blocks);
             HandleLinkItemCollisions(link, items);
             HandleEnemyEnemyCollisions(enemies);
             HandleEnemyBlockCollisions(enemies, blocks);
@@ -62,7 +63,7 @@ namespace sprint0
         }
         private void HandleLinkBlockCollisions(IPlayer link, List<IBlock> blocks)
         {
-            LinkBlockCollisionHandler collisionHandler = new LinkBlockCollisionHandler();
+            LinkBlockCollisionHandler collisionHandler = new LinkBlockCollisionHandler(room.Game);
             Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
             foreach (IBlock block in blocks)
             {
