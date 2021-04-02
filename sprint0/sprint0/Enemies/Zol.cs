@@ -53,47 +53,44 @@ namespace sprint0
                     spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
                 }
             }
-            else
-            {
-                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
-                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
-                }
-            }
         }
 
         public override void Update()
         {
-            if (damageTimer > 0) damageTimer--;
-            CheckHealth();
-            moveCounter++;
-            SpawnGel();
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
+            {
+                if (damageTimer > 0) damageTimer--;
+                CheckHealth();
+                moveCounter++;
+                SpawnGel();
 
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+                
+                if (pauseCount == 0)
+                {
+                    if (moveCounter == dirChangeDelay)
+                    {
+                        ArbitraryDirection(20, 80);
+                        pauseCount = 3 * totalFrames * repeatedFrames;
+                    }
+                    if (delayCounter == delay)
+                    {
+                        Rectangle loc = Location;
+                        loc.Offset(speed * direction.ToVector2());
+                        Location = loc;
+                        delayCounter = 0;
+                    }
+                    delayCounter++;
+                }
+                else
+                {
+                    pauseCount--;
+                }
+            }
             if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-            {
-                frameSpawn++;
-            }
-            if (pauseCount==0)
-            {
-                if (moveCounter == dirChangeDelay)
-            {
-                ArbitraryDirection(20, 80);
-                pauseCount = 30;
-             }
-            if (delayCounter == delay)
-            {
-                Rectangle loc = Location;
-                loc.Offset(speed * direction.ToVector2());
-                Location = loc;
-                delayCounter = 0;
-            }
-            delayCounter++;
-            }
-            else
-            {
-                pauseCount--;
-            }
+                {
+                    frameSpawn++;
+                }
             
         }
 

@@ -14,7 +14,7 @@ namespace sprint0
         private readonly int throwMax = 100;
 
         public Goriya(Texture2D texture, Vector2 location, Color goriyaColor, Game1 game) : base(texture, location, game)
-        {
+        {            
             health = 50;
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
@@ -27,7 +27,6 @@ namespace sprint0
             damage = 2;
             room = game.Room;
             throwCounter = 0;
-
             colorMap = new Dictionary<Color, List<Rectangle>>
             {
                 { Color.Red, SpritesheetHelper.GetFramesH(222, 11, width, height, totalFrames) },
@@ -57,14 +56,7 @@ namespace sprint0
                         break;
                 }
             }
-            }
-            else
-            {
-                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
-                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
-                }
-            }
+            }           
         }
 
         private void UseBoomerang()
@@ -76,27 +68,31 @@ namespace sprint0
 
         public override void Update()
         {
-            moveCounter++;
-            if (moveCounter == dirChangeDelay)
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
             {
-                ArbitraryDirection(30, 50);
-            }
-            if (damageTimer > 0) damageTimer--;
-            CheckHealth();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-            {
-                frameSpawn++;
-            }
-            Rectangle loc = Location;
-            loc.Offset(direction.ToVector2());
-            Location = loc;
+                moveCounter++;
+                if (moveCounter == dirChangeDelay)
+                {
+                    ArbitraryDirection(30, 50);
+                }
+                if (damageTimer > 0) damageTimer--;
+                CheckHealth();
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+                
+                Rectangle loc = Location;
+                loc.Offset(direction.ToVector2());
+                Location = loc;
 
-            if (throwCounter == throwMax) {
-                throwCounter = 0;
-                UseBoomerang();
-            }
-            throwCounter++;
+                if (throwCounter == throwMax)
+                {
+                    throwCounter = 0;
+                    UseBoomerang();
+                }
+                throwCounter++;
+            }if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+                {
+                    frameSpawn++;
+                }
         }
     }
 }

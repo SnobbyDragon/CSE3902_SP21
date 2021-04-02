@@ -31,13 +31,6 @@ namespace sprint0
             {
                 spriteBatch.Draw(Texture, Location, source, Color.White);
             }
-            else
-            {
-                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
-                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
-                }
-            }
         }
 
         public override void Update()

@@ -14,7 +14,7 @@ namespace sprint0
         private SpriteEffects spriteEffect;
 
         public Snake(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
-        {
+        {            
             dirChangeDelay = 25;
             health = 25;
             width = height = 16;
@@ -37,51 +37,49 @@ namespace sprint0
                 spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames],
                     Color.White, 0, new Vector2(0, 0), spriteEffect, 0);
             }
-            else
-            {
-                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
-                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
-                }
-            }
+            
         }
 
         public override void Update()
         {
-            moveCounter++;
-            if (moveCounter == dirChangeDelay)
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
             {
-                ArbitraryDirection(200, 3300);
-            }
-
-            CheckHealth();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-            {
-                frameSpawn++;
-            }
-            if (direction == Direction.w)
-            {
-                spriteEffect = SpriteEffects.FlipHorizontally;
-                Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
-            }
-            else if (direction == Direction.e)
-            {
-                spriteEffect = SpriteEffects.None;
-                Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
-            }
-            else if (direction == Direction.s)
-            {
-                Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
-            }
-            else
-            {
-                Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
-                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
+                moveCounter++;
+                if (moveCounter == dirChangeDelay)
                 {
-                    direction = Direction.w;
+                    ArbitraryDirection(200, 3300);
+                }
+
+                CheckHealth();
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+                
+                if (direction == Direction.w)
+                {
+                    spriteEffect = SpriteEffects.FlipHorizontally;
+                    Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
+                }
+                else if (direction == Direction.e)
+                {
+                    spriteEffect = SpriteEffects.None;
+                    Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
+                }
+                else if (direction == Direction.s)
+                {
+                    Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
+                }
+                else
+                {
+                    Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
+                    if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
+                    {
+                        direction = Direction.w;
+                    }
                 }
             }
+            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+                {
+                    frameSpawn++;
+                }
         }
     }
 }

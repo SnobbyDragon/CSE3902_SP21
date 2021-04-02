@@ -9,82 +9,80 @@ using Microsoft.Xna.Framework.Graphics;
  */
 namespace sprint0
 {
-    public class Aquamentus : IEnemy
+    public class Aquamentus : AbstractEnemy
     {
-        private readonly Game1 game;
-        public Rectangle Location { get; set; }
-        public Texture2D Texture { get; set; }
 
-        private readonly int xOffset = 1, yOffset = 11, width = 24, height = 32;
+
+        private readonly int xOffset = 1, yOffset = 11;
         private readonly List<Rectangle> sources;
 
-        private int currFrame;
-        private readonly int totalFrames, repeatedFrames;
-
-        private Direction direction;
-        private int moveCount;
         private readonly int moveDelay = 5, minDistance = (int)(Game1.Width * Game1.Scale * 0.2), maxDistance = (int)(Game1.Width * Game1.Scale * 0.8);
-        private readonly bool isDead;
 
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
-        private int health;
-        public int Damage { get; }
-        private ItemSpawner itemSpawner;
+        private int spawnCount = 0;
 
 
-        public Aquamentus(Texture2D texture, Vector2 location, Game1 game)
+        public Aquamentus(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
             health = 15;
-            this.game = game;
+            width = 24;
+            height = 32;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
 
-            currFrame = 0;
+            currentFrame = 0;
             totalFrames = 4;
             repeatedFrames = 14;
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
 
             direction = Direction.e;
-            moveCount = 0;
+            moveCounter = 0;
 
-            isDead = false;
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!isDead)
-                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
+            {
+                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
+            }
+            
         }
 
-        public void Update()
+        public override void Update()
         {
-            CheckHealth();
-            if (!isDead)
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
             {
+                CheckHealth();
                 if (CanChangeDirection())
                     ChangeDirection();
                 Move();
-                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-
-                if (CanShoot())
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+            
+            if (CanShoot())
                     ShootFireballs();
             }
+            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
+            {
+                frameSpawn++;
+            }
+            
         }
 
         private void Move()
         {
-            if (moveCount == moveDelay)
+            if (moveCounter == moveDelay)
             {
-                moveCount = 0;
+                moveCounter = 0;
                 Rectangle loc = Location;
                 loc.Offset(direction.ToVector2());
                 Location = loc;
             }
             else
             {
-                moveCount++;
+                moveCounter++;
             }
         }
 
@@ -94,28 +92,16 @@ namespace sprint0
             return distanceToLink > maxDistance || distanceToLink < minDistance;
         }
 
-        public void ChangeDirection()
+        public override void ChangeDirection()
         {
             direction = direction.OppositeDirection();
         }
 
-        private void CheckHealth()
-        {
-            if (health < 0) Perish();
-        }
 
-        public void TakeDamage(int damage)
+        public override void TakeDamage(int damage)
         {
             health -= damage;
             game.Room.RoomSound.AddSoundEffect("enemy damaged");
-        }
-
-        public void Perish()
-        {
-            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
-            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.LoadLevel.RoomMisc.AddMisc(new DeathCloud(game.Content.Load<Texture2D>("Images/Link"), Location.Center.ToVector2()));
-            game.Room.RoomSound.AddSoundEffect("enemy death");
         }
 
         private bool CanShoot()

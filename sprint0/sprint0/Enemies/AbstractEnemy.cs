@@ -18,16 +18,17 @@ namespace sprint0
         protected int width, height;
         protected int health;
         protected int moveCounter, dirChangeDelay;
-        protected readonly Random rand;
+        protected Random rand;
         protected readonly Game1 game;
         protected int damageTimer = 0;
-        private readonly ItemSpawner itemSpawner;
+        protected ItemSpawner itemSpawner;
         protected int xOffsetSpawn = 138, yOffsetSpawn = 185, sizeSpawn = 16, totalFramesSpawn = 3, repeatedFramesSpawn = 6;
         protected int frameSpawn = 0;
         protected List<Rectangle> sourcesSpawn;
 
         public AbstractEnemy(Texture2D texture, Vector2 location, Game1 game)
-        {
+        {            
+            game.Room.LoadLevel.RoomMisc.AddMisc(new DeathCloud(game.Content.Load<Texture2D>("Images/Link"), new Vector2(location.X, location.Y)));
             rand = new Random();
             this.game = game;
             health = 50;
@@ -35,6 +36,7 @@ namespace sprint0
             Texture = texture;
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
             sourcesSpawn = SpritesheetHelper.GetFramesH(xOffsetSpawn, yOffsetSpawn, sizeSpawn, sizeSpawn, totalFramesSpawn);
+            
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);
@@ -42,21 +44,25 @@ namespace sprint0
 
         public virtual void Update()
         {
-            moveCounter++;
-            if (moveCounter == dirChangeDelay)
+            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
             {
-                ArbitraryDirection(30, 50);
+                moveCounter++;
+                if (moveCounter == dirChangeDelay)
+                {
+                    ArbitraryDirection(30, 50);
+                }
+                if (damageTimer > 0) damageTimer--;
+                CheckHealth();
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+                
+                Rectangle loc = Location;
+                loc.Offset(direction.ToVector2());
+                Location = loc;
             }
-            if (damageTimer > 0) damageTimer--;
-            CheckHealth();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-            {
-                frameSpawn++;
-            }
-            Rectangle loc = Location;
-            loc.Offset(direction.ToVector2());
-            Location = loc;
+                {
+                    frameSpawn++;
+                }
         }
 
         protected void ArbitraryDirection(int low, int high)
@@ -71,12 +77,12 @@ namespace sprint0
             ArbitraryDirection(30, 50);
         }
 
-        public void CheckHealth()
+        public virtual void CheckHealth()
         {
             if (health < 0) Perish();
         }
 
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             if (damageTimer == 0)
             {

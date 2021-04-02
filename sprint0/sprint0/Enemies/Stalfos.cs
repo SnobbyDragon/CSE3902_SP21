@@ -13,7 +13,7 @@ namespace sprint0
         private readonly List<SpriteEffects> spriteEffects;
 
         public Stalfos(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
-        {
+        {           
             width = 16;
             height = 16;
             dirChangeDelay = 20;
@@ -40,13 +40,7 @@ namespace sprint0
                     spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), spriteEffects[currentFrame / repeatedFrames], 0);
 
             }
-            else
-            {
-                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
-                    spriteBatch.Draw(game.Content.Load<Texture2D>("Images/Link"), Location, sourcesSpawn[frameSpawn / repeatedFramesSpawn], Color.White);
-                }
-            }
+            
         }
     }
 }
