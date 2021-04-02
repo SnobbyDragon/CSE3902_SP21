@@ -90,7 +90,7 @@ namespace sprint0
         public void RegisterHit()
         {
             hit = true;
-            room.LoadLevel.RoomMisc.AddMisc(new Vector2(Location.X, Location.Y), "hit sprite");
+            room.LoadLevel.RoomMisc.AddEffect(new Vector2(Location.X, Location.Y), "hit sprite");
         }
     }
 }

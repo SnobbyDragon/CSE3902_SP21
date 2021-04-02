@@ -26,7 +26,8 @@ namespace sprint0
         public int Damage { get => 8; }
         public EnemyType Type { get => EnemyType.None; }
         private readonly ItemSpawner itemSpawner;
-
+        private int damageTimer = 0;
+        private readonly int damageTime = 10;
         public Ganon(Texture2D texture, Vector2 location, Game1 game)
         {
             health = 25;
@@ -47,21 +48,22 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (isVisible && !isDead)
+            if (isVisible && !isDead && damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
         }
 
         public void Update()
         {
-
+            if (damageTimer > 0)
+                damageTimer--;
             if (isDead)
             {
 
                 if (deathCounter == 0)
                 {
                     new GanonFireballExplosion(Texture, this, game);
-                    game.Room.LoadLevel.RoomMisc.AddMisc(new GanonAshes(Texture, Location.Center.ToVector2()));
-                    game.Room.LoadLevel.RoomMisc.AddMisc(new GanonDeathCloud(Texture, Location.Center.ToVector2()));
+                    game.Room.LoadLevel.RoomMisc.AddEffect(new GanonAshes(Texture, Location.Center.ToVector2()));
+                    game.Room.LoadLevel.RoomMisc.AddEffect(new GanonDeathCloud(Texture, Location.Center.ToVector2()));
                 }
                 deathCounter++;
                 if (deathCounter == 70) Perish();
@@ -110,9 +112,12 @@ namespace sprint0
         }
         public void TakeDamage(int damage)
         {
-            health -= damage;
-            isVisible = true;
-            game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            if (damageTimer == 0) {
+                damageTimer = damageTime;
+                health -= damage;
+                isVisible = true;
+                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            }
         }
 
         public void Perish()
