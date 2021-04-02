@@ -35,11 +35,9 @@ namespace sprint0
 
         public override void Update()
         {
-            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn) {
-                if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
+            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn) {               
                     frameSpawn++;
-                }
+                
             } else {
                 if (IsMoving)
                     Move();
