@@ -31,19 +31,17 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
-            {
+
                 if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames],
                     Color.White, 0, new Vector2(0, 0), spriteEffect, 0);
-            }
+            
             
         }
 
         public override void Update()
         {
-            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
-            {
+
                 moveCounter++;
                 if (moveCounter == dirChangeDelay)
                 {
@@ -75,8 +73,6 @@ namespace sprint0
                         direction = Direction.w;
                     }
                 }
-            }
-                    frameSpawn++;
                 
         }
     }

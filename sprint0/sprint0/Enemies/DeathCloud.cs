@@ -30,7 +30,10 @@ namespace sprint0
         public void Update()
         {
             if (frame < totalFrames * repeatedFrames)
+            {
                 frame++;
+            }
+
         }
         public bool IsAlive() => true;
     }

@@ -5,6 +5,7 @@ using System.Net;
 using System.Xml;
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 //Updated: 03/14/21 by Stuti Shah
 namespace sprint0
@@ -84,13 +85,21 @@ namespace sprint0
             switch (xmlReader.Name.ToString())
             {
                 case "Enemy":
-                    enemies.Add(enemyFactory.MakeSprite(objectName, location));
+                    enemies.Add(enemyFactory.MakeSpawn(objectName, location));
                     break;
                 case "Item":
                     items.Add(itemFactory.MakeItem(objectName, location));
                     break;
                 case "Boss":
-                    enemies.Add(bossFactory.MakeSprite(objectName, location));
+                    if (objectName.Equals("dodongo") || objectName.Equals("aquamentus"))
+                    {
+                        enemies.Add(enemyFactory.MakeSpawn(objectName, location));
+                    }
+                    else
+                    {
+                        enemies.Add(bossFactory.MakeSprite(objectName, location));
+                    }
+                    
                     break;
                 case "Dungeon":
                     sprites.Add(dungeonFactory.MakeSprite(objectName, location));

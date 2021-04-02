@@ -3,7 +3,7 @@ namespace sprint0
 {
     public enum EnemyType
     {
-        None, Manhandla, Patra, Gleeok, Gel
+        None, Manhandla, Patra, Gleeok, Gel, Spawn
     }
     public interface IEnemy : ISprite
     {

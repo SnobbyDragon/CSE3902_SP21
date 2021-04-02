@@ -48,19 +48,17 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
-            {
+            
                 if (damageTimer % 2 == 0)
                 {
                     spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
                 }
-            }
+            
         }
 
         public override void Update()
         {
-            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
-            {
+           
                 if (damageTimer > 0) damageTimer--;
                 CheckHealth();
                 moveCounter++;
@@ -88,9 +86,8 @@ namespace sprint0
                 {
                     pauseCount--;
                 }
-            }
+            
 
-                    frameSpawn++;
                 
             
         }

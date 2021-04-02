@@ -42,18 +42,14 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
-            {
+
                 if (damageTimer % 2 == 0)
                   spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
-            }
-
         }
 
         public override void Update()
         {
-            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
-            {
+
                 CheckHealth();
                 if (CanChangeDirection())
                     ChangeDirection();
@@ -64,8 +60,7 @@ namespace sprint0
                     ShootFireballs();
                 if (damageTimer > 0)
                     damageTimer--;
-            }            
-                frameSpawn++;
+
             
             
         }

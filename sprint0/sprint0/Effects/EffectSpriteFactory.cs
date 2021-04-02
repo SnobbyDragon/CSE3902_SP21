@@ -21,6 +21,7 @@ namespace sprint0
             {
                 "hit sprite" => new HitSprite(texture2, location),
                 "sword beam explode" => new SwordBeamExplode(texture2, location),
+                "death" => new DeathCloud(texture2, location),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }

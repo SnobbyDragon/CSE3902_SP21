@@ -27,21 +27,13 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
-            {
                 spriteBatch.Draw(Texture, Location, source, Color.White);
-            }
         }
 
         public override void Update()
-        {
-            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn) {               
-                    frameSpawn++;
-                
-            } else {
+        {            
                 if (IsMoving)
                     Move();
-            }
         }
 
         private void Move()

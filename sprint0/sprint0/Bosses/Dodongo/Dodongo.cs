@@ -63,8 +63,6 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
-            {
                 if (direction == Direction.w || direction == Direction.e)
                 {
                     spriteBatch.Draw(Texture, Location, rightLeftSources[currentFrameRL / repeatedFrames],
@@ -75,13 +73,12 @@ namespace sprint0
                     spriteBatch.Draw(Texture, Location, upDownSources[currentFrameUD / repeatedFrames], Color.White,
                         0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
                 }
-            }
+            
             }
 
         public override void Update()
         {
-            if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
-            {
+
                 moveCounter++;
                 if (moveCounter == dirChangeDelay)
                 {
@@ -126,8 +123,7 @@ namespace sprint0
                         FaceDirection(direction);
                     }
                 }
-            }
-                    frameSpawn++;
+            
                 
         }
 
