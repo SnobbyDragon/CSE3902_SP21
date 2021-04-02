@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class DeathCloud : ISprite
+    public class DeathCloud : IEffect
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -32,5 +32,6 @@ namespace sprint0
             if (frame < totalFrames * repeatedFrames)
                 frame++;
         }
+        public bool IsAlive() => true;
     }
 }

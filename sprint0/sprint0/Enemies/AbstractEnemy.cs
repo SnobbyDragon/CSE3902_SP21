@@ -30,7 +30,7 @@ namespace sprint0
 
         public AbstractEnemy(Texture2D texture, Vector2 location, Game1 game)
         {            
-            game.Room.LoadLevel.RoomMisc.AddMisc(new DeathCloud(game.Content.Load<Texture2D>("Images/Link"), new Vector2(location.X, location.Y)));
+            game.Room.LoadLevel.RoomMisc.AddEffect(new DeathCloud(game.Content.Load<Texture2D>("Images/Link"), new Vector2(location.X, location.Y)));
             rand = new Random();
             this.game = game;
             health = 50;
@@ -98,7 +98,7 @@ namespace sprint0
         {
             itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.LoadLevel.RoomMisc.AddMisc(new DeathCloud(game.Content.Load<Texture2D>("Images/Link"), Location.Center.ToVector2()));
+            game.Room.LoadLevel.RoomMisc.AddEffect(new DeathCloud(game.Content.Load<Texture2D>("Images/Link"), Location.Center.ToVector2()));
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }
     }

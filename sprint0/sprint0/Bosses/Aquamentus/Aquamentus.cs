@@ -11,8 +11,6 @@ namespace sprint0
 {
     public class Aquamentus : AbstractEnemy
     {
-
-        public EnemyType Type { get => EnemyType.None; }
         private readonly int xOffset = 1, yOffset = 11;
         private readonly List<Rectangle> sources;
 
@@ -20,7 +18,6 @@ namespace sprint0
 
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
-        private int damageTimer = 0;
         private readonly int damageTime = 10;
 
 
@@ -47,7 +44,7 @@ namespace sprint0
         {
             if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
             {
-                if (!isDead && damageTimer % 2 == 0)
+                if (damageTimer % 2 == 0)
                   spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
             }
 
