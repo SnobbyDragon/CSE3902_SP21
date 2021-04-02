@@ -52,13 +52,9 @@ namespace sprint0
 
         public void Update()
         {
-            if (frame < totalFrames * repeatedFrames)
+            frame++;
+            if (frame== totalFrames * repeatedFrames)
             {
-                frame++;
-            }
-            else if (frame == totalFrames * repeatedFrames)
-            {
-                frame++;
                 Perish();
            }
         }
