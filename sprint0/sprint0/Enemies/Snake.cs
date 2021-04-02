@@ -47,8 +47,8 @@ namespace sprint0
                 {
                     ArbitraryDirection(200, 3300);
                 }
-
-                CheckHealth();
+            if (damageTimer > 0) damageTimer--;
+            CheckHealth();
                 currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
                 
                 if (direction == Direction.w)
