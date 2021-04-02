@@ -64,11 +64,9 @@ namespace sprint0
                     ShootFireballs();
                 if (damageTimer > 0)
                     damageTimer--;
-            }
-            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-            {
+            }            
                 frameSpawn++;
-            }
+            
             
         }
 

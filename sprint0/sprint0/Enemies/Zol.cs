@@ -89,10 +89,9 @@ namespace sprint0
                     pauseCount--;
                 }
             }
-            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
+
                     frameSpawn++;
-                }
+                
             
         }
 

@@ -89,10 +89,9 @@ namespace sprint0
                     UseBoomerang();
                 }
                 throwCounter++;
-            }if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
+            }
                     frameSpawn++;
-                }
+                
         }
     }
 }

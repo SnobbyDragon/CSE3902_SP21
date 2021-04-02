@@ -76,10 +76,8 @@ namespace sprint0
                     }
                 }
             }
-            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
                     frameSpawn++;
-                }
+                
         }
     }
 }

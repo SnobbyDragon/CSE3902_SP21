@@ -127,10 +127,8 @@ namespace sprint0
                     }
                 }
             }
-            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
                     frameSpawn++;
-                }
+                
         }
 
         public void EatBomb()

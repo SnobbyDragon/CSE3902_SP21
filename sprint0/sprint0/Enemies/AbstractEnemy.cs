@@ -61,10 +61,8 @@ namespace sprint0
                 loc.Offset(direction.ToVector2());
                 Location = loc;
             }
-            if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
-                {
                     frameSpawn++;
-                }
+                
         }
 
         protected void ArbitraryDirection(int low, int high)
