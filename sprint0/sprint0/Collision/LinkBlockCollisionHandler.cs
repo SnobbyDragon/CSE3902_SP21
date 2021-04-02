@@ -5,11 +5,13 @@ namespace sprint0
 {
     public class LinkBlockCollisionHandler
     {
+        private readonly Game1 game;
         private readonly int linkSize = (int)(16 * Game1.Scale);
-        private readonly int offset = 4;
+        private readonly int offset = 4, stairsRoom = 1, basement = 0;
 
-        public LinkBlockCollisionHandler()
+        public LinkBlockCollisionHandler(Game1 game)
         {
+            this.game = game;
         }
 
         public void HandleCollision(IPlayer link, IBlock block, Direction side)
@@ -24,6 +26,38 @@ namespace sprint0
                 {
                     HandleImmovableBlock(link, block, side);
                 }
+            }
+            else if (block is Stairs)
+            {
+                HandleStairs(link, block);
+            }
+            else if (block is Ladder)
+            {
+                HandleLadder(link);
+            }
+        }
+
+        private void HandleStairs(IPlayer link, IBlock block)
+        {
+            if (block.Location.Contains(new Rectangle((int)link.Pos.X, (int)link.Pos.Y, linkSize, linkSize)))
+            {
+                game.RoomIndex = basement;
+                game.ChangeRoom = true;
+                game.UseLoadedPos = true;
+                link.Direction = Direction.s;
+                link.State = new DownIdleState(link);
+            }
+        }
+
+        private void HandleLadder(IPlayer link)
+        {
+            if (link.Pos.Y < Game1.HUDHeight * Game1.Scale)
+            {
+                game.RoomIndex = stairsRoom;
+                game.ChangeRoom = true;
+                game.UseLoadedPos = true;
+                link.Direction = Direction.e;
+                link.State = new LeftIdleState(link);
             }
         }
 

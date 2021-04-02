@@ -23,6 +23,7 @@ namespace sprint0
         public Room Room { get => room; }
         private Room room;
         public bool ChangeRoom { get; set; }
+        public bool UseLoadedPos { get; set; }
         public int RoomIndex { get; set; }
         public int NumRooms { get; } = 19;
 
@@ -70,6 +71,7 @@ namespace sprint0
             VisitedRooms = new List<int>();
             RoomIndex = 18;
             ChangeRoom = true;
+            UseLoadedPos = false;
 
             base.Initialize();
         }
@@ -95,9 +97,18 @@ namespace sprint0
         {
             if (!VisitedRooms.Contains(RoomIndex))
                 VisitedRooms.Add(RoomIndex);
-            room = new Room(_spriteBatch, this, RoomIndex);
+            if (room != null)
+            {
+                Vector2 playerPos = room.Player.Pos;
+                room = new Room(_spriteBatch, this, RoomIndex, playerPos.X, playerPos.Y, UseLoadedPos);
+            }
+            else
+            {
+                room = new Room(_spriteBatch, this, RoomIndex);
+            }
             room.LoadContent();
             ChangeRoom = false;
+            UseLoadedPos = false;
         }
 
         protected override void Update(GameTime gameTime)
