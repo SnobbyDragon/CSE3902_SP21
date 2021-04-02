@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-//Last updated 3/28 by Hannah
+//Last updated 04/01/21 by shah.1440
 
 namespace sprint0
 {
@@ -13,13 +13,8 @@ namespace sprint0
 
         public void HandleCollision(IEnemy enemy1, IEnemy enemy2, Direction side)
         {
-            if (!(enemy1 is ManhandlaLimb && enemy2 is Manhandla) && !(enemy2 is ManhandlaLimb && enemy1 is Manhandla)
-                 && !(enemy1 is Zol && enemy2 is Gel) && !(enemy2 is Zol && enemy1 is Gel)
-                 && !(enemy2 is PatraMinion && enemy1 is Patra) && !(enemy1 is PatraMinion && enemy2 is Patra)
-                 && !(enemy1 is Gleeok && enemy2 is GleeokNeckPiece) && !(enemy2 is Gleeok && enemy1 is GleeokNeckPiece)
-                 && !(enemy1 is Gleeok && enemy2 is GleeokHead) && !(enemy2 is Gleeok && enemy1 is GleeokHead)
-                 && !(enemy1 is GleeokNeckPiece && enemy2 is GleeokHead) && !(enemy2 is GleeokNeckPiece && enemy1 is GleeokHead)
-                 &&!(enemy2 is GleeokNeckPiece && enemy1 is GleeokNeckPiece) && !(enemy2 is GleeokHead && enemy1 is GleeokHead))
+            if ((enemy1.Type == EnemyType.None && enemy2.Type == EnemyType.None) || enemy1.Type != enemy2.Type)
+
             {
 
                 switch (side)

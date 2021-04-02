@@ -21,7 +21,9 @@ namespace sprint0
         private int fireballRate;
         private int fireballCounter = 0;
         public int Damage { get => 2; }
-
+        public EnemyType Type { get => EnemyType.Manhandla; }
+        private int damageTimer = 0;
+        private readonly int damageTime = 10;
         public ManhandlaLimb(Texture2D texture, IEnemy center, Direction dir, Game1 game)
         {
             health = 5;
@@ -69,11 +71,14 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, dirToSourcesMap[dir][currFrame / repeatedFrames], Color.White);
+            if (damageTimer % 2 == 0)
+                spriteBatch.Draw(Texture, Location, dirToSourcesMap[dir][currFrame / repeatedFrames], Color.White);
         }
 
         public void Update()
         {
+            if (damageTimer > 0)
+                damageTimer--;
             CheckHealth();
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             Location = new Rectangle(
@@ -93,8 +98,11 @@ namespace sprint0
 
         public void TakeDamage(int damage)
         {
-            health -= damage;
-
+            if (damageTimer == 0)
+            {
+                damageTimer = damageTime;
+                health -= damage;
+            }
         }
 
         public int CheckHealth()

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class GanonAshes : ISprite
+    public class GanonAshes : IEffect
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -30,5 +30,7 @@ namespace sprint0
         {
             frame = (frame + 1) % (totalFrames * repeatedFrames);
         }
+
+        public bool IsAlive() => true;
     }
 }

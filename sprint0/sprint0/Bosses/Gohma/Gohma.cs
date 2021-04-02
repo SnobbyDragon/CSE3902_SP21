@@ -25,8 +25,10 @@ namespace sprint0
         private int fireballCounter = 0;
         private int health;
         public int Damage { get => 2; }
+        public EnemyType Type { get => EnemyType.None; }
         private ItemSpawner itemSpawner;
-
+        private int damageTimer = 0;
+        private readonly int damageTime = 10;
 
         public Gohma(Texture2D texture, Vector2 location, string color, Game1 game)
         {
@@ -80,21 +82,26 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(
-                Texture, new Rectangle(Location.X - (int)(size * Game1.Scale), Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale)),
-                colorToLegMap[color][legCurrFrame / legRepeatedFrames],
-                Color.White, 0, new Vector2(0, 0),
-                leftLegEffects[legCurrFrame / legRepeatedFrames], 0);
-            spriteBatch.Draw(
-                Texture, new Rectangle(Location.X + (int)(size * Game1.Scale), Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale)),
-                colorToLegMap[color][(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], // TODO refator: this is probably overly complicated
-                Color.White, 0, new Vector2(0, 0),
-                rightLegEffects[(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], 0);
-            spriteBatch.Draw(Texture, Location, colorToHeadMap[color][headCurrFrame / headRepeatedFrames], Color.White);
+            if (damageTimer % 2 == 0)
+            {
+                spriteBatch.Draw(
+                    Texture, new Rectangle(Location.X - (int)(size * Game1.Scale), Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale)),
+                    colorToLegMap[color][legCurrFrame / legRepeatedFrames],
+                    Color.White, 0, new Vector2(0, 0),
+                    leftLegEffects[legCurrFrame / legRepeatedFrames], 0);
+                spriteBatch.Draw(
+                    Texture, new Rectangle(Location.X + (int)(size * Game1.Scale), Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale)),
+                    colorToLegMap[color][(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], // TODO refator: this is probably overly complicated
+                    Color.White, 0, new Vector2(0, 0),
+                    rightLegEffects[(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], 0);
+                spriteBatch.Draw(Texture, Location, colorToHeadMap[color][headCurrFrame / headRepeatedFrames], Color.White);
+            }
         }
 
         public void Update()
         {
+            if (damageTimer > 0)
+                damageTimer--;
             CheckHealth();
             Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
             if (dist.Length() == 0)
@@ -128,8 +135,12 @@ namespace sprint0
 
         public void TakeDamage(int damage)
         {
-            health -= damage;
-            game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            if (damageTimer == 0)
+            {
+                damageTimer = damageTime;
+                health -= damage;
+                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            }
         }
 
         public void Perish()

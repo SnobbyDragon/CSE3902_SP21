@@ -17,13 +17,15 @@ namespace sprint0
         private readonly Dictionary<Color, List<Rectangle>> colorMap;
         private readonly Color color;
         private int pauseCount=0;
+        public new EnemyType Type { get => EnemyType.Gel; }
+
 
         public Zol(Texture2D texture, Vector2 location, Color gelColor, Game1 game) : base(texture, location, game)
         {
             width = 16;
             height = 16;
             repeatedFrames = 10;
-            health = 10;
+            health = 4;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             totalFrames = 2;

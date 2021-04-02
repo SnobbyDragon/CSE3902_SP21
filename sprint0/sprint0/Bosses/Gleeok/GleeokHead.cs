@@ -28,7 +28,10 @@ namespace sprint0
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
         private int health;
+        public EnemyType Type { get => EnemyType.Gleeok; }
         public int Damage { get => 0; }
+        private int damageTimer = 0;
+        private readonly int damageTime = 10;
 
         public GleeokHead(Texture2D texture, Vector2 anchor, Game1 game)
         {
@@ -53,14 +56,19 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (isAngry)
-                spriteBatch.Draw(Texture, Location, angrySources[currFrame / repeatedFrames], Color.White);
-            else
-                spriteBatch.Draw(Texture, Location, defaultSource, Color.White);
+            if (damageTimer % 2 == 0)
+            {
+                if (isAngry)
+                    spriteBatch.Draw(Texture, Location, angrySources[currFrame / repeatedFrames], Color.White);
+                else
+                    spriteBatch.Draw(Texture, Location, defaultSource, Color.White);
+            }
         }
 
         public void Update()
         {
+            if (damageTimer > 0)
+                damageTimer--;
             if (isAngry)
             {
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
@@ -100,13 +108,17 @@ namespace sprint0
 
         public void TakeDamage(int damage)
         {
-            health -= damage;
-            game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            if (damageTimer == 0)
+            {
+                damageTimer = damageTime;
+                health -= damage;
+                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            }
         }
 
         public void Perish()
         {
-            
+
         }
 
         private bool CanShoot()

@@ -21,6 +21,7 @@ namespace sprint0
         private readonly int width = 8, height = 12;
         public int Damage { get => 0; }
         private Game1 game;
+        public EnemyType Type { get => EnemyType.Gleeok; }
 
         public GleeokNeckPiece(Texture2D texture, Vector2 anchor, IEnemy head, int segmentNumber, Game1 game)
         {

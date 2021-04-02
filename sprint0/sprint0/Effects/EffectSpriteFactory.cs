@@ -2,21 +2,20 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-//Author: Hannah Johnson and co
 /*
- * Last updated: 3/28/21 by he.1528
+ * Last updated: 04/01/21 by he.1528
  */
 namespace sprint0
 {
-    public class MiscSpriteFactory
+    public class EffectSpriteFactory
     {
         private readonly Texture2D texture2;
 
-        public MiscSpriteFactory(Game1 game)
+        public EffectSpriteFactory(Game1 game)
         {
             texture2 = game.Content.Load<Texture2D>("Images/Link");
         }
-        public ISprite MakeSprite(string spriteType, Vector2 location)
+        public IEffect MakeSprite(string spriteType, Vector2 location)
         {
             return spriteType switch
             {

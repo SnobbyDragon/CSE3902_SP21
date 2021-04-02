@@ -39,7 +39,7 @@ namespace sprint0
             {
                 state = State.play;
             }
-            else if (state == State.play)
+            else if (state == State.play || state == State.test)
             {
                 state = State.pause;
             }

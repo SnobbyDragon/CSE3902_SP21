@@ -19,7 +19,7 @@ namespace sprint0
         private readonly Random rand;
         public int Damage { get => 2; }
         private ItemSpawner itemSpawner;
-
+        public EnemyType Type { get => EnemyType.Manhandla; }
 
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {

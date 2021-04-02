@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class HitSprite : ISprite
+    public class HitSprite : IEffect
     {
         private readonly Rectangle source;
         private readonly int xLoc = 53, yLoc = 189, width = 8, height = 8;
