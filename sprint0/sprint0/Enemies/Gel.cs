@@ -10,6 +10,7 @@ namespace sprint0
     {
         private readonly Dictionary<Color, List<Rectangle>> colorMap;
         private readonly Color color;
+        public new EnemyType Type { get => EnemyType.Gel; }
 
         public Gel(Texture2D texture, Vector2 location, Game1 gm, Color gelColor) : base(texture, location, gm)
         {

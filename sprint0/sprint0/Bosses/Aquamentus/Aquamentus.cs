@@ -12,7 +12,7 @@ namespace sprint0
     public class Aquamentus : AbstractEnemy
     {
 
-
+        public EnemyType Type { get => EnemyType.None; }
         private readonly int xOffset = 1, yOffset = 11;
         private readonly List<Rectangle> sources;
 
@@ -20,7 +20,8 @@ namespace sprint0
 
         private readonly int fireballRate = 100;
         private int fireballCounter = 0;
-        private int spawnCount = 0;
+        private int damageTimer = 0;
+        private readonly int damageTime = 10;
 
 
         public Aquamentus(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
@@ -46,9 +47,10 @@ namespace sprint0
         {
             if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
             {
-                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
+                if (!isDead && damageTimer % 2 == 0)
+                  spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
             }
-            
+
         }
 
         public override void Update()
@@ -63,6 +65,8 @@ namespace sprint0
             
             if (CanShoot())
                     ShootFireballs();
+                if (damageTimer > 0)
+                    damageTimer--;
             }
             if (frameSpawn < totalFramesSpawn * repeatedFramesSpawn)
             {
@@ -100,8 +104,12 @@ namespace sprint0
 
         public override void TakeDamage(int damage)
         {
-            health -= damage;
-            game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            if (damageTimer == 0)
+            {
+                health -= damage;
+                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+                damageTimer = damageTime;
+            }
         }
 
         private bool CanShoot()

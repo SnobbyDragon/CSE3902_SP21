@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace sprint0
 {
-    public class SwordBeamExplode : ISprite
+    public class SwordBeamExplode : IEffect
     {
 
         private int lifespan = 20, age = 0;

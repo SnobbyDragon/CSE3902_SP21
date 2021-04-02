@@ -22,7 +22,9 @@ namespace sprint0
         private int health;
         private readonly Game1 game;
         public int Damage { get => 2; }
-
+        public EnemyType Type { get => EnemyType.Patra; }
+        private int damageTimer = 0;
+        private readonly int damageTime = 10;
         public PatraMinion(Texture2D texture, IEnemy center, int angle, Game1 game)
         {
             this.game = game;
@@ -40,7 +42,8 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
+            if(damageTimer % 2 == 0)
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
         }
 
         private float DegreesToRadians(int degrees)
@@ -50,16 +53,15 @@ namespace sprint0
 
         public void Update()
         {
+            if (damageTimer > 0)
+                damageTimer--;
             CheckHealth();
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames); // animate flying
             Vector2 loc = center.Location.Center.ToVector2() + new Vector2((float)(distance * Math.Cos(DegreesToRadians(angle)) - (width * Game1.Scale * .5)), (float)(distance * Math.Sin(DegreesToRadians(angle)) - (height * Game1.Scale * .5)));
             Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-
             // spins fast, no need for delay
             angle = (angle - 3) % 360; // spin counterclockwise
-
             CountExpansion();
-
             if (expansionCounter > 0)
             {
                 // not waiting
@@ -96,8 +98,12 @@ namespace sprint0
 
         public void TakeDamage(int damage)
         {
-            health -= damage;
-            game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            if (damageTimer == 0)
+            {
+                damageTimer = damageTime;
+                health -= damage;
+                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            }
         }
 
         public void Perish()

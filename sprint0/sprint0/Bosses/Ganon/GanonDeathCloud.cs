@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class GanonDeathCloud : ISprite
+    public class GanonDeathCloud : IEffect
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -32,5 +31,7 @@ namespace sprint0
             if (frame < totalFrames * repeatedFrames)
                 frame++;
         }
+
+        public bool IsAlive() => true;
     }
 }

@@ -17,7 +17,7 @@ namespace sprint0
         {
             width = 16;
             height = 16;
-            health = 50;
+            health = 8;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, 2);
@@ -43,12 +43,12 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            
             if (frameSpawn >= totalFramesSpawn * repeatedFramesSpawn)
             {
-                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), s, 0);
+                if(damageTimer % 2 == 0)
+                  spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), s, 0);
             }
-            
+
         }
     }
 
