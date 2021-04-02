@@ -9,14 +9,16 @@ namespace sprint0
 {
     public class Zol : AbstractEnemy
     {
-        private readonly int delay;
+        private int delay;
         private int delayCounter;
         private int spawnCounter;
         private readonly int spawnRate = 1500;
-        private readonly int speed = 39;
+        private readonly int speed = 3;
         private readonly Dictionary<Color, List<Rectangle>> colorMap;
         private readonly Color color;
+        private int pauseCount=0;
         public new EnemyType Type { get => EnemyType.Gel; }
+
 
         public Zol(Texture2D texture, Vector2 location, Color gelColor, Game1 game) : base(texture, location, game)
         {
@@ -29,7 +31,7 @@ namespace sprint0
             totalFrames = 2;
             currentFrame = 0;
             color = gelColor;
-            delay = 50;
+            delay = 5;
             delayCounter = 0;
             damage = 2;
             colorMap = new Dictionary<Color, List<Rectangle>>
@@ -46,37 +48,55 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (damageTimer % 2 == 0)
-                spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
+            
+                if (damageTimer % 2 == 0)
+                {
+                    spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
+                }
+            
         }
 
         public override void Update()
         {
-            if (damageTimer > 0) damageTimer--;
-            CheckHealth();
-            moveCounter++;
-            SpawnGel();
+           
+                if (damageTimer > 0) damageTimer--;
+                CheckHealth();
+                moveCounter++;
+                SpawnGel();
 
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            if (moveCounter == dirChangeDelay)
-            {
-                ArbitraryDirection(20, 80);
-            }
-            if (delayCounter == delay)
-            {
-                Rectangle loc = Location;
-                loc.Offset(speed * direction.ToVector2());
-                Location = loc;
-                delayCounter = 0;
-            }
-            delayCounter++;
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+                
+                if (pauseCount == 0)
+                {
+                    if (moveCounter == dirChangeDelay)
+                    {
+                        ArbitraryDirection(20, 80);
+                        pauseCount = 3 * totalFrames * repeatedFrames;
+                    }
+                    if (delayCounter == delay)
+                    {
+                        Rectangle loc = Location;
+                        loc.Offset(speed * direction.ToVector2());
+                        Location = loc;
+                        delayCounter = 0;
+                    }
+                    delayCounter++;
+                }
+                else
+                {
+                    pauseCount--;
+                }
+            
+
+                
+            
         }
 
         private void SpawnGel()
         {
             if (spawnCounter == spawnRate)
             {
-                Vector2 spawnLoc = Location.Location.ToVector2() + new Vector2(-39, 0);
+                Vector2 spawnLoc = Location.Location.ToVector2() + new Vector2(-1, 0);
                 game.Room.LoadLevel.RoomEnemies.AddEnemy(spawnLoc, color.GetName() + " gel");
                 spawnCounter = 0;
             }

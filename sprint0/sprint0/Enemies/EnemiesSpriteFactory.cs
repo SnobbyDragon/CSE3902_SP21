@@ -48,5 +48,6 @@ namespace sprint0
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }
+
     }
 }

@@ -27,13 +27,13 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
+                spriteBatch.Draw(Texture, Location, source, Color.White);
         }
 
         public override void Update()
-        {
-            if (IsMoving)
-                Move();
+        {            
+                if (IsMoving)
+                    Move();
         }
 
         private void Move()
