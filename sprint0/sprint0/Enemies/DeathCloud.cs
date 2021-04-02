@@ -27,15 +27,15 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (frame < totalFrames * repeatedFrames)
+            if (frame< totalFrames * repeatedFrames)
             {
-                spriteBatch.Draw(Texture, Location, sources[frame / repeatedFrames], Color.White);
+                spriteBatch.Draw(Texture, Location, sources[(frame/repeatedFrames)], Color.White);
             }
         }
 
         public void Update()
         {
-            if (frame <= totalFrames * repeatedFrames)
+            if (frame < totalFrames * repeatedFrames)
             {
                 frame++;
             }
@@ -48,7 +48,7 @@ namespace sprint0
 
             private void Perish()
             {
-                game.Room.LoadLevel.RoomMisc.RemoveDead();
+                game.Room.LoadLevel.RoomMisc.RemoveProjectile(this);
             }
 
             public bool IsAlive()

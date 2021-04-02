@@ -21,7 +21,6 @@ namespace sprint0
         {
             enemyFactory = new EnemiesSpriteFactory(game);
             bossFactory = new BossesSpriteFactory(game);
-            //effectFactprt = new EffectSpriteFactory(game);
             enemiesToSpawn = new List<IEnemy>();
             enemies = new List<IEnemy>();
             enemiesToDie = new List<IEnemy>();
@@ -52,7 +51,6 @@ namespace sprint0
         public void RemoveDead()
         {
             foreach (IEnemy enemy in enemiesToDie) {
-                game.Room.LoadLevel.RoomMisc.AddEffect(enemy.Location.Location.ToVector2(), "death");
                 enemies.Remove(enemy);
                 
             }
