@@ -85,10 +85,10 @@ namespace sprint0
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 age++;
             }
-            if (Shooter.GetType().Name.Equals("Goriya"))    
-                alive = ((AbstractEnemy)Shooter).health > 0;
+            if (Shooter is Goriya goriya1)
+                alive = goriya1.health > 0;
 
-            
+
         }
 
         public void RegisterHit()
