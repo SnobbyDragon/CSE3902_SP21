@@ -23,7 +23,7 @@ namespace sprint0
         private readonly List<SpriteEffects> spriteEffects;
         private Vector2 moveVector;
         private bool alive;
-        private bool hit = false;
+        public bool hit = false;
         private readonly Room room;
 
         public Boomerang(Texture2D texture, Vector2 location, Direction dir, IEntity shooter, Room room)

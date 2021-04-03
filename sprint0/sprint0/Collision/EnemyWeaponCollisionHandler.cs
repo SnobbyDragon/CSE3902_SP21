@@ -13,8 +13,19 @@ namespace sprint0
             {
                 if (projectile.IsAlive() && !(projectile.Shooter is IEnemy))
                 {
-                    projectile.RegisterHit();
-                    enemy.TakeDamage(weapon.Damage);
+                    if (projectile is Boomerang boomerang) {
+                        if (!boomerang.hit)
+                        {
+                            projectile.RegisterHit();
+                            enemy.TakeDamage(weapon.Damage);
+                        }
+                    }
+                    else
+                    {
+                        projectile.RegisterHit();
+                        enemy.TakeDamage(weapon.Damage);
+                    }
+                    
                 }
             }
             else if (weapon is Bomb bomb)
