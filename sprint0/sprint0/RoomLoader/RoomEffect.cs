@@ -8,7 +8,7 @@ namespace sprint0
     {
         public List<IEffect> RoomEffects { get ; set; }
         public List<IEffect> EffectsToDie { get; set; }
-        private readonly EffectSpriteFactory effectFactory;
+        public readonly EffectSpriteFactory effectFactory;
         public RoomEffect(Game1 game)
         {
             effectFactory = new EffectSpriteFactory(game);

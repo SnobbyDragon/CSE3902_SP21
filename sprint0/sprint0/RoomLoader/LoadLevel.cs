@@ -34,7 +34,7 @@ namespace sprint0
             roomEffect = new RoomEffect(game);
         }
 
-        public void PopulateLists((List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>) roomElements)
+        public void PopulateLists((List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>, List<IEffect>) roomElements)
         {
             roomSprite.RoomSprites = roomElements.Item1;
             roomProjectile.Projectiles = roomElements.Item2;
@@ -42,6 +42,7 @@ namespace sprint0
             roomEnemies.Enemies = roomElements.Item4;
             roomNPCs.NPCs = roomElements.Item5;
             roomItems.Items = roomElements.Item6;
+            roomEffect.RoomeEffects = roomElements.Item7;
         }
 
         public void AddNew()

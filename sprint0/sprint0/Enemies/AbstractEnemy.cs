@@ -18,37 +18,43 @@ namespace sprint0
         protected int width, height;
         protected int health;
         protected int moveCounter, dirChangeDelay;
-        protected readonly Random rand;
+        protected Random rand;
         protected readonly Game1 game;
         protected int damageTimer = 0;
+        protected ItemSpawner itemSpawner;
         public EnemyType Type { get => EnemyType.None; }
-        private readonly ItemSpawner itemSpawner;
+
 
         public AbstractEnemy(Texture2D texture, Vector2 location, Game1 game)
-        {
+        {            
             rand = new Random();
             this.game = game;
             health = 50;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
+            
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);
 
+
         public virtual void Update()
         {
-            moveCounter++;
-            if (moveCounter == dirChangeDelay)
-            {
-                ArbitraryDirection(30, 50);
-            }
-            if (damageTimer > 0) damageTimer--;
-            CheckHealth();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            Rectangle loc = Location;
-            loc.Offset(direction.ToVector2());
-            Location = loc;
+
+                moveCounter++;
+                if (moveCounter == dirChangeDelay)
+                {
+                    ArbitraryDirection(30, 50);
+                }
+                if (damageTimer > 0) damageTimer--;
+                CheckHealth();
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+                
+                Rectangle loc = Location;
+                loc.Offset(direction.ToVector2());
+                Location = loc;
+                
         }
 
         protected void ArbitraryDirection(int low, int high)
@@ -63,12 +69,12 @@ namespace sprint0
             ArbitraryDirection(30, 50);
         }
 
-        public void CheckHealth()
+        public virtual void CheckHealth()
         {
             if (health < 0) Perish();
         }
 
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             if (damageTimer == 0)
             {
@@ -82,6 +88,7 @@ namespace sprint0
         {
             itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
+            game.Room.LoadLevel.RoomMisc.AddEffect(Location.Location.ToVector2(), "death");
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }
     }

@@ -27,7 +27,6 @@ namespace sprint0
             damage = 2;
             room = game.Room;
             throwCounter = 0;
-
             colorMap = new Dictionary<Color, List<Rectangle>>
             {
                 { Color.Red, SpritesheetHelper.GetFramesH(222, 11, width, height, totalFrames) },
@@ -37,7 +36,9 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (damageTimer % 2 == 0)
+
+                if (damageTimer % 2 == 0)
+                {
                 switch (direction)
                 {
                     case Direction.w:
@@ -53,6 +54,8 @@ namespace sprint0
                         spriteBatch.Draw(Texture, Location, colorMap[color][1], Color.White);
                         break;
                 }
+            }
+                      
         }
 
         private void UseBoomerang()
@@ -64,23 +67,28 @@ namespace sprint0
 
         public override void Update()
         {
-            moveCounter++;
-            if (moveCounter == dirChangeDelay)
-            {
-                ArbitraryDirection(30, 50);
-            }
-            if (damageTimer > 0) damageTimer--;
-            CheckHealth();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            Rectangle loc = Location;
-            loc.Offset(direction.ToVector2());
-            Location = loc;
 
-            if (throwCounter == throwMax) {
-                throwCounter = 0;
-                UseBoomerang();
-            }
-            throwCounter++;
+                moveCounter++;
+                if (moveCounter == dirChangeDelay)
+                {
+                    ArbitraryDirection(30, 50);
+                }
+                if (damageTimer > 0) damageTimer--;
+                CheckHealth();
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+                
+                Rectangle loc = Location;
+                loc.Offset(direction.ToVector2());
+                Location = loc;
+
+                if (throwCounter == throwMax)
+                {
+                    throwCounter = 0;
+                    UseBoomerang();
+                }
+                throwCounter++;
+
+                
         }
     }
 }

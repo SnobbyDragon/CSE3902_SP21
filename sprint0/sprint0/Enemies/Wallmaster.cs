@@ -43,8 +43,11 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if(damageTimer % 2 == 0)
-                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), s, 0);
+            
+                if(damageTimer % 2 == 0)
+                  spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), s, 0);
+            
+
         }
     }
 

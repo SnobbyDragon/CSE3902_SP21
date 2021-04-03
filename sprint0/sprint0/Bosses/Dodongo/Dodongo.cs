@@ -63,64 +63,68 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (direction == Direction.w || direction == Direction.e)
-            {
-                spriteBatch.Draw(Texture, Location, rightLeftSources[currentFrameRL / repeatedFrames],
-                    Color.White, 0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
-            }
-            else
-            {
-                spriteBatch.Draw(Texture, Location, upDownSources[currentFrameUD / repeatedFrames], Color.White,
-                    0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
-            }
-        }
-
-        public override void Update()
-        {
-            moveCounter++;
-            if (moveCounter == dirChangeDelay)
-            {
-                ChangeDirection();
-            }
-            CheckHealth();
-
-            if (eatingCounter == 0)
-            {
-                if (direction == Direction.w)
+                if (direction == Direction.w || direction == Direction.e)
                 {
-                    currentSpriteEffect = repeatedFrames + 1;
-                    currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
-                    Location = new Rectangle(Location.X - 1, Location.Y, scaledWidth, scaledSideLength);
-                }
-                else if (direction == Direction.e)
-                {
-                    currentSpriteEffect = 0;
-                    currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
-                    Location = new Rectangle(Location.X + 1, Location.Y, scaledWidth, scaledSideLength);
-                }
-                else if (direction == Direction.s)
-                {
-                    currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
-                    Location = new Rectangle(Location.X, Location.Y + 1, scaledSideLength, scaledSideLength);
+                    spriteBatch.Draw(Texture, Location, rightLeftSources[currentFrameRL / repeatedFrames],
+                        Color.White, 0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
                 }
                 else
                 {
-                    currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
-                    Location = new Rectangle(Location.X, Location.Y - 1, scaledSideLength, scaledSideLength);
+                    spriteBatch.Draw(Texture, Location, upDownSources[currentFrameUD / repeatedFrames], Color.White,
+                        0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
                 }
+            
             }
-            else
-            {
-                eatingCounter = (eatingCounter + 1) % eatingTime;
+
+        public override void Update()
+        {
+
+                moveCounter++;
+                if (moveCounter == dirChangeDelay)
+                {
+                    ChangeDirection();
+                }
+                CheckHealth();
+                
                 if (eatingCounter == 0)
                 {
-                    if (bombsEaten >= MAX_NUM_OF_BOMBS_TO_EAT)
+                    if (direction == Direction.w)
                     {
-                        Perish();
+                        currentSpriteEffect = repeatedFrames + 1;
+                        currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
+                        Location = new Rectangle(Location.X - 1, Location.Y, scaledWidth, scaledSideLength);
                     }
-                    FaceDirection(direction);
+                    else if (direction == Direction.e)
+                    {
+                        currentSpriteEffect = 0;
+                        currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
+                        Location = new Rectangle(Location.X + 1, Location.Y, scaledWidth, scaledSideLength);
+                    }
+                    else if (direction == Direction.s)
+                    {
+                        currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
+                        Location = new Rectangle(Location.X, Location.Y + 1, scaledSideLength, scaledSideLength);
+                    }
+                    else
+                    {
+                        currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
+                        Location = new Rectangle(Location.X, Location.Y - 1, scaledSideLength, scaledSideLength);
+                    }
                 }
-            }
+                else
+                {
+                    eatingCounter = (eatingCounter + 1) % eatingTime;
+                    if (eatingCounter == 0)
+                    {
+                        if (bombsEaten >= MAX_NUM_OF_BOMBS_TO_EAT)
+                        {
+                            Perish();
+                        }
+                        FaceDirection(direction);
+                    }
+                }
+            
+                
         }
 
         public void EatBomb()

@@ -14,6 +14,7 @@ namespace sprint0
         public void HandleCollision(IEnemy enemy1, IEnemy enemy2, Direction side)
         {
             if ((enemy1.Type == EnemyType.None && enemy2.Type == EnemyType.None) || enemy1.Type != enemy2.Type)
+
             {
 
                 switch (side)

@@ -8,6 +8,7 @@ namespace sprint0
     public class RoomEnemies
     {
         private readonly EnemiesSpriteFactory enemyFactory;
+        private readonly BossesSpriteFactory bossFactory;
         public List<IEnemy> Enemies { get => enemies; set => enemies = value; }
         public List<IEnemy> EnemiesToDie { get => enemiesToDie; set => enemiesToDie = value; }
         public List<IEnemy> EnemiesToSpawn { get => enemiesToSpawn; set => enemiesToSpawn = value; }
@@ -19,6 +20,7 @@ namespace sprint0
         public RoomEnemies(Game1 game)
         {
             enemyFactory = new EnemiesSpriteFactory(game);
+            bossFactory = new BossesSpriteFactory(game);
             enemiesToSpawn = new List<IEnemy>();
             enemies = new List<IEnemy>();
             enemiesToDie = new List<IEnemy>();
@@ -28,7 +30,18 @@ namespace sprint0
         }
 
         public void AddEnemy(Vector2 location, string enemy)
-            => enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
+        {
+            if (enemy.Equals("dodongo") || enemy.Equals("aquamentus"))
+            {
+                enemiesToSpawn.Add(bossFactory.MakeSprite(enemy, location));
+            }
+            else
+            {
+                enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
+            }
+                
+        }
+            
 
         public void RegisterEnemies(IEnumerable<IEnemy> unregEnemies)
             => enemiesToSpawn.AddRange(unregEnemies);
@@ -37,8 +50,10 @@ namespace sprint0
 
         public void RemoveDead()
         {
-            foreach (IEnemy enemy in enemiesToDie) { 
-                enemies.Remove(enemy);}
+            foreach (IEnemy enemy in enemiesToDie) {
+                enemies.Remove(enemy);
+                
+            }
         }
 
         public void Update()
