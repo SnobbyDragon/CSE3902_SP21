@@ -62,7 +62,7 @@ namespace sprint0
 
         public void Perish()
         {
-            game.Room.LoadLevel.RoomMisc.RemoveProjectile(this);
+            game.Room.LoadLevel.RoomEffect.RemoveProjectile(this);
             game.Room.LoadLevel.RoomEnemies.AddEnemy(Location.Location.ToVector2(), enemyAfter);
         }
 

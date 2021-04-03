@@ -42,7 +42,7 @@ namespace sprint0
             roomEnemies.Enemies = roomElements.Item4;
             roomNPCs.NPCs = roomElements.Item5;
             roomItems.Items = roomElements.Item6;
-            roomEffect.RoomeEffects = roomElements.Item7;
+            roomEffect.RoomEffects = roomElements.Item7;
         }
 
         public void AddNew()
