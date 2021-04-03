@@ -133,7 +133,7 @@ namespace sprint0
             game.Room.RoomSound.AddSoundEffect("gleeok");
             Vector2 dir = game.Room.Player.Pos - Location.Center.ToVector2();
             dir.Normalize();
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this, Color.Green);
         }
 
         private Vector2 RandomLocation()

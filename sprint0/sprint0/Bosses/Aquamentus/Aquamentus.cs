@@ -114,9 +114,9 @@ namespace sprint0
             game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
             Vector2 dir = Link.position - Location.Center.ToVector2();
             dir.Normalize();
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))), this); // 30 degrees up
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))), this); // 30 degrees down
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this, Color.Yellow);
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))), this, Color.Yellow); // 30 degrees up
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))), this, Color.Yellow); // 30 degrees down
         }
     }
 }

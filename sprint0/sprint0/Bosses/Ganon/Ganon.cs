@@ -139,7 +139,7 @@ namespace sprint0
             game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
             Vector2 dir = game.Room.Player.Pos - Location.Center.ToVector2();
             dir.Normalize();
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Location.ToVector2(), dir, this);
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Location.ToVector2(), dir, this, Color.Red);
         }
 
         public void Teleport()

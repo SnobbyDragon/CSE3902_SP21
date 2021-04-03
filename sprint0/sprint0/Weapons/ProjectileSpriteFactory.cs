@@ -31,9 +31,9 @@ namespace sprint0
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
-        public IProjectile MakeFireball(Vector2 location, Vector2 direction, IEntity source)
+        public IProjectile MakeFireball(Vector2 location, Vector2 direction, IEntity source, Color color)
         {
-            return new Fireball(texture3, location, direction, source);
+            return new Fireball(texture3, location, direction, source, color);
         }
     }
 }
