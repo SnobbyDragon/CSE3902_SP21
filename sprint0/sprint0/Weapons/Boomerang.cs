@@ -84,9 +84,10 @@ namespace sprint0
                 Move();
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 age++;
+                if (Shooter is Goriya goriya1)
+                    alive = goriya1.isAlive();
             }
-            if (alive && Shooter is Goriya goriya1)
-                alive = goriya1.isAlive();
+            
 
 
         }
