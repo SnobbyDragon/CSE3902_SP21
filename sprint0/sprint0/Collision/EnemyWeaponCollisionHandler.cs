@@ -13,8 +13,11 @@ namespace sprint0
             {
                 if (projectile.IsAlive() && !(projectile.Shooter is IEnemy))
                 {
-                    projectile.RegisterHit();
-                    enemy.TakeDamage(weapon.Damage);
+                    if ((projectile is Boomerang boomerang && !boomerang.hitAlready()) || !(projectile is Boomerang))
+                    {
+                        projectile.RegisterHit();
+                        enemy.TakeDamage(weapon.Damage);
+                    }
                 }
             }
             else if (weapon is Bomb bomb)
@@ -22,7 +25,13 @@ namespace sprint0
                 if (enemy is Dodongo dodongo) { dodongo.EatBomb(); bomb.Eaten = true; }
                 else if (bomb.Exploding) enemy.TakeDamage(bomb.Damage);
             }
-            else enemy.TakeDamage(weapon.Damage);
+            else if ((weapon is Sword sword && !sword.hitAlready()))
+            {
+                sword.RegisterHit();
+                enemy.TakeDamage(weapon.Damage);
+            }
+            else
+                enemy.TakeDamage(weapon.Damage);
         }
     }
 }
