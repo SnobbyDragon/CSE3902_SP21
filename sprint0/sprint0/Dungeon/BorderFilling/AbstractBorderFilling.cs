@@ -13,14 +13,14 @@ namespace sprint0
         protected readonly int size = Game1.BorderThickness;
         protected int xOffset, yOffset;
         public Direction Side { get; }
-        protected readonly Game1 game;
+        public Game1 Game { get; }
 
         public AbstractBorderFilling(Texture2D texture, Vector2 location, Direction dir, Game1 game)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             Texture = texture;
             Side = dir;
-            this.game = game;
+            Game = game;
         }
 
         protected void GetSource()

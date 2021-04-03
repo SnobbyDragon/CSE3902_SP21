@@ -17,8 +17,10 @@ namespace sprint0
             collisionDetector = new CollisionDetector();
         }
 
-        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IWeapon> weapons, List<IProjectile> projectiles, List<IBlock> blocks, List<INpc> npcs, List<IItem> items, List<ISprite> overlays)
+        public void HandleAllCollisions(IPlayer link, List<IEnemy> enemies, List<IWeapon> weapons, List<IProjectile> projectiles, List<IBlock> blocks, List<INpc> npcs, List<IItem> items, List<ISprite> overlays, List<ISprite> borderSprites)
         {
+            HandleLinkBorderCollision(link, borderSprites);
+            HandleWeaponBorderCollision(weapons, borderSprites);
             HandleLinkProjectileCollisions(link, projectiles);
             HandleLinkBlockCollisions(link, blocks);
             HandleLinkEnemyCollisions(link, enemies);
@@ -205,6 +207,36 @@ namespace sprint0
                     || projectile.Location.X <= 0 || projectile.Location.X >= Game1.Width * Game1.Scale)
                 {
                     projectile.RegisterHit();
+                }
+            }
+        }
+
+        private void HandleLinkBorderCollision(IPlayer link, List<ISprite> borderSprites)
+        {
+            LinkBorderCollisionHandler collisionHandler = new LinkBorderCollisionHandler();
+            Rectangle linkHitbox = new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2);
+            foreach (ISprite border in borderSprites)
+            {
+                Collision side = collisionDetector.DetectCollision(linkHitbox, border);
+                if (side != Collision.None)
+                {
+                    collisionHandler.HandleCollision(link, border, side.ToDirection());
+                }
+            }
+        }
+
+        private void HandleWeaponBorderCollision(List<IWeapon> weapons, List<ISprite> borderSprites)
+        {
+            WeaponBorderCollisionHandler collisionHandler = new WeaponBorderCollisionHandler();
+            foreach (ISprite border in borderSprites)
+            {
+                foreach (IWeapon weapon in weapons)
+                {
+                    Collision side = collisionDetector.DetectCollision(weapon, border);
+                    if (side != Collision.None)
+                    {
+                        collisionHandler.HandleCollision(weapon, border, side.ToDirection());
+                    }
                 }
             }
         }

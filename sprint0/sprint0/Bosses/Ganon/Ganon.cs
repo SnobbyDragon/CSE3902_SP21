@@ -62,8 +62,8 @@ namespace sprint0
                 if (deathCounter == 0)
                 {
                     new GanonFireballExplosion(Texture, this, game);
-                    game.Room.LoadLevel.RoomMisc.AddEffect(new GanonAshes(Texture, Location.Center.ToVector2()));
-                    game.Room.LoadLevel.RoomMisc.AddEffect(new GanonDeathCloud(Texture, Location.Center.ToVector2()));
+                    game.Room.LoadLevel.RoomEffect.AddEffect(new GanonAshes(Texture, Location.Center.ToVector2()));
+                    game.Room.LoadLevel.RoomEffect.AddEffect(new GanonDeathCloud(Texture, Location.Center.ToVector2()));
                 }
                 deathCounter++;
                 if (deathCounter == 70) Perish();

@@ -12,7 +12,7 @@ namespace sprint0
         public RoomNPCs RoomNPCs { get => roomNPCs; }
         public RoomEnemies RoomEnemies { get => roomEnemies; }
         public RoomSprite RoomSprite { get => roomSprite; }
-        public RoomEffect RoomMisc { get => roomEffect; }
+        public RoomEffect RoomEffect { get => roomEffect; }
         private readonly RoomProjectile roomProjectile;
         private readonly RoomWeapon roomWeapon;
         private readonly RoomBlocks roomBlocks;
@@ -42,7 +42,7 @@ namespace sprint0
             roomEnemies.Enemies = roomElements.Item4;
             roomNPCs.NPCs = roomElements.Item5;
             roomItems.Items = roomElements.Item6;
-            roomEffect.RoomeEffects = roomElements.Item7;
+            roomEffect.RoomEffects = roomElements.Item7;
         }
 
         public void AddNew()

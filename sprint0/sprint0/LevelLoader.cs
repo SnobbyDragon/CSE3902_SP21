@@ -106,7 +106,10 @@ namespace sprint0
                     
                     break;
                 case "Dungeon":
-                    sprites.Add(dungeonFactory.MakeSprite(objectName, location));
+                    if (objectName.Contains("bombed opening"))
+                        sprites.Add(dungeonFactory.MakeSprite(objectName.Replace("bombed opening", "wall"), location, true));
+                    else
+                        sprites.Add(dungeonFactory.MakeSprite(objectName, location));
                     break;
                 case "Block":
                     string width = xmlReader.GetAttribute("Width");
