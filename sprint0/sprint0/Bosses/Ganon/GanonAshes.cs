@@ -9,7 +9,7 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 312, yOffset = 171, size = 16, totalFrames = 2, repeatedFrames = 16;
+        private readonly int xOffset = 363, yOffset = 154, size = 16, totalFrames = 1, repeatedFrames = 16;
         private readonly List<Rectangle> sources;
         private int frame;
 

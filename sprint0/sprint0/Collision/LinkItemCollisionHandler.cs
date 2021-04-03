@@ -24,6 +24,8 @@ namespace sprint0
                 if (item.PickedUpDuration == -1)
                 {
                     link.PickUpItem();
+                    if( item is GanonTriforceAshes ganon)
+                        room.LoadLevel.RoomEffect.AddEffect(item.Location.Location.ToVector2(), "ganonashes");
                     int itemX = (int)link.Pos.X + linkSize / 2 - item.Location.Width / 2;
                     int itemY = (int)link.Pos.Y - item.Location.Height;
                     item.Location = new Rectangle(itemX, itemY, item.Location.Width, item.Location.Height);
