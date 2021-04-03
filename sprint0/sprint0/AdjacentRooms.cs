@@ -22,7 +22,7 @@ namespace sprint0
                 { 13, new Dictionary<Direction, int> { { Direction.w, 12 }, { Direction.n, 7 } } },
                 { 14, new Dictionary<Direction, int> { { Direction.n, 12 }, { Direction.s, 16 } } },
                 { 15, new Dictionary<Direction, int> { { Direction.e, 16 } } },
-                { 16, new Dictionary<Direction, int> { { Direction.w, 15 }, { Direction.e, 17 } } },
+                { 16, new Dictionary<Direction, int> { { Direction.w, 15 }, { Direction.e, 17 }, { Direction.n, 14 } } },
                 { 17, new Dictionary<Direction, int> { { Direction.w, 16 } } },
                 { 18, new Dictionary<Direction, int> { { Direction.e, 1 } } }
             };

@@ -29,7 +29,7 @@ namespace sprint0
                             link.Pos = new Vector2(link.Pos.X, (Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale - linkSize);
                             break;
                         case Direction.s:
-                            link.Pos = new Vector2(link.Pos.X, (Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale + linkSize);
+                            link.Pos = new Vector2(link.Pos.X, (Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale);
                             break;
                         case Direction.e:
                             link.Pos = new Vector2(Game1.BorderThickness * Game1.Scale, link.Pos.Y);

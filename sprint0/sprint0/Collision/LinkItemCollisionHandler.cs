@@ -41,7 +41,6 @@ namespace sprint0
 
         private void CheckItemIncrement(IItem item, IPlayer link)
         {
-
             if (item is Key || item is BombItem) room.RoomSound.AddSoundEffect("get key");
             if (item is Rupee || item is BlueRupee) room.RoomSound.AddSoundEffect("get rupee");
             link.IncrementItem(item.PlayerItems);
@@ -55,6 +54,7 @@ namespace sprint0
                 link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
             link.AddToInventory(item.PlayerItems);
         }
+
         private bool IsSword(PlayerItems item)
         {
             return item == PlayerItems.Sword || item == PlayerItems.WhiteSword || item == PlayerItems.MagicalSword;

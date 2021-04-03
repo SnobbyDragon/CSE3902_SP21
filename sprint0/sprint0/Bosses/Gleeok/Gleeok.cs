@@ -82,10 +82,9 @@ namespace sprint0
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
+            itemSpawner.SpawnItem(GetType().Name, Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-
-            game.Room.LoadLevel.RoomMisc.AddEffect(Location.Location.ToVector2(), "death");
+            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), "death");
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }
     }
