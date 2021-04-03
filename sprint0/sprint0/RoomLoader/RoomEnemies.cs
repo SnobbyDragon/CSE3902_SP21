@@ -62,7 +62,7 @@ namespace sprint0
             {
                 enemy.Update();
             }
-            if (enemies.Count == 0 && !endBehaviorExecuted)
+            if (enemies.Count == 0 && !endBehaviorExecuted && game.Room.LoadLevel.RoomEffect.RoomEffects.Count==0)
             {
                 RoomEndBehavior();
             }
@@ -95,7 +95,8 @@ namespace sprint0
                 game.Room.LoadLevel.RoomItems.AddItem(location, "boomerang");
             }
             else if (roomNum == roomWithMovableBlock) {
-               //TODO game.Room.LoadLevel.RoomBlocks.UnlockBlock(); idk how to do this
+                game.Room.LoadLevel.RoomBlocks.SwitchToMovableBlock();
+                
             }
             endBehaviorExecuted = true;
         }

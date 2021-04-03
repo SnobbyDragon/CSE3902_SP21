@@ -27,7 +27,9 @@ namespace sprint0
             return newBlock;
         }
 
-        public void RemoveBlock(IBlock block) => blocksToRemove.Add(block);
+        public void RemoveBlock(IBlock block) {
+            if (block != null) blocksToRemove.Add(block);
+        }
 
         public void AddNew()
         {
@@ -40,9 +42,9 @@ namespace sprint0
 
         public void RemoveDestroyed()
         {
-            foreach (IBlock enemy in blocksToRemove)
+            foreach (IBlock block in blocksToRemove)
             {
-                blocks.Remove(enemy);
+                blocks.Remove(block);
             }
         }
 
@@ -56,6 +58,16 @@ namespace sprint0
         {
             foreach (IBlock block in blocks)
                 block.Draw(spriteBatch);
+        }
+
+        public void SwitchToMovableBlock() {
+            IBlock blockToSwitch=null;
+            foreach (IBlock block in blocks) {
+                if (block.GetType().Name=="Block")blockToSwitch=block;
+            }
+            Vector2 location = blockToSwitch.Location.Location.ToVector2();
+            RemoveBlock(blockToSwitch);
+            AddBlock(location, "movable block");
         }
     }
 }
