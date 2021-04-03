@@ -86,7 +86,7 @@ namespace sprint0
                 age++;
             }
             if (Shooter is Goriya goriya1)
-                alive = goriya1.health > 0;
+                alive = goriya1.isAlive();
 
 
         }

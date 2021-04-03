@@ -16,7 +16,7 @@ namespace sprint0
         protected int repeatedFrames;
         protected Direction direction;
         protected int width, height;
-        public int health;
+        protected int health;
         protected int moveCounter, dirChangeDelay;
         protected Random rand;
         protected readonly Game1 game;
