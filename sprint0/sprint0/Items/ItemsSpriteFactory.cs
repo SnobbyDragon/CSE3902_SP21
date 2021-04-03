@@ -11,12 +11,14 @@ namespace sprint0
     public class ItemsSpriteFactory
     {
         private readonly Texture2D texture1;
+        private readonly Texture2D texture2;
         private readonly Game1 game;
 
         public ItemsSpriteFactory(Game1 game)
         {
             this.game = game;
             texture1 = game.Content.Load<Texture2D>("Images/ItemsAndWeapons");
+            texture2 = game.Content.Load<Texture2D>("Images/Bosses");
         }
 
         public IItem MakeItem(string spriteType, Vector2 location)
@@ -55,6 +57,7 @@ namespace sprint0
                 "magical sword" => new MagicalSword(texture1, location),
                 "white sword" => new WhiteSword(texture1, location),
                 "wooden sword" => new WoodenSword(texture1, location),
+                "ganontriforceashes" => new GanonTriforceAshes(texture2, location, game),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }
