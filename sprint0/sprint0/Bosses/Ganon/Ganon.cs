@@ -63,7 +63,7 @@ namespace sprint0
                 {
                     new GanonFireballExplosion(Texture, this, game);
                     game.Room.LoadLevel.RoomItems.AddItem(Location.Center.ToVector2(), "ganontriforceashes");
-                    game.Room.LoadLevel.RoomMisc.AddEffect(new GanonDeathCloud(Texture, Location.Center.ToVector2()));
+                    game.Room.LoadLevel.RoomEffect.AddEffect(new GanonDeathCloud(Texture, Location.Center.ToVector2()));
                 }
                 deathCounter++;
                 if (deathCounter == 70) Perish();
