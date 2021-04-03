@@ -17,17 +17,17 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/DungeonTileset");
         }
 
-        public ISprite MakeSprite(string spriteType, Vector2 location)
+        public ISprite MakeSprite(string spriteType, Vector2 location, bool canBeBombed = false)
         {
             return spriteType switch
             {
                 "room floor plain" => new RoomFloor(texture, location),
                 "room border" => new RoomBorder(texture, location),
                 "darkness" => new Darkness(texture, location),
-                "down wall" => new Wall(texture, location, Direction.n, game),
-                "right wall" => new Wall(texture, location, Direction.w, game),
-                "left wall" => new Wall(texture, location, Direction.e, game),
-                "up wall" => new Wall(texture, location, Direction.s, game),
+                "down wall" => new Wall(texture, location, Direction.n, game, canBeBombed),
+                "right wall" => new Wall(texture, location, Direction.w, game, canBeBombed),
+                "left wall" => new Wall(texture, location, Direction.e, game, canBeBombed),
+                "up wall" => new Wall(texture, location, Direction.s, game, canBeBombed),
                 "down open door" => new OpenDoor(texture, location, Direction.n, game),
                 "right open door" => new OpenDoor(texture, location, Direction.w, game),
                 "left open door" => new OpenDoor(texture, location, Direction.e, game),

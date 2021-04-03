@@ -18,8 +18,9 @@ namespace sprint0
 
         public void OpenDoor()
         {
-            game.Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
-            // TODO switch this into an open door
+            Game.Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
+            Game.Room.LoadLevel.RoomSprite.RemoveRoomSprite(this);
+            Game.Room.LoadLevel.RoomSprite.AddRoomSprite(new OpenDoor(Texture, Location.Location.ToVector2(), Side, Game));
         }
     }
 }

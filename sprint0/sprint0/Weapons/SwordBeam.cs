@@ -93,7 +93,7 @@ namespace sprint0
         public void RegisterHit()
         {
             hit = true;
-            room.LoadLevel.RoomMisc.AddEffect(new Vector2(Location.X, Location.Y), "sword beam explode");
+            room.LoadLevel.RoomEffect.AddEffect(new Vector2(Location.X, Location.Y), "sword beam explode");
         }
     }
 }
