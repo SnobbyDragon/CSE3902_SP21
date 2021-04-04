@@ -18,10 +18,9 @@ namespace sprint0
             currentRoom = this.game.RoomIndex;
         }
 
-
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (game.hudManager.HasMap())
+            if (game.hudManager.HasItem(PlayerItems.Map))
                 DrawMap(spriteBatch);
             DrawLocation(spriteBatch);
         }

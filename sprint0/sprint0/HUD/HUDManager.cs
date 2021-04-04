@@ -4,34 +4,40 @@ using System;
 using System.Collections.Generic;
 
 //Author: Stuti Shah
-//Updated: 03/26/21 by shah.1440
+//Updated: 04/03/21 by shah.1440
 namespace sprint0
 {
     public class HUDManager
     {
         private Game1 game;
         private PopulateHUDInventory populateHUDInventory;
-        public PopulateHUDInventory PopulateHUDInventory { get => populateHUDInventory; }
-        private MainHUD mainHUD;
-        private Dictionary<PlayerItems, Rectangle> inventory;
-        private List<PlayerItems> aItem;
-        public MainHUD MainHUD { get => mainHUD; }
+        private readonly MainHUD mainHUD;
+        private HUDInventory pauseInventory;
+        private List<PlayerItems>
+            swordList = new List<PlayerItems> { PlayerItems.Sword, PlayerItems.WhiteSword, PlayerItems.MagicalSword },
+            arrowList = new List<PlayerItems> { PlayerItems.Arrow, PlayerItems.SilverArrow },
+            boomerangList = new List<PlayerItems> { PlayerItems.Boomerang, PlayerItems.MagicalBoomerang };
+
+        public int Health { get => health; set => health = value; }
+        public PlayerItems CurrentItem { get => currentItem; }
+        private PlayerItems currentItem;
+        private int health;
 
         public HUDManager(Game1 game)
         {
             this.game = game;
             mainHUD = new MainHUD(this.game);
+            currentItem = PlayerItems.None;
+            pauseInventory = game.universalScreenManager.PauseScreenManager.Inventory();
             populateHUDInventory = new PopulateHUDInventory(this.game);
-            inventory = game.universalScreenManager.pauseScreenManager.Inventory();
-            aItem = game.universalScreenManager.pauseScreenManager.AItems();
         }
 
         public void Update()
         {
-            inventory = game.universalScreenManager.pauseScreenManager.Inventory();
-            aItem = game.universalScreenManager.pauseScreenManager.AItems();
             populateHUDInventory.Update();
+            health = populateHUDInventory.GetNum(PlayerItems.Heart);
             mainHUD.Update();
+            currentItem = mainHUD.GetItem(PlayerItems.BItem);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -45,47 +51,38 @@ namespace sprint0
             mainHUD.PopulateMainHUD();
             populateHUDInventory.PopulateInventoryHUD();
         }
-
-        public bool HasBowAndArrow()
+        public bool HasItem(PlayerItems item) => pauseInventory.HasItem(item);
+        public bool HasBowAndArrow() => pauseInventory.HasItem(PlayerItems.Bow) && pauseInventory.HasItem(arrowList);
+        public bool HasSword() => pauseInventory.HasAItem();
+        public bool CanUseBomb() => pauseInventory.HasItem(PlayerItems.Bomb) && (populateHUDInventory.GetNum(PlayerItems.Bomb) > 0);
+        public bool HasBoomerang() => pauseInventory.HasItem(boomerangList);
+        public void AddBItem(PlayerItems item) => pauseInventory.AddItem(item);
+        public void SetItem(PlayerItems source, PlayerItems item)
         {
-            return (inventory.ContainsKey(PlayerItems.Arrow) || inventory.ContainsKey(PlayerItems.SilverArrow)) && inventory.ContainsKey(PlayerItems.Bow);
+            mainHUD.SetItem(source, item);
+            if (source == PlayerItems.BItem)
+                pauseInventory.SetItem(item);
+            else pauseInventory.AddAItem(item);
         }
-
-        public bool HasSword()
+        public void RemoveBItem(PlayerItems item)
         {
-            return aItem.Contains(PlayerItems.Sword) || aItem.Contains(PlayerItems.WhiteSword) || aItem.Contains(PlayerItems.MagicalSword);
+            mainHUD.RemoveBItem();
+            pauseInventory.RemoveItem(item);
         }
-
-        public bool HasBlueCandle()
+        public void RemoveBomb()
         {
-            return inventory.ContainsKey(PlayerItems.BlueCandle);
+            if (!CanUseBomb() && currentItem == PlayerItems.Bomb)
+                RemoveBItem(PlayerItems.Bomb);
         }
-
-        public bool CanUseBomb()
+        public void GainHealth(int num) => populateHUDInventory.GainHealth(num);
+        public void ChangeNum(PlayerItems item, int num) => populateHUDInventory.ChangeNum(item, num);
+        public void Increment(PlayerItems item) => populateHUDInventory.IncrementItem(item);
+        public void Decrement(PlayerItems item) => populateHUDInventory.DecrementItem(item);
+        public void TakeDamage(int damage) => health = populateHUDInventory.TakeDamage(damage);
+        public void SetBItem(PlayerItems item)
         {
-            return inventory.ContainsKey(PlayerItems.Bomb) && (populateHUDInventory.GetNum(PlayerItems.Bomb) > 0);
-        }
-
-        public bool HasBoomerang()
-        {
-            return inventory.ContainsKey(PlayerItems.MagicalBoomerang) || inventory.ContainsKey(PlayerItems.Boomerang);
-        }
-
-        public bool HasMap()
-        {
-            return inventory.ContainsKey(PlayerItems.Map);
-        }
-
-        public bool HasCompass()
-        {
-            return inventory.ContainsKey(PlayerItems.Compass);
-        }
-
-        public void Refresh()
-        {
-            populateHUDInventory = new PopulateHUDInventory(game);
-            inventory = game.universalScreenManager.pauseScreenManager.Inventory();
-            aItem = game.universalScreenManager.pauseScreenManager.AItems();
+            currentItem = item;
+            mainHUD.UpdateBItem(item);
         }
     }
 }

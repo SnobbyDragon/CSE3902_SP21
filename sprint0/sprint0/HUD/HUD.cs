@@ -33,5 +33,6 @@ namespace sprint0
 
         public void Update() { }
         public void SetItem(PlayerItems item) { }
+        public void SetAItem(PlayerItems item) { }
     }
 }

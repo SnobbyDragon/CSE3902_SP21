@@ -13,10 +13,7 @@ namespace sprint0
         private readonly HUDFactory hudFactory;
         private Dictionary<PlayerItems, IHUDInventory> inventory;
 
-        public PopulateHUDInventory(Game1 game)
-        {
-            hudFactory = new HUDFactory(game);
-        }
+        public PopulateHUDInventory(Game1 game) => hudFactory = new HUDFactory(game);
 
         public void PopulateInventoryHUD()
         {
@@ -32,17 +29,13 @@ namespace sprint0
         public void DrawItemHUD(SpriteBatch spriteBatch)
         {
             foreach (KeyValuePair<PlayerItems, IHUDInventory> hudElement in inventory)
-            {
                 hudElement.Value.Draw(spriteBatch);
-            }
         }
 
         public void Update()
         {
             foreach (KeyValuePair<PlayerItems, IHUDInventory> hudElement in inventory)
-            {
                 hudElement.Value.Update();
-            }
         }
 
         public void IncrementItem(PlayerItems item)
@@ -60,9 +53,12 @@ namespace sprint0
             if (inventory.ContainsKey(item)) inventory[item].ChangeNum(num);
         }
 
-        public int GetNum(PlayerItems item)
+        public int GetNum(PlayerItems item) => inventory[item].CurrentNum;
+        public int TakeDamage(int damage)
         {
-            return inventory[item].CurrentNum;
+            inventory[PlayerItems.Heart].ChangeNum(damage);
+            return inventory[PlayerItems.Heart].CurrentNum;
         }
+        public void GainHealth(int num) => inventory[PlayerItems.Heart].ChangeNum(-1 * num);
     }
 }

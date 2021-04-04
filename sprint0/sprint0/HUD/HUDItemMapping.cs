@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
-//Updated: 03/25/21 by shah.1440
+//Updated: 04/03/21 by shah.1440
 namespace sprint0
 {
     public class HUDItemMapping
@@ -47,39 +47,32 @@ namespace sprint0
                 { PlayerItems.PowerBracelet, GetSource(590, YPos+19)},
                 { PlayerItems.Map, GetSource(601, YPos+19)},
                 { PlayerItems.Compass, GetSourceCompass(614, YPos+19)},
-                { PlayerItems.Raft, GetSourceRaftLadder(520, YPos+19)},
+                { PlayerItems.Raft, GetSourceRaftLadder(521, YPos+19)},
                 { PlayerItems.StepLadder, GetSourceRaftLadder(560, YPos+19)},
+                { PlayerItems.ItemSelectorRed, GetSourceRaftLadder(519, YPos)},
+                { PlayerItems.ItemSelectorBlue, GetSourceRaftLadder(536, YPos)},
             };
 
             locationMapping = new Dictionary<PlayerItems, Rectangle>
             {
                 { PlayerItems.Raft, GetSource(129, yPosTop, bigWidth, height)},
                 { PlayerItems.BookOfMagic, GetSource(152, yPosTop, smallWidth, height) },
-
                 { PlayerItems.RedRing, GetSource(164, yPosTop, smallWidth, height) },
-
                 { PlayerItems.StepLadder, GetSource(176, yPosTop, bigWidth, height) },
                 { PlayerItems.MagicalKey, GetSource(196, yPosTop, smallWidth, height) },
                 { PlayerItems.PowerBracelet, GetSource(208, yPosTop, smallWidth, height) },
-
                 { PlayerItems.MagicalBoomerang, GetSource(132, yPosMiddle, smallWidth, height) },
                 { PlayerItems.Boomerang, GetSource(132, yPosMiddle, smallWidth, height) },
-
                 { PlayerItems.Bomb, GetSource(156, yPosMiddle, smallWidth, height) },
                 { PlayerItems.Bow, GetSource(184, yPosMiddle, smallWidth, height) },
-
                 { PlayerItems.Arrow, GetSource(176, yPosMiddle, smallWidth, height) },
                 { PlayerItems.SilverArrow, GetSource(176, yPosMiddle, smallWidth, height) },
-
                 { PlayerItems.RedCandle, GetSource(204, yPosMiddle, smallWidth, height) },
                 { PlayerItems.BlueCandle, GetSource(204, yPosMiddle, smallWidth, height) },
-
                 { PlayerItems.Flute, GetSource(132, yPosBottom, smallWidth, height) },
                 { PlayerItems.Food, GetSource(156, yPosBottom, smallWidth, height) },
-
                 { PlayerItems.RedPotion, GetSource(180, yPosBottom, smallWidth, height) },
                 { PlayerItems.BluePotion, GetSource(180, yPosBottom, smallWidth, height) },
-
                 { PlayerItems.MagicalRod, GetSource(204, yPosBottom, smallWidth, height) },
                 { PlayerItems.Map, GetSource(48, yPosTop+mapHeight, smallWidth, height) },
                 { PlayerItems.Compass, GetSource(44, yPosBottom+mapHeight, bigWidth-1, height) },
@@ -87,21 +80,10 @@ namespace sprint0
             currentItem = GetSource(currentItemX, yPosMiddle, smallWidth, height);
         }
 
-        private Rectangle GetSource(int xPos, int yPos)
-        {
-            return new Rectangle(xPos, yPos, Width, Height);
-        }
-        private Rectangle GetSourceCompass(int xPos, int yPos)
-        {
-            return new Rectangle(xPos, yPos, Width + 3, Height);
-        }
-        private Rectangle GetSourceRaftLadder(int xPos, int yPos)
-        {
-            return new Rectangle(xPos, yPos, Width * 2, Height);
-        }
+        private Rectangle GetSource(int xPos, int yPos) => new Rectangle(xPos, yPos, Width, Height);
+        private Rectangle GetSourceCompass(int xPos, int yPos) => new Rectangle(xPos, yPos, Width + 3, Height);
+        private Rectangle GetSourceRaftLadder(int xPos, int yPos) => new Rectangle(xPos, yPos, Width * 2, Height);
         private Rectangle GetSource(int xPos, int yPos, int width, int height)
-        {
-            return new Rectangle((int)(xPos * Game1.Scale), (int)((yPos + Game1.HUDHeight) * Game1.Scale), (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-        }
+            => new Rectangle((int)(xPos * Game1.Scale), (int)((yPos + Game1.HUDHeight) * Game1.Scale), (int)(width * Game1.Scale), (int)(height * Game1.Scale));
     }
 }

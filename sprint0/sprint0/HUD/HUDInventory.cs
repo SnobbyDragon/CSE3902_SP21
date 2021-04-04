@@ -4,15 +4,14 @@ using System;
 using System.Collections.Generic;
 
 //Author: Stuti Shah
-//Updated: 03/25/21 by shah.1440
+//Updated: 04/03/21 by shah.1440
 namespace sprint0
 {
-    public class HUDInventory : HUDItemMapping, IHUD
+    public class HUDInventory : HUDItemMapping
     {
         private Dictionary<PlayerItems, Rectangle> inventoryItems;
         public Dictionary<PlayerItems, Rectangle> InventoryItems { get => inventoryItems; }
-        public List<PlayerItems> AItem { get => aItem; }
-        private List<PlayerItems> aItem;
+        private readonly List<PlayerItems> aItem;
         public Rectangle Location { get; set; }
         public PlayerItems Item { get; set; }
         private readonly int maxItems = 15;
@@ -31,19 +30,21 @@ namespace sprint0
                 foreach (KeyValuePair<PlayerItems, Rectangle> hudElement in inventoryItems)
                     if (LocationMapping.ContainsKey(hudElement.Key))
                         spriteBatch.Draw(Texture, hudElement.Value, ItemMap[hudElement.Key], Color.White);
-                spriteBatch.Draw(Texture, CurrentItem, ItemMap[Item], Color.White);
+                if (Item != PlayerItems.None)
+                    spriteBatch.Draw(Texture, CurrentItem, ItemMap[Item], Color.White);
             }
         }
 
         public void SetItem(PlayerItems item)
         {
-            Item = item;
+            if (HasItem(item) || item == PlayerItems.None)
+                Item = item;
         }
 
         public void AddItem(PlayerItems newItem)
         {
             ToSwitch(newItem);
-            if (!inventoryItems.ContainsKey(newItem) && LocationMapping.ContainsKey(newItem) && inventoryItems.Count <= maxItems)
+            if (!HasItem(newItem) && LocationMapping.ContainsKey(newItem) && inventoryItems.Count <= maxItems)
                 inventoryItems.Add(newItem, LocationMapping[newItem]);
         }
 
@@ -54,7 +55,6 @@ namespace sprint0
         }
 
         public void Update() { }
-
         private void ToSwitch(PlayerItems item)
         {
             switch (item)
@@ -90,10 +90,28 @@ namespace sprint0
         private bool ToSwitchSub(PlayerItems item1, PlayerItems item2)
         {
             bool toSwitch = true;
-            if (inventoryItems.ContainsKey(item1)) inventoryItems.Remove(item2);
-            else if (inventoryItems.ContainsKey(item2)) inventoryItems.Remove(item1);
+            if (HasItem(item1)) inventoryItems.Remove(item2);
+            else if (HasItem(item2)) inventoryItems.Remove(item1);
             else toSwitch = false;
             return toSwitch;
         }
+
+        public void RemoveItem(PlayerItems item)
+        {
+            if (HasItem(item))
+                inventoryItems.Remove(item);
+            if (Item == item)
+                SetItem(PlayerItems.None);
+        }
+
+        public bool HasItem(List<PlayerItems> itemList)
+        {
+            bool hasItem = false;
+            foreach (PlayerItems item in itemList)
+                hasItem = hasItem || HasItem(item);
+            return hasItem;
+        }
+        public bool HasAItem() => aItem.Count != 0;
+        public bool HasItem(PlayerItems item) => inventoryItems.ContainsKey(item);
     }
 }
