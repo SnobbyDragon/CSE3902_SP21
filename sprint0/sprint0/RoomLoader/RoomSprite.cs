@@ -50,5 +50,11 @@ namespace sprint0
             foreach (ISprite _sprite in roomSprites)
                 _sprite.Draw(spriteBatch);
         }
+
+        public void OpenClosedDoor() {
+            foreach (ISprite _sprite in roomSprites) {
+                if (_sprite is ShutDoor) ((ShutDoor)_sprite).OpenDoor();
+            }
+        }
     }
 }

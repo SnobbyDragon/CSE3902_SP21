@@ -11,6 +11,7 @@ namespace sprint0
         public List<IBlock> Blocks { get => blocks; set => blocks = value; }
         private List<IBlock> blocks;
         private readonly List<IBlock> blocksToRemove, blocksToAdd;
+        private Game1 game;
 
         public RoomBlocks(Game1 game)
         {
@@ -18,6 +19,8 @@ namespace sprint0
             blocks = new List<IBlock>();
             blocksToRemove = new List<IBlock>();
             blocksToAdd = new List<IBlock>();
+            this.game = game;
+            
         }
 
         public IBlock AddBlock(Vector2 location, string block, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
@@ -51,7 +54,10 @@ namespace sprint0
         public void Update()
         {
             foreach (IBlock block in blocks)
+            {
                 block.Update();
+                OpenDoorWithBlock();
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -67,7 +73,15 @@ namespace sprint0
             }
             Vector2 location = blockToSwitch.Location.Location.ToVector2();
             RemoveBlock(blockToSwitch);
-            AddBlock(location, "movable block");
+            AddBlock(location, "movable block 5");
+        }
+
+        public void OpenDoorWithBlock() {
+            foreach (IBlock block in blocks)
+            {
+                if (block is MovableBlock5 && !((MovableBlock5)block).IsMovable())
+                    game.Room.LoadLevel.RoomSprite.OpenClosedDoor();
+            }
         }
     }
 }
