@@ -92,5 +92,7 @@ namespace sprint0
             hit = true;
             room.LoadLevel.RoomEffect.AddEffect(new Vector2(Location.X, Location.Y), "hit sprite");
         }
+
+        public bool hitAlready() => hit;
     }
 }
