@@ -61,9 +61,9 @@ namespace sprint0
         }
 
         public void SwitchToMovableBlock() {
-            IBlock blockToSwitch=null;
+            IBlock blockToSwitch = null;
             foreach (IBlock block in blocks) {
-                if (block.GetType().Name=="Block")blockToSwitch=block;
+                if (block is Block) blockToSwitch = block;
             }
             Vector2 location = blockToSwitch.Location.Location.ToVector2();
             RemoveBlock(blockToSwitch);
