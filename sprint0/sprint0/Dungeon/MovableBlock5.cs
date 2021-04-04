@@ -1,25 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-//Author: Hannah Johnson
-
 namespace sprint0
 {
-    public class Floor : IBlock
+    public class MovableBlock5 : IBlock
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int width, height;
+        private Vector2 homeLocation;
+        private bool isMovable;
 
-        public Floor(Texture2D texture, Vector2 location)
+        public MovableBlock5(Texture2D texture, Vector2 location)
         {
             width = height = 16;
+            isMovable = true;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+            homeLocation = Location.Location.ToVector2();
             Texture = texture;
-            source = new Rectangle(1001, 28, width, height);
+            source = new Rectangle(1001, 11, width, height);
 
         }
 
@@ -34,17 +35,24 @@ namespace sprint0
 
         public bool IsWalkable()
         {
-            return true;
+            return false;
         }
 
         public bool IsMovable()
         {
-            return false;
+            return isMovable;
         }
 
         public void SetIsMovable()
         {
-            throw new NotImplementedException();
+            Vector2 changeLoc = Location.Location.ToVector2() - homeLocation;
+            if (changeLoc.Length() >= Game1.Scale * width)
+            {
+                isMovable = false;
+                //opens door
+
+            }
+
         }
     }
 }

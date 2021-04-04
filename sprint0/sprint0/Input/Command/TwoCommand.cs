@@ -16,6 +16,7 @@ namespace sprint0
             {
                 game.Room.Player.CurrentItem = PlayerItems.Bomb;
                 game.Room.Player.HandleItem();
+                game.hudManager.RemoveBomb();
             }
         }
     }

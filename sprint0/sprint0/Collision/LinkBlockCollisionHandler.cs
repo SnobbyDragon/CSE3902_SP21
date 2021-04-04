@@ -13,7 +13,6 @@ namespace sprint0
         {
             this.game = game;
         }
-
         public void HandleCollision(IPlayer link, IBlock block, Direction side)
         {
             if (!block.IsWalkable())
@@ -36,7 +35,6 @@ namespace sprint0
                 HandleLadder(link);
             }
         }
-
         private void HandleStairs(IPlayer link, IBlock block)
         {
             if (block.Location.Contains(new Rectangle((int)link.Pos.X, (int)link.Pos.Y, linkSize, linkSize)))
@@ -48,7 +46,6 @@ namespace sprint0
                 link.State = new DownIdleState(link);
             }
         }
-
         private void HandleLadder(IPlayer link)
         {
             if (link.Pos.Y < Game1.HUDHeight * Game1.Scale)
@@ -60,7 +57,6 @@ namespace sprint0
                 link.State = new LeftIdleState(link);
             }
         }
-
         private void HandleMovableBlock(IPlayer link, IBlock block, Direction side)
         {
             switch (side)
@@ -72,15 +68,28 @@ namespace sprint0
                     block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y + linkSize, block.Location.Width, block.Location.Height);
                     break;
                 case Direction.e:
-                    block.Location = new Rectangle((int)link.Pos.X + linkSize, block.Location.Y, block.Location.Width, block.Location.Height);
+                    if (block is MovableBlock5)
+                    {
+                        block.Location = new Rectangle((int)link.Pos.X + block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
+                    }
+                    else
+                    {
+                        link.Pos += new Vector2(block.Location.Left - (link.Pos.X + linkSize - offset), 0);
+                    }
                     break;
                 case Direction.w:
-                    block.Location = new Rectangle((int)link.Pos.X - block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
+                    if (block is MovableBlock5)
+                    {
+                        block.Location = new Rectangle((int)link.Pos.X - block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
+                    }
+                    else
+                    {
+                        link.Pos += new Vector2(block.Location.Right - (link.Pos.X + offset), 0);
+                    }
                     break;
             }
             block.SetIsMovable();
         }
-
         private void HandleImmovableBlock(IPlayer link, IBlock block, Direction side)
         {
             switch (side)

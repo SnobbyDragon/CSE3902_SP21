@@ -10,5 +10,6 @@ namespace sprint0
     {
         public PlayerItems Item { get; set; }
         void SetItem(PlayerItems item);
+        void SetAItem(PlayerItems item);
     }
 }

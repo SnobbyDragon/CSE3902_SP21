@@ -9,10 +9,7 @@ namespace sprint0
         private readonly int linkSize = (int)(16 * Game1.Scale);
         private readonly int pickUpAnimationTime = 40;
 
-        public LinkItemCollisionHandler(Room room)
-        {
-            this.room = room;
-        }
+        public LinkItemCollisionHandler(Room room) => this.room = room;
 
         public void HandleCollision(IPlayer link, IItem item, Direction side)
         {
@@ -24,7 +21,7 @@ namespace sprint0
                 if (item.PickedUpDuration == -1)
                 {
                     link.PickUpItem();
-                    if( item is GanonTriforceAshes ganon)
+                    if (item is GanonTriforceAshes ganon)
                         room.LoadLevel.RoomEffect.AddEffect(item.Location.Location.ToVector2(), "ganonashes");
                     int itemX = (int)link.Pos.X + linkSize / 2 - item.Location.Width / 2;
                     int itemY = (int)link.Pos.Y - item.Location.Height;
@@ -33,9 +30,7 @@ namespace sprint0
                     room.RoomSound.AddSoundEffect("new item");
                 }
                 else
-                {
                     item.PickedUpDuration = pickUpAnimationTime;
-                }
             }
         }
 
@@ -50,14 +45,11 @@ namespace sprint0
         {
             if (IsSword(item.PlayerItems))
                 link.SetHUDItem(PlayerItems.AItem, item.PlayerItems);
-            if (link.GetItem(PlayerItems.BItem) == PlayerItems.None && !IsSword(item.PlayerItems))
+            else
                 link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
             link.AddToInventory(item.PlayerItems);
         }
 
-        private bool IsSword(PlayerItems item)
-        {
-            return item == PlayerItems.Sword || item == PlayerItems.WhiteSword || item == PlayerItems.MagicalSword;
-        }
+        private bool IsSword(PlayerItems item) => item == PlayerItems.Sword || item == PlayerItems.WhiteSword || item == PlayerItems.MagicalSword;
     }
 }

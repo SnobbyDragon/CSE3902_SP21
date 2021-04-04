@@ -22,9 +22,9 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (game.hudManager.HasMap())
+            if (game.hudManager.HasItem(PlayerItems.Map))
                 DrawMap(spriteBatch);
-            if (game.hudManager.HasCompass())
+            if (game.hudManager.HasItem(PlayerItems.Compass))
                 spriteBatch.Draw(Texture, new Rectangle(roomPos[currentRoom].X + 6, roomPos[currentRoom].Y + 6, roomPos[currentRoom].Width, roomPos[currentRoom].Height), sources[(int)RoomDirection.Location], Color.White);
         }
 

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class MovableBlock : IBlock
+    public class MovableBlock1 : IBlock
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -13,7 +13,7 @@ namespace sprint0
         private Vector2 homeLocation;
         private bool isMovable;
 
-        public MovableBlock(Texture2D texture, Vector2 location)
+        public MovableBlock1(Texture2D texture, Vector2 location)
         {
             width = height = 16;
             isMovable = true;
@@ -46,7 +46,7 @@ namespace sprint0
         public void SetIsMovable()
         {
             Vector2 changeLoc = Location.Location.ToVector2() - homeLocation;
-            if (changeLoc.Length() >= 2 * width)
+            if (changeLoc.Length() >= Game1.Scale * width)
             {
                 isMovable = false;
             }

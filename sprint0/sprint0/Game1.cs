@@ -39,7 +39,7 @@ namespace sprint0
         public readonly GameStateMachine stateMachine;
 
         private readonly int LinkDefaultX = 250;
-        private readonly int LinkDefaultY = 250;
+        private readonly int LinkDefaultY = 280;
 
         private GameStateMachine.State state;
         public static int Width { get; } = 256;
@@ -71,10 +71,10 @@ namespace sprint0
                 new KeyboardController(this),
                 new MouseController(this)
             };
-
+            ResetManagers();
             soundFactory = new SoundFactory(this);
             music = SoundFactory.MakeBackgroundMusic();
-            ResetManagers();
+
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
             Rooms = new Dictionary<int, Room>();
@@ -178,19 +178,15 @@ namespace sprint0
 
             foreach (IController controller in controllerList)
                 controller.Update();
-            if (state.Equals(GameStateMachine.State.changeRoom)) { 
-                
-            }
-            
-            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test)) {
-
-                if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
-                    room.Update();
-
+            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
+            {
+                if (ChangeRoom) LoadContent();
+                room.Update();
             }
             if (ChangeHUD())
                 hudManager.Update();
             universalScreenManager.Update(state);
+            hudManager.Update();
             music.Update();
             base.Update(gameTime);
         }
@@ -209,7 +205,6 @@ namespace sprint0
             if (ChangeHUD())
                 hudManager.Draw(_spriteBatch);
             universalScreenManager.Draw(_spriteBatch, state);
-
             _spriteBatch.End();
             base.Draw(gameTime);
         }

@@ -16,11 +16,15 @@ namespace sprint0
             CollisionBox = Room.LoadLevel.RoomBlocks.AddBlock(location, "invisible block", size, size);
         }
 
-        public void OpenDoor()
+        public void OpenDoor(bool openedByBlock)
         {
-            Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
-            Room.LoadLevel.RoomSprite.RemoveRoomSprite(this);
-            Room.LoadLevel.RoomSprite.AddRoomSprite(new OpenDoor(Texture, Location.Location.ToVector2(), Side, Room));
+            int roomWithDoorOpenedByBlock = 5;
+            if (openedByBlock || Game.RoomIndex != roomWithDoorOpenedByBlock)
+            {
+                Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
+                Room.LoadLevel.RoomSprite.RemoveRoomSprite(this);
+                Room.LoadLevel.RoomSprite.AddRoomSprite(new OpenDoor(Texture, Location.Location.ToVector2(), Side, Room));
+            }
         }
     }
 }

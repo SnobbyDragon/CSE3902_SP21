@@ -37,14 +37,9 @@ namespace sprint0
                 "hud" => new HUD(texture, location),
                 "hudA" => new HUDItem(texture, new Vector2((location.X + 153) * Game1.Scale, location.Y + 24 * Game1.Scale)),
                 "hudB" => new HUDItem(texture, new Vector2((location.X + 128) * Game1.Scale, location.Y + 24 * Game1.Scale)),
-                "inventory" => new HUDInventory(game),
-                //"location" => new HUDLocation(texture, location),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }
-        public HUDMiniMap MakeMiniMap()
-        {
-            return new HUDMiniMap(game);
-        }
+        public HUDMiniMap MakeMiniMap() => new HUDMiniMap(game);
     }
 }

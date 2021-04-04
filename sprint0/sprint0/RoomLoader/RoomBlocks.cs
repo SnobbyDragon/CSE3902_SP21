@@ -11,6 +11,7 @@ namespace sprint0
         public List<IBlock> Blocks { get => blocks; set => blocks = value; }
         private List<IBlock> blocks;
         private readonly List<IBlock> blocksToRemove, blocksToAdd;
+        private Game1 game;
 
         public RoomBlocks(Game1 game, int roomIndex)
         {
@@ -18,6 +19,8 @@ namespace sprint0
             blocks = new List<IBlock>();
             blocksToRemove = new List<IBlock>();
             blocksToAdd = new List<IBlock>();
+            this.game = game;
+            
         }
 
         public IBlock AddBlock(Vector2 location, string block, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
@@ -27,7 +30,9 @@ namespace sprint0
             return newBlock;
         }
 
-        public void RemoveBlock(IBlock block) => blocksToRemove.Add(block);
+        public void RemoveBlock(IBlock block) {
+            if (block != null) blocksToRemove.Add(block);
+        }
 
         public void AddNew()
         {
@@ -47,22 +52,43 @@ namespace sprint0
 
         public void RemoveDestroyed()
         {
-            foreach (IBlock enemy in blocksToRemove)
+            foreach (IBlock block in blocksToRemove)
             {
-                blocks.Remove(enemy);
+                blocks.Remove(block);
             }
         }
 
         public void Update()
         {
             foreach (IBlock block in blocks)
+            {
                 block.Update();
+                OpenDoorWithBlock();
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (IBlock block in blocks)
                 block.Draw(spriteBatch);
+        }
+
+        public void SwitchToMovableBlock() {
+            IBlock blockToSwitch = null;
+            foreach (IBlock block in blocks) {
+                if (block is Block) blockToSwitch = block;
+            }
+            Vector2 location = blockToSwitch.Location.Location.ToVector2();
+            RemoveBlock(blockToSwitch);
+            AddBlock(location, "movable block 5");
+        }
+
+        public void OpenDoorWithBlock() {
+            foreach (IBlock block in blocks)
+            {
+                if (block is MovableBlock5 && !((MovableBlock5)block).IsMovable())
+                    game.Room.LoadLevel.RoomSprite.OpenClosedDoor();
+            }
         }
     }
 }
