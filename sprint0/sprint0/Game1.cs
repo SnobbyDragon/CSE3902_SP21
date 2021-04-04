@@ -124,8 +124,10 @@ namespace sprint0
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
                 if (ChangeRoom) LoadContent();
-                else room.Update();
+                room.Update();
             }
+            if (ChangeHUD())
+                hudManager.Update();
             universalScreenManager.Update(state);
             hudManager.Update();
             music.Update();
