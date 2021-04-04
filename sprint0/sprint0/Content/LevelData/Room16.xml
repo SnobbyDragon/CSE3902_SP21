@@ -3,7 +3,7 @@
     <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />?
      <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />?
 
-    <Dungeon ObjectName="up open door" LocationX="280" LocationY="500" />?    
+    <Dungeon ObjectName="up wall,m,m," LocationX="280" LocationY="500" />?    
     <Dungeon ObjectName="down locked door" LocationX="280" LocationY="140" />?    
     <Dungeon ObjectName="left open door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />?

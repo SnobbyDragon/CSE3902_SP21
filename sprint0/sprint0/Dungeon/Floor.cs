@@ -34,7 +34,7 @@ namespace sprint0
 
         public bool IsWalkable()
         {
-            return false;
+            return true;
         }
 
         public bool IsMovable()
