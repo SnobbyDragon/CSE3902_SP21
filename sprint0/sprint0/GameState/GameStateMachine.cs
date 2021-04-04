@@ -10,6 +10,7 @@ namespace sprint0
         private Game1 game;
         public enum State { start, play, pause, test, over, credits, win, changeRoom };
         private State state;
+        private Direction direction;
         public GameStateMachine(Game1 game)
         {
             this.game = game;
@@ -55,10 +56,25 @@ namespace sprint0
             }
         }
 
-        public void HandleNewRoom(Direction borderSide)
+        public Direction GetChangeDirection() {
+            
+                return direction;
+            
+        }
+        public void HandleNewRoom(Direction d, int dest)
         {
-            //state = State.changeRoom;
-            //game.off();
+            direction = d;
+            state = State.changeRoom;
+            game.NextRoom = game.Rooms[dest];
+            game.Slide(d);
+
+        }
+
+        public void HandleFinishRoomChange(int dest) {
+
+            game.RoomIndex = dest;
+            game.Room = game.Rooms[dest];
+            state = State.play;
         }
 
         public void HandleCredits()
