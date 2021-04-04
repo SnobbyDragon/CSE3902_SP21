@@ -90,5 +90,10 @@ namespace sprint0
 
                 
         }
+
+        public bool isAlive()
+        {
+            return health > 0;
+        }
     }
 }
