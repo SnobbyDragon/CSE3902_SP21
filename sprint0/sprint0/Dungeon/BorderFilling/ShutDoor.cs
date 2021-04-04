@@ -19,7 +19,7 @@ namespace sprint0
         public void OpenDoor(bool openedByBlock)
         {
             int roomWithDoorOpenedByBlock = 5;
-            if (openedByBlock || Game.RoomIndex != roomWithDoorOpenedByBlock)
+            if (openedByBlock || Room.Game.RoomIndex != roomWithDoorOpenedByBlock)
             {
                 Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
                 Room.LoadLevel.RoomSprite.RemoveRoomSprite(this);
