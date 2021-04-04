@@ -15,8 +15,8 @@ namespace sprint0
         public IPlayer Player { get; set; }
         private static PlayerSpriteFactory playerFactory;
         public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
-        private readonly Vector2 northOffset = new Vector2(0, -1 * (MapHeight + HUDHeight)*Scale);
-        private readonly Vector2 southOffset = new Vector2(0, (MapHeight + HUDHeight)*Scale);
+        private readonly Vector2 northOffset = new Vector2(0, -1 * (MapHeight)*Scale);
+        private readonly Vector2 southOffset = new Vector2(0, (MapHeight)*Scale);
         private readonly Vector2 eastOffset = new Vector2(Width*Scale, 0) ;
         private readonly Vector2 westOffset = new Vector2(-1 * (Width*Scale) , 0);
 
@@ -32,9 +32,13 @@ namespace sprint0
         private Room room;
         public Room NextRoom  {set => nextRoom = value; }
         private Room nextRoom;
+
+
         public bool ChangeRoom { get; set; }
         public bool UseLoadedPos { get; set; }
         public int RoomIndex { get; set; }
+
+        public int NextRoomIndex { get; set; }
         public  int NumRooms { get; } = 19;
         public readonly GameStateMachine stateMachine;
 
@@ -78,7 +82,7 @@ namespace sprint0
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
             Rooms = new Dictionary<int, Room>();
-            RoomIndex = 18;
+            RoomIndex = 2;
             ChangeRoom = true;
             UseLoadedPos = false;
             base.Initialize();
@@ -99,7 +103,7 @@ namespace sprint0
             RoomIndex = 18;
             ChangeRoom = true;
             ResetManagers();
-
+            LoadContent();
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
         }
 
@@ -117,7 +121,7 @@ namespace sprint0
 
             List<int> frontier = new List<int>();
             frontier.Add(RoomIndex);
-            while (Rooms.Count < 18 ) {
+            while (Rooms.Count < 5 ) {
                 List<int> newFrontier = new List<int>();
                 foreach (int roomIndex in frontier) {
                     Dictionary<Direction, int> adjacentRooms = new Dictionary<Direction, int>();
@@ -171,8 +175,9 @@ namespace sprint0
 
             if (state == GameStateMachine.State.changeRoom) {
                 Slide(stateMachine.GetChangeDirection());
+                stateMachine.HandleFinishRoomChange(NextRoomIndex);
             }
-            
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -180,7 +185,7 @@ namespace sprint0
                 controller.Update();
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
-                if (ChangeRoom) LoadContent();
+                
                 room.Update();
             }
             if (ChangeHUD())
@@ -199,6 +204,7 @@ namespace sprint0
             {
                 room.Draw();
                 nextRoom.Draw();
+                hudManager.Draw(_spriteBatch);
             }
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
                 room.Draw();

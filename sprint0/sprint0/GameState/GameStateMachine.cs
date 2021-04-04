@@ -11,6 +11,8 @@ namespace sprint0
         public enum State { start, play, pause, test, over, credits, win, changeRoom };
         private State state;
         private Direction direction;
+        private int counter;
+        private int bound;
         public GameStateMachine(Game1 game)
         {
             this.game = game;
@@ -63,18 +65,34 @@ namespace sprint0
         }
         public void HandleNewRoom(Direction d, int dest)
         {
+            counter = 0;
             direction = d;
+            if (d == Direction.n || d == Direction.s)
+            {
+                bound = (int)(Game1.MapHeight * Game1.Scale);
+            }
+            if (d == Direction.e || d == Direction.w)
+            {
+                bound = (int)(Game1.Width * Game1.Scale);
+            }
             state = State.changeRoom;
+            game.NextRoomIndex = dest;
             game.NextRoom = game.Rooms[dest];
-            game.Slide(d);
 
         }
 
-        public void HandleFinishRoomChange(int dest) {
+        public void HandleFinishRoomChange(int dest)
+        {
+            if (counter >= bound)
+            {
+                game.RoomIndex = dest;
+                game.Room = game.Rooms[dest];
+                state = State.play;
+            }
+            else {
+                counter++;
+            }
 
-            game.RoomIndex = dest;
-            game.Room = game.Rooms[dest];
-            state = State.play;
         }
 
         public void HandleCredits()
