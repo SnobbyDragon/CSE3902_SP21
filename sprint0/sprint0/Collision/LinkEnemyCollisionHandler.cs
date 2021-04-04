@@ -7,7 +7,11 @@ namespace sprint0
 
     {
         private readonly int linkSize = (int)(16 * Game1.Scale);
-        public LinkEnemyCollisionHandler() { }
+        private readonly int offset = 4;
+        public LinkEnemyCollisionHandler()
+        {
+
+        }
 
         public void HandleCollision(IPlayer link, IEnemy enemy, Direction side)
         {
@@ -17,16 +21,16 @@ namespace sprint0
                 switch (side)
                 {
                     case Direction.n:
-                        link.Pos += new Vector2(0, enemy.Location.Bottom - link.Pos.Y);
+                        link.Pos += new Vector2(0, enemy.Location.Bottom - (link.Pos.Y + offset));
                         break;
                     case Direction.s:
-                        link.Pos += new Vector2(0, enemy.Location.Top - (link.Pos.Y + linkSize));
+                        link.Pos += new Vector2(0, enemy.Location.Top - (link.Pos.Y + linkSize - offset));
                         break;
                     case Direction.e:
-                        link.Pos += new Vector2(enemy.Location.Left - (link.Pos.X + linkSize), 0);
+                        link.Pos += new Vector2(enemy.Location.Left - (link.Pos.X + linkSize - offset), 0);
                         break;
                     case Direction.w:
-                        link.Pos += new Vector2(enemy.Location.Right - link.Pos.X, 0);
+                        link.Pos += new Vector2(enemy.Location.Right - (link.Pos.X + offset), 0);
                         break;
                 }
             }
