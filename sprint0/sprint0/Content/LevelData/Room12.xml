@@ -15,7 +15,7 @@
  
     <Block ObjectName="block" LocationX="160" LocationY="380" />? 
     <Block ObjectName="block" LocationX="440" LocationY="380" />?  
-    
+    <Item ObjectName="key" LocationX="280" LocationY="340" />?
     <Boss ObjectName="dodongo" LocationX="320" LocationY="340" />? 
     <Boss ObjectName="dodongo" LocationX="240" LocationY="300" />? 
     <Boss ObjectName="dodongo" LocationX="360" LocationY="300" />? 
