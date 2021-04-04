@@ -15,8 +15,11 @@ namespace sprint0
             }
             else if (border is LockedDoor lockedDoor)
             {
-                //TODO check if link has a key or the master key, if so, open door (decrement key if he doesn't have master key)
-                lockedDoor.OpenDoor();
+                if (link.HasKey() || link.HasItem(PlayerItems.MagicalKey))
+                {
+                    lockedDoor.OpenDoor();
+                    link.DecrementKey();
+                }
             }
         }
     }

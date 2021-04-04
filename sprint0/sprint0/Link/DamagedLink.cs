@@ -73,7 +73,9 @@ namespace sprint0
         }
 
         public void HandleItem() => decoratedLink.HandleItem();
-
+        public bool HasItem(PlayerItems item) => HUD.HasItem(item);
+        public bool HasKey() => HUD.HasKeys();
+        public void DecrementKey() => HUD.DecrementKey();
         public void ReceiveItem(int n, PlayerItems item)
         {
             decoratedLink.ReceiveItem(n, item);

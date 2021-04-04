@@ -44,5 +44,8 @@ namespace sprint0
         public void ReceiveItem(int n, PlayerItems item);
         public void Draw(SpriteBatch spriteBatch);
         public void Update();
+        public bool HasItem(PlayerItems item);
+        public bool HasKey();
+        public void DecrementKey();
     }
 }

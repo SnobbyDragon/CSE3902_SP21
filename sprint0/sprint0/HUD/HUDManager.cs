@@ -14,7 +14,6 @@ namespace sprint0
         private readonly MainHUD mainHUD;
         private HUDInventory pauseInventory;
         private List<PlayerItems>
-            swordList = new List<PlayerItems> { PlayerItems.Sword, PlayerItems.WhiteSword, PlayerItems.MagicalSword },
             arrowList = new List<PlayerItems> { PlayerItems.Arrow, PlayerItems.SilverArrow },
             boomerangList = new List<PlayerItems> { PlayerItems.Boomerang, PlayerItems.MagicalBoomerang };
 
@@ -52,6 +51,12 @@ namespace sprint0
             populateHUDInventory.PopulateInventoryHUD();
         }
         public bool HasItem(PlayerItems item) => pauseInventory.HasItem(item);
+        public bool HasKeys() => populateHUDInventory.GetNum(PlayerItems.Key) > 0;
+        public void DecrementKey()
+        {
+            if (!HasItem(PlayerItems.MagicalKey) && HasKeys())
+                Decrement(PlayerItems.Key);
+        }
         public bool HasBowAndArrow() => pauseInventory.HasItem(PlayerItems.Bow) && pauseInventory.HasItem(arrowList);
         public bool HasSword() => pauseInventory.HasAItem();
         public bool CanUseBomb() => pauseInventory.HasItem(PlayerItems.Bomb) && (populateHUDInventory.GetNum(PlayerItems.Bomb) > 0);
