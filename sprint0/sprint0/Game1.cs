@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 
 namespace sprint0
@@ -12,7 +11,9 @@ namespace sprint0
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
         public List<int> VisitedRooms;
-
+        public IPlayer Player { get; set; }
+        private static PlayerSpriteFactory playerFactory;
+        public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
         public SoundFactory SoundFactory { get => soundFactory; }
         private SoundFactory soundFactory;
         public BackgroundMusic Music { get => music; }
@@ -40,7 +41,6 @@ namespace sprint0
 
         public Game1()
         {
-
             stateMachine = new GameStateMachine(this);
             _graphics = new GraphicsDeviceManager(this)
             {
@@ -71,7 +71,6 @@ namespace sprint0
             RoomIndex = 18;
             ChangeRoom = true;
             UseLoadedPos = false;
-
             base.Initialize();
         }
 
@@ -89,7 +88,7 @@ namespace sprint0
             RoomIndex = 18;
             ChangeRoom = true;
             ResetManagers();
-            room.Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
+            Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
         }
 
         protected override void LoadContent()
@@ -98,11 +97,15 @@ namespace sprint0
                 VisitedRooms.Add(RoomIndex);
             if (room != null)
             {
-                Vector2 playerPos = room.Player.Pos;
+                Vector2 playerPos = Player.Pos;
                 room = new Room(_spriteBatch, this, RoomIndex, playerPos.X, playerPos.Y, UseLoadedPos);
             }
             else
+            {
                 room = new Room(_spriteBatch, this, RoomIndex);
+                playerFactory = new PlayerSpriteFactory(this);
+                Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
+            }
             room.LoadContent();
             ChangeRoom = false;
             UseLoadedPos = false;

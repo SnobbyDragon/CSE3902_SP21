@@ -16,6 +16,8 @@ namespace sprint0
 
         public int Damage { get; }
 
+        private bool hit = false;
+
         public Sword(Vector2 location, Direction dir, IPlayer player)
         {
             this.player = player;
@@ -45,5 +47,12 @@ namespace sprint0
         public void Update()
         {
         }
+
+        public void RegisterHit()
+        {
+            hit = true;
+        }
+
+        public bool hitAlready() => hit;
     }
 }

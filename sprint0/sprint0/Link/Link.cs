@@ -33,7 +33,7 @@ namespace sprint0
             position = pos;
             State = new UpIdleState(this);
             ItemCounts = new List<int> { -1, -1, 1 };
-            itemHelper = new LinkUseItemHelper(game.Room, this);
+            itemHelper = new LinkUseItemHelper(game, this);
             CurrentItem = PlayerItems.None;
             speed = 2;
             HUD = this.game.hudManager;
