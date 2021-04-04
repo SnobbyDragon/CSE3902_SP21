@@ -6,6 +6,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
+    public enum DungeonItems
+    {
+        RoomFloor, RoomBorder, Darkness, DownWall, RightWall, LeftWall, UpWall, DownOpenDoor, RightOpenDoor, LeftOpenDoor, UpOpenDoor,
+        DownLockedDoor, RightLockedDoor, LeftLockedDoor, UpLockedDoor, DownShutDoor, RightShutDoor, LeftShutDoor, UpShutDoor,
+        DownBombedOpening, RightBombedOpening, LeftBombedOpening, UpBombedOpening
+    }
+
+    public enum Blocks
+    {
+        Block, Tile, Gap, Water, Floor, Stairs, Ladder, Brick, LeftStatue, RightStatue, MovableBlock, MovableBlock5, InvisibleBlock
+    }
     public class DungeonFactory
     {
         private readonly Game1 game;

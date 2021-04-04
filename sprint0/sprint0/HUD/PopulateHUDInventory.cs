@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 //Author: Stuti Shah
-//Updated: 03/24/21 by shah.1440
+//Updated: 04/04/21 by shah.1440
 namespace sprint0
 {
 
@@ -17,12 +17,14 @@ namespace sprint0
 
         public void PopulateInventoryHUD()
         {
+
             inventory = new Dictionary<PlayerItems, IHUDInventory>()
             {
-                {PlayerItems.Bomb, hudFactory.MakeHUDItem("bomb inventory", new Vector2(0,0))},
-                {PlayerItems.Key,hudFactory.MakeHUDItem("key inventory", new Vector2(0,0))},
-                {PlayerItems.Rupee, hudFactory.MakeHUDItem("rupee inventory", new Vector2(0,0))},
-                {PlayerItems.Heart, hudFactory.MakeHUDItem("heart", new Vector2(0,0))}
+
+                {PlayerItems.Bomb, hudFactory.MakeHUDItem(HUDEnum.Bomb, new Vector2(0,0))},
+                {PlayerItems.Key,hudFactory.MakeHUDItem(HUDEnum.Key, new Vector2(0,0))},
+                {PlayerItems.Rupee, hudFactory.MakeHUDItem(HUDEnum.Rupee, new Vector2(0,0))},
+                {PlayerItems.Heart, hudFactory.MakeHUDItem(HUDEnum.Heart, new Vector2(0,0))}
             };
         }
 

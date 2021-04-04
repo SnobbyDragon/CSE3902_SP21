@@ -22,9 +22,9 @@ namespace sprint0
         {
             hudMainItems = new Dictionary<PlayerItems, IHUD>
             {
-                {PlayerItems.HUD, hudFactory.MakeHUD("hud", new Vector2(0,0)) },
-                {PlayerItems.AItem, hudFactory.MakeHUD("hudA", new Vector2(0,0)) },
-                {PlayerItems.BItem, hudFactory.MakeHUD("hudB", new Vector2(0,0)) },
+                {PlayerItems.HUD, hudFactory.MakeHUD(HUDEnum.HUD, new Vector2(0,0)) },
+                {PlayerItems.AItem, hudFactory.MakeHUD(HUDEnum.HUDA, new Vector2(0,0)) },
+                {PlayerItems.BItem, hudFactory.MakeHUD(HUDEnum.HUDB, new Vector2(0,0)) },
             };
             hudMiniMap = hudFactory.MakeMiniMap();
         }
