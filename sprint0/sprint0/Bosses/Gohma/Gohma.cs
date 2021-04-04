@@ -164,7 +164,7 @@ namespace sprint0
             game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
             Vector2 dir = game.Room.Player.Pos - (Location.Location.ToVector2() + centerOffset);
             dir.Normalize();
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this, Color.Blue);
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
         }
     }
 }

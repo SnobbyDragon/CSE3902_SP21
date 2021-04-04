@@ -14,32 +14,31 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         public int Damage { get => 1; }
         private readonly int width = 8, height = 10;
-        private readonly Dictionary<Color, List<Rectangle>> colorMap;
-        private readonly Color color;
+        private readonly Dictionary<string, List<Rectangle>> colorMap;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames, speed = 3;
         private readonly Vector2 direction;
         private bool hit = false;
-
-        public Fireball(Texture2D texture, Vector2 location, Vector2 direction, IEntity shooter, Color color)
+        public Fireball(Texture2D texture, Vector2 location, Vector2 direction, IEntity shooter)
         {
             Shooter = shooter;
             Texture = texture;
-            this.color = color;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             preciseLocation = location;
             this.direction = direction;
-
             currFrame = 0;
-            totalFrames = 1;
-            repeatedFrames = 2;
-            colorMap = new Dictionary<Color, List<Rectangle>>
+            totalFrames = 4;
+            repeatedFrames = 4;
+            colorMap = new Dictionary<string, List<Rectangle>>
             {
-                {Color.Yellow, SpritesheetHelper.GetFramesH(231, 62, width, height, totalFrames)},
-                {Color.Blue, SpritesheetHelper.GetFramesH(240, 62, width, height, totalFrames)},
-                {Color.Red, SpritesheetHelper.GetFramesH(249, 62, width, height, totalFrames)},
-                {Color.Green, SpritesheetHelper.GetFramesH(258, 62, width, height, totalFrames)},
+                {"sprint0.Ganon", SpritesheetHelper.GetFramesH(238, 157, width, height, totalFrames)},
+                {"sprint0.Aquamentus", SpritesheetHelper.GetFramesH(101, 14, width, height, totalFrames)},
+                {"sprint0.GleeokHead", SpritesheetHelper.GetFramesH(271, 31, width, height, totalFrames)},
+                {"sprint0.Gohma", SpritesheetHelper.GetFramesH(1, 109, width, height, totalFrames)},
+                {"sprint0.ManhandlaLimb", SpritesheetHelper.GetFramesH(1, 109, width, height, totalFrames)},
+                {"sprint0.Statue", SpritesheetHelper.GetFramesH(231, 62, width, height, totalFrames)},
             };
+            
                 
         }
 
@@ -48,7 +47,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             if (!hit)
-                spriteBatch.Draw(Texture, Location, colorMap[color][currFrame / repeatedFrames], Color.White);
+                spriteBatch.Draw(Texture, Location, colorMap[Shooter.GetType().ToString()][currFrame / repeatedFrames], Color.White);
 
         }
 

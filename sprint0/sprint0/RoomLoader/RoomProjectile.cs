@@ -21,8 +21,8 @@ namespace sprint0
         public void AddProjectile(Vector2 Location, Direction dir, string item, IEntity source)
             => projectiles.Add(projectileFactory.MakeProjectile(item, Location, dir, source));
 
-        public void AddFireball(Vector2 location, Vector2 dir, IEntity source, Color color)
-            => projectiles.Add(projectileFactory.MakeFireball(location, dir, source, color));
+        public void AddFireball(Vector2 location, Vector2 dir, IEntity source)
+            => projectiles.Add(projectileFactory.MakeFireball(location, dir, source));
 
         public void RegisterProjectiles(IEnumerable<IProjectile> unregProjectiles)
             => projectiles.AddRange(unregProjectiles);
