@@ -23,11 +23,11 @@ namespace sprint0
         private readonly RoomSprite roomSprite;
         private readonly RoomEffect roomEffect;
 
-        public LoadLevel(Game1 game)
+        public LoadLevel(Game1 game, int roomIndex)
         {
             roomProjectile = new RoomProjectile(game);
             roomWeapon = new RoomWeapon(game);
-            roomBlocks = new RoomBlocks(game);
+            roomBlocks = new RoomBlocks(game, roomIndex);
             roomItems = new RoomItems(game);
             roomNPCs = new RoomNPCs();
             roomEnemies = new RoomEnemies(game);

@@ -119,7 +119,7 @@ namespace sprint0
             frontier.Add(RoomIndex);
             while (Rooms.Count < 18 ) {
                 List<int> newFrontier = new List<int>();
-                foreach (int roomIndex in frontier) { 
+                foreach (int roomIndex in frontier) {
                     Dictionary<Direction, int> adjacentRooms = new Dictionary<Direction, int>();
                     adjacentRooms = AdjacentRooms.ListOfAdjacentRooms(roomIndex);
                     foreach (Direction d in adjacentRooms.Keys) {
@@ -139,12 +139,10 @@ namespace sprint0
             
             }
             foreach (Room rm in Rooms.Values)
-            {
-               rm.LoadContent();
-            }
+                rm.LoadContent();
 
             ChangeRoom = false;
-                UseLoadedPos = false;
+            UseLoadedPos = false;
             
         }
 

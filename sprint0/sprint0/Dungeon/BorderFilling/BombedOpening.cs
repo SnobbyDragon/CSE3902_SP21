@@ -6,12 +6,12 @@ namespace sprint0
 {
     public class BombedOpening : AbstractBorderFilling
     {
-        public BombedOpening(Texture2D texture, Vector2 location, Direction dir, Game1 game) : base(texture, location, dir, game)
+        public BombedOpening(Texture2D texture, Vector2 location, Direction dir, Room room) : base(texture, location, dir, room)
         {
             xOffset = 947;
             yOffset = 11;
             GetSource();
-            game.Room.Overlay.AddOverlay(new BorderFillingOverlay(this));
+            Room.Overlay.AddOverlay(new BorderFillingOverlay(this));
         }
     }
 }

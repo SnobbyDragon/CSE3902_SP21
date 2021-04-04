@@ -10,10 +10,12 @@ namespace sprint0
     {
         private readonly Game1 game;
         private readonly Texture2D texture;
+        private readonly int roomIndex;
 
-        public DungeonFactory(Game1 game)
+        public DungeonFactory(Game1 game, int roomIndex)
         {
             this.game = game;
+            this.roomIndex = roomIndex;
             texture = game.Content.Load<Texture2D>("Images/DungeonTileset");
         }
 
@@ -24,26 +26,26 @@ namespace sprint0
                 "room floor plain" => new RoomFloor(texture, location),
                 "room border" => new RoomBorder(texture, location),
                 "darkness" => new Darkness(texture, location),
-                "down wall" => new Wall(texture, location, Direction.n, game, canBeBombed),
-                "right wall" => new Wall(texture, location, Direction.w, game, canBeBombed),
-                "left wall" => new Wall(texture, location, Direction.e, game, canBeBombed),
-                "up wall" => new Wall(texture, location, Direction.s, game, canBeBombed),
-                "down open door" => new OpenDoor(texture, location, Direction.n, game),
-                "right open door" => new OpenDoor(texture, location, Direction.w, game),
-                "left open door" => new OpenDoor(texture, location, Direction.e, game),
-                "up open door" => new OpenDoor(texture, location, Direction.s, game),
-                "down locked door" => new LockedDoor(texture, location, Direction.n, game),
-                "right locked door" => new LockedDoor(texture, location, Direction.w, game),
-                "left locked door" => new LockedDoor(texture, location, Direction.e, game),
-                "up locked door" => new LockedDoor(texture, location, Direction.s, game),
-                "down shut door" => new ShutDoor(texture, location, Direction.n, game),
-                "right shut door" => new ShutDoor(texture, location, Direction.w, game),
-                "left shut door" => new ShutDoor(texture, location, Direction.e, game),
-                "up shut door" => new ShutDoor(texture, location, Direction.s, game),
-                "down bombed opening" => new BombedOpening(texture, location, Direction.n, game),
-                "right bombed opening" => new BombedOpening(texture, location, Direction.w, game),
-                "left bombed opening" => new BombedOpening(texture, location, Direction.e, game),
-                "up bombed opening" => new BombedOpening(texture, location, Direction.s, game),
+                "down wall" => new Wall(texture, location, Direction.n, game.Rooms[roomIndex], canBeBombed),
+                "right wall" => new Wall(texture, location, Direction.w, game.Rooms[roomIndex], canBeBombed),
+                "left wall" => new Wall(texture, location, Direction.e, game.Rooms[roomIndex], canBeBombed),
+                "up wall" => new Wall(texture, location, Direction.s, game.Rooms[roomIndex], canBeBombed),
+                "down open door" => new OpenDoor(texture, location, Direction.n, game.Rooms[roomIndex]),
+                "right open door" => new OpenDoor(texture, location, Direction.w, game.Rooms[roomIndex]),
+                "left open door" => new OpenDoor(texture, location, Direction.e, game.Rooms[roomIndex]),
+                "up open door" => new OpenDoor(texture, location, Direction.s, game.Rooms[roomIndex]),
+                "down locked door" => new LockedDoor(texture, location, Direction.n, game.Rooms[roomIndex]),
+                "right locked door" => new LockedDoor(texture, location, Direction.w, game.Rooms[roomIndex]),
+                "left locked door" => new LockedDoor(texture, location, Direction.e, game.Rooms[roomIndex]),
+                "up locked door" => new LockedDoor(texture, location, Direction.s, game.Rooms[roomIndex]),
+                "down shut door" => new ShutDoor(texture, location, Direction.n, game.Rooms[roomIndex]),
+                "right shut door" => new ShutDoor(texture, location, Direction.w, game.Rooms[roomIndex]),
+                "left shut door" => new ShutDoor(texture, location, Direction.e, game.Rooms[roomIndex]),
+                "up shut door" => new ShutDoor(texture, location, Direction.s, game.Rooms[roomIndex]),
+                "down bombed opening" => new BombedOpening(texture, location, Direction.n, game.Rooms[roomIndex]),
+                "right bombed opening" => new BombedOpening(texture, location, Direction.w, game.Rooms[roomIndex]),
+                "left bombed opening" => new BombedOpening(texture, location, Direction.e, game.Rooms[roomIndex]),
+                "up bombed opening" => new BombedOpening(texture, location, Direction.s, game.Rooms[roomIndex]),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }

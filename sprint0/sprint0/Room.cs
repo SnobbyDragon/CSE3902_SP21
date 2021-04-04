@@ -26,7 +26,6 @@ namespace sprint0
         private readonly int RoomIndex;
         private Text text;
 
-
         public Vector2 Offset { get => offset; set => offset = value; }
         private Vector2 offset;
         private ISprite sprite;
@@ -49,7 +48,7 @@ namespace sprint0
             overlay = new Overlay();
             collisionHandler = new AllCollisionHandler(this);
             roomSound = new RoomSound(Game);
-            loadLevel = new LoadLevel(Game);
+            loadLevel = new LoadLevel(Game, RoomIndex);
             loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex, offset).LoadLevel());
             loadLevel.UpdateOffsets(offset);
 

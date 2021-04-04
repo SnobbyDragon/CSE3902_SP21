@@ -12,9 +12,9 @@ namespace sprint0
         private List<IBlock> blocks;
         private readonly List<IBlock> blocksToRemove, blocksToAdd;
 
-        public RoomBlocks(Game1 game)
+        public RoomBlocks(Game1 game, int roomIndex)
         {
-            dungeonFactory = new DungeonFactory(game);
+            dungeonFactory = new DungeonFactory(game, roomIndex);
             blocks = new List<IBlock>();
             blocksToRemove = new List<IBlock>();
             blocksToAdd = new List<IBlock>();
@@ -40,9 +40,11 @@ namespace sprint0
 
         public void UpdateOffset(Vector2 Offset)
         {
+            AddNew();
             foreach (IBlock item in blocks)
                 item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
         }
+
         public void RemoveDestroyed()
         {
             foreach (IBlock enemy in blocksToRemove)
