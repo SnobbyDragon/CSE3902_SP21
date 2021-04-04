@@ -20,7 +20,7 @@ namespace sprint0
                 {
                     HandleMovableBlock(block1, block2, side);
                 }
-                else if (!(block1 is InvisibleBlock) && !(block2 is InvisibleBlock))
+                else if (block1.IsMovable())
                 {
                     HandleImmovableBlock(block1, block2, side);
                 }
