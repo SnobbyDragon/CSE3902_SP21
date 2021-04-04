@@ -26,6 +26,9 @@ namespace sprint0
         private readonly int RoomIndex;
         private Text text;
 
+        public bool SuspendPlayer { get => suspendPlayer; set => suspendPlayer = value; }
+        private bool suspendPlayer;
+
         public Vector2 Offset { get => offset; set => offset = value; }
         private Vector2 offset;
         private ISprite sprite;
@@ -35,6 +38,7 @@ namespace sprint0
 
         public Room(SpriteBatch spriteBatch, Game1 game, int RoomIndex, Vector2 Offset, float linkX = LinkDefaultPos, float linkY = LinkDefaultPos, bool loadedPos = false)
         {
+            suspendPlayer = false;
             offset = Offset;
             Game = game;
             _spriteBatch = spriteBatch;
@@ -42,7 +46,6 @@ namespace sprint0
             linkInitialPos = new Vector2(linkX, linkY);
             this.loadedPos = loadedPos;
         }
-
         public void LoadContent()
         {
             overlay = new Overlay();
@@ -67,7 +70,10 @@ namespace sprint0
 
         public void Update()
         {
-            Player.Update();
+            if (!suspendPlayer)
+            {
+                Player.Update();
+            }
             loadLevel.Update();
             collisionHandler.HandleAllCollisions(Player, loadLevel.RoomEnemies.Enemies, loadLevel.RoomWeapon.Weapons, loadLevel.RoomProjectile.Projectiles, loadLevel.RoomBlocks.Blocks, loadLevel.RoomNPCs.NPCs, loadLevel.RoomItems.Items, overlay.Sprites, loadLevel.RoomSprite.RoomSprites);
             loadLevel.RemoveDead();
@@ -81,7 +87,9 @@ namespace sprint0
         public void Draw()
         {
             loadLevel.Draw(_spriteBatch);
-            Player.Draw(_spriteBatch);
+            if (!suspendPlayer) {
+                Player.Draw(_spriteBatch);
+            }
             overlay.Draw(_spriteBatch);
             if (RoomIndex == 4)
                 text.Draw(_spriteBatch);

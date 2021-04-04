@@ -30,7 +30,7 @@ namespace sprint0
         public HUDManager hudManager;
         public Room Room { get => room; set => room = value; }
         private Room room;
-        public Room NextRoom  {set => nextRoom = value; }
+        public Room NextRoom  { set => nextRoom = value; get => nextRoom; }
         private Room nextRoom;
 
 
@@ -121,7 +121,7 @@ namespace sprint0
 
             List<int> frontier = new List<int>();
             frontier.Add(RoomIndex);
-            while (Rooms.Count < 5 ) {
+            while (Rooms.Count < 17 ) {
                 List<int> newFrontier = new List<int>();
                 foreach (int roomIndex in frontier) {
                     Dictionary<Direction, int> adjacentRooms = new Dictionary<Direction, int>();
@@ -185,7 +185,6 @@ namespace sprint0
                 controller.Update();
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
-                
                 room.Update();
             }
             if (ChangeHUD())
@@ -207,7 +206,9 @@ namespace sprint0
                 hudManager.Draw(_spriteBatch);
             }
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
+            {
                 room.Draw();
+            }
             if (ChangeHUD())
                 hudManager.Draw(_spriteBatch);
             universalScreenManager.Draw(_spriteBatch, state);

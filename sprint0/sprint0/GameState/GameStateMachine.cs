@@ -65,6 +65,7 @@ namespace sprint0
         }
         public void HandleNewRoom(Direction d, int dest)
         {
+
             counter = 0;
             direction = d;
             if (d == Direction.n || d == Direction.s)
@@ -78,6 +79,8 @@ namespace sprint0
             state = State.changeRoom;
             game.NextRoomIndex = dest;
             game.NextRoom = game.Rooms[dest];
+            game.Room.SuspendPlayer = true;
+            game.NextRoom.SuspendPlayer = true;
 
         }
 
@@ -87,6 +90,7 @@ namespace sprint0
             {
                 game.RoomIndex = dest;
                 game.Room = game.Rooms[dest];
+                game.Room.SuspendPlayer = false;
                 state = State.play;
             }
             else {
