@@ -126,10 +126,10 @@ namespace sprint0
                         int idx = adjacentRooms[d];
                         if (!Rooms.ContainsKey(idx)) {
                             newFrontier.Add(idx);
-                            if (d == Direction.n) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].getOffset() + northOffset);
-                            if (d == Direction.s) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].getOffset() + southOffset);
-                            if (d == Direction.w) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].getOffset() + westOffset);
-                            if (d == Direction.e) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].getOffset() + eastOffset);
+                            if (d == Direction.n) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + northOffset);
+                            if (d == Direction.s) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + southOffset);
+                            if (d == Direction.w) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + westOffset);
+                            if (d == Direction.e) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + eastOffset);
                         }
                        
                     }

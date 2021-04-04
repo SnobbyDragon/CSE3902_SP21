@@ -35,9 +35,10 @@ namespace sprint0
         private readonly BossesSpriteFactory bossFactory;
         private readonly NpcsSpriteFactory npcFactory;
         private readonly EffectSpriteFactory effectFactory;
-
-        public LevelLoader(Game1 game, int roomNo)
+        private Vector2 Offset;
+        public LevelLoader(Game1 game, int roomNo, Vector2 offset)
         {
+            this.Offset = offset;
             path = Path.GetFullPath(@genericPath) + roomNo.ToString() + xmlExtension;
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
@@ -97,11 +98,11 @@ namespace sprint0
                 case "Boss":
                     if (objectName.Equals("dodongo") || objectName.Equals("aquamentus"))
                     {
-                        effects.Add(effectFactory.MakeSpawn(objectName, location));
+                        effects.Add(effectFactory.MakeSpawn(objectName, location + Offset));
                     }
                     else
                     {
-                        enemies.Add(bossFactory.MakeSprite(objectName, location));
+                        enemies.Add(bossFactory.MakeSprite(objectName, location + Offset));
                     }
                     
                     break;
@@ -109,7 +110,7 @@ namespace sprint0
                     if (objectName.Contains("bombed opening"))
                         sprites.Add(dungeonFactory.MakeSprite(objectName.Replace("bombed opening", "wall"), location, true));
                     else
-                        sprites.Add(dungeonFactory.MakeSprite(objectName, location));
+                        sprites.Add(dungeonFactory.MakeSprite(objectName, location + Offset));
                     break;
                 case "Block":
                     string width = xmlReader.GetAttribute("Width");

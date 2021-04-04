@@ -42,7 +42,6 @@ namespace sprint0
             this.RoomIndex = RoomIndex;
             linkInitialPos = new Vector2(linkX, linkY);
             this.loadedPos = loadedPos;
-           // loadLevel = new LoadLevel(Game);
         }
 
         public void LoadContent()
@@ -51,7 +50,7 @@ namespace sprint0
             collisionHandler = new AllCollisionHandler(this);
             roomSound = new RoomSound(Game);
             loadLevel = new LoadLevel(Game);
-            loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex).LoadLevel());
+            loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex, offset).LoadLevel());
             loadLevel.UpdateOffsets(offset);
 
             text = new Text(Game, message, messageLoc, Color.White);
@@ -63,7 +62,7 @@ namespace sprint0
             loadLevel.UpdateOffsets(Offset);
         }
 
-        public Vector2 getOffset() {
+        public Vector2 GetOffset() {
             return offset;
         }
 
