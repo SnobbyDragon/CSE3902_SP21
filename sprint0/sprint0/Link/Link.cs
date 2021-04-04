@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 // Authors: Jesse He and Jacob Urick
-//Updated: 03/27/21 by shah.1440
+// Updated: 03/27/21 by shah.1440
 namespace sprint0
 {
     class Link : IPlayer
@@ -35,7 +35,7 @@ namespace sprint0
             position = pos;
             State = new UpIdleState(this);
             ItemCounts = new List<int> { -1, -1, 1 };
-            itemHelper = new LinkUseItemHelper(game.Room, this);
+            itemHelper = new LinkUseItemHelper(game, this);
             CurrentItem = PlayerItems.None;
             speed = 2;
             linkInventory = this.game.hudManager.PopulateHUDInventory;
