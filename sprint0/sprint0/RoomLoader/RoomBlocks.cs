@@ -38,6 +38,11 @@ namespace sprint0
             }
         }
 
+        public void UpdateOffset(Vector2 Offset)
+        {
+            foreach (IBlock item in blocks)
+                item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
+        }
         public void RemoveDestroyed()
         {
             foreach (IBlock enemy in blocksToRemove)

@@ -26,31 +26,45 @@ namespace sprint0
         private readonly int RoomIndex;
         private Text text;
 
+
+        public Vector2 Offset { get => offset; set => offset = value; }
+        private Vector2 offset;
         private ISprite sprite;
         private SpriteFont font;
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
 
-        public Room(SpriteBatch spriteBatch, Game1 game, int RoomIndex, float linkX = LinkDefaultPos, float linkY = LinkDefaultPos, bool loadedPos = false)
+        public Room(SpriteBatch spriteBatch, Game1 game, int RoomIndex, Vector2 Offset, float linkX = LinkDefaultPos, float linkY = LinkDefaultPos, bool loadedPos = false)
         {
+            offset = Offset;
             Game = game;
             _spriteBatch = spriteBatch;
             this.RoomIndex = RoomIndex;
             linkInitialPos = new Vector2(linkX, linkY);
             this.loadedPos = loadedPos;
+           // loadLevel = new LoadLevel(Game);
         }
 
         public void LoadContent()
         {
             overlay = new Overlay();
-            Player.Pos = linkInitialPos;
             collisionHandler = new AllCollisionHandler(this);
             roomSound = new RoomSound(Game);
             loadLevel = new LoadLevel(Game);
             loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex).LoadLevel());
+            loadLevel.UpdateOffsets(offset);
+
             text = new Text(Game, message, messageLoc, Color.White);
             if (!loadedPos)
                 Player.Pos = linkInitialPos;
+        }
+
+        public void UpdateOffsets(Vector2 Offset) {
+            loadLevel.UpdateOffsets(Offset);
+        }
+
+        public Vector2 getOffset() {
+            return offset;
         }
 
         public void Update()

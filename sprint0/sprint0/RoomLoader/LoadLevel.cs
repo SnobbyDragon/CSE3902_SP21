@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
@@ -43,6 +44,16 @@ namespace sprint0
             roomNPCs.NPCs = roomElements.Item5;
             roomItems.Items = roomElements.Item6;
             roomEffect.RoomEffects = roomElements.Item7;
+        }
+
+        public void UpdateOffsets(Vector2 Offset) {
+            roomSprite.UpdateOffset(Offset);
+            roomProjectile.UpdateOffset(Offset);
+            roomBlocks.UpdateOffset(Offset);
+            roomEnemies.UpdateOffset(Offset);
+            roomNPCs.UpdateOffset(Offset);
+            roomItems.UpdateOffset(Offset);
+            roomEffect.UpdateOffset(Offset);
         }
 
         public void AddNew()

@@ -28,7 +28,11 @@ namespace sprint0
             foreach (IWeapon weapon in weapons)
                 if (!weapon.IsAlive()) RemoveWeapon(weapon);
         }
-
+        public void UpdateOffset(Vector2 Offset)
+        {
+            foreach (IWeapon item in weapons)
+                item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
+        }
         public void RemoveDeadTwo()
         {
             foreach (IWeapon weapon in weaponsToDie)

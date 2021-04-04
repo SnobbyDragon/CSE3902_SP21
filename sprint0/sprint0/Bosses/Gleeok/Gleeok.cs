@@ -35,8 +35,8 @@ namespace sprint0
             sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height));
 
             necks = new List<IEnemy>() {
-                new GleeokNeck(Texture, game,Location),
-                new GleeokNeck(Texture, game,Location),
+              //  new GleeokNeck(Texture, game,Location),
+                //new GleeokNeck(Texture, game,Location),
             };
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }

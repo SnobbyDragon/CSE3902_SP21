@@ -22,6 +22,7 @@ namespace sprint0
                     Direction borderSide = borderFilling.BorderFilling.Side;
                     int newRoom = AdjacentRooms.GetAdjacentRoom(game.RoomIndex, borderSide);
                     game.RoomIndex = newRoom;
+                    game.stateMachine.HandleNewRoom(borderSide);
                     game.ChangeRoom = true;
                     switch (borderSide)
                     {
