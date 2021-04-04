@@ -38,7 +38,7 @@ namespace sprint0
         }
         public void SetItem(PlayerItems item)
         {
-            if ((HasItem(item) && !IsMapOrLetter(item) && IsNone(Item)) || IsNone(item))
+            if ((HasItem(item) && IsValidBItem(item) && IsNone(Item)) || IsNone(item))
                 Item = item;
         }
 
@@ -46,6 +46,7 @@ namespace sprint0
         private bool IsSword(PlayerItems item) => item == PlayerItems.Sword || item == PlayerItems.MagicalSword || item == PlayerItems.WhiteSword;
         private bool IsMapOrLetter(PlayerItems item) => item == PlayerItems.Map || item == PlayerItems.Letter;
         private bool HasItem(PlayerItems item) => ItemMap.ContainsKey(item);
+        private bool IsValidBItem(PlayerItems item) => !TopRowItems.Contains(item) && !IsMapOrLetter(item);
         private bool IsNone(PlayerItems item) => item == PlayerItems.None;
     }
 }
