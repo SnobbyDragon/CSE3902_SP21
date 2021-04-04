@@ -21,6 +21,7 @@ namespace sprint0
         private bool hit = false;
         private readonly Room room;
         private readonly Vector2 tipOffset;
+        private Rectangle LocationDraw;
         public Arrow(Texture2D texture, Vector2 location, Direction dir, IEntity shooter, Room room)
         {
             Shooter = shooter;
@@ -33,6 +34,7 @@ namespace sprint0
                 tipOffset = width * DirectionMethods.ToVector2(dir) + height * DirectionMethods.ToVector2(dir);
 
             Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+            LocationDraw = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             this.dir = dir;
             this.room = room;
@@ -56,8 +58,9 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            LocationDraw = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             if (IsAlive())
-                spriteBatch.Draw(Texture, Location, source, Color.White, rotation, origin, SpriteEffects.None, 0);
+                spriteBatch.Draw(Texture, LocationDraw, source, Color.White, rotation, origin, SpriteEffects.None, 0);
 
         }
 
@@ -66,6 +69,14 @@ namespace sprint0
             if (IsAlive())
             {
                 rotation = defaultAngle - dir.ToRadians();
+                if (dir == Direction.e || dir == Direction.w)
+                {
+                    Location = new Rectangle((int)Location.X, (int)Location.Y, (int)(height * Game1.Scale), (int)(width * Game1.Scale));
+                }
+                else
+                {
+                    Location = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                }
                 Move();
             }
         }
