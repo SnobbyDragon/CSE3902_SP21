@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+//Author: Stuti Shah
 namespace sprint0
 {
     public class UniversalScreenManager
     {
-        public PauseScreenManager pauseScreenManager;
+        private PauseScreenManager pauseScreenManager;
+        public PauseScreenManager PauseScreenManager { get => pauseScreenManager; }
         public GameOverScreenManager gameOverScreenManager;
         public StartScreenManager startScreenManager;
         public CreditsScreenManager creditsScreenManager;
         public VictoryScreenManager victorScreenManager;
+        public ItemSelection itemSelection;
 
         public UniversalScreenManager(Game1 game)
         {
@@ -22,9 +26,9 @@ namespace sprint0
 
         public void Update(GameStateMachine.State state)
         {
-            if (state.Equals(GameStateMachine.State.pause))
+            if (!state.Equals(GameStateMachine.State.pause))
                 pauseScreenManager.Update();
-            else if (state.Equals(GameStateMachine.State.over))
+            if (state.Equals(GameStateMachine.State.over))
                 gameOverScreenManager.Update();
             else if (state.Equals(GameStateMachine.State.credits))
                 creditsScreenManager.Update();
@@ -32,6 +36,11 @@ namespace sprint0
                 startScreenManager.Update();
             else if (state.Equals(GameStateMachine.State.win))
                 victorScreenManager.Update();
+            else if (state.Equals(GameStateMachine.State.pause))
+            {
+                pauseScreenManager.SetupItemSelector();
+                pauseScreenManager.UpdateItemSelection();
+            }
         }
 
         public void Draw(SpriteBatch _spriteBatch, GameStateMachine.State state)
@@ -48,5 +57,7 @@ namespace sprint0
             else if (state.Equals(GameStateMachine.State.win))
                 victorScreenManager.Draw(_spriteBatch);
         }
+
+        public PlayerItems BItem() => pauseScreenManager.BItem();
     }
 }

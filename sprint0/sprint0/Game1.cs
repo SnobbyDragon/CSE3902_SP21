@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace sprint0
 {
@@ -103,9 +102,7 @@ namespace sprint0
                 room = new Room(_spriteBatch, this, RoomIndex, playerPos.X, playerPos.Y, UseLoadedPos);
             }
             else
-            {
                 room = new Room(_spriteBatch, this, RoomIndex);
-            }
             room.LoadContent();
             ChangeRoom = false;
             UseLoadedPos = false;
@@ -124,15 +121,10 @@ namespace sprint0
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
                 if (ChangeRoom) LoadContent();
-
+                else room.Update();
             }
-            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
-            {
-
-                room.Update();
-            }
-            hudManager.Update();
             universalScreenManager.Update(state);
+            hudManager.Update();
             music.Update();
             base.Update(gameTime);
         }
@@ -146,7 +138,6 @@ namespace sprint0
             if (ChangeHUD())
                 hudManager.Draw(_spriteBatch);
             universalScreenManager.Draw(_spriteBatch, state);
-
             _spriteBatch.End();
             base.Draw(gameTime);
         }

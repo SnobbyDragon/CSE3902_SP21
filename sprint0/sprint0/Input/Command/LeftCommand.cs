@@ -12,7 +12,8 @@ namespace sprint0
 
         public void Execute()
         {
-            game.Room.Player.HandleLeft();
+            if (game.stateMachine.GetState() != GameStateMachine.State.pause)
+                game.Room.Player.HandleLeft();
         }
     }
 }

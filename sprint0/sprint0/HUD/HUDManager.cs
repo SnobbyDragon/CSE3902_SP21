@@ -23,26 +23,21 @@ namespace sprint0
         private PlayerItems currentItem;
         private int health;
 
-
         public HUDManager(Game1 game)
         {
             this.game = game;
             mainHUD = new MainHUD(this.game);
             currentItem = PlayerItems.None;
-            pauseInventory = game.universalScreenManager.pauseScreenManager.HUDInventory;
+            pauseInventory = game.universalScreenManager.PauseScreenManager.Inventory();
             populateHUDInventory = new PopulateHUDInventory(this.game);
-            //health = populateHUDInventory.GetNum(PlayerItems.Heart);
         }
 
         public void Update()
         {
-            Refresh();
-
             populateHUDInventory.Update();
             health = populateHUDInventory.GetNum(PlayerItems.Heart);
             mainHUD.Update();
             currentItem = mainHUD.GetItem(PlayerItems.BItem);
-            pauseInventory.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -58,16 +53,9 @@ namespace sprint0
         }
         public bool HasItem(PlayerItems item) => pauseInventory.HasItem(item);
         public bool HasBowAndArrow() => pauseInventory.HasItem(PlayerItems.Bow) && pauseInventory.HasItem(arrowList);
-        public bool HasSword() => pauseInventory.HasItem(swordList);
-        public bool HasBlueCandle() => pauseInventory.HasItem(PlayerItems.BlueCandle);
+        public bool HasSword() => pauseInventory.HasAItem();
         public bool CanUseBomb() => pauseInventory.HasItem(PlayerItems.Bomb) && (populateHUDInventory.GetNum(PlayerItems.Bomb) > 0);
         public bool HasBoomerang() => pauseInventory.HasItem(boomerangList);
-        public bool HasMap() => pauseInventory.HasItem(PlayerItems.Map);
-        public bool HasCompass() => pauseInventory.HasItem(PlayerItems.Compass);
-
-        private void Refresh() => pauseInventory = game.universalScreenManager.pauseScreenManager.HUDInventory;
-
-        public PlayerItems GetBItem() => mainHUD.GetItem(PlayerItems.BItem);
         public void AddBItem(PlayerItems item) => pauseInventory.AddItem(item);
         public void SetItem(PlayerItems source, PlayerItems item)
         {
@@ -91,5 +79,10 @@ namespace sprint0
         public void Increment(PlayerItems item) => populateHUDInventory.IncrementItem(item);
         public void Decrement(PlayerItems item) => populateHUDInventory.DecrementItem(item);
         public void TakeDamage(int damage) => health = populateHUDInventory.TakeDamage(damage);
+        public void SetBItem(PlayerItems item)
+        {
+            currentItem = item;
+            mainHUD.UpdateBItem(item);
+        }
     }
 }

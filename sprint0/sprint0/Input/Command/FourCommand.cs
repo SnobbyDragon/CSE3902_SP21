@@ -5,14 +5,11 @@ namespace sprint0
     {
         private readonly Game1 game;
 
-        public FourCommand(Game1 game)
-        {
-            this.game = game;
-        }
+        public FourCommand(Game1 game) => this.game = game;
 
         public void Execute()
         {
-            if (game.hudManager.HasBlueCandle() || game.stateMachine.GetState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
+            if (game.hudManager.HasItem(PlayerItems.BlueCandle) || game.stateMachine.GetState().Equals(GameStateMachine.State.test)) //Take out TestMode when not needed
             {
                 game.Room.Player.CurrentItem = PlayerItems.BlueCandle;
                 game.Room.Player.HandleItem();

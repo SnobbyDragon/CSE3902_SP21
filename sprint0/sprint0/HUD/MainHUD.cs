@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 //Author: Stuti Shah
-//Updated: 03/24/21 by shah.1440
+//Updated: 04/03/21 by shah.1440
 namespace sprint0
 {
     public class MainHUD
@@ -46,8 +46,9 @@ namespace sprint0
 
         public void SetItem(PlayerItems source, PlayerItems newItem)
         {
-            if (hudMainItems.ContainsKey(source))
-                hudMainItems[source].SetItem(newItem);
+            if (hudMainItems.ContainsKey(source) && source == PlayerItems.AItem)
+                hudMainItems[source].SetAItem(newItem);
+            else hudMainItems[source].SetItem(newItem);
         }
 
         public void Update() => hudMiniMap.Update();

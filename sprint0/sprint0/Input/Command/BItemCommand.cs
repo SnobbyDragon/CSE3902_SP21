@@ -7,7 +7,6 @@ namespace sprint0
     {
         private readonly Game1 game;
         private readonly Dictionary<PlayerItems, ICommand> commands;
-        private PlayerItems BItem;
 
         public BItemCommand(Game1 game)
         {
@@ -20,29 +19,32 @@ namespace sprint0
                 { PlayerItems.Boomerang, new ThreeCommand(this.game) },
                 { PlayerItems.MagicalBoomerang, new ThreeCommand(this.game) },
                 { PlayerItems.RedPotion, new PotionCommand(this.game) },
-                //{ PlayerItems.BluePotion, new PotionCommand(this.game) },
+                { PlayerItems.BluePotion, new PotionCommand(this.game) },
                 { PlayerItems.Food, new FoodCommand(this.game) },
                 { PlayerItems.BlueCandle, new FourCommand(this.game) },
-                //{ PlayerItems.RedCandle, new FourCommand(this.game) },
-                /*rings*/
-                /*magical rod*/
-                /*flute*/
+                { PlayerItems.RedCandle, new FourCommand(this.game) },
             };
         }
 
         public void Execute()
         {
-            BItem = game.hudManager.CurrentItem;
-            if (PlayOrPause() && Contains())
-                commands[BItem].Execute();
+            if (game.stateMachine.GetState() == GameStateMachine.State.pause)
+            {
+                game.universalScreenManager.Update(GameStateMachine.State.pause);
+                game.hudManager.SetBItem(game.universalScreenManager.BItem());
+
+                game.stateMachine.HandlePause();
+            }
+            else if (PlayOrTest() && Contains(game.hudManager.CurrentItem))
+                commands[game.hudManager.CurrentItem].Execute();
         }
-        private bool PlayOrPause()
+        private bool PlayOrTest()
         {
             return game.stateMachine.GetState() != GameStateMachine.State.play || game.stateMachine.GetState() != GameStateMachine.State.test;
         }
-        private bool Contains()
+        private bool Contains(PlayerItems item)
         {
-            return commands.ContainsKey(BItem);
+            return commands.ContainsKey(item);
         }
     }
 }

@@ -37,23 +37,22 @@ namespace sprint0
             RegisterCommand(Keys.E, new PauseCommand(game));
             RegisterCommand(Keys.Space, new ToggleTestModeCommand(game));
             RegisterCommand(Keys.B, new BItemCommand(game));
-
+            RegisterCommand(Keys.G, new LeftItemCommand(game));
+            RegisterCommand(Keys.H, new RightItemCommand(game));
             RegisterCommand(Keys.M, new ToggleMusicCommand(game));
             RegisterCommand(Keys.OemPeriod, new SkipSongCommand(game));
             RegisterCommand(Keys.OemComma, new ToggleSoundEffectsCommand());
         }
 
         public void RegisterCommand(Keys key, ICommand command)
-        {
-            controllerMappings.Add(key, command);
-        }
+            => controllerMappings.Add(key, command);
 
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
 
             foreach (Keys key in pressedKeys)
-                if (controllerMappings.ContainsKey(key) && (Array.IndexOf(previousPressedKeys, key) == -1) || movementKeys.Contains(key))
+                if ((controllerMappings.ContainsKey(key) && (Array.IndexOf(previousPressedKeys, key) == -1)) || movementKeys.Contains(key))
                     controllerMappings[key].Execute();
             foreach (Keys key in movementKeys)
                 if (Array.IndexOf(previousPressedKeys, key) > -1 && Array.IndexOf(pressedKeys, key) == -1)

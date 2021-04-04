@@ -13,7 +13,7 @@ namespace sprint0
         Letter = 15, BluePotion = 16, RedPotion = 17, MagicalRod = 18, BookOfMagic = 19, RedRing = 20, MagicalKey = 21,
         PowerBracelet = 22, MagicalBoomerang = 23, Map = 24, Compass = 25, Clock = 26, Fairy = 27, HeartContainer = 28,
         BlueRing = 29, Triforce = 30, Raft = 31, StepLadder = 32,
-        AItem, BItem, HUD
+        AItem, BItem, HUD, ItemSelectorRed, ItemSelectorBlue,
     }
 
     public interface IPlayer : IEntity

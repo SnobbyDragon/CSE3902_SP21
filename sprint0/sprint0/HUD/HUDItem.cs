@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
-//Updated: 03/24/21 by shah.1440
+//Updated: 04/03/21 by shah.1440
 namespace sprint0
 {
     public class HUDItem : HUDItemMapping, IHUD
@@ -31,12 +31,18 @@ namespace sprint0
 
         public void Update() { }
 
+        public void SetAItem(PlayerItems item)
+        {
+            if ((ItemMap.ContainsKey(item) && IsSword(item)) || item == PlayerItems.None)
+                Item = item;
+        }
         public void SetItem(PlayerItems item)
         {
-            if ((ItemMap.ContainsKey(item) && Item == PlayerItems.None) || item == PlayerItems.None)
+            if (ItemMap.ContainsKey(item) && Item == PlayerItems.None || item == PlayerItems.None)
                 Item = item;
         }
 
         private bool SmallItem() => Item != PlayerItems.Compass && Item != PlayerItems.Raft && Item != PlayerItems.StepLadder;
+        private bool IsSword(PlayerItems item) => item == PlayerItems.Sword || item == PlayerItems.MagicalSword || item == PlayerItems.WhiteSword;
     }
 }
