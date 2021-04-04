@@ -15,17 +15,14 @@
       <Item ObjectName="candle" LocationX="280" LocationY="220" />?
       <Item ObjectName="meat" LocationX="320" LocationY="220" />?
       <Item ObjectName="blue map" LocationX="360" LocationY="220" />?
-       <Item ObjectName="map" LocationX="400" LocationY="220" />?
-        <Item ObjectName="blue potion" LocationX="440" LocationY="220" />?
-         <Item ObjectName="potion" LocationX="480" LocationY="220" />?
-          <Item ObjectName="blue rupee" LocationX="520" LocationY="220" />?
-
-           <Item ObjectName="rupee" LocationX="80" LocationY="460" />?
+      <Item ObjectName="map" LocationX="400" LocationY="220" />?
+      <Item ObjectName="blue potion" LocationX="440" LocationY="220" />?
+      <Item ObjectName="potion" LocationX="480" LocationY="220" />?
+      <Item ObjectName="blue rupee" LocationX="520" LocationY="220" />?
+      <Item ObjectName="rupee" LocationX="80" LocationY="460" />?
       <Item ObjectName="clock" LocationX="120" LocationY="460" />?
      <Item ObjectName="bow" LocationX="160" LocationY="460" />?
       <Item ObjectName="heart container" LocationX="200" LocationY="460" />?
-      <Item ObjectName="triforce piece" LocationX="240" LocationY="460" />?
-      <Item ObjectName="triforce piece" LocationX="280" LocationY="460" />?
       <Item ObjectName="compass" LocationX="320" LocationY="460" />?
       <Item ObjectName="key" LocationX="360" LocationY="460" />?
        <Item ObjectName="fairy" LocationX="400" LocationY="460" />?

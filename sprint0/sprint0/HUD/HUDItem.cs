@@ -33,16 +33,19 @@ namespace sprint0
 
         public void SetAItem(PlayerItems item)
         {
-            if ((ItemMap.ContainsKey(item) && IsSword(item)) || item == PlayerItems.None)
+            if ((HasItem(item) && IsSword(item)) || IsNone(item))
                 Item = item;
         }
         public void SetItem(PlayerItems item)
         {
-            if (ItemMap.ContainsKey(item) && Item == PlayerItems.None || item == PlayerItems.None)
+            if ((HasItem(item) && !IsMapOrLetter(item) && IsNone(Item)) || IsNone(item))
                 Item = item;
         }
 
         private bool SmallItem() => Item != PlayerItems.Compass && Item != PlayerItems.Raft && Item != PlayerItems.StepLadder;
         private bool IsSword(PlayerItems item) => item == PlayerItems.Sword || item == PlayerItems.MagicalSword || item == PlayerItems.WhiteSword;
+        private bool IsMapOrLetter(PlayerItems item) => item == PlayerItems.Map || item == PlayerItems.Letter;
+        private bool HasItem(PlayerItems item) => ItemMap.ContainsKey(item);
+        private bool IsNone(PlayerItems item) => item == PlayerItems.None;
     }
 }
