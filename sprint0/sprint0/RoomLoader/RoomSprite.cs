@@ -52,8 +52,9 @@ namespace sprint0
         }
 
         public void OpenClosedDoor() {
+            bool openedByBlock = true;
             foreach (ISprite _sprite in roomSprites) {
-                if (_sprite is ShutDoor) ((ShutDoor)_sprite).OpenDoor();
+                if (_sprite is ShutDoor) ((ShutDoor)_sprite).OpenDoor(openedByBlock);
             }
         }
     }
