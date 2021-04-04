@@ -72,7 +72,7 @@ namespace sprint0
                     block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y + linkSize, block.Location.Width, block.Location.Height);
                     break;
                 case Direction.e:
-                    block.Location = new Rectangle((int)link.Pos.X + linkSize, block.Location.Y, block.Location.Width, block.Location.Height);
+                    link.Pos += new Vector2(block.Location.Left - (link.Pos.X + linkSize - offset), 0);
                     break;
                 case Direction.w:
                     block.Location = new Rectangle((int)link.Pos.X - block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);

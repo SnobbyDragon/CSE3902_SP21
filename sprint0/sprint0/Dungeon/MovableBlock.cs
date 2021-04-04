@@ -46,7 +46,7 @@ namespace sprint0
         public void SetIsMovable()
         {
             Vector2 changeLoc = Location.Location.ToVector2() - homeLocation;
-            if (changeLoc.Length() >= 2 * width)
+            if (changeLoc.Length() >= Game1.Scale * width)
             {
                 isMovable = false;
             }
