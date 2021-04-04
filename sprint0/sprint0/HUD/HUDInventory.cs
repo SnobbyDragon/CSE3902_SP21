@@ -31,13 +31,15 @@ namespace sprint0
                 foreach (KeyValuePair<PlayerItems, Rectangle> hudElement in inventoryItems)
                     if (LocationMapping.ContainsKey(hudElement.Key))
                         spriteBatch.Draw(Texture, hudElement.Value, ItemMap[hudElement.Key], Color.White);
-                spriteBatch.Draw(Texture, CurrentItem, ItemMap[Item], Color.White);
+                if (Item != PlayerItems.None)
+                    spriteBatch.Draw(Texture, CurrentItem, ItemMap[Item], Color.White);
             }
         }
 
         public void SetItem(PlayerItems item)
         {
-            Item = item;
+            if (inventoryItems.ContainsKey(item) || item == PlayerItems.None)
+                Item = item;
         }
 
         public void AddItem(PlayerItems newItem)
@@ -95,5 +97,22 @@ namespace sprint0
             else toSwitch = false;
             return toSwitch;
         }
+
+        public void RemoveItem(PlayerItems item)
+        {
+            if (inventoryItems.ContainsKey(item))
+                inventoryItems.Remove(item);
+            if (Item == item)
+                SetItem(PlayerItems.None);
+        }
+
+        public bool HasItem(List<PlayerItems> itemList)
+        {
+            bool hasItem = true;
+            foreach (PlayerItems item in itemList)
+                hasItem = hasItem || inventoryItems.ContainsKey(item);
+            return hasItem;
+        }
+        public bool HasItem(PlayerItems item) => inventoryItems.ContainsKey(item);
     }
 }

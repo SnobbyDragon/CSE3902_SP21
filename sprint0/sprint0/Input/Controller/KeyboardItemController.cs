@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace sprint0
 {
-    class KeyboardController : IController
+    class KeyboardItemController : IController
     {
         private readonly Game1 game;
         private readonly Dictionary<Keys, ICommand> controllerMappings;
         private Keys[] previousPressedKeys;
         private readonly HashSet<Keys> movementKeys;
 
-        public KeyboardController(Game1 game)
+        public KeyboardItemController(Game1 game)
         {
             this.game = game;
             controllerMappings = new Dictionary<Keys, ICommand>();

@@ -44,12 +44,12 @@ namespace sprint0
 
         public void SetItem(PlayerItems source, PlayerItems newItem)
         {
-            if (hudMainItems.ContainsKey(source)) hudMainItems[source].SetItem(newItem);
+            if (hudMainItems.ContainsKey(source))
+                hudMainItems[source].SetItem(newItem);
         }
 
-        public void Update()
-        {
-            hudMiniMap.Update();
-        }
+        public void Update() => hudMiniMap.Update();
+
+        public void RemoveBItem() => hudMainItems[PlayerItems.BItem].SetItem(PlayerItems.None);
     }
 }

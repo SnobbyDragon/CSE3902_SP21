@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 // Authors: Jesse He and Jacob Urick
-//Updated: 03/27/21 by shah.1440
+//Updated: 04/03/21 by shah.1440
 namespace sprint0
 {
     class Link : IPlayer
@@ -17,9 +17,7 @@ namespace sprint0
         private bool isAlive;
         private Direction direction = Direction.n;
         private readonly LinkUseItemHelper itemHelper;
-        private readonly PopulateHUDInventory linkInventory;
-        private readonly MainHUD mainHUD;
-        private readonly HUDInventory hudInventory;
+        private readonly HUDManager HUD;
         public List<int> ItemCounts { get; }
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get => state; set => state = value; }
@@ -38,21 +36,18 @@ namespace sprint0
             itemHelper = new LinkUseItemHelper(game.Room, this);
             CurrentItem = PlayerItems.None;
             speed = 2;
-            linkInventory = this.game.hudManager.PopulateHUDInventory;
-            mainHUD = this.game.hudManager.MainHUD;
-            hudInventory = this.game.universalScreenManager.pauseScreenManager.HUDInventory;
+            HUD = this.game.hudManager;
         }
 
         public void Move(int x, int y) => position += new Vector2(speed * x, speed * y);
 
         public void TakeDamage(Direction direction, int damage)
         {
-
             if (isAlive)
             {
                 game.Room.Player = new DamagedLink(this, game, direction);
-                linkInventory.ChangeNum(PlayerItems.Heart, damage);
-                health = linkInventory.GetNum(PlayerItems.Heart);
+                HUD.TakeDamage(damage);
+                health = HUD.Health;
                 game.Room.RoomSound.AddSoundEffect("link damaged");
                 if (health <= 0) Die();
             }
@@ -63,10 +58,10 @@ namespace sprint0
         public void IncrementItem(PlayerItems inventoryItem)
         {
             if (inventoryItem == PlayerItems.BlueRupee)
-                linkInventory.ChangeNum(PlayerItems.Rupee, BlueRupee.Value);
+                HUD.ChangeNum(PlayerItems.Rupee, BlueRupee.Value);
             else if (inventoryItem == PlayerItems.HeartContainer)
-                linkInventory.IncrementItem(PlayerItems.Heart);
-            else linkInventory.IncrementItem(inventoryItem);
+                HUD.Increment(PlayerItems.Heart);
+            else HUD.Increment(inventoryItem);
         }
 
         private void Die()
@@ -100,7 +95,7 @@ namespace sprint0
                 if (CurrentItem != PlayerItems.None && CurrentItem != PlayerItems.BlueCandle)
                 {
                     ItemCounts[(int)CurrentItem]--;
-                    linkInventory.DecrementItem(CurrentItem);
+                    HUD.Decrement(CurrentItem);
                 }
                 itemHelper.UseItem();
             }
@@ -116,28 +111,17 @@ namespace sprint0
         {
             if (isAlive)
                 State.Update();
-            game.universalScreenManager.pauseScreenManager.HUDInventory = hudInventory;
+            health = HUD.Health;
         }
 
         public void ReceiveItem(int n, PlayerItems item)
         {
             ItemCounts[(int)item] += n;
-            linkInventory.ChangeNum(item, n);
+            HUD.ChangeNum(item, n);
         }
 
-        public void SetHUDItem(PlayerItems source, PlayerItems newItem)
-        {
-            mainHUD.SetItem(source, newItem);
-            hudInventory.SetItem(GetItem(PlayerItems.BItem));
-            hudInventory.AddAItem(GetItem(PlayerItems.AItem));
-        }
+        public void SetHUDItem(PlayerItems source, PlayerItems newItem) => HUD.SetItem(source, newItem);
 
-        public void AddToInventory(PlayerItems newItem)
-            => hudInventory.AddItem(newItem);
-
-        public PlayerItems GetItem(PlayerItems source)
-        {
-            return mainHUD.GetItem(source);
-        }
+        public void AddToInventory(PlayerItems newItem) => HUD.AddBItem(newItem);
     }
 }

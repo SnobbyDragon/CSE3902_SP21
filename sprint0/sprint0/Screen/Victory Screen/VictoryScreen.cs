@@ -9,7 +9,7 @@ namespace sprint0
 {
     public class VictoryScreen
     {
-        private readonly string message = "Congratulations, brave adventorer!\n\nYou've won!\n\nPress R to restart or Q to quit.";
+        private readonly string message = "Congratulations, brave adventurer!\n\nYou've won!\n\nPress R to restart or Q to quit.";
         private readonly Text text;
         private readonly int xCoord = 150;
         private readonly int yCoord = 150;
@@ -18,9 +18,9 @@ namespace sprint0
             text = new Text(game, message, new Vector2(xCoord, yCoord), Color.Black);
         }
 
-        public void Draw(SpriteBatch spriteBatch) 
+        public void Draw(SpriteBatch spriteBatch)
         {
-            text.Draw(spriteBatch);   
+            text.Draw(spriteBatch);
         }
     }
 }

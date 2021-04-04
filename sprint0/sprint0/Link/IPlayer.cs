@@ -40,7 +40,6 @@ namespace sprint0
         public void HandleItem();
         public void IncrementItem(PlayerItems inventoryItem);
         public void SetHUDItem(PlayerItems source, PlayerItems newItem);
-        public PlayerItems GetItem(PlayerItems source);
         public void AddToInventory(PlayerItems newItem);
         public void ReceiveItem(int n, PlayerItems item);
         public void Draw(SpriteBatch spriteBatch);

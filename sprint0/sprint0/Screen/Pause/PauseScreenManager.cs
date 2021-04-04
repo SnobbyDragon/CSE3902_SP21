@@ -21,6 +21,7 @@ namespace sprint0
             pauseScreen = new PauseScreen(this.game);
             hudInventory = new HUDInventory(this.game);
             pauseScreenMap = new PauseScreenMap(this.game);
+            hudInventory.Item = PlayerItems.None;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -32,17 +33,14 @@ namespace sprint0
 
         public void Update()
         {
-            hudInventory.SetItem(game.hudManager.MainHUD.GetItem(PlayerItems.BItem));
             pauseScreenMap.Update();
+            hudInventory.Item = game.hudManager.CurrentItem;
         }
 
-        public Dictionary<PlayerItems, Rectangle> Inventory()
-        {
-            return hudInventory.InventoryItems;
-        }
-        public List<PlayerItems> AItems()
-        {
-            return hudInventory.AItem;
-        }
+        public Dictionary<PlayerItems, Rectangle> Inventory() => hudInventory.InventoryItems;
+
+        public List<PlayerItems> AItems() => hudInventory.AItem;
+
+        public PlayerItems BItem() => hudInventory.Item;
     }
 }

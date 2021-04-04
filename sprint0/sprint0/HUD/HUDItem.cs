@@ -23,22 +23,20 @@ namespace sprint0
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (Item != PlayerItems.None && SmallItem()) spriteBatch.Draw(Texture, new Rectangle(Location.X, Location.Y, (int)(Width * Game1.Scale), (int)(Height * Game1.Scale)), ItemMap[Item], Color.White);
-            else if (Item != PlayerItems.None) spriteBatch.Draw(Texture, new Rectangle((Location.X - Width - 1), Location.Y, (int)(Width * 2 * Game1.Scale), (int)(Height * Game1.Scale)), ItemMap[Item], Color.White);
+            if (Item != PlayerItems.None && SmallItem())
+                spriteBatch.Draw(Texture, new Rectangle(Location.X, Location.Y, (int)(Width * Game1.Scale), (int)(Height * Game1.Scale)), ItemMap[Item], Color.White);
+            else if (Item != PlayerItems.None)
+                spriteBatch.Draw(Texture, new Rectangle((Location.X - Width - 1), Location.Y, (int)(Width * 2 * Game1.Scale), (int)(Height * Game1.Scale)), ItemMap[Item], Color.White);
         }
 
-        public void Update()
-        {
-        }
+        public void Update() { }
 
         public void SetItem(PlayerItems item)
         {
-            if (ItemMap.ContainsKey(item)) Item = item;
+            if (ItemMap.ContainsKey(item) || item == PlayerItems.None)
+                Item = item;
         }
 
-        private bool SmallItem()
-        {
-            return Item != PlayerItems.Compass && Item != PlayerItems.Raft && Item != PlayerItems.StepLadder;
-        }
+        private bool SmallItem() => Item != PlayerItems.Compass && Item != PlayerItems.Raft && Item != PlayerItems.StepLadder;
     }
 }

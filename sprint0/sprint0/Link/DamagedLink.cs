@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-//Updated: 03/28/21 by he.1528
+//Updated: 04/03/21 by shah.1440
 namespace sprint0
 {
     class DamagedLink : IPlayer
@@ -10,9 +10,7 @@ namespace sprint0
         private readonly IPlayer decoratedLink;
         private readonly Direction direction;
         private int timer = 80;
-        private readonly PopulateHUDInventory linkInventory;
-        private readonly MainHUD mainHUD;
-        private readonly HUDInventory hudInventory;
+        readonly HUDManager HUD;
         private readonly int speed = 6;
         public Vector2 Pos { get => decoratedLink.Pos; set => decoratedLink.Pos = value; }
         public IPlayerState State { get => decoratedLink.State; set => decoratedLink.State = value; }
@@ -26,9 +24,7 @@ namespace sprint0
             this.game = game;
             this.decoratedLink = decoratedLink;
             this.direction = direction;
-            linkInventory = this.game.hudManager.PopulateHUDInventory;
-            mainHUD = this.game.hudManager.MainHUD;
-            hudInventory = this.game.universalScreenManager.pauseScreenManager.HUDInventory;
+            HUD = this.game.hudManager;
         }
 
         public void Move(int x, int y) => decoratedLink.Move(x, y);
@@ -40,25 +36,16 @@ namespace sprint0
         public void IncrementItem(PlayerItems inventoryItem)
         {
             if (inventoryItem == PlayerItems.BlueRupee)
-                linkInventory.ChangeNum(PlayerItems.Rupee, BlueRupee.Value);
+                HUD.ChangeNum(PlayerItems.Rupee, BlueRupee.Value);
             else if (inventoryItem == PlayerItems.HeartContainer)
-                linkInventory.IncrementItem(PlayerItems.Heart);
-            else linkInventory.IncrementItem(inventoryItem);
+                HUD.Increment(PlayerItems.Heart);
+            else HUD.Increment(inventoryItem);
         }
 
         public void SetHUDItem(PlayerItems source, PlayerItems newItem)
-        {
-            mainHUD.SetItem(source, newItem);
-            hudInventory.SetItem(GetItem(PlayerItems.BItem));
-            hudInventory.AddAItem(GetItem(PlayerItems.AItem));
-        }
+            => HUD.SetItem(source, newItem);
 
-        public PlayerItems GetItem(PlayerItems source)
-        {
-            return mainHUD.GetItem(source);
-        }
-
-        public void AddToInventory(PlayerItems newItem) => hudInventory.AddItem(newItem);
+        public void AddToInventory(PlayerItems newItem) => HUD.AddBItem(newItem);
         public void RemoveDecorator() => game.Room.Player = decoratedLink;
         public void Stop() => decoratedLink.Stop();
         public void HandleUp() => decoratedLink.HandleUp();
@@ -90,7 +77,7 @@ namespace sprint0
         public void ReceiveItem(int n, PlayerItems item)
         {
             decoratedLink.ReceiveItem(n, item);
-            linkInventory.ChangeNum(item, n);
+            HUD.ChangeNum(item, n);
         }
     }
 }

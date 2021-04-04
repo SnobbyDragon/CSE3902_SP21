@@ -7,10 +7,7 @@ namespace sprint0
 
     {
         private readonly int linkSize = (int)(16 * Game1.Scale);
-        public LinkEnemyCollisionHandler()
-        {
-
-        }
+        public LinkEnemyCollisionHandler() { }
 
         public void HandleCollision(IPlayer link, IEnemy enemy, Direction side)
         {
