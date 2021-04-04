@@ -33,7 +33,7 @@ namespace sprint0
 
         public void SetItem(PlayerItems item)
         {
-            if (ItemMap.ContainsKey(item) || item == PlayerItems.None)
+            if ((ItemMap.ContainsKey(item) && Item == PlayerItems.None) || item == PlayerItems.None)
                 Item = item;
         }
 

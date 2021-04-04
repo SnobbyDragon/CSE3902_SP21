@@ -131,8 +131,7 @@ namespace sprint0
 
                 room.Update();
             }
-            if (ChangeHUD())
-                hudManager.Update();
+            hudManager.Update();
             universalScreenManager.Update(state);
             music.Update();
             base.Update(gameTime);

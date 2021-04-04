@@ -83,7 +83,7 @@ namespace sprint0
         }
         public void RemoveBomb()
         {
-            if (!CanUseBomb())
+            if (!CanUseBomb() && currentItem == PlayerItems.Bomb)
                 RemoveBItem(PlayerItems.Bomb);
         }
         public void GainHealth(int num) => populateHUDInventory.GainHealth(num);

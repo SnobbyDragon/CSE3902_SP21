@@ -29,6 +29,8 @@ namespace sprint0
             hudMiniMap = hudFactory.MakeMiniMap();
         }
 
+        public void UpdateBItem(PlayerItems item) => hudMainItems[PlayerItems.BItem].Item = item;
+
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (KeyValuePair<PlayerItems, IHUD> hudElement in hudMainItems)
