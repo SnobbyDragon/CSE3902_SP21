@@ -81,9 +81,12 @@ namespace sprint0
             {
                 if (block is Block) blockToSwitch = block;
             }
-            Vector2 location = blockToSwitch.Location.Location.ToVector2();
-            RemoveBlock(blockToSwitch);
-            AddBlock(location, BlockEnum.MovableBlock5);
+            if (blockToSwitch != null)
+            {
+                Vector2 location = blockToSwitch.Location.Location.ToVector2();
+                RemoveBlock(blockToSwitch);
+                AddBlock(location, BlockEnum.MovableBlock5);
+            }
         }
 
         public void OpenDoorWithBlock()
