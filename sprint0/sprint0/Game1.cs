@@ -20,7 +20,7 @@ namespace sprint0
         private readonly Vector2 eastOffset = new Vector2(Width*Scale, 0) ;
         private readonly Vector2 westOffset = new Vector2(-1 * (Width*Scale) , 0);
 
-
+        public bool ChangeRoom { get; set; }
 
         public SoundFactory SoundFactory { get => soundFactory; }
         private SoundFactory soundFactory;
@@ -48,6 +48,7 @@ namespace sprint0
         public static int BorderThickness { get; } = 32;
         public static float Scale { get; } = 2.5f;
 
+        private Vector2 zeroVector = new Vector2(0,0);
         public Game1()
         {
             stateMachine = new GameStateMachine(this);
@@ -110,40 +111,53 @@ namespace sprint0
                 VisitedRooms.Add(RoomIndex);
             }
 
-            room = new Room(_spriteBatch, this, RoomIndex, new Vector2(0, 0));
-            playerFactory = new PlayerSpriteFactory(this);
-            Rooms.Add(RoomIndex, room);
-            Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
+            if (stateMachine.GetState() != GameStateMachine.State.test)
+            {
+                room = new Room(_spriteBatch, this, RoomIndex, new Vector2(0, 0));
+                playerFactory = new PlayerSpriteFactory(this);
+                Rooms.Add(RoomIndex, room);
+                Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
 
-            List<int> frontier = new List<int>();
-            frontier.Add(RoomIndex);
-            while (Rooms.Count < 17 ) {
-                List<int> newFrontier = new List<int>();
-                foreach (int roomIndex in frontier) {
-                    Dictionary<Direction, int> adjacentRooms = new Dictionary<Direction, int>();
-                    adjacentRooms = AdjacentRooms.ListOfAdjacentRooms(roomIndex);
-                    foreach (Direction d in adjacentRooms.Keys) {
-                        int idx = adjacentRooms[d];
-                        if (!Rooms.ContainsKey(idx)) {
-                            newFrontier.Add(idx);
-                            if (d == Direction.n) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + northOffset);
-                            if (d == Direction.s) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + southOffset);
-                            if (d == Direction.w) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + westOffset);
-                            if (d == Direction.e) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + eastOffset);
+                List<int> frontier = new List<int>();
+                frontier.Add(RoomIndex);
+                while (Rooms.Count < 17)
+                {
+                    List<int> newFrontier = new List<int>();
+                    foreach (int roomIndex in frontier)
+                    {
+                        Dictionary<Direction, int> adjacentRooms = new Dictionary<Direction, int>();
+                        adjacentRooms = AdjacentRooms.ListOfAdjacentRooms(roomIndex);
+                        foreach (Direction d in adjacentRooms.Keys)
+                        {
+                            int idx = adjacentRooms[d];
+                            if (!Rooms.ContainsKey(idx))
+                            {
+                                newFrontier.Add(idx);
+                                if (d == Direction.n) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + northOffset);
+                                if (d == Direction.s) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + southOffset);
+                                if (d == Direction.w) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + westOffset);
+                                if (d == Direction.e) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + eastOffset);
+                            }
+
                         }
-
                     }
+                    frontier = newFrontier;
+
+
                 }
-                frontier = newFrontier;
 
-
+                foreach (Room rm in Rooms.Values)
+                    rm.LoadContent();
             }
- /*           Rooms[18] = new Room(_spriteBatch, this, 18, Rooms[1].GetOffset() + westOffset);
-            Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[18].GetOffset() + westOffset);*/
-            foreach (Room rm in Rooms.Values)
-                rm.LoadContent();
-
-
+            else
+            {
+                room = new Room(_spriteBatch, this, RoomIndex, zeroVector);
+                Rooms[RoomIndex] = room;
+                playerFactory = new PlayerSpriteFactory(this);
+                Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
+                room.LoadContent();
+                ChangeRoom = false;
+            }
         }
 
         public void Slide(Direction d, int ammount) {
@@ -201,6 +215,11 @@ namespace sprint0
                 nextRoom.Draw();
                 hudManager.Draw(_spriteBatch);
             }
+
+            if (state.Equals(GameStateMachine.State.test) && ChangeRoom) {
+                LoadContent();
+            } 
+
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
                 room.Draw();
