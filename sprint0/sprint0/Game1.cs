@@ -145,33 +145,24 @@ namespace sprint0
                 rm.LoadContent();
         }
 
-<<<<<<< HEAD
         public void Slide(Direction d, int ammount) {
             Vector2 offst = zeroVector;
             ammount = System.Math.Abs(ammount);
             if (d == Direction.n) {
                 offst.Y = 1 * ammount;
-=======
-        public void Slide(Direction d, int amount)
-        {
-            Vector2 offst = new Vector2(0, 0);
-            amount = System.Math.Abs(amount);
-            if (d == Direction.n)
-            {
-                offst.Y = amount;
->>>>>>> 97e479dfed281b91bc187b58d8a06470565454a0
+
             }
             else if (d == Direction.s)
             {
-                offst.Y = -amount;
+                offst.Y = -ammount;
             }
             else if (d == Direction.e)
             {
-                offst.X = -amount;
+                offst.X = -ammount;
             }
             else if (d == Direction.w)
             {
-                offst.X = amount;
+                offst.X = ammount;
             }
             foreach (Room rm in Rooms.Values)
             {
