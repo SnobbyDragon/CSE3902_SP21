@@ -28,7 +28,7 @@ namespace sprint0
         private readonly List<IItem> items;
         private readonly List<IEffect> effects;
         private readonly List<ISprite> overlays;
-        private readonly List<Vector2> locations = new List<Vector2>();
+        private readonly Dictionary<int, Vector2> locations = new Dictionary<int, Vector2>();
 
         private readonly Game1 game;
         private readonly EnemiesSpriteFactory enemyFactory;
@@ -80,7 +80,7 @@ namespace sprint0
             fileStream.Close();
         }
 
-        public (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>, List<IEffect>, List<Vector2>) LoadLevel()
+        public (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>, List<IEffect>, Dictionary<int, Vector2>) LoadLevel()
         {
             RoomSetup(roomReader, roomStream);
             if (roomNo != 0) RoomSetup(roomReaderInvisible, roomStreamInvisible);
@@ -129,7 +129,7 @@ namespace sprint0
                     break;
                 case "Player":
                     game.Room.Player.Pos = location;
-                    locations.Add(location);
+                    locations.Add(roomNo, location);
                     break;
                 default:
                     throw new ArgumentException("Invalid sprite! Level loading failed.");
