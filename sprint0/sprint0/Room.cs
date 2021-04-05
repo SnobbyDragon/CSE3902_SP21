@@ -23,7 +23,8 @@ namespace sprint0
         private readonly bool loadedPos;
 
         private AllCollisionHandler collisionHandler;
-        private readonly int RoomIndex;
+        private readonly int roomIndex;
+        public int RoomIndex { get => roomIndex; }
         private Text text;
 
         public bool SuspendPlayer { get => suspendPlayer; set => suspendPlayer = value; }
@@ -36,25 +37,26 @@ namespace sprint0
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
 
-        public Room(SpriteBatch spriteBatch, Game1 game, int RoomIndex, Vector2 Offset, float linkX = LinkDefaultPos, float linkY = LinkDefaultPos, bool loadedPos = false)
+        public Room(SpriteBatch spriteBatch, Game1 game, int roomIndex, Vector2 Offset, float linkX = LinkDefaultPos, float linkY = LinkDefaultPos, bool loadedPos = false)
         {
             suspendPlayer = false;
             offset = Offset;
             Game = game;
             _spriteBatch = spriteBatch;
-            this.RoomIndex = RoomIndex;
+            this.roomIndex = roomIndex;
             linkInitialPos = new Vector2(linkX, linkY);
             this.loadedPos = loadedPos;
         }
+
         public void LoadContent()
         {
             overlay = new Overlay();
             collisionHandler = new AllCollisionHandler(this);
             roomSound = new RoomSound(Game);
-            loadLevel = new LoadLevel(Game, RoomIndex);
-            loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex, offset).LoadLevel());
-            //loadLevel.
+            loadLevel = new LoadLevel(Game, roomIndex);
+            loadLevel.PopulateLists(new LevelLoader(Game, roomIndex, offset).LoadLevel());
             loadLevel.UpdateOffsets(offset);
+            Overlay.UpdateOffset(offset);
 
             text = new Text(Game, message, messageLoc, Color.White);
             if (!loadedPos)
@@ -64,10 +66,7 @@ namespace sprint0
         public void UpdateOffsets(Vector2 ofst) {
             offset += ofst;
             loadLevel.UpdateOffsets(ofst);
-        }
-
-        public Vector2 GetOffset() {
-            return offset;
+            Overlay.UpdateOffset(ofst);
         }
 
         public void Update()
@@ -93,7 +92,7 @@ namespace sprint0
                 Player.Draw(_spriteBatch);
             }
             overlay.Draw(_spriteBatch);
-            if (RoomIndex == 4)
+            if (roomIndex == 4)
                 text.Draw(_spriteBatch);
         }
     }

@@ -19,7 +19,7 @@ namespace sprint0
         {
             Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
             Room.LoadLevel.RoomSprite.RemoveRoomSprite(this);
-            Room.LoadLevel.RoomSprite.AddRoomSprite(new OpenDoor(Texture, Location.Location.ToVector2() - Room.Offset, Side, Room));
+            Room.LoadLevel.RoomSprite.AddRoomSprite(new OpenDoor(Texture, Location.Location.ToVector2(), Side, Room));
         }
     }
 }

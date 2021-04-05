@@ -44,6 +44,7 @@ namespace sprint0
         }
         public void UpdateOffset(Vector2 Offset)
         {
+            EnemySpawnUpdate();
             foreach (IEnemy item in enemies)
                 item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
         }
