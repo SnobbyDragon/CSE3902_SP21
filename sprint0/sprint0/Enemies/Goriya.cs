@@ -37,8 +37,8 @@ namespace sprint0
         public override void Draw(SpriteBatch spriteBatch)
         {
 
-                if (damageTimer % 2 == 0)
-                {
+            if (damageTimer % 2 == 0)
+            {
                 switch (direction)
                 {
                     case Direction.w:
@@ -55,7 +55,7 @@ namespace sprint0
                         break;
                 }
             }
-                      
+
         }
 
         private void UseBoomerang()
@@ -68,27 +68,27 @@ namespace sprint0
         public override void Update()
         {
 
-                moveCounter++;
-                if (moveCounter == dirChangeDelay)
-                {
-                    ArbitraryDirection(30, 50);
-                }
-                if (damageTimer > 0) damageTimer--;
-                CheckHealth();
-                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-                
-                Rectangle loc = Location;
-                loc.Offset(direction.ToVector2());
-                Location = loc;
+            moveCounter++;
+            if (moveCounter == dirChangeDelay)
+            {
+                ArbitraryDirection(30, 50);
+            }
+            if (damageTimer > 0) damageTimer--;
+            CheckHealth();
+            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
-                if (throwCounter == throwMax)
-                {
-                    throwCounter = 0;
-                    UseBoomerang();
-                }
-                throwCounter++;
+            Rectangle loc = Location;
+            loc.Offset(direction.ToVector2());
+            Location = loc;
 
-                
+            if (throwCounter == throwMax)
+            {
+                throwCounter = 0;
+                UseBoomerang();
+            }
+            throwCounter++;
+
+
         }
 
         public bool isAlive()
