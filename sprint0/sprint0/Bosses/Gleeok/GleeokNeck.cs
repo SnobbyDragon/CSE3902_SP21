@@ -15,13 +15,15 @@ namespace sprint0
         public int Damage { get => 0; }
         private bool isDead;
         public EnemyType Type { get => EnemyType.Gleeok; }
+        IEnemy body;
 
-        public GleeokNeck(Texture2D texture, Game1 game, Rectangle location)
+        public GleeokNeck(Texture2D texture, Game1 game, Rectangle location, IEnemy main)
         {
             isDead = false;
             Texture = texture;
             this.game = game;
             Location = location;
+            this.body = main;
             neck = new List<IEnemy>();
             Vector2 anchor = Location.Location.ToVector2() + new Vector2(Location.Width / 3, (float)(Location.Height * 0.8));
             IEnemy head = new GleeokHead(Texture, anchor, game);
@@ -41,6 +43,7 @@ namespace sprint0
         public void Update()
         {
             CheckHealth();
+            Location = body.Location;
 
         }
 

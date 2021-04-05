@@ -21,6 +21,7 @@ namespace sprint0
         public EnemyType Type { get => EnemyType.Gleeok; }
         public int Damage { get => 0; }
         private ItemSpawner itemSpawner;
+        private bool neckExists;
 
         public Gleeok(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -31,13 +32,9 @@ namespace sprint0
             currFrame = 0;
             totalFrames = 3;
             repeatedFrames = 12;
+            neckExists = false;
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
             sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height));
-
-            necks = new List<IEnemy>() {
-                new GleeokNeck(Texture, game,Location),
-                new GleeokNeck(Texture, game,Location),
-            };
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
@@ -46,17 +43,32 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
-            foreach (IEnemy sprite in necks)
-                sprite.Draw(spriteBatch);
+            if (necks != null)
+            {
+                foreach (IEnemy sprite in necks)
+                    sprite.Draw(spriteBatch);
+            }
+            
 
         }
 
         public void Update()
         {
             CheckHealth();
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            foreach (IEnemy sprite in necks)
-                sprite.Update();
+            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);           
+            if (necks == null && !neckExists)
+            {
+                necks = new List<IEnemy>() {
+                    new GleeokNeck(Texture, game,Location, this),
+                    new GleeokNeck(Texture, game,Location, this),
+                };
+                neckExists = true; 
+            }
+            else
+            {
+                foreach (IEnemy sprite in necks)
+                    sprite.Update();
+            }
 
         }
 
@@ -67,11 +79,15 @@ namespace sprint0
         private void CheckHealth()
         {
             int countDeadNecks = 0;
+            if (necks != null) { 
             foreach (GleeokNeck neck in necks)
             {
                 if (neck.IsDead()) countDeadNecks++;
             }
-            if ((health < 0 && countDeadNecks == necks.Count) || countDeadNecks == necks.Count) Perish();
+if ((health < 0 && countDeadNecks == necks.Count) || countDeadNecks == necks.Count) Perish();
+            }
+            
+            
         }
 
         public void TakeDamage(int damage)

@@ -13,6 +13,7 @@ namespace sprint0
         private Direction direction;
         private int counter;
         private int bound;
+        private State prev;
         public GameStateMachine(Game1 game)
         {
             this.game = game;
@@ -26,11 +27,7 @@ namespace sprint0
 
         public void HandleTest()
         {
-            if (state == State.test)
-            {
-                state = State.play;
-            }
-            else if (state == State.play)
+            if (state == State.start)
             {
                 state = State.test;
             }
@@ -65,7 +62,7 @@ namespace sprint0
         }
         public void HandleNewRoom(Direction d, int dest)
         {
-
+            prev = state;
             counter = 0;
             direction = d;
             if (d == Direction.n || d == Direction.s)
@@ -91,7 +88,7 @@ namespace sprint0
                 game.RoomIndex = dest;
                 game.Room = game.Rooms[dest];
                 game.Room.SuspendPlayer = false;
-                state = State.play;
+                state = prev;
             }
             else {
                 counter++;
