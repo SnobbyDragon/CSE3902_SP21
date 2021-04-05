@@ -11,7 +11,7 @@ namespace sprint0
         public List<IBlock> Blocks { get => blocks; set => blocks = value; }
         private List<IBlock> blocks;
         private readonly List<IBlock> blocksToRemove, blocksToAdd;
-        private Game1 game;
+        private readonly Game1 game;
 
         public RoomBlocks(Game1 game, int roomIndex)
         {
@@ -81,14 +81,16 @@ namespace sprint0
             {
                 if (block is Block) blockToSwitch = block;
             }
-
+            Vector2 location = blockToSwitch.Location.Location.ToVector2();
+            RemoveBlock(blockToSwitch);
+            AddBlock(location, BlockEnum.MovableBlock5);
         }
 
         public void OpenDoorWithBlock()
         {
             foreach (IBlock block in blocks)
             {
-                if (block is MovableBlock5 && !((MovableBlock5)block).IsMovable())
+                if (block is MovableBlock5 block5 && !block5.IsMovable())
                     game.Room.LoadLevel.RoomSprite.OpenClosedDoor();
             }
         }
