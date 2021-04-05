@@ -17,7 +17,7 @@
     <Block ObjectName="block" LocationX="280" LocationY="380" />? 
     <Block ObjectName="block" LocationX="320" LocationY="380" />?  
         
-   <Item ObjectName="book of magic" LocationX="440" LocationY="380" />?
+   <Item ObjectName="BookOfMagic" LocationX="440" LocationY="380" />?
     <Boss ObjectName="Manhandla" LocationX="440" LocationY="260" />?  
     
     <Player ObjectName="Link" LocationX="300" LocationY="220" />?

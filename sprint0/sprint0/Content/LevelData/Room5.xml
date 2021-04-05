@@ -14,7 +14,7 @@
      <Enemy ObjectName="BlueGel" LocationX="280" LocationY="260" />?
     <Enemy ObjectName="GreenGel" LocationX="280" LocationY="420" />?
     <Enemy ObjectName="TealGel" LocationX="200" LocationY="340" />?
-    <Item ObjectName="raft" LocationX="240" LocationY="340" />?
+    <Item ObjectName="Raft" LocationX="240" LocationY="340" />?
     <Player ObjectName="Link" LocationX="82" LocationY="340" />?
 
 ?</XnaContent>

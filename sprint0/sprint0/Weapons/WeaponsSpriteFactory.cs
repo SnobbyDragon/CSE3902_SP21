@@ -23,12 +23,12 @@ namespace sprint0
             texture2 = game.Content.Load<Texture2D>("Images/Link");
         }
 
-        public IWeapon MakeWeapon(string spriteType, Vector2 location, Direction dir, IPlayer player)
+        public IWeapon MakeWeapon(WeaponEnum spriteType, Vector2 location, Direction dir, IPlayer player)
         {
             return spriteType switch
             {
-                "bomb" => new Bomb(texture2, location, dir, game.Room),
-                "sword" => new Sword(location, dir, player),
+                WeaponEnum.Bomb => new Bomb(texture2, location, dir, game.Room),
+                WeaponEnum.Sword => new Sword(location, dir, player),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }

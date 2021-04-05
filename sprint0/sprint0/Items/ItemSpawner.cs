@@ -6,49 +6,43 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Hannah Johnson
 namespace sprint0
 {
-    public class ItemSpawner 
+    public class ItemSpawner
     {
-
         private readonly Random rand = new Random();
-        private readonly Dictionary<string, string[]> enemyItemMap = new Dictionary<string, string[]> {
-            {"Gel", new string[] { "", "arrow", "rupee"} },
-            {"Goriya",new string[] { "","rupee" , "bomb"} },
-            {"Keese",new string[] { "", "rupee", "meat" } },
-            {"Snake",new string[] { "", "raft", "stepladder", "rupee" ,"fairy"} },
-            {"Stalfos",new string[] { "", "rupee", "clock", "potion", "bomb" , "meat"} },
-            {"Wallmaster",new string[] { "","compass", "potion", "rupee", "clock", "ring", "meat" } },
-            {"Zol",new string[] { "" } },
-            {"Aquamentus",new string[] { "heart container" } },
-            {"Digdogger",new string[] { "" , "blue rupee", "rupee"} },
-            {"Dodongo",new string[] { "", "raft", "flute", "book of magic", "bomb" } },
-            {"Ganon",new string[] { "", "white sword", "blue rupee","magical key","flute", "blue potion" } },
-            {"Gleeok",new string[] { "", "stepladder", "clock","blue rupee", "rupee" } },
-            {"Gohma",new string[] { "", "power bracelet", "book of magic", "meat", "raft" } },
-            {"Manhandla",new string[] { "", "blue candle", "blue potion", "blue rupee", "magical rod", "magical sword" } },
-            {"Patra",new string[] { "","blue ring", "blue candle","blue map","blue potion", "blue rupee" } },
+        private readonly Dictionary<EnemyEnum, ItemEnum[]> enemyItemMap = new Dictionary<EnemyEnum, ItemEnum[]> {
+            {EnemyEnum.Gel, new ItemEnum[] { ItemEnum.None, ItemEnum.Arrow, ItemEnum.Rupee } },
+            {EnemyEnum.Goriya,new ItemEnum[] { ItemEnum.None, ItemEnum.Rupee, ItemEnum.Bomb } },
+            {EnemyEnum.Keese,new ItemEnum[] { ItemEnum.None, ItemEnum.Rupee, ItemEnum.Food } },
+            {EnemyEnum.Snake,new ItemEnum[] {ItemEnum.None, ItemEnum.Raft, ItemEnum.Stepladder, ItemEnum.Rupee, ItemEnum.Fairy } },
+            {EnemyEnum.Stalfos,new ItemEnum[] { ItemEnum.None, ItemEnum.Rupee, ItemEnum.Clock, ItemEnum.RedPotion, ItemEnum.Bomb, ItemEnum.Food } },
+            {EnemyEnum.Wallmaster,new ItemEnum[] { ItemEnum.None, ItemEnum.Compass, ItemEnum.RedPotion, ItemEnum.Rupee, ItemEnum.Clock, ItemEnum.RedRing, ItemEnum.Food } },
+            {EnemyEnum.Zol,new ItemEnum[] { ItemEnum.None } },
+            {EnemyEnum.Aquamentus,new ItemEnum[] { ItemEnum.HeartContainer } },
+            {EnemyEnum.Digdogger,new ItemEnum[] { ItemEnum.None, ItemEnum.BlueRupee, ItemEnum.Rupee } },
+            {EnemyEnum.Dodongo,new ItemEnum[] { ItemEnum.None, ItemEnum.Raft, ItemEnum.Flute, ItemEnum.BookOfMagic, ItemEnum.Bomb } },
+            {EnemyEnum.Ganon,new ItemEnum[] { ItemEnum.None, ItemEnum.WhiteSword, ItemEnum.BlueRupee, ItemEnum.MagicalKey, ItemEnum.Flute, ItemEnum.BluePotion } },
+            {EnemyEnum.Gleeok,new ItemEnum[] { ItemEnum.None, ItemEnum.Stepladder, ItemEnum.Clock, ItemEnum.BlueRupee, ItemEnum.Rupee } },
+            {EnemyEnum.Gohma,new ItemEnum[] { ItemEnum.None, ItemEnum.PowerBracelet, ItemEnum.BookOfMagic, ItemEnum.Food, ItemEnum.Raft } },
+            {EnemyEnum.Manhandla,new ItemEnum[] { ItemEnum.None, ItemEnum.BlueCandle, ItemEnum.BluePotion, ItemEnum.BlueRupee, ItemEnum.MagicalRod, ItemEnum.MagicalSword } },
+            {EnemyEnum.Patra,new ItemEnum[] { ItemEnum.None, ItemEnum.BlueRing, ItemEnum.BlueCandle, ItemEnum.Letter, ItemEnum.BluePotion, ItemEnum.BlueRupee } },
         };
         private RoomItems roomItems;
 
-
-        public ItemSpawner(RoomItems roomItems)
-        {
-            this.roomItems = roomItems;
-            
-        }
+        public ItemSpawner(RoomItems roomItems) => this.roomItems = roomItems;
 
         //Adds random item
-        public void SpawnItem(String enemy,Vector2 location)
+        public void SpawnItem(EnemyEnum enemy, Vector2 location)
         {
-            string[] itemArray= enemyItemMap.GetValueOrDefault(enemy);
+            ItemEnum[] itemArray = enemyItemMap.GetValueOrDefault(enemy);
             int randPos = rand.Next(itemArray.Length);
-            string item = itemArray[randPos];
-            if (item != "") roomItems.AddItem(location, item);
+            ItemEnum item = itemArray[randPos];
+            if (item != ItemEnum.None) roomItems.AddItem(location, item);
         }
 
         //Adds specific item
-        public void SpawnItem(Vector2 location, String item)
+        public void SpawnItem(Vector2 location, ItemEnum item)
         {
-            if (item != "") roomItems.AddItem(location, item);
+            if (item != ItemEnum.None) roomItems.AddItem(location, item);
         }
 
     }

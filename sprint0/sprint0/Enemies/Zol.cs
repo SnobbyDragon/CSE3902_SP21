@@ -19,7 +19,6 @@ namespace sprint0
         private int pauseCount = 0;
         public new EnemyType Type { get => EnemyType.Gel; }
 
-
         public Zol(Texture2D texture, Vector2 location, Color gelColor, Game1 game) : base(texture, location, game)
         {
             width = 16;
@@ -50,10 +49,7 @@ namespace sprint0
         {
 
             if (damageTimer % 2 == 0)
-            {
                 spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
-            }
-
         }
 
         public override void Update()
@@ -83,13 +79,7 @@ namespace sprint0
                 delayCounter++;
             }
             else
-            {
                 pauseCount--;
-            }
-
-
-
-
         }
 
         private void SpawnGel()
@@ -101,11 +91,9 @@ namespace sprint0
                 spawnCounter = 0;
             }
             else
-            {
                 spawnCounter++;
-            }
         }
-        private EnemyEnum ParseEnemy(string enemy)
+        public new EnemyEnum ParseEnemy(string enemy)
             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }
 }

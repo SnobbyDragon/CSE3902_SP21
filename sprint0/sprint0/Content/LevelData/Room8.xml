@@ -35,7 +35,7 @@
     <Boss ObjectName="Aquamentus" LocationX="380" LocationY="300" />?
 
   
-    <Item ObjectName="magical sword" LocationX="300" LocationY="342" />?
+    <Item ObjectName="MagicalSword" LocationX="300" LocationY="342" />?
     <Player ObjectName="Link" LocationX="310" LocationY="460" />?
 
 ?</XnaContent>

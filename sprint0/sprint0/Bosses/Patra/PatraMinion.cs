@@ -42,7 +42,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(damageTimer % 2 == 0)
+            if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
         }
 
@@ -66,29 +66,19 @@ namespace sprint0
             {
                 // not waiting
                 if (expansionCounter > 6)
-                {
-                    // expanded 3 times, return to waiting state
-                    expansionCounter = 0;
-                }
+                    expansionCounter = 0; // expanded 3 times, return to waiting state
                 else
                 {
                     // expanding / contracting
                     if (expansionCounter % 2 == 0)
-                    {
                         Contract();
-                    }
                     else
-                    {
                         Expand();
-                    }
                 }
             }
         }
 
-        public void ChangeDirection()
-        {
-            // not necessary
-        }
+        public void ChangeDirection() { }
 
         public int CheckHealth()
         {
@@ -121,39 +111,27 @@ namespace sprint0
                 expansionCounter = 1; // on first expansion
             }
             else if (expansionCounter == 0)
-            {
                 expansionTime++; // if waiting, then increment time
-            }
         }
 
         // contracting movement
         private void Contract()
         {
             if (distance == minDistance)
-            {
-                // done contracting
-                expansionCounter++;
-            }
+                expansionCounter++; // done contracting
             else
-            {
-                // not done, decrease distance
-                distance--;
-            }
+                distance--;// not done, decrease distance
         }
 
         // expanding movement
         private void Expand()
         {
             if (distance == maxDistance)
-            {
-                // done expanding
-                expansionCounter++;
-            }
+                expansionCounter++; // done expanding
             else
-            {
-                // not done, increase distance
-                distance++;
-            }
+                distance++; // not done, increase distance
         }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }
 }

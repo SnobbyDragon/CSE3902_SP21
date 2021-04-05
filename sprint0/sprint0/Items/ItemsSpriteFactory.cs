@@ -14,7 +14,7 @@ namespace sprint0
         Food, Letter, Map, BluePotion, RedPotion, BlueRupee, Rupee,
         Clock, Bow, HeartContainer, TriforcePiece, Compass, Key, Fairy,
         Arrow, Bomb, PowerBracelet, BookOfMagic, Flute, Raft, Stepladder,
-        MagicalKey, MagicalRod, MagicalSword, WhiteSword, WoodenSword, GanonTriforceAshes
+        MagicalKey, MagicalRod, MagicalSword, WhiteSword, WoodenSword, GanonTriforceAshes, None
     }
     public class ItemsSpriteFactory
     {
@@ -29,43 +29,43 @@ namespace sprint0
             texture2 = game.Content.Load<Texture2D>("Images/Bosses");
         }
 
-        public IItem MakeItem(string spriteType, Vector2 location)
+        public IItem MakeItem(ItemEnum spriteType, Vector2 location)
         {
             return spriteType switch
             {
-                "blue boomerang" => new BlueBoomerangItem(texture1, location),
-                "boomerang" => new BoomerangItem(texture1, location),
-                "blue ring" => new BlueRing(texture1, location),
-                "ring" => new Ring(texture1, location),
-                "blue candle" => new BlueCandle(texture1, location),
-                "candle" => new Candle(texture1, location),
-                "meat" => new Meat(texture1, location),
-                "blue map" => new BlueMap(texture1, location),
-                "map" => new Map(texture1, location),
-                "blue potion" => new BluePotion(texture1, location),
-                "potion" => new Potion(texture1, location),
-                "blue rupee" => new BlueRupee(texture1, location),
-                "rupee" => new Rupee(texture1, location),
-                "clock" => new Clock(texture1, location),
-                "bow" => new Bow(texture1, location),
-                "heart container" => new HeartContainer(texture1, location),
-                "triforce piece" => new TriforcePiece(texture1, location, game),
-                "compass" => new Compass(texture1, location),
-                "key" => new Key(texture1, location),
-                "fairy" => new Fairy(texture1, location, game),
-                "arrow" => new ArrowItem(texture1, location),
-                "bomb" => new BombItem(texture1, location),
-                "power bracelet" => new PowerBracelet(texture1, location),
-                "book of magic" => new BookOfMagic(texture1, location),
-                "flute" => new Flute(texture1, location),
-                "raft" => new Raft(texture1, location),
-                "stepladder" => new StepLadder(texture1, location),
-                "magical key" => new MagicalKey(texture1, location),
-                "magical rod" => new MagicalRod(texture1, location),
-                "magical sword" => new MagicalSword(texture1, location),
-                "white sword" => new WhiteSword(texture1, location),
-                "wooden sword" => new WoodenSword(texture1, location),
-                "ganontriforceashes" => new GanonTriforceAshes(texture2, location, game),
+                ItemEnum.MagicalBoomerang => new BlueBoomerangItem(texture1, location),
+                ItemEnum.Boomerang => new BoomerangItem(texture1, location),
+                ItemEnum.BlueRing => new BlueRing(texture1, location),
+                ItemEnum.RedRing => new Ring(texture1, location),
+                ItemEnum.BlueCandle => new BlueCandle(texture1, location),
+                ItemEnum.RedCandle => new Candle(texture1, location),
+                ItemEnum.Food => new Meat(texture1, location),
+                ItemEnum.Letter => new BlueMap(texture1, location),
+                ItemEnum.Map => new Map(texture1, location),
+                ItemEnum.BluePotion => new BluePotion(texture1, location),
+                ItemEnum.RedPotion => new Potion(texture1, location),
+                ItemEnum.BlueRupee => new BlueRupee(texture1, location),
+                ItemEnum.Rupee => new Rupee(texture1, location),
+                ItemEnum.Clock => new Clock(texture1, location),
+                ItemEnum.Bow => new Bow(texture1, location),
+                ItemEnum.HeartContainer => new HeartContainer(texture1, location),
+                ItemEnum.TriforcePiece => new TriforcePiece(texture1, location, game),
+                ItemEnum.Compass => new Compass(texture1, location),
+                ItemEnum.Key => new Key(texture1, location),
+                ItemEnum.Fairy => new Fairy(texture1, location, game),
+                ItemEnum.Arrow => new ArrowItem(texture1, location),
+                ItemEnum.Bomb => new BombItem(texture1, location),
+                ItemEnum.PowerBracelet => new PowerBracelet(texture1, location),
+                ItemEnum.BookOfMagic => new BookOfMagic(texture1, location),
+                ItemEnum.Flute => new Flute(texture1, location),
+                ItemEnum.Raft => new Raft(texture1, location),
+                ItemEnum.Stepladder => new StepLadder(texture1, location),
+                ItemEnum.MagicalKey => new MagicalKey(texture1, location),
+                ItemEnum.MagicalRod => new MagicalRod(texture1, location),
+                ItemEnum.MagicalSword => new MagicalSword(texture1, location),
+                ItemEnum.WhiteSword => new WhiteSword(texture1, location),
+                ItemEnum.WoodenSword => new WoodenSword(texture1, location),
+                ItemEnum.GanonTriforceAshes => new GanonTriforceAshes(texture2, location, game),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }

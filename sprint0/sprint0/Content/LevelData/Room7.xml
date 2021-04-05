@@ -17,7 +17,7 @@
     <Boss ObjectName="Digdogger" LocationX="440" LocationY="260" />?
     <Boss ObjectName="Digdogger" LocationX="360" LocationY="380" />?
     
-    <Item ObjectName="boomerang" LocationX="335" LocationY="310" />?
+    <Item ObjectName="Boomerang" LocationX="335" LocationY="310" />?
     <Player ObjectName="Link" LocationX="82" LocationY="340" />?
 
 ?</XnaContent>

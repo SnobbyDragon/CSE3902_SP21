@@ -105,9 +105,7 @@ namespace sprint0
             CheckHealth();
             Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
             if (dist.Length() == 0)
-            {
                 currDest = (currDest + 1) % destinations.Count;
-            }
             else if (legCurrFrame % moveDelay == 0)
             {
                 dist.Normalize();
@@ -119,14 +117,10 @@ namespace sprint0
             legCurrFrame = (legCurrFrame + 1) % (legTotalFrames * legRepeatedFrames);
 
             if (CanShoot())
-            {
                 ShootFireball();
-            }
         }
 
-        public void ChangeDirection()
-        {
-        }
+        public void ChangeDirection() { }
 
         private void CheckHealth()
         {
@@ -145,7 +139,7 @@ namespace sprint0
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
+            itemSpawner.SpawnItem(ParseEnemy(this.GetType().Name), this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
 
             game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), "death");
@@ -166,5 +160,7 @@ namespace sprint0
             dir.Normalize();
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
         }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }
 }

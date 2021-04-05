@@ -26,14 +26,14 @@ namespace sprint0
 
 
         public AbstractEnemy(Texture2D texture, Vector2 location, Game1 game)
-        {            
+        {
             rand = new Random();
             this.game = game;
             health = 50;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
-            
+
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);
@@ -42,19 +42,19 @@ namespace sprint0
         public virtual void Update()
         {
 
-                moveCounter++;
-                if (moveCounter == dirChangeDelay)
-                {
-                    ArbitraryDirection(30, 50);
-                }
-                if (damageTimer > 0) damageTimer--;
-                CheckHealth();
-                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-                
-                Rectangle loc = Location;
-                loc.Offset(direction.ToVector2());
-                Location = loc;
-                
+            moveCounter++;
+            if (moveCounter == dirChangeDelay)
+            {
+                ArbitraryDirection(30, 50);
+            }
+            if (damageTimer > 0) damageTimer--;
+            CheckHealth();
+            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+
+            Rectangle loc = Location;
+            loc.Offset(direction.ToVector2());
+            Location = loc;
+
         }
 
         protected void ArbitraryDirection(int low, int high)
@@ -86,10 +86,12 @@ namespace sprint0
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
+            itemSpawner.SpawnItem(ParseEnemy(this.GetType().Name), this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
             game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), "death");
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }
 }

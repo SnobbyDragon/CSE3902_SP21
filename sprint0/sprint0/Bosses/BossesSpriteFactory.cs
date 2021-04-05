@@ -18,7 +18,6 @@ namespace sprint0
 
         public IEnemy MakeSprite(EnemyEnum spriteType, Vector2 location)
         {
-
             return spriteType switch
             {
                 EnemyEnum.Aquamentus => new Aquamentus(texture, location, game),

@@ -18,7 +18,7 @@ namespace sprint0
             weaponsToDie = new List<IWeapon>();
         }
 
-        public void AddWeapon(Vector2 Location, Direction dir, string item, IPlayer source)
+        public void AddWeapon(Vector2 Location, Direction dir, WeaponEnum item, IPlayer source)
             => weapons.Add(weaponFactory.MakeWeapon(item, Location, dir, source));
 
         public void RemoveWeapon(IWeapon weapon) => weaponsToDie.Add(weapon);

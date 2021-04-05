@@ -11,7 +11,8 @@ namespace sprint0
         Wallmaster, TealGel, BlueGel, GreenGel, GoldGel, LimeGel, BrownGel, GrayGel, WhiteGel,
         GreenZol, GoldZol, LimeZol, BrownZol, GrayZol, WhiteZol,
         Snake, RedGoriya, BlueGoriya, RedKeese, BlueKeese, Stalfos, Trap, Trapparatus,
-        Aquamentus, Patra, Manhandla, Gleeok, Ganon, OrangeGohma, BlueGohma, Dodongo, Digdogger
+        Aquamentus, Patra, Manhandla, Gleeok, Ganon, OrangeGohma, BlueGohma, Dodongo, Digdogger,
+        Gel, Goriya, Keese, Zol, Gohma
     }
     public class EnemiesSpriteFactory
     {

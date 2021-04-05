@@ -38,7 +38,6 @@ namespace sprint0
                 enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
         }
 
-
         public void RegisterEnemies(IEnumerable<IEnemy> unregEnemies)
             => enemiesToSpawn.AddRange(unregEnemies);
 
@@ -50,7 +49,6 @@ namespace sprint0
             {
                 keySpawnLocation = enemy.Location.Location.ToVector2();
                 enemies.Remove(enemy);
-
             }
         }
 
@@ -84,9 +82,9 @@ namespace sprint0
             int roomWithMovableBlock = 5;
             Vector2 location = new Vector2(400, 300);
             if (roomWithKey.Contains(roomNum))
-                game.Room.LoadLevel.RoomItems.AddItem(keySpawnLocation, "key");
+                game.Room.LoadLevel.RoomItems.AddItem(keySpawnLocation, ItemEnum.Key);
             else if (roomNum == roomWithBoomerang)
-                game.Room.LoadLevel.RoomItems.AddItem(location, "boomerang");
+                game.Room.LoadLevel.RoomItems.AddItem(location, ItemEnum.Boomerang);
             else if (roomNum == roomWithMovableBlock)
                 game.Room.LoadLevel.RoomBlocks.SwitchToMovableBlock();
             endBehaviorExecuted = true;

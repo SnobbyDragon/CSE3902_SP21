@@ -35,7 +35,7 @@ namespace sprint0
         {
             link.State.HandleSword();
             Vector2 offsetPos = link.Pos + swordOffsets[link.Direction];
-            game.Room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, "sword", link);
+            game.Room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, WeaponEnum.Sword, link);
             game.Room.RoomSound.AddSoundEffect("sword slash");
             if (beam)
             {
@@ -74,7 +74,7 @@ namespace sprint0
         private void UseBomb()
         {
             Vector2 offsetPos = link.Pos + bombOffsets[link.Direction];
-            game.Room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, "bomb", link);
+            game.Room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, WeaponEnum.Bomb, link);
             game.Room.RoomSound.AddSoundEffect("use bomb");
         }
 

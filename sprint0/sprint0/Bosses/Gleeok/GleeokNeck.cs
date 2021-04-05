@@ -33,20 +33,10 @@ namespace sprint0
             game.Room.LoadLevel.RoomEnemies.RegisterEnemies(neck);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
+        public void Draw(SpriteBatch spriteBatch) { }
+        public void Update() => CheckHealth();
 
-        }
-
-        public void Update()
-        {
-            CheckHealth();
-
-        }
-
-        public void ChangeDirection()
-        {
-        }
+        public void ChangeDirection() { }
 
         private void CheckHealth()
         {
@@ -69,14 +59,9 @@ namespace sprint0
             if (neckHealth < 0) Perish();
         }
 
-        public void TakeDamage(int damage)
-        {
-        }
+        public void TakeDamage(int damage) { }
 
-        public bool IsDead()
-        {
-            return isDead;
-        }
+        public bool IsDead() => isDead;
 
         public void Perish()
         {
@@ -88,8 +73,7 @@ namespace sprint0
             }
             isDead = true;
         }
-
-
-
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }
 }

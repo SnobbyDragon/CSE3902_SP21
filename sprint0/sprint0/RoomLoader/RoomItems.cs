@@ -20,7 +20,7 @@ namespace sprint0
             itemFactory = new ItemsSpriteFactory(game);
         }
 
-        public void AddItem(Vector2 location, string item)
+        public void AddItem(Vector2 location, ItemEnum item)
             => itemsToSpawn.Add(itemFactory.MakeItem(item, location));
 
 

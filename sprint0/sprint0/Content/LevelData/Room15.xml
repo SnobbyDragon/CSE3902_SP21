@@ -7,10 +7,10 @@
     <Dungeon ObjectName="left open door" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="right wall" LocationX="0" LocationY="320" />?
    
-<Item ObjectName="key" LocationX="416" LocationY="462" />?
+<Item ObjectName="Key" LocationX="416" LocationY="462" />?
     
     <Boss ObjectName="BlueGohma" LocationX="200" LocationY="300" />? 
-    <Item ObjectName="stepladder" LocationX="350" LocationY="350" />? 
+    <Item ObjectName="Stepladder" LocationX="350" LocationY="350" />? 
     
     <Player ObjectName="Link" LocationX="520" LocationY="340" />?
     
