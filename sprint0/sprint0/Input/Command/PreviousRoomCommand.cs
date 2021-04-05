@@ -15,8 +15,7 @@ namespace sprint0
             if (game.stateMachine.GetState().Equals(GameStateMachine.State.test))
             {
                game.stateMachine.HandleSnapRoomChange((game.RoomIndex - 1 + game.NumRooms) % game.NumRooms);
-               /* game.RoomIndex = (game.RoomIndex - 1 + game.NumRooms) % game.NumRooms; */
-               // game.ChangeRoom = true;
+
             }
         }
     }
