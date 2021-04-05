@@ -29,6 +29,7 @@ namespace sprint0
         public EnemyType Type { get => EnemyType.Patra; }
         private int damageTimer = 0;
         private readonly int damageTime = 10;
+        private bool minionsExist;
 
         public Patra(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -40,7 +41,7 @@ namespace sprint0
             currFrame = 0;
             totalFrames = 2;
             repeatedFrames = 2;
-
+            minionsExist = false;
             // flips to animate flying
             effects = new List<SpriteEffects>
             {
@@ -50,11 +51,6 @@ namespace sprint0
 
             // has 8 orange minions
             minions = new List<IEnemy>();
-            for (int i = 0; i < totalMinions; i++)
-            {
-                minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i, game));
-            }
-            game.Room.LoadLevel.RoomEnemies.RegisterEnemies(minions);
 
             rand = new Random();
             GenerateDest();
@@ -75,6 +71,17 @@ namespace sprint0
         public void Update()
         {
             CheckHealth();
+            if (minions.Count ==0 && !minionsExist)
+            {
+                for (int i = 0; i < totalMinions; i++)
+                {
+                    minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i, game));
+                }
+                game.Room.LoadLevel.RoomEnemies.RegisterEnemies(minions);
+                minionsExist = true;
+            }
+            
+            
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
             {
@@ -103,18 +110,19 @@ namespace sprint0
         private void CheckHealth()
         {
 
-            int minionCount = 0;
+            //int minionCount = 0;
+
             PatraMinion toRemove = null;
             foreach (PatraMinion minion in minions)
             {
-                minionCount++;
+               // minionCount++;
                 if (minion.CheckHealth() < 0)
                 {
                     toRemove = minion;
                 }
             }
             if (toRemove != null) RemoveMinion(toRemove);
-            if (minionCount == 0)
+            if (minions.Count == 0)
             {
                 canTakeDamage = true;
                 if (health < 0) Perish();

@@ -20,6 +20,7 @@ namespace sprint0
         public int Damage { get => 2; }
         private ItemSpawner itemSpawner;
         public EnemyType Type { get => EnemyType.Manhandla; }
+        private bool limbsExist;
 
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -28,16 +29,16 @@ namespace sprint0
             this.game = game;
             source = new Rectangle(69, 89, size, size); //center
             speed = 1;
-
-            limbs = new List<IEnemy>
-            {
+            limbsExist = false;
+            limbs = new List<IEnemy>();
+            /*{
                 new ManhandlaLimb(Texture, this, Direction.n, game),
                 new ManhandlaLimb(Texture, this, Direction.s, game),
                 new ManhandlaLimb(Texture, this, Direction.w, game),
                 new ManhandlaLimb(Texture, this, Direction.e, game)
             };
             game.Room.LoadLevel.RoomEnemies.RegisterEnemies(limbs);
-
+            */
             rand = new Random();
             GenerateDest();
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
@@ -52,6 +53,15 @@ namespace sprint0
         {
 
             CheckHealth();
+            if (limbs.Count == 0 && !limbsExist)
+            {
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.n, game));
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.s, game));
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.e, game));
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.w, game));
+                game.Room.LoadLevel.RoomEnemies.RegisterEnemies(limbs);
+                limbsExist = true;
+            }
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
             {
@@ -77,7 +87,9 @@ namespace sprint0
         {
             int limbCount = 0;
             ManhandlaLimb toRemove = null;
-            foreach (ManhandlaLimb limb in limbs)
+            if (limbs != null)
+            {
+                foreach (ManhandlaLimb limb in limbs)
             {
                 limbCount++;
                 if (limb.CheckHealth() < 0)
@@ -85,8 +97,9 @@ namespace sprint0
                     toRemove = limb;
                 }
             }
-            if (toRemove != null) RemoveLimb(toRemove);
-            if (limbCount == 0) Perish();
+            if (toRemove != null) RemoveLimb(toRemove);          
+            }
+            if (limbCount == 0 && limbsExist) Perish();
         }
 
         private void RemoveLimb(ManhandlaLimb limb1)
