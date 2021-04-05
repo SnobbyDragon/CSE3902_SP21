@@ -47,7 +47,7 @@ namespace sprint0
                 game.Room.Player = new DamagedLink(this, game, direction);
                 HUD.TakeDamage(damage);
                 health = HUD.Health;
-                game.Room.RoomSound.AddSoundEffect("link damaged");
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.LinkDamaged);
                 if (health <= 0) Die();
             }
         }
@@ -70,7 +70,7 @@ namespace sprint0
         private void Die()
         {
             isAlive = false;
-            game.Room.RoomSound.AddSoundEffect("link death");
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.LinkDeath);
             game.stateMachine.HandleDeath();
         }
 
@@ -124,7 +124,13 @@ namespace sprint0
 
         public void SetHUDItem(PlayerItems source, PlayerItems newItem) => HUD.SetItem(source, newItem);
         public bool HasItem(PlayerItems item) => HUD.HasItem(item);
-        public bool HasKey() => HUD.HasKeys();
+        public bool HasKey() {
+            if (game.stateMachine.GetState().Equals(GameStateMachine.State.test)) {
+                return true;
+            }else
+                return   HUD.HasKeys();
+        
+        }
         public void DecrementKey() => HUD.DecrementKey();
         public void AddToInventory(PlayerItems newItem) => HUD.AddBItem(newItem);
     }

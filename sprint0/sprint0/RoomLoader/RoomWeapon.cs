@@ -18,7 +18,7 @@ namespace sprint0
             weaponsToDie = new List<IWeapon>();
         }
 
-        public void AddWeapon(Vector2 Location, Direction dir, string item, IPlayer source)
+        public void AddWeapon(Vector2 Location, Direction dir, WeaponEnum item, IPlayer source)
             => weapons.Add(weaponFactory.MakeWeapon(item, Location, dir, source));
 
         public void RemoveWeapon(IWeapon weapon) => weaponsToDie.Add(weapon);
@@ -28,7 +28,11 @@ namespace sprint0
             foreach (IWeapon weapon in weapons)
                 if (!weapon.IsAlive()) RemoveWeapon(weapon);
         }
-
+        public void UpdateOffset(Vector2 Offset)
+        {
+            foreach (IWeapon item in weapons)
+                item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
+        }
         public void RemoveDeadTwo()
         {
             foreach (IWeapon weapon in weaponsToDie)

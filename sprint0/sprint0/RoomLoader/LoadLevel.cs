@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
@@ -22,11 +23,11 @@ namespace sprint0
         private readonly RoomSprite roomSprite;
         private readonly RoomEffect roomEffect;
 
-        public LoadLevel(Game1 game)
+        public LoadLevel(Game1 game, int roomIndex)
         {
             roomProjectile = new RoomProjectile(game);
             roomWeapon = new RoomWeapon(game);
-            roomBlocks = new RoomBlocks(game);
+            roomBlocks = new RoomBlocks(game, roomIndex);
             roomItems = new RoomItems(game);
             roomNPCs = new RoomNPCs();
             roomEnemies = new RoomEnemies(game);
@@ -43,6 +44,16 @@ namespace sprint0
             roomNPCs.NPCs = roomElements.Item5;
             roomItems.Items = roomElements.Item6;
             roomEffect.RoomEffects = roomElements.Item7;
+        }
+
+        public void UpdateOffsets(Vector2 Offset) {
+            roomSprite.UpdateOffset(Offset);
+            roomProjectile.UpdateOffset(Offset);
+            roomBlocks.UpdateOffset(Offset);
+            roomEnemies.UpdateOffset(Offset);
+            roomNPCs.UpdateOffset(Offset);
+            roomItems.UpdateOffset(Offset);
+            roomEffect.UpdateOffset(Offset);
         }
 
         public void AddNew()

@@ -20,7 +20,7 @@ namespace sprint0
             itemFactory = new ItemsSpriteFactory(game);
         }
 
-        public void AddItem(Vector2 location, string item)
+        public void AddItem(Vector2 location, ItemEnum item)
             => itemsToSpawn.Add(itemFactory.MakeItem(item, location));
 
 
@@ -28,6 +28,11 @@ namespace sprint0
         {
             foreach (IItem item in items)
                 item.Update();
+        }
+
+        public void UpdateOffset(Vector2 Offset) {
+            foreach (IItem item in items)
+                item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
         }
 
         public void ItemSpawnUpdate()

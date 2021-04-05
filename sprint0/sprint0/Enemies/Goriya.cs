@@ -61,8 +61,8 @@ namespace sprint0
         private void UseBoomerang()
         {
             Vector2 offsetPos = Location.Location.ToVector2();
-            room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, this.direction, "boomerang", this);
-            room.RoomSound.AddSoundEffect("boomerang");
+            room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, this.direction, ProjectileEnum.Boomerang, this);
+            room.RoomSound.AddSoundEffect(SoundEnum.Boomerang);
         }
 
         public override void Update()

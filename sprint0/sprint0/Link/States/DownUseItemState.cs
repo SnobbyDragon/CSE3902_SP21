@@ -14,7 +14,7 @@ namespace sprint0
         public DownUseItemState(IPlayer player)
         {
             this.player = player;
-            sprite = Room.PlayerFactory.MakeSprite("link down item", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkDownItem, player.Pos);
         }
 
         public void Update()

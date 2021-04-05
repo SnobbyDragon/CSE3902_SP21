@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
@@ -35,6 +36,13 @@ namespace sprint0
         public void AddOverlay(ISprite sprite) => spritesToAdd.Add(sprite);
 
         public void RemoveOverlay(ISprite sprite) => spritesToRemove.Add(sprite);
+
+        public void UpdateOffset(Vector2 Offset)
+        {
+            AddNew();
+            foreach (ISprite item in sprites)
+                item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
+        }
 
         public void Update()
         {

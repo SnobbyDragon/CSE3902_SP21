@@ -20,6 +20,7 @@ namespace sprint0
         public int Damage { get => 2; }
         private ItemSpawner itemSpawner;
         public EnemyType Type { get => EnemyType.Manhandla; }
+        private bool limbsExist;
 
         public Manhandla(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -28,16 +29,9 @@ namespace sprint0
             this.game = game;
             source = new Rectangle(69, 89, size, size); //center
             speed = 1;
-
-            limbs = new List<IEnemy>
-            {
-                new ManhandlaLimb(Texture, this, Direction.n, game),
-                new ManhandlaLimb(Texture, this, Direction.s, game),
-                new ManhandlaLimb(Texture, this, Direction.w, game),
-                new ManhandlaLimb(Texture, this, Direction.e, game)
-            };
-            game.Room.LoadLevel.RoomEnemies.RegisterEnemies(limbs);
-
+            limbsExist = false;
+            limbs = new List<IEnemy>();
+            
             rand = new Random();
             GenerateDest();
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
@@ -52,6 +46,15 @@ namespace sprint0
         {
 
             CheckHealth();
+            if (limbs.Count == 0 && !limbsExist)
+            {
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.n, game));
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.s, game));
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.e, game));
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.w, game));
+                game.Room.LoadLevel.RoomEnemies.RegisterEnemies(limbs);
+                limbsExist = true;
+            }
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
             {
@@ -77,7 +80,9 @@ namespace sprint0
         {
             int limbCount = 0;
             ManhandlaLimb toRemove = null;
-            foreach (ManhandlaLimb limb in limbs)
+            if (limbs != null)
+            {
+                foreach (ManhandlaLimb limb in limbs)
             {
                 limbCount++;
                 if (limb.CheckHealth() < 0)
@@ -85,8 +90,9 @@ namespace sprint0
                     toRemove = limb;
                 }
             }
-            if (toRemove != null) RemoveLimb(toRemove);
-            if (limbCount == 0) Perish();
+            if (toRemove != null) RemoveLimb(toRemove);          
+            }
+            if (limbCount == 0 && limbsExist) Perish();
         }
 
         private void RemoveLimb(ManhandlaLimb limb1)
@@ -106,19 +112,23 @@ namespace sprint0
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(GetType().Name, Location.Location.ToVector2());
+            itemSpawner.SpawnItem(ParseEnemy(GetType().Name), Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), "death");
-            game.Room.RoomSound.AddSoundEffect("enemy death");
+            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), EffectEnum.Death);
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDeath);
         }
 
         private void GenerateDest()
         {
-            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))
                 );
         }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
+        private SoundEnum ParseSound(string sound)
+             => (SoundEnum)Enum.Parse(typeof(SoundEnum), sound, true);
     }
 }

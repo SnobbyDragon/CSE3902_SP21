@@ -4,10 +4,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 //Author: Hannah Johnson and co
 /*
- * Last updated: 3/28/21 by he.1528
+ * Last updated: 04/04/21 by shah.1440
  */
 namespace sprint0
 {
+    public enum ProjectileEnum
+    {
+        Boomerang, Arrow, SwordBeam, Flame
+    }
     public class ProjectileSpriteFactory
     {
         private readonly Texture2D texture1, texture2, texture3, texture4;
@@ -21,14 +25,14 @@ namespace sprint0
             texture4 = game.Content.Load<Texture2D>("Images/Bosses");
         }
 
-        public IProjectile MakeProjectile(string spriteType, Vector2 location, Direction dir, IEntity shooter)
+        public IProjectile MakeProjectile(ProjectileEnum spriteType, Vector2 location, Direction dir, IEntity shooter)
         {
             return spriteType switch
             {
-                "boomerang" => new Boomerang(texture3, location, dir, shooter, game.Room),
-                "arrow" => new Arrow(texture1, location, dir, shooter, game.Room),
-                "sword beam" => new SwordBeam(texture2, location, dir, shooter, game.Room),
-                "flame" => new FlameProjectile(texture2, location, dir, shooter),
+                ProjectileEnum.Boomerang => new Boomerang(texture3, location, dir, shooter, game.Room),
+                ProjectileEnum.Arrow => new Arrow(texture1, location, dir, shooter, game.Room),
+                ProjectileEnum.SwordBeam => new SwordBeam(texture2, location, dir, shooter, game.Room),
+                ProjectileEnum.Flame => new FlameProjectile(texture2, location, dir, shooter),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };
         }

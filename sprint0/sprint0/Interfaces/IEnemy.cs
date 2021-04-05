@@ -12,5 +12,6 @@ namespace sprint0
         public void ChangeDirection();
         public void TakeDamage(int damage);
         public void Perish();
+        public EnemyEnum ParseEnemy(string enemy);
     }
 }

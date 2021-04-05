@@ -87,14 +87,10 @@ namespace sprint0
                 (int)(size * Game1.Scale),
                 (int)(size * Game1.Scale));
             if (CanShoot())
-            {
                 ShootFireball();
-            }
         }
 
-        public void ChangeDirection()
-        {
-        }
+        public void ChangeDirection() { }
 
         public void TakeDamage(int damage)
         {
@@ -111,10 +107,7 @@ namespace sprint0
             return health;
         }
 
-        public void Perish()
-        {
-            game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-        }
+        public void Perish() => game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
 
         private bool CanShoot()
         {
@@ -131,8 +124,8 @@ namespace sprint0
         }
 
         private void ShootFireball()
-        {
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir.ToVector2(), this);
-        }
+            => game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir.ToVector2(), this);
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }
 }

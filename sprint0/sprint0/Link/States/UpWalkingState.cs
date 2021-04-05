@@ -14,7 +14,7 @@ namespace sprint0
         public UpWalkingState(IPlayer player)
         {
             this.player = player;
-            sprite = Room.PlayerFactory.MakeSprite("link up walking", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkUpWalking, player.Pos);
         }
 
         public void Stop()
@@ -44,7 +44,8 @@ namespace sprint0
             sprite.Draw(spritebatch);
         }
 
-        public void UseItem() {
+        public void UseItem()
+        {
             player.State = new UpUseItemState(player);
         }
     }

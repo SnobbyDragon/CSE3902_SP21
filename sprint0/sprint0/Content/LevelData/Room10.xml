@@ -1,38 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <XnaContent>?
 
-     <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />?
-     <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />?
+    <Dungeon ObjectName="RoomBorder" LocationX="0" LocationY="140" />?
+    <Dungeon ObjectName="RoomFloor" LocationX="80" LocationY="220" />?
 
-    <Dungeon ObjectName="up wall" LocationX="280" LocationY="500" />?    
-    <Dungeon ObjectName="down locked door" LocationX="280" LocationY="140" />?    
-    <Dungeon ObjectName="left wall" LocationX="560" LocationY="320" />?    
-    <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />?
-   <Block ObjectName="block" LocationX="120" LocationY="260" />?   
-    <Block ObjectName="block" LocationX="200" LocationY="260" />?  
-    <Block ObjectName="block" LocationX="280" LocationY="260" />? 
-    <Block ObjectName="block" LocationX="320" LocationY="260" />?  
-    <Block ObjectName="block" LocationX="400" LocationY="260" />?  
-    <Block ObjectName="block" LocationX="480" LocationY="260" />? 
+    <Dungeon ObjectName="UpWall" LocationX="280" LocationY="500" />?    
+    <Dungeon ObjectName="DownLockedDoor" LocationX="280" LocationY="140" />?    
+    <Dungeon ObjectName="LeftWall" LocationX="560" LocationY="320" />?    
+    <Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
+   <Block ObjectName="Block" LocationX="120" LocationY="260" />?   
+    <Block ObjectName="Block" LocationX="200" LocationY="260" />?  
+    <Block ObjectName="Block" LocationX="280" LocationY="260" />? 
+    <Block ObjectName="Block" LocationX="320" LocationY="260" />?  
+    <Block ObjectName="Block" LocationX="400" LocationY="260" />?  
+    <Block ObjectName="Block" LocationX="480" LocationY="260" />? 
     
-    <Block ObjectName="block" LocationX="120" LocationY="340" />?   
-    <Block ObjectName="block" LocationX="200" LocationY="340" />?  
-    <Block ObjectName="block" LocationX="280" LocationY="340" />? 
-    <Block ObjectName="block" LocationX="320" LocationY="340" />?  
-    <Block ObjectName="block" LocationX="400" LocationY="340" />?  
-    <Block ObjectName="block" LocationX="480" LocationY="340" />? 
+    <Block ObjectName="Block" LocationX="120" LocationY="340" />?   
+    <Block ObjectName="Block" LocationX="200" LocationY="340" />?  
+    <Block ObjectName="Block" LocationX="280" LocationY="340" />? 
+    <Block ObjectName="Block" LocationX="320" LocationY="340" />?  
+    <Block ObjectName="Block" LocationX="400" LocationY="340" />?  
+    <Block ObjectName="Block" LocationX="480" LocationY="340" />? 
     
-    <Block ObjectName="block" LocationX="120" LocationY="420" />?   
-    <Block ObjectName="block" LocationX="200" LocationY="420" />?  
-    <Block ObjectName="block" LocationX="280" LocationY="420" />? 
-    <Block ObjectName="block" LocationX="320" LocationY="420" />?  
-    <Block ObjectName="block" LocationX="400" LocationY="420" />?  
-    <Block ObjectName="block" LocationX="480" LocationY="420" />? 
+    <Block ObjectName="Block" LocationX="120" LocationY="420" />?   
+    <Block ObjectName="Block" LocationX="200" LocationY="420" />?  
+    <Block ObjectName="Block" LocationX="280" LocationY="420" />? 
+    <Block ObjectName="Block" LocationX="320" LocationY="420" />?  
+    <Block ObjectName="Block" LocationX="400" LocationY="420" />?  
+    <Block ObjectName="Block" LocationX="480" LocationY="420" />? 
     
-    <Enemy ObjectName="wallmaster" LocationX="520" LocationY="380" />? 
-    <Enemy ObjectName="wallmaster" LocationX="520" LocationY="460" />? 
-    <Enemy ObjectName="wallmaster" LocationX="520" LocationY="220" />? 
-    <Enemy ObjectName="wallmaster" LocationX="440" LocationY="460" />? 
+    <Enemy ObjectName="Wallmaster" LocationX="520" LocationY="380" />? 
+    <Enemy ObjectName="Wallmaster" LocationX="520" LocationY="460" />? 
+    <Enemy ObjectName="Wallmaster" LocationX="520" LocationY="220" />? 
+    <Enemy ObjectName="Wallmaster" LocationX="440" LocationY="460" />? 
     
      <Player ObjectName="Link" LocationX="82" LocationY="340" />?
     

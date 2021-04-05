@@ -39,9 +39,6 @@ namespace sprint0
             return SoundEffectInstance.State != SoundState.Playing;
         }
 
-        public static void ToggleMute()
-        {
-            isMuted = !isMuted;
-        }
+        public static void ToggleMute() => isMuted = !isMuted;
     }
 }

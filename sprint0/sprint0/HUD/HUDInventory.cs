@@ -50,7 +50,7 @@ namespace sprint0
 
         public void AddAItem(PlayerItems newItem)
         {
-            if (!aItem.Contains(newItem) && LocationMapping.ContainsKey(newItem))
+            if (!aItem.Contains(newItem) && ItemMap.ContainsKey(newItem))
                 aItem.Add(newItem);
         }
 
