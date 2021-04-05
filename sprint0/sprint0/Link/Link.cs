@@ -11,8 +11,7 @@ namespace sprint0
         private readonly Game1 game;
         private IPlayerState state;
         public static Vector2 position;
-        private int health = 32;
-        private readonly int maxHealth = 32;
+        private int health = 28, maxHealth = 28;
         private readonly int speed = 2;
         private bool isAlive;
         private Direction direction = Direction.n;
@@ -60,7 +59,11 @@ namespace sprint0
             if (inventoryItem == PlayerItems.BlueRupee)
                 HUD.ChangeNum(PlayerItems.Rupee, BlueRupee.Value);
             else if (inventoryItem == PlayerItems.HeartContainer)
+            {
                 HUD.Increment(PlayerItems.Heart);
+                maxHealth += 2;
+            }
+
             else HUD.Increment(inventoryItem);
         }
 

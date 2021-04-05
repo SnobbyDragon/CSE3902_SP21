@@ -37,7 +37,7 @@ namespace sprint0
         }
         private void HandleStairs(IPlayer link, IBlock block)
         {
-            if (block.Location.Contains(new Rectangle((int)link.Pos.X, (int)link.Pos.Y, linkSize, linkSize)))
+            if (block.Location.Contains(new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2)))
             {
                 game.RoomIndex = basement;
 

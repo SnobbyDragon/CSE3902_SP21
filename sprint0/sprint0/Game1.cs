@@ -77,6 +77,7 @@ namespace sprint0
 
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
+
             Rooms = new Dictionary<int, Room>();
             RoomIndex = 12;
 
@@ -95,8 +96,8 @@ namespace sprint0
             Rooms.Clear();
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 12;
-           // ChangeRoom = true;
+            RoomIndex = 18;
+
             ResetManagers();
             LoadContent();
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
@@ -130,19 +131,19 @@ namespace sprint0
                             if (d == Direction.w) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + westOffset);
                             if (d == Direction.e) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + eastOffset);
                         }
-                       
+
                     }
                 }
                 frontier = newFrontier;
-                    
-            
+
+
             }
  /*           Rooms[18] = new Room(_spriteBatch, this, 18, Rooms[1].GetOffset() + westOffset);
             Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[18].GetOffset() + westOffset);*/
             foreach (Room rm in Rooms.Values)
                 rm.LoadContent();
 
-            
+
         }
 
         public void Slide(Direction d, int ammount) {
@@ -217,6 +218,6 @@ namespace sprint0
                 state.Equals(GameStateMachine.State.test) ||
                 state.Equals(GameStateMachine.State.pause);
         }
-       
+
     }
 }

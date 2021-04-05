@@ -14,18 +14,20 @@ namespace sprint0
         public int CurrentNum { get => currentHealth; }
         private readonly int[] heartState;
         private readonly List<Rectangle> sources;
-        private readonly int sideLength = 8, heartType = 3, heartsPerRow = 8,
+        private const int heartType = 3;
+        private readonly int sideLength = 8, heartsPerRow = 8,
             healthToHeart = 2, reset = 0, xOffset = 627,
             yOffset = 117, maxPossibleHearts = 32;
-        private int currentHealth, numHearts = 15, maxHealth = 30;
+        private int currentHealth, numHearts, maxHealth = 28;
 
         public HeartHUD(Texture2D texture, Vector2 location)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, 0, 0);
             Texture = texture;
-            heartState = new int[3] { reset, reset, numHearts };
+            numHearts = maxHealth / 2;
+            heartState = new int[heartType] { reset, reset, numHearts };
             ResetNum();
-            int totalFrames = 3;
+            int totalFrames = heartType;
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, sideLength, sideLength, totalFrames);
         }
 

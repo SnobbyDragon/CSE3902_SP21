@@ -28,6 +28,7 @@ namespace sprint0
             HandleLinkItemCollisions(link, items);
             HandleEnemyEnemyCollisions(enemies);
             HandleEnemyBlockCollisions(enemies, blocks);
+            HandleEnemyBorderCollisions(enemies,borderSprites);
             HandleEnemyWeaponCollisions(enemies, weapons);
             HandleEnemyProjectileCollisions(enemies, projectiles);
             HandleBlockBlockCollisions(blocks);
@@ -133,7 +134,20 @@ namespace sprint0
                 }
             }
         }
-
+        private void HandleEnemyBorderCollisions(List<IEnemy> enemies, List<ISprite> borderSprites)
+        {
+            EnemyBorderCollisionHandler collisionHandler = new EnemyBorderCollisionHandler();
+            foreach (IEnemy enemy in enemies) {
+                foreach (ISprite border in borderSprites)
+                {
+                    Collision side = collisionDetector.DetectCollision(enemy, border);
+                    if (side != Collision.None)
+                    {
+                        collisionHandler.HandleCollision(enemy, border, side.ToDirection());
+                    }
+                }
+            }
+        }
         private void HandleEnemyEnemyCollisions(List<IEnemy> enemies)
         {
             EnemyEnemyCollisionHandler collisionHandler = new EnemyEnemyCollisionHandler();
@@ -224,6 +238,8 @@ namespace sprint0
                 }
             }
         }
+
+        
 
         private void HandleWeaponBorderCollision(List<IWeapon> weapons, List<ISprite> borderSprites)
         {
