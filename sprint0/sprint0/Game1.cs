@@ -79,7 +79,7 @@ namespace sprint0
             VisitedRooms = new List<int>();
 
             Rooms = new Dictionary<int, Room>();
-            RoomIndex = 12;
+            RoomIndex = 16;
 
             base.Initialize();
         }
@@ -96,7 +96,7 @@ namespace sprint0
             Rooms.Clear();
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 18;
+            RoomIndex = 16;
 
             ResetManagers();
             LoadContent();
