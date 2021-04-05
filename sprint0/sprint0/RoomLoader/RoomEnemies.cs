@@ -32,7 +32,7 @@ namespace sprint0
 
         public void AddEnemy(Vector2 location, EnemyEnum enemy)
         {
-            if (enemy.Equals("dodongo") || enemy.Equals("aquamentus"))
+            if (enemy == EnemyEnum.Dodongo || enemy == EnemyEnum.Aquamentus)
                 enemiesToSpawn.Add(bossFactory.MakeSprite(enemy, location));
             else
                 enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));

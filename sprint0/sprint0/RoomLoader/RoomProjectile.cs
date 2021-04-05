@@ -18,7 +18,7 @@ namespace sprint0
             projectiles = new List<IProjectile>();
         }
 
-        public void AddProjectile(Vector2 Location, Direction dir, string item, IEntity source)
+        public void AddProjectile(Vector2 Location, Direction dir, ProjectileEnum item, IEntity source)
             => projectiles.Add(projectileFactory.MakeProjectile(item, Location, dir, source));
 
         public void AddFireball(Vector2 location, Vector2 dir, IEntity source)
