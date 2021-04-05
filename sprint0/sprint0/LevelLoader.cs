@@ -61,7 +61,6 @@ namespace sprint0
 
         public void RoomSetup(XmlReader xmlReader, FileStream fileStream)
         {
-
             using (xmlReader)
             {
                 while (xmlReader.Read())
@@ -94,24 +93,24 @@ namespace sprint0
                     items.Add(itemFactory.MakeItem(ParseItem(objectName), location));
                     break;
                 case "Boss":
-                    if (objectName.Equals("dodongo") || objectName.Equals("aquamentus"))
+                    if (objectName.Equals("Aodongo") || objectName.Equals("Aquamentus"))
                         effects.Add(effectFactory.MakeSpawn(ParseEnemy(objectName), location));
                     else
                         enemies.Add(bossFactory.MakeSprite(ParseEnemy(objectName), location));
                     break;
                 case "Dungeon":
-                    if (objectName.Contains("bombed opening"))
-                        sprites.Add(dungeonFactory.MakeSprite(objectName.Replace("bombed opening", "wall"), location, true));
+                    if (objectName.Contains("BombedOpening"))
+                        sprites.Add(dungeonFactory.MakeSprite(ParseDungeon(objectName.Replace("BombedOpening", "Wall")), location, true));
                     else
-                        sprites.Add(dungeonFactory.MakeSprite(objectName, location));
+                        sprites.Add(dungeonFactory.MakeSprite(ParseDungeon(objectName), location));
                     break;
                 case "Block":
                     string width = xmlReader.GetAttribute("Width");
                     string height = xmlReader.GetAttribute("Height");
                     if (width != null && height != null)
-                        blocks.Add(dungeonFactory.MakeBlock(objectName, location, int.Parse(width), int.Parse(height)));
+                        blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(width), int.Parse(height)));
                     else
-                        blocks.Add(dungeonFactory.MakeBlock(objectName, location));
+                        blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location));
                     break;
                 case "NPC":
                     npcs.Add(npcFactory.MakeSprite(ParseNPC(objectName), location));
@@ -131,5 +130,7 @@ namespace sprint0
              => (ItemEnum)Enum.Parse(typeof(ItemEnum), item, true);
         private DungeonEnum ParseDungeon(string dungeon)
              => (DungeonEnum)Enum.Parse(typeof(DungeonEnum), dungeon, true);
+        private BlockEnum ParseBlock(string block)
+             => (BlockEnum)Enum.Parse(typeof(BlockEnum), block, true);
     }
 }

@@ -20,17 +20,18 @@ namespace sprint0
             blocksToRemove = new List<IBlock>();
             blocksToAdd = new List<IBlock>();
             this.game = game;
-            
+
         }
 
-        public IBlock AddBlock(Vector2 location, string block, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
+        public IBlock AddBlock(Vector2 location, BlockEnum block, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
         {
             IBlock newBlock = dungeonFactory.MakeBlock(block, location, width, height);
             blocksToAdd.Add(newBlock);
             return newBlock;
         }
 
-        public void RemoveBlock(IBlock block) {
+        public void RemoveBlock(IBlock block)
+        {
             if (block != null) blocksToRemove.Add(block);
         }
 
@@ -66,17 +67,20 @@ namespace sprint0
                 block.Draw(spriteBatch);
         }
 
-        public void SwitchToMovableBlock() {
+        public void SwitchToMovableBlock()
+        {
             IBlock blockToSwitch = null;
-            foreach (IBlock block in blocks) {
+            foreach (IBlock block in blocks)
+            {
                 if (block is Block) blockToSwitch = block;
             }
             Vector2 location = blockToSwitch.Location.Location.ToVector2();
             RemoveBlock(blockToSwitch);
-            AddBlock(location, "movable block 5");
+            AddBlock(location, BlockEnum.MovableBlock5);
         }
 
-        public void OpenDoorWithBlock() {
+        public void OpenDoorWithBlock()
+        {
             foreach (IBlock block in blocks)
             {
                 if (block is MovableBlock5 && !((MovableBlock5)block).IsMovable())
