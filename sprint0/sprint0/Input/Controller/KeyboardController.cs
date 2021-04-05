@@ -34,6 +34,8 @@ namespace sprint0
             RegisterCommand(Keys.D1, new OneCommand(game));
             RegisterCommand(Keys.D2, new TwoCommand(game));
             RegisterCommand(Keys.D3, new ThreeCommand(game));
+            RegisterCommand(Keys.O, new OptionsCommand(game));
+            RegisterCommand(Keys.Enter, new EnterCommand(game));
             RegisterCommand(Keys.D4, new FourCommand(game));
             RegisterCommand(Keys.E, new PauseCommand(game));
             RegisterCommand(Keys.Space, new StartGameCommand(game));

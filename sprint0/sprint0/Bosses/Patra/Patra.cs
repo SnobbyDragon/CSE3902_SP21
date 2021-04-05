@@ -51,9 +51,6 @@ namespace sprint0
 
             // has 8 orange minions
             minions = new List<IEnemy>();
-
-            //for (int i = 0; i < totalMinions; i++)
-                //minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i, game));
             game.Room.LoadLevel.RoomEnemies.RegisterEnemies(minions);
 
             rand = new Random();

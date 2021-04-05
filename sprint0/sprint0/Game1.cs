@@ -80,7 +80,7 @@ namespace sprint0
             VisitedRooms = new List<int>();
 
             Rooms = new Dictionary<int, Room>();
-            RoomIndex = 5;
+            RoomIndex = 4;
 
             base.Initialize();
         }
@@ -97,7 +97,7 @@ namespace sprint0
             Rooms.Clear();
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 5;
+            RoomIndex = 4;
 
             ResetManagers();
             LoadContent();
@@ -153,7 +153,7 @@ namespace sprint0
         }
 
         public void Slide(Direction d, int ammount) {
-            Vector2 offst = new Vector2(0, 0);
+            Vector2 offst = zeroVector;
             ammount = System.Math.Abs(ammount);
             if (d == Direction.n) {
                 offst.Y = 1 * ammount;

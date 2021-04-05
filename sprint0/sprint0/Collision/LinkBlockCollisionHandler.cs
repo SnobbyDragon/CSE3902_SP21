@@ -39,7 +39,7 @@ namespace sprint0
         {
             if (block.Location.Contains(new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2)))
             {
-                game.RoomIndex = basement;
+                game.stateMachine.HandleSnapRoomChange(basement);
 
                 link.Direction = Direction.s;
                 link.State = new DownIdleState(link);
@@ -49,8 +49,8 @@ namespace sprint0
         {
             if (link.Pos.Y < Game1.HUDHeight * Game1.Scale)
             {
-                game.RoomIndex = stairsRoom;
-
+                game.stateMachine.HandleSnapRoomChange(stairsRoom);
+                link.Pos = new Vector2(200,200);
                 link.Direction = Direction.e;
                 link.State = new LeftIdleState(link);
             }
