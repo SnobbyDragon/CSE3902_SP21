@@ -131,7 +131,7 @@ namespace sprint0
 
         public void EatBomb()
         {
-            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             bombsEaten++;
             eatingCounter = 1;
             if (direction == Direction.s)
@@ -202,5 +202,7 @@ namespace sprint0
             currentFrameRL = repeatedFrames;
             Location = new Rectangle(Location.X, Location.Y, scaledWidth, scaledSideLength);
         }
+        private SoundEnum ParseSound(string sound)
+             => (SoundEnum)Enum.Parse(typeof(SoundEnum), sound, true);
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 /*
- * Last updated: 3/26/21 by shah.1440
+ * Last updated: 04/04/21 by shah.1440
  */
 namespace sprint0
 {
@@ -43,26 +43,26 @@ namespace sprint0
         public override void Draw(SpriteBatch spriteBatch)
         {
 
-                if (damageTimer % 2 == 0)
-                  spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
+            if (damageTimer % 2 == 0)
+                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
         }
 
         public override void Update()
         {
 
-                CheckHealth();
-                if (CanChangeDirection())
-                    ChangeDirection();
-                Move();
-                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            
-            if (CanShoot())
-                    ShootFireballs();
-                if (damageTimer > 0)
-                    damageTimer--;
+            CheckHealth();
+            if (CanChangeDirection())
+                ChangeDirection();
+            Move();
+            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
-            
-            
+            if (CanShoot())
+                ShootFireballs();
+            if (damageTimer > 0)
+                damageTimer--;
+
+
+
         }
 
         private void Move()
@@ -97,7 +97,7 @@ namespace sprint0
             if (damageTimer == 0)
             {
                 health -= damage;
-                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDamaged);
                 damageTimer = damageTime;
             }
         }
@@ -111,12 +111,14 @@ namespace sprint0
 
         private void ShootFireballs()
         {
-            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             Vector2 dir = Link.position - Location.Center.ToVector2();
             dir.Normalize();
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))), this); // 30 degrees up
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))), this); // 30 degrees down
         }
+        private SoundEnum ParseSound(string sound)
+             => (SoundEnum)Enum.Parse(typeof(SoundEnum), sound, true);
     }
 }

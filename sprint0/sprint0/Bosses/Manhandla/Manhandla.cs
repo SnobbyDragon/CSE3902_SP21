@@ -119,19 +119,23 @@ namespace sprint0
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(GetType().Name, Location.Location.ToVector2());
+            itemSpawner.SpawnItem(ParseEnemy(GetType().Name), Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), "death");
-            game.Room.RoomSound.AddSoundEffect("enemy death");
+            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), EffectEnum.Death);
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDeath);
         }
 
         private void GenerateDest()
         {
-            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))
                 );
         }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
+        private SoundEnum ParseSound(string sound)
+             => (SoundEnum)Enum.Parse(typeof(SoundEnum), sound, true);
     }
 }

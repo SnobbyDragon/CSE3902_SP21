@@ -35,12 +35,12 @@ namespace sprint0
         {
             link.State.HandleSword();
             Vector2 offsetPos = link.Pos + swordOffsets[link.Direction];
-            game.Room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, "sword", link);
-            game.Room.RoomSound.AddSoundEffect("sword slash");
+            game.Room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, WeaponEnum.Sword, link);
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.SwordSlash);
             if (beam)
             {
-                game.Room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, "sword beam", link);
-                game.Room.RoomSound.AddSoundEffect("sword shoot");
+                game.Room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, ProjectileEnum.SwordBeam, link);
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.SwordShoot);
             }
         }
 
@@ -67,29 +67,29 @@ namespace sprint0
         private void UseArrow()
         {
             Vector2 offsetPos = link.Pos + arrowOffsets[link.Direction];
-            game.Room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, "arrow", link);
-            game.Room.RoomSound.AddSoundEffect("arrow");
+            game.Room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, ProjectileEnum.Arrow, link);
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.Arrow);
         }
 
         private void UseBomb()
         {
             Vector2 offsetPos = link.Pos + bombOffsets[link.Direction];
-            game.Room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, "bomb", link);
-            game.Room.RoomSound.AddSoundEffect("use bomb");
+            game.Room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, WeaponEnum.Bomb, link);
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.UseBomb);
         }
 
         private void UseBoomerang()
         {
             Vector2 offsetPos = link.Pos + boomerangOffsets[link.Direction];
-            game.Room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, "boomerang", link);
-            game.Room.RoomSound.AddSoundEffect("boomerang");
+            game.Room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, ProjectileEnum.Boomerang, link);
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.Boomerang);
         }
 
         private void UseCandle()
         {
             Vector2 offsetPos = link.Pos + linkSize * link.Direction.ToVector2();
-            game.Room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, "flame", link);
-            game.Room.RoomSound.AddSoundEffect("candle");
+            game.Room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, ProjectileEnum.Flame, link);
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.Candle);
         }
     }
 }

@@ -62,7 +62,7 @@ namespace sprint0
                 if (deathCounter == 0)
                 {
                     new GanonFireballExplosion(Texture, this, game);
-                    game.Room.LoadLevel.RoomItems.AddItem(Location.Center.ToVector2(), "ganontriforceashes");
+                    game.Room.LoadLevel.RoomItems.AddItem(Location.Center.ToVector2(), ItemEnum.GanonTriforceAshes);
                     game.Room.LoadLevel.RoomEffect.AddEffect(new GanonDeathCloud(Texture, Location.Center.ToVector2()));
                 }
                 deathCounter++;
@@ -96,14 +96,10 @@ namespace sprint0
             counter++;
 
             if (CanShoot())
-            {
                 ShootFireball();
-            }
         }
 
-        public void ChangeDirection()
-        {
-        }
+        public void ChangeDirection() { }
 
         private void CheckHealth()
         {
@@ -112,19 +108,20 @@ namespace sprint0
         }
         public void TakeDamage(int damage)
         {
-            if (damageTimer == 0) {
+            if (damageTimer == 0)
+            {
                 damageTimer = damageTime;
                 health -= damage;
                 isVisible = true;
-                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDamaged);
             }
         }
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(GetType().Name, Location.Location.ToVector2());
+            itemSpawner.SpawnItem(ParseEnemy(GetType().Name), Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.RoomSound.AddSoundEffect("enemy death");
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDeath);
         }
 
         private bool CanShoot()
@@ -136,7 +133,7 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             Vector2 dir = game.Room.Player.Pos - Location.Center.ToVector2();
             dir.Normalize();
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Location.ToVector2(), dir, this);
@@ -150,5 +147,9 @@ namespace sprint0
                 );
             Location = new Rectangle((int)loc.X, (int)loc.Y, Location.Width, Location.Height);
         }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
+        private SoundEnum ParseSound(string sound)
+             => (SoundEnum)Enum.Parse(typeof(SoundEnum), sound, true);
     }
 }

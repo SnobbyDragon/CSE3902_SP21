@@ -52,6 +52,11 @@ namespace sprint0
             // has 8 orange minions
             minions = new List<IEnemy>();
 
+            for (int i = 0; i < totalMinions; i++)
+                minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i, game));
+            game.Room.LoadLevel.RoomEnemies.RegisterEnemies(minions);
+
+
             rand = new Random();
             GenerateDest();
 
@@ -64,7 +69,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(damageTimer % 2 == 0)
+            if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), effects[currFrame / repeatedFrames], 0);
         }
 
@@ -84,9 +89,7 @@ namespace sprint0
             
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
-            {
                 GenerateDest();
-            }
             else if (moveCounter == moveDelay)
             {
                 dist.Normalize();
@@ -103,9 +106,7 @@ namespace sprint0
 
 
         public void ChangeDirection()
-        {
-            GenerateDest();
-        }
+            => GenerateDest();
 
         private void CheckHealth()
         {
@@ -117,26 +118,18 @@ namespace sprint0
             {
                // minionCount++;
                 if (minion.CheckHealth() < 0)
-                {
                     toRemove = minion;
-                }
             }
             if (toRemove != null) RemoveMinion(toRemove);
             if (minions.Count == 0)
             {
                 canTakeDamage = true;
                 if (health < 0) Perish();
-
             }
-
-
         }
 
         private void RemoveMinion(PatraMinion minion1)
-        {
-            minions.Remove(minion1);
-        }
-
+            => minions.Remove(minion1);
 
         public void TakeDamage(int damage)
         {
@@ -144,26 +137,30 @@ namespace sprint0
             {
                 damageTimer = damageTime;
                 health -= damage;
-                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDamaged);
             }
         }
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(this.GetType().Name, this.Location.Location.ToVector2());
+            itemSpawner.SpawnItem(ParseEnemy(this.GetType().Name), this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), "death");
-            game.Room.RoomSound.AddSoundEffect("enemy death");
+            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), EffectEnum.Death);
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDeath);
         }
 
         // generates a new destination
         private void GenerateDest()
         {
-            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))
                 );
         }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
+        private SoundEnum ParseSound(string sound)
+             => (SoundEnum)Enum.Parse(typeof(SoundEnum), sound, true);
     }
 }

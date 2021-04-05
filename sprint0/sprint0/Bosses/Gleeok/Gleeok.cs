@@ -93,15 +93,17 @@ if ((health < 0 && countDeadNecks == necks.Count) || countDeadNecks == necks.Cou
         public void TakeDamage(int damage)
         {
             health -= damage;
-            game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDamaged);
         }
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(GetType().Name, Location.Location.ToVector2());
+            itemSpawner.SpawnItem(ParseEnemy(GetType().Name), Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), "death");
-            game.Room.RoomSound.AddSoundEffect("enemy death");
+            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), EffectEnum.Death);
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDeath);
         }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }
 }

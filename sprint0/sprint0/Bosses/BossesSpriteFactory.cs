@@ -8,7 +8,7 @@ namespace sprint0
     {
         private readonly Game1 game;
         private readonly Texture2D texture;
-        
+
 
         public BossesSpriteFactory(Game1 game)
         {
@@ -16,21 +16,20 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/Bosses");
         }
 
-        public IEnemy MakeSprite(string spriteType, Vector2 location)
+        public IEnemy MakeSprite(EnemyEnum spriteType, Vector2 location)
         {
-
             return spriteType switch
             {
-                "aquamentus" => new Aquamentus(texture, location, game),
-                "patra" => new Patra(texture, location, game),
-                "manhandla" => new Manhandla(texture, location, game),
-                "gleeok" => new Gleeok(texture, location, game),
-                "ganon" => new Ganon(texture, location, game),
-                "orange gohma" => new Gohma(texture, location, "orange", game),
-                "blue gohma" => new Gohma(texture, location, "blue", game),
-                "dodongo" => new Dodongo(texture, location, game),
-                "digdogger" => new Digdogger(texture, location, game),
-                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
+                EnemyEnum.Aquamentus => new Aquamentus(texture, location, game),
+                EnemyEnum.Patra => new Patra(texture, location, game),
+                EnemyEnum.Manhandla => new Manhandla(texture, location, game),
+                EnemyEnum.Gleeok => new Gleeok(texture, location, game),
+                EnemyEnum.Ganon => new Ganon(texture, location, game),
+                EnemyEnum.OrangeGohma => new Gohma(texture, location, "orange", game),
+                EnemyEnum.BlueGohma => new Gohma(texture, location, "blue", game),
+                EnemyEnum.Dodongo => new Dodongo(texture, location, game),
+                EnemyEnum.Digdogger => new Digdogger(texture, location, game),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
     }

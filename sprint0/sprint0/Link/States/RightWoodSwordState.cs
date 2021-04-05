@@ -12,7 +12,7 @@ namespace sprint0
         public RightWoodSwordState(IPlayer player)
         {
             this.player = player;
-            sprite = Room.PlayerFactory.MakeSprite("link right sword", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkRightSword, player.Pos);
         }
 
         public void Update()

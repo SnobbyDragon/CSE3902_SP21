@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <XnaContent>?
-    <Dungeon ObjectName="room border" LocationX="0" LocationY="140" />?
-     <Dungeon ObjectName="room floor plain" LocationX="80" LocationY="220" />?
+    <Dungeon ObjectName="RoomBorder" LocationX="0" LocationY="140" />?
+    <Dungeon ObjectName="RoomFloor" LocationX="80" LocationY="220" />?
 
-    <Dungeon ObjectName="up wall" LocationX="280" LocationY="500" />?    
-    <Dungeon ObjectName="down locked door" LocationX="280" LocationY="140" />?    
-    <Dungeon ObjectName="left open door" LocationX="560" LocationY="320" />?    
-    <Dungeon ObjectName="right open door" LocationX="0" LocationY="320" />?
+    <Dungeon ObjectName="UpWall" LocationX="280" LocationY="500" />?    
+    <Dungeon ObjectName="DownLockedDoor" LocationX="280" LocationY="140" />?    
+    <Dungeon ObjectName="LeftOpenDoor" LocationX="560" LocationY="320" />?    
+    <Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
 
-	<Block ObjectName="floor" LocationX="280" LocationY="380" />?
-    <Block ObjectName="floor" LocationX="320" LocationY="380" />?
+	<Block ObjectName="Floor" LocationX="280" LocationY="380" />?
+    <Block ObjectName="Floor" LocationX="320" LocationY="380" />?
     
-    <Block ObjectName="floor" LocationX="200" LocationY="420" />?
-    <Block ObjectName="floor" LocationX="240" LocationY="420" />?
-    <Block ObjectName="floor" LocationX="280" LocationY="420" />?
-    <Block ObjectName="floor" LocationX="320" LocationY="420" />?
-    <Block ObjectName="floor" LocationX="360" LocationY="420" />?
-    <Block ObjectName="floor" LocationX="400" LocationY="420" />?
+    <Block ObjectName="Floor" LocationX="200" LocationY="420" />?
+    <Block ObjectName="Floor" LocationX="240" LocationY="420" />?
+    <Block ObjectName="Floor" LocationX="280" LocationY="420" />?
+    <Block ObjectName="Floor" LocationX="320" LocationY="420" />?
+    <Block ObjectName="Floor" LocationX="360" LocationY="420" />?
+    <Block ObjectName="Floor" LocationX="400" LocationY="420" />?
     
-    <Block ObjectName="floor" LocationX="200" LocationY="460" />?
-    <Block ObjectName="floor" LocationX="240" LocationY="460" />?
-    <Block ObjectName="floor" LocationX="280" LocationY="460" />?
-    <Block ObjectName="floor" LocationX="320" LocationY="460" />?
-    <Block ObjectName="floor" LocationX="360" LocationY="460" />?
-    <Block ObjectName="floor" LocationX="400" LocationY="460" />?
+    <Block ObjectName="Floor" LocationX="200" LocationY="460" />?
+    <Block ObjectName="Floor" LocationX="240" LocationY="460" />?
+    <Block ObjectName="Floor" LocationX="280" LocationY="460" />?
+    <Block ObjectName="Floor" LocationX="320" LocationY="460" />?
+    <Block ObjectName="Floor" LocationX="360" LocationY="460" />?
+    <Block ObjectName="Floor" LocationX="400" LocationY="460" />?
     
-    <Block ObjectName="right statue" LocationX="120" LocationY="260" />?   
-    <Block ObjectName="right statue" LocationX="240" LocationY="260" />?  
-    <Block ObjectName="left statue" LocationX="360" LocationY="260" />?  
-    <Block ObjectName="left statue" LocationX="480" LocationY="260" />? 
+    <Block ObjectName="RightStatue" LocationX="120" LocationY="260" />?   
+    <Block ObjectName="RightStatue" LocationX="240" LocationY="260" />?  
+    <Block ObjectName="LeftStatue" LocationX="360" LocationY="260" />?  
+    <Block ObjectName="LeftStatue" LocationX="480" LocationY="260" />? 
     
-    <Block ObjectName="right statue" LocationX="120" LocationY="340" />?   
-    <Block ObjectName="right statue" LocationX="240" LocationY="340" />?  
-    <Block ObjectName="left statue" LocationX="360" LocationY="340" />?  
-    <Block ObjectName="left statue" LocationX="480" LocationY="340" />? 
+    <Block ObjectName="RightStatue" LocationX="120" LocationY="340" />?   
+    <Block ObjectName="RightStatue" LocationX="240" LocationY="340" />?  
+    <Block ObjectName="LeftStatue" LocationX="360" LocationY="340" />?  
+    <Block ObjectName="LeftStatue" LocationX="480" LocationY="340" />? 
     
-    <Block ObjectName="right statue" LocationX="120" LocationY="420" />?   
-    <Block ObjectName="right statue" LocationX="240" LocationY="420" />?     
-    <Block ObjectName="left statue" LocationX="360" LocationY="420" />?  
-    <Block ObjectName="left statue" LocationX="480" LocationY="420" />? 
+    <Block ObjectName="RightStatue" LocationX="120" LocationY="420" />?   
+    <Block ObjectName="RightStatue" LocationX="240" LocationY="420" />?     
+    <Block ObjectName="LeftStatue" LocationX="360" LocationY="420" />?  
+    <Block ObjectName="LeftStatue" LocationX="480" LocationY="420" />? 
     
     <Player ObjectName="Link" LocationX="80" LocationY="340" />?
     

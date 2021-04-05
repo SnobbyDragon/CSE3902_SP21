@@ -12,7 +12,8 @@ namespace sprint0
             xOffset = 881;
             yOffset = 11;
             GetSource();
-            CollisionBox = Room.LoadLevel.RoomBlocks.AddBlock(location, "invisible block", size, size);
+
+            CollisionBox = game.Room.LoadLevel.RoomBlocks.AddBlock(location, BlockEnum.InvisibleBlock, size, size);
         }
 
         public void OpenDoor()
