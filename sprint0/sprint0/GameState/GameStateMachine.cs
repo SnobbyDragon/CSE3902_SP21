@@ -67,11 +67,11 @@ namespace sprint0
             direction = d;
             if (d == Direction.n || d == Direction.s)
             {
-                bound = (int)(Game1.MapHeight * Game1.Scale);
+                bound = (int)(Game1.MapHeight * Game1.Scale) - 1;
             }
             if (d == Direction.e || d == Direction.w)
             {
-                bound = (int)(Game1.Width * Game1.Scale);
+                bound = (int)(Game1.Width * Game1.Scale) - 1;
             }
             state = State.changeRoom;
             game.NextRoomIndex = dest;
