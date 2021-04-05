@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace sprint0
 {
@@ -14,6 +11,7 @@ namespace sprint0
         public UpWalkingState(IPlayer player)
         {
             this.player = player;
+            player.Direction = Direction.North;
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkUpWalking, player.Pos);
         }
 
@@ -27,8 +25,9 @@ namespace sprint0
             player.State = new PickUpItemState(player);
         }
 
-        public void HandleSword()
+        public void HandleSword(LinkUseItemHelper itemHelper)
         {
+            itemHelper.UseSword(player.Health == player.MaxHealth);
             player.State = new UpWoodSwordState(player);
         }
 
@@ -44,8 +43,13 @@ namespace sprint0
             sprite.Draw(spritebatch);
         }
 
-        public void UseItem()
+        public void UseItem(LinkUseItemHelper itemHelper)
         {
+            if (player.CurrentItem != PlayerItems.None && player.CurrentItem != PlayerItems.BlueCandle)
+            {
+                player.ItemCounts[(int)player.CurrentItem]--;
+            }
+            itemHelper.UseItem();
             player.State = new UpUseItemState(player);
         }
     }

@@ -18,21 +18,6 @@ namespace sprint0
             count = 0;
         }
 
-        public void Stop()
-        {
-
-        }
-
-        public void UseItem()
-        {
-
-        }
-
-        public void HandleSword()
-        {
-
-        }
-
         public void Update()
         {
             if (count > maxCount)

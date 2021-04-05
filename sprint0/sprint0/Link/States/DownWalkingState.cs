@@ -11,6 +11,7 @@ namespace sprint0
         public DownWalkingState(IPlayer player)
         {
             this.player = player;
+            player.Direction = Direction.South;
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkDownWalking, player.Pos);
         }
 
@@ -19,8 +20,13 @@ namespace sprint0
             player.State = new DownIdleState(player);
         }
 
-        public void UseItem()
+        public void UseItem(LinkUseItemHelper itemHelper)
         {
+            if (player.CurrentItem != PlayerItems.None && player.CurrentItem != PlayerItems.BlueCandle)
+            {
+                player.ItemCounts[(int)player.CurrentItem]--;
+            }
+            itemHelper.UseItem();
             player.State = new DownUseItemState(player);
         }
 
@@ -29,8 +35,9 @@ namespace sprint0
             player.State = new PickUpItemState(player);
         }
 
-        public void HandleSword()
+        public void HandleSword(LinkUseItemHelper itemHelper)
         {
+            itemHelper.UseSword(player.Health == player.MaxHealth);
             player.State = new DownWoodSwordState(player);
         }
 

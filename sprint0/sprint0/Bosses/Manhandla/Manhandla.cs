@@ -31,10 +31,10 @@ namespace sprint0
 
             limbs = new List<IEnemy>
             {
-                new ManhandlaLimb(Texture, this, Direction.n, game),
-                new ManhandlaLimb(Texture, this, Direction.s, game),
-                new ManhandlaLimb(Texture, this, Direction.w, game),
-                new ManhandlaLimb(Texture, this, Direction.e, game)
+                new ManhandlaLimb(Texture, this, Direction.North, game),
+                new ManhandlaLimb(Texture, this, Direction.South, game),
+                new ManhandlaLimb(Texture, this, Direction.West, game),
+                new ManhandlaLimb(Texture, this, Direction.East, game)
             };
             game.Room.LoadLevel.RoomEnemies.RegisterEnemies(limbs);
 

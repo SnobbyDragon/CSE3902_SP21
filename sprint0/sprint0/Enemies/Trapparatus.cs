@@ -26,10 +26,10 @@ namespace sprint0
 
             traps = new Dictionary<Direction, Trap>
             {
-                { Direction.se, new Trap(Texture, center + new Vector2(xOffset, yOffset), game) },
-                { Direction.sw, new Trap(Texture, center + new Vector2(-xOffset, yOffset), game) },
-                { Direction.nw, new Trap(Texture, center + new Vector2(-xOffset, -yOffset), game) },
-                { Direction.ne, new Trap(Texture, center + new Vector2(xOffset, -yOffset), game) }
+                { Direction.SouthEast, new Trap(Texture, center + new Vector2(xOffset, yOffset), game) },
+                { Direction.SouthWest, new Trap(Texture, center + new Vector2(-xOffset, yOffset), game) },
+                { Direction.NorthWest, new Trap(Texture, center + new Vector2(-xOffset, -yOffset), game) },
+                { Direction.NorthEast, new Trap(Texture, center + new Vector2(xOffset, -yOffset), game) }
             };
             game.Room.LoadLevel.RoomEnemies.RegisterEnemies(traps.Values);
         }
@@ -66,13 +66,13 @@ namespace sprint0
 
         private Collision DetectLinkByWall()
         {
-            if (Link.position.Y <= (Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale + traps[Direction.nw].Location.Height)
+            if (Link.position.Y <= (Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale + traps[Direction.NorthWest].Location.Height)
                 return Collision.Top;
-            if (Link.position.Y >= (Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness - 16) * Game1.Scale - traps[Direction.nw].Location.Height)
+            if (Link.position.Y >= (Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness - 16) * Game1.Scale - traps[Direction.NorthWest].Location.Height)
                 return Collision.Bottom;
-            if (Link.position.X <= Game1.BorderThickness * Game1.Scale + traps[Direction.nw].Location.Width)
+            if (Link.position.X <= Game1.BorderThickness * Game1.Scale + traps[Direction.NorthWest].Location.Width)
                 return Collision.Left;
-            if (Link.position.X >= Game1.Width * Game1.Scale - traps[Direction.nw].Location.Width - (Game1.BorderThickness + 16) * Game1.Scale)
+            if (Link.position.X >= Game1.Width * Game1.Scale - traps[Direction.NorthWest].Location.Width - (Game1.BorderThickness + 16) * Game1.Scale)
                 return Collision.Right;
             return Collision.None;
         }

@@ -19,15 +19,13 @@ namespace sprint0
     public interface IPlayer : IEntity
     {
         public Direction Direction { get; set; }
-
         public Vector2 Pos { get; set; }
         public IPlayerState State { get; set; }
-
         public int WeaponDamage { get; set; }
         public PlayerItems CurrentItem { get; set; }
         public List<int> ItemCounts { get; }
-
-        public static Vector2 Position;
+        public int Health { get; set; }
+        public int MaxHealth { get; set; }
         public void Move(int x, int y);
         public void Stop();
         public void TakeDamage(Direction direction, int damage);

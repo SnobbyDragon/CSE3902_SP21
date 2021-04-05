@@ -51,17 +51,17 @@ namespace sprint0
             CheckHealth();
                 currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
                 
-                if (direction == Direction.w)
+                if (direction == Direction.West)
                 {
                     spriteEffect = SpriteEffects.FlipHorizontally;
                     Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
                 }
-                else if (direction == Direction.e)
+                else if (direction == Direction.East)
                 {
                     spriteEffect = SpriteEffects.None;
                     Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
                 }
-                else if (direction == Direction.s)
+                else if (direction == Direction.South)
                 {
                     Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
                 }
@@ -70,7 +70,7 @@ namespace sprint0
                     Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
                     if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
                     {
-                        direction = Direction.w;
+                        direction = Direction.West;
                     }
                 }
                 

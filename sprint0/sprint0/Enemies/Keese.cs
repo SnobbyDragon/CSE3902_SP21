@@ -20,7 +20,7 @@ namespace sprint0
             currentFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;
-            direction = Direction.n;
+            direction = Direction.North;
             damage = 1;
             health = 2;
 

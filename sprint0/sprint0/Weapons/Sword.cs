@@ -22,7 +22,7 @@ namespace sprint0
         {
             this.player = player;
             Damage = player.WeaponDamage;
-            if (dir == Direction.n || dir == Direction.s)
+            if (dir == Direction.North || dir == Direction.South)
             {
                 width = 7;
                 height = 16;

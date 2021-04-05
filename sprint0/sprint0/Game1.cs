@@ -12,26 +12,19 @@ namespace sprint0
         private List<IController> controllerList;
         public List<int> VisitedRooms;
         public IPlayer Player { get; set; }
-        private static PlayerSpriteFactory playerFactory;
-        public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
-        public SoundFactory SoundFactory { get => soundFactory; }
-        private SoundFactory soundFactory;
-        public BackgroundMusic Music { get => music; }
-        private BackgroundMusic music;
+        public static PlayerSpriteFactory PlayerFactory { get; private set; }
+        public SoundFactory SoundFactory { get; private set; }
+        public BackgroundMusic Music { get; private set; }
         public UniversalScreenManager universalScreenManager;
         public HUDManager hudManager;
-        public Room Room { get => room; }
-        private Room room;
+        public Room Room { get; private set; }
         public bool ChangeRoom { get; set; }
         public bool UseLoadedPos { get; set; }
         public int RoomIndex { get; set; }
         public int NumRooms { get; } = 19;
-
         public readonly GameStateMachine stateMachine;
-
         private readonly int LinkDefaultX = 250;
         private readonly int LinkDefaultY = 280;
-
         private GameStateMachine.State state;
         public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
@@ -62,10 +55,9 @@ namespace sprint0
                 new KeyboardController(this),
                 new MouseController(this)
             };
-            ResetManagers();
-            soundFactory = new SoundFactory(this);
-            music = SoundFactory.MakeBackgroundMusic();
-
+            InitializeManagers();
+            SoundFactory = new SoundFactory(this);
+            Music = SoundFactory.MakeBackgroundMusic();
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
             RoomIndex = 16;
@@ -74,7 +66,7 @@ namespace sprint0
             base.Initialize();
         }
 
-        private void ResetManagers()
+        private void InitializeManagers()
         {
             universalScreenManager = new UniversalScreenManager(this);
             hudManager = new HUDManager(this);
@@ -87,7 +79,7 @@ namespace sprint0
             VisitedRooms.Clear();
             RoomIndex = 16;
             ChangeRoom = true;
-            ResetManagers();
+            InitializeManagers();
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
         }
 
@@ -95,18 +87,18 @@ namespace sprint0
         {
             if (!VisitedRooms.Contains(RoomIndex))
                 VisitedRooms.Add(RoomIndex);
-            if (room != null)
+            if (Room != null)
             {
                 Vector2 playerPos = Player.Pos;
-                room = new Room(_spriteBatch, this, RoomIndex, playerPos.X, playerPos.Y, UseLoadedPos);
+                Room = new Room(_spriteBatch, this, RoomIndex, playerPos.X, playerPos.Y, UseLoadedPos);
             }
             else
             {
-                room = new Room(_spriteBatch, this, RoomIndex);
-                playerFactory = new PlayerSpriteFactory(this);
+                Room = new Room(_spriteBatch, this, RoomIndex);
+                PlayerFactory = new PlayerSpriteFactory(this);
                 Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
             }
-            room.LoadContent();
+            Room.LoadContent();
             ChangeRoom = false;
             UseLoadedPos = false;
         }
@@ -124,13 +116,13 @@ namespace sprint0
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
                 if (ChangeRoom) LoadContent();
-                room.Update();
+                Room.Update();
             }
             if (ChangeHUD())
                 hudManager.Update();
             universalScreenManager.Update(state);
             hudManager.Update();
-            music.Update();
+            Music.Update();
             base.Update(gameTime);
         }
 
@@ -139,7 +131,7 @@ namespace sprint0
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
-                room.Draw();
+                Room.Draw();
             if (ChangeHUD())
                 hudManager.Draw(_spriteBatch);
             universalScreenManager.Draw(_spriteBatch, state);
@@ -152,14 +144,6 @@ namespace sprint0
             return state.Equals(GameStateMachine.State.play) ||
                 state.Equals(GameStateMachine.State.test) ||
                 state.Equals(GameStateMachine.State.pause);
-        }
-        /*
-         *  This is deprecated.
-         */
-        public void ResetGame()
-        {
-            ResetElapsedTime();
-            Initialize();
         }
     }
 }

@@ -31,16 +31,16 @@ namespace sprint0
         {
             switch (side)
             {
-                case Direction.n:
+                case Direction.North:
                     block2.Location = new Rectangle(block2.Location.X, block1.Location.Top - block2.Location.Height, block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.s:
+                case Direction.South:
                     block2.Location = new Rectangle(block2.Location.X, block1.Location.Top + (int)(base_size * Game1.Scale), block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.e:
+                case Direction.East:
                     block2.Location = new Rectangle(block1.Location.Left + (int)(base_size * Game1.Scale), block2.Location.Y, block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.w:
+                case Direction.West:
                     block2.Location = new Rectangle(block1.Location.Left - block2.Location.Width, block2.Location.Y, block2.Location.Width, block2.Location.Height);
                     break;
             }
@@ -50,16 +50,16 @@ namespace sprint0
         {
             switch (side)
             {
-                case Direction.n:
+                case Direction.North:
                     block1.Location = new Rectangle(block1.Location.X, block2.Location.Bottom - block1.Location.Top, block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.s:
+                case Direction.South:
                     block1.Location = new Rectangle(block1.Location.X, block2.Location.Top - (block1.Location.Top + (int)(base_size * Game1.Scale)), block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.e:
+                case Direction.East:
                     block1.Location = new Rectangle(block2.Location.Left - (block1.Location.Left + (int)(base_size * Game1.Scale)), block1.Location.Y, block2.Location.Width, block2.Location.Height);
                     break;
-                case Direction.w:
+                case Direction.West:
                     block1.Location = new Rectangle(block2.Location.Right - block1.Location.Left, block1.Location.Y, block2.Location.Width, block2.Location.Height);
                     break;
             }

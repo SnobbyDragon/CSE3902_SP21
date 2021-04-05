@@ -25,19 +25,19 @@ namespace sprint0
 
             switch (borderFilling.Side)
             {
-                case Direction.n:
+                case Direction.North:
                     Location = new Rectangle(locX, locY, locSize, locSize / 2);
                     source = new Rectangle(srcX, srxY, srcSize, srcSize / 2);
                     break;
-                case Direction.s:
+                case Direction.South:
                     Location = new Rectangle(locX, locY + locSize / 2, locSize, locSize / 2);
                     source = new Rectangle(srcX, srxY + srcSize / 2, srcSize, srcSize / 2);
                     break;
-                case Direction.e:
+                case Direction.East:
                     Location = new Rectangle(locX + locSize / 2, locY, locSize / 2, locSize);
                     source = new Rectangle(srcX + srcSize / 2, srxY, srcSize / 2, srcSize);
                     break;
-                case Direction.w:
+                case Direction.West:
                     Location = new Rectangle(locX, locY, locSize / 2, locSize);
                     source = new Rectangle(srcX, srxY, srcSize / 2, srcSize);
                     break;

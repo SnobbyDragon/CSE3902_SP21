@@ -26,11 +26,11 @@ namespace sprint0
         {
             Shooter = shooter;
             Vector2 loc = location;
-            if (dir == Direction.n || dir == Direction.s)
+            if (dir == Direction.North || dir == Direction.South)
                 loc += new Vector2(sourceAdjustX, 0);
             else
                 loc += new Vector2(0, sourceAdjustY);
-            if (dir == Direction.s || dir == Direction.e)
+            if (dir == Direction.South || dir == Direction.East)
                 tipOffset = width * DirectionMethods.ToVector2(dir) + height * DirectionMethods.ToVector2(dir);
 
             Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
@@ -66,7 +66,7 @@ namespace sprint0
             if (IsAlive())
             {
                 rotation = defaultAngle - dir.ToRadians();
-                if (dir == Direction.e || dir == Direction.w)
+                if (dir == Direction.East || dir == Direction.West)
                     Location = new Rectangle((int)Location.X, (int)Location.Y, (int)(height * Game1.Scale), (int)(width * Game1.Scale));
                 else
                     Location = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));

@@ -16,16 +16,16 @@ namespace sprint0
         {
             switch (side)
             {
-                case Direction.n:
+                case Direction.North:
                     link.Pos += new Vector2(0, npc.Location.Bottom - link.Pos.Y);
                     break;
-                case Direction.s:
+                case Direction.South:
                     link.Pos += new Vector2(0, npc.Location.Top - (link.Pos.Y + linkSize));
                     break;
-                case Direction.e:
+                case Direction.East:
                     link.Pos += new Vector2(npc.Location.Left - (link.Pos.X + linkSize), 0);
                     break;
-                case Direction.w:
+                case Direction.West:
                     link.Pos += new Vector2(npc.Location.Right - link.Pos.X, 0);
                     break;
             }

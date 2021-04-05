@@ -17,16 +17,16 @@ namespace sprint0
                 {
                     switch (side)
                     {
-                        case Direction.n:
+                        case Direction.North:
                             enemy.Location = new Rectangle(enemy.Location.X, border.Location.Bottom, enemy.Location.Width, enemy.Location.Height);
                             break;
-                        case Direction.s:
+                        case Direction.South:
                             enemy.Location = new Rectangle(enemy.Location.X, border.Location.Top - enemy.Location.Height, enemy.Location.Width, enemy.Location.Height);
                             break;
-                        case Direction.e:
+                        case Direction.East:
                             enemy.Location = new Rectangle(border.Location.Left - enemy.Location.Width, enemy.Location.Y, enemy.Location.Width, enemy.Location.Height);
                             break;
-                        case Direction.w:
+                        case Direction.West:
                             enemy.Location = new Rectangle(border.Location.Right, enemy.Location.Y, enemy.Location.Width, enemy.Location.Height);
                             break;
                     }

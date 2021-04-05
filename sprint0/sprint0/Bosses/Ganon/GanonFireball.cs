@@ -32,25 +32,25 @@ namespace sprint0
             repeatedFrames = 2;
             dirToSourcesMap = new Dictionary<Direction, List<Rectangle>>
             {
-                { Direction.n, SpritesheetHelper.GetFramesH(276, 157, width, height, totalFrames) },
-                { Direction.nw, SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames) },
-                { Direction.w, SpritesheetHelper.GetFramesH(276, 192, width, height, totalFrames) },
-                { Direction.sw, SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames) },
-                { Direction.s, SpritesheetHelper.GetFramesH(276, 157, width, height, totalFrames) },
-                { Direction.se, SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames)},
-                { Direction.e,  SpritesheetHelper.GetFramesH(276, 192, width, height, totalFrames) },
-                { Direction.ne, SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames) }
+                { Direction.North, SpritesheetHelper.GetFramesH(276, 157, width, height, totalFrames) },
+                { Direction.NorthWest, SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames) },
+                { Direction.West, SpritesheetHelper.GetFramesH(276, 192, width, height, totalFrames) },
+                { Direction.SouthWest, SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames) },
+                { Direction.South, SpritesheetHelper.GetFramesH(276, 157, width, height, totalFrames) },
+                { Direction.SouthEast, SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames)},
+                { Direction.East,  SpritesheetHelper.GetFramesH(276, 192, width, height, totalFrames) },
+                { Direction.NorthEast, SpritesheetHelper.GetFramesH(276, 174, width, height, totalFrames) }
             };
             dirToEffectsMap = new Dictionary<Direction, SpriteEffects>
             {
-                { Direction.n, SpriteEffects.None },
-                { Direction.nw, SpriteEffects.None },
-                { Direction.w, SpriteEffects.None },
-                { Direction.sw, SpriteEffects.FlipVertically },
-                { Direction.s, SpriteEffects.FlipVertically },
-                { Direction.se, SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally },
-                { Direction.e,  SpriteEffects.FlipHorizontally },
-                { Direction.ne, SpriteEffects.FlipHorizontally }
+                { Direction.North, SpriteEffects.None },
+                { Direction.NorthWest, SpriteEffects.None },
+                { Direction.West, SpriteEffects.None },
+                { Direction.SouthWest, SpriteEffects.FlipVertically },
+                { Direction.South, SpriteEffects.FlipVertically },
+                { Direction.SouthEast, SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally },
+                { Direction.East,  SpriteEffects.FlipHorizontally },
+                { Direction.NorthEast, SpriteEffects.FlipHorizontally }
             };
             hit = false;
         }

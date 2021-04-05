@@ -16,30 +16,31 @@ namespace sprint0
 
         public void HandleUp()
         {
-            player.Direction = Direction.n;
             player.State = new UpWalkingState(player);
         }
 
         public void HandleDown()
         {
-            player.Direction = Direction.s;
             player.State = new DownWalkingState(player);
         }
 
         public void HandleLeft()
         {
-            player.Direction = Direction.w;
             player.State = new LeftWalkingState(player);
         }
 
         public void HandleRight()
         {
-            player.Direction = Direction.e;
             player.State = new RightWalkingState(player);
         }
 
-        public void UseItem()
+        public void UseItem(LinkUseItemHelper itemHelper)
         {
+            if (player.CurrentItem != PlayerItems.None && player.CurrentItem != PlayerItems.BlueCandle)
+            {
+                player.ItemCounts[(int)player.CurrentItem]--;
+            }
+            itemHelper.UseItem();
             player.State = new LeftUseItemState(player);
         }
 
@@ -48,8 +49,9 @@ namespace sprint0
             player.State = new PickUpItemState(player);
         }
 
-        public void HandleSword()
+        public void HandleSword(LinkUseItemHelper itemHelper)
         {
+            itemHelper.UseSword(player.Health == player.MaxHealth);
             player.State = new LeftWoodSwordState(player);
         }
 
