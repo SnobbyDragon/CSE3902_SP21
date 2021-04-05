@@ -27,33 +27,23 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (frame< totalFrames * repeatedFrames)
-            {
-                spriteBatch.Draw(Texture, Location, sources[(frame/repeatedFrames)], Color.White);
-            }
+            if (frame < totalFrames * repeatedFrames)
+                spriteBatch.Draw(Texture, Location, sources[(frame / repeatedFrames)], Color.White);
         }
 
         public void Update()
         {
             if (frame < totalFrames * repeatedFrames)
-            {
                 frame++;
-            }
             else
-            {
                 Perish();
-            }
         }
 
 
-            private void Perish()
-            {
-                game.Room.LoadLevel.RoomEffect.RemoveProjectile(this);
-            }
+        private void Perish()
+            => game.Room.LoadLevel.RoomEffect.RemoveProjectile(this);
 
-            public bool IsAlive()
-            {
-                return true;
-            }
-        }
+        public bool IsAlive()
+            => true;
     }
+}
