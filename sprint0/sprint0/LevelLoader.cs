@@ -29,7 +29,6 @@ namespace sprint0
         private readonly List<IEffect> effects;
 
         private readonly Game1 game;
-        private readonly EnemiesSpriteFactory enemyFactory;
         private readonly ItemsSpriteFactory itemFactory;
         private readonly DungeonFactory dungeonFactory;
         private readonly BossesSpriteFactory bossFactory;
@@ -53,7 +52,6 @@ namespace sprint0
             roomStreamInvisible = File.OpenRead(Path.GetFullPath(@genericPath + "Invisible" + xmlExtension));
             roomReaderInvisible = XmlReader.Create(roomStreamInvisible);
 
-            enemyFactory = new EnemiesSpriteFactory(this.game);
             effectFactory = new EffectSpriteFactory(this.game);
             itemFactory = new ItemsSpriteFactory(this.game);
             dungeonFactory = new DungeonFactory(this.game);
@@ -68,7 +66,8 @@ namespace sprint0
             {
                 while (xmlReader.Read())
                 {
-                    if (xmlReader.IsStartElement() && xmlReader.HasAttributes) AddElement(xmlReader);
+                    if (xmlReader.IsStartElement() && xmlReader.HasAttributes)
+                        AddElement(xmlReader);
                 }
             }
             xmlReader.Close();
@@ -89,21 +88,16 @@ namespace sprint0
             switch (xmlReader.Name.ToString())
             {
                 case "Enemy":
-                    effects.Add(effectFactory.MakeSpawn(objectName, location));
+                    effects.Add(effectFactory.MakeSpawn(ParseEnemy(objectName), location));
                     break;
                 case "Item":
                     items.Add(itemFactory.MakeItem(objectName, location));
                     break;
                 case "Boss":
                     if (objectName.Equals("dodongo") || objectName.Equals("aquamentus"))
-                    {
-                        effects.Add(effectFactory.MakeSpawn(objectName, location));
-                    }
+                        effects.Add(effectFactory.MakeSpawn(ParseEnemy(objectName), location));
                     else
-                    {
-                        enemies.Add(bossFactory.MakeSprite(objectName, location));
-                    }
-
+                        enemies.Add(bossFactory.MakeSprite(ParseEnemy(objectName), location));
                     break;
                 case "Dungeon":
                     if (objectName.Contains("bombed opening"))
@@ -129,9 +123,13 @@ namespace sprint0
                     throw new ArgumentException("Invalid sprite! Level loading failed.");
             }
         }
-        private NPCEnum ParseNPC(String npc)
+        private NPCEnum ParseNPC(string npc)
              => (NPCEnum)Enum.Parse(typeof(NPCEnum), npc, true);
-
-
+        private EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
+        private ItemEnum ParseItem(string item)
+             => (ItemEnum)Enum.Parse(typeof(ItemEnum), item, true);
+        private DungeonEnum ParseDungeon(string dungeon)
+             => (DungeonEnum)Enum.Parse(typeof(DungeonEnum), dungeon, true);
     }
 }

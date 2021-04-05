@@ -8,9 +8,10 @@ namespace sprint0
 {
     public enum EnemyEnum
     {
-        WallMaster, TealGel, BlueGel, GreenGel, GoldGel, LimeGel, BrownGel, GrayGel, WhiteGel,
+        Wallmaster, TealGel, BlueGel, GreenGel, GoldGel, LimeGel, BrownGel, GrayGel, WhiteGel,
         GreenZol, GoldZol, LimeZol, BrownZol, GrayZol, WhiteZol,
-        Snake, RedGoriya, BlueGoriya, RedKeese, BlueKeese, Stalfos, Trap, Trapparatus
+        Snake, RedGoriya, BlueGoriya, RedKeese, BlueKeese, Stalfos, Trap, Trapparatus,
+        Aquamentus, Patra, Manhandla, Gleeok, Ganon, OrangeGohma, BlueGohma, Dodongo, Digdogger
     }
     public class EnemiesSpriteFactory
     {
@@ -23,34 +24,34 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/DungeonEnemies");
         }
 
-        public IEnemy MakeSprite(string spriteType, Vector2 location)
+        public IEnemy MakeSprite(EnemyEnum spriteType, Vector2 location)
         {
 
             return spriteType switch
             {
-                "wallmaster" => new Wallmaster(texture, location, game),
-                "teal gel" => new Gel(texture, location, game, Color.Teal),
-                "blue gel" => new Gel(texture, location, game, Color.Blue),
-                "green gel" => new Gel(texture, location, game, Color.Green),
-                "gold gel" => new Gel(texture, location, game, Color.Gold),
-                "lime gel" => new Gel(texture, location, game, Color.Lime),
-                "brown gel" => new Gel(texture, location, game, Color.Brown),
-                "gray gel" => new Gel(texture, location, game, Color.Gray),
-                "white gel" => new Gel(texture, location, game, Color.White),
-                "green zol" => new Zol(texture, location, Color.Green, game),
-                "gold zol" => new Zol(texture, location, Color.Gold, game),
-                "lime zol" => new Zol(texture, location, Color.Lime, game),
-                "brown zol" => new Zol(texture, location, Color.Brown, game),
-                "gray zol" => new Zol(texture, location, Color.Gray, game),
-                "white zol" => new Zol(texture, location, Color.White, game),
-                "snake" => new Snake(texture, location, game),
-                "red goriya" => new Goriya(texture, location, Color.Red, game),
-                "blue goriya" => new Goriya(texture, location, Color.Blue, game),
-                "red keese" => new Keese(texture, location, Color.Red, game),
-                "blue keese" => new Keese(texture, location, Color.Blue, game),
-                "stalfos" => new Stalfos(texture, location, game),
-                "trap" => new Trap(texture, location, game),
-                "trapparatus" => new Trapparatus(texture, location, game),
+                EnemyEnum.Wallmaster => new Wallmaster(texture, location, game),
+                EnemyEnum.TealGel => new Gel(texture, location, game, Color.Teal),
+                EnemyEnum.BlueGel => new Gel(texture, location, game, Color.Blue),
+                EnemyEnum.GreenGel => new Gel(texture, location, game, Color.Green),
+                EnemyEnum.GoldGel => new Gel(texture, location, game, Color.Gold),
+                EnemyEnum.LimeGel => new Gel(texture, location, game, Color.Lime),
+                EnemyEnum.BrownGel => new Gel(texture, location, game, Color.Brown),
+                EnemyEnum.GrayGel => new Gel(texture, location, game, Color.Gray),
+                EnemyEnum.WhiteGel => new Gel(texture, location, game, Color.White),
+                EnemyEnum.GreenZol => new Zol(texture, location, Color.Green, game),
+                EnemyEnum.GoldZol => new Zol(texture, location, Color.Gold, game),
+                EnemyEnum.LimeZol => new Zol(texture, location, Color.Lime, game),
+                EnemyEnum.BrownZol => new Zol(texture, location, Color.Brown, game),
+                EnemyEnum.GrayZol => new Zol(texture, location, Color.Gray, game),
+                EnemyEnum.WhiteZol => new Zol(texture, location, Color.White, game),
+                EnemyEnum.Snake => new Snake(texture, location, game),
+                EnemyEnum.RedGoriya => new Goriya(texture, location, Color.Red, game),
+                EnemyEnum.BlueGoriya => new Goriya(texture, location, Color.Blue, game),
+                EnemyEnum.RedKeese => new Keese(texture, location, Color.Red, game),
+                EnemyEnum.BlueKeese => new Keese(texture, location, Color.Blue, game),
+                EnemyEnum.Stalfos => new Stalfos(texture, location, game),
+                EnemyEnum.Trap => new Trap(texture, location, game),
+                EnemyEnum.Trapparatus => new Trapparatus(texture, location, game),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }

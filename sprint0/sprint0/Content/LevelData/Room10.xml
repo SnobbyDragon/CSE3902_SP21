@@ -29,10 +29,10 @@
     <Block ObjectName="block" LocationX="400" LocationY="420" />?  
     <Block ObjectName="block" LocationX="480" LocationY="420" />? 
     
-    <Enemy ObjectName="wallmaster" LocationX="520" LocationY="380" />? 
-    <Enemy ObjectName="wallmaster" LocationX="520" LocationY="460" />? 
-    <Enemy ObjectName="wallmaster" LocationX="520" LocationY="220" />? 
-    <Enemy ObjectName="wallmaster" LocationX="440" LocationY="460" />? 
+    <Enemy ObjectName="Wallmaster" LocationX="520" LocationY="380" />? 
+    <Enemy ObjectName="Wallmaster" LocationX="520" LocationY="460" />? 
+    <Enemy ObjectName="Wallmaster" LocationX="520" LocationY="220" />? 
+    <Enemy ObjectName="Wallmaster" LocationX="440" LocationY="460" />? 
     
      <Player ObjectName="Link" LocationX="82" LocationY="340" />?
     

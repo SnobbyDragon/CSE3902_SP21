@@ -40,9 +40,9 @@
    
     
 
-    <Enemy ObjectName="red goriya" LocationX="360" LocationY="260" />?
-    <Enemy ObjectName="red goriya" LocationX="360" LocationY="220" />?
-    <Enemy ObjectName="red goriya" LocationX="280" LocationY="220" />?
+    <Enemy ObjectName="RedGoriya" LocationX="360" LocationY="260" />?
+    <Enemy ObjectName="RedGoriya" LocationX="360" LocationY="220" />?
+    <Enemy ObjectName="RedGoriya" LocationX="280" LocationY="220" />?
     
       <Player ObjectName="Link" LocationX="82" LocationY="340" />?
 

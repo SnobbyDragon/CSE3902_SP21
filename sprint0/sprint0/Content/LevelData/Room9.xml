@@ -43,7 +43,7 @@
     <Block ObjectName="left statue" LocationX="360" LocationY="300" />?
     <Block ObjectName="left statue" LocationX="400" LocationY="340" />?
     
-    <Enemy ObjectName="snake" LocationX="280" LocationY="220" />?
+    <Enemy ObjectName="Snake" LocationX="280" LocationY="220" />?
 
     <Item ObjectName="triforce piece" LocationX="315" LocationY="360" />?
     <Item ObjectName="magical rod" LocationX="415" LocationY="380" />?

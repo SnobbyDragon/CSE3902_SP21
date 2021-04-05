@@ -168,8 +168,8 @@
     <Block ObjectName="brick" LocationX="560" LocationY="540" />?
     <Block ObjectName="brick" LocationX="600" LocationY="540" />? 
     
-    <Enemy ObjectName="blue keese" LocationX="360" LocationY="330" />?
-    <Enemy ObjectName="red keese" LocationX="200" LocationY="460" />?
+    <Enemy ObjectName="BlueKeese" LocationX="360" LocationY="330" />?
+    <Enemy ObjectName="RedKeese" LocationX="200" LocationY="460" />?
     <Item ObjectName="bow" LocationX="332" LocationY="330" />? 
     <Item ObjectName="magical key" LocationX="332" LocationY="460" />?
    <Player ObjectName="Link" LocationX="120" LocationY="140" />?

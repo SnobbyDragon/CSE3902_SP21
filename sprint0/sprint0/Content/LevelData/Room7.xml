@@ -13,9 +13,9 @@
     <Block ObjectName="block" LocationX="160" LocationY="300" />?
     <Block ObjectName="block" LocationX="440" LocationY="300" />?
     
-     <Boss ObjectName="digdogger" LocationX="360" LocationY="220" />?
-    <Boss ObjectName="digdogger" LocationX="440" LocationY="260" />?
-    <Boss ObjectName="digdogger" LocationX="360" LocationY="380" />?
+     <Boss ObjectName="Digdogger" LocationX="360" LocationY="220" />?
+    <Boss ObjectName="Digdogger" LocationX="440" LocationY="260" />?
+    <Boss ObjectName="Digdogger" LocationX="360" LocationY="380" />?
     
     <Item ObjectName="boomerang" LocationX="335" LocationY="310" />?
     <Player ObjectName="Link" LocationX="82" LocationY="340" />?

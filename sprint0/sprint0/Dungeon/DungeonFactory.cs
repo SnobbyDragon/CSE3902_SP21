@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public enum DungeonItems
+    public enum DungeonEnum
     {
         RoomFloor, RoomBorder, Darkness, DownWall, RightWall, LeftWall, UpWall, DownOpenDoor, RightOpenDoor, LeftOpenDoor, UpOpenDoor,
         DownLockedDoor, RightLockedDoor, LeftLockedDoor, UpLockedDoor, DownShutDoor, RightShutDoor, LeftShutDoor, UpShutDoor,
