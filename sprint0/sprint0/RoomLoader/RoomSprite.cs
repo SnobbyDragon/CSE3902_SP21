@@ -27,6 +27,7 @@ namespace sprint0
         }
         public void UpdateOffset(Vector2 Offset)
         {
+            AddNew();
             foreach (ISprite item in roomSprites)
             {
                 item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
