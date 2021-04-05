@@ -79,7 +79,7 @@ namespace sprint0
         {
             RoomSetup(roomReader, roomStream);
             if (roomNo != 0) RoomSetup(roomReaderInvisible, roomStreamInvisible);
-            return (sprites, projectiles, blocks, enemies, npcs, items,effects);
+            return (sprites, projectiles, blocks, enemies, npcs, items, effects);
         }
 
         public void AddElement(XmlReader xmlReader)
@@ -103,7 +103,7 @@ namespace sprint0
                     {
                         enemies.Add(bossFactory.MakeSprite(objectName, location));
                     }
-                    
+
                     break;
                 case "Dungeon":
                     if (objectName.Contains("bombed opening"))
@@ -120,7 +120,7 @@ namespace sprint0
                         blocks.Add(dungeonFactory.MakeBlock(objectName, location));
                     break;
                 case "NPC":
-                    npcs.Add(npcFactory.MakeSprite(objectName, location));
+                    npcs.Add(npcFactory.MakeSprite(ParseNPC(objectName), location));
                     break;
                 case "Player":
                     game.Room.Player.Pos = location;
@@ -129,6 +129,8 @@ namespace sprint0
                     throw new ArgumentException("Invalid sprite! Level loading failed.");
             }
         }
+        private NPCEnum ParseNPC(String npc)
+             => (NPCEnum)Enum.Parse(typeof(NPCEnum), npc, true);
 
 
     }

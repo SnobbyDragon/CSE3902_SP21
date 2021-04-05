@@ -47,7 +47,7 @@ namespace sprint0
                 { PlayerItems.PowerBracelet, GetSource(590, YPos+19)},
                 { PlayerItems.Map, GetSource(601, YPos+19)},
                 { PlayerItems.Compass, GetSourceCompass(614, YPos+19)},
-                { PlayerItems.Raft, GetSourceRaftLadder(521, YPos+19)},
+                { PlayerItems.Raft, GetSourceRaftLadder(519, YPos+19)},
                 { PlayerItems.StepLadder, GetSourceRaftLadder(560, YPos+19)},
                 { PlayerItems.ItemSelectorRed, GetSourceRaftLadder(519, YPos)},
                 { PlayerItems.ItemSelectorBlue, GetSourceRaftLadder(536, YPos)},
