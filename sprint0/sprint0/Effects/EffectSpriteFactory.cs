@@ -23,14 +23,14 @@ namespace sprint0
             texture1 = game.Content.Load<Texture2D>("Images/Bosses");
             texture2 = game.Content.Load<Texture2D>("Images/Link");
         }
-        public IEffect MakeSprite(string spriteType, Vector2 location)
+        public IEffect MakeSprite(EffectEnum spriteType, Vector2 location)
         {
             return spriteType switch
             {
-                "hit sprite" => new HitSprite(texture2, location),
-                "sword beam explode" => new SwordBeamExplode(texture2, location),
-                "death" => new DeathCloud(texture2, location, game),
-                "ganonashes" => new GanonAshes(texture1, location),
+                EffectEnum.HitSprite => new HitSprite(texture2, location),
+                EffectEnum.SwordBeamExplode => new SwordBeamExplode(texture2, location),
+                EffectEnum.Death => new DeathCloud(texture2, location, game),
+                EffectEnum.GanonAshes => new GanonAshes(texture1, location),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
             };
         }

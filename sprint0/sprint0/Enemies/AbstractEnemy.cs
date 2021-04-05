@@ -88,7 +88,7 @@ namespace sprint0
         {
             itemSpawner.SpawnItem(ParseEnemy(this.GetType().Name), this.Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), "death");
+            game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), EffectEnum.Death);
             game.Room.RoomSound.AddSoundEffect("enemy death");
         }
         public EnemyEnum ParseEnemy(string enemy)
