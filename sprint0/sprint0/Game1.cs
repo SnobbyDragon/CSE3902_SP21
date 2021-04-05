@@ -78,7 +78,7 @@ namespace sprint0
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
             Rooms = new Dictionary<int, Room>();
-            RoomIndex = 15;
+            RoomIndex = 12;
 
             base.Initialize();
         }
@@ -95,7 +95,7 @@ namespace sprint0
             Rooms.Clear();
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 18;
+            RoomIndex = 12;
            // ChangeRoom = true;
             ResetManagers();
             LoadContent();

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
@@ -20,7 +19,7 @@ namespace sprint0
         {
             Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
             Room.LoadLevel.RoomSprite.RemoveRoomSprite(this);
-            Room.LoadLevel.RoomSprite.AddRoomSprite(new OpenDoor(Texture, Location.Location.ToVector2(), Side, Room));
+            Room.LoadLevel.RoomSprite.AddRoomSprite(new OpenDoor(Texture, Location.Location.ToVector2() - Room.Offset, Side, Room));
         }
     }
 }

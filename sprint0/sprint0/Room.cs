@@ -61,6 +61,7 @@ namespace sprint0
         }
 
         public void UpdateOffsets(Vector2 Offset) {
+            offset += Offset;
             loadLevel.UpdateOffsets(Offset);
         }
 
