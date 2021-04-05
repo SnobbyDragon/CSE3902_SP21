@@ -78,9 +78,9 @@ namespace sprint0
             foreach (IBlock block in blocks) {
                 if (block is Block) blockToSwitch = block;
             }
-            Vector2 location = blockToSwitch.Location.Location.ToVector2();
+          /*  Vector2 location = blockToSwitch.Location.Location.ToVector2();
             RemoveBlock(blockToSwitch);
-            AddBlock(location, "movable block 5");
+            AddBlock(location, "movable block 5");*/
         }
 
         public void OpenDoorWithBlock() {

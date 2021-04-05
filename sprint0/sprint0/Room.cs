@@ -60,9 +60,9 @@ namespace sprint0
                 Player.Pos = linkInitialPos;
         }
 
-        public void UpdateOffsets(Vector2 Offset) {
-            offset += Offset;
-            loadLevel.UpdateOffsets(Offset);
+        public void UpdateOffsets(Vector2 ofst) {
+            offset += ofst;
+            loadLevel.UpdateOffsets(ofst);
         }
 
         public Vector2 GetOffset() {

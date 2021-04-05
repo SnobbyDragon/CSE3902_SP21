@@ -67,11 +67,11 @@ namespace sprint0
             direction = d;
             if (d == Direction.n || d == Direction.s)
             {
-                bound = (int)(Game1.MapHeight * Game1.Scale) - 1;
+                bound = (int)(Game1.MapHeight * Game1.Scale);
             }
             if (d == Direction.e || d == Direction.w)
             {
-                bound = (int)(Game1.Width * Game1.Scale) - 1;
+                bound = (int)(Game1.Width * Game1.Scale);
             }
             state = State.changeRoom;
             game.NextRoomIndex = dest;
@@ -97,6 +97,8 @@ namespace sprint0
         }
 
         public void HandleSnapRoomChange(int dest) {
+            state = State.test;
+            game.RoomIndex = dest;
             if (game.Rooms[dest].Offset.X > 0)
             {
                 game.Slide(Direction.e, (int)game.Rooms[dest].Offset.X);
@@ -107,14 +109,13 @@ namespace sprint0
             }
             if (game.Rooms[dest].Offset.Y > 0)
             {
-                game.Slide(Direction.n, (int)game.Rooms[dest].Offset.Y);
+                game.Slide(Direction.s, (int)game.Rooms[dest].Offset.Y);
             }
             else if (game.Rooms[dest].Offset.Y < 0)
             {
-                game.Slide(Direction.s, (int)game.Rooms[dest].Offset.Y);
+                game.Slide(Direction.n, (int)game.Rooms[dest].Offset.Y);
             }
-            state = State.test;
-            game.RoomIndex = dest;
+            
             game.Room = game.Rooms[dest];
         }
 

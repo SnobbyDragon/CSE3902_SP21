@@ -80,7 +80,7 @@ namespace sprint0
             VisitedRooms = new List<int>();
 
             Rooms = new Dictionary<int, Room>();
-            RoomIndex = 16;
+            RoomIndex = 5;
 
             base.Initialize();
         }
@@ -97,7 +97,7 @@ namespace sprint0
             Rooms.Clear();
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 16;
+            RoomIndex = 5;
 
             ResetManagers();
             LoadContent();
@@ -111,8 +111,7 @@ namespace sprint0
                 VisitedRooms.Add(RoomIndex);
             }
 
-            if (stateMachine.GetState() != GameStateMachine.State.test)
-            {
+           
                 room = new Room(_spriteBatch, this, RoomIndex, new Vector2(0, 0));
                 playerFactory = new PlayerSpriteFactory(this);
                 Rooms.Add(RoomIndex, room);
@@ -145,23 +144,17 @@ namespace sprint0
 
 
                 }
-
+                  Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[1].GetOffset() + eastOffset);
+                Rooms[18] = new Room(_spriteBatch, this, 18, Rooms[0].GetOffset() + eastOffset);
                 foreach (Room rm in Rooms.Values)
                     rm.LoadContent();
-            }
-            else
-            {
-                room = new Room(_spriteBatch, this, RoomIndex, zeroVector);
-                Rooms[RoomIndex] = room;
-                playerFactory = new PlayerSpriteFactory(this);
-                Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
-                room.LoadContent();
-                ChangeRoom = false;
-            }
+            
+           
         }
 
         public void Slide(Direction d, int ammount) {
             Vector2 offst = new Vector2(0, 0);
+            ammount = System.Math.Abs(ammount);
             if (d == Direction.n) {
                 offst.Y = 1 * ammount;
             }
@@ -216,9 +209,7 @@ namespace sprint0
                 hudManager.Draw(_spriteBatch);
             }
 
-            if (state.Equals(GameStateMachine.State.test) && ChangeRoom) {
-                LoadContent();
-            } 
+
 
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
