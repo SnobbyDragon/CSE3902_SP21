@@ -14,7 +14,7 @@ namespace sprint0
             xOffset = 815;
             yOffset = 11;
             GetSource();
-            CollisionBox = game.Room.LoadLevel.RoomBlocks.AddBlock(location, "invisible block", size, size);
+            CollisionBox = game.Room.LoadLevel.RoomBlocks.AddBlock(location, BlockEnum.InvisibleBlock, size, size);
             this.canBeBombed = canBeBombed;
         }
 

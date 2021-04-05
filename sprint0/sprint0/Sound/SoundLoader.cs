@@ -8,7 +8,7 @@ namespace sprint0
     public class SoundLoader
     {
         private readonly List<Song> songs;
-        private readonly Dictionary<string, SoundEffect> soundEffects;
+        private readonly Dictionary<SoundEnum, SoundEffect> soundEffects;
 
         public SoundLoader(Game1 game)
         {
@@ -18,56 +18,50 @@ namespace sprint0
                 game.Content.Load<Song>("Sound/music2"),
                 game.Content.Load<Song>("Sound/music3"),
             };
-            soundEffects = new Dictionary<string, SoundEffect>
+            soundEffects = new Dictionary<SoundEnum, SoundEffect>
             {
-                { "sword slash", game.Content.Load<SoundEffect>("Sound/Sword_Slash") },
-                { "sword shoot", game.Content.Load<SoundEffect>("Sound/Sword_Shoot") },
-                { "arrow", game.Content.Load<SoundEffect>("Sound/Arrow_Boomerang") },
-                { "boomerang", game.Content.Load<SoundEffect>("Sound/Arrow_Boomerang") },
-                { "shield", game.Content.Load<SoundEffect>("Sound/Shield") },
-                { "use bomb", game.Content.Load<SoundEffect>("Sound/Bomb_Drop") },
-                { "bomb explode", game.Content.Load<SoundEffect>("Sound/Bomb_Blow") },
-                { "candle", game.Content.Load<SoundEffect>("Sound/Candle") },
-                { "magical rod", game.Content.Load<SoundEffect>("Sound/MagicalRod") },
-                { "recorder", game.Content.Load<SoundEffect>("Sound/Recorder") },
-                { "enemy damaged", game.Content.Load<SoundEffect>("Sound/Enemy_Hit") },
-                { "enemy death", game.Content.Load<SoundEffect>("Sound/Enemy_Die") },
-                //{ "link damaged", game.Content.Load<SoundEffect>("Sound/Link_Hurt") },
-                { "link damaged", game.Content.Load<SoundEffect>("Sound/ow") },
-                { "link death", game.Content.Load<SoundEffect>("Sound/Link_Die") },
-                { "low health", game.Content.Load<SoundEffect>("Sound/LowHealth") },
-                { "new item", game.Content.Load<SoundEffect>("Sound/Fanfare") },
-                { "get item", game.Content.Load<SoundEffect>("Sound/Get_Item") },
-                { "get heart", game.Content.Load<SoundEffect>("Sound/Get_Heart") },
-                { "get key", game.Content.Load<SoundEffect>("Sound/Get_Heart") },
-                { "get rupee", game.Content.Load<SoundEffect>("Sound/Get_Rupee") },
-                { "refill", game.Content.Load<SoundEffect>("Sound/Refill_Loop") },
-                { "text appear", game.Content.Load<SoundEffect>("Sound/Text") },
-                { "text appear slow", game.Content.Load<SoundEffect>("Sound/Text_Slow") },
-                { "key appear", game.Content.Load<SoundEffect>("Sound/Key_Appear") },
-                { "unlock door", game.Content.Load<SoundEffect>("Sound/Door_Unlock") },
-                { "aquamentus", game.Content.Load<SoundEffect>("Sound/Boss_Scream1") },
-                { "gleeok", game.Content.Load<SoundEffect>("Sound/Boss_Scream1") },
-                { "ganon", game.Content.Load<SoundEffect>("Sound/Boss_Scream1") },
-                { "dodongo", game.Content.Load<SoundEffect>("Sound/Boss_Scream2") },
-                { "gohma", game.Content.Load<SoundEffect>("Sound/Boss_Scream2") },
-                { "manhandla", game.Content.Load<SoundEffect>("Sound/Boss_Scream3") },
-                { "digdogger", game.Content.Load<SoundEffect>("Sound/Boss_Scream3") },
-                { "patra", game.Content.Load<SoundEffect>("Sound/Boss_Scream3") },
-                { "stairs", game.Content.Load<SoundEffect>("Sound/Stairs") },
-                { "shore", game.Content.Load<SoundEffect>("Sound/Shore") },
-                { "secret", game.Content.Load<SoundEffect>("Sound/Secret") },
+                { SoundEnum.SwordSlash, game.Content.Load<SoundEffect>("Sound/Sword_Slash") },
+                { SoundEnum.SwordShoot, game.Content.Load<SoundEffect>("Sound/Sword_Shoot") },
+                { SoundEnum.Arrow, game.Content.Load<SoundEffect>("Sound/Arrow_Boomerang") },
+                { SoundEnum.Boomerang, game.Content.Load<SoundEffect>("Sound/Arrow_Boomerang") },
+                { SoundEnum.Shield, game.Content.Load<SoundEffect>("Sound/Shield") },
+                { SoundEnum.UseBomb, game.Content.Load<SoundEffect>("Sound/Bomb_Drop") },
+                { SoundEnum.BombExplode, game.Content.Load<SoundEffect>("Sound/Bomb_Blow") },
+                { SoundEnum.Candle, game.Content.Load<SoundEffect>("Sound/Candle") },
+                { SoundEnum.MagicalRod, game.Content.Load<SoundEffect>("Sound/MagicalRod") },
+                { SoundEnum.Flute, game.Content.Load<SoundEffect>("Sound/Recorder") },
+                { SoundEnum.EnemyDamaged, game.Content.Load<SoundEffect>("Sound/Enemy_Hit") },
+                { SoundEnum.EnemyDeath, game.Content.Load<SoundEffect>("Sound/Enemy_Die") },
+                //{ SoundEnum.LinkDamaged, game.Content.Load<SoundEffect>("Sound/Link_Hurt") },
+                { SoundEnum.LinkDamaged, game.Content.Load<SoundEffect>("Sound/ow") },
+                { SoundEnum.LinkDeath, game.Content.Load<SoundEffect>("Sound/Link_Die") },
+                { SoundEnum.LowHealth, game.Content.Load<SoundEffect>("Sound/LowHealth") },
+                { SoundEnum.NewItem, game.Content.Load<SoundEffect>("Sound/Fanfare") },
+                { SoundEnum.GetItem, game.Content.Load<SoundEffect>("Sound/Get_Item") },
+                { SoundEnum.GetHeart, game.Content.Load<SoundEffect>("Sound/Get_Heart") },
+                { SoundEnum.GetKey, game.Content.Load<SoundEffect>("Sound/Get_Heart") },
+                { SoundEnum.GetRupee, game.Content.Load<SoundEffect>("Sound/Get_Rupee") },
+                { SoundEnum.Refill, game.Content.Load<SoundEffect>("Sound/Refill_Loop") },
+                { SoundEnum.TextAppear, game.Content.Load<SoundEffect>("Sound/Text") },
+                { SoundEnum.TextAppearSlow, game.Content.Load<SoundEffect>("Sound/Text_Slow") },
+                { SoundEnum.KeyAppear, game.Content.Load<SoundEffect>("Sound/Key_Appear") },
+                { SoundEnum.UnlockDoor, game.Content.Load<SoundEffect>("Sound/Door_Unlock") },
+                { SoundEnum.Aquamentus, game.Content.Load<SoundEffect>("Sound/Boss_Scream1") },
+                { SoundEnum.Gleeok, game.Content.Load<SoundEffect>("Sound/Boss_Scream1") },
+                { SoundEnum.Ganon, game.Content.Load<SoundEffect>("Sound/Boss_Scream1") },
+                { SoundEnum.Dodongo, game.Content.Load<SoundEffect>("Sound/Boss_Scream2") },
+                { SoundEnum.Gohma, game.Content.Load<SoundEffect>("Sound/Boss_Scream2") },
+                { SoundEnum.Manhandla, game.Content.Load<SoundEffect>("Sound/Boss_Scream3") },
+                { SoundEnum.Digdogger, game.Content.Load<SoundEffect>("Sound/Boss_Scream3") },
+                { SoundEnum.Patra, game.Content.Load<SoundEffect>("Sound/Boss_Scream3") },
+                { SoundEnum.Stairs, game.Content.Load<SoundEffect>("Sound/Stairs") },
+                { SoundEnum.Shore, game.Content.Load<SoundEffect>("Sound/Shore") },
+                { SoundEnum.Secret, game.Content.Load<SoundEffect>("Sound/Secret") },
             };
         }
 
-        public List<Song> GetMusic()
-        {
-            return songs;
-        }
-
-        public SoundEffect GetSoundEffect(string soundEffectType)
-        {
-            return soundEffects[soundEffectType];
-        }
+        public List<Song> GetMusic() => songs;
+        public SoundEffect GetSoundEffect(SoundEnum soundEffectType)
+            => soundEffects[soundEffectType];
     }
 }

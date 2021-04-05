@@ -30,19 +30,13 @@ namespace sprint0
             endBehaviorExecuted = false;
         }
 
-        public void AddEnemy(Vector2 location, string enemy)
+        public void AddEnemy(Vector2 location, EnemyEnum enemy)
         {
-            if (enemy.Equals("dodongo") || enemy.Equals("aquamentus"))
-            {
+            if (enemy == EnemyEnum.Dodongo || enemy == EnemyEnum.Aquamentus)
                 enemiesToSpawn.Add(bossFactory.MakeSprite(enemy, location));
-            }
             else
-            {
                 enemiesToSpawn.Add(enemyFactory.MakeSprite(enemy, location));
-            }
-                
         }
-            
 
         public void RegisterEnemies(IEnumerable<IEnemy> unregEnemies)
             => enemiesToSpawn.AddRange(unregEnemies);
@@ -51,23 +45,19 @@ namespace sprint0
 
         public void RemoveDead()
         {
-            foreach (IEnemy enemy in enemiesToDie) {
+            foreach (IEnemy enemy in enemiesToDie)
+            {
                 keySpawnLocation = enemy.Location.Location.ToVector2();
                 enemies.Remove(enemy);
-                
             }
         }
 
         public void Update()
         {
             foreach (IEnemy enemy in enemies)
-            {
                 enemy.Update();
-            }
-            if (enemies.Count == 0 && !endBehaviorExecuted && game.Room.LoadLevel.RoomEffect.RoomEffects.Count==0)
-            {
+            if (enemies.Count == 0 && !endBehaviorExecuted && game.Room.LoadLevel.RoomEffect.RoomEffects.Count == 0)
                 RoomEndBehavior();
-            }
         }
 
         public void EnemySpawnUpdate()
@@ -85,21 +75,18 @@ namespace sprint0
                 enemy.Draw(spriteBatch);
         }
 
-        private void RoomEndBehavior() {
+        private void RoomEndBehavior()
+        {
             List<int> roomWithKey = new List<int> { 15, 17, 12, 3, 2, 10 };
             int roomWithBoomerang = 7;
             int roomWithMovableBlock = 5;
-            Vector2 location = new Vector2(400,300);
-            if (roomWithKey.Contains(roomNum)){
-                game.Room.LoadLevel.RoomItems.AddItem(keySpawnLocation,"key");
-            }else if (roomNum == roomWithBoomerang)
-            {
-                game.Room.LoadLevel.RoomItems.AddItem(location, "boomerang");
-            }
-            else if (roomNum == roomWithMovableBlock) {
+            Vector2 location = new Vector2(400, 300);
+            if (roomWithKey.Contains(roomNum))
+                game.Room.LoadLevel.RoomItems.AddItem(keySpawnLocation, ItemEnum.Key);
+            else if (roomNum == roomWithBoomerang)
+                game.Room.LoadLevel.RoomItems.AddItem(location, ItemEnum.Boomerang);
+            else if (roomNum == roomWithMovableBlock)
                 game.Room.LoadLevel.RoomBlocks.SwitchToMovableBlock();
-                
-            }
             endBehaviorExecuted = true;
         }
     }

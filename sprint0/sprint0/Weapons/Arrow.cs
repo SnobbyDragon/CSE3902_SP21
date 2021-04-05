@@ -41,13 +41,10 @@ namespace sprint0
             source = new Rectangle(xOffset, yOffset, width, height);
             origin = new Vector2(width / 2, height / 2);
             rotation = 0;
-            defaultAngle = (float)Math.PI/2;
+            defaultAngle = (float)Math.PI / 2;
         }
 
-        public bool IsAlive()
-        {
-            return !hit;
-        }
+        public bool IsAlive() => !hit;
 
         private void Move()
         {
@@ -70,13 +67,9 @@ namespace sprint0
             {
                 rotation = defaultAngle - dir.ToRadians();
                 if (dir == Direction.e || dir == Direction.w)
-                {
                     Location = new Rectangle((int)Location.X, (int)Location.Y, (int)(height * Game1.Scale), (int)(width * Game1.Scale));
-                }
                 else
-                {
                     Location = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-                }
                 Move();
             }
         }
@@ -84,7 +77,7 @@ namespace sprint0
         public void RegisterHit()
         {
             hit = true;
-            room.LoadLevel.RoomEffect.AddEffect(new Vector2(Location.X, Location.Y) + tipOffset, "hit sprite");
+            room.LoadLevel.RoomEffect.AddEffect(new Vector2(Location.X, Location.Y) + tipOffset, EffectEnum.HitSprite);
         }
     }
 }

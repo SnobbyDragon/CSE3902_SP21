@@ -76,21 +76,12 @@ namespace sprint0
                 return Collision.Right;
             return Collision.None;
         }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
+        public void ChangeDirection() { }
+        public void TakeDamage() { }
+        public void TakeDamage(int damage) { }
+        public void Perish() { }
 
-        public void ChangeDirection()
-        {
-        }
-
-        public void TakeDamage()
-        {
-        }
-
-        public void TakeDamage(int damage)
-        {
-        }
-
-        public void Perish()
-        {
-        }
     }
 }

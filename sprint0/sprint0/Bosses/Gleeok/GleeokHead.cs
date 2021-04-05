@@ -70,9 +70,7 @@ namespace sprint0
             if (damageTimer > 0)
                 damageTimer--;
             if (isAngry)
-            {
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            }
             else
             {
                 Vector2 dist = destination - Location.Location.ToVector2();
@@ -97,29 +95,20 @@ namespace sprint0
             }
         }
 
-        public void ChangeDirection()
-        {
-        }
+        public void ChangeDirection() { }
 
-        public int CheckHealth()
-        {
-            return health;
-        }
-
+        public int CheckHealth() => health;
         public void TakeDamage(int damage)
         {
             if (damageTimer == 0)
             {
                 damageTimer = damageTime;
                 health -= damage;
-                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDamaged);
             }
         }
 
-        public void Perish()
-        {
-
-        }
+        public void Perish() { }
 
         private bool CanShoot()
         {
@@ -130,7 +119,7 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            game.Room.RoomSound.AddSoundEffect("gleeok");
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.Gleeok);
             Vector2 dir = game.Room.Player.Pos - Location.Center.ToVector2();
             dir.Normalize();
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
@@ -142,5 +131,7 @@ namespace sprint0
             dir.Normalize();
             return anchor + rand.Next(0, maxDistance) * dir;
         }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }
 }

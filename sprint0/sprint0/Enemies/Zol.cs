@@ -16,9 +16,8 @@ namespace sprint0
         private readonly int speed = 3;
         private readonly Dictionary<Color, List<Rectangle>> colorMap;
         private readonly Color color;
-        private int pauseCount=0;
+        private int pauseCount = 0;
         public new EnemyType Type { get => EnemyType.Gel; }
-
 
         public Zol(Texture2D texture, Vector2 location, Color gelColor, Game1 game) : base(texture, location, game)
         {
@@ -48,48 +47,39 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            
-                if (damageTimer % 2 == 0)
-                {
-                    spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
-                }
-            
+
+            if (damageTimer % 2 == 0)
+                spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
         }
 
         public override void Update()
         {
-           
-                if (damageTimer > 0) damageTimer--;
-                CheckHealth();
-                moveCounter++;
-                SpawnGel();
 
-                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-                
-                if (pauseCount == 0)
-                {
-                    if (moveCounter == dirChangeDelay)
-                    {
-                        ArbitraryDirection(20, 80);
-                        pauseCount = 3 * totalFrames * repeatedFrames;
-                    }
-                    if (delayCounter == delay)
-                    {
-                        Rectangle loc = Location;
-                        loc.Offset(speed * direction.ToVector2());
-                        Location = loc;
-                        delayCounter = 0;
-                    }
-                    delayCounter++;
-                }
-                else
-                {
-                    pauseCount--;
-                }
-            
+            if (damageTimer > 0) damageTimer--;
+            CheckHealth();
+            moveCounter++;
+            SpawnGel();
 
-                
-            
+            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+
+            if (pauseCount == 0)
+            {
+                if (moveCounter == dirChangeDelay)
+                {
+                    ArbitraryDirection(20, 80);
+                    pauseCount = 3 * totalFrames * repeatedFrames;
+                }
+                if (delayCounter == delay)
+                {
+                    Rectangle loc = Location;
+                    loc.Offset(speed * direction.ToVector2());
+                    Location = loc;
+                    delayCounter = 0;
+                }
+                delayCounter++;
+            }
+            else
+                pauseCount--;
         }
 
         private void SpawnGel()
@@ -97,13 +87,13 @@ namespace sprint0
             if (spawnCounter == spawnRate)
             {
                 Vector2 spawnLoc = Location.Location.ToVector2() + new Vector2(-1, 0);
-                game.Room.LoadLevel.RoomEnemies.AddEnemy(spawnLoc, color.GetName() + " gel");
+                game.Room.LoadLevel.RoomEnemies.AddEnemy(spawnLoc, ParseEnemy(color.GetName() + "gel"));
                 spawnCounter = 0;
             }
             else
-            {
                 spawnCounter++;
-            }
         }
+        public new EnemyEnum ParseEnemy(string enemy)
+            => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }
 }

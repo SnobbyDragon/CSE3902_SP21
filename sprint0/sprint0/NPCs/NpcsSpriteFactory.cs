@@ -5,6 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Hannah Johnson and co
 namespace sprint0
 {
+    public enum NPCEnum
+    {
+        OldMan1, OldMan2, OldWoman, GreenMerchant, WhiteMerchant, RedMerchant, Flame
+    }
     public class NpcsSpriteFactory
     {
         private readonly Game1 game;
@@ -16,19 +20,19 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Images/NPCs");
         }
 
-        public INpc MakeSprite(string spriteType, Vector2 location)
+        public INpc MakeSprite(NPCEnum spriteType, Vector2 location)
         {
 
             return spriteType switch
             {
-                "old man 1" => new OldPerson(texture, location, "man 1"),
-                "old man 2" => new OldPerson(texture, location, "man 2"),
-                "old woman" => new OldPerson(texture, location, "woman"),
-                "green merchant" => new Merchant(texture, location, "green"),
-                "white merchant" => new Merchant(texture, location, "white"),
-                "red merchant" => new Merchant(texture, location, "red"),
-                "flame" => new Flame(texture, location),
-                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
+                NPCEnum.OldMan1 => new OldPerson(texture, location, "man 1"),
+                NPCEnum.OldMan2 => new OldPerson(texture, location, "man 2"),
+                NPCEnum.OldWoman => new OldPerson(texture, location, "woman"),
+                NPCEnum.GreenMerchant => new Merchant(texture, location, "green"),
+                NPCEnum.WhiteMerchant => new Merchant(texture, location, "white"),
+                NPCEnum.RedMerchant => new Merchant(texture, location, "red"),
+                NPCEnum.Flame => new Flame(texture, location),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
     }

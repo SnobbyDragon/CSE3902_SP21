@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
-//Updated: 03/14/21 by Stuti Shah
+//Updated: 04/04/21 by Stuti Shah
 namespace sprint0
 {
     public class LevelLoader
@@ -29,7 +29,6 @@ namespace sprint0
         private readonly List<IEffect> effects;
 
         private readonly Game1 game;
-        private readonly EnemiesSpriteFactory enemyFactory;
         private readonly ItemsSpriteFactory itemFactory;
         private readonly DungeonFactory dungeonFactory;
         private readonly BossesSpriteFactory bossFactory;
@@ -53,7 +52,6 @@ namespace sprint0
             roomStreamInvisible = File.OpenRead(Path.GetFullPath(@genericPath + "Invisible" + xmlExtension));
             roomReaderInvisible = XmlReader.Create(roomStreamInvisible);
 
-            enemyFactory = new EnemiesSpriteFactory(this.game);
             effectFactory = new EffectSpriteFactory(this.game);
             itemFactory = new ItemsSpriteFactory(this.game);
             dungeonFactory = new DungeonFactory(this.game);
@@ -63,12 +61,12 @@ namespace sprint0
 
         public void RoomSetup(XmlReader xmlReader, FileStream fileStream)
         {
-
             using (xmlReader)
             {
                 while (xmlReader.Read())
                 {
-                    if (xmlReader.IsStartElement() && xmlReader.HasAttributes) AddElement(xmlReader);
+                    if (xmlReader.IsStartElement() && xmlReader.HasAttributes)
+                        AddElement(xmlReader);
                 }
             }
             xmlReader.Close();
@@ -79,7 +77,7 @@ namespace sprint0
         {
             RoomSetup(roomReader, roomStream);
             if (roomNo != 0) RoomSetup(roomReaderInvisible, roomStreamInvisible);
-            return (sprites, projectiles, blocks, enemies, npcs, items,effects);
+            return (sprites, projectiles, blocks, enemies, npcs, items, effects);
         }
 
         public void AddElement(XmlReader xmlReader)
@@ -89,38 +87,33 @@ namespace sprint0
             switch (xmlReader.Name.ToString())
             {
                 case "Enemy":
-                    effects.Add(effectFactory.MakeSpawn(objectName, location));
+                    effects.Add(effectFactory.MakeSpawn(ParseEnemy(objectName), location));
                     break;
                 case "Item":
-                    items.Add(itemFactory.MakeItem(objectName, location));
+                    items.Add(itemFactory.MakeItem(ParseItem(objectName), location));
                     break;
                 case "Boss":
-                    if (objectName.Equals("dodongo") || objectName.Equals("aquamentus"))
-                    {
-                        effects.Add(effectFactory.MakeSpawn(objectName, location));
-                    }
+                    if (objectName.Equals("Aodongo") || objectName.Equals("Aquamentus"))
+                        effects.Add(effectFactory.MakeSpawn(ParseEnemy(objectName), location));
                     else
-                    {
-                        enemies.Add(bossFactory.MakeSprite(objectName, location));
-                    }
-                    
+                        enemies.Add(bossFactory.MakeSprite(ParseEnemy(objectName), location));
                     break;
                 case "Dungeon":
-                    if (objectName.Contains("bombed opening"))
-                        sprites.Add(dungeonFactory.MakeSprite(objectName.Replace("bombed opening", "wall"), location, true));
+                    if (objectName.Contains("BombedOpening"))
+                        sprites.Add(dungeonFactory.MakeSprite(ParseDungeon(objectName.Replace("BombedOpening", "Wall")), location, true));
                     else
-                        sprites.Add(dungeonFactory.MakeSprite(objectName, location));
+                        sprites.Add(dungeonFactory.MakeSprite(ParseDungeon(objectName), location));
                     break;
                 case "Block":
                     string width = xmlReader.GetAttribute("Width");
                     string height = xmlReader.GetAttribute("Height");
                     if (width != null && height != null)
-                        blocks.Add(dungeonFactory.MakeBlock(objectName, location, int.Parse(width), int.Parse(height)));
+                        blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(width), int.Parse(height)));
                     else
-                        blocks.Add(dungeonFactory.MakeBlock(objectName, location));
+                        blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location));
                     break;
                 case "NPC":
-                    npcs.Add(npcFactory.MakeSprite(objectName, location));
+                    npcs.Add(npcFactory.MakeSprite(ParseNPC(objectName), location));
                     break;
                 case "Player":
                     game.Room.Player.Pos = location;
@@ -129,7 +122,15 @@ namespace sprint0
                     throw new ArgumentException("Invalid sprite! Level loading failed.");
             }
         }
-
-
+        private NPCEnum ParseNPC(string npc)
+             => (NPCEnum)Enum.Parse(typeof(NPCEnum), npc, true);
+        private EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
+        private ItemEnum ParseItem(string item)
+             => (ItemEnum)Enum.Parse(typeof(ItemEnum), item, true);
+        private DungeonEnum ParseDungeon(string dungeon)
+             => (DungeonEnum)Enum.Parse(typeof(DungeonEnum), dungeon, true);
+        private BlockEnum ParseBlock(string block)
+             => (BlockEnum)Enum.Parse(typeof(BlockEnum), block, true);
     }
 }

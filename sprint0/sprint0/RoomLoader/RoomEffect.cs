@@ -6,7 +6,7 @@ namespace sprint0
 {
     public class RoomEffect
     {
-        public List<IEffect> RoomEffects { get ; set; }
+        public List<IEffect> RoomEffects { get; set; }
         public List<IEffect> EffectsToDie { get; set; }
         public readonly EffectSpriteFactory effectFactory;
         public RoomEffect(Game1 game)
@@ -16,7 +16,7 @@ namespace sprint0
             EffectsToDie = new List<IEffect>();
         }
 
-        public void AddEffect(Vector2 location, string sprite)
+        public void AddEffect(Vector2 location, EffectEnum sprite)
             => RoomEffects.Add(effectFactory.MakeSprite(sprite, location));
 
         public void AddEffect(IEffect effect) => RoomEffects.Add(effect);

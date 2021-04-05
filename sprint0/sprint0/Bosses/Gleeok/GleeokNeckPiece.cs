@@ -38,9 +38,7 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
-        }
+            => spriteBatch.Draw(Texture, Location, source, Color.White);
 
         public void Update()
         {
@@ -60,29 +58,22 @@ namespace sprint0
                     wiggleCount = 0;
                 }
                 else
-                {
                     wiggleCount++;
-                }
             }
         }
 
-        public void ChangeDirection()
-        {
-        }
+        public void ChangeDirection() { }
 
-        public int CheckHealth()
-        {
-            return health;
-        }
+        public int CheckHealth() => health;
 
         public void TakeDamage(int damage)
         {
             health -= damage;
-            game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDamaged);
         }
 
-        public void Perish()
-        {
-        }
+        public void Perish() { }
+        public EnemyEnum ParseEnemy(string enemy)
+             => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }
 }

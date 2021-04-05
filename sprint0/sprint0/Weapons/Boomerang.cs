@@ -87,7 +87,7 @@ namespace sprint0
                 if (Shooter is Goriya goriya1)
                     alive = goriya1.isAlive();
             }
-            
+
 
 
         }
@@ -95,7 +95,7 @@ namespace sprint0
         public void RegisterHit()
         {
             hit = true;
-            room.LoadLevel.RoomEffect.AddEffect(new Vector2(Location.X, Location.Y), "hit sprite");
+            room.LoadLevel.RoomEffect.AddEffect(new Vector2(Location.X, Location.Y), EffectEnum.HitSprite);
         }
 
         public bool hitAlready() => hit;
