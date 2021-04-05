@@ -53,6 +53,7 @@ namespace sprint0
             roomSound = new RoomSound(Game);
             loadLevel = new LoadLevel(Game, RoomIndex);
             loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex, offset).LoadLevel());
+            //loadLevel.
             loadLevel.UpdateOffsets(offset);
 
             text = new Text(Game, message, messageLoc, Color.White);

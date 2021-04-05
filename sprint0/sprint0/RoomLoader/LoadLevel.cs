@@ -22,6 +22,8 @@ namespace sprint0
         private readonly RoomEnemies roomEnemies;
         private readonly RoomSprite roomSprite;
         private readonly RoomEffect roomEffect;
+        private readonly Overlay overlay;
+        private List<Vector2> locations;
 
         public LoadLevel(Game1 game, int roomIndex)
         {
@@ -35,7 +37,7 @@ namespace sprint0
             roomEffect = new RoomEffect(game);
         }
 
-        public void PopulateLists((List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>, List<IEffect>) roomElements)
+        public void PopulateLists((List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>, List<IEffect>, List<Vector2>) roomElements)
         {
             roomSprite.RoomSprites = roomElements.Item1;
             roomProjectile.Projectiles = roomElements.Item2;
@@ -44,6 +46,7 @@ namespace sprint0
             roomNPCs.NPCs = roomElements.Item5;
             roomItems.Items = roomElements.Item6;
             roomEffect.RoomEffects = roomElements.Item7;
+            locations = roomElements.Item8;
         }
 
         public void UpdateOffsets(Vector2 Offset) {

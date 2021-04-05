@@ -115,8 +115,10 @@ namespace sprint0
             {
                 game.Slide(Direction.n, (int)game.Rooms[dest].Offset.Y);
             }
-            
+            //game.Room.LoadLevel(game, dest);
+            game.Player.Move((int)game.Rooms[dest].Offset.X, (int)game.Rooms[dest].Offset.Y);
             game.Room = game.Rooms[dest];
+
         }
 
         public void HandleCredits()
