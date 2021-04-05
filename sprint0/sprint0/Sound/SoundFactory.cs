@@ -14,7 +14,7 @@ namespace sprint0
     }
     public class SoundFactory
     {
-        private readonly SoundLoader soundLoader;
+        private readonly SoundLoader soundLoader; 
 
         public SoundFactory(Game1 game) => soundLoader = new SoundLoader(game);
         public BackgroundMusic MakeBackgroundMusic()
