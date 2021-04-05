@@ -35,9 +35,10 @@ namespace sprint0
         private readonly BossesSpriteFactory bossFactory;
         private readonly NpcsSpriteFactory npcFactory;
         private readonly EffectSpriteFactory effectFactory;
-
-        public LevelLoader(Game1 game, int roomNo)
+        private Vector2 Offset;
+        public LevelLoader(Game1 game, int roomNo, Vector2 offset)
         {
+            Offset = offset;
             path = Path.GetFullPath(@genericPath) + roomNo.ToString() + xmlExtension;
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
@@ -56,7 +57,7 @@ namespace sprint0
             enemyFactory = new EnemiesSpriteFactory(this.game);
             effectFactory = new EffectSpriteFactory(this.game);
             itemFactory = new ItemsSpriteFactory(this.game);
-            dungeonFactory = new DungeonFactory(this.game);
+            dungeonFactory = new DungeonFactory(this.game, roomNo);
             bossFactory = new BossesSpriteFactory(this.game);
             npcFactory = new NpcsSpriteFactory(this.game);
         }

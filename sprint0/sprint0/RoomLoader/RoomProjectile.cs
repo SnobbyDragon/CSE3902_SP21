@@ -42,7 +42,11 @@ namespace sprint0
         }
 
         public void Clear() => projectilesToDie.Clear();
-
+        public void UpdateOffset(Vector2 Offset)
+        {
+            foreach (IProjectile item in projectiles)
+                item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
+        }
         public void Update()
         {
             foreach (IProjectile projectile in projectiles)

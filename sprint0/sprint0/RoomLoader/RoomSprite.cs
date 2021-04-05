@@ -25,6 +25,13 @@ namespace sprint0
                 roomSpritesToAdd.Clear();
             }
         }
+        public void UpdateOffset(Vector2 Offset)
+        {
+            foreach (ISprite item in roomSprites)
+            {
+                item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
+            }
+        }
 
         private void RemoveDestroyed()
         {

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace sprint0
 {
     public class Game1 : Game
@@ -11,22 +11,31 @@ namespace sprint0
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
         public List<int> VisitedRooms;
+        public Dictionary<int, Room> Rooms;
         public IPlayer Player { get; set; }
         private static PlayerSpriteFactory playerFactory;
         public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
+        private readonly Vector2 northOffset = new Vector2(0, -1 * (MapHeight)*Scale);
+        private readonly Vector2 southOffset = new Vector2(0, (MapHeight)*Scale);
+        private readonly Vector2 eastOffset = new Vector2(Width*Scale, 0) ;
+        private readonly Vector2 westOffset = new Vector2(-1 * (Width*Scale) , 0);
+
+
+
         public SoundFactory SoundFactory { get => soundFactory; }
         private SoundFactory soundFactory;
         public BackgroundMusic Music { get => music; }
         private BackgroundMusic music;
         public UniversalScreenManager universalScreenManager;
         public HUDManager hudManager;
-        public Room Room { get => room; }
+        public Room Room { get => room; set => room = value; }
         private Room room;
-        public bool ChangeRoom { get; set; }
-        public bool UseLoadedPos { get; set; }
+        public Room NextRoom  { set => nextRoom = value; get => nextRoom; }
+        private Room nextRoom;
         public int RoomIndex { get; set; }
-        public int NumRooms { get; } = 19;
 
+        public int NextRoomIndex { get; set; }
+        public  int NumRooms { get; } = 19;
         public readonly GameStateMachine stateMachine;
 
         private readonly int LinkDefaultX = 250;
@@ -68,9 +77,10 @@ namespace sprint0
 
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
-            RoomIndex = 16;
-            ChangeRoom = true;
-            UseLoadedPos = false;
+
+            Rooms = new Dictionary<int, Room>();
+            RoomIndex = 15;
+
             base.Initialize();
         }
 
@@ -83,47 +93,94 @@ namespace sprint0
 
         public void RestartGame()
         {
+            Rooms.Clear();
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 16;
-            ChangeRoom = true;
+            RoomIndex = 18;
+
             ResetManagers();
+            LoadContent();
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
         }
 
         protected override void LoadContent()
         {
             if (!VisitedRooms.Contains(RoomIndex))
+            {
                 VisitedRooms.Add(RoomIndex);
-            if (room != null)
-            {
-                Vector2 playerPos = Player.Pos;
-                room = new Room(_spriteBatch, this, RoomIndex, playerPos.X, playerPos.Y, UseLoadedPos);
             }
-            else
-            {
-                room = new Room(_spriteBatch, this, RoomIndex);
-                playerFactory = new PlayerSpriteFactory(this);
-                Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
+
+            room = new Room(_spriteBatch, this, RoomIndex, new Vector2(0, 0));
+            playerFactory = new PlayerSpriteFactory(this);
+            Rooms.Add(RoomIndex, room);
+            Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
+
+            List<int> frontier = new List<int>();
+            frontier.Add(RoomIndex);
+            while (Rooms.Count < 17 ) {
+                List<int> newFrontier = new List<int>();
+                foreach (int roomIndex in frontier) {
+                    Dictionary<Direction, int> adjacentRooms = new Dictionary<Direction, int>();
+                    adjacentRooms = AdjacentRooms.ListOfAdjacentRooms(roomIndex);
+                    foreach (Direction d in adjacentRooms.Keys) {
+                        int idx = adjacentRooms[d];
+                        if (!Rooms.ContainsKey(idx)) {
+                            newFrontier.Add(idx);
+                            if (d == Direction.n) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + northOffset);
+                            if (d == Direction.s) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + southOffset);
+                            if (d == Direction.w) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + westOffset);
+                            if (d == Direction.e) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].GetOffset() + eastOffset);
+                        }
+
+                    }
+                }
+                frontier = newFrontier;
+
+
             }
-            room.LoadContent();
-            ChangeRoom = false;
-            UseLoadedPos = false;
+ /*           Rooms[18] = new Room(_spriteBatch, this, 18, Rooms[1].GetOffset() + westOffset);
+            Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[18].GetOffset() + westOffset);*/
+            foreach (Room rm in Rooms.Values)
+                rm.LoadContent();
+
+
+        }
+
+        public void Slide(Direction d, int ammount) {
+            Vector2 offst = new Vector2(0, 0);
+            if (d == Direction.n) {
+                offst.Y = 1 * ammount;
+            }
+            if (d == Direction.s) {
+                offst.Y = -1*ammount;
+            }
+            if (d == Direction.e) {
+                offst.X = -1*ammount;
+            }
+            if (d == Direction.w) {
+                offst.X = 1*ammount;
+            }
+            foreach (Room rm in Rooms.Values) {
+                rm.UpdateOffsets(offst);
+            }
         }
 
         protected override void Update(GameTime gameTime)
         {
-
             state = stateMachine.GetState();
+
+            if (state == GameStateMachine.State.changeRoom) {
+                Slide(stateMachine.GetChangeDirection(), 1);
+                stateMachine.HandleFinishRoomChange(NextRoomIndex);
+            }
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             foreach (IController controller in controllerList)
                 controller.Update();
-
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
-                if (ChangeRoom) LoadContent();
                 room.Update();
             }
             if (ChangeHUD())
@@ -138,8 +195,16 @@ namespace sprint0
         {
             GraphicsDevice.Clear(Color.Gray);
             _spriteBatch.Begin();
-            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
+            if (state.Equals(GameStateMachine.State.changeRoom))
+            {
                 room.Draw();
+                nextRoom.Draw();
+                hudManager.Draw(_spriteBatch);
+            }
+            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
+            {
+                room.Draw();
+            }
             if (ChangeHUD())
                 hudManager.Draw(_spriteBatch);
             universalScreenManager.Draw(_spriteBatch, state);
@@ -153,13 +218,6 @@ namespace sprint0
                 state.Equals(GameStateMachine.State.test) ||
                 state.Equals(GameStateMachine.State.pause);
         }
-        /*
-         *  This is deprecated.
-         */
-        public void ResetGame()
-        {
-            ResetElapsedTime();
-            Initialize();
-        }
+
     }
 }
