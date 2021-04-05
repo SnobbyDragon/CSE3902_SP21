@@ -16,7 +16,7 @@ namespace sprint0
     {
         private readonly SoundLoader soundLoader;
 
-        public SoundFactory(Game1 game) => soundLoader = new SoundLoader(game);;
+        public SoundFactory(Game1 game) => soundLoader = new SoundLoader(game);
         public BackgroundMusic MakeBackgroundMusic()
             => new BackgroundMusic(soundLoader.GetMusic());
 
