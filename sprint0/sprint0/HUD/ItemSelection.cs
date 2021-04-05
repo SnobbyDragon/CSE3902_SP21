@@ -10,7 +10,7 @@ namespace sprint0
         private List<PlayerItems> itemList;
         public Rectangle Location { get; set; }
         private Dictionary<PlayerItems, Rectangle> inventoryItems;
-        private readonly int itemNum = 19, totalFrames = 2, repeatedFrames = 30;
+        private readonly int itemNum = 13, totalFrames = 2, repeatedFrames = 30;
         private int index, currentFrame = 0, pos;
         private readonly List<Rectangle> sources;
         public Texture2D Texture { get; set; }
@@ -21,12 +21,6 @@ namespace sprint0
             inventoryItems = new Dictionary<PlayerItems, Rectangle>();
             sources = new List<Rectangle> { ItemMap[PlayerItems.ItemSelectorRed], ItemMap[PlayerItems.ItemSelectorBlue] };
             itemList = new List<PlayerItems> {
-                PlayerItems.Raft,
-                PlayerItems.BookOfMagic,
-                PlayerItems.RedRing,
-                PlayerItems.StepLadder,
-                PlayerItems.MagicalKey,
-                PlayerItems.PowerBracelet,
                 PlayerItems.MagicalBoomerang,
                 PlayerItems.Boomerang,
                 PlayerItems.Bomb,

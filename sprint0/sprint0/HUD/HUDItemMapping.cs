@@ -10,8 +10,10 @@ namespace sprint0
     public class HUDItemMapping
     {
         protected readonly Dictionary<PlayerItems, Rectangle> itemMap, locationMapping;
+        protected readonly List<PlayerItems> topRowItems;
         public Dictionary<PlayerItems, Rectangle> ItemMap { get => itemMap; }
         public Dictionary<PlayerItems, Rectangle> LocationMapping { get => locationMapping; }
+        public List<PlayerItems> TopRowItems { get => topRowItems; }
         public Rectangle CurrentItem { get => currentItem; }
         private readonly int height = 16, smallWidth = 8, bigWidth = 16, yPosTop = 24, yPosMiddle = 48, yPosBottom = 64, currentItemX = 68, mapHeight = 88;
         private readonly Rectangle currentItem;
@@ -52,7 +54,7 @@ namespace sprint0
                 { PlayerItems.ItemSelectorRed, GetSourceRaftLadder(519, YPos)},
                 { PlayerItems.ItemSelectorBlue, GetSourceRaftLadder(536, YPos)},
             };
-
+            topRowItems = new List<PlayerItems> { PlayerItems.Raft, PlayerItems.BookOfMagic, PlayerItems.StepLadder, PlayerItems.MagicalKey, PlayerItems.PowerBracelet, PlayerItems.RedRing };
             locationMapping = new Dictionary<PlayerItems, Rectangle>
             {
                 { PlayerItems.Raft, GetSource(129, yPosTop, bigWidth, height)},
