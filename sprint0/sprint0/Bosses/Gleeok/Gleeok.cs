@@ -33,11 +33,6 @@ namespace sprint0
             repeatedFrames = 12;
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
             sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height));
-
-            necks = new List<IEnemy>() {
-                new GleeokNeck(Texture, game,Location),
-                new GleeokNeck(Texture, game,Location),
-            };
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
@@ -46,17 +41,31 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
-            foreach (IEnemy sprite in necks)
-                sprite.Draw(spriteBatch);
+            if (necks != null)
+            {
+                foreach (IEnemy sprite in necks)
+                    sprite.Draw(spriteBatch);
+            }
+            
 
         }
 
         public void Update()
         {
             CheckHealth();
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            foreach (IEnemy sprite in necks)
-                sprite.Update();
+            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);           
+            if (necks == null)
+            {
+                necks = new List<IEnemy>() {
+                    new GleeokNeck(Texture, game,Location, this),
+                    new GleeokNeck(Texture, game,Location, this),
+                };
+            }
+            else
+            {
+                foreach (IEnemy sprite in necks)
+                    sprite.Update();
+            }
 
         }
 
@@ -67,11 +76,15 @@ namespace sprint0
         private void CheckHealth()
         {
             int countDeadNecks = 0;
+            if (necks != null) { 
             foreach (GleeokNeck neck in necks)
             {
                 if (neck.IsDead()) countDeadNecks++;
             }
-            if ((health < 0 && countDeadNecks == necks.Count) || countDeadNecks == necks.Count) Perish();
+if ((health < 0 && countDeadNecks == necks.Count) || countDeadNecks == necks.Count) Perish();
+            }
+            
+            
         }
 
         public void TakeDamage(int damage)
