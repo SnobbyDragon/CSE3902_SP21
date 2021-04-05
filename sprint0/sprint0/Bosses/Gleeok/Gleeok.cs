@@ -21,6 +21,7 @@ namespace sprint0
         public EnemyType Type { get => EnemyType.Gleeok; }
         public int Damage { get => 0; }
         private ItemSpawner itemSpawner;
+        private bool neckExists;
 
         public Gleeok(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -31,6 +32,7 @@ namespace sprint0
             currFrame = 0;
             totalFrames = 3;
             repeatedFrames = 12;
+            neckExists = false;
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
             sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height));
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
@@ -54,12 +56,13 @@ namespace sprint0
         {
             CheckHealth();
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);           
-            if (necks == null)
+            if (necks == null && !neckExists)
             {
                 necks = new List<IEnemy>() {
                     new GleeokNeck(Texture, game,Location, this),
                     new GleeokNeck(Texture, game,Location, this),
                 };
+                neckExists = true; 
             }
             else
             {
