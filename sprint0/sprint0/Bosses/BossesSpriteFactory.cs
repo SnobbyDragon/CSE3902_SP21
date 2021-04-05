@@ -4,11 +4,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
+    public enum BossEnum
+    {
+        Aquamentus, Patra, Manhandla, Gleeok, Ganon, OrangeGohma, BlueGohma, Dodongo, Digdogger
+    }
     public class BossesSpriteFactory
     {
         private readonly Game1 game;
         private readonly Texture2D texture;
-        
+
 
         public BossesSpriteFactory(Game1 game)
         {

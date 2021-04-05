@@ -8,6 +8,10 @@ using Microsoft.Xna.Framework.Graphics;
  */
 namespace sprint0
 {
+    public enum ProjectileEnum
+    {
+        Boomerang, Arrow, SwordBeam, Flame
+    }
     public class ProjectileSpriteFactory
     {
         private readonly Texture2D texture1, texture2, texture3, texture4;

@@ -8,6 +8,10 @@ using Microsoft.Xna.Framework.Graphics;
  */
 namespace sprint0
 {
+    public enum WeaponEnum
+    {
+        Bomb, Sword
+    }
     public class WeaponsSpriteFactory
     {
         private readonly Game1 game;
