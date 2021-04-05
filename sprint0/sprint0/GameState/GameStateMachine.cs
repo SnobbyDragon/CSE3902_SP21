@@ -99,6 +99,28 @@ namespace sprint0
 
         }
 
+        public void HandleSnapRoomChange(int dest) {
+            if (game.Rooms[dest].Offset.X > 0)
+            {
+                game.Slide(Direction.w, (int)game.Rooms[dest].Offset.X);
+            }
+            else if (game.Rooms[dest].Offset.X < 0)
+            {
+                game.Slide(Direction.e, (int)game.Rooms[dest].Offset.X);
+            }
+            if (game.Rooms[dest].Offset.Y > 0)
+            {
+                game.Slide(Direction.s, (int)game.Rooms[dest].Offset.Y);
+            }
+            else if (game.Rooms[dest].Offset.Y < 0)
+            {
+                game.Slide(Direction.n, (int)game.Rooms[dest].Offset.Y);
+            }
+            state = State.test;
+            game.RoomIndex = dest;
+            game.Room = game.Rooms[dest];
+        }
+
         public void HandleCredits()
         {
             if (state == State.start)

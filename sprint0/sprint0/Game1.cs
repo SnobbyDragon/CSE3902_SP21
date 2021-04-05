@@ -142,6 +142,8 @@ namespace sprint0
                     
             
             }
+            Rooms[18] = new Room(_spriteBatch, this, 18, Rooms[1].GetOffset() + westOffset);
+            Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[1].GetOffset() + westOffset);
             foreach (Room rm in Rooms.Values)
                 rm.LoadContent();
 
@@ -150,19 +152,19 @@ namespace sprint0
             
         }
 
-        public void Slide(Direction d) {
+        public void Slide(Direction d, int ammount) {
             Vector2 offst = new Vector2(0, 0);
             if (d == Direction.n) {
-                offst.Y = 1;
+                offst.Y = 1 * ammount;
             }
             if (d == Direction.s) {
-                offst.Y = -1;
+                offst.Y = -1*ammount;
             }
             if (d == Direction.e) {
-                offst.X = -1;
+                offst.X = -1*ammount;
             }
             if (d == Direction.w) {
-                offst.X = 1;
+                offst.X = 1*ammount;
             }
             foreach (Room rm in Rooms.Values) {
                 rm.UpdateOffsets(offst);
@@ -174,7 +176,7 @@ namespace sprint0
             state = stateMachine.GetState();
 
             if (state == GameStateMachine.State.changeRoom) {
-                Slide(stateMachine.GetChangeDirection());
+                Slide(stateMachine.GetChangeDirection(), 1);
                 stateMachine.HandleFinishRoomChange(NextRoomIndex);
             }
 
