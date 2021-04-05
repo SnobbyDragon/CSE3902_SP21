@@ -52,10 +52,9 @@ namespace sprint0
             // has 8 orange minions
             minions = new List<IEnemy>();
 
-            for (int i = 0; i < totalMinions; i++)
-                minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i, game));
+            //for (int i = 0; i < totalMinions; i++)
+                //minions.Add(new PatraMinion(Texture, this, 360 / totalMinions * i, game));
             game.Room.LoadLevel.RoomEnemies.RegisterEnemies(minions);
-
 
             rand = new Random();
             GenerateDest();
@@ -76,7 +75,7 @@ namespace sprint0
         public void Update()
         {
             CheckHealth();
-            if (minions.Count ==0 && !minionsExist)
+            if (minions.Count == 0 && !minionsExist)
             {
                 for (int i = 0; i < totalMinions; i++)
                 {
@@ -85,8 +84,8 @@ namespace sprint0
                 game.Room.LoadLevel.RoomEnemies.RegisterEnemies(minions);
                 minionsExist = true;
             }
-            
-            
+
+
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5)
                 GenerateDest();
@@ -116,7 +115,7 @@ namespace sprint0
             PatraMinion toRemove = null;
             foreach (PatraMinion minion in minions)
             {
-               // minionCount++;
+                // minionCount++;
                 if (minion.CheckHealth() < 0)
                     toRemove = minion;
             }

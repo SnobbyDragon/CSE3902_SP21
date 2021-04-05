@@ -124,11 +124,13 @@ namespace sprint0
 
         public void SetHUDItem(PlayerItems source, PlayerItems newItem) => HUD.SetItem(source, newItem);
         public bool HasItem(PlayerItems item) => HUD.HasItem(item);
-        //public bool HasKey() => HUD.HasKeys();
-
         public bool HasKey() {
-            return true;
-        } 
+            if (game.stateMachine.GetState().Equals(GameStateMachine.State.test)) {
+                return true;
+            }else
+                return   HUD.HasKeys();
+        
+        }
         public void DecrementKey() => HUD.DecrementKey();
         public void AddToInventory(PlayerItems newItem) => HUD.AddBItem(newItem);
     }

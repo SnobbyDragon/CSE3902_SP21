@@ -82,8 +82,6 @@ namespace sprint0
                 if (block is Block) blockToSwitch = block;
             }
 
-
-           // AddBlock(location, BlockEnum.MovableBlock5);
         }
 
         public void OpenDoorWithBlock()
