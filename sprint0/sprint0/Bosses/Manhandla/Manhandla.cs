@@ -31,14 +31,7 @@ namespace sprint0
             speed = 1;
             limbsExist = false;
             limbs = new List<IEnemy>();
-            /*{
-                new ManhandlaLimb(Texture, this, Direction.n, game),
-                new ManhandlaLimb(Texture, this, Direction.s, game),
-                new ManhandlaLimb(Texture, this, Direction.w, game),
-                new ManhandlaLimb(Texture, this, Direction.e, game)
-            };
-            game.Room.LoadLevel.RoomEnemies.RegisterEnemies(limbs);
-            */
+            
             rand = new Random();
             GenerateDest();
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
