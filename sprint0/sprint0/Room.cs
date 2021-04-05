@@ -53,8 +53,13 @@ namespace sprint0
             overlay = new Overlay();
             collisionHandler = new AllCollisionHandler(this);
             roomSound = new RoomSound(Game);
+<<<<<<< HEAD
             loadLevel = new LoadLevel(Game, RoomIndex);
             loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex, offset).LoadLevel());
+=======
+            loadLevel = new LoadLevel(Game, roomIndex);
+            loadLevel.PopulateLists(new LevelLoader(Game, roomIndex, offset).LoadLevel());
+>>>>>>> fe4b4f0... overlay moves correctly
             loadLevel.UpdateOffsets(offset);
             Overlay.UpdateOffset(offset);
 
