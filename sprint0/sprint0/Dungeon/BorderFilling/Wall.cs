@@ -7,7 +7,7 @@ namespace sprint0
     public class Wall : AbstractBorderFilling
     {
         public IBlock CollisionBox { get; }
-        private readonly bool canBeBombed;
+        public bool CanBeBombed { get; }
 
         public Wall(Texture2D texture, Vector2 location, Direction dir, Room room, bool canBeBombed) : base(texture, location, dir, room)
         {
@@ -15,19 +15,15 @@ namespace sprint0
             yOffset = 11;
             GetSource();
 
-            CollisionBox = room.LoadLevel.RoomBlocks.AddBlock(location, BlockEnum.InvisibleBlock, size, size);
-
-            this.canBeBombed = canBeBombed;
+            CollisionBox = Room.LoadLevel.RoomBlocks.AddBlock(location, "invisible block", size, size);
+            CanBeBombed = canBeBombed;
         }
 
         public void BombWall()
         {
-            if (canBeBombed)
-            {
-                Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
-                Room.LoadLevel.RoomSprite.RemoveRoomSprite(this);
-                Room.LoadLevel.RoomSprite.AddRoomSprite(new BombedOpening(Texture, Location.Location.ToVector2() - Room.Offset, Side, Room));
-            }
+            Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
+            Room.LoadLevel.RoomSprite.RemoveRoomSprite(this);
+            Room.LoadLevel.RoomSprite.AddRoomSprite(new BombedOpening(Texture, Location.Location.ToVector2(), Side, Room));
         }
     }
 }
