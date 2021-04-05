@@ -32,10 +32,6 @@ namespace sprint0
         private Room room;
         public Room NextRoom  { set => nextRoom = value; get => nextRoom; }
         private Room nextRoom;
-
-
-        public bool ChangeRoom { get; set; }
-        public bool UseLoadedPos { get; set; }
         public int RoomIndex { get; set; }
 
         public int NextRoomIndex { get; set; }
@@ -82,9 +78,8 @@ namespace sprint0
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
             Rooms = new Dictionary<int, Room>();
-            RoomIndex = 2;
-            ChangeRoom = true;
-            UseLoadedPos = false;
+            RoomIndex = 15;
+
             base.Initialize();
         }
 
@@ -101,7 +96,7 @@ namespace sprint0
             ResetElapsedTime();
             VisitedRooms.Clear();
             RoomIndex = 18;
-            ChangeRoom = true;
+           // ChangeRoom = true;
             ResetManagers();
             LoadContent();
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
@@ -142,13 +137,11 @@ namespace sprint0
                     
             
             }
-            Rooms[18] = new Room(_spriteBatch, this, 18, Rooms[1].GetOffset() + westOffset);
-            Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[1].GetOffset() + westOffset);
+ /*           Rooms[18] = new Room(_spriteBatch, this, 18, Rooms[1].GetOffset() + westOffset);
+            Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[18].GetOffset() + westOffset);*/
             foreach (Room rm in Rooms.Values)
                 rm.LoadContent();
 
-            ChangeRoom = false;
-            UseLoadedPos = false;
             
         }
 
