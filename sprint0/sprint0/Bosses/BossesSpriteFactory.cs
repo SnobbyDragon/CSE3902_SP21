@@ -29,7 +29,7 @@ namespace sprint0
                 EnemyEnum.BlueGohma => new Gohma(texture, location, "blue", game),
                 EnemyEnum.Dodongo => new Dodongo(texture, location, game),
                 EnemyEnum.Digdogger => new Digdogger(texture, location, game),
-                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
     }

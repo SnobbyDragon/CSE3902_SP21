@@ -133,7 +133,7 @@ namespace sprint0
             {
                 damageTimer = damageTime;
                 health -= damage;
-                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDamaged);
             }
         }
 
@@ -143,7 +143,7 @@ namespace sprint0
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
 
             game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), EffectEnum.Death);
-            game.Room.RoomSound.AddSoundEffect("enemy death");
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDeath);
         }
 
         private bool CanShoot()
@@ -155,12 +155,14 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            game.Room.RoomSound.AddSoundEffect(GetType().Name.ToLower());
+            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             Vector2 dir = game.Room.Player.Pos - (Location.Location.ToVector2() + centerOffset);
             dir.Normalize();
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
         }
         public EnemyEnum ParseEnemy(string enemy)
              => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
+        private SoundEnum ParseSound(string sound)
+             => (SoundEnum)Enum.Parse(typeof(SoundEnum), sound, true);
     }
 }

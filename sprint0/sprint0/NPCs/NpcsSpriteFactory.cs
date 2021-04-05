@@ -32,7 +32,7 @@ namespace sprint0
                 NPCEnum.WhiteMerchant => new Merchant(texture, location, "white"),
                 NPCEnum.RedMerchant => new Merchant(texture, location, "red"),
                 NPCEnum.Flame => new Flame(texture, location),
-                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
     }

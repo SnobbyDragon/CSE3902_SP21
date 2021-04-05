@@ -69,7 +69,7 @@ namespace sprint0
         public void TakeDamage(int damage)
         {
             health -= damage;
-            game.Room.RoomSound.AddSoundEffect("enemy damaged");
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDamaged);
         }
 
         public void Perish() { }

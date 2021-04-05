@@ -24,10 +24,7 @@ namespace sprint0
                 Play();
         }
 
-        public void SkipSong()
-        {
-            MediaPlayer.Stop();
-        }
+        public void SkipSong() => MediaPlayer.Stop();
 
         public void Update()
         {
@@ -46,9 +43,6 @@ namespace sprint0
             }
         }
 
-        private void Stop()
-        {
-            MediaPlayer.Pause();
-        }
+        private void Stop() => MediaPlayer.Pause();
     }
 }

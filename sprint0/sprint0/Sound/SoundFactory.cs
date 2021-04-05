@@ -3,52 +3,55 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace sprint0
 {
+    public enum SoundEnum
+    {
+        SwordSlash, SwordShoot, Arrow, Boomerang, Shield, UseBomb, BombExplode, Candle,
+        EnemyDamaged, EnemyDeath, LinkDamaged, LinkDeath, LowHealth,
+        NewItem, GetItem, GetHeart, GetKey, GetRupee,
+        Aquamentus, Gleeok, Ganon, Dodongo, Gohma, Manhandla, Digdogger, Patra,
+        MagicalRod, Flute, Refill, TextAppear, TextAppearSlow, KeyAppear, UnlockDoor,
+        Stairs, Shore, Secret
+    }
     public class SoundFactory
     {
         private readonly SoundLoader soundLoader;
 
-        public SoundFactory(Game1 game)
-        {
-            soundLoader = new SoundLoader(game);
-        }
-
+        public SoundFactory(Game1 game) => soundLoader = new SoundLoader(game);;
         public BackgroundMusic MakeBackgroundMusic()
-        {
-            return new BackgroundMusic(soundLoader.GetMusic());
-        }
+            => new BackgroundMusic(soundLoader.GetMusic());
 
-        public AbstractSoundEffect MakeSoundEffect(string soundEffectType)
+        public AbstractSoundEffect MakeSoundEffect(SoundEnum soundEffectType)
         {
             SoundEffect soundEffect = soundLoader.GetSoundEffect(soundEffectType);
             return soundEffectType switch
             {
-                "sword slash" => new SwordSlashSoundEffect(soundEffect),
-                "sword shoot" => new SwordShootSoundEffect(soundEffect),
-                "arrow" => new ArrowSoundEffect(soundEffect),
-                "boomerang" => new BoomerangSoundEffect(soundEffect),
-                "shield" => new ShieldSoundEffect(soundEffect),
-                "use bomb" => new UseBombSoundEffect(soundEffect),
-                "bomb explode" => new BombExplodeSoundEffect(soundEffect),
-                "candle" => new CandleSoundEffect(soundEffect),
-                "enemy damaged" => new EnemyDamagedSoundEffect(soundEffect),
-                "enemy death" => new EnemyDeathSoundEffect(soundEffect),
-                "link damaged" => new LinkDamagedSoundEffect(soundEffect),
-                "link death" => new LinkDeathSoundEffect(soundEffect),
-                "low health" => new LowHealthSoundEffect(soundEffect),
-                "new item" => new NewItemSoundEffect(soundEffect),
-                "get item" => new GetItemSoundEffect(soundEffect),
-                "get heart" => new GetHeartSoundEffect(soundEffect),
-                "get key" => new GetKeySoundEffect(soundEffect),
-                "get rupee" => new GetRupeeSoundEffect(soundEffect),
-                "aquamentus" => new AquamentusSoundEffect(soundEffect),
-                "gleeok" => new GleeokSoundEffect(soundEffect),
-                "ganon" => new GanonSoundEffect(soundEffect),
-                "dodongo" => new DodongoSoundEffect(soundEffect),
-                "gohma" => new GohmaSoundEffect(soundEffect),
-                "manhandla" => new ManhandlaSoundEffect(soundEffect),
-                "digdogger" => new DigdoggerSoundEffect(soundEffect),
-                "patra" => new PatraSoundEffect(soundEffect),
-                _ => throw new ArgumentException("Invalid sound effect! " + soundEffectType + " Sound factory failed."),
+                SoundEnum.SwordSlash => new SwordSlashSoundEffect(soundEffect),
+                SoundEnum.SwordShoot => new SwordShootSoundEffect(soundEffect),
+                SoundEnum.Arrow => new ArrowSoundEffect(soundEffect),
+                SoundEnum.Boomerang => new BoomerangSoundEffect(soundEffect),
+                SoundEnum.Shield => new ShieldSoundEffect(soundEffect),
+                SoundEnum.UseBomb => new UseBombSoundEffect(soundEffect),
+                SoundEnum.BombExplode => new BombExplodeSoundEffect(soundEffect),
+                SoundEnum.Candle => new CandleSoundEffect(soundEffect),
+                SoundEnum.EnemyDamaged => new EnemyDamagedSoundEffect(soundEffect),
+                SoundEnum.EnemyDeath => new EnemyDeathSoundEffect(soundEffect),
+                SoundEnum.LinkDamaged => new LinkDamagedSoundEffect(soundEffect),
+                SoundEnum.LinkDeath => new LinkDeathSoundEffect(soundEffect),
+                SoundEnum.LowHealth => new LowHealthSoundEffect(soundEffect),
+                SoundEnum.NewItem => new NewItemSoundEffect(soundEffect),
+                SoundEnum.GetItem => new GetItemSoundEffect(soundEffect),
+                SoundEnum.GetHeart => new GetHeartSoundEffect(soundEffect),
+                SoundEnum.GetKey => new GetKeySoundEffect(soundEffect),
+                SoundEnum.GetRupee => new GetRupeeSoundEffect(soundEffect),
+                SoundEnum.Aquamentus => new AquamentusSoundEffect(soundEffect),
+                SoundEnum.Gleeok => new GleeokSoundEffect(soundEffect),
+                SoundEnum.Ganon => new GanonSoundEffect(soundEffect),
+                SoundEnum.Dodongo => new DodongoSoundEffect(soundEffect),
+                SoundEnum.Gohma => new GohmaSoundEffect(soundEffect),
+                SoundEnum.Manhandla => new ManhandlaSoundEffect(soundEffect),
+                SoundEnum.Digdogger => new DigdoggerSoundEffect(soundEffect),
+                SoundEnum.Patra => new PatraSoundEffect(soundEffect),
+                _ => throw new ArgumentException("Invalid sound effect! " + soundEffectType.ToString() + " Sound factory failed."),
             };
         }
     }

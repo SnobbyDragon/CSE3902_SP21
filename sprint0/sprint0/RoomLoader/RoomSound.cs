@@ -18,7 +18,7 @@ namespace sprint0
             soundEffectsToDie = new List<AbstractSoundEffect>();
         }
 
-        public void AddSoundEffect(string soundEffect)
+        public void AddSoundEffect(SoundEnum soundEffect)
             => soundEffects.Add(soundFactory.MakeSoundEffect(soundEffect));
 
         public void RemoveSoundEffect(AbstractSoundEffect soundEffect)

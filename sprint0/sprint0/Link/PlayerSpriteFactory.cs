@@ -41,7 +41,7 @@ namespace sprint0
                 LinkEnum.LinkLeftItem => new LeftUseItemSprite(texture, location),
                 LinkEnum.LinkRightItem => new RightUseItemSprite(texture, location),
                 LinkEnum.LinkPickUpItem => new PickUpItemSprite(texture, location),
-                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Player sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Player sprite factory failed."),
             };
         }
     }

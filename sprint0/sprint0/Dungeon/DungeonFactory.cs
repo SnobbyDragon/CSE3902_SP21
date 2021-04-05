@@ -58,7 +58,7 @@ namespace sprint0
                 DungeonEnum.RightBombedOpening => new BombedOpening(texture, location, Direction.w, game),
                 DungeonEnum.LeftBombedOpening => new BombedOpening(texture, location, Direction.e, game),
                 DungeonEnum.UpBombedOpening => new BombedOpening(texture, location, Direction.s, game),
-                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
 
@@ -79,7 +79,7 @@ namespace sprint0
                 BlockEnum.MovableBlock => new MovableBlock1(texture, location),
                 BlockEnum.MovableBlock5 => new MovableBlock5(texture, location),
                 BlockEnum.InvisibleBlock => new InvisibleBlock(location, width, height),
-                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
     }

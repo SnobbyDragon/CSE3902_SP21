@@ -31,7 +31,7 @@ namespace sprint0
                 EffectEnum.SwordBeamExplode => new SwordBeamExplode(texture2, location),
                 EffectEnum.Death => new DeathCloud(texture2, location, game),
                 EffectEnum.GanonAshes => new GanonAshes(texture1, location),
-                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
 

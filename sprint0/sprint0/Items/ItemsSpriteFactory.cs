@@ -66,7 +66,7 @@ namespace sprint0
                 ItemEnum.WhiteSword => new WhiteSword(texture1, location),
                 ItemEnum.WoodenSword => new WoodenSword(texture1, location),
                 ItemEnum.GanonTriforceAshes => new GanonTriforceAshes(texture2, location, game),
-                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
 

@@ -92,14 +92,14 @@ namespace sprint0
             {
                 damageTimer = damageTime;
                 health -= damage;
-                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDamaged);
             }
         }
 
         public void Perish()
         {
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-            game.Room.RoomSound.AddSoundEffect("enemy death");
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDeath);
         }
 
         // keeps timings for expansions

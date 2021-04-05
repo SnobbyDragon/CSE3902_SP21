@@ -53,7 +53,7 @@ namespace sprint0
                 EnemyEnum.Stalfos => new Stalfos(texture, location, game),
                 EnemyEnum.Trap => new Trap(texture, location, game),
                 EnemyEnum.Trapparatus => new Trapparatus(texture, location, game),
-                _ => throw new ArgumentException("Invalid sprite! " + spriteType + " Sprite factory failed."),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
 

@@ -104,7 +104,7 @@ namespace sprint0
             {
                 damageTimer = damageTime;
                 health -= damage;
-                game.Room.RoomSound.AddSoundEffect("enemy damaged");
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDamaged);
             }
         }
 
@@ -119,7 +119,7 @@ namespace sprint0
 
         private void ShootFireball()
         {
-            game.Room.RoomSound.AddSoundEffect("gleeok");
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.Gleeok);
             Vector2 dir = game.Room.Player.Pos - Location.Center.ToVector2();
             dir.Normalize();
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
