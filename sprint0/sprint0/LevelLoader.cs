@@ -98,11 +98,11 @@ namespace sprint0
                 case "Boss":
                     if (objectName.Equals("dodongo") || objectName.Equals("aquamentus"))
                     {
-                        effects.Add(effectFactory.MakeSpawn(objectName, location + Offset));
+                        effects.Add(effectFactory.MakeSpawn(objectName, location));
                     }
                     else
                     {
-                        enemies.Add(bossFactory.MakeSprite(objectName, location + Offset));
+                        enemies.Add(bossFactory.MakeSprite(objectName, location));
                     }
                     
                     break;
