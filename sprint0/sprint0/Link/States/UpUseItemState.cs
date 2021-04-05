@@ -12,7 +12,7 @@ namespace sprint0
         public UpUseItemState(IPlayer player)
         {
             this.player = player;
-            sprite = Room.PlayerFactory.MakeSprite("link up item", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkUpItem, player.Pos);
         }
 
         public void Update()

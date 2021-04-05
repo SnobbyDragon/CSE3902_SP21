@@ -14,7 +14,7 @@ namespace sprint0
         public LeftUseItemState(IPlayer player)
         {
             this.player = player;
-            sprite = Room.PlayerFactory.MakeSprite("link left item", player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkLeftItem, player.Pos);
         }
 
         public void Update()
