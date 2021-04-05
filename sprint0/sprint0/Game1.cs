@@ -68,7 +68,7 @@ namespace sprint0
 
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
-            RoomIndex = 18;
+            RoomIndex = 16;
             ChangeRoom = true;
             UseLoadedPos = false;
             base.Initialize();
@@ -85,7 +85,7 @@ namespace sprint0
         {
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 18;
+            RoomIndex = 16;
             ChangeRoom = true;
             ResetManagers();
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));

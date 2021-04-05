@@ -13,5 +13,6 @@
     <Item ObjectName="WoodenSword" LocationX="310" LocationY="375" />?
     <NPC ObjectName="Flame" LocationX="200" LocationY="300" />?
     <NPC ObjectName="Flame" LocationX="400" LocationY="300" />?
+
       <Player ObjectName="Link" LocationX="310" LocationY="460" />?
 ?</XnaContent>

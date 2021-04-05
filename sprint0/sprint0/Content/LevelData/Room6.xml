@@ -20,7 +20,7 @@
     <Block ObjectName="block" LocationX="160" LocationY="420" />?
     <Block ObjectName="block" LocationX="440" LocationY="420" />?
     <Block ObjectName="block" LocationX="480" LocationY="420" />? 
-    
+
      <Enemy ObjectName="GoldZol" LocationX="160" LocationY="220" />?
     <Enemy ObjectName="GreenZol" LocationX="200" LocationY="300" />?
     <Enemy ObjectName="LimeZol" LocationX="360" LocationY="220" />?
@@ -28,7 +28,5 @@
     <Enemy ObjectName="BrownZol" LocationX="420" LocationY="340" />?
     
     <Player ObjectName="Link" LocationX="82" LocationY="340" />?
-
-    
 
 ?</XnaContent>

@@ -36,9 +36,7 @@
 
     <Block ObjectName="water" LocationX="400" LocationY="420" />?
     <Block ObjectName="water" LocationX="440" LocationY="420" />?
-    <Block ObjectName="water" LocationX="480" LocationY="420" />?
-   
-    
+    <Block ObjectName="water" LocationX="480" LocationY="420" />?    
 
     <Enemy ObjectName="RedGoriya" LocationX="360" LocationY="260" />?
     <Enemy ObjectName="RedGoriya" LocationX="360" LocationY="220" />?
