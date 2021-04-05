@@ -65,7 +65,7 @@ namespace sprint0
         public void SetItem(PlayerItems source, PlayerItems item)
         {
             mainHUD.SetItem(source, item);
-            if (source == PlayerItems.BItem)
+            if (source == PlayerItems.BItem && item != PlayerItems.Map)
                 pauseInventory.SetItem(item);
             else pauseInventory.AddAItem(item);
         }
