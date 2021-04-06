@@ -125,6 +125,7 @@ namespace sprint0
             }
             
             game.Room = game.Rooms[dest];
+            game.Player.Pos = game.Room.LoadLevel.locations[dest];
         }
 
         public void HandleCredits()
