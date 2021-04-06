@@ -14,7 +14,7 @@
                 boomerang.Perish();
                 link.ReceiveItem(1, PlayerItems.Boomerang);
             }
-            else
+            else if (!(projectile.Shooter is IPlayer))
             {
                 projectile.RegisterHit();
                 if (projectile.Shooter != null && !(projectile.Shooter is IPlayer) &&

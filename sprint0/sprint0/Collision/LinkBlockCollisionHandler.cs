@@ -41,7 +41,7 @@ namespace sprint0
             {
                 game.stateMachine.HandleSnapRoomChange(basement);
 
-                link.Direction = Direction.s;
+                link.Direction = Direction.South;
                 link.State = new DownIdleState(link);
             }
         }
@@ -51,7 +51,7 @@ namespace sprint0
             {
                 game.stateMachine.HandleSnapRoomChange(stairsRoom);
                 link.Pos = new Vector2(200,200);
-                link.Direction = Direction.e;
+                link.Direction = Direction.East;
                 link.State = new LeftIdleState(link);
             }
         }

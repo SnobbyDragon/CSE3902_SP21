@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-// Authors: Jesse He and Jacob Urick
-//Updated: 04/03/21 by shah.1440
 namespace sprint0
 {
     class Link : IPlayer
@@ -29,7 +27,6 @@ namespace sprint0
             position = pos;
             State = new UpIdleState(this);
             ItemCounts = new List<int> { -1, -1, 1 };
-
             HUD = this.game.hudManager;
             itemHelper = new LinkUseItemHelper(game, this, HUD);
             CurrentItem = PlayerItems.None;
@@ -45,7 +42,6 @@ namespace sprint0
             if (Health <= 0) Die();
         }
         public void PickUpItem() => State.PickUpItem();
-
         public void IncrementItem(PlayerItems inventoryItem)
         {
             if (inventoryItem == PlayerItems.BlueRupee)
@@ -86,11 +82,10 @@ namespace sprint0
         public void SetHUDItem(PlayerItems source, PlayerItems newItem) => HUD.SetItem(source, newItem);
         public bool HasItem(PlayerItems item) => HUD.HasItem(item);
         public bool HasKey() {
-            if (game.stateMachine.GetState().Equals(GameStateMachine.State.test)) {
+            if (game.stateMachine.GetState().Equals(GameStateMachine.State.test))
                 return true;
-            }else
-                return   HUD.HasKeys();
-        
+            else
+                return HUD.HasKeys();
         }
         public void DecrementKey() => HUD.DecrementKey();
         public void AddToInventory(PlayerItems newItem) => HUD.AddBItem(newItem);

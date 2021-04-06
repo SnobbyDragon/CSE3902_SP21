@@ -73,11 +73,11 @@ namespace sprint0
             prev = state;
             counter = 0;
             direction = d;
-            if (d == Direction.n || d == Direction.s)
+            if (d == Direction.North || d == Direction.South)
             {
                 bound = (int)(Game1.MapHeight * Game1.Scale) / ScrollSpeed;
             }
-            if (d == Direction.e || d == Direction.w)
+            if (d == Direction.East || d == Direction.West)
             {
                 bound = (int)(Game1.Width * Game1.Scale) / ScrollSpeed;
             }
@@ -109,19 +109,19 @@ namespace sprint0
             game.RoomIndex = dest;
             if (game.Rooms[dest].Offset.X > 0)
             {
-                game.Slide(Direction.e, (int)game.Rooms[dest].Offset.X);
+                game.Slide(Direction.East, (int)game.Rooms[dest].Offset.X);
             }
             else if (game.Rooms[dest].Offset.X < 0)
             {
-                game.Slide(Direction.w, (int)game.Rooms[dest].Offset.X);
+                game.Slide(Direction.West, (int)game.Rooms[dest].Offset.X);
             }
             if (game.Rooms[dest].Offset.Y > 0)
             {
-                game.Slide(Direction.s, (int)game.Rooms[dest].Offset.Y);
+                game.Slide(Direction.South, (int)game.Rooms[dest].Offset.Y);
             }
             else if (game.Rooms[dest].Offset.Y < 0)
             {
-                game.Slide(Direction.n, (int)game.Rooms[dest].Offset.Y);
+                game.Slide(Direction.North, (int)game.Rooms[dest].Offset.Y);
             }
             
             game.Room = game.Rooms[dest];

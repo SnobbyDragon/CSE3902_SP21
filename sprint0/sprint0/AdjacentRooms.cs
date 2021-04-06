@@ -7,7 +7,7 @@ namespace sprint0
     {
         private static readonly Dictionary<int, Dictionary<Direction, int>> adjacentRooms = new Dictionary<int, Dictionary<Direction, int>>
             {
-                { 1, new Dictionary<Direction, int> { { Direction.East, 2 } } },
+                { 1, new Dictionary<Direction, int> { { Direction.East, 2 }, { Direction.West, 18 } } },
                 { 2, new Dictionary<Direction, int> { { Direction.West, 1 }, { Direction.South, 3 } } },
                 { 3, new Dictionary<Direction, int> { { Direction.North, 2 }, { Direction.South, 6 } } },
                 { 4, new Dictionary<Direction, int> { { Direction.East, 5 } } },
