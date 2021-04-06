@@ -80,7 +80,7 @@ namespace sprint0
             VisitedRooms = new List<int>();
 
             Rooms = new Dictionary<int, Room>();
-            RoomIndex = 4;
+            RoomIndex = 18;
 
             base.Initialize();
         }
@@ -97,7 +97,7 @@ namespace sprint0
             Rooms.Clear();
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 4;
+            RoomIndex = 18;
 
             ResetManagers();
             LoadContent();
@@ -140,7 +140,6 @@ namespace sprint0
                 frontier = newFrontier;
             }
             Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[1].Offset + eastOffset);
-            Rooms[18] = new Room(_spriteBatch, this, 18, Rooms[0].Offset + eastOffset);
             foreach (Room rm in Rooms.Values)
                 rm.LoadContent();
         }
