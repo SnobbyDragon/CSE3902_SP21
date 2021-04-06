@@ -12,7 +12,7 @@ namespace sprint0
         public BackgroundMusic(List<Song> songs)
         {
             this.songs = songs;
-            currSong = 1;
+            currSong = 0;
             Play();
         }
 
