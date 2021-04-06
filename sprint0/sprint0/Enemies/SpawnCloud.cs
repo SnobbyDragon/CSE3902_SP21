@@ -32,7 +32,7 @@ namespace sprint0
         {
             if (frame < totalFrames * repeatedFrames)
             {
-                if (enemyAfter.Equals("trapparatus"))
+                if (enemyAfter == EnemyEnum.Trapparatus)
                     DrawTraps(spriteBatch);
                 else
                     spriteBatch.Draw(Texture, Location, sources[frame / repeatedFrames], Color.White);

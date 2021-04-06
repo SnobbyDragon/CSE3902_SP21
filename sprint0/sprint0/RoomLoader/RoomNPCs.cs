@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
@@ -13,6 +14,11 @@ namespace sprint0
             npcs = new List<INpc>();
         }
 
+        public void UpdateOffset(Vector2 Offset)
+        {
+            foreach (INpc item in npcs)
+                item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
+        }
         public void Update()
         {
             foreach (INpc npc in npcs)

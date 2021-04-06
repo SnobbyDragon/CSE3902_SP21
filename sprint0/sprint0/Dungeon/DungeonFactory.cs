@@ -24,10 +24,12 @@ namespace sprint0
     {
         private readonly Game1 game;
         private readonly Texture2D texture;
+        private readonly int roomIndex;
 
-        public DungeonFactory(Game1 game)
+        public DungeonFactory(Game1 game, int roomIndex)
         {
             this.game = game;
+            this.roomIndex = roomIndex;
             texture = game.Content.Load<Texture2D>("Images/DungeonTileset");
         }
 
@@ -35,29 +37,30 @@ namespace sprint0
         {
             return spriteType switch
             {
+
                 DungeonEnum.RoomFloor => new RoomFloor(texture, location),
                 DungeonEnum.RoomBorder => new RoomBorder(texture, location),
                 DungeonEnum.Darkness => new Darkness(texture, location),
-                DungeonEnum.DownWall => new Wall(texture, location, Direction.North, game, canBeBombed),
-                DungeonEnum.RightWall => new Wall(texture, location, Direction.West, game, canBeBombed),
-                DungeonEnum.LeftWall => new Wall(texture, location, Direction.East, game, canBeBombed),
-                DungeonEnum.UpWall => new Wall(texture, location, Direction.South, game, canBeBombed),
-                DungeonEnum.DownOpenDoor => new OpenDoor(texture, location, Direction.North, game),
-                DungeonEnum.RightOpenDoor => new OpenDoor(texture, location, Direction.West, game),
-                DungeonEnum.LeftOpenDoor => new OpenDoor(texture, location, Direction.East, game),
-                DungeonEnum.UpOpenDoor => new OpenDoor(texture, location, Direction.South, game),
-                DungeonEnum.DownLockedDoor => new LockedDoor(texture, location, Direction.North, game),
-                DungeonEnum.RightLockedDoor => new LockedDoor(texture, location, Direction.West, game),
-                DungeonEnum.LeftLockedDoor => new LockedDoor(texture, location, Direction.East, game),
-                DungeonEnum.UpLockedDoor => new LockedDoor(texture, location, Direction.South, game),
-                DungeonEnum.DownShutDoor => new ShutDoor(texture, location, Direction.North, game),
-                DungeonEnum.RightShutDoor => new ShutDoor(texture, location, Direction.West, game),
-                DungeonEnum.LeftShutDoor => new ShutDoor(texture, location, Direction.East, game),
-                DungeonEnum.UpShutDoor => new ShutDoor(texture, location, Direction.South, game),
-                DungeonEnum.DownBombedOpening => new BombedOpening(texture, location, Direction.North, game),
-                DungeonEnum.RightBombedOpening => new BombedOpening(texture, location, Direction.West, game),
-                DungeonEnum.LeftBombedOpening => new BombedOpening(texture, location, Direction.East, game),
-                DungeonEnum.UpBombedOpening => new BombedOpening(texture, location, Direction.South, game),
+                DungeonEnum.DownWall => new Wall(texture, location, Direction.n, game.Rooms[roomIndex], canBeBombed),
+                DungeonEnum.RightWall => new Wall(texture, location, Direction.w, game.Rooms[roomIndex], canBeBombed),
+                DungeonEnum.LeftWall => new Wall(texture, location, Direction.e, game.Rooms[roomIndex], canBeBombed),
+                DungeonEnum.UpWall => new Wall(texture, location, Direction.s, game.Rooms[roomIndex], canBeBombed),
+                DungeonEnum.DownOpenDoor => new OpenDoor(texture, location, Direction.n, game.Rooms[roomIndex]),
+                DungeonEnum.RightOpenDoor => new OpenDoor(texture, location, Direction.w, game.Rooms[roomIndex]),
+                DungeonEnum.LeftOpenDoor => new OpenDoor(texture, location, Direction.e, game.Rooms[roomIndex]),
+                DungeonEnum.UpOpenDoor => new OpenDoor(texture, location, Direction.s, game.Rooms[roomIndex]),
+                DungeonEnum.DownLockedDoor => new LockedDoor(texture, location, Direction.n, game.Rooms[roomIndex]),
+                DungeonEnum.RightLockedDoor => new LockedDoor(texture, location, Direction.w, game.Rooms[roomIndex]),
+                DungeonEnum.LeftLockedDoor => new LockedDoor(texture, location, Direction.e, game.Rooms[roomIndex]),
+                DungeonEnum.UpLockedDoor => new LockedDoor(texture, location, Direction.s, game.Rooms[roomIndex]),
+                DungeonEnum.DownShutDoor => new ShutDoor(texture, location, Direction.n, game.Rooms[roomIndex]),
+                DungeonEnum.RightShutDoor => new ShutDoor(texture, location, Direction.w, game.Rooms[roomIndex]),
+                DungeonEnum.LeftShutDoor => new ShutDoor(texture, location, Direction.e, game.Rooms[roomIndex]),
+                DungeonEnum.UpShutDoor => new ShutDoor(texture, location, Direction.s, game.Rooms[roomIndex]),
+                DungeonEnum.DownBombedOpening => new BombedOpening(texture, location, Direction.n, game.Rooms[roomIndex]),
+                DungeonEnum.RightBombedOpening => new BombedOpening(texture, location, Direction.w, game.Rooms[roomIndex]),
+                DungeonEnum.LeftBombedOpening => new BombedOpening(texture, location, Direction.e, game.Rooms[roomIndex]),
+                DungeonEnum.UpBombedOpening => new BombedOpening(texture, location, Direction.s, game.Rooms[roomIndex]),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
@@ -74,8 +77,8 @@ namespace sprint0
                 BlockEnum.Stairs => new Stairs(texture, location),
                 BlockEnum.Ladder => new Ladder(texture, location),
                 BlockEnum.Brick => new Brick(texture, location),
-                BlockEnum.LeftStatue => new Statue(texture, location, Direction.East, game),
-                BlockEnum.RightStatue => new Statue(texture, location, Direction.West, game),
+                BlockEnum.LeftStatue => new Statue(texture, location, Direction.e, game),
+                BlockEnum.RightStatue => new Statue(texture, location, Direction.w, game),
                 BlockEnum.MovableBlock => new MovableBlock1(texture, location),
                 BlockEnum.MovableBlock5 => new MovableBlock5(texture, location),
                 BlockEnum.InvisibleBlock => new InvisibleBlock(location, width, height),

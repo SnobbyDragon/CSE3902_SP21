@@ -30,6 +30,11 @@ namespace sprint0
                 item.Update();
         }
 
+        public void UpdateOffset(Vector2 Offset) {
+            foreach (IItem item in items)
+                item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
+        }
+
         public void ItemSpawnUpdate()
         {
             if (itemsToSpawn.Count > 0)

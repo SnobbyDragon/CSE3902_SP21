@@ -234,7 +234,7 @@ namespace sprint0
                 Collision side = collisionDetector.DetectCollision(linkHitbox, border);
                 if (side != Collision.None)
                 {
-                    collisionHandler.HandleCollision(link, border, side.ToDirection());
+                    collisionHandler.HandleCollision(link, border, side.ToDirection(), room.Game);
                 }
             }
         }
@@ -251,7 +251,7 @@ namespace sprint0
                     Collision side = collisionDetector.DetectCollision(weapon, border);
                     if (side != Collision.None)
                     {
-                        collisionHandler.HandleCollision(weapon, border, side.ToDirection());
+                        collisionHandler.HandleCollision(weapon, border, side.ToDirection(), room.Game);
                     }
                 }
             }

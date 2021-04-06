@@ -33,9 +33,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             if (PickedUpDuration < maxPickedUpDuration)
-            {
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
-            }
         }
 
         public void Update()

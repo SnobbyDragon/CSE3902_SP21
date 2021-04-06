@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+
 namespace sprint0
 {
     public class LinkBorderCollisionHandler
@@ -8,7 +9,7 @@ namespace sprint0
         {
         }
 
-        public void HandleCollision(IPlayer link, ISprite border, Direction side)
+        public void HandleCollision(IPlayer link, ISprite border, Direction side, Game1 game)
         {
             if (border is ShutDoor shutDoor)
             {
@@ -21,6 +22,9 @@ namespace sprint0
                 {
                     lockedDoor.OpenDoor();
                     link.DecrementKey();
+                    foreach (ISprite sprite in game.Rooms[AdjacentRooms.GetAdjacentRoom(game.RoomIndex, side)].LoadLevel.RoomSprite.RoomSprites)
+                        if (sprite is LockedDoor door && door.Side == DirectionMethods.OppositeDirection(side))
+                            door.OpenDoor();
                 }
             }
         }

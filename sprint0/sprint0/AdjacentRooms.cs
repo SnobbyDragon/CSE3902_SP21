@@ -31,5 +31,9 @@ namespace sprint0
         {
             return adjacentRooms[currRoomIndex][side];
         }
+
+        public static Dictionary<Direction, int> ListOfAdjacentRooms(int roomIndex) {
+            return adjacentRooms[roomIndex];
+        }
     }
 }
