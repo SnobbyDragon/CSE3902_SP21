@@ -11,11 +11,11 @@ namespace sprint0
         public List<IBlock> Blocks { get => blocks; set => blocks = value; }
         private List<IBlock> blocks;
         private readonly List<IBlock> blocksToRemove, blocksToAdd;
-        private Game1 game;
+        private readonly Game1 game;
 
-        public RoomBlocks(Game1 game)
+        public RoomBlocks(Game1 game, int roomIndex)
         {
-            dungeonFactory = new DungeonFactory(game);
+            dungeonFactory = new DungeonFactory(game, roomIndex);
             blocks = new List<IBlock>();
             blocksToRemove = new List<IBlock>();
             blocksToAdd = new List<IBlock>();
@@ -42,6 +42,13 @@ namespace sprint0
                 blocks.AddRange(blocksToAdd);
                 blocksToAdd.Clear();
             }
+        }
+
+        public void UpdateOffset(Vector2 Offset)
+        {
+            AddNew();
+            foreach (IBlock item in blocks)
+                item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
         }
 
         public void RemoveDestroyed()
@@ -74,16 +81,19 @@ namespace sprint0
             {
                 if (block is Block) blockToSwitch = block;
             }
-            Vector2 location = blockToSwitch.Location.Location.ToVector2();
-            RemoveBlock(blockToSwitch);
-            AddBlock(location, BlockEnum.MovableBlock5);
+            if (blockToSwitch != null)
+            {
+                Vector2 location = blockToSwitch.Location.Location.ToVector2();
+                RemoveBlock(blockToSwitch);
+                AddBlock(location, BlockEnum.MovableBlock5);
+            }
         }
 
         public void OpenDoorWithBlock()
         {
             foreach (IBlock block in blocks)
             {
-                if (block is MovableBlock5 && !((MovableBlock5)block).IsMovable())
+                if (block is MovableBlock5 block5 && !block5.IsMovable())
                     game.Room.LoadLevel.RoomSprite.OpenClosedDoor();
             }
         }

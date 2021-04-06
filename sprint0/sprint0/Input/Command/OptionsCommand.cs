@@ -1,19 +1,18 @@
-﻿// Author: Stuti Shah
+﻿
 namespace sprint0
 {
-    class ToggleTestModeCommand : ICommand
+    class OptionsCommand : ICommand
     {
         private readonly Game1 game;
-
-        public ToggleTestModeCommand(Game1 game)
+        
+        public OptionsCommand(Game1 game)
         {
             this.game = game;
         }
 
         public void Execute()
         {
-            game.stateMachine.HandleTest();
-
+            game.stateMachine.HandleCredits();
         }
     }
 }

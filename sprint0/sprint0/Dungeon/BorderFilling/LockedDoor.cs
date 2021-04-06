@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
@@ -8,19 +7,20 @@ namespace sprint0
     {
         public IBlock CollisionBox { get; }
 
-        public LockedDoor(Texture2D texture, Vector2 location, Direction dir, Game1 game) : base(texture, location, dir, game)
+        public LockedDoor(Texture2D texture, Vector2 location, Direction dir, Room room) : base(texture, location, dir, room)
         {
             xOffset = 881;
             yOffset = 11;
             GetSource();
-            CollisionBox = game.Room.LoadLevel.RoomBlocks.AddBlock(location, BlockEnum.InvisibleBlock, size, size);
+
+            CollisionBox = room.LoadLevel.RoomBlocks.AddBlock(location, BlockEnum.InvisibleBlock, size, size);
         }
 
         public void OpenDoor()
         {
-            Game.Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
-            Game.Room.LoadLevel.RoomSprite.RemoveRoomSprite(this);
-            Game.Room.LoadLevel.RoomSprite.AddRoomSprite(new OpenDoor(Texture, Location.Location.ToVector2(), Side, Game));
+            Room.LoadLevel.RoomBlocks.RemoveBlock(CollisionBox);
+            Room.LoadLevel.RoomSprite.RemoveRoomSprite(this);
+            Room.LoadLevel.RoomSprite.AddRoomSprite(new OpenDoor(Texture, Location.Location.ToVector2(), Side, Room));
         }
     }
 }

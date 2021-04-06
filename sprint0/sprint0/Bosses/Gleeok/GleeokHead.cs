@@ -54,6 +54,11 @@ namespace sprint0
             destination = RandomLocation();
         }
 
+        public void SetAnchor(Vector2 v)
+        {
+
+            anchor = v;
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             if (damageTimer % 2 == 0)
