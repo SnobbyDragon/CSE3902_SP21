@@ -14,6 +14,7 @@ namespace sprint0
         private int counter;
         private int bound;
         private State prev;
+        public int ScrollSpeed = 4;
         public GameStateMachine(Game1 game)
         {
             this.game = game;
@@ -74,11 +75,11 @@ namespace sprint0
             direction = d;
             if (d == Direction.n || d == Direction.s)
             {
-                bound = (int)(Game1.MapHeight * Game1.Scale);
+                bound = (int)(Game1.MapHeight * Game1.Scale) / ScrollSpeed;
             }
             if (d == Direction.e || d == Direction.w)
             {
-                bound = (int)(Game1.Width * Game1.Scale);
+                bound = (int)(Game1.Width * Game1.Scale) / ScrollSpeed;
             }
             state = State.changeRoom;
             game.NextRoomIndex = dest;

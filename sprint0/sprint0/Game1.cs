@@ -175,7 +175,7 @@ namespace sprint0
 
             if (state == GameStateMachine.State.changeRoom)
             {
-                Slide(stateMachine.GetChangeDirection(), 1);
+                Slide(stateMachine.GetChangeDirection(), stateMachine.ScrollSpeed);
                 stateMachine.HandleFinishRoomChange(NextRoomIndex);
             }
 
