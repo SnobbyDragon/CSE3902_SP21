@@ -44,9 +44,9 @@ namespace sprint0
 
         private bool SmallItem() => Item != PlayerItems.Compass && Item != PlayerItems.Raft && Item != PlayerItems.StepLadder;
         private bool IsSword(PlayerItems item) => item == PlayerItems.Sword || item == PlayerItems.MagicalSword || item == PlayerItems.WhiteSword;
-        private bool IsMapOrLetter(PlayerItems item) => item == PlayerItems.Map || item == PlayerItems.Letter;
+        private bool IsMapOrLetterOrCompass(PlayerItems item) => item == PlayerItems.Map || item == PlayerItems.Letter || item == PlayerItems.Compass;
         private bool HasItem(PlayerItems item) => ItemMap.ContainsKey(item);
-        private bool IsValidBItem(PlayerItems item) => !TopRowItems.Contains(item) && !IsMapOrLetter(item);
+        private bool IsValidBItem(PlayerItems item) => !TopRowItems.Contains(item) && !IsMapOrLetterOrCompass(item);
         private bool IsNone(PlayerItems item) => item == PlayerItems.None;
     }
 }
