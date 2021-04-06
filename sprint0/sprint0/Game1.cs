@@ -74,7 +74,7 @@ namespace sprint0
             VisitedRooms = new List<int>();
 
             Rooms = new Dictionary<int, Room>();
-            RoomIndex = 16;
+            RoomIndex = 18;
 
             base.Initialize();
         }
@@ -91,7 +91,7 @@ namespace sprint0
             Rooms.Clear();
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 16;
+            RoomIndex = 18;
             InitializeManagers();
             LoadContent();
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));

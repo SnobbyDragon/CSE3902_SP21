@@ -40,6 +40,7 @@ namespace sprint0
             RegisterCommand(Keys.E, new PauseCommand(game));
             RegisterCommand(Keys.Space, new StartGameCommand(game));
             RegisterCommand(Keys.B, new BItemCommand(game));
+            RegisterCommand(Keys.X, new BItemCommand(game));
             RegisterCommand(Keys.G, new LeftItemCommand(game));
             RegisterCommand(Keys.H, new RightItemCommand(game));
             RegisterCommand(Keys.M, new ToggleMusicCommand(game));
