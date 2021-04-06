@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-//Updated: 04/03/21 by shah.1440
 namespace sprint0
 {
     class DamagedLink : IPlayer
@@ -10,6 +9,7 @@ namespace sprint0
         private readonly IPlayer decoratedLink;
         private readonly Direction direction;
         private int timer = 80;
+        private readonly int endPushback = 75;
         readonly HUDManager HUD;
         private readonly int speed = 6;
         public Vector2 Pos { get => decoratedLink.Pos; set => decoratedLink.Pos = value; }
@@ -18,6 +18,8 @@ namespace sprint0
         public int WeaponDamage { get => decoratedLink.WeaponDamage; set => decoratedLink.WeaponDamage = value; }
         public PlayerItems CurrentItem { get => decoratedLink.CurrentItem; set => decoratedLink.CurrentItem = value; }
         public List<int> ItemCounts => decoratedLink.ItemCounts;
+        public int Health { get => decoratedLink.Health; set => decoratedLink.Health = value; }
+        public int MaxHealth { get => decoratedLink.MaxHealth; set => decoratedLink.MaxHealth = value; }
 
         public DamagedLink(IPlayer decoratedLink, Game1 game, Direction direction)
         {
@@ -62,7 +64,7 @@ namespace sprint0
         public void Update()
         {
             timer--;
-            if (timer > 75)
+            if (timer > endPushback)
             {
                 Vector2 move = speed * direction.OppositeDirection().ToVector2();
                 decoratedLink.Move((int)move.X, (int)move.Y);

@@ -24,16 +24,16 @@ namespace sprint0
                     game.stateMachine.HandleNewRoom(borderSide, newRoom);
                     switch (borderSide)
                     {
-                        case Direction.n:
+                        case Direction.North:
                             link.Pos = new Vector2(link.Pos.X, (Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale - linkSize);
                             break;
-                        case Direction.s:
+                        case Direction.South:
                             link.Pos = new Vector2(link.Pos.X, (Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale);
                             break;
-                        case Direction.e:
+                        case Direction.East:
                             link.Pos = new Vector2(Game1.BorderThickness * Game1.Scale, link.Pos.Y);
                             break;
-                        case Direction.w:
+                        case Direction.West:
                             link.Pos = new Vector2((Game1.Width - Game1.BorderThickness) * Game1.Scale - linkSize, link.Pos.Y);
                             break;
                     }

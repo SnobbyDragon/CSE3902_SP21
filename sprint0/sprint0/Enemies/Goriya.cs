@@ -23,7 +23,7 @@ namespace sprint0
             currentFrame = 0;
             totalFrames = 4;
             repeatedFrames = 20;
-            direction = Direction.n;
+            direction = Direction.North;
             damage = 2;
             room = game.Room;
             throwCounter = 0;
@@ -41,16 +41,16 @@ namespace sprint0
             {
                 switch (direction)
                 {
-                    case Direction.w:
+                    case Direction.West:
                         spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
                         break;
-                    case Direction.e:
+                    case Direction.East:
                         spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White);
                         break;
-                    case Direction.s:
+                    case Direction.South:
                         spriteBatch.Draw(Texture, Location, colorMap[color][0], Color.White);
                         break;
-                    case Direction.n:
+                    case Direction.North:
                         spriteBatch.Draw(Texture, Location, colorMap[color][1], Color.White);
                         break;
                 }

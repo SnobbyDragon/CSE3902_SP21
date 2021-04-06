@@ -37,25 +37,25 @@ namespace sprint0
             fireballRate = 100;
             dirToSourcesMap = new Dictionary<Direction, List<Rectangle>>
             {
-                { Direction.n, new List<Rectangle>
+                { Direction.North, new List<Rectangle>
                     {
                         new Rectangle(105, 89, size, size),
                         new Rectangle(158, 89, size, size)
                     }
                 },
-                { Direction.s, new List<Rectangle>
+                { Direction.South, new List<Rectangle>
                     {
                         new Rectangle(105, 123, size, size),
                         new Rectangle(158, 123, size, size)
                     }
                 },
-                { Direction.w, new List<Rectangle>
+                { Direction.West, new List<Rectangle>
                     {
                         new Rectangle(88, 106, size, size),
                         new Rectangle(141, 106, size, size)
                     }
                 },
-                { Direction.e, new List<Rectangle>
+                { Direction.East, new List<Rectangle>
                     {
                         new Rectangle(122, 106, size, size),
                         new Rectangle(175, 106, size, size)

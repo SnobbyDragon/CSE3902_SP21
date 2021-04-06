@@ -38,18 +38,18 @@ namespace sprint0
 
             switch (dir)
             {
-                case Direction.n:
+                case Direction.North:
                     sourceAdjustX = -4;
                     sourceAdjustY = -4;
                     break;
-                case Direction.s:
+                case Direction.South:
                     sourceAdjustX = 4;
                     sourceAdjustY = 4;
                     break;
-                case Direction.e:
+                case Direction.East:
                     sourceAdjustX = 4;
                     break;
-                case Direction.w:
+                case Direction.West:
                     sourceAdjustX = -4;
                     break;
             }

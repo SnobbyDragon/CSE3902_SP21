@@ -29,9 +29,7 @@ namespace sprint0
             spriteBatch.Draw(Texture, Location, source, Color.White);
         }
 
-        public void Update()
-        {
-        }
+        public void Update() { }
 
         public bool IsWalkable()
         {
@@ -49,8 +47,6 @@ namespace sprint0
             if (changeLoc.Length() >= Game1.Scale * width)
             {
                 isMovable = false;
-                //opens door
-
             }
 
         }

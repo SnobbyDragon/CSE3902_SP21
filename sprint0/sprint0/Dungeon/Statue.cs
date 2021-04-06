@@ -21,11 +21,11 @@ namespace sprint0
             dir = direction;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            if (dir == Direction.e)
+            if (dir == Direction.East)
             {
                 source = new Rectangle(xOffset, yOffset, width, height);
             }
-            else if (dir == Direction.w)
+            else if (dir == Direction.West)
             {
                 source = new Rectangle(xOffset + width + 1, yOffset, width, height);
             }

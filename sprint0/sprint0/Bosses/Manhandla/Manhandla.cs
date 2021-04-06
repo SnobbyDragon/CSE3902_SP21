@@ -48,10 +48,10 @@ namespace sprint0
             CheckHealth();
             if (limbs.Count == 0 && !limbsExist)
             {
-                limbs.Add(new ManhandlaLimb(Texture, this, Direction.n, game));
-                limbs.Add(new ManhandlaLimb(Texture, this, Direction.s, game));
-                limbs.Add(new ManhandlaLimb(Texture, this, Direction.e, game));
-                limbs.Add(new ManhandlaLimb(Texture, this, Direction.w, game));
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.North, game));
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.South, game));
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.East, game));
+                limbs.Add(new ManhandlaLimb(Texture, this, Direction.West, game));
                 game.Room.LoadLevel.RoomEnemies.RegisterEnemies(limbs);
                 limbsExist = true;
             }

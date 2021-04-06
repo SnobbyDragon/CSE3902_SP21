@@ -20,16 +20,16 @@ namespace sprint0
                 link.TakeDamage(side, enemy.Damage);
                 switch (side)
                 {
-                    case Direction.n:
+                    case Direction.North:
                         link.Pos += new Vector2(0, enemy.Location.Bottom - (link.Pos.Y + offset));
                         break;
-                    case Direction.s:
+                    case Direction.South:
                         link.Pos += new Vector2(0, enemy.Location.Top - (link.Pos.Y + linkSize - offset));
                         break;
-                    case Direction.e:
+                    case Direction.East:
                         link.Pos += new Vector2(enemy.Location.Left - (link.Pos.X + linkSize - offset), 0);
                         break;
-                    case Direction.w:
+                    case Direction.West:
                         link.Pos += new Vector2(enemy.Location.Right - (link.Pos.X + offset), 0);
                         break;
                 }

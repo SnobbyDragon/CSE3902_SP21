@@ -37,7 +37,7 @@ namespace sprint0
             scaledSideLength = (int)(sideLength * Game1.Scale);
             scaledWidth = (int)(width * Game1.Scale);
 
-            direction = Direction.w;
+            direction = Direction.West;
             Location = new Rectangle((int)location.X, (int)location.Y, scaledWidth, scaledSideLength);
             Texture = texture;
 
@@ -65,7 +65,7 @@ namespace sprint0
         {
             if (damageTimer % 2 == 0)
             {
-                if (direction == Direction.w || direction == Direction.e)
+                if (direction == Direction.West || direction == Direction.East)
                 {
                     spriteBatch.Draw(Texture, Location, rightLeftSources[currentFrameRL / repeatedFrames],
                         Color.White, 0, new Vector2(0, 0), spriteEffects[currentSpriteEffect / repeatedFrames], 0);
@@ -90,19 +90,19 @@ namespace sprint0
 
             if (eatingCounter == 0)
             {
-                if (direction == Direction.w)
+                if (direction == Direction.West)
                 {
                     currentSpriteEffect = repeatedFrames + 1;
                     currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
                     Location = new Rectangle(Location.X - 1, Location.Y, scaledWidth, scaledSideLength);
                 }
-                else if (direction == Direction.e)
+                else if (direction == Direction.East)
                 {
                     currentSpriteEffect = 0;
                     currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
                     Location = new Rectangle(Location.X + 1, Location.Y, scaledWidth, scaledSideLength);
                 }
-                else if (direction == Direction.s)
+                else if (direction == Direction.South)
                 {
                     currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
                     Location = new Rectangle(Location.X, Location.Y + 1, scaledSideLength, scaledSideLength);
@@ -134,11 +134,11 @@ namespace sprint0
             game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             bombsEaten++;
             eatingCounter = 1;
-            if (direction == Direction.s)
+            if (direction == Direction.South)
             {
                 currentFrameUD = repeatedFrames;
             }
-            else if (direction == Direction.n)
+            else if (direction == Direction.North)
             {
                 currentFrameUD = 3 * repeatedFrames;
             }
@@ -158,16 +158,16 @@ namespace sprint0
         {
             switch (dir)
             {
-                case Direction.n:
+                case Direction.North:
                     FaceNorth();
                     break;
-                case Direction.s:
+                case Direction.South:
                     FaceSouth();
                     break;
-                case Direction.e:
+                case Direction.East:
                     FaceEast();
                     break;
-                case Direction.w:
+                case Direction.West:
                     FaceWest();
                     break;
                 default:
@@ -177,28 +177,28 @@ namespace sprint0
 
         private void FaceNorth()
         {
-            direction = Direction.n;
+            direction = Direction.North;
             currentFrameUD = 2 * repeatedFrames;
             Location = new Rectangle(Location.X, Location.Y, scaledSideLength, scaledSideLength);
         }
 
         private void FaceSouth()
         {
-            direction = Direction.s;
+            direction = Direction.South;
             currentFrameUD = 0;
             Location = new Rectangle(Location.X, Location.Y, scaledSideLength, scaledSideLength);
         }
 
         private void FaceEast()
         {
-            direction = Direction.e;
+            direction = Direction.East;
             currentFrameRL = 0;
             Location = new Rectangle(Location.X, Location.Y, scaledWidth, scaledSideLength);
         }
 
         private void FaceWest()
         {
-            direction = Direction.w;
+            direction = Direction.West;
             currentFrameRL = repeatedFrames;
             Location = new Rectangle(Location.X, Location.Y, scaledWidth, scaledSideLength);
         }

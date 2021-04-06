@@ -24,7 +24,7 @@ namespace sprint0
             currentFrame = 0;
             repeatedFrames = 7;
             source = new Rectangle(1, 59, width, height);
-            direction = Direction.n;
+            direction = Direction.North;
             damage = 1;
             spriteEffects = new List<SpriteEffects> {
                 SpriteEffects.None,

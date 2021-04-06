@@ -34,7 +34,7 @@ namespace sprint0
             repeatedFrames = 14;
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
 
-            direction = Direction.e;
+            direction = Direction.East;
             moveCounter = 0;
 
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);

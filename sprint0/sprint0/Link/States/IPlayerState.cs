@@ -9,8 +9,8 @@ namespace sprint0
         public void HandleDown() { }
         public void HandleLeft() { }
         public void HandleRight() { }
-        public void HandleSword() { }
-        public void UseItem() { }
+        public void HandleSword(LinkUseItemHelper itemHelper) { }
+        public void UseItem(LinkUseItemHelper itemHelper) { }
         public void PickUpItem() { }
         public void Update();
         public void Draw(SpriteBatch spritebatch);

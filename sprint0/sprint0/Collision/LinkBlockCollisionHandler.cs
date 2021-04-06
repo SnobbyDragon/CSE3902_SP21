@@ -41,7 +41,7 @@ namespace sprint0
             {
                 game.stateMachine.HandleSnapRoomChange(basement);
 
-                link.Direction = Direction.s;
+                link.Direction = Direction.South;
                 link.State = new DownIdleState(link);
             }
         }
@@ -51,7 +51,7 @@ namespace sprint0
             {
                 game.stateMachine.HandleSnapRoomChange(stairsRoom);
                 link.Pos = new Vector2(200,200);
-                link.Direction = Direction.e;
+                link.Direction = Direction.East;
                 link.State = new LeftIdleState(link);
             }
         }
@@ -59,13 +59,13 @@ namespace sprint0
         {
             switch (side)
             {
-                case Direction.n:
+                case Direction.North:
                     block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y - block.Location.Height, block.Location.Width, block.Location.Height);
                     break;
-                case Direction.s:
+                case Direction.South:
                     block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y + linkSize, block.Location.Width, block.Location.Height);
                     break;
-                case Direction.e:
+                case Direction.East:
                     if (block is MovableBlock5)
                     {
                         block.Location = new Rectangle((int)link.Pos.X + block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
@@ -75,7 +75,7 @@ namespace sprint0
                         link.Pos += new Vector2(block.Location.Left - (link.Pos.X + linkSize - offset), 0);
                     }
                     break;
-                case Direction.w:
+                case Direction.West:
                     if (block is MovableBlock5)
                     {
                         block.Location = new Rectangle((int)link.Pos.X - block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
@@ -92,16 +92,16 @@ namespace sprint0
         {
             switch (side)
             {
-                case Direction.n:
+                case Direction.North:
                     link.Pos += new Vector2(0, block.Location.Bottom - (link.Pos.Y + offset));
                     break;
-                case Direction.s:
+                case Direction.South:
                     link.Pos += new Vector2(0, block.Location.Top - (link.Pos.Y + linkSize - offset));
                     break;
-                case Direction.e:
+                case Direction.East:
                     link.Pos += new Vector2(block.Location.Left - (link.Pos.X + linkSize - offset), 0);
                     break;
-                case Direction.w:
+                case Direction.West:
                     link.Pos += new Vector2(block.Location.Right - (link.Pos.X + offset), 0);
                     break;
             }

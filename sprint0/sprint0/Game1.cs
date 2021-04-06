@@ -22,25 +22,20 @@ namespace sprint0
 
         public bool ChangeRoom { get; set; }
 
-        public SoundFactory SoundFactory { get => soundFactory; }
-        private SoundFactory soundFactory;
-        public BackgroundMusic Music { get => music; }
-        private BackgroundMusic music;
+        public SoundFactory SoundFactory { get; private set; }
+        public BackgroundMusic Music { get; private set; }
+
         public UniversalScreenManager universalScreenManager;
         public HUDManager hudManager;
-        public Room Room { get => room; set => room = value; }
-        private Room room;
-        public Room NextRoom { set => nextRoom = value; get => nextRoom; }
-        private Room nextRoom;
+        public Room Room { get; set; }
+        public Room NextRoom { set; get; }
         public int RoomIndex { get; set; }
 
         public int NextRoomIndex { get; set; }
         public int NumRooms { get; } = 19;
         public readonly GameStateMachine stateMachine;
-
         private readonly int LinkDefaultX = 250;
         private readonly int LinkDefaultY = 280;
-
         private GameStateMachine.State state;
         public static int Width { get; } = 256;
         public static int MapHeight { get; } = 176;
@@ -72,20 +67,19 @@ namespace sprint0
                 new KeyboardController(this),
                 new MouseController(this)
             };
-            ResetManagers();
-            soundFactory = new SoundFactory(this);
-            music = SoundFactory.MakeBackgroundMusic();
-
+            InitializeManagers();
+            SoundFactory = new SoundFactory(this);
+            Music = SoundFactory.MakeBackgroundMusic();
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
 
             Rooms = new Dictionary<int, Room>();
-            RoomIndex = 18;
+            RoomIndex = 16;
 
             base.Initialize();
         }
 
-        private void ResetManagers()
+        private void InitializeManagers()
         {
             universalScreenManager = new UniversalScreenManager(this);
             hudManager = new HUDManager(this);
@@ -97,9 +91,8 @@ namespace sprint0
             Rooms.Clear();
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 18;
-
-            ResetManagers();
+            RoomIndex = 16;
+            InitializeManagers();
             LoadContent();
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
         }
@@ -111,9 +104,9 @@ namespace sprint0
                 VisitedRooms.Add(RoomIndex);
             }
 
-            room = new Room(_spriteBatch, this, RoomIndex, new Vector2(0, 0));
+            Room = new Room(_spriteBatch, this, RoomIndex, new Vector2(0, 0));
             playerFactory = new PlayerSpriteFactory(this);
-            Rooms.Add(RoomIndex, room);
+            Rooms.Add(RoomIndex, Room);
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
 
             List<int> frontier = new List<int>{ RoomIndex };
@@ -130,10 +123,10 @@ namespace sprint0
                         if (!Rooms.ContainsKey(idx))
                         {
                             newFrontier.Add(idx);
-                            if (d == Direction.n) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + northOffset);
-                            else if (d == Direction.s) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + southOffset);
-                            else if (d == Direction.w) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + westOffset);
-                            else if (d == Direction.e) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + eastOffset);
+                            if (d == Direction.North) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + northOffset);
+                            else if (d == Direction.South) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + southOffset);
+                            else if (d == Direction.West) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + westOffset);
+                            else if (d == Direction.East) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + eastOffset);
                         }
                     }
                 }
@@ -147,19 +140,19 @@ namespace sprint0
         public void Slide(Direction d, int ammount) {
             Vector2 offst = zeroVector;
             ammount = System.Math.Abs(ammount);
-            if (d == Direction.n) {
+            if (d == Direction.North) {
                 offst.Y = 1 * ammount;
 
             }
-            else if (d == Direction.s)
+            else if (d == Direction.South)
             {
                 offst.Y = -ammount;
             }
-            else if (d == Direction.e)
+            else if (d == Direction.East)
             {
                 offst.X = -ammount;
             }
-            else if (d == Direction.w)
+            else if (d == Direction.West)
             {
                 offst.X = ammount;
             }
@@ -186,13 +179,13 @@ namespace sprint0
                 controller.Update();
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
-                room.Update();
+                Room.Update();
             }
             if (ChangeHUD())
                 hudManager.Update();
             universalScreenManager.Update(state);
             hudManager.Update();
-            music.Update();
+            Music.Update();
             base.Update(gameTime);
         }
 
@@ -202,8 +195,8 @@ namespace sprint0
             _spriteBatch.Begin();
             if (state.Equals(GameStateMachine.State.changeRoom))
             {
-                room.Draw();
-                nextRoom.Draw();
+                Room.Draw();
+                NextRoom.Draw();
                 hudManager.Draw(_spriteBatch);
             }
 
@@ -211,7 +204,7 @@ namespace sprint0
 
             if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
             {
-                room.Draw();
+                Room.Draw();
             }
             if (ChangeHUD())
                 hudManager.Draw(_spriteBatch);
@@ -226,6 +219,5 @@ namespace sprint0
                 state.Equals(GameStateMachine.State.test) ||
                 state.Equals(GameStateMachine.State.pause);
         }
-
     }
 }

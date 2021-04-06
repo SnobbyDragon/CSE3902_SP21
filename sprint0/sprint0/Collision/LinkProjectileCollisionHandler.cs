@@ -1,5 +1,4 @@
-﻿using System;
-namespace sprint0
+﻿namespace sprint0
 {
     public class LinkProjectileCollisionHandler
     {
@@ -10,12 +9,19 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, IProjectile projectile, Direction side)
         {
-            if (projectile.Shooter != null && !(projectile.Shooter is IPlayer))
-                link.TakeDamage(side, projectile.Damage);
-            else if (projectile.Shooter is IPlayer && projectile is Boomerang boomerang && boomerang.CanBeCaught)
+            if (projectile.Shooter is IPlayer && projectile is Boomerang boomerang && boomerang.CanBeCaught)
             {
                 boomerang.Perish();
                 link.ReceiveItem(1, PlayerItems.Boomerang);
+            }
+            else if (!(projectile.Shooter is IPlayer))
+            {
+                projectile.RegisterHit();
+                if (projectile.Shooter != null &&
+                !((link.State is UpIdleState || link.State is DownIdleState || link.State is LeftIdleState || link.State is RightIdleState
+                || link.State is UpWalkingState || link.State is DownWalkingState || link.State is LeftWalkingState || link.State is RightWalkingState)
+                && link.Direction == side))
+                    link.TakeDamage(side, projectile.Damage);
             }
         }
     }

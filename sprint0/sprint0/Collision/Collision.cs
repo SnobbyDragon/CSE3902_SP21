@@ -9,10 +9,10 @@ namespace sprint0
         {
             return collision switch
             {
-                Collision.Left => Direction.w,
-                Collision.Right => Direction.e,
-                Collision.Top => Direction.n,
-                Collision.Bottom => Direction.s,
+                Collision.Left => Direction.West,
+                Collision.Right => Direction.East,
+                Collision.Top => Direction.North,
+                Collision.Bottom => Direction.South,
                 _ => throw new ArgumentException("Invalid collision! Has no corresponding direction!")
             };
         }

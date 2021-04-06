@@ -27,10 +27,10 @@ namespace sprint0
         {
             source = Side switch
             {
-                Direction.n => new Rectangle(xOffset, yOffset, size, size),
-                Direction.w => new Rectangle(xOffset, yOffset + size + 1, size, size),
-                Direction.e => new Rectangle(xOffset, yOffset + 2 * (size + 1), size, size),
-                Direction.s => new Rectangle(xOffset, yOffset + 3 * (size + 1), size, size),
+                Direction.North => new Rectangle(xOffset, yOffset, size, size),
+                Direction.West => new Rectangle(xOffset, yOffset + size + 1, size, size),
+                Direction.East => new Rectangle(xOffset, yOffset + 2 * (size + 1), size, size),
+                Direction.South => new Rectangle(xOffset, yOffset + 3 * (size + 1), size, size),
                 _ => throw new ArgumentException("Invalid direction! Failed to make " + GetType().Name)
             };
         }
