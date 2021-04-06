@@ -13,7 +13,6 @@ namespace sprint0
         public List<IEnemy> EnemiesToDie { get => enemiesToDie; set => enemiesToDie = value; }
         public List<IEnemy> EnemiesToSpawn { get => enemiesToSpawn; set => enemiesToSpawn = value; }
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
-        private readonly int roomNum;
         Vector2 keySpawnLocation;
         private bool endBehaviorExecuted;
         private readonly Game1 game;
@@ -25,7 +24,6 @@ namespace sprint0
             enemiesToSpawn = new List<IEnemy>();
             enemies = new List<IEnemy>();
             enemiesToDie = new List<IEnemy>();
-            roomNum = game.RoomIndex;
             this.game = game;
             endBehaviorExecuted = false;
         }
@@ -89,7 +87,7 @@ namespace sprint0
             int roomWithBoomerang = 7;
             int roomWithMovableBlock = 5;
             Vector2 location = new Vector2(400, 300);
-            if (roomWithKey.Contains(roomNum))
+            if (roomWithKey.Contains(game.RoomIndex))
                 game.Room.LoadLevel.RoomItems.AddItem(keySpawnLocation, ItemEnum.Key);
             else if (game.RoomIndex == roomWithBoomerang)
                 game.Room.LoadLevel.RoomItems.AddItem(location, ItemEnum.Boomerang);
