@@ -8,16 +8,17 @@ namespace sprint0
     public class SoundLoader
     {
         private readonly List<Song> songs;
+        private readonly int numSongs = 7;
         private readonly Dictionary<SoundEnum, SoundEffect> soundEffects;
 
         public SoundLoader(Game1 game)
         {
-            songs = new List<Song>
+            songs = new List<Song>();
+            for (int i = 1; i <= numSongs; i++)
             {
-                game.Content.Load<Song>("Sound/music1"),
-                game.Content.Load<Song>("Sound/music2"),
-                game.Content.Load<Song>("Sound/music3"),
-            };
+                songs.Add(game.Content.Load<Song>("Sound/music" + i));
+            }
+
             soundEffects = new Dictionary<SoundEnum, SoundEffect>
             {
                 { SoundEnum.SwordSlash, game.Content.Load<SoundEffect>("Sound/Sword_Slash") },
