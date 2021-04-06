@@ -63,7 +63,7 @@ namespace sprint0
         {
             foreach (IEnemy enemy in enemies)
                 enemy.Update();
-            if (enemies.Count == 0 && !endBehaviorExecuted && game.Room.LoadLevel.RoomEffect.RoomEffects.Count == 0)
+             if (enemies.Count == 0 && !endBehaviorExecuted && game.Room.LoadLevel.RoomEffect.RoomEffects.Count == 0)
                 RoomEndBehavior();
         }
 
@@ -84,15 +84,16 @@ namespace sprint0
 
         private void RoomEndBehavior()
         {
+         
             List<int> roomWithKey = new List<int> { 15, 17, 12, 3, 2, 10 };
             int roomWithBoomerang = 7;
             int roomWithMovableBlock = 5;
             Vector2 location = new Vector2(400, 300);
             if (roomWithKey.Contains(roomNum))
                 game.Room.LoadLevel.RoomItems.AddItem(keySpawnLocation, ItemEnum.Key);
-            else if (roomNum == roomWithBoomerang)
+            else if (game.RoomIndex == roomWithBoomerang)
                 game.Room.LoadLevel.RoomItems.AddItem(location, ItemEnum.Boomerang);
-            else if (roomNum == roomWithMovableBlock)
+            else if (game.RoomIndex == roomWithMovableBlock)
                 game.Room.LoadLevel.RoomBlocks.SwitchToMovableBlock();
             endBehaviorExecuted = true;
         }
