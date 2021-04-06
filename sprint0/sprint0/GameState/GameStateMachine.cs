@@ -28,7 +28,7 @@ namespace sprint0
 
         public void HandleTest()
         {
-            if (state == State.start)
+            if (state == State.start || state == State.play)
             {
                 state = State.test;
             }
@@ -149,7 +149,7 @@ namespace sprint0
 
         public void HandlePlay()
         {
-            if (state == State.start)
+            if (state == State.start || state == State.test)
             {
                 state = State.play;
             }
