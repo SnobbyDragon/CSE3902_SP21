@@ -17,7 +17,7 @@
             else if (!(projectile.Shooter is IPlayer))
             {
                 projectile.RegisterHit();
-                if (projectile.Shooter != null && !(projectile.Shooter is IPlayer) &&
+                if (projectile.Shooter != null &&
                 !((link.State is UpIdleState || link.State is DownIdleState || link.State is LeftIdleState || link.State is RightIdleState
                 || link.State is UpWalkingState || link.State is DownWalkingState || link.State is LeftWalkingState || link.State is RightWalkingState)
                 && link.Direction == side))
