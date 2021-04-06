@@ -87,9 +87,6 @@ namespace sprint0
                 if (Shooter is Goriya goriya1)
                     alive = goriya1.isAlive();
             }
-
-
-
         }
 
         public void RegisterHit()

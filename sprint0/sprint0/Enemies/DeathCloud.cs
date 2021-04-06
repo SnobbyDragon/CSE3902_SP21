@@ -39,7 +39,6 @@ namespace sprint0
                 Perish();
         }
 
-
         private void Perish()
             => game.Room.LoadLevel.RoomEffect.RemoveProjectile(this);
 

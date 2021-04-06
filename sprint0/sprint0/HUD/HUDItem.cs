@@ -9,7 +9,6 @@ namespace sprint0
 {
     public class HUDItem : HUDItemMapping, IHUD
     {
-
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public PlayerItems Item { get; set; }
@@ -30,7 +29,6 @@ namespace sprint0
         }
 
         public void Update() { }
-
         public void SetAItem(PlayerItems item)
         {
             if ((HasItem(item) && IsSword(item)) || IsNone(item))
@@ -41,12 +39,11 @@ namespace sprint0
             if ((HasItem(item) && IsValidBItem(item) && IsNone(Item)) || IsNone(item))
                 Item = item;
         }
-
         private bool SmallItem() => Item != PlayerItems.Compass && Item != PlayerItems.Raft && Item != PlayerItems.StepLadder;
         private bool IsSword(PlayerItems item) => item == PlayerItems.Sword || item == PlayerItems.MagicalSword || item == PlayerItems.WhiteSword;
-        private bool IsMapOrLetter(PlayerItems item) => item == PlayerItems.Map || item == PlayerItems.Letter;
+        private bool IsMapOrLetterOrCompass(PlayerItems item) => item == PlayerItems.Map || item == PlayerItems.Letter || item == PlayerItems.Compass;
         private bool HasItem(PlayerItems item) => ItemMap.ContainsKey(item);
-        private bool IsValidBItem(PlayerItems item) => !TopRowItems.Contains(item) && !IsMapOrLetter(item);
+        private bool IsValidBItem(PlayerItems item) => !TopRowItems.Contains(item) && !IsMapOrLetterOrCompass(item);
         private bool IsNone(PlayerItems item) => item == PlayerItems.None;
     }
 }

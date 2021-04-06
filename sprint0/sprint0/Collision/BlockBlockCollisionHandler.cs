@@ -5,25 +5,18 @@ namespace sprint0
 {
     public class BlockBlockCollisionHandler
     {
-
         private readonly int base_size = 16;
 
-        public BlockBlockCollisionHandler()
-        {
-        }
+        public BlockBlockCollisionHandler() { }
 
         public void HandleCollision(IBlock block1, IBlock block2, Direction side)
         {
             if (!block2.IsWalkable())
             {
                 if (block2.IsMovable())
-                {
                     HandleMovableBlock(block1, block2, side);
-                }
                 else if (block1.IsMovable())
-                {
                     HandleImmovableBlock(block1, block2, side);
-                }
             }
         }
 
