@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
@@ -21,12 +22,13 @@ namespace sprint0
         private readonly RoomEnemies roomEnemies;
         private readonly RoomSprite roomSprite;
         private readonly RoomEffect roomEffect;
+        public Dictionary<int,Vector2> locations;
 
-        public LoadLevel(Game1 game)
+        public LoadLevel(Game1 game, int roomIndex)
         {
             roomProjectile = new RoomProjectile(game);
             roomWeapon = new RoomWeapon(game);
-            roomBlocks = new RoomBlocks(game);
+            roomBlocks = new RoomBlocks(game, roomIndex);
             roomItems = new RoomItems(game);
             roomNPCs = new RoomNPCs();
             roomEnemies = new RoomEnemies(game);
@@ -34,7 +36,7 @@ namespace sprint0
             roomEffect = new RoomEffect(game);
         }
 
-        public void PopulateLists((List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>, List<IEffect>) roomElements)
+        public void PopulateLists((List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>, List<IEffect>, Dictionary<int, Vector2>) roomElements)
         {
             roomSprite.RoomSprites = roomElements.Item1;
             roomProjectile.Projectiles = roomElements.Item2;
@@ -43,6 +45,17 @@ namespace sprint0
             roomNPCs.NPCs = roomElements.Item5;
             roomItems.Items = roomElements.Item6;
             roomEffect.RoomEffects = roomElements.Item7;
+            locations = roomElements.Item8;
+        }
+
+        public void UpdateOffsets(Vector2 Offset) {
+            roomSprite.UpdateOffset(Offset);
+            roomProjectile.UpdateOffset(Offset);
+            roomBlocks.UpdateOffset(Offset);
+            roomEnemies.UpdateOffset(Offset);
+            roomNPCs.UpdateOffset(Offset);
+            roomItems.UpdateOffset(Offset);
+            roomEffect.UpdateOffset(Offset);
         }
 
         public void AddNew()

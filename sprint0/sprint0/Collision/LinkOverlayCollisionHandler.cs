@@ -17,12 +17,11 @@ namespace sprint0
         {
             if (overlay is BorderFillingOverlay borderFilling)
             {
-                if (borderFilling.Location.Contains(new Rectangle((int)link.Pos.X, (int)link.Pos.Y, linkSize, linkSize)))
+                if (borderFilling.Location.Intersects(new Rectangle((int)link.Pos.X, (int)link.Pos.Y, linkSize, linkSize)))
                 {
                     Direction borderSide = borderFilling.BorderFilling.Side;
                     int newRoom = AdjacentRooms.GetAdjacentRoom(game.RoomIndex, borderSide);
-                    game.RoomIndex = newRoom;
-                    game.ChangeRoom = true;
+                    game.stateMachine.HandleNewRoom(borderSide, newRoom);
                     switch (borderSide)
                     {
                         case Direction.n:

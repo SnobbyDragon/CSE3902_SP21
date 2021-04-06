@@ -7,7 +7,7 @@ namespace sprint0
     {
         private static readonly Dictionary<int, Dictionary<Direction, int>> adjacentRooms = new Dictionary<int, Dictionary<Direction, int>>
             {
-                { 1, new Dictionary<Direction, int> { { Direction.e, 2 } } },
+                { 1, new Dictionary<Direction, int> { { Direction.e, 2 }, { Direction.w, 18} } },
                 { 2, new Dictionary<Direction, int> { { Direction.w, 1 }, { Direction.s, 3 } } },
                 { 3, new Dictionary<Direction, int> { { Direction.n, 2 }, { Direction.s, 6 } } },
                 { 4, new Dictionary<Direction, int> { { Direction.e, 5 } } },
@@ -30,6 +30,10 @@ namespace sprint0
         public static int GetAdjacentRoom(int currRoomIndex, Direction side)
         {
             return adjacentRooms[currRoomIndex][side];
+        }
+
+        public static Dictionary<Direction, int> ListOfAdjacentRooms(int roomIndex) {
+            return adjacentRooms[roomIndex];
         }
     }
 }

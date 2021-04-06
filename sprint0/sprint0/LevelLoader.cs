@@ -27,6 +27,7 @@ namespace sprint0
         private readonly List<INpc> npcs;
         private readonly List<IItem> items;
         private readonly List<IEffect> effects;
+        private Dictionary<int, Vector2> locations = new Dictionary<int, Vector2>();
 
         private readonly Game1 game;
         private readonly ItemsSpriteFactory itemFactory;
@@ -34,9 +35,10 @@ namespace sprint0
         private readonly BossesSpriteFactory bossFactory;
         private readonly NpcsSpriteFactory npcFactory;
         private readonly EffectSpriteFactory effectFactory;
-
-        public LevelLoader(Game1 game, int roomNo)
+        private Vector2 Offset;
+        public LevelLoader(Game1 game, int roomNo, Vector2 offset)
         {
+            Offset = offset;
             path = Path.GetFullPath(@genericPath) + roomNo.ToString() + xmlExtension;
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
@@ -54,7 +56,7 @@ namespace sprint0
 
             effectFactory = new EffectSpriteFactory(this.game);
             itemFactory = new ItemsSpriteFactory(this.game);
-            dungeonFactory = new DungeonFactory(this.game);
+            dungeonFactory = new DungeonFactory(this.game, roomNo);
             bossFactory = new BossesSpriteFactory(this.game);
             npcFactory = new NpcsSpriteFactory(this.game);
         }
@@ -73,11 +75,11 @@ namespace sprint0
             fileStream.Close();
         }
 
-        public (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>, List<IEffect>) LoadLevel()
+        public (List<ISprite>, List<IProjectile>, List<IBlock>, List<IEnemy>, List<INpc>, List<IItem>, List<IEffect>, Dictionary<int, Vector2>) LoadLevel()
         {
             RoomSetup(roomReader, roomStream);
             if (roomNo != 0) RoomSetup(roomReaderInvisible, roomStreamInvisible);
-            return (sprites, projectiles, blocks, enemies, npcs, items, effects);
+            return (sprites, projectiles, blocks, enemies, npcs, items, effects, locations);
         }
 
         public void AddElement(XmlReader xmlReader)
@@ -117,6 +119,7 @@ namespace sprint0
                     break;
                 case "Player":
                     game.Room.Player.Pos = location;
+                    locations.Add(roomNo, location);
                     break;
                 default:
                     throw new ArgumentException("Invalid sprite! Level loading failed.");
