@@ -9,7 +9,7 @@ namespace sprint0
         private readonly Game1 game;
         public static Vector2 position;
         private readonly int speed = 2;
-        private LinkUseItemHelper itemHelper;
+        private readonly LinkUseItemHelper itemHelper;
         private readonly HUDManager HUD;
         public List<int> ItemCounts { get; }
         public Vector2 Pos { get => position; set => position = value; }
@@ -18,6 +18,7 @@ namespace sprint0
         public PlayerItems CurrentItem { get; set; }
         public int WeaponDamage { get; set; }
         public int Health { get; set; } = 28;
+        private double damagePercent;
         public int MaxHealth { get; set; } = 28;
 
         public Link(Game1 game, Vector2 pos)
@@ -28,6 +29,7 @@ namespace sprint0
             State = new UpIdleState(this);
             ItemCounts = new List<int> { -1, -1, 1 };
             HUD = this.game.hudManager;
+            damagePercent = 1.0;
             itemHelper = new LinkUseItemHelper(game, this, HUD);
             CurrentItem = PlayerItems.None;
             speed = 2;
@@ -36,7 +38,7 @@ namespace sprint0
         public void TakeDamage(Direction direction, int damage)
         {
             game.Room.Player = new DamagedLink(this, game, direction);
-            HUD.TakeDamage(damage);
+            HUD.TakeDamage((int)(damage * damagePercent));
             Health = HUD.Health;
             game.Room.RoomSound.AddSoundEffect(SoundEnum.LinkDamaged);
             if (Health <= 0) Die();
@@ -65,10 +67,7 @@ namespace sprint0
         public void HandleRight() => State.HandleRight();
         public void HandleSword() => State.HandleSword(itemHelper);
         public void HandleItem() => State.UseItem(itemHelper);
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            State.Draw(spriteBatch);
-        }
+        public void Draw(SpriteBatch spriteBatch) => State.Draw(spriteBatch);
         public void Update()
         {
             State.Update();
@@ -81,13 +80,23 @@ namespace sprint0
         }
         public void SetHUDItem(PlayerItems source, PlayerItems newItem) => HUD.SetItem(source, newItem);
         public bool HasItem(PlayerItems item) => HUD.HasItem(item);
-        public bool HasKey() {
+        public bool HasKey()
+        {
             if (game.stateMachine.GetState().Equals(GameStateMachine.State.test))
                 return true;
             else
                 return HUD.HasKeys();
         }
         public void DecrementKey() => HUD.DecrementKey();
-        public void AddToInventory(PlayerItems newItem) => HUD.AddBItem(newItem);
+        public void AddToInventory(PlayerItems newItem)
+        {
+            HUD.AddBItem(newItem);
+            ChangeDamage();
+        }
+        private void ChangeDamage()
+        {
+            if (HasItem(PlayerItems.BlueRing)) damagePercent = .5;
+            else if (HasItem(PlayerItems.RedRing)) damagePercent = .75;
+        }
     }
 }

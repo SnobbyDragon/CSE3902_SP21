@@ -9,19 +9,20 @@ namespace sprint0
         {
             None = 0, Right = 1, Left = 2, LeftRight = 3,
             Down = 4, RightDown = 5, LeftDown = 6, LeftRightDown = 7,
-            Up = 8, RightUp = 9, LeftUp = 10, LeftRightUp = 11, UpDown = 12, RightUpDown = 13, LeftUpDown = 14, LeftRightUpDown = 15, Empty = 16, Location = 17
+            Up = 8, RightUp = 9, LeftUp = 10, LeftRightUp = 11, UpDown = 12, RightUpDown = 13, LeftUpDown = 14, LeftRightUpDown = 15,
+            Location = 16, TriforceLocation = 17,
         }
         protected readonly List<Rectangle> sources;
         private readonly Dictionary<int, int> rowMapping1, rowMapping2, rowMapping3, rowMapping4, rowMapping5, rowMapping6;
         protected readonly Dictionary<int, Rectangle> roomPos;
         protected readonly List<Dictionary<int, int>> fullMapping;
-        private readonly int xOffset = 519, yOffset = 108, totalFrames = 16, height = 88;
+        private readonly int xOffset = 519, yOffset = 108, totalFrames = 16, height = 88, xLocation = 528, yLocation = 126;
         protected readonly int sideLength = 8, baseX = 136, baseY;
         public PauseScreenMapping()
         {
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, sideLength, sideLength, totalFrames);
-            sources.Add(new Rectangle(587, 91, sideLength * 2, sideLength * 2));
-            sources.Add(new Rectangle(528, 126, sideLength, sideLength));
+            sources.Add(new Rectangle(xLocation, yLocation, sideLength, sideLength));
+            sources.Add(new Rectangle(xLocation + sideLength + 1, yLocation, sideLength, sideLength));
             baseY = height + Game1.HUDHeight + (sideLength * 2);
             roomPos = new Dictionary<int, Rectangle>();
             rowMapping1 = new Dictionary<int, int>
