@@ -3,10 +3,7 @@
     class SwordCommand : ICommand
     {
         private readonly Game1 game;
-
-        public SwordCommand(Game1 game)
-             => this.game = game;
-
+        public SwordCommand(Game1 game) => this.game = game;
         public void Execute()
         {
             if (CanUse())

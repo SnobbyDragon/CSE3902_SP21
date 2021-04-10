@@ -7,15 +7,7 @@ namespace sprint0
     class RestartCommand : ICommand
     {
         private readonly Game1 game;
-
-        public RestartCommand(Game1 game)
-        {
-            this.game = game;
-        }
-
-        public void Execute()
-        {
-            game.stateMachine.HandleRunItBack();
-        }
+        public RestartCommand(Game1 game) => this.game = game;
+        public void Execute() => game.stateMachine.HandleRunItBack();
     }
 }

@@ -5,10 +5,7 @@ namespace sprint0
     {
         private readonly Game1 game;
 
-        public RightCommand(Game1 game)
-        {
-            this.game = game;
-        }
+        public RightCommand(Game1 game) => this.game = game;
 
         public void Execute()
         {

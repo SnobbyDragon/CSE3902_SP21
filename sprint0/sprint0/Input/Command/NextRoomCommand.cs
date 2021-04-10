@@ -5,18 +5,12 @@ namespace sprint0
     {
         private readonly Game1 game;
 
-        public NextRoomCommand(Game1 game)
-        {
-            this.game = game;
-        }
+        public NextRoomCommand(Game1 game) => this.game = game;
 
         public void Execute()
         {
             if (game.stateMachine.GetState().Equals(GameStateMachine.State.test))
-            {
-               game.stateMachine.HandleSnapRoomChange(((game.RoomIndex + 1) % game.NumRooms));
-              
-            }
+                game.stateMachine.HandleSnapRoomChange(((game.RoomIndex + 1) % game.NumRooms));
         }
     }
 }

@@ -5,8 +5,8 @@ namespace sprint0
     {
         private readonly Game1 game;
         private HUDManager HUD;
-        private PlayerItems item = PlayerItems.Food;
-        private int health = 5;
+        private readonly PlayerItems item = PlayerItems.Food;
+        private readonly int health = 5;
 
         public FoodCommand(Game1 game) => this.game = game;
 
