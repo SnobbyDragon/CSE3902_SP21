@@ -9,11 +9,15 @@ namespace sprint0
 
         public void Execute()
         {
-            if (game.hudManager.HasItem(PlayerItems.BlueCandle) || game.hudManager.HasItem(PlayerItems.RedCandle) || game.stateMachine.GetState().Equals(GameStateMachine.State.test))
+            if (CanUse())
             {
                 game.Room.Player.CurrentItem = PlayerItems.BlueCandle;
                 game.Room.Player.HandleItem();
             }
         }
+
+        private bool CanUse()
+            => game.hudManager.HasItem(PlayerItems.BlueCandle) || game.hudManager.HasItem(PlayerItems.RedCandle) || game.stateMachine.GetState().Equals(GameStateMachine.State.test)
+            || (game.hudManager.HasItem(PlayerItems.MagicalRod) && game.hudManager.HasItem(PlayerItems.BookOfMagic));
     }
 }

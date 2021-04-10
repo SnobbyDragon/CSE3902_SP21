@@ -10,7 +10,7 @@ namespace sprint0
         private Game1 game;
         public Texture2D Texture { get; set; }
 
-        private int currentRoom;
+        private int currentRoom, triforceRoom = 9;
         public PauseScreenMap(Game1 game)
         {
             this.game = game;
@@ -25,7 +25,10 @@ namespace sprint0
             if (game.hudManager.HasItem(PlayerItems.Map))
                 DrawMap(spriteBatch);
             if (game.hudManager.HasItem(PlayerItems.Compass))
+            {
+                spriteBatch.Draw(Texture, new Rectangle(roomPos[triforceRoom].X + 6, roomPos[triforceRoom].Y + 6, roomPos[triforceRoom].Width, roomPos[triforceRoom].Height), sources[(int)RoomDirection.TriforceLocation], Color.White);
                 spriteBatch.Draw(Texture, new Rectangle(roomPos[currentRoom].X + 6, roomPos[currentRoom].Y + 6, roomPos[currentRoom].Width, roomPos[currentRoom].Height), sources[(int)RoomDirection.Location], Color.White);
+            }
         }
 
         private void DrawMap(SpriteBatch spriteBatch)

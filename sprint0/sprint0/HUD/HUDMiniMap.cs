@@ -10,7 +10,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         public Rectangle Location { get; set; }
         private Game1 game;
-        int currentRoom;
+        private int currentRoom;
         public HUDMiniMap(Game1 game)
         {
             this.game = game;

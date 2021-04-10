@@ -24,6 +24,8 @@
       <Item ObjectName="Clock" LocationX="120" LocationY="460" />?
      <Item ObjectName="Bow" LocationX="160" LocationY="460" />?
       <Item ObjectName="HeartContainer" LocationX="200" LocationY="460" />?
+        <Item ObjectName="MagicalRod" LocationX="240" LocationY="460" />?
+    <Item ObjectName="BookOfMagic" LocationX="280" LocationY="460" />?
       <Item ObjectName="Compass" LocationX="320" LocationY="460" />?
       <Item ObjectName="Key" LocationX="360" LocationY="460" />?
        <Item ObjectName="Fairy" LocationX="400" LocationY="460" />?
