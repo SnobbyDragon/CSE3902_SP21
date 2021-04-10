@@ -132,40 +132,21 @@ namespace sprint0
                 rm.LoadContent();
         }
 
-        public void Slide(Direction d, int ammount)
+        public void Slide(Direction d, int amount)
         {
-            Vector2 offst = zeroVector;
-            ammount = System.Math.Abs(ammount);
-            if (d == Direction.North)
-            {
-                offst.Y = 1 * ammount;
-
-            }
-            else if (d == Direction.South)
-            {
-                offst.Y = -ammount;
-            }
-            else if (d == Direction.East)
-            {
-                offst.X = -ammount;
-            }
-            else if (d == Direction.West)
-            {
-                offst.X = ammount;
-            }
-            foreach (Room rm in Rooms.Values)
-            {
-                rm.UpdateOffsets(offst);
-            }
+            Vector2 offset = zeroVector;
+            amount = System.Math.Abs(amount);
+            if (d == Direction.North) offset.Y = 1 * amount;
+            else if (d == Direction.South) offset.Y = -amount;
+            else if (d == Direction.East) offset.X = -amount;
+            else if (d == Direction.West) offset.X = amount;
+            foreach (Room rm in Rooms.Values) rm.UpdateOffsets(offset);
         }
 
         protected override void Update(GameTime gameTime)
         {
             state = stateMachine.GetState();
-            if (!VisitedRooms.Contains(RoomIndex))
-            {
-                VisitedRooms.Add(RoomIndex);
-            }
+            if (!VisitedRooms.Contains(RoomIndex)) VisitedRooms.Add(RoomIndex);
             if (state == GameStateMachine.State.changeRoom)
             {
                 Slide(stateMachine.GetChangeDirection(), stateMachine.ScrollSpeed);
@@ -177,10 +158,7 @@ namespace sprint0
 
             foreach (IController controller in controllerList)
                 controller.Update();
-            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
-            {
-                Room.Update();
-            }
+            if (PlayOrTest()) Room.Update();
             if (ChangeHUD())
                 hudManager.Update();
             universalScreenManager.Update(state);
@@ -199,25 +177,15 @@ namespace sprint0
                 NextRoom.Draw();
                 hudManager.Draw(_spriteBatch);
             }
-
-
-
-            if (state.Equals(GameStateMachine.State.play) || state.Equals(GameStateMachine.State.test))
-            {
-                Room.Draw();
-            }
+            if (PlayOrTest()) Room.Draw();
             if (ChangeHUD())
                 hudManager.Draw(_spriteBatch);
             universalScreenManager.Draw(_spriteBatch, state);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
-
-        private bool ChangeHUD()
-        {
-            return state.Equals(GameStateMachine.State.play) ||
-                state.Equals(GameStateMachine.State.test) ||
-                state.Equals(GameStateMachine.State.pause);
-        }
+        private bool ChangeHUD() => PlayOrTest() || state.Equals(GameStateMachine.State.pause);
+        private bool PlayOrTest() => state.Equals(GameStateMachine.State.play) ||
+                state.Equals(GameStateMachine.State.test);
     }
 }
