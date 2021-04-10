@@ -21,9 +21,7 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             PickedUpDuration = -1;
-
             source = new Rectangle(258, 1, width, height);
-
         }
 
         public void Draw(SpriteBatch spriteBatch)

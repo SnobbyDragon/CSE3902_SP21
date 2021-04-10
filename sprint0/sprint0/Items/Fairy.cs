@@ -40,29 +40,18 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             if (PickedUpDuration < maxPickedUpDuration)
-            {
-
                 spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
-            }
             else
-            {
-                //fairy becomes small on purpose
                 spriteBatch.Draw(Texture, game.Room.Player.Pos + new Vector2(-8, -8), sources[currentFrame / repeatedFrames], Color.White);
-            }
-
+            //fairy becomes small on purpose
         }
 
         public void Update()
         {
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-
             int offset = 200;
-
             Vector2 dist = destination - Location.Location.ToVector2();
-            if (dist.Length() < 5)
-            {
-                GenerateDest(offset);
-            }
+            if (dist.Length() < 5) GenerateDest(offset);
             else
             {
                 dist.Normalize();
@@ -70,7 +59,6 @@ namespace sprint0
                 Location = new Rectangle((int)(Location.X + dist.X), (int)(Location.Y + dist.Y), Location.Width, Location.Height);
             }
             if (PickedUpDuration >= 0) PickedUpDuration++;
-
         }
 
         private void GenerateDest(int offset)
@@ -81,30 +69,18 @@ namespace sprint0
             int yupperBound = Location.X + offset;
 
             if (xlowerBound < Game1.BorderThickness * Game1.Scale)
-            {
                 xlowerBound = (int)(Game1.BorderThickness * Game1.Scale);
-            }
             if (xupperBound > (Game1.Width - Game1.BorderThickness) * Game1.Scale)
-            {
                 xupperBound = (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale);
-            }
             if (ylowerBound < (Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale)
-            {
                 ylowerBound = (int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale);
-            }
             if (yupperBound > (Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale)
-            {
                 yupperBound = (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale);
-            }
-
             destination = new Vector2(
                 rand.Next(xlowerBound, xupperBound),
-                rand.Next(ylowerBound, yupperBound)
-                );
+                rand.Next(ylowerBound, yupperBound));
         }
 
-        public void RegisterHit()
-        {
-        }
+        public void RegisterHit() { }
     }
 }
