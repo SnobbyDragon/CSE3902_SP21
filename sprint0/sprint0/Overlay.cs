@@ -34,9 +34,7 @@ namespace sprint0
         }
 
         public void AddOverlay(ISprite sprite) => spritesToAdd.Add(sprite);
-
         public void RemoveOverlay(ISprite sprite) => spritesToRemove.Add(sprite);
-
         public void UpdateOffset(Vector2 Offset)
         {
             AddNew();
