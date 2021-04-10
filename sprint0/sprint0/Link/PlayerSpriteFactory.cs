@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace sprint0
 {
@@ -11,7 +9,6 @@ namespace sprint0
         LinkUpIdle, LinkDownIdle, LinkLeftIdle, LinkRightIdle, LinkUpSword, LinkDownSword, LinkLeftSword, LinkRightSword,
         LinkUpWalking, LinkDownWalking, LinkLeftWalking, LinkRightWalking,
         LinkUpItem, LinkDownItem, LinkLeftItem, LinkRightItem, LinkPickUpItem
-
     }
     public class PlayerSpriteFactory
     {

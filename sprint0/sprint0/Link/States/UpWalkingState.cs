@@ -15,15 +15,8 @@ namespace sprint0
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkUpWalking, player.Pos);
         }
 
-        public void Stop()
-        {
-            player.State = new UpIdleState(player);
-        }
-
-        public void PickUpItem()
-        {
-            player.State = new PickUpItemState(player);
-        }
+        public void Stop() => player.State = new UpIdleState(player);
+        public void PickUpItem() => player.State = new PickUpItemState(player);
 
         public void HandleSword(LinkUseItemHelper itemHelper)
         {
@@ -38,17 +31,12 @@ namespace sprint0
             sprite.Update();
         }
 
-        public void Draw(SpriteBatch spritebatch)
-        {
-            sprite.Draw(spritebatch);
-        }
+        public void Draw(SpriteBatch spritebatch) => sprite.Draw(spritebatch);
 
         public void UseItem(LinkUseItemHelper itemHelper)
         {
             if (player.CurrentItem != PlayerItems.None && player.CurrentItem != PlayerItems.BlueCandle)
-            {
                 player.ItemCounts[(int)player.CurrentItem]--;
-            }
             itemHelper.UseItem();
             player.State = new UpUseItemState(player);
         }

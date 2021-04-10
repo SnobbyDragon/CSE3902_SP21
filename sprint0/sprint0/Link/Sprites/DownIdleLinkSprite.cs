@@ -7,10 +7,8 @@ namespace sprint0
     {
         public Texture2D Texture { get => texture; set => texture = value; }
         public Rectangle Location { get; set; }
-
         private Texture2D texture;
         private Rectangle sourceRectangle;
-
         private readonly int size = 16;
 
         public DownIdleLinkSprite(Texture2D texture, Vector2 location)
@@ -21,10 +19,7 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, Location, sourceRectangle, Color.White);
-        }
-
+            => spriteBatch.Draw(texture, Location, sourceRectangle, Color.White);
         public void Update() { }
     }
 }

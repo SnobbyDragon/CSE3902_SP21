@@ -8,14 +8,12 @@ namespace sprint0
     {
         public Texture2D Texture { get => texture; set => texture = value; }
         public Rectangle Location { get; set; }
-
         private Texture2D texture;
-
         private readonly List<Rectangle> frames;
         private int currentFrame;
         private readonly int repeatFrames;
         private readonly int totalFrames;
-        private readonly int size = 16;
+        private readonly int size = 16, xOffset = 35, yOffset = 11;
 
         public LeftWalkingLinkSprite(Texture2D texture, Vector2 location)
         {
@@ -24,13 +22,11 @@ namespace sprint0
             currentFrame = 0;
             repeatFrames = 8;
             totalFrames = 2 * repeatFrames;
-            frames = new List<Rectangle> { new Rectangle(35, 11, size, size), new Rectangle(52, 11, size, size) };
+            frames = new List<Rectangle> { new Rectangle(xOffset, yOffset, size, size), new Rectangle(xOffset + size + 1, yOffset, size, size) };
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, Location, frames[currentFrame / repeatFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-        }
+            => spriteBatch.Draw(texture, Location, frames[currentFrame / repeatFrames], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
 
         public void Update()
         {

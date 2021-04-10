@@ -21,10 +21,7 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, Location, sourceRectangle, Color.White);
-        }
-
+            => spriteBatch.Draw(texture, Location, sourceRectangle, Color.White);
         public void Update() { }
     }
 }

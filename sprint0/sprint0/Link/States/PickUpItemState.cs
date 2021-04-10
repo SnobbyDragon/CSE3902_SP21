@@ -20,17 +20,11 @@ namespace sprint0
 
         public void Update()
         {
-            if (count > maxCount)
-            {
-                player.State = new DownIdleState(player);
-            }
+            if (count > maxCount) player.State = new DownIdleState(player);
             sprite.Update();
             count++;
         }
 
-        public void Draw(SpriteBatch spritebatch)
-        {
-            sprite.Draw(spritebatch);
-        }
+        public void Draw(SpriteBatch spritebatch) => sprite.Draw(spritebatch);
     }
 }

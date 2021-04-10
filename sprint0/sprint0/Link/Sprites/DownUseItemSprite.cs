@@ -12,7 +12,6 @@ namespace sprint0
         public Texture2D Texture { get => texture; set => texture = value; }
         public Rectangle Location { get; set; }
         private Texture2D texture;
-
         private readonly int xOffset = 107, yOffset = 11, size = 16;
 
         public DownUseItemSprite(Texture2D texture, Vector2 location)
@@ -22,13 +21,7 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, new Rectangle(xOffset, yOffset, size, size), Color.White);
-        }
-
-        public void Update()
-        {
-            //Nothing here
-        }
+            => spriteBatch.Draw(Texture, Location, new Rectangle(xOffset, yOffset, size, size), Color.White);
+        public void Update() { }
     }
 }

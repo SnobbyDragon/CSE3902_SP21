@@ -28,13 +28,8 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, Location, frames[currentFrame / repeatedFrames], Color.White);
-        }
-
+            => spriteBatch.Draw(texture, Location, frames[currentFrame / repeatedFrames], Color.White);
         public void Update()
-        {
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-        }
+            => currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
     }
 }

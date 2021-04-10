@@ -15,7 +15,7 @@ namespace sprint0
         private Texture2D texture;
         private int currFrame;
         private int slow;
-        private readonly int xOffset = 1, yOffset = 109;
+        private readonly int xOffset = 1, yOffset = 109, ysize = 16;
         private int width = 0, height = 0;
         private readonly List<Vector2> locations;
         private readonly List<int> ySizes;
@@ -34,12 +34,11 @@ namespace sprint0
             };
             ySizes = new List<int>
             {
-                16,
-                16+11,
-                16+10,
-                16+3
+                ysize,
+                ysize+11,
+                ysize+10,
+                ysize+3
             };
-
         }
 
         private List<Rectangle> GetFrames()
@@ -78,10 +77,7 @@ namespace sprint0
         public void Update()
         {
             slow++;
-            if (slow % 8 == 0)
-            {
-                currFrame += 1;
-            }
+            if (slow % 8 == 0) currFrame += 1;
         }
     }
 }

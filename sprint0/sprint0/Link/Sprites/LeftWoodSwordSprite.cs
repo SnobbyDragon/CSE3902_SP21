@@ -25,7 +25,6 @@ namespace sprint0
 
         public LeftWoodSwordSprite(Texture2D texture, Vector2 location)
         {
-
             this.texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             sources = GetFrames();
@@ -43,7 +42,6 @@ namespace sprint0
                 16+10,
                 16+3
             };
-
         }
 
         private List<Rectangle> GetFrames()
@@ -54,13 +52,13 @@ namespace sprint0
             yPos = yOffset;
             sources.Add(new Rectangle(xPos, yPos, width, height));
             xPos += width + 1;
-            width = 16 + 11;
+            width += height + 11;
             sources.Add(new Rectangle(xPos, yPos, width, height));
             xPos += width + 1;
-            width = 16 + 7;
+            width = height + 7;
             sources.Add(new Rectangle(xPos, yPos, width, height));
             xPos += width + 1;
-            width = 16 + 3;
+            width = height + 3;
             sources.Add(new Rectangle(xPos, yPos, width, height));
             return sources;
         }
@@ -77,10 +75,7 @@ namespace sprint0
         public void Update()
         {
             slow++;
-            if (slow % 8 == 0)
-            {
-                currFrame += 1;
-            }
+            if (slow % 8 == 0) currFrame += 1;
         }
     }
 }

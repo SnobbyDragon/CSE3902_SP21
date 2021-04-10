@@ -24,12 +24,7 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, Location, source, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
-        }
-
-        public void Update()
-        {
-        }
+            => spriteBatch.Draw(texture, Location, source, Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+        public void Update() { }
     }
 }
