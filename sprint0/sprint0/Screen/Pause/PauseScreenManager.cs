@@ -44,9 +44,7 @@ namespace sprint0
 
         public PlayerItems BItem() => hudInventory.Item;
         public void HandleLeft() => itemSelection.HandleLeft();
-
         public void HandleRight() => itemSelection.HandleRight();
-
         public PlayerItems GetSelectedItem() => itemSelection.GetSelectedItem();
         public void UpdateItemSelection()
         {

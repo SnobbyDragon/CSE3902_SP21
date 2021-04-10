@@ -13,14 +13,7 @@ namespace sprint0
         private readonly Text text;
         private readonly int xCoord = 150;
         private readonly int yCoord = 150;
-        public VictoryScreen(Game1 game)
-        {
-            text = new Text(game, message, new Vector2(xCoord, yCoord), Color.Black);
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            text.Draw(spriteBatch);
-        }
+        public VictoryScreen(Game1 game) => text = new Text(game, message, new Vector2(xCoord, yCoord), Color.Black);
+        public void Draw(SpriteBatch spriteBatch) => text.Draw(spriteBatch);
     }
 }

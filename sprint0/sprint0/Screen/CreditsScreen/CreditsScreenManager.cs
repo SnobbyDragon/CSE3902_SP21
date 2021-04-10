@@ -10,23 +10,8 @@ namespace sprint0
     public class CreditsScreenManager
     {
         private readonly CreditsScreen creditsScreen;
-
-
-        public CreditsScreenManager(Game1 game)
-        {
-            creditsScreen = new CreditsScreen(game);
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            creditsScreen.Draw(spriteBatch);
-        }
-
-        public void Update()
-        {
-            creditsScreen.Update();
-        }
-
-
+        public CreditsScreenManager(Game1 game) => creditsScreen = new CreditsScreen(game);
+        public void Draw(SpriteBatch spriteBatch) => creditsScreen.Draw(spriteBatch);
+        public void Update() => creditsScreen.Update();
     }
 }

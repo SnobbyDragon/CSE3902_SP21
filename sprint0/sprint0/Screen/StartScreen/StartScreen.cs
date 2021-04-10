@@ -30,19 +30,14 @@ namespace sprint0
                 new Text(game, message1, new Vector2(xCoord1, yCoord12), Color.Black),
                 new Text(game, message2, new Vector2(xCoord2, yCoord12), Color.Black),
                 new Text(game, message3, new Vector2(xCoord1, yCoord2), Color.Black)
-        };
-
+            };
         }
 
-        public void Update() {
-            //no-op
-        }
-        public void Draw(SpriteBatch spriteBatch) 
+        public void Update() { }
+        public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Text text in textList)
-            {
                 text.Draw(spriteBatch);
-            }
         }
     }
 }

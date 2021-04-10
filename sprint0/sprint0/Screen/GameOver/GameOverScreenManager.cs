@@ -10,22 +10,8 @@ namespace sprint0
     public class GameOverScreenManager
     {
         private readonly GameOverScreen gameOverScreen;
-        public GameOverScreenManager(Game1 game)
-        {
-            gameOverScreen = new GameOverScreen(game);
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            gameOverScreen.Draw(spriteBatch);
-
-        }
-
-        public void Update()
-        {
-           //Nothing yet, todo add buttons
-        }
-
-
+        public GameOverScreenManager(Game1 game) => gameOverScreen = new GameOverScreen(game);
+        public void Draw(SpriteBatch spriteBatch) => gameOverScreen.Draw(spriteBatch);
+        public void Update() { } //Nothing yet, todo add buttons
     }
 }

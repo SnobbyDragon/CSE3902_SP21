@@ -10,21 +10,8 @@ namespace sprint0
     public class StartScreenManager
     {
         private readonly StartScreen startScreen;
-        public StartScreenManager(Game1 game)
-        {
-            startScreen = new StartScreen(game);
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            startScreen.Draw(spriteBatch);
-        }
-
-        public void Update()
-        {
-            startScreen.Update();
-        }
-
-
+        public StartScreenManager(Game1 game) => startScreen = new StartScreen(game);
+        public void Draw(SpriteBatch spriteBatch) => startScreen.Draw(spriteBatch);
+        public void Update() => startScreen.Update();
     }
 }
