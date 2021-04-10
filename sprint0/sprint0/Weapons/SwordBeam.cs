@@ -58,10 +58,7 @@ namespace sprint0
             spriteEffects = new List<SpriteEffects>() { 0, SpriteEffects.FlipVertically, 0, SpriteEffects.FlipHorizontally };
         }
 
-        public bool IsAlive()
-        {
-            return !hit;
-        }
+        public bool IsAlive() => !hit;
 
         private void Move()
         {

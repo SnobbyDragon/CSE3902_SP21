@@ -45,7 +45,6 @@ namespace sprint0
         }
 
         public bool IsAlive() => !hit;
-
         private void Move()
         {
             Rectangle loc = Location;
@@ -58,7 +57,6 @@ namespace sprint0
             LocationDraw = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             if (IsAlive())
                 spriteBatch.Draw(Texture, LocationDraw, source, Color.White, rotation, origin, SpriteEffects.None, 0);
-
         }
 
         public void Update()

@@ -52,11 +52,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             if (alive)
-                spriteBatch.Draw(
-                    Texture, Location,
-                    sources[currFrame / repeatedFrames % sources.Count],
-                    Color.White, 0, new Vector2(0, 0),
-                    spriteEffects[currFrame / repeatedFrames], 0);
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames % sources.Count], Color.White, 0, new Vector2(0, 0), spriteEffects[currFrame / repeatedFrames], 0);
         }
 
         public bool IsAlive() => alive;
@@ -87,9 +83,6 @@ namespace sprint0
                 if (Shooter is Goriya goriya1)
                     alive = goriya1.isAlive();
             }
-
-
-
         }
 
         public void RegisterHit()
@@ -98,6 +91,6 @@ namespace sprint0
             room.LoadLevel.RoomEffect.AddEffect(new Vector2(Location.X, Location.Y), EffectEnum.HitSprite);
         }
 
-        public bool hitAlready() => hit;
+        public bool HitAlready() => hit;
     }
 }

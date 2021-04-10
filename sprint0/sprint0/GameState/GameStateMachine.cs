@@ -21,30 +21,17 @@ namespace sprint0
             state = State.start;
         }
 
-        public void HandleDeath()
-        {
-            state = State.over;
-        }
-
+        public void HandleDeath() => state = State.over;
         public void HandleTest()
         {
-            if (state == State.start || state == State.play)
-            {
-                state = State.test;
-            }
+            if (state == State.start || state == State.play) state = State.test;
+            else if (state == State.test) state = State.play;
         }
 
         public void HandlePause()
         {
-            if (state == State.pause)
-            {
-                state = State.play;
-            }
-            else if (state == State.play || state == State.test)
-            {
-                state = State.pause;
-            }
-
+            if (state == State.pause) state = State.play;
+            else if (state == State.play || state == State.test) state = State.pause;
         }
 
         public void HandleRunItBack()
@@ -56,37 +43,31 @@ namespace sprint0
             }
         }
 
-        public void HandleOptions() {
-            if (state == State.play || state == State.test) {
+        public void HandleOptions()
+        {
+            if (state == State.play || state == State.test)
+            {
                 prev = state;
                 state = State.options;
             }
         }
 
-        public Direction GetChangeDirection() {
-            
-                return direction;
-            
-        }
+        public Direction GetChangeDirection() => direction;
+
         public void HandleNewRoom(Direction d, int dest)
         {
             prev = state;
             counter = 0;
             direction = d;
             if (d == Direction.North || d == Direction.South)
-            {
                 bound = (int)(Game1.MapHeight * Game1.Scale) / ScrollSpeed;
-            }
             if (d == Direction.East || d == Direction.West)
-            {
                 bound = (int)(Game1.Width * Game1.Scale) / ScrollSpeed;
-            }
             state = State.changeRoom;
             game.NextRoomIndex = dest;
             game.NextRoom = game.Rooms[dest];
             game.Room.SuspendPlayer = true;
             game.NextRoom.SuspendPlayer = true;
-
         }
 
         public void HandleFinishRoomChange(int dest)
@@ -98,66 +79,37 @@ namespace sprint0
                 game.Room.SuspendPlayer = false;
                 state = prev;
             }
-            else {
+            else
                 counter++;
-            }
-
         }
 
-        public void HandleSnapRoomChange(int dest) {
+        public void HandleSnapRoomChange(int dest)
+        {
             state = State.test;
             game.RoomIndex = dest;
             if (game.Rooms[dest].Offset.X > 0)
-            {
                 game.Slide(Direction.East, (int)game.Rooms[dest].Offset.X);
-            }
             else if (game.Rooms[dest].Offset.X < 0)
-            {
                 game.Slide(Direction.West, (int)game.Rooms[dest].Offset.X);
-            }
             if (game.Rooms[dest].Offset.Y > 0)
-            {
                 game.Slide(Direction.South, (int)game.Rooms[dest].Offset.Y);
-            }
             else if (game.Rooms[dest].Offset.Y < 0)
-            {
                 game.Slide(Direction.North, (int)game.Rooms[dest].Offset.Y);
-            }
-            
             game.Room = game.Rooms[dest];
             game.Player.Pos = game.Room.LoadLevel.locations[dest];
         }
 
         public void HandleCredits()
         {
-            if (state == State.start)
-            {
-                state = State.credits;
-            }
+            if (state == State.start) state = State.credits;
         }
 
-
-        public void HandleVictory()
-        {
-            state = State.win;
-        }
-
-        public void HandleStart()
-        {
-            state = State.start;
-        }
-
+        public void HandleVictory() => state = State.win;
+        public void HandleStart() => state = State.start;
         public void HandlePlay()
         {
-            if (state == State.start || state == State.test)
-            {
-                state = State.play;
-            }
+            if (state == State.start || state == State.test) state = State.play;
         }
-        public State GetState()
-        {
-
-            return state;
-        }
+        public State GetState() => state;
     }
 }

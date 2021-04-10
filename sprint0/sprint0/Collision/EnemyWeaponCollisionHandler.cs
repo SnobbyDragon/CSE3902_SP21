@@ -3,9 +3,7 @@ namespace sprint0
 {
     public class EnemyWeaponCollisionHandler
     {
-        public EnemyWeaponCollisionHandler()
-        {
-        }
+        public EnemyWeaponCollisionHandler() { }
 
         public void HandleCollision(IEnemy enemy, IWeapon weapon, Direction side)
         {
@@ -13,7 +11,7 @@ namespace sprint0
             {
                 if (projectile.IsAlive() && !(projectile.Shooter is IEnemy))
                 {
-                    if ((projectile is Boomerang boomerang && !boomerang.hitAlready()) || !(projectile is Boomerang))
+                    if ((projectile is Boomerang boomerang && !boomerang.HitAlready()) || !(projectile is Boomerang))
                     {
                         projectile.RegisterHit();
                         enemy.TakeDamage(weapon.Damage);
@@ -25,7 +23,7 @@ namespace sprint0
                 if (enemy is Dodongo dodongo) { dodongo.EatBomb(); bomb.Eaten = true; }
                 else if (bomb.Exploding) enemy.TakeDamage(bomb.Damage);
             }
-            else if ((weapon is Sword sword && !sword.hitAlready()))
+            else if ((weapon is Sword sword && !sword.HitAlready()))
             {
                 sword.RegisterHit();
                 enemy.TakeDamage(weapon.Damage);

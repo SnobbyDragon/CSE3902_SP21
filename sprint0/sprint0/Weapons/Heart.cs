@@ -28,12 +28,7 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, typeRectMap[Type], Color.White);
-        }
-
-        public void Update()
-        {
-        }
+            => spriteBatch.Draw(Texture, Location, typeRectMap[Type], Color.White);
+        public void Update() { }
     }
 }
