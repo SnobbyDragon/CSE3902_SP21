@@ -12,7 +12,7 @@ namespace sprint0
             Top = 0, Bottom = 1, Both = 2, Location = 3, LevelNum = 4
         }
         protected readonly Dictionary<int, Rectangle> roomPos;
-        private readonly Dictionary<int, int> rowMapping1, rowMapping2, rowMapping3;
+        private readonly Dictionary<int, int> rowMapping0, rowMapping1, rowMapping2, rowMapping3;
         protected readonly Dictionary<int, int> overlap;
         protected readonly List<Dictionary<int, int>> fullMapping;
         protected readonly List<Rectangle> source;
@@ -25,14 +25,20 @@ namespace sprint0
             source.Add(new Rectangle(528, 126, sideLength, sideLength));
             source.Add(new Rectangle(537, 117, sideLength, sideLength));
             roomPos = new Dictionary<int, Rectangle>();
+            rowMapping0 = new Dictionary<int, int>
+            {
+                {0, (int)RoomPosition.Bottom },
+            };
             rowMapping1 = new Dictionary<int, int>
             {
                 {18, (int)RoomPosition.Top},
-                {0, (int)RoomPosition.Top },
                 {1, (int)RoomPosition.Top },
                 {2, (int)RoomPosition.Both },
-                {8, (int)RoomPosition.Top },
-                {9, (int)RoomPosition.Top },
+                {8, (int)RoomPosition.Bottom },//remove when room 20 is implemented
+                {9, (int)RoomPosition.Bottom },//remove when room 21 is implemented
+                //{19, (int)RoomPosition.Top }, //add when 19 added
+                //{20, (int)RoomPosition.Both }, //add when 20 added
+                //{21, (int)RoomPosition.Both }, //add when 21 added
             };
             rowMapping2 = new Dictionary<int, int>
             {
@@ -50,7 +56,12 @@ namespace sprint0
             };
             overlap = new Dictionary<int, int>
             {
+                {0, 0},
                 {3, 2},
+                {8, 8},//remove when room 20 implemented
+                {9, 9}, //remove when room 21 implemented
+                //{8, 20}, //add when 20 added
+                //{9, 21}, //add when 21 added
                 {11, 5},
                 {12, 6},
                 {13, 7},
@@ -60,6 +71,7 @@ namespace sprint0
             };
             fullMapping = new List<Dictionary<int, int>>
             {
+                rowMapping0,
                 rowMapping1,
                 rowMapping2,
                 rowMapping3,
@@ -68,9 +80,10 @@ namespace sprint0
         }
         private void AddMapping()
         {
-            AddToMapping(fullMapping[0], startX - sideLength, startY);
-            AddToMapping(fullMapping[1], startX, startY + sideLength);
-            AddToMapping(fullMapping[2], startX + sideLength, startY + sideLength * 2);
+            AddToMapping(fullMapping[0], startX + sideLength, startY - sideLength);
+            AddToMapping(fullMapping[1], startX, startY);
+            AddToMapping(fullMapping[2], startX, startY + sideLength);
+            AddToMapping(fullMapping[3], startX + sideLength, startY + sideLength * 2);
         }
 
         private void AddToMapping(Dictionary<int, int> mapping, int xStart, int yStart)
@@ -80,8 +93,8 @@ namespace sprint0
             {
                 roomPos.Add(roomMap.Key, new Rectangle((int)(x * Game1.Scale), (int)(y * Game1.Scale),
                     (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)));
-                if (roomMap.Key == 2)
-                    x += sideLength;
+                if (roomMap.Key == 2) //remove when room 19 is implemented
+                    x += sideLength; //remove when 19 added
                 x += sideLength;
             }
         }

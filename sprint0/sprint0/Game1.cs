@@ -99,17 +99,12 @@ namespace sprint0
 
         protected override void LoadContent()
         {
-            if (!VisitedRooms.Contains(RoomIndex))
-            {
-                VisitedRooms.Add(RoomIndex);
-            }
-
             Room = new Room(_spriteBatch, this, RoomIndex, new Vector2(0, 0));
             playerFactory = new PlayerSpriteFactory(this);
             Rooms.Add(RoomIndex, Room);
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
 
-            List<int> frontier = new List<int>{ RoomIndex };
+            List<int> frontier = new List<int> { RoomIndex };
             while (Rooms.Count < 17)
             {
                 List<int> newFrontier = new List<int>();
@@ -137,10 +132,12 @@ namespace sprint0
                 rm.LoadContent();
         }
 
-        public void Slide(Direction d, int ammount) {
+        public void Slide(Direction d, int ammount)
+        {
             Vector2 offst = zeroVector;
             ammount = System.Math.Abs(ammount);
-            if (d == Direction.North) {
+            if (d == Direction.North)
+            {
                 offst.Y = 1 * ammount;
 
             }
@@ -165,7 +162,10 @@ namespace sprint0
         protected override void Update(GameTime gameTime)
         {
             state = stateMachine.GetState();
-
+            if (!VisitedRooms.Contains(RoomIndex))
+            {
+                VisitedRooms.Add(RoomIndex);
+            }
             if (state == GameStateMachine.State.changeRoom)
             {
                 Slide(stateMachine.GetChangeDirection(), stateMachine.ScrollSpeed);

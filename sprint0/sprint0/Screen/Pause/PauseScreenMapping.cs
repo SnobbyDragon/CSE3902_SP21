@@ -12,7 +12,7 @@ namespace sprint0
             Up = 8, RightUp = 9, LeftUp = 10, LeftRightUp = 11, UpDown = 12, RightUpDown = 13, LeftUpDown = 14, LeftRightUpDown = 15, Empty = 16, Location = 17
         }
         protected readonly List<Rectangle> sources;
-        private readonly Dictionary<int, int> rowMapping1, rowMapping2, rowMapping3, rowMapping4, rowMapping5, rowMapping6;
+        private readonly Dictionary<int, int> rowMapping0, rowMapping1, rowMapping2, rowMapping3, rowMapping4, rowMapping5, rowMapping6;
         protected readonly Dictionary<int, Rectangle> roomPos;
         protected readonly List<Dictionary<int, int>> fullMapping;
         private readonly int xOffset = 519, yOffset = 108, totalFrames = 16, height = 88;
@@ -24,12 +24,18 @@ namespace sprint0
             sources.Add(new Rectangle(528, 126, sideLength, sideLength));
             baseY = height + Game1.HUDHeight + (sideLength * 2);
             roomPos = new Dictionary<int, Rectangle>();
+            rowMapping0 = new Dictionary<int, int>
+            {
+                {0, (int)RoomDirection.Down },
+            };
             rowMapping1 = new Dictionary<int, int>
             {
-                {18, (int)RoomDirection.None },
-                {0, (int)RoomDirection.Right },
-                {1, (int)RoomDirection.Right },
-                {2, (int)RoomDirection.LeftDown },
+                {18, (int)RoomDirection.Right },
+                {1, (int)RoomDirection.LeftRightUp },
+                {2, (int)RoomDirection.LeftRightDown },
+                //{19, (int)RoomDirection.LeftRight }, //add when 19 added
+                //{20, (int)RoomDirection.LeftRight }, //add when 20 added
+                //{21, (int)RoomDirection.Left }, //add when 20 added
             };
             rowMapping2 = new Dictionary<int, int>
             {
@@ -63,6 +69,7 @@ namespace sprint0
             };
             fullMapping = new List<Dictionary<int, int>>
             {
+                rowMapping0,
                 rowMapping1,
                 rowMapping2,
                 rowMapping3,
@@ -74,12 +81,13 @@ namespace sprint0
         }
         private void AddMapping()
         {
-            AddToMapping(fullMapping[0], baseX, baseY);
-            AddToMapping(fullMapping[1], baseX + 3 * sideLength, baseY + sideLength);
-            AddToMapping(fullMapping[2], baseX + sideLength, baseY + 2 * sideLength);
-            AddToMapping(fullMapping[3], baseX + 2 * sideLength, baseY + 3 * sideLength);
-            AddToMapping(fullMapping[4], baseX + 3 * sideLength, baseY + 4 * sideLength);
-            AddToMapping(fullMapping[5], baseX + 2 * sideLength, baseY + 5 * sideLength);
+            AddToMapping(fullMapping[0], baseX + 2 * sideLength, baseY - sideLength);
+            AddToMapping(fullMapping[1], baseX + sideLength, baseY);
+            AddToMapping(fullMapping[2], baseX + 3 * sideLength, baseY + sideLength);
+            AddToMapping(fullMapping[3], baseX + sideLength, baseY + 2 * sideLength);
+            AddToMapping(fullMapping[4], baseX + 2 * sideLength, baseY + 3 * sideLength);
+            AddToMapping(fullMapping[5], baseX + 3 * sideLength, baseY + 4 * sideLength);
+            AddToMapping(fullMapping[6], baseX + 2 * sideLength, baseY + 5 * sideLength);
         }
 
         private void AddToMapping(Dictionary<int, int> mapping, int xStart, int yStart)
