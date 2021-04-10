@@ -29,9 +29,7 @@ namespace sprint0
         {
             AddNew();
             foreach (ISprite item in roomSprites)
-            {
                 item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
-            }
         }
 
         private void RemoveDestroyed()
@@ -59,9 +57,11 @@ namespace sprint0
                 _sprite.Draw(spriteBatch);
         }
 
-        public void OpenClosedDoor() {
+        public void OpenClosedDoor()
+        {
             bool openedByBlock = true;
-            foreach (ISprite _sprite in roomSprites) {
+            foreach (ISprite _sprite in roomSprites)
+            {
                 if (_sprite is ShutDoor) ((ShutDoor)_sprite).OpenDoor(openedByBlock);
             }
         }

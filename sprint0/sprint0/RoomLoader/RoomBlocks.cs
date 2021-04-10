@@ -20,7 +20,6 @@ namespace sprint0
             blocksToRemove = new List<IBlock>();
             blocksToAdd = new List<IBlock>();
             this.game = game;
-
         }
 
         public IBlock AddBlock(Vector2 location, BlockEnum block, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
@@ -54,9 +53,7 @@ namespace sprint0
         public void RemoveDestroyed()
         {
             foreach (IBlock block in blocksToRemove)
-            {
                 blocks.Remove(block);
-            }
         }
 
         public void Update()

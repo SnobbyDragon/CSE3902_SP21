@@ -11,18 +11,13 @@ namespace sprint0
     }
     public class NpcsSpriteFactory
     {
-        private readonly Game1 game;
         private readonly Texture2D texture;
 
         public NpcsSpriteFactory(Game1 game)
-        {
-            this.game = game;
-            texture = game.Content.Load<Texture2D>("Images/NPCs");
-        }
+            => texture = game.Content.Load<Texture2D>("Images/NPCs");
 
         public INpc MakeSprite(NPCEnum spriteType, Vector2 location)
         {
-
             return spriteType switch
             {
                 NPCEnum.OldMan1 => new OldPerson(texture, location, "man 1"),

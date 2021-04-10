@@ -8,7 +8,6 @@ namespace sprint0
 {
     public class Flame : INpc
     {
-
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
@@ -29,20 +28,12 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), s, 0);
-        }
+            => spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), s, 0);
 
         public void Update()
         {
-            if (currentFrame / repeatedFrames == 0)
-            {
-                s = SpriteEffects.FlipHorizontally;
-            }
-            else
-            {
-                s = SpriteEffects.None;
-            }
+            if (currentFrame / repeatedFrames == 0) s = SpriteEffects.FlipHorizontally;
+            else s = SpriteEffects.None;
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
         }
     }
