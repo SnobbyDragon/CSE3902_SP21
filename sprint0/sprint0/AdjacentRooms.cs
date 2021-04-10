@@ -28,12 +28,8 @@ namespace sprint0
             };
 
         public static int GetAdjacentRoom(int currRoomIndex, Direction side)
-        {
-            return adjacentRooms[currRoomIndex][side];
-        }
-
-        public static Dictionary<Direction, int> ListOfAdjacentRooms(int roomIndex) {
-            return adjacentRooms[roomIndex];
-        }
+            => adjacentRooms[currRoomIndex][side];
+        public static Dictionary<Direction, int> ListOfAdjacentRooms(int roomIndex)
+            => adjacentRooms[roomIndex];
     }
 }
