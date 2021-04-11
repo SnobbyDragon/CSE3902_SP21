@@ -15,7 +15,6 @@ namespace sprint0
         public int Damage { get => 0; }
         private bool isDead;
         public EnemyType Type { get => EnemyType.Gleeok; }
-
         readonly IEnemy body;
 
         public GleeokNeck(Texture2D texture, Game1 game, Rectangle location, IEnemy main)
