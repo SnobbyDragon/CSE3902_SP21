@@ -76,17 +76,13 @@ namespace sprint0
         }
 
         public void Decrement() { }
-
         public void ResetNum() => currentHealth = maxHealth;
-
         public void ZeroHealth()
         {
             currentHealth = reset;
             heartState[reset] = numHearts;
             for (int i = reset + 1; i < heartState.Length; i++)
-            {
                 heartState[i] = reset;
-            }
         }
     }
 }

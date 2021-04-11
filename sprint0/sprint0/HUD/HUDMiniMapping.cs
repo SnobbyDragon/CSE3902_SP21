@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
@@ -16,8 +15,7 @@ namespace sprint0
         protected readonly Dictionary<int, int> overlap;
         protected readonly List<Dictionary<int, int>> fullMapping;
         protected readonly List<Rectangle> source;
-        private readonly int xOffset = 663, yOffset = 108,
-            totalFrames = 3, startX = 24, startY = 24;
+        private readonly int xOffset = 663, yOffset = 108, totalFrames = 3, startX = 24, startY = 24;
         protected int sideLength = 8;
         public HUDMiniMapping()
         {
@@ -93,8 +91,7 @@ namespace sprint0
             {
                 roomPos.Add(roomMap.Key, new Rectangle((int)(x * Game1.Scale), (int)(y * Game1.Scale),
                     (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)));
-                if (roomMap.Key == 2) //remove when room 19 is implemented
-                    x += sideLength; //remove when 19 added
+                if (roomMap.Key == 2) x += sideLength;
                 x += sideLength;
             }
         }

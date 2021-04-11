@@ -26,7 +26,6 @@ namespace sprint0
             sources.Add(new Rectangle(519, yOffset, sideLength, sideLength));
         }
 
-
         public void Draw(SpriteBatch spriteBatch)
         {
 
@@ -47,18 +46,12 @@ namespace sprint0
         public void ChangeNum(int change)
         {
             if ((bombNum += change) < reset) bombNum = reset;
-
-
         }
-        public void Increment()
-        {
-            bombNum++;
-        }
+        public void Increment() => bombNum++;
 
         public void Decrement()
         {
             if (bombNum-- < reset) ResetNum();
-
         }
 
         public void ResetNum()
@@ -77,9 +70,7 @@ namespace sprint0
                 bombNumTens %= mod;
             }
             else
-            {
                 bombNumHundreds = mod;
-            }
         }
     }
 }

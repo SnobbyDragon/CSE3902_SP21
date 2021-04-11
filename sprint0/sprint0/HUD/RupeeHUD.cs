@@ -45,10 +45,7 @@ namespace sprint0
             if ((rupeeNum += change) < reset) ResetNum();
         }
 
-        public void Increment()
-        {
-            rupeeNum++;
-        }
+        public void Increment() => rupeeNum++;
 
         public void Decrement()
         {
@@ -71,9 +68,7 @@ namespace sprint0
                 rupeeNumTens %= mod;
             }
             else
-            {
                 rupeeNumHundreds = mod;
-            }
         }
     }
 }

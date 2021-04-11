@@ -37,65 +37,21 @@ namespace sprint0
 
         public void SetItem(PlayerItems item)
         {
-            if (HasItem(item) || item == PlayerItems.None)
-                Item = item;
+            if (HasItem(item) || item == PlayerItems.None) Item = item;
         }
 
         public void AddItem(PlayerItems newItem)
         {
-            ToSwitch(newItem);
             if (!HasItem(newItem) && LocationMapping.ContainsKey(newItem) && inventoryItems.Count <= maxItems)
                 inventoryItems.Add(newItem, LocationMapping[newItem]);
         }
 
         public void AddAItem(PlayerItems newItem)
         {
-            if (!aItem.Contains(newItem) && ItemMap.ContainsKey(newItem))
-                aItem.Add(newItem);
+            if (!aItem.Contains(newItem) && ItemMap.ContainsKey(newItem)) aItem.Add(newItem);
         }
 
         public void Update() { }
-        private void ToSwitch(PlayerItems item)
-        {
-            switch (item)
-            {
-                case PlayerItems.BluePotion:
-                case PlayerItems.RedPotion:
-                    {
-                        ToSwitchSub(PlayerItems.BluePotion, PlayerItems.RedPotion);
-                        break;
-                    }
-                case PlayerItems.BlueCandle:
-                case PlayerItems.RedCandle:
-                    {
-                        ToSwitchSub(PlayerItems.BlueCandle, PlayerItems.RedCandle);
-                        break;
-                    }
-                case PlayerItems.MagicalBoomerang:
-                case PlayerItems.Boomerang:
-                    {
-                        ToSwitchSub(PlayerItems.MagicalBoomerang, PlayerItems.Boomerang);
-                        break;
-                    }
-                case PlayerItems.SilverArrow:
-                case PlayerItems.Arrow:
-                    {
-                        ToSwitchSub(PlayerItems.SilverArrow, PlayerItems.Arrow);
-                        break;
-                    }
-                default: break;
-            }
-        }
-
-        private bool ToSwitchSub(PlayerItems item1, PlayerItems item2)
-        {
-            bool toSwitch = true;
-            if (HasItem(item1)) inventoryItems.Remove(item2);
-            else if (HasItem(item2)) inventoryItems.Remove(item1);
-            else toSwitch = false;
-            return toSwitch;
-        }
-
         public void RemoveItem(PlayerItems item)
         {
             if (HasItem(item))
