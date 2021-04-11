@@ -1,13 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace sprint0
+﻿namespace sprint0
 {
     public class LinkBorderCollisionHandler
     {
-       
-        public LinkBorderCollisionHandler()
-        {
-        }
+        public LinkBorderCollisionHandler() { }
 
         public void HandleCollision(IPlayer link, ISprite border, Direction side, Game1 game)
         {

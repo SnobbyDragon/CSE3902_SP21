@@ -3,10 +3,7 @@ namespace sprint0
 {
     public class WeaponBorderCollisionHandler
     {
-        public WeaponBorderCollisionHandler()
-        {
-        }
-
+        public WeaponBorderCollisionHandler() { }
         public void HandleCollision(IWeapon weapon, ISprite border, Direction side, Game1 game)
         {
             if (weapon is Bomb bomb && border is Wall wall && bomb.Exploding && wall.CanBeBombed)

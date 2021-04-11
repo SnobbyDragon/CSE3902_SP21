@@ -4,14 +4,10 @@ using Microsoft.Xna.Framework;
 namespace sprint0
 {
     public class LinkEnemyCollisionHandler
-
     {
         private readonly int linkSize = (int)(16 * Game1.Scale);
         private readonly int offset = 4;
-        public LinkEnemyCollisionHandler()
-        {
-
-        }
+        public LinkEnemyCollisionHandler() { }
 
         public void HandleCollision(IPlayer link, IEnemy enemy, Direction side)
         {

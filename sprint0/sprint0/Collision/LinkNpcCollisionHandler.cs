@@ -5,12 +5,8 @@ namespace sprint0
 {
     public class LinkNpcCollisionHandler
     {
-
         private readonly int linkSize = (int)(16 * Game1.Scale);
-
-        public LinkNpcCollisionHandler()
-        {
-        }
+        public LinkNpcCollisionHandler() { }
 
         public void HandleCollision(IPlayer link, INpc npc, Direction side)
         {

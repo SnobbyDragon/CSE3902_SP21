@@ -5,10 +5,7 @@ namespace sprint0
 {
     public class EnemyBorderCollisionHandler
     {
-        public EnemyBorderCollisionHandler()
-        {
-        }
-
+        public EnemyBorderCollisionHandler() { }
         public void HandleCollision(IEnemy enemy, ISprite border, Direction side)
         {
             if (border is AbstractBorderFilling)

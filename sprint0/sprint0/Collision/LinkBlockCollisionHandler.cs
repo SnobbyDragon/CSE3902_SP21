@@ -9,38 +9,22 @@ namespace sprint0
         private readonly int linkSize = (int)(16 * Game1.Scale);
         private readonly int offset = 4, stairsRoom = 1, basement = 0;
 
-        public LinkBlockCollisionHandler(Game1 game)
-        {
-            this.game = game;
-        }
+        public LinkBlockCollisionHandler(Game1 game) => this.game = game;
         public void HandleCollision(IPlayer link, IBlock block, Direction side)
         {
             if (!block.IsWalkable())
             {
-                if (block.IsMovable())
-                {
-                    HandleMovableBlock(link, block, side);
-                }
-                else
-                {
-                    HandleImmovableBlock(link, block, side);
-                }
+                if (block.IsMovable()) HandleMovableBlock(link, block, side);
+                else HandleImmovableBlock(link, block, side);
             }
-            else if (block is Stairs)
-            {
-                HandleStairs(link, block);
-            }
-            else if (block is Ladder)
-            {
-                HandleLadder(link);
-            }
+            else if (block is Stairs) HandleStairs(link, block);
+            else if (block is Ladder) HandleLadder(link);
         }
         private void HandleStairs(IPlayer link, IBlock block)
         {
             if (block.Location.Contains(new Rectangle((int)link.Pos.X + offset, (int)link.Pos.Y + offset, linkSize - offset * 2, linkSize - offset * 2)))
             {
                 game.stateMachine.HandleSnapRoomChange(basement);
-
                 link.Direction = Direction.South;
                 link.State = new DownIdleState(link);
             }
@@ -50,7 +34,7 @@ namespace sprint0
             if (link.Pos.Y < Game1.HUDHeight * Game1.Scale)
             {
                 game.stateMachine.HandleSnapRoomChange(stairsRoom);
-                link.Pos = new Vector2(200,200);
+                link.Pos = new Vector2(200, 200);
                 link.Direction = Direction.East;
                 link.State = new LeftIdleState(link);
             }
@@ -67,23 +51,15 @@ namespace sprint0
                     break;
                 case Direction.East:
                     if (block is MovableBlock5)
-                    {
                         block.Location = new Rectangle((int)link.Pos.X + block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
-                    }
                     else
-                    {
                         link.Pos += new Vector2(block.Location.Left - (link.Pos.X + linkSize - offset), 0);
-                    }
                     break;
                 case Direction.West:
                     if (block is MovableBlock5)
-                    {
                         block.Location = new Rectangle((int)link.Pos.X - block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
-                    }
                     else
-                    {
                         link.Pos += new Vector2(block.Location.Right - (link.Pos.X + offset), 0);
-                    }
                     break;
             }
             block.SetIsMovable();
