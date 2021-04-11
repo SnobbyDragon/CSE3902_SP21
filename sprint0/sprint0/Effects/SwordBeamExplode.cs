@@ -6,15 +6,11 @@ namespace sprint0
 {
     public class SwordBeamExplode : IEffect
     {
-
-        private int lifespan = 20, age = 0;
+        private int age = 0, xa, ya, currFrame = 0;
         private readonly List<Rectangle> explodeSources;
-        private int xa, ya;
-        private int width = 8, height = 10;
-        private int currFrame = 0, totalFrames = 3;
-        private readonly int repeatedFrames = 8;
+        private readonly int totalFrames = 3, repeatedFrames = 8, width = 8, height = 10, lifespan = 20;
         private readonly Texture2D texture;
-        public Rectangle Location { get ; set; }
+        public Rectangle Location { get; set; }
 
         public SwordBeamExplode(Texture2D texture, Vector2 location)
         {
@@ -47,17 +43,14 @@ namespace sprint0
 
         public void Update()
         {
-            if(IsAlive()) {
+            if (IsAlive())
+            {
                 xa += 2;
                 ya += 2;
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 age++;
             }
         }
-
-        public bool IsAlive()
-        {
-            return age <= lifespan;
-        }
+        public bool IsAlive() => age <= lifespan;
     }
 }

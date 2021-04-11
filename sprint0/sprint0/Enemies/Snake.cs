@@ -14,7 +14,7 @@ namespace sprint0
         private SpriteEffects spriteEffect;
 
         public Snake(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
-        {            
+        {
             dirChangeDelay = 25;
             health = 16;
             width = height = 16;
@@ -31,49 +31,39 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
-                if (damageTimer % 2 == 0)
-                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames],
-                    Color.White, 0, new Vector2(0, 0), spriteEffect, 0);
-            
-            
+            if (damageTimer % 2 == 0)
+                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), spriteEffect, 0);
         }
 
         public override void Update()
         {
 
-                moveCounter++;
-                if (moveCounter == dirChangeDelay)
-                {
-                    ArbitraryDirection(200, 3300);
-                }
+            moveCounter++;
+            if (moveCounter == dirChangeDelay)
+            {
+                ArbitraryDirection(200, 3300);
+            }
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
-                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-                
-                if (direction == Direction.West)
-                {
-                    spriteEffect = SpriteEffects.FlipHorizontally;
-                    Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
-                }
-                else if (direction == Direction.East)
-                {
-                    spriteEffect = SpriteEffects.None;
-                    Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
-                }
-                else if (direction == Direction.South)
-                {
-                    Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
-                }
-                else
-                {
-                    Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
-                    if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale)
-                    {
-                        direction = Direction.West;
-                    }
-                }
-                
+            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+            if (direction == Direction.West)
+            {
+                spriteEffect = SpriteEffects.FlipHorizontally;
+                Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
+            }
+            else if (direction == Direction.East)
+            {
+                spriteEffect = SpriteEffects.None;
+                Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
+            }
+            else if (direction == Direction.South)
+                Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
+            else
+            {
+                Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
+                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale) direction = Direction.West;
+            }
+
         }
     }
 }

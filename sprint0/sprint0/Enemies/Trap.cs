@@ -28,16 +28,12 @@ namespace sprint0
         }
 
         public override void Draw(SpriteBatch spriteBatch)
-        {
-                spriteBatch.Draw(Texture, Location, source, Color.White);
-        }
+            => spriteBatch.Draw(Texture, Location, source, Color.White);
 
         public override void Update()
         {
-            if (IsMoving)
-                Move();
-            if (Location.Equals(HomeLocation))
-                speed = fast;
+            if (IsMoving) Move();
+            if (Location.Equals(HomeLocation)) speed = fast;
         }
 
         private void Move()
@@ -51,27 +47,17 @@ namespace sprint0
                 IsMoving = false;
             }
             else
-            {
                 Location = loc;
-            }
-                
         }
 
         private float DistSquared(Rectangle one, Rectangle two)
-        {
-            return (one.Center.ToVector2() - two.Center.ToVector2()).LengthSquared();
-        }
-
-        public void SetDirection(Direction direction)
-        {
-            this.direction = direction;
-        }
+            => (one.Center.ToVector2() - two.Center.ToVector2()).LengthSquared();
+        public void SetDirection(Direction direction) => this.direction = direction;
 
         public override void ChangeDirection()
         {
             direction = direction.OppositeDirection();
-            if (speed == fast)
-                speed = slow;
+            if (speed == fast) speed = slow;
             else
                 speed = fast;
         }

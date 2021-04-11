@@ -9,21 +9,13 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        protected int damage = 0;
         public int Damage { get => damage; }
-        protected int currentFrame;
-        protected int totalFrames;
-        protected int repeatedFrames;
         protected Direction direction;
-        protected int width, height;
-        protected int health;
-        protected int moveCounter, dirChangeDelay;
+        protected int width, height, health, moveCounter, dirChangeDelay, damageTimer = 0, currentFrame, totalFrames, repeatedFrames, damage = 0;
         protected Random rand;
         protected readonly Game1 game;
-        protected int damageTimer = 0;
         protected ItemSpawner itemSpawner;
         public EnemyType Type { get => EnemyType.None; }
-
 
         public AbstractEnemy(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -33,26 +25,19 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
-
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);
         public virtual void Update()
         {
-
             moveCounter++;
-            if (moveCounter == dirChangeDelay)
-            {
-                ArbitraryDirection(30, 50);
-            }
+            if (moveCounter == dirChangeDelay) ArbitraryDirection(30, 50);
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-
             Rectangle loc = Location;
             loc.Offset(direction.ToVector2());
             Location = loc;
-
         }
 
         protected void ArbitraryDirection(int low, int high)
