@@ -11,12 +11,9 @@ namespace sprint0
 {
     public class Aquamentus : AbstractEnemy
     {
-        private readonly int xOffset = 1, yOffset = 11;
         private readonly List<Rectangle> sources;
-
-        private readonly int moveDelay = 5, minDistance = (int)(Game1.Width * Game1.Scale * 0.2), maxDistance = (int)(Game1.Width * Game1.Scale * 0.8);
-        private readonly int damageTime = 10;
-
+        private readonly int moveDelay = 5, minDistance = (int)(Game1.Width * Game1.Scale * 0.2),
+            maxDistance = (int)(Game1.Width * Game1.Scale * 0.8), damageTime = 10, xOffset = 1, yOffset = 11;
         private readonly AquamentusFireballBehaviour fireballBehaviour;
 
         public Aquamentus(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
@@ -41,21 +38,17 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
-            if (damageTimer % 2 == 0)
-                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
+            if (damageTimer % 2 == 0) spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
         }
 
         public override void Update()
         {
             CheckHealth();
-            if (CanChangeDirection())
-                ChangeDirection();
+            if (CanChangeDirection()) ChangeDirection();
             Move();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
             fireballBehaviour.Update();
-            if (damageTimer > 0)
-                damageTimer--;
+            if (damageTimer > 0) damageTimer--;
         }
 
         private void Move()
@@ -68,9 +61,7 @@ namespace sprint0
                 Location = loc;
             }
             else
-            {
                 moveCounter++;
-            }
         }
 
         private bool CanChangeDirection()
@@ -79,11 +70,7 @@ namespace sprint0
             return distanceToLink > maxDistance || distanceToLink < minDistance;
         }
 
-        public override void ChangeDirection()
-        {
-            direction = direction.OppositeDirection();
-        }
-
+        public override void ChangeDirection() => direction = direction.OppositeDirection();
         public override void TakeDamage(int damage)
         {
             if (damageTimer == 0)

@@ -52,7 +52,7 @@ namespace sprint0
             yPos = yOffset;
             sources.Add(new Rectangle(xPos, yPos, width, height));
             xPos += width + 1;
-            width += height + 11;
+            width = height + 11;
             sources.Add(new Rectangle(xPos, yPos, width, height));
             xPos += width + 1;
             width = height + 7;
