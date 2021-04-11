@@ -22,15 +22,9 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, sources[frame / repeatedFrames], Color.White);
-        }
-
+            => spriteBatch.Draw(Texture, Location, sources[frame / repeatedFrames], Color.White);
         public void Update()
-        {
-            frame = (frame + 1) % (totalFrames * repeatedFrames);
-        }
-
+            => frame = (frame + 1) % (totalFrames * repeatedFrames);
         public bool IsAlive() => true;
     }
 }

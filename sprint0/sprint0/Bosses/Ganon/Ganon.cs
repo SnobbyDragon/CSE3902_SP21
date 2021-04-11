@@ -54,11 +54,9 @@ namespace sprint0
 
         public void Update()
         {
-            if (damageTimer > 0)
-                damageTimer--;
+            if (damageTimer > 0) damageTimer--;
             if (isDead)
             {
-
                 if (deathCounter == 0)
                 {
                     new GanonFireballExplosion(Texture, this, game);
@@ -67,7 +65,6 @@ namespace sprint0
                 }
                 deathCounter++;
                 if (deathCounter == 70) Perish();
-
             }
             else if (isVisible)
             {
@@ -94,9 +91,7 @@ namespace sprint0
                 }
             }
             counter++;
-
-            if (CanShoot())
-                ShootFireball();
+            if (CanShoot()) ShootFireball();
         }
 
         public void ChangeDirection() { }
@@ -143,8 +138,7 @@ namespace sprint0
         {
             Vector2 loc = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness - width) * Game1.Scale)),
-                rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness - height) * Game1.Scale))
-                );
+                rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness - height) * Game1.Scale)));
             Location = new Rectangle((int)loc.X, (int)loc.Y, Location.Width, Location.Height);
         }
         public EnemyEnum ParseEnemy(string enemy)

@@ -18,7 +18,7 @@ namespace sprint0
         private Vector2 destination;
         private readonly Random rand;
         public int Damage { get => 2; }
-        private ItemSpawner itemSpawner;
+        private readonly ItemSpawner itemSpawner;
         public EnemyType Type { get => EnemyType.Manhandla; }
         private bool limbsExist;
 
@@ -31,20 +31,17 @@ namespace sprint0
             speed = 1;
             limbsExist = false;
             limbs = new List<IEnemy>();
-            
+
             rand = new Random();
             GenerateDest();
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
-        }
+            => spriteBatch.Draw(Texture, Location, source, Color.White);
 
         public void Update()
         {
-
             CheckHealth();
             if (limbs.Count == 0 && !limbsExist)
             {
@@ -56,10 +53,7 @@ namespace sprint0
                 limbsExist = true;
             }
             Vector2 dist = destination - Location.Location.ToVector2();
-            if (dist.Length() < 5)
-            {
-                GenerateDest();
-            }
+            if (dist.Length() < 5) GenerateDest();
             else
             {
                 dist.Normalize();
@@ -67,14 +61,9 @@ namespace sprint0
                 loc.Offset((int)(speed * dist.ApproxDirection().ToVector2().X), (int)(speed * dist.ApproxDirection().ToVector2().Y));
                 Location = loc;
             }
-
-
         }
 
-        public void ChangeDirection()
-        {
-            GenerateDest();
-        }
+        public void ChangeDirection() => GenerateDest();
 
         private void CheckHealth()
         {
@@ -83,14 +72,11 @@ namespace sprint0
             if (limbs != null)
             {
                 foreach (ManhandlaLimb limb in limbs)
-            {
-                limbCount++;
-                if (limb.CheckHealth() < 0)
                 {
-                    toRemove = limb;
+                    limbCount++;
+                    if (limb.CheckHealth() < 0) toRemove = limb;
                 }
-            }
-            if (toRemove != null) RemoveLimb(toRemove);          
+                if (toRemove != null) RemoveLimb(toRemove);
             }
             if (limbCount == 0 && limbsExist) Perish();
         }
@@ -99,17 +85,12 @@ namespace sprint0
         {
             limbs.Remove(limb1);
             foreach (ManhandlaLimb limb in limbs)
-            {
                 limb.IncreaseFireballRate();
-            }
             double speedIncreaseRate = 1.5;
             speed *= speedIncreaseRate;
         }
 
-        public void TakeDamage(int damage)
-        {
-        }
-
+        public void TakeDamage(int damage) { }
         public void Perish()
         {
             itemSpawner.SpawnItem(ParseEnemy(GetType().Name), Location.Location.ToVector2());
@@ -123,8 +104,7 @@ namespace sprint0
             game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
-                rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))
-                );
+                rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale)));
         }
         public EnemyEnum ParseEnemy(string enemy)
              => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);

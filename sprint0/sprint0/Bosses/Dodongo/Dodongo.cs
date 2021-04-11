@@ -81,10 +81,7 @@ namespace sprint0
         public override void Update()
         {
             moveCounter++;
-            if (moveCounter == dirChangeDelay)
-            {
-                ChangeDirection();
-            }
+            if (moveCounter == dirChangeDelay) ChangeDirection();
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
 
@@ -118,15 +115,10 @@ namespace sprint0
                 eatingCounter = (eatingCounter + 1) % eatingTime;
                 if (eatingCounter == 0)
                 {
-                    if (bombsEaten >= MAX_NUM_OF_BOMBS_TO_EAT)
-                    {
-                        Perish();
-                    }
+                    if (bombsEaten >= MAX_NUM_OF_BOMBS_TO_EAT) Perish();
                     FaceDirection(direction);
                 }
             }
-
-
         }
 
         public void EatBomb()
@@ -134,18 +126,9 @@ namespace sprint0
             game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             bombsEaten++;
             eatingCounter = 1;
-            if (direction == Direction.South)
-            {
-                currentFrameUD = repeatedFrames;
-            }
-            else if (direction == Direction.North)
-            {
-                currentFrameUD = 3 * repeatedFrames;
-            }
-            else
-            {
-                currentFrameRL = 2 * repeatedFrames;
-            }
+            if (direction == Direction.South) currentFrameUD = repeatedFrames;
+            else if (direction == Direction.North) currentFrameUD = 3 * repeatedFrames;
+            else currentFrameRL = 2 * repeatedFrames;
         }
 
         public override void ChangeDirection()

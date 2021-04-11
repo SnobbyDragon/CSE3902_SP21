@@ -11,19 +11,13 @@ namespace sprint0
         private readonly Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int size = 16;
-        private int currFrame;
-        private readonly int totalFrames, repeatedFrames;
+        private int currFrame, fireballRate, fireballCounter = 0, damageTimer = 0, health;
+        private readonly int totalFrames, repeatedFrames, size = 16, damageTime = 10;
         private readonly Dictionary<Direction, List<Rectangle>> dirToSourcesMap;
         private readonly Direction dir;
-        private int health;
         private readonly IEnemy center;
-        private int fireballRate;
-        private int fireballCounter = 0;
         public int Damage { get => 2; }
         public EnemyType Type { get => EnemyType.Manhandla; }
-        private int damageTimer = 0;
-        private readonly int damageTime = 10;
         public ManhandlaLimb(Texture2D texture, IEnemy center, Direction dir, Game1 game)
         {
             health = 5;
@@ -77,8 +71,7 @@ namespace sprint0
 
         public void Update()
         {
-            if (damageTimer > 0)
-                damageTimer--;
+            if (damageTimer > 0) damageTimer--;
             CheckHealth();
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             Location = new Rectangle(
@@ -86,12 +79,10 @@ namespace sprint0
                 center.Location.Y + (int)(size * dir.ToVector2().Y * Game1.Scale),
                 (int)(size * Game1.Scale),
                 (int)(size * Game1.Scale));
-            if (CanShoot())
-                ShootFireball();
+            if (CanShoot()) ShootFireball();
         }
 
         public void ChangeDirection() { }
-
         public void TakeDamage(int damage)
         {
             if (damageTimer == 0)
@@ -108,7 +99,6 @@ namespace sprint0
         }
 
         public void Perish() => game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-
         private bool CanShoot()
         {
             fireballCounter++;
@@ -120,7 +110,6 @@ namespace sprint0
         {
             double decreaseRate = .5;
             fireballRate = (int)(fireballRate * decreaseRate);
-
         }
 
         private void ShootFireball()

@@ -8,29 +8,21 @@ namespace sprint0
 {
     public class Gohma : IEnemy
     {
-        private Game1 game;
+        private readonly Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int size = 16;
-        private Dictionary<string, List<Rectangle>> colorToLegMap, colorToHeadMap;
-        private List<SpriteEffects> leftLegEffects, rightLegEffects;
-        private string color;
-        private int headCurrFrame, legCurrFrame;
-        private readonly int headTotalFrames, headRepeatedFrames, legTotalFrames, legRepeatedFrames;
-        private int currDest;
-        private readonly int moveDelay;
-        private List<Vector2> destinations;
+        private readonly Dictionary<Color, List<Rectangle>> colorToLegMap, colorToHeadMap;
+        private readonly List<SpriteEffects> leftLegEffects, rightLegEffects;
+        private readonly Color color;
+        private readonly int headTotalFrames, headRepeatedFrames, legTotalFrames, legRepeatedFrames, size = 16, moveDelay, fireballRate = 100, damageTime = 10;
+        private readonly List<Vector2> destinations;
         private Vector2 centerOffset;
-        private readonly int fireballRate = 100;
-        private int fireballCounter = 0;
-        private int health;
+        private int fireballCounter = 0, health, damageTimer = 0, currDest, headCurrFrame, legCurrFrame;
         public int Damage { get => 2; }
         public EnemyType Type { get => EnemyType.None; }
-        private ItemSpawner itemSpawner;
-        private int damageTimer = 0;
-        private readonly int damageTime = 10;
+        private readonly ItemSpawner itemSpawner;
 
-        public Gohma(Texture2D texture, Vector2 location, string color, Game1 game)
+        public Gohma(Texture2D texture, Vector2 location, Color color, Game1 game)
         {
             health = 25;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
@@ -44,10 +36,10 @@ namespace sprint0
             legTotalFrames = 2;
             legRepeatedFrames = 14;
 
-            colorToLegMap = new Dictionary<string, List<Rectangle>>
+            colorToLegMap = new Dictionary<Color, List<Rectangle>>
             {
-                { "orange", SpritesheetHelper.GetFramesH(196, 105, size, size, legTotalFrames) },
-                { "blue", SpritesheetHelper.GetFramesH(196, 122, size, size, legTotalFrames) }
+                { Color.Orange, SpritesheetHelper.GetFramesH(196, 105, size, size, legTotalFrames) },
+                { Color.Blue, SpritesheetHelper.GetFramesH(196, 122, size, size, legTotalFrames) }
             };
             leftLegEffects = new List<SpriteEffects>
             {
@@ -59,10 +51,10 @@ namespace sprint0
                 SpriteEffects.FlipHorizontally,
                 SpriteEffects.None
             };
-            colorToHeadMap = new Dictionary<string, List<Rectangle>>
+            colorToHeadMap = new Dictionary<Color, List<Rectangle>>
             {
-                { "orange", SpritesheetHelper.GetFramesH(230, 105, size, size, headTotalFrames) },
-                { "blue", SpritesheetHelper.GetFramesH(230, 122, size, size, headTotalFrames) }
+                { Color.Orange, SpritesheetHelper.GetFramesH(230, 105, size, size, headTotalFrames) },
+                { Color.Blue, SpritesheetHelper.GetFramesH(230, 122, size, size, headTotalFrames) }
             };
 
             currDest = 0;
@@ -100,12 +92,10 @@ namespace sprint0
 
         public void Update()
         {
-            if (damageTimer > 0)
-                damageTimer--;
+            if (damageTimer > 0) damageTimer--;
             CheckHealth();
             Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
-            if (dist.Length() == 0)
-                currDest = (currDest + 1) % destinations.Count;
+            if (dist.Length() == 0) currDest = (currDest + 1) % destinations.Count;
             else if (legCurrFrame % moveDelay == 0)
             {
                 dist.Normalize();
@@ -115,13 +105,10 @@ namespace sprint0
             }
             headCurrFrame = (headCurrFrame + 1) % (headTotalFrames * headRepeatedFrames);
             legCurrFrame = (legCurrFrame + 1) % (legTotalFrames * legRepeatedFrames);
-
-            if (CanShoot())
-                ShootFireball();
+            if (CanShoot()) ShootFireball();
         }
 
         public void ChangeDirection() { }
-
         private void CheckHealth()
         {
             if (health < 0) Perish();
@@ -139,9 +126,8 @@ namespace sprint0
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(ParseEnemy(this.GetType().Name), this.Location.Location.ToVector2());
+            itemSpawner.SpawnItem(ParseEnemy(GetType().Name), Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
-
             game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), EffectEnum.Death);
             game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDeath);
         }

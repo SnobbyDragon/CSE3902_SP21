@@ -8,14 +8,15 @@ namespace sprint0
 {
     public class GleeokNeck : IEnemy
     {
-        private Game1 game;
+        private readonly Game1 game;
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private List<IEnemy> neck;
+        private readonly List<IEnemy> neck;
         public int Damage { get => 0; }
         private bool isDead;
         public EnemyType Type { get => EnemyType.Gleeok; }
-        IEnemy body;
+
+        readonly IEnemy body;
 
         public GleeokNeck(Texture2D texture, Game1 game, Rectangle location, IEnemy main)
         {
@@ -28,28 +29,18 @@ namespace sprint0
             Vector2 anchor = Location.Location.ToVector2() + new Vector2(Location.Width / 3, (float)(Location.Height * 0.8));
             IEnemy head = new GleeokHead(Texture, anchor, game);
             for (int i = 0; i < 4; i++)
-            {
                 neck.Add(new GleeokNeckPiece(Texture, anchor, head, i, game));
-            }
             neck.Add(head);
             game.Room.LoadLevel.RoomEnemies.RegisterEnemies(neck);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-
-        }
-
+        public void Draw(SpriteBatch spriteBatch) { }
         public void Update()
         {
             CheckHealth();
             Location = body.Location;
-
         }
-
-
         public void ChangeDirection() { }
-
         private void CheckHealth()
         {
             int neckHealth = 0;
@@ -65,16 +56,12 @@ namespace sprint0
                     GleeokNeckPiece neckpeice = (GleeokNeckPiece)neckpeice1;
                     neckHealth += neckpeice.CheckHealth();
                 }
-
-
             }
             if (neckHealth < 0) Perish();
         }
 
         public void TakeDamage(int damage) { }
-
         public bool IsDead() => isDead;
-
         public void Perish()
         {
             while (neck.Count != 0)

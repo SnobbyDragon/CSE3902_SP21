@@ -11,16 +11,13 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
-        private IEnemy head;
-        private int health;
-        private int segmentNumber;
+        private readonly IEnemy head;
         private Vector2 anchor;
-        private Random rand;
-        private readonly int xWiggleLimit = 2, yWiggleLimit = 1, wiggleDelay = 20;
-        private int xWiggle, yWiggle, wiggleCount;
-        private readonly int width = 8, height = 12;
+        private readonly Random rand;
+        private readonly int xWiggleLimit = 2, yWiggleLimit = 1, wiggleDelay = 20, width = 8, height = 12, segmentNumber;
+        private int xWiggle, yWiggle, wiggleCount, health;
         public int Damage { get => 0; }
-        private Game1 game;
+        private readonly Game1 game;
         public EnemyType Type { get => EnemyType.Gleeok; }
 
         public GleeokNeckPiece(Texture2D texture, Vector2 anchor, IEnemy head, int segmentNumber, Game1 game)
@@ -63,9 +60,7 @@ namespace sprint0
         }
 
         public void ChangeDirection() { }
-
         public int CheckHealth() => health;
-
         public void TakeDamage(int damage)
         {
             health -= damage;
