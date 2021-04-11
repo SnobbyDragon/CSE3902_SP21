@@ -37,7 +37,7 @@ namespace sprint0
             Vector2 offsetPos = link.Pos + swordOffsets[link.Direction];
             game.Room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, WeaponEnum.Sword, link);
             game.Room.RoomSound.AddSoundEffect(SoundEnum.SwordSlash);
-            if (beam || HUD.HasItem(PlayerItems.MagicalRod))
+            if (beam || HUD.CurrentItem == PlayerItems.MagicalRod)
             {
                 game.Room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, ProjectileEnum.SwordBeam, link);
                 game.Room.RoomSound.AddSoundEffect(SoundEnum.SwordShoot);

@@ -18,7 +18,6 @@ namespace sprint0
         public void Execute()
         {
             swordCommand.Execute();
-
             //can't execute both sword and flame at the same time?
             if (game.hudManager.HasItem(companionItem))
                 flameCommand.Execute();

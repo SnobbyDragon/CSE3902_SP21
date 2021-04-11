@@ -6,8 +6,7 @@
         public SwordCommand(Game1 game) => this.game = game;
         public void Execute()
         {
-            if (CanUse())
-                game.Room.Player.HandleSword();
+            if (CanUse()) game.Room.Player.HandleSword();
         }
 
         private bool CanUse()
