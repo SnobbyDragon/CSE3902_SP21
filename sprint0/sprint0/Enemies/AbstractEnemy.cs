@@ -28,6 +28,7 @@ namespace sprint0
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);
+
         public virtual void Update()
         {
             moveCounter++;
@@ -67,11 +68,12 @@ namespace sprint0
 
         public void Perish()
         {
-            itemSpawner.SpawnItem(ParseEnemy(this.GetType().Name), this.Location.Location.ToVector2());
+            itemSpawner.SpawnItem(ParseEnemy(GetType().Name), Location.Location.ToVector2());
             game.Room.LoadLevel.RoomEnemies.RemoveEnemy(this);
             game.Room.LoadLevel.RoomEffect.AddEffect(Location.Location.ToVector2(), EffectEnum.Death);
             game.Room.RoomSound.AddSoundEffect(SoundEnum.EnemyDeath);
         }
+
         public EnemyEnum ParseEnemy(string enemy)
              => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
     }

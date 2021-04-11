@@ -7,13 +7,14 @@ namespace sprint0
 {
     public class RoomSound
     {
-        private SoundFactory soundFactory;
+        private readonly SoundFactory soundFactory;
         public List<AbstractSoundEffect> SoundEffects { get => soundEffects; set => soundEffects = value; }
         public List<AbstractSoundEffect> SoundEffectsToDie { get => soundEffectsToDie; set => soundEffectsToDie = value; }
         private List<AbstractSoundEffect> soundEffects, soundEffectsToDie;
+
         public RoomSound(Game1 game)
         {
-            soundFactory = new SoundFactory(game);
+            soundFactory = game.SoundFactory;
             soundEffects = new List<AbstractSoundEffect>();
             soundEffectsToDie = new List<AbstractSoundEffect>();
         }

@@ -15,11 +15,9 @@ namespace sprint0
         private readonly List<Rectangle> sources;
 
         private readonly int moveDelay = 5, minDistance = (int)(Game1.Width * Game1.Scale * 0.2), maxDistance = (int)(Game1.Width * Game1.Scale * 0.8);
-
-        private readonly int fireballRate = 100;
-        private int fireballCounter = 0;
         private readonly int damageTime = 10;
 
+        private readonly AquamentusFireballBehaviour fireballBehaviour;
 
         public Aquamentus(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
@@ -38,6 +36,7 @@ namespace sprint0
             moveCounter = 0;
 
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
+            fireballBehaviour = new AquamentusFireballBehaviour(game, this);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -49,20 +48,14 @@ namespace sprint0
 
         public override void Update()
         {
-
             CheckHealth();
             if (CanChangeDirection())
                 ChangeDirection();
             Move();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-
-            if (CanShoot())
-                ShootFireballs();
+            fireballBehaviour.Update();
             if (damageTimer > 0)
                 damageTimer--;
-
-
-
         }
 
         private void Move()
@@ -91,7 +84,6 @@ namespace sprint0
             direction = direction.OppositeDirection();
         }
 
-
         public override void TakeDamage(int damage)
         {
             if (damageTimer == 0)
@@ -101,24 +93,5 @@ namespace sprint0
                 damageTimer = damageTime;
             }
         }
-
-        private bool CanShoot()
-        {
-            fireballCounter++;
-            fireballCounter %= fireballRate;
-            return fireballCounter == 0;
-        }
-
-        private void ShootFireballs()
-        {
-            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
-            Vector2 dir = Link.position - Location.Center.ToVector2();
-            dir.Normalize();
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(Math.PI / 6))), this); // 30 degrees up
-            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), Vector2.Transform(dir, Matrix.CreateRotationZ((float)(-Math.PI / 6))), this); // 30 degrees down
-        }
-        private SoundEnum ParseSound(string sound)
-             => (SoundEnum)Enum.Parse(typeof(SoundEnum), sound, true);
     }
 }

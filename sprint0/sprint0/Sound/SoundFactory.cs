@@ -20,6 +20,9 @@ namespace sprint0
         public BackgroundMusic MakeBackgroundMusic()
             => new BackgroundMusic(soundLoader.GetMusic());
 
+        public void RunLikeCardiO()
+            => soundLoader.RunningLikeCardiO = true;
+
         public AbstractSoundEffect MakeSoundEffect(SoundEnum soundEffectType)
         {
             SoundEffect soundEffect = soundLoader.GetSoundEffect(soundEffectType);
