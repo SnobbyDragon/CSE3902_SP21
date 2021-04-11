@@ -15,10 +15,10 @@ namespace sprint0
         public IPlayer Player { get; set; }
         private static PlayerSpriteFactory playerFactory;
         public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
-        private readonly Vector2 northOffset = new Vector2(0, -1 * (MapHeight) * Scale);
-        private readonly Vector2 southOffset = new Vector2(0, (MapHeight) * Scale);
+        private readonly Vector2 northOffset = new Vector2(0, -MapHeight * Scale);
+        private readonly Vector2 southOffset = new Vector2(0, MapHeight * Scale);
         private readonly Vector2 eastOffset = new Vector2(Width * Scale, 0);
-        private readonly Vector2 westOffset = new Vector2(-1 * (Width * Scale), 0);
+        private readonly Vector2 westOffset = new Vector2(-Width * Scale, 0);
 
         public bool ChangeRoom { get; set; }
 
