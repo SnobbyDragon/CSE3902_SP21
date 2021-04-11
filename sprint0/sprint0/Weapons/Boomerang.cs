@@ -81,7 +81,7 @@ namespace sprint0
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 age++;
                 if (Shooter is Goriya goriya1)
-                    alive = goriya1.isAlive();
+                    alive = goriya1.IsAlive();
             }
         }
 
