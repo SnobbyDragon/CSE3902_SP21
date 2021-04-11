@@ -106,9 +106,7 @@ namespace sprint0
             speed *= speedIncreaseRate;
         }
 
-        public void TakeDamage(int damage)
-        {
-        }
+        public void TakeDamage(int damage) { }
 
         public void Perish()
         {
@@ -126,6 +124,7 @@ namespace sprint0
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))
                 );
         }
+
         public EnemyEnum ParseEnemy(string enemy)
              => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);
         private SoundEnum ParseSound(string sound)

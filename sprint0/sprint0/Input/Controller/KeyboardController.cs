@@ -9,6 +9,7 @@ namespace sprint0
         private readonly Game1 game;
         private readonly Dictionary<Keys, ICommand> controllerMappings;
         private Keys[] previousPressedKeys;
+        private readonly AbstractSpecialControl[] specialControls;
         private readonly HashSet<Keys> movementKeys;
 
         public KeyboardController(Game1 game)
@@ -46,6 +47,8 @@ namespace sprint0
             RegisterCommand(Keys.M, new ToggleMusicCommand(game));
             RegisterCommand(Keys.OemPeriod, new SkipSongCommand(game));
             RegisterCommand(Keys.OemComma, new ToggleSoundEffectsCommand());
+
+            specialControls = new AbstractSpecialControl[] { new CardiBControl(new CardiBCommand(game)) };
         }
 
         public void RegisterCommand(Keys key, ICommand command)
@@ -54,10 +57,14 @@ namespace sprint0
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-
+            
             foreach (Keys key in pressedKeys)
+            {
                 if ((controllerMappings.ContainsKey(key) && (Array.IndexOf(previousPressedKeys, key) == -1)) || movementKeys.Contains(key))
                     controllerMappings[key].Execute();
+                foreach (AbstractSpecialControl specialControl in specialControls)
+                    specialControl.CheckKey(key);
+            }
             foreach (Keys key in movementKeys)
                 if (Array.IndexOf(previousPressedKeys, key) > -1 && Array.IndexOf(pressedKeys, key) == -1)
                     game.Room.Player.Stop();

@@ -10,6 +10,8 @@ namespace sprint0
         private readonly List<Song> songs;
         private readonly int numSongs = 7;
         private readonly Dictionary<SoundEnum, SoundEffect> soundEffects;
+        private readonly SoundEffect cardiB;
+        public bool RunningLikeCardiO { get; set; }
 
         public SoundLoader(Game1 game)
         {
@@ -58,10 +60,17 @@ namespace sprint0
                 { SoundEnum.Shore, game.Content.Load<SoundEffect>("Sound/Shore") },
                 { SoundEnum.Secret, game.Content.Load<SoundEffect>("Sound/Secret") },
             };
+
+            cardiB = game.Content.Load<SoundEffect>("Sound/ow");
         }
 
         public List<Song> GetMusic() => songs;
+
         public SoundEffect GetSoundEffect(SoundEnum soundEffectType)
-            => soundEffects[soundEffectType];
+        {
+            if (RunningLikeCardiO && soundEffectType == SoundEnum.LinkDamaged)
+                return cardiB;
+            return soundEffects[soundEffectType];
+        }
     }
 }
