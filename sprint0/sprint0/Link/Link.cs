@@ -18,7 +18,6 @@ namespace sprint0
         public PlayerItems CurrentItem { get; set; }
         public int WeaponDamage { get; set; }
         public int Health { get; set; } = 28;
-        private double damagePercent;
         public int MaxHealth { get; set; } = 28;
 
         public Link(Game1 game, Vector2 pos)
@@ -29,7 +28,6 @@ namespace sprint0
             State = new UpIdleState(this);
             ItemCounts = new List<int> { -1, -1, 1 };
             HUD = this.game.hudManager;
-            damagePercent = 1.0;
             itemHelper = new LinkUseItemHelper(game, this, HUD);
             CurrentItem = PlayerItems.None;
             speed = 2;
@@ -38,7 +36,7 @@ namespace sprint0
         public void TakeDamage(Direction direction, int damage)
         {
             game.Room.Player = new DamagedLink(this, game, direction);
-            HUD.TakeDamage((int)(damage * damagePercent));
+            HUD.TakeDamage(CalculateDamage(damage));
             Health = HUD.Health;
             game.Room.RoomSound.AddSoundEffect(SoundEnum.LinkDamaged);
             if (Health <= 0) Die();
@@ -73,6 +71,12 @@ namespace sprint0
             State.Update();
             Health = HUD.Health;
         }
+        private int CalculateDamage(int damage)
+        {
+            if (HasItem(PlayerItems.BlueRing)) return damage / 2;
+            else if (HasItem(PlayerItems.RedRing)) return damage * 3 / 4;
+            else return damage;
+        }
         public void ReceiveItem(int n, PlayerItems item)
         {
             ItemCounts[(int)item] += n;
@@ -88,15 +92,6 @@ namespace sprint0
                 return HUD.HasKeys();
         }
         public void DecrementKey() => HUD.DecrementKey();
-        public void AddToInventory(PlayerItems newItem)
-        {
-            HUD.AddBItem(newItem);
-            ChangeDamage();
-        }
-        private void ChangeDamage()
-        {
-            if (HasItem(PlayerItems.BlueRing)) damagePercent = .5;
-            else if (HasItem(PlayerItems.RedRing)) damagePercent = .75;
-        }
+        public void AddToInventory(PlayerItems newItem) => HUD.AddBItem(newItem);
     }
 }
