@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -9,7 +8,6 @@ namespace sprint0
 {
     public class Tile : IBlock
     {
-
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
@@ -23,28 +21,10 @@ namespace sprint0
             source = new Rectangle(984, 11, width, height);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
-        }
-
-        public void Update()
-        {
-        }
-
-        public bool IsWalkable()
-        {
-            return true;
-        }
-
-        public bool IsMovable()
-        {
-            return false;
-        }
-
-        public void SetIsMovable()
-        {
-            throw new NotImplementedException();
-        }
+        public void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(Texture, Location, source, Color.White);
+        public void Update() { }
+        public bool IsWalkable() => true;
+        public bool IsMovable() => false;
+        public void SetIsMovable() => throw new NotImplementedException();
     }
 }

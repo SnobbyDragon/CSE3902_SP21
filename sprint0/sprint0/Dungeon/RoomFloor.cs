@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,7 +7,6 @@ namespace sprint0
 {
     public class RoomFloor : ISprite
     {
-
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle source;
@@ -22,13 +20,7 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
-
-        }
-
-        public void Update()
-        {
-        }
+            => spriteBatch.Draw(Texture, Location, source, Color.White);
+        public void Update() { }
     }
 }

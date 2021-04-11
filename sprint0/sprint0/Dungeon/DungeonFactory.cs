@@ -37,7 +37,6 @@ namespace sprint0
         {
             return spriteType switch
             {
-
                 DungeonEnum.RoomFloor => new RoomFloor(texture, location),
                 DungeonEnum.RoomBorder => new RoomBorder(texture, location),
                 DungeonEnum.Darkness => new Darkness(texture, location),

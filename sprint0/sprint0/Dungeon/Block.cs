@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -23,27 +22,10 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
-        }
-
-        public void Update()
-        {
-        }
-
-        public bool IsWalkable()
-        {
-            return false;
-        }
-
-        public bool IsMovable()
-        {
-            return false;
-        }
-
-        public void SetIsMovable()
-        {
-            throw new NotImplementedException();
-        }
+            => spriteBatch.Draw(Texture, Location, source, Color.White);
+        public void Update() { }
+        public bool IsWalkable() => false;
+        public bool IsMovable() => false;
+        public void SetIsMovable() => throw new NotImplementedException();
     }
 }
