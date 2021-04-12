@@ -1,8 +1,7 @@
-
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+
 //Author: Hannah Johnson
 namespace sprint0
 {
@@ -27,7 +26,7 @@ namespace sprint0
             {EnemyEnum.Patra,new ItemEnum[] { ItemEnum.None, ItemEnum.BlueRing, ItemEnum.BlueCandle, ItemEnum.Letter, ItemEnum.BluePotion, ItemEnum.BlueRupee } },
             {EnemyEnum.Owl,new ItemEnum[] { ItemEnum.BlueRing, ItemEnum.BlueCandle, ItemEnum.Letter, ItemEnum.BluePotion, ItemEnum.BlueRupee } },
         };
-        private RoomItems roomItems;
+        private readonly RoomItems roomItems;
 
         public ItemSpawner(RoomItems roomItems) => this.roomItems = roomItems;
 
@@ -45,6 +44,5 @@ namespace sprint0
         {
             if (item != ItemEnum.None) roomItems.AddItem(location, item);
         }
-
     }
 }
