@@ -10,6 +10,8 @@ namespace sprint0
     {
 
         private readonly List<Rectangle> sprites;
+        private readonly int fireballRate = 100;
+        private int fireballCounter = 0;
 
         public Owl(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
         {
@@ -38,5 +40,34 @@ namespace sprint0
         {
 
         }
+
+        public override void Update()
+        {
+            moveCounter++;
+            if (moveCounter == dirChangeDelay) ArbitraryDirection(30, 50);
+            if (damageTimer > 0) damageTimer--;
+            CheckHealth();
+            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+            Rectangle loc = Location;
+            loc.Offset(direction.ToVector2());
+            Location = loc;
+            if (CanShoot()) ShootFireball();
+        }
+        private bool CanShoot()
+        {
+            fireballCounter++;
+            fireballCounter %= fireballRate;
+            return fireballCounter == 0;
+        }
+
+        private void ShootFireball()
+        {
+            game.Room.RoomSound.AddSoundEffect(SoundEnum.Owl);
+            Vector2 dir = game.Room.Player.Pos - Location.Center.ToVector2();
+            dir.Normalize();
+            game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
+        }
+
+
     }
 }
