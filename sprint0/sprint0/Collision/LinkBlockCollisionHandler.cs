@@ -12,6 +12,7 @@ namespace sprint0
         public LinkBlockCollisionHandler(Game1 game) => this.game = game;
         public void HandleCollision(IPlayer link, IBlock block, Direction side)
         {
+            if (block is SoundBlock) ((SoundBlock)block).MakeSound();
             if (!block.IsWalkable())
             {
                 if (block.IsMovable()) HandleMovableBlock(link, block, side);
@@ -19,6 +20,7 @@ namespace sprint0
             }
             else if (block is Stairs) HandleStairs(link, block);
             else if (block is Ladder) HandleLadder(link);
+            
         }
         private void HandleStairs(IPlayer link, IBlock block)
         {

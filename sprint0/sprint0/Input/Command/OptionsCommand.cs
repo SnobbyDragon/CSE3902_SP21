@@ -7,6 +7,6 @@ namespace sprint0
 
         public OptionsCommand(Game1 game) => this.game = game;
 
-        public void Execute() => game.stateMachine.HandleCredits();
+        public void Execute() => game.stateMachine.HandleOptions();
     }
 }

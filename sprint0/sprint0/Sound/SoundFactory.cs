@@ -10,7 +10,7 @@ namespace sprint0
         NewItem, GetItem, GetHeart, GetKey, GetRupee,
         Aquamentus, Gleeok, Ganon, Dodongo, Gohma, Manhandla, Digdogger, Patra,
         MagicalRod, Flute, Refill, TextAppear, TextAppearSlow, KeyAppear, UnlockDoor,
-        Stairs, Shore, Secret
+        Stairs, Shore, Secret, Note1, Note2, Note3, Note4, Note5, Note6, Owl
     }
     public class SoundFactory
     {
@@ -48,12 +48,19 @@ namespace sprint0
                 SoundEnum.GetRupee => new GetRupeeSoundEffect(soundEffect),
                 SoundEnum.Aquamentus => new AquamentusSoundEffect(soundEffect),
                 SoundEnum.Gleeok => new GleeokSoundEffect(soundEffect),
+                SoundEnum.Owl => new OwlSoundEffect(soundEffect),
                 SoundEnum.Ganon => new GanonSoundEffect(soundEffect),
                 SoundEnum.Dodongo => new DodongoSoundEffect(soundEffect),
                 SoundEnum.Gohma => new GohmaSoundEffect(soundEffect),
                 SoundEnum.Manhandla => new ManhandlaSoundEffect(soundEffect),
                 SoundEnum.Digdogger => new DigdoggerSoundEffect(soundEffect),
                 SoundEnum.Patra => new PatraSoundEffect(soundEffect),
+                SoundEnum.Note1 => new Note1SoundEffect(soundEffect),
+                SoundEnum.Note2 => new Note2SoundEffect(soundEffect),
+                SoundEnum.Note3 => new Note3SoundEffect(soundEffect),
+                SoundEnum.Note4 => new Note4SoundEffect(soundEffect),
+                SoundEnum.Note5 => new Note5SoundEffect(soundEffect),
+                SoundEnum.Note6 => new Note6SoundEffect(soundEffect),
                 _ => throw new ArgumentException("Invalid sound effect! " + soundEffectType.ToString() + " Sound factory failed."),
             };
         }

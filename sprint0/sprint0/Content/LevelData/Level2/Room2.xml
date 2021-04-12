@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<XnaContent>?    
+    
+    <Dungeon ObjectName="RoomBorder" LocationX="0" LocationY="140" />?
+    <Dungeon ObjectName="RoomFloor" LocationX="80" LocationY="220" />?
+    <Dungeon ObjectName="UpWall" LocationX="280" LocationY="500" />?
+    <Dungeon ObjectName="DownWall" LocationX="280" LocationY="140" />?    
+    <Dungeon ObjectName="LeftLockedDoor" LocationX="560" LocationY="320" />?
+	<Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
+    
+	
+    
+<Boss ObjectName="Patra" LocationX="250" LocationY="340" />?
+<Boss ObjectName="Patra" LocationX="200" LocationY="340" />?
+<Boss ObjectName="Patra" LocationX="200" LocationY="300" />?
+<Boss ObjectName="Patra" LocationX="250" LocationY="300" />?
+	<Enemy ObjectName="Stalfos" LocationX="120" LocationY="340" />?
+	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="260" />?
+	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="480" />?
+
+	<Player ObjectName="Link" LocationX="280" LocationY="340" />?
+?</XnaContent>
