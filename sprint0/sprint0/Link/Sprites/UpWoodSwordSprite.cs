@@ -2,9 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-/*
- * Last updated: 2/21/21 by urick.9
- */
 namespace sprint0
 {
     class UpWoodSwordSprite : ISprite
@@ -19,9 +16,10 @@ namespace sprint0
         private int width = 0, height = 0;
         private readonly List<Vector2> locations;
         private readonly List<int> ySizes;
-
-        public UpWoodSwordSprite(Texture2D texture, Vector2 location)
+        public UpWoodSwordSprite(Texture2D texture, Vector2 location, PlayerItems sword)
         {
+            if (sword == PlayerItems.WhiteSword) xOffset += 93;
+            else if (sword == PlayerItems.MagicalSword) xOffset += 187;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             sources = GetFrames();
