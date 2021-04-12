@@ -170,6 +170,12 @@
 /processorParam:Quality=Best
 /build:Sound/Candle.wav
 
+#begin Sound/Cat.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Cat.wav
+
 #begin Sound/Door_Unlock.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -218,6 +224,12 @@
 /processorParam:Quality=Best
 /build:Sound/Key_Appear.wav
 
+#begin Sound/Kitten.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Kitten.wav
+
 #begin Sound/Link_Die.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -229,6 +241,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sound/Link_Hurt.wav
+
+#begin Sound/Lion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Lion.wav
 
 #begin Sound/LowHealth.wav
 /importer:WavImporter
@@ -283,6 +301,42 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Sound/music7.mp3
+
+#begin Sound/Note1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Note1.wav
+
+#begin Sound/Note2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Note2.wav
+
+#begin Sound/Note3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Note3.wav
+
+#begin Sound/Note4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Note4.wav
+
+#begin Sound/Note5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Note5.wav
+
+#begin Sound/Note6.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Note6.wav
 
 #begin Sound/ow.wav
 /importer:WavImporter
