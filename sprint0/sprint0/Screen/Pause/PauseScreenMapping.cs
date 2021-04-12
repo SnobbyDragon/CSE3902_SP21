@@ -34,9 +34,9 @@ namespace sprint0
                 {18, (int)RoomDirection.Right },
                 {1, (int)RoomDirection.LeftRightUp },
                 {2, (int)RoomDirection.LeftRightDown },
-                //{19, (int)RoomDirection.LeftRight }, //add when 19 added
-                //{20, (int)RoomDirection.LeftRight }, //add when 20 added
-                //{21, (int)RoomDirection.Left }, //add when 20 added
+                {19, (int)RoomDirection.LeftRight },
+                {20, (int)RoomDirection.LeftRight },
+                {21, (int)RoomDirection.Left },
             };
             rowMapping2 = new Dictionary<int, int>
             {

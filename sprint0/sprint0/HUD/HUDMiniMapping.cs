@@ -32,11 +32,9 @@ namespace sprint0
                 {18, (int)RoomPosition.Top},
                 {1, (int)RoomPosition.Top },
                 {2, (int)RoomPosition.Both },
-                {8, (int)RoomPosition.Bottom },//remove when room 20 is implemented
-                {9, (int)RoomPosition.Bottom },//remove when room 21 is implemented
-                //{19, (int)RoomPosition.Top }, //add when 19 added
-                //{20, (int)RoomPosition.Both }, //add when 20 added
-                //{21, (int)RoomPosition.Both }, //add when 21 added
+                {19, (int)RoomPosition.Top },
+                {20, (int)RoomPosition.Both },
+                {21, (int)RoomPosition.Both },
             };
             rowMapping2 = new Dictionary<int, int>
             {
@@ -56,10 +54,8 @@ namespace sprint0
             {
                 {0, 0},
                 {3, 2},
-                {8, 8},//remove when room 20 implemented
-                {9, 9}, //remove when room 21 implemented
-                //{8, 20}, //add when 20 added
-                //{9, 21}, //add when 21 added
+                {8, 20},
+                {9, 21},
                 {11, 5},
                 {12, 6},
                 {13, 7},
@@ -91,7 +87,6 @@ namespace sprint0
             {
                 roomPos.Add(roomMap.Key, new Rectangle((int)(x * Game1.Scale), (int)(y * Game1.Scale),
                     (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)));
-                if (roomMap.Key == 2) x += sideLength;
                 x += sideLength;
             }
         }

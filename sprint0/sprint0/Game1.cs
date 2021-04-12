@@ -32,7 +32,7 @@ namespace sprint0
         public int RoomIndex { get; set; }
 
         public int NextRoomIndex { get; set; }
-        public int NumRooms { get; } = 19;
+        public int NumRooms { get; } = 22;
         public readonly GameStateMachine stateMachine;
         private readonly int LinkDefaultX = 250;
         private readonly int LinkDefaultY = 280;
@@ -105,7 +105,7 @@ namespace sprint0
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
 
             List<int> frontier = new List<int> { RoomIndex };
-            while (Rooms.Count < 17)
+            while (Rooms.Count < 20)
             {
                 List<int> newFrontier = new List<int>();
                 foreach (int roomIndex in frontier)
