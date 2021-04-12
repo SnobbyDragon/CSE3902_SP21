@@ -14,6 +14,7 @@ namespace sprint0
         private readonly List<PlayerItems> aItem;
         public Rectangle Location { get; set; }
         public PlayerItems Item { get; set; }
+        public PlayerItems AItem { get; set; }
         private readonly int maxItems = 15;
         public Texture2D Texture { get; set; }
 
