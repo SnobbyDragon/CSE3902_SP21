@@ -1,9 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 //Author: Stuti Shah
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class MagicalSword : AbstractItem
+    public class MagicalSword : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.MagicalSword; }
         private readonly int xOffset = 112, yOffset = 0;

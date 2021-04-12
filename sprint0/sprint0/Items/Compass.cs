@@ -2,9 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class Compass : AbstractItem
+    public class Compass : AbstractItem, IItem
     {
         private readonly int xOffset = 258, yOffset = 1;
         public new PlayerItems PlayerItems { get => PlayerItems.Compass; }

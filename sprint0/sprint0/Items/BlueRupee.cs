@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Angela Li
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BlueRupee : AbstractItem
+    public class BlueRupee : AbstractItem, IItem
     {
         public static int Value { get; } = 5;
         private readonly List<Rectangle> sources;

@@ -2,9 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Angela Li
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class HeartContainer : AbstractItem
+    public class HeartContainer : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.HeartContainer; }
 

@@ -5,7 +5,7 @@ using System;
 //Author: Angela Li
 namespace sprint0
 {
-    public class BlueBoomerangItem : AbstractItem
+    public class BlueBoomerangItem : AbstractItem, IItem
     {
         private readonly int xOffset = 129, yOffset = 19;
         public new PlayerItems PlayerItems { get => PlayerItems.MagicalBoomerang; }

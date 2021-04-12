@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class Bow : AbstractItem
+    public class Bow : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.Bow; }
         private readonly int xOffset = 144, yOffset = 0;

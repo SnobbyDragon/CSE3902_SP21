@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 //Author: Stuti Shah
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
     public abstract class AbstractItem : IItem

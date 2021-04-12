@@ -2,9 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Angela Li
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BlueRing : AbstractItem
+    public class BlueRing : AbstractItem, IItem
     {
         private readonly int xOffset = 169, yOffset = 19;
         public new PlayerItems PlayerItems { get => PlayerItems.BlueRing; }

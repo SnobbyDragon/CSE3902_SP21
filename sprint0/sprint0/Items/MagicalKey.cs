@@ -2,9 +2,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class MagicalKey : AbstractItem
+    public class MagicalKey : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.MagicalKey; }
         private readonly int xOffset = 248, yOffset = 0;

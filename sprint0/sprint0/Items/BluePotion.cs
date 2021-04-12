@@ -2,9 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Angela Li
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BluePotion : AbstractItem
+    public class BluePotion : AbstractItem, IItem
     {
         private readonly int xOffset = 80, yOffset = 16;
         public new PlayerItems PlayerItems { get => PlayerItems.BluePotion; }

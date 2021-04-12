@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-//Author: Stuti Shah
 
+//Author: Stuti Shah
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BookOfMagic : AbstractItem
+    public class BookOfMagic : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.BookOfMagic; }
         private readonly int xOffset = 232, yOffset = 0;

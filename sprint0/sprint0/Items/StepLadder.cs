@@ -1,9 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 //Author: Stuti Shah
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class StepLadder : AbstractItem
+    public class StepLadder : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.StepLadder; }
         private readonly int xOffset = 208, yOffset = 0;

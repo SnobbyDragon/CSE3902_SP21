@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
-    public class PowerBracelet : AbstractItem
+    public class PowerBracelet : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.PowerBracelet; }
         private readonly int xOffset = 176, yOffset = 1;

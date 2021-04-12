@@ -2,10 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
-//Updated: 03/15/21 by shah.1440
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class Key : AbstractItem
+    public class Key : AbstractItem, IItem
     {
         private readonly int xOffset = 240, yOffset = 0;
         public new PlayerItems PlayerItems { get => PlayerItems.Key; }

@@ -2,9 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Angela Li
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BoomerangItem : AbstractItem
+    public class BoomerangItem : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.Boomerang; }
         private readonly int xOffset = 129, yOffset = 3;
