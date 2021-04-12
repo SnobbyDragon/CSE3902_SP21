@@ -13,9 +13,10 @@ namespace sprint0
         private readonly StartScreenManager startScreenManager;
         private readonly CreditsScreenManager creditsScreenManager;
         private readonly VictoryScreenManager victorScreenManager;
-
+        private readonly OptionsScreenManager optionsScreenManager;
         public UniversalScreenManager(Game1 game)
         {
+            optionsScreenManager = new OptionsScreenManager(game);
             victorScreenManager = new VictoryScreenManager(game);
             pauseScreenManager = new PauseScreenManager(game);
             gameOverScreenManager = new GameOverScreenManager(game);
@@ -31,6 +32,8 @@ namespace sprint0
                 gameOverScreenManager.Update();
             else if (state.Equals(GameStateMachine.State.credits))
                 creditsScreenManager.Update();
+            else if (state.Equals(GameStateMachine.State.options))
+                optionsScreenManager.Update();
             else if (state.Equals(GameStateMachine.State.start))
                 startScreenManager.Update();
             else if (state.Equals(GameStateMachine.State.win))
@@ -52,6 +55,8 @@ namespace sprint0
                 startScreenManager.Draw(_spriteBatch);
             else if (state.Equals(GameStateMachine.State.credits))
                 creditsScreenManager.Draw(_spriteBatch);
+            else if (state.Equals(GameStateMachine.State.options))
+                optionsScreenManager.Draw(_spriteBatch);
             else if (state.Equals(GameStateMachine.State.win))
                 victorScreenManager.Draw(_spriteBatch);
         }
