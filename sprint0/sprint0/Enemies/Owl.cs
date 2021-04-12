@@ -33,5 +33,10 @@ namespace sprint0
         {
             if (damageTimer % 2 == 0) spriteBatch.Draw(Texture, Location, sprites[currentFrame / repeatedFrames], Color.White);
         }
+
+        public override void TakeDamage(int damage)
+        {
+            
+        }
     }
 }

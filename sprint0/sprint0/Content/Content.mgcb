@@ -170,6 +170,12 @@
 /processorParam:Quality=Best
 /build:Sound/Candle.wav
 
+#begin Sound/Cat_Meowing_2-Mr_Smith-780889994.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sound/Cat_Meowing_2-Mr_Smith-780889994.mp3
+
 #begin Sound/Door_Unlock.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -218,6 +224,12 @@
 /processorParam:Quality=Best
 /build:Sound/Key_Appear.wav
 
+#begin Sound/Kitten Meow-SoundBible.com-1295572573.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sound/Kitten Meow-SoundBible.com-1295572573.mp3
+
 #begin Sound/Link_Die.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -229,6 +241,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sound/Link_Hurt.wav
+
+#begin Sound/Lion-SoundBible.com-621763115.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sound/Lion-SoundBible.com-621763115.mp3
 
 #begin Sound/LowHealth.wav
 /importer:WavImporter
