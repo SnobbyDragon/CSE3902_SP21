@@ -10,7 +10,7 @@ namespace sprint0
         NewItem, GetItem, GetHeart, GetKey, GetRupee,
         Aquamentus, Gleeok, Ganon, Dodongo, Gohma, Manhandla, Digdogger, Patra,
         MagicalRod, Flute, Refill, TextAppear, TextAppearSlow, KeyAppear, UnlockDoor,
-        Stairs, Shore, Secret, Note1, Note2, Note3, Note4, Note5, Note6
+        Stairs, Shore, Secret, Note1, Note2, Note3, Note4, Note5, Note6, Owl
     }
     public class SoundFactory
     {
@@ -48,6 +48,7 @@ namespace sprint0
                 SoundEnum.GetRupee => new GetRupeeSoundEffect(soundEffect),
                 SoundEnum.Aquamentus => new AquamentusSoundEffect(soundEffect),
                 SoundEnum.Gleeok => new GleeokSoundEffect(soundEffect),
+                SoundEnum.Owl => new OwlSoundEffect(soundEffect),
                 SoundEnum.Ganon => new GanonSoundEffect(soundEffect),
                 SoundEnum.Dodongo => new DodongoSoundEffect(soundEffect),
                 SoundEnum.Gohma => new GohmaSoundEffect(soundEffect),

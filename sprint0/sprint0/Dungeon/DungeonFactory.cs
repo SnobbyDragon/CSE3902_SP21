@@ -18,7 +18,7 @@ namespace sprint0
 
     public enum BlockEnum
     {
-        Block, Tile, Gap, Water, Floor, Stairs, Ladder, Brick, LeftStatue, RightStatue, MovableBlock, MovableBlock5, InvisibleBlock
+        Block, Tile, Gap, Water, Floor, Stairs, Ladder, Brick, LeftStatue, RightStatue, MovableBlock, MovableBlock5, InvisibleBlock, SoundBlock
     }
     public class DungeonFactory
     {
@@ -64,11 +64,12 @@ namespace sprint0
             };
         }
 
-        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
+        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize, int sound = SoundBlock.DefaultSound)
         {
             return spriteType switch
             {
                 BlockEnum.Block => new Block(texture, location),
+                BlockEnum.SoundBlock => new SoundBlock(texture, location, game, sound),
                 BlockEnum.Tile => new Tile(texture, location),
                 BlockEnum.Gap => new Gap(texture, location),
                 BlockEnum.Water => new Water(texture, location),

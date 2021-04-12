@@ -48,6 +48,7 @@ namespace sprint0
                 { SoundEnum.UnlockDoor, game.Content.Load<SoundEffect>("Sound/Door_Unlock") },
                 { SoundEnum.Aquamentus, game.Content.Load<SoundEffect>("Sound/Boss_Scream1") },
                 { SoundEnum.Gleeok, game.Content.Load<SoundEffect>("Sound/Boss_Scream1") },
+                { SoundEnum.Owl, game.Content.Load<SoundEffect>("Sound/Boss_Scream1") },
                 { SoundEnum.Ganon, game.Content.Load<SoundEffect>("Sound/Boss_Scream1") },
                 { SoundEnum.Dodongo, game.Content.Load<SoundEffect>("Sound/Boss_Scream2") },
                 { SoundEnum.Gohma, game.Content.Load<SoundEffect>("Sound/Boss_Scream2") },
