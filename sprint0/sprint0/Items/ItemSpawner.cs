@@ -25,6 +25,7 @@ namespace sprint0
             {EnemyEnum.Gohma,new ItemEnum[] { ItemEnum.None, ItemEnum.PowerBracelet, ItemEnum.BookOfMagic, ItemEnum.Food, ItemEnum.Raft } },
             {EnemyEnum.Manhandla,new ItemEnum[] { ItemEnum.None, ItemEnum.BlueCandle, ItemEnum.BluePotion, ItemEnum.BlueRupee, ItemEnum.MagicalRod, ItemEnum.MagicalSword } },
             {EnemyEnum.Patra,new ItemEnum[] { ItemEnum.None, ItemEnum.BlueRing, ItemEnum.BlueCandle, ItemEnum.Letter, ItemEnum.BluePotion, ItemEnum.BlueRupee } },
+            {EnemyEnum.Owl,new ItemEnum[] { ItemEnum.BlueRing, ItemEnum.BlueCandle, ItemEnum.Letter, ItemEnum.BluePotion, ItemEnum.BlueRupee } },
         };
         private RoomItems roomItems;
 

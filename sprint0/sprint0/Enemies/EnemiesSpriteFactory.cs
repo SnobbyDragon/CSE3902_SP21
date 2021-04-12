@@ -12,17 +12,20 @@ namespace sprint0
         GreenZol, GoldZol, LimeZol, BrownZol, GrayZol, WhiteZol,
         Snake, RedGoriya, BlueGoriya, RedKeese, BlueKeese, Stalfos, Trap, Trapparatus,
         Aquamentus, Patra, Manhandla, Gleeok, Ganon, OrangeGohma, BlueGohma, Dodongo, Digdogger,
-        Gel, Goriya, Keese, Zol, Gohma
+        Gel, Goriya, Keese, Zol, Gohma, Owl
     }
     public class EnemiesSpriteFactory
     {
         private readonly Game1 game;
         private readonly Texture2D texture;
+        private readonly Texture2D texture2;
 
         public EnemiesSpriteFactory(Game1 game)
         {
             this.game = game;
             texture = game.Content.Load<Texture2D>("Images/DungeonEnemies");
+            texture2 = game.Content.Load<Texture2D>("Images/OwlBoss");
+
         }
 
         public IEnemy MakeSprite(EnemyEnum spriteType, Vector2 location)
@@ -53,6 +56,7 @@ namespace sprint0
                 EnemyEnum.Stalfos => new Stalfos(texture, location, game),
                 EnemyEnum.Trap => new Trap(texture, location, game),
                 EnemyEnum.Trapparatus => new Trapparatus(texture, location, game),
+                EnemyEnum.Owl => new Owl(texture2, location, game),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
