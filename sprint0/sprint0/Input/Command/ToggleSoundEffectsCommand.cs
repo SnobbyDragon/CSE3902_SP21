@@ -1,16 +1,8 @@
-﻿using System;
-namespace sprint0
+﻿namespace sprint0
 {
     public class ToggleSoundEffectsCommand : ICommand
     {
-        public ToggleSoundEffectsCommand()
-        {
-        }
-
-        public void Execute()
-        {
-            AbstractSoundEffect.ToggleMute();
-        }
-
+        public ToggleSoundEffectsCommand() { }
+        public void Execute() => AbstractSoundEffect.ToggleMute();
     }
 }

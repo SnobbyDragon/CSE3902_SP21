@@ -30,7 +30,6 @@ namespace sprint0
             RegisterCommand(Buttons.RightTrigger, new OneCommand(game));
             RegisterCommand(Buttons.LeftTrigger, new TwoCommand(game));
             RegisterCommand(Buttons.RightShoulder, new ThreeCommand(game));
-
         }
 
         public List<Buttons> getPressedButtons(GamePadState state)
@@ -39,17 +38,13 @@ namespace sprint0
             foreach (Buttons button in Enum.GetValues(typeof(Buttons)))
             {
                 if (state.IsButtonDown(button))
-                {
                     pressedButtons[pressedButtons.Count] = button;
-                }
             }
             return pressedButtons;
         }
 
         public void RegisterCommand(Buttons button, ICommand command)
-        {
-            controllerMappings.Add(button, command);
-        }
+            => controllerMappings.Add(button, command);
 
         public void Update()
         {

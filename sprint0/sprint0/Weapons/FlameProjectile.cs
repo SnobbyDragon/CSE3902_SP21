@@ -6,11 +6,8 @@ namespace sprint0
     class FlameProjectile : IProjectile
     {
         public IEntity Shooter { get; }
-
         public int Damage { get; set; }
-
         public Rectangle Location { get; set; }
-
         private readonly Texture2D texture;
         private readonly Rectangle source;
         private SpriteEffects s = SpriteEffects.FlipHorizontally;
@@ -37,18 +34,9 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, Location, source, Color.White, 0, new Vector2(0, 0), s, 0);
-        }
-
-        public bool IsAlive()
-        {
-            return age <= lifespan;
-        }
-
-        public void RegisterHit()
-        {
-        }
+            => spriteBatch.Draw(texture, Location, source, Color.White, 0, new Vector2(0, 0), s, 0);
+        public bool IsAlive() => age <= lifespan;
+        public void RegisterHit() { }
 
         public void Move()
         {
@@ -62,13 +50,9 @@ namespace sprint0
             age++;
             if (age < maxDistance) Move();
             if (currentFrame / repeatedFrames == 0)
-            {
                 s = SpriteEffects.FlipHorizontally;
-            }
             else
-            {
                 s = SpriteEffects.None;
-            }
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
         }
     }

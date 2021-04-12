@@ -21,7 +21,6 @@ namespace sprint0
 
         public DownWoodSwordSprite(Texture2D texture, Vector2 location)
         {
-
             this.texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);
@@ -29,19 +28,13 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (currFrame < totalFrames)
-            {
-                spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
-            }
+            if (currFrame < totalFrames) spriteBatch.Draw(Texture, Location, sources[currFrame], Color.White);
         }
 
         public void Update()
         {
             slow++;
-            if (slow % (totalFrames*2) == 0)
-            {
-                currFrame += 1;
-            }
+            if (slow % (totalFrames * 2) == 0) currFrame += 1;
         }
     }
 }

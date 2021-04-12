@@ -5,14 +5,8 @@ namespace sprint0
     {
         private readonly Game1 game;
 
-        public CreditsCommand(Game1 game)
-        {
-            this.game = game;
-        }
+        public CreditsCommand(Game1 game) => this.game = game;
 
-        public void Execute()
-        {
-            game.stateMachine.HandleCredits();
-        }
+        public void Execute() => game.stateMachine.HandleCredits();
     }
 }

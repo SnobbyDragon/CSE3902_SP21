@@ -25,15 +25,13 @@ namespace sprint0
             frame = 0;
             Texture = texture;
             enemyAfter = enemy;
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             if (frame < totalFrames * repeatedFrames)
             {
-                if (enemyAfter == EnemyEnum.Trapparatus)
-                    DrawTraps(spriteBatch);
+                if (enemyAfter == EnemyEnum.Trapparatus) DrawTraps(spriteBatch);
                 else
                     spriteBatch.Draw(Texture, Location, sources[frame / repeatedFrames], Color.White);
             }

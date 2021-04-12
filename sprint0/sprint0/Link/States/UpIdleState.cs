@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace sprint0
 {
@@ -17,25 +15,10 @@ namespace sprint0
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkUpIdle, player.Pos);
         }
 
-        public void HandleUp()
-        {
-            player.State = new UpWalkingState(player);
-        }
-
-        public void HandleDown()
-        {
-            player.State = new DownWalkingState(player);
-        }
-
-        public void HandleLeft()
-        {
-            player.State = new LeftWalkingState(player);
-        }
-
-        public void HandleRight()
-        {
-            player.State = new RightWalkingState(player);
-        }
+        public void HandleUp() => player.State = new UpWalkingState(player);
+        public void HandleDown() => player.State = new DownWalkingState(player);
+        public void HandleLeft() => player.State = new LeftWalkingState(player);
+        public void HandleRight() => player.State = new RightWalkingState(player);
 
         public void HandleSword(LinkUseItemHelper itemHelper)
         {
@@ -49,24 +32,15 @@ namespace sprint0
             sprite.Update();
         }
 
-        public void Draw(SpriteBatch spritebatch)
-        {
-            sprite.Draw(spritebatch);
-        }
+        public void Draw(SpriteBatch spritebatch) => sprite.Draw(spritebatch);
 
         public void UseItem(LinkUseItemHelper itemHelper)
         {
             if (player.CurrentItem != PlayerItems.None && player.CurrentItem != PlayerItems.BlueCandle)
-            {
                 player.ItemCounts[(int)player.CurrentItem]--;
-            }
             itemHelper.UseItem();
             player.State = new UpUseItemState(player);
         }
-
-        public void PickUpItem()
-        {
-            player.State = new PickUpItemState(player);
-        }
+        public void PickUpItem() => player.State = new PickUpItemState(player);
     }
 }

@@ -21,34 +21,17 @@ namespace sprint0
             homeLocation = Location.Location.ToVector2();
             Texture = texture;
             source = new Rectangle(1001, 11, width, height);
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
-        }
-
+            => spriteBatch.Draw(Texture, Location, source, Color.White);
         public void Update() { }
-
-        public bool IsWalkable()
-        {
-            return false;
-        }
-
-        public bool IsMovable()
-        {
-            return isMovable;
-        }
-
+        public bool IsWalkable() => false;
+        public bool IsMovable() => isMovable;
         public void SetIsMovable()
         {
             Vector2 changeLoc = Location.Location.ToVector2() - homeLocation;
-            if (changeLoc.Length() >= Game1.Scale * width)
-            {
-                isMovable = false;
-            }
-
+            if (changeLoc.Length() >= Game1.Scale * width) isMovable = false;
         }
     }
 }

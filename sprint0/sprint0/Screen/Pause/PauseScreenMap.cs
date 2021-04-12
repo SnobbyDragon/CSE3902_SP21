@@ -7,7 +7,7 @@ namespace sprint0
     public class PauseScreenMap : PauseScreenMapping
     {
         public Rectangle Location { get; set; }
-        private Game1 game;
+        private readonly Game1 game;
         public Texture2D Texture { get; set; }
 
         private int currentRoom, triforceRoom = 9;
@@ -19,7 +19,6 @@ namespace sprint0
         }
 
         public void Update() => currentRoom = game.RoomIndex;
-
         public void Draw(SpriteBatch spriteBatch)
         {
             if (game.hudManager.HasItem(PlayerItems.Map))

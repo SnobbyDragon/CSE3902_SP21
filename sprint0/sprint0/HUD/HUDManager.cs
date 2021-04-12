@@ -9,14 +9,13 @@ namespace sprint0
 {
     public class HUDManager
     {
-        private Game1 game;
-        private PopulateHUDInventory populateHUDInventory;
+        private readonly Game1 game;
+        private readonly PopulateHUDInventory populateHUDInventory;
         private readonly MainHUD mainHUD;
-        private HUDInventory pauseInventory;
-        private List<PlayerItems>
+        private readonly HUDInventory pauseInventory;
+        private readonly List<PlayerItems>
             arrowList = new List<PlayerItems> { PlayerItems.Arrow, PlayerItems.SilverArrow },
             boomerangList = new List<PlayerItems> { PlayerItems.Boomerang, PlayerItems.MagicalBoomerang };
-
         public int Health { get => health; set => health = value; }
         public PlayerItems CurrentItem { get => currentItem; }
         private PlayerItems currentItem;
@@ -54,8 +53,7 @@ namespace sprint0
         public bool HasKeys() => populateHUDInventory.GetNum(PlayerItems.Key) > 0;
         public void DecrementKey()
         {
-            if (!HasItem(PlayerItems.MagicalKey) && HasKeys())
-                Decrement(PlayerItems.Key);
+            if (!HasItem(PlayerItems.MagicalKey) && HasKeys()) Decrement(PlayerItems.Key);
         }
         public bool HasBowAndArrow() => pauseInventory.HasItem(PlayerItems.Bow) && pauseInventory.HasItem(arrowList);
         public bool HasSword() => pauseInventory.HasAItem();
@@ -65,8 +63,7 @@ namespace sprint0
         public void SetItem(PlayerItems source, PlayerItems item)
         {
             mainHUD.SetItem(source, item);
-            if (source == PlayerItems.BItem && item != PlayerItems.Map)
-                pauseInventory.SetItem(item);
+            if (source == PlayerItems.BItem && item != PlayerItems.Map) pauseInventory.SetItem(item);
             else pauseInventory.AddAItem(item);
         }
         public void RemoveBItem(PlayerItems item)
@@ -76,8 +73,7 @@ namespace sprint0
         }
         public void RemoveBomb()
         {
-            if (!CanUseBomb() && currentItem == PlayerItems.Bomb)
-                RemoveBItem(PlayerItems.Bomb);
+            if (!CanUseBomb() && currentItem == PlayerItems.Bomb) RemoveBItem(PlayerItems.Bomb);
         }
         public void GainHealth(int num) => populateHUDInventory.GainHealth(num);
         public void ChangeNum(PlayerItems item, int num) => populateHUDInventory.ChangeNum(item, num);

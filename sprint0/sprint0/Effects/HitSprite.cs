@@ -6,12 +6,11 @@ namespace sprint0
     public class HitSprite : IEffect
     {
         private readonly Rectangle source;
-        private readonly int xLoc = 53, yLoc = 189, width = 8, height = 8;
-        private Texture2D texture;
-        private readonly int lifespan = 4;
+        private readonly int xLoc = 53, yLoc = 189, width = 8, height = 8, lifespan = 4;
+        private readonly Texture2D texture;
         private int age = 0;
 
-        public Rectangle Location { get ; set ; }
+        public Rectangle Location { get; set; }
 
         public HitSprite(Texture2D texture, Vector2 location)
         {
@@ -19,19 +18,11 @@ namespace sprint0
             source = new Rectangle(xLoc, yLoc, width, height);
             this.texture = texture;
         }
-        public bool IsAlive()
-        {
-            return age <= lifespan;
-        }
-
+        public bool IsAlive() => age <= lifespan;
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(IsAlive()) spriteBatch.Draw(texture, Location, source, Color.White);
+            if (IsAlive()) spriteBatch.Draw(texture, Location, source, Color.White);
         }
-
-        public void Update()
-        {
-            age++;
-        }
+        public void Update() => age++;
     }
 }

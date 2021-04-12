@@ -13,7 +13,7 @@ namespace sprint0
         public List<IEnemy> EnemiesToDie { get => enemiesToDie; set => enemiesToDie = value; }
         public List<IEnemy> EnemiesToSpawn { get => enemiesToSpawn; set => enemiesToSpawn = value; }
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
-        Vector2 keySpawnLocation;
+        private Vector2 keySpawnLocation;
         private bool endBehaviorExecuted;
         private readonly Game1 game;
 
@@ -61,7 +61,7 @@ namespace sprint0
         {
             foreach (IEnemy enemy in enemies)
                 enemy.Update();
-             if (enemies.Count == 0 && !endBehaviorExecuted && game.Room.LoadLevel.RoomEffect.RoomEffects.Count == 0)
+            if (enemies.Count == 0 && !endBehaviorExecuted && game.Room.LoadLevel.RoomEffect.RoomEffects.Count == 0)
                 RoomEndBehavior();
         }
 
@@ -82,7 +82,6 @@ namespace sprint0
 
         private void RoomEndBehavior()
         {
-         
             List<int> roomWithKey = new List<int> { 15, 17, 12, 3, 2, 10 };
             int roomWithBoomerang = 7;
             int roomWithMovableBlock = 5;

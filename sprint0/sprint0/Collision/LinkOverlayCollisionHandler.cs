@@ -8,10 +8,7 @@ namespace sprint0
         private readonly Game1 game;
         private readonly int linkSize = (int)(16 * Game1.Scale);
 
-        public LinkOverlayCollisionHandler(Game1 game)
-        {
-            this.game = game;
-        }
+        public LinkOverlayCollisionHandler(Game1 game) => this.game = game;
 
         public void HandleCollision(IPlayer link, ISprite overlay, Direction side)
         {

@@ -12,12 +12,9 @@ namespace sprint0
     {
         private readonly HUDFactory hudFactory;
         private Dictionary<PlayerItems, IHUDInventory> inventory;
-
         public PopulateHUDInventory(Game1 game) => hudFactory = new HUDFactory(game);
-
         public void PopulateInventoryHUD()
         {
-
             inventory = new Dictionary<PlayerItems, IHUDInventory>()
             {
 

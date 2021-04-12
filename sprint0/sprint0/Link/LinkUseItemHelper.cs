@@ -7,7 +7,7 @@ namespace sprint0
         private readonly Game1 game;
         private readonly IPlayer link;
         private readonly int linkSize = 16;
-        private HUDManager HUD;
+        private readonly HUDManager HUD;
         private readonly Dictionary<Direction, Vector2> swordOffsets = new Dictionary<Direction, Vector2>()
             {
                 { Direction.North, new Vector2(8, -16) }, { Direction.South, new Vector2(12, 16) }, {Direction.East, new Vector2(16, 15) }, {Direction.West, new Vector2(-12, 15) }
@@ -37,7 +37,7 @@ namespace sprint0
             Vector2 offsetPos = link.Pos + swordOffsets[link.Direction];
             game.Room.LoadLevel.RoomWeapon.AddWeapon(offsetPos, link.Direction, WeaponEnum.Sword, link);
             game.Room.RoomSound.AddSoundEffect(SoundEnum.SwordSlash);
-            if (beam || HUD.HasItem(PlayerItems.MagicalRod))
+            if (beam || HUD.CurrentItem == PlayerItems.MagicalRod)
             {
                 game.Room.LoadLevel.RoomProjectile.AddProjectile(offsetPos, link.Direction, ProjectileEnum.SwordBeam, link);
                 game.Room.RoomSound.AddSoundEffect(SoundEnum.SwordShoot);

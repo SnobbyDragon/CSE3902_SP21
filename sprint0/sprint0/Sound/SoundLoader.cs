@@ -17,9 +17,7 @@ namespace sprint0
         {
             songs = new List<Song>();
             for (int i = 1; i <= numSongs; i++)
-            {
                 songs.Add(game.Content.Load<Song>("Sound/music" + i));
-            }
 
             soundEffects = new Dictionary<SoundEnum, SoundEffect>
             {

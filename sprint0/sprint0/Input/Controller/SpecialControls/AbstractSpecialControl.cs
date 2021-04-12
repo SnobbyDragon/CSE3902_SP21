@@ -26,10 +26,7 @@ namespace sprint0
                     command.Execute();
                 }
             }
-            else if (currKey > 0 && Keyboard.GetState().IsKeyUp(keySequence[currKey - 1]))
-            {
-                currKey = 0;
-            }
+            else if (currKey > 0 && Keyboard.GetState().IsKeyUp(keySequence[currKey - 1])) currKey = 0;
         }
     }
 }

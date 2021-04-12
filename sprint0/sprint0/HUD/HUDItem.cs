@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -9,7 +8,6 @@ namespace sprint0
 {
     public class HUDItem : HUDItemMapping, IHUD
     {
-
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public PlayerItems Item { get; set; }
@@ -19,7 +17,6 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, Width, Height);
             Texture = texture;
             Item = PlayerItems.None;
-
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -33,15 +30,12 @@ namespace sprint0
 
         public void SetAItem(PlayerItems item)
         {
-            if ((HasItem(item) && IsSword(item)) || IsNone(item))
-                Item = item;
+            if ((HasItem(item) && IsSword(item)) || IsNone(item)) Item = item;
         }
         public void SetItem(PlayerItems item)
         {
-            if ((HasItem(item) && IsValidBItem(item) && IsNone(Item)) || IsNone(item))
-                Item = item;
+            if ((HasItem(item) && IsValidBItem(item) && IsNone(Item)) || IsNone(item)) Item = item;
         }
-
         private bool SmallItem() => Item != PlayerItems.Compass && Item != PlayerItems.Raft && Item != PlayerItems.StepLadder;
         private bool IsSword(PlayerItems item) => item == PlayerItems.Sword || item == PlayerItems.MagicalSword || item == PlayerItems.WhiteSword;
         private bool IsMapOrLetterOrCompass(PlayerItems item) => item == PlayerItems.Map || item == PlayerItems.Letter || item == PlayerItems.Compass;

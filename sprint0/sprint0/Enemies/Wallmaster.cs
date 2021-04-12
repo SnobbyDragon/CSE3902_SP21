@@ -8,7 +8,6 @@ namespace sprint0
 {
     public class Wallmaster : AbstractEnemy
     {
-
         private readonly int xOffset = 393, yOffset = 11;
         private readonly List<Rectangle> sources;
         private readonly SpriteEffects s;
@@ -25,30 +24,17 @@ namespace sprint0
             repeatedFrames = 8;
             damage = 1;
 
-            if (Location.X <= Game1.Width / 2)
-            {
-                s = SpriteEffects.None;
-            }
+            if (Location.X <= Game1.Width / 2) s = SpriteEffects.None;
             else
-            {
                 s = SpriteEffects.FlipHorizontally;
-            }
-            if (Location.Y < Game1.MapHeight / 2 + Game1.HUDHeight)
-            {
-                s |= SpriteEffects.FlipVertically;
-            }
-
+            if (Location.Y < Game1.MapHeight / 2 + Game1.HUDHeight) s |= SpriteEffects.FlipVertically;
             ChangeDirection();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            
-                if(damageTimer % 2 == 0)
-                  spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), s, 0);
-            
-
+            if (damageTimer % 2 == 0)
+                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), s, 0);
         }
     }
-
 }

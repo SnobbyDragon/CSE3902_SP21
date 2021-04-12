@@ -38,17 +38,13 @@ namespace sprint0
                 {"sprint0.ManhandlaLimb", SpritesheetHelper.GetFramesH(1, 109, width, height, totalFrames)},
                 {"sprint0.Statue", SpritesheetHelper.GetFramesH(231, 62, width, height, totalFrames)},
             };
-            
-                
         }
 
         public bool IsAlive() => !hit;
-
         public void Draw(SpriteBatch spriteBatch)
         {
             if (!hit)
                 spriteBatch.Draw(Texture, Location, colorMap[Shooter.GetType().ToString()][currFrame / repeatedFrames], Color.White);
-
         }
 
         public void Update()
@@ -61,10 +57,6 @@ namespace sprint0
             }
         }
 
-        public void RegisterHit()
-        {
-            hit = true;
-        }
+        public void RegisterHit() => hit = true;
     }
-
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -20,31 +19,13 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             source = new Rectangle(1001, 28, width, height);
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Location, source, Color.White);
-        }
-
-        public void Update()
-        {
-        }
-
-        public bool IsWalkable()
-        {
-            return true;
-        }
-
-        public bool IsMovable()
-        {
-            return false;
-        }
-
-        public void SetIsMovable()
-        {
-            throw new NotImplementedException();
-        }
+            => spriteBatch.Draw(Texture, Location, source, Color.White);
+        public void Update() { }
+        public bool IsWalkable() => true;
+        public bool IsMovable() => false;
+        public void SetIsMovable() => throw new NotImplementedException();
     }
 }

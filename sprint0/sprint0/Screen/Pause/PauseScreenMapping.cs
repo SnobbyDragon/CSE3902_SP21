@@ -97,8 +97,7 @@ namespace sprint0
             foreach (KeyValuePair<int, int> roomMap in mapping)
             {
                 roomPos.Add(roomMap.Key, new Rectangle((int)(x * Game1.Scale), (int)(y * Game1.Scale), (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)));
-                if (roomMap.Key == 3)
-                    x += sideLength;
+                if (roomMap.Key == 3) x += sideLength;
                 x += sideLength;
             }
         }

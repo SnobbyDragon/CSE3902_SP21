@@ -13,7 +13,7 @@ namespace sprint0
 
         private readonly List<Rectangle> frames;
         private int currentFrame;
-        private readonly int repeatFrames, totalFrames;
+        private readonly int repeatFrames, totalFrames, numFrames = 2, xOffset = 1, yOffset = 11;
         private readonly int size = 16;
 
         public DownWalkingLinkSprite(Texture2D texture, Vector2 location)
@@ -23,13 +23,11 @@ namespace sprint0
             currentFrame = 0;
             repeatFrames = 8;
             totalFrames = 2 * repeatFrames;
-            frames = SpritesheetHelper.GetFramesH(1, 11, size, size, 2);
+            frames = SpritesheetHelper.GetFramesH(xOffset, yOffset, size, size, numFrames);
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, Location, frames[currentFrame / repeatFrames], Color.White);
-        }
+            => spriteBatch.Draw(texture, Location, frames[currentFrame / repeatFrames], Color.White);
 
         public void Update()
         {

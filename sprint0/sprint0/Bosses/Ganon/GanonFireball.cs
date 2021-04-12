@@ -74,9 +74,6 @@ namespace sprint0
             }
         }
 
-        public void RegisterHit()
-        {
-            hit = true;
-        }
+        public void RegisterHit() => hit = true;
     }
 }

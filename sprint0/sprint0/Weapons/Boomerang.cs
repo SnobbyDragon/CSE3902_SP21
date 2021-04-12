@@ -14,16 +14,12 @@ namespace sprint0
         public int Damage { get => 1; }
         public bool CanBeCaught { get => age > maxDistance || hit; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 290, yOffset = 11, width = 8, height = 16;
         private readonly List<Rectangle> sources;
-        private int currFrame = 0;
-        private readonly int totalFrames = 8, repeatedFrames = 4;
-        private readonly int speed = 6, maxDistance = 25;
-        private int age = 0;
+        private readonly int totalFrames = 8, repeatedFrames = 4, speed = 6, maxDistance = 25, xOffset = 290, yOffset = 11, width = 8, height = 16;
+        private int age = 0, currFrame = 0;
         private readonly List<SpriteEffects> spriteEffects;
         private Vector2 moveVector;
-        private bool alive;
-        private bool hit = false;
+        private bool alive, hit = false;
         private readonly Room room;
 
         public Boomerang(Texture2D texture, Vector2 location, Direction dir, IEntity shooter, Room room)
@@ -52,11 +48,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             if (alive)
-                spriteBatch.Draw(
-                    Texture, Location,
-                    sources[currFrame / repeatedFrames % sources.Count],
-                    Color.White, 0, new Vector2(0, 0),
-                    spriteEffects[currFrame / repeatedFrames], 0);
+                spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames % sources.Count], Color.White, 0, new Vector2(0, 0), spriteEffects[currFrame / repeatedFrames], 0);
         }
 
         public bool IsAlive() => alive;
@@ -85,11 +77,8 @@ namespace sprint0
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
                 age++;
                 if (Shooter is Goriya goriya1)
-                    alive = goriya1.isAlive();
+                    alive = goriya1.IsAlive();
             }
-
-
-
         }
 
         public void RegisterHit()
@@ -98,6 +87,6 @@ namespace sprint0
             room.LoadLevel.RoomEffect.AddEffect(new Vector2(Location.X, Location.Y), EffectEnum.HitSprite);
         }
 
-        public bool hitAlready() => hit;
+        public bool HitAlready() => hit;
     }
 }

@@ -40,8 +40,7 @@ namespace sprint0
 
         public void GetCurrentItem(PlayerItems item)
         {
-            if (Handle())
-                index = itemList.IndexOf(item);
+            if (Handle()) index = itemList.IndexOf(item);
         }
         public void GetInventory(Dictionary<PlayerItems, Rectangle> items) => inventoryItems = items;
         public PlayerItems GetSelectedItem() => ItemAtIndex();

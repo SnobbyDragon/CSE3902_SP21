@@ -31,20 +31,12 @@ namespace sprint0
             lButtonState = Mouse.GetState().LeftButton;
             rButtonState = Mouse.GetState().RightButton;
             if (rButtonState == ButtonState.Pressed && previousStates[1] != ButtonState.Pressed)
-            {
                 next.Execute();
-            }
             else if (lButtonState == ButtonState.Pressed && previousStates[0] != ButtonState.Pressed)
-            {
                 previous.Execute();
-            }
             previousStates[0] = Mouse.GetState().LeftButton;
             previousStates[1] = Mouse.GetState().RightButton;
-
         }
-
-        public void Initialize()
-        {
-        }
+        public void Initialize() { }
     }
 }

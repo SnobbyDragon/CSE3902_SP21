@@ -36,7 +36,6 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
             if (damageTimer % 2 == 0)
             {
                 switch (direction)
@@ -55,7 +54,6 @@ namespace sprint0
                         break;
                 }
             }
-
         }
 
         private void UseBoomerang()
@@ -67,12 +65,8 @@ namespace sprint0
 
         public override void Update()
         {
-
             moveCounter++;
-            if (moveCounter == dirChangeDelay)
-            {
-                ArbitraryDirection(30, 50);
-            }
+            if (moveCounter == dirChangeDelay) ArbitraryDirection(30, 50);
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
@@ -87,13 +81,8 @@ namespace sprint0
                 UseBoomerang();
             }
             throwCounter++;
-
-
         }
 
-        public bool isAlive()
-        {
-            return health > 0;
-        }
+        public bool IsAlive() => health > 0;
     }
 }

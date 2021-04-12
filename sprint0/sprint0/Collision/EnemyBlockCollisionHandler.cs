@@ -5,15 +5,12 @@ namespace sprint0
 {
     public class EnemyBlockCollisionHandler
     {
-        public EnemyBlockCollisionHandler()
-        {
-        }
-
+        public EnemyBlockCollisionHandler() { }
         public void HandleCollision(IEnemy enemy, IBlock block, Direction side)
         {
             if (!block.IsWalkable())
             {
-                if (!(enemy is ManhandlaLimb) && !(enemy is PatraMinion)) 
+                if (!(enemy is ManhandlaLimb) && !(enemy is PatraMinion))
                 {
                     switch (side)
                     {

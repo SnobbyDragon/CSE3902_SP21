@@ -4,14 +4,8 @@
     {
         private readonly Game1 game;
 
-        public DownCommand(Game1 game)
-        {
-            this.game = game;
-        }
+        public DownCommand(Game1 game) => this.game = game;
 
-        public void Execute()
-        {
-            game.Room.Player.HandleDown();
-        }
+        public void Execute() => game.Room.Player.HandleDown();
     }
 }

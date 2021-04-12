@@ -55,10 +55,7 @@ namespace sprint0
         public void Update()
         {
             slow++;
-            if (slow % 8 == 0)
-            {
-                currFrame += 1;
-            }
+            if (slow % 8 == 0) currFrame += 1;
         }
     }
 }

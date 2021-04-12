@@ -73,9 +73,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             if (IsAlive())
-            {
                 spriteBatch.Draw(Texture, Location, currentSource, Color.White);
-            }
         }
 
         public void Update()

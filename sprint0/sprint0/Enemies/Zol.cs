@@ -47,19 +47,16 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
             if (damageTimer % 2 == 0)
                 spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
         }
 
         public override void Update()
         {
-
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
             moveCounter++;
             SpawnGel();
-
             currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
 
             if (pauseCount == 0)

@@ -39,11 +39,8 @@ namespace sprint0
                 Perish();
         }
 
-
         private void Perish()
             => game.Room.LoadLevel.RoomEffect.RemoveProjectile(this);
-
-        public bool IsAlive()
-            => true;
+        public bool IsAlive() => true;
     }
 }

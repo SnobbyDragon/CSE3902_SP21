@@ -32,16 +32,13 @@ namespace sprint0
             };
             currFrame = 0;
         }
-        
+
         public void Draw(SpriteBatch spriteBatch)
         {
             if (PickedUpDuration < maxPickedUpDuration)
-            {
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
-            }
-            else { 
-                game.stateMachine.HandleVictory(); 
-            }
+            else
+                game.stateMachine.HandleVictory();
         }
 
         public void Update()

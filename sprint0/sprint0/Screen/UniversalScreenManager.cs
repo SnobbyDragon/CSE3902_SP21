@@ -7,13 +7,12 @@ namespace sprint0
 {
     public class UniversalScreenManager
     {
-        private PauseScreenManager pauseScreenManager;
+        private readonly PauseScreenManager pauseScreenManager;
         public PauseScreenManager PauseScreenManager { get => pauseScreenManager; }
-        public GameOverScreenManager gameOverScreenManager;
-        public StartScreenManager startScreenManager;
-        public CreditsScreenManager creditsScreenManager;
-        public VictoryScreenManager victorScreenManager;
-        public ItemSelection itemSelection;
+        private readonly GameOverScreenManager gameOverScreenManager;
+        private readonly StartScreenManager startScreenManager;
+        private readonly CreditsScreenManager creditsScreenManager;
+        private readonly VictoryScreenManager victorScreenManager;
 
         public UniversalScreenManager(Game1 game)
         {
@@ -45,7 +44,6 @@ namespace sprint0
 
         public void Draw(SpriteBatch _spriteBatch, GameStateMachine.State state)
         {
-
             if (state.Equals(GameStateMachine.State.pause))
                 pauseScreenManager.Draw(_spriteBatch);
             else if (state.Equals(GameStateMachine.State.over))
@@ -57,7 +55,5 @@ namespace sprint0
             else if (state.Equals(GameStateMachine.State.win))
                 victorScreenManager.Draw(_spriteBatch);
         }
-
-        public PlayerItems BItem() => pauseScreenManager.BItem();
     }
 }

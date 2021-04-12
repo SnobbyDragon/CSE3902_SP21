@@ -17,18 +17,12 @@ namespace sprint0
 
         public void Update()
         {
-            if (count > 12)
-            {
-                player.State = new UpIdleState(player);
-            }
+            if (count > 12) player.State = new UpIdleState(player);
             sprite.Location = new Rectangle((int)player.Pos.X, (int)player.Pos.Y, sprite.Location.Width, sprite.Location.Height);
             sprite.Update();
             count++;
         }
 
-        public void Draw(SpriteBatch spritebatch)
-        {
-            sprite.Draw(spritebatch);
-        }
+        public void Draw(SpriteBatch spritebatch) => sprite.Draw(spritebatch);
     }
 }

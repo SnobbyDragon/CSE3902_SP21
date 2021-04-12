@@ -21,7 +21,6 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             PickedUpDuration = -2;
-
             source = new Rectangle(xOffset, yOffset, width, height);
         }
 

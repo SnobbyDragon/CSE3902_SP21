@@ -14,7 +14,7 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         private Rectangle defaultSource;
-        private bool isAngry;
+        private readonly bool isAngry;
         private readonly List<Rectangle> angrySources;
         private int currFrame;
         private readonly int totalFrames, repeatedFrames;
@@ -54,11 +54,7 @@ namespace sprint0
             destination = RandomLocation();
         }
 
-        public void SetAnchor(Vector2 v)
-        {
-
-            anchor = v;
-        }
+        public void SetAnchor(Vector2 v) => anchor = v;
         public void Draw(SpriteBatch spriteBatch)
         {
             if (damageTimer % 2 == 0)
@@ -72,17 +68,13 @@ namespace sprint0
 
         public void Update()
         {
-            if (damageTimer > 0)
-                damageTimer--;
+            if (damageTimer > 0) damageTimer--;
             if (isAngry)
                 currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             else
             {
                 Vector2 dist = destination - Location.Location.ToVector2();
-                if (dist.Length() < 2)
-                {
-                    destination = RandomLocation();
-                }
+                if (dist.Length() < 2) destination = RandomLocation();
                 else if (moveCounter == moveDelay)
                 {
                     dist.Normalize();
@@ -94,14 +86,10 @@ namespace sprint0
                 moveCounter++;
             }
 
-            if (CanShoot())
-            {
-                ShootFireball();
-            }
+            if (CanShoot()) ShootFireball();
         }
 
         public void ChangeDirection() { }
-
         public int CheckHealth() => health;
         public void TakeDamage(int damage)
         {
@@ -114,7 +102,6 @@ namespace sprint0
         }
 
         public void Perish() { }
-
         private bool CanShoot()
         {
             fireballCounter++;

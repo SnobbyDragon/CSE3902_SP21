@@ -18,8 +18,7 @@ namespace sprint0
 
         public void Update()
         {
-            if (CanShoot())
-                ShootFireballs();
+            if (CanShoot()) ShootFireballs();
         }
 
         private bool CanShoot()

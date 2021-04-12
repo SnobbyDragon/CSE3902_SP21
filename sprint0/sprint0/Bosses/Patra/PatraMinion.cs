@@ -10,21 +10,19 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        private readonly int xOffset = 18, yOffset = 158, width = 8, height = 8;
+        private readonly int xOffset = 18, yOffset = 158, width = 8, height = 8,
+            minDistance = 30, maxDistance = 80, totalFrames, repeatedFrames,
+            expansionDelay = 200, damageTime = 10;
+        // minDistance and maxDistance: min and max distances from center
+        // expansionDelay: time between expansions
         private readonly List<Rectangle> sources;
-        private int currFrame;
-        private readonly int totalFrames, repeatedFrames;
+        private int currFrame, distance, angle, health, damageTimer = 0, expansionTime, expansionCounter;
+        // expansionTime, expansionCounter: 0 = waiting, 1 - 6 = moving; odd = expanding to max dist, even = contract to min dist
+        // distance, angle: curr distance; angle from center (0 is right of center)
         private readonly IEnemy center; // blue patra
-        private readonly int minDistance = 30, maxDistance = 80; // min and max distances from center
-        private int distance, angle; // curr distance; angle from center (0 is right of center)
-        private int expansionTime, expansionCounter; // 0 = waiting, 1 - 6 = moving; odd = expanding to max dist, even = contract to min dist
-        private readonly int expansionDelay = 200; // time between expansions
-        private int health;
         private readonly Game1 game;
         public int Damage { get => 2; }
         public EnemyType Type { get => EnemyType.Patra; }
-        private int damageTimer = 0;
-        private readonly int damageTime = 10;
         public PatraMinion(Texture2D texture, IEnemy center, int angle, Game1 game)
         {
             this.game = game;
@@ -46,15 +44,11 @@ namespace sprint0
                 spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
         }
 
-        private float DegreesToRadians(int degrees)
-        {
-            return (float)(Math.PI * degrees / 180.0);
-        }
+        private float DegreesToRadians(int degrees) => (float)(Math.PI * degrees / 180.0);
 
         public void Update()
         {
-            if (damageTimer > 0)
-                damageTimer--;
+            if (damageTimer > 0) damageTimer--;
             CheckHealth();
             currFrame = (currFrame + 1) % (totalFrames * repeatedFrames); // animate flying
             Vector2 loc = center.Location.Center.ToVector2() + new Vector2((float)(distance * Math.Cos(DegreesToRadians(angle)) - (width * Game1.Scale * .5)), (float)(distance * Math.Sin(DegreesToRadians(angle)) - (height * Game1.Scale * .5)));
@@ -65,21 +59,17 @@ namespace sprint0
             if (expansionCounter > 0)
             {
                 // not waiting
-                if (expansionCounter > 6)
-                    expansionCounter = 0; // expanded 3 times, return to waiting state
+                if (expansionCounter > 6) expansionCounter = 0; // expanded 3 times, return to waiting state
                 else
                 {
                     // expanding / contracting
-                    if (expansionCounter % 2 == 0)
-                        Contract();
-                    else
-                        Expand();
+                    if (expansionCounter % 2 == 0) Contract();
+                    else Expand();
                 }
             }
         }
 
         public void ChangeDirection() { }
-
         public int CheckHealth()
         {
             if (health < 0) { Perish(); }
@@ -110,26 +100,21 @@ namespace sprint0
                 expansionTime = 0; // time to expand
                 expansionCounter = 1; // on first expansion
             }
-            else if (expansionCounter == 0)
-                expansionTime++; // if waiting, then increment time
+            else if (expansionCounter == 0) expansionTime++; // if waiting, then increment time
         }
 
         // contracting movement
         private void Contract()
         {
-            if (distance == minDistance)
-                expansionCounter++; // done contracting
-            else
-                distance--;// not done, decrease distance
+            if (distance == minDistance) expansionCounter++; // done contracting
+            else distance--;// not done, decrease distance
         }
 
         // expanding movement
         private void Expand()
         {
-            if (distance == maxDistance)
-                expansionCounter++; // done expanding
-            else
-                distance++; // not done, increase distance
+            if (distance == maxDistance) expansionCounter++; // done expanding
+            else distance++; // not done, increase distance
         }
         public EnemyEnum ParseEnemy(string enemy)
              => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);

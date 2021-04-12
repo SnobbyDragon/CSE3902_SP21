@@ -32,20 +32,14 @@ namespace sprint0
             if (game.stateMachine.GetState() == GameStateMachine.State.pause)
             {
                 game.universalScreenManager.Update(GameStateMachine.State.pause);
-                game.hudManager.SetBItem(game.universalScreenManager.BItem());
-
+                game.hudManager.SetBItem(game.universalScreenManager.PauseScreenManager.BItem());
                 game.stateMachine.HandlePause();
             }
             else if (PlayOrTest() && Contains(game.hudManager.CurrentItem))
                 commands[game.hudManager.CurrentItem].Execute();
         }
         private bool PlayOrTest()
-        {
-            return game.stateMachine.GetState() != GameStateMachine.State.play || game.stateMachine.GetState() != GameStateMachine.State.test;
-        }
-        private bool Contains(PlayerItems item)
-        {
-            return commands.ContainsKey(item);
-        }
+            => game.stateMachine.GetState() != GameStateMachine.State.play || game.stateMachine.GetState() != GameStateMachine.State.test;
+        private bool Contains(PlayerItems item) => commands.ContainsKey(item);
     }
 }

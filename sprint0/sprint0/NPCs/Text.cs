@@ -21,13 +21,7 @@ namespace sprint0
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.DrawString(Font, message, Location, color);
-        }
-
-        public void Update()
-        {
-
-        }
+            => spriteBatch.DrawString(Font, message, Location, color);
+        public void Update() { }
     }
 }

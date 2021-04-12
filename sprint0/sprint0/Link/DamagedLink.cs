@@ -32,7 +32,6 @@ namespace sprint0
         public void Move(int x, int y) => decoratedLink.Move(x, y);
 
         public void TakeDamage(Direction direction, int damage) { }
-
         public void PickUpItem() { }
 
         public void IncrementItem(PlayerItems inventoryItem)

@@ -38,8 +38,6 @@ namespace sprint0
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
 
-
-
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);
@@ -48,46 +46,39 @@ namespace sprint0
                 foreach (IEnemy sprite in necks)
                     sprite.Draw(spriteBatch);
             }
-            
-
         }
 
         public void Update()
         {
             CheckHealth();
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);           
+            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             if (necks == null && !neckExists)
             {
                 necks = new List<IEnemy>() {
                     new GleeokNeck(Texture, game,Location, this),
                     new GleeokNeck(Texture, game,Location, this),
                 };
-                neckExists = true; 
+                neckExists = true;
             }
             else
             {
                 foreach (IEnemy sprite in necks)
                     sprite.Update();
             }
-
         }
 
-        public void ChangeDirection()
-        {
-        }
-
+        public void ChangeDirection() { }
         private void CheckHealth()
         {
             int countDeadNecks = 0;
-            if (necks != null) { 
-            foreach (GleeokNeck neck in necks)
+            if (necks != null)
             {
-                if (neck.IsDead()) countDeadNecks++;
+                foreach (GleeokNeck neck in necks)
+                {
+                    if (neck.IsDead()) countDeadNecks++;
+                }
+                if ((health < 0 && countDeadNecks == necks.Count) || countDeadNecks == necks.Count) Perish();
             }
-if ((health < 0 && countDeadNecks == necks.Count) || countDeadNecks == necks.Count) Perish();
-            }
-            
-            
         }
 
         public void TakeDamage(int damage)

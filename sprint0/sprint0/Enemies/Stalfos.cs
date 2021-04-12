@@ -8,12 +8,11 @@ namespace sprint0
 {
     public class Stalfos : AbstractEnemy
     {
-
         private readonly Rectangle source;
         private readonly List<SpriteEffects> spriteEffects;
 
         public Stalfos(Texture2D texture, Vector2 location, Game1 game) : base(texture, location, game)
-        {           
+        {
             width = 16;
             height = 16;
             dirChangeDelay = 20;
@@ -31,14 +30,10 @@ namespace sprint0
                 SpriteEffects.FlipHorizontally
             };
         }
-         
+
         public override void Draw(SpriteBatch spriteBatch)
         {
-                if (damageTimer % 2 == 0)
-                    spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), spriteEffects[currentFrame / repeatedFrames], 0);
-
-
-            
+            if (damageTimer % 2 == 0) spriteBatch.Draw(Texture, Location, source, Color.White, 0, new Vector2(0, 0), spriteEffects[currentFrame / repeatedFrames], 0);
         }
     }
 }

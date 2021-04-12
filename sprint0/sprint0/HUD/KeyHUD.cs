@@ -46,10 +46,7 @@ namespace sprint0
             if ((keyNum += change) < reset) ResetNum();
         }
 
-        public void Increment()
-        {
-            keyNum++;
-        }
+        public void Increment() => keyNum++;
 
         public void Decrement()
         {
@@ -72,9 +69,7 @@ namespace sprint0
                 keyNumTens %= mod;
             }
             else
-            {
                 keyNumHundreds = mod;
-            }
         }
     }
 }

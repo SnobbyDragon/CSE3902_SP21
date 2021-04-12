@@ -9,10 +9,7 @@ namespace sprint0
     {
         public List<INpc> NPCs { get => npcs; set => npcs = value; }
         private List<INpc> npcs;
-        public RoomNPCs()
-        {
-            npcs = new List<INpc>();
-        }
+        public RoomNPCs() => npcs = new List<INpc>();
 
         public void UpdateOffset(Vector2 Offset)
         {

@@ -13,10 +13,7 @@ namespace sprint0
         private Dictionary<PlayerItems, IHUD> hudMainItems;
         private HUDMiniMap hudMiniMap;
 
-        public MainHUD(Game1 game)
-        {
-            hudFactory = new HUDFactory(game);
-        }
+        public MainHUD(Game1 game) => hudFactory = new HUDFactory(game);
 
         public void PopulateMainHUD()
         {
