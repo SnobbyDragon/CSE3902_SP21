@@ -110,8 +110,8 @@ namespace sprint0
                     string width = xmlReader.GetAttribute("Width");
                     string height = xmlReader.GetAttribute("Height");
                     string sound = xmlReader.GetAttribute("Sound");
-                    if (width != null && height != null && sound!=null)
-                        blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(width), int.Parse(height), int.Parse(sound)));
+                    if (sound!=null)
+                        blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(sound)));
                     else if (width != null && height != null)
                         blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(width), int.Parse(height)));
                     else

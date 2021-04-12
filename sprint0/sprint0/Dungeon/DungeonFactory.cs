@@ -85,5 +85,14 @@ namespace sprint0
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
+
+        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location,int sound)
+        {
+            return spriteType switch
+            {
+                BlockEnum.SoundBlock => new SoundBlock(texture, location, game, sound),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
+            };
+        }
     }
 }
