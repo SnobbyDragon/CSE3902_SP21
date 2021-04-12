@@ -97,7 +97,7 @@ namespace sprint0
 
         public void KillOwl(){
             foreach (IEnemy enemy in enemies) {
-                if (enemy is Patra) { //TODO:change to Owl
+                if (enemy is Owl) { 
                     RemoveEnemy(enemy);
                 }
             }
