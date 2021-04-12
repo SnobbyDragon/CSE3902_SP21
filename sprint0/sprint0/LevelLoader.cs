@@ -95,7 +95,7 @@ namespace sprint0
                     items.Add(itemFactory.MakeItem(ParseItem(objectName), location));
                     break;
                 case "Boss":
-                    if (objectName.Equals("Aodongo") || objectName.Equals("Aquamentus"))
+                    if (objectName.Equals("Dodongo") || objectName.Equals("Aquamentus"))
                         effects.Add(effectFactory.MakeSpawn(ParseEnemy(objectName), location));
                     else
                         enemies.Add(bossFactory.MakeSprite(ParseEnemy(objectName), location));
