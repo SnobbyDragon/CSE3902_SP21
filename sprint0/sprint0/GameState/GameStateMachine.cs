@@ -60,9 +60,9 @@ namespace sprint0
             counter = 0;
             direction = d;
             if (d == Direction.North || d == Direction.South)
-                bound = (int)(Game1.MapHeight * Game1.Scale) / ScrollSpeed;
+                bound = (int)(Game1.MapHeight * Game1.Scale) / ScrollSpeed - 1;
             if (d == Direction.East || d == Direction.West)
-                bound = (int)(Game1.Width * Game1.Scale) / ScrollSpeed;
+                bound = (int)(Game1.Width * Game1.Scale) / ScrollSpeed - 1;
             state = State.changeRoom;
             game.NextRoomIndex = dest;
             game.NextRoom = game.Rooms[dest];

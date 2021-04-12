@@ -136,7 +136,7 @@ namespace sprint0
         {
             Vector2 offset = zeroVector;
             amount = System.Math.Abs(amount);
-            if (d == Direction.North) offset.Y = 1 * amount;
+            if (d == Direction.North) offset.Y = amount;
             else if (d == Direction.South) offset.Y = -amount;
             else if (d == Direction.East) offset.X = -amount;
             else if (d == Direction.West) offset.X = amount;
