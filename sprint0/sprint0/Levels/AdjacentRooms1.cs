@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace sprint0
 {
-    public static class AdjacentRooms
+    public static class AdjacentRooms1
     {
         private static readonly Dictionary<int, Dictionary<Direction, int>> adjacentRooms = new Dictionary<int, Dictionary<Direction, int>>
             {
                 { 1, new Dictionary<Direction, int> { { Direction.East, 2 }, { Direction.West, 18 } } },
-                { 2, new Dictionary<Direction, int> { { Direction.West, 1 }, { Direction.South, 3 }, { Direction.East, 19 } } },
+                { 2, new Dictionary<Direction, int> { { Direction.West, 1 }, { Direction.South, 3 } } },
                 { 3, new Dictionary<Direction, int> { { Direction.North, 2 }, { Direction.South, 6 } } },
                 { 4, new Dictionary<Direction, int> { { Direction.East, 5 } } },
                 { 5, new Dictionary<Direction, int> { { Direction.West, 4 }, { Direction.East, 6 }, { Direction.South, 11 } } },
@@ -24,15 +24,16 @@ namespace sprint0
                 { 15, new Dictionary<Direction, int> { { Direction.East, 16 } } },
                 { 16, new Dictionary<Direction, int> { { Direction.West, 15 }, { Direction.East, 17 }, { Direction.North, 14 } } },
                 { 17, new Dictionary<Direction, int> { { Direction.West, 16 } } },
-                { 18, new Dictionary<Direction, int> { { Direction.East, 1 } } },
-                { 19, new Dictionary<Direction, int> { { Direction.East, 20 }, { Direction.West, 2 } } },
-                { 20, new Dictionary<Direction, int> { { Direction.East, 21 }, { Direction.West, 19 } } },
-                { 21, new Dictionary<Direction, int> { { Direction.West, 20 } } },
+                { 18, new Dictionary<Direction, int> { { Direction.East, 1 } } }
             };
 
         public static int GetAdjacentRoom(int currRoomIndex, Direction side)
-            => adjacentRooms[currRoomIndex][side];
-        public static Dictionary<Direction, int> ListOfAdjacentRooms(int roomIndex)
-            => adjacentRooms[roomIndex];
+        {
+            return adjacentRooms[currRoomIndex][side];
+        }
+
+        public static Dictionary<Direction, int> ListOfAdjacentRooms(int roomIndex) {
+            return adjacentRooms[roomIndex];
+        }
     }
 }

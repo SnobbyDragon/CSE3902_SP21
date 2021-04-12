@@ -19,9 +19,11 @@ namespace sprint0
         private readonly Vector2 southOffset = new Vector2(0, MapHeight * Scale);
         private readonly Vector2 eastOffset = new Vector2(Width * Scale, 0);
         private readonly Vector2 westOffset = new Vector2(-Width * Scale, 0);
-
+        public readonly int scrollSpeedLbound = 1;
+        public readonly int scrollSpeedUbound = 8;
         public bool ChangeRoom { get; set; }
 
+        public int ScrollSpeed { get; set; }
         public SoundFactory SoundFactory { get; private set; }
         public BackgroundMusic Music { get; private set; }
 
@@ -32,7 +34,7 @@ namespace sprint0
         public int RoomIndex { get; set; }
 
         public int NextRoomIndex { get; set; }
-        public int NumRooms { get; } = 19;
+        public int NumRooms { get; } = 22;
         public readonly GameStateMachine stateMachine;
         private readonly int LinkDefaultX = 250;
         private readonly int LinkDefaultY = 280;
@@ -72,7 +74,7 @@ namespace sprint0
             Music = SoundFactory.MakeBackgroundMusic();
             stateMachine.HandleStart();
             VisitedRooms = new List<int>();
-
+            ScrollSpeed = (scrollSpeedLbound + scrollSpeedUbound)/2;
             Rooms = new Dictionary<int, Room>();
             RoomIndex = 18;
 
@@ -105,7 +107,7 @@ namespace sprint0
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
 
             List<int> frontier = new List<int> { RoomIndex };
-            while (Rooms.Count < 17)
+            while (Rooms.Count < 20)
             {
                 List<int> newFrontier = new List<int>();
                 foreach (int roomIndex in frontier)
@@ -132,6 +134,19 @@ namespace sprint0
                 rm.LoadContent();
         }
 
+
+        public void UpdateScrollSpeed(bool b) {
+            if (b)
+            {
+                if (ScrollSpeed < scrollSpeedUbound)
+                    ScrollSpeed += 1;
+            }
+            else {
+                if (ScrollSpeed > scrollSpeedLbound)
+                    ScrollSpeed -= 1;
+            }
+        }
+
         public void Slide(Direction d, int amount)
         {
             Vector2 offset = zeroVector;
@@ -149,7 +164,7 @@ namespace sprint0
             if (!VisitedRooms.Contains(RoomIndex)) VisitedRooms.Add(RoomIndex);
             if (state == GameStateMachine.State.changeRoom)
             {
-                Slide(stateMachine.GetChangeDirection(), stateMachine.ScrollSpeed);
+                Slide(stateMachine.GetChangeDirection(), ScrollSpeed);
                 stateMachine.HandleFinishRoomChange(NextRoomIndex);
             }
 

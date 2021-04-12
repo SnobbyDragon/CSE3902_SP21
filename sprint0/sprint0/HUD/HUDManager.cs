@@ -18,7 +18,8 @@ namespace sprint0
             boomerangList = new List<PlayerItems> { PlayerItems.Boomerang, PlayerItems.MagicalBoomerang };
         public int Health { get => health; set => health = value; }
         public PlayerItems CurrentItem { get => currentItem; }
-        private PlayerItems currentItem;
+        public PlayerItems CurrentAItem { get => currentAItem; }
+        private PlayerItems currentItem, currentAItem;
         private int health;
 
         public HUDManager(Game1 game)
@@ -26,6 +27,7 @@ namespace sprint0
             this.game = game;
             mainHUD = new MainHUD(this.game);
             currentItem = PlayerItems.None;
+            currentAItem = PlayerItems.None;
             pauseInventory = game.universalScreenManager.PauseScreenManager.Inventory();
             populateHUDInventory = new PopulateHUDInventory(this.game);
         }
@@ -36,6 +38,7 @@ namespace sprint0
             health = populateHUDInventory.GetNum(PlayerItems.Heart);
             mainHUD.Update();
             currentItem = mainHUD.GetItem(PlayerItems.BItem);
+            currentAItem = mainHUD.GetItem(PlayerItems.AItem);
         }
 
         public void Draw(SpriteBatch spriteBatch)

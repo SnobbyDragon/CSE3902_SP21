@@ -109,7 +109,10 @@ namespace sprint0
                 case "Block":
                     string width = xmlReader.GetAttribute("Width");
                     string height = xmlReader.GetAttribute("Height");
-                    if (width != null && height != null)
+                    string sound = xmlReader.GetAttribute("Sound");
+                    if (width != null && height != null && sound!=null)
+                        blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(width), int.Parse(height), int.Parse(sound)));
+                    else if (width != null && height != null)
                         blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(width), int.Parse(height)));
                     else
                         blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location));

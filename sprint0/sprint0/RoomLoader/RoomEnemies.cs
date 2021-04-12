@@ -94,5 +94,13 @@ namespace sprint0
                 game.Room.LoadLevel.RoomBlocks.SwitchToMovableBlock();
             endBehaviorExecuted = true;
         }
+
+        public void KillOwl(){
+            foreach (IEnemy enemy in enemies) {
+                if (enemy is Owl) { 
+                    RemoveEnemy(enemy);
+                }
+            }
+        }
     }
 }
