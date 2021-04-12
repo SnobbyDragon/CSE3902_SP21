@@ -64,12 +64,11 @@ namespace sprint0
             };
         }
 
-        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize, int sound = SoundBlock.DefaultSound)
+        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
         {
             return spriteType switch
             {
                 BlockEnum.Block => new Block(texture, location),
-                BlockEnum.SoundBlock => new SoundBlock(texture, location, game, sound),
                 BlockEnum.Tile => new Tile(texture, location),
                 BlockEnum.Gap => new Gap(texture, location),
                 BlockEnum.Water => new Water(texture, location),
