@@ -57,6 +57,13 @@ namespace sprint0
                 { SoundEnum.Stairs, game.Content.Load<SoundEffect>("Sound/Stairs") },
                 { SoundEnum.Shore, game.Content.Load<SoundEffect>("Sound/Shore") },
                 { SoundEnum.Secret, game.Content.Load<SoundEffect>("Sound/Secret") },
+                { SoundEnum.Note1, game.Content.Load<SoundEffect>("Sound/Secret") },
+                { SoundEnum.Note2, game.Content.Load<SoundEffect>("Sound/Secret") },
+                { SoundEnum.Note3, game.Content.Load<SoundEffect>("Sound/Secret") },
+                { SoundEnum.Note4, game.Content.Load<SoundEffect>("Sound/Secret") },
+                { SoundEnum.Note5, game.Content.Load<SoundEffect>("Sound/Secret") },
+                { SoundEnum.Note6, game.Content.Load<SoundEffect>("Sound/Secret") },
+
             };
 
             cardiB = game.Content.Load<SoundEffect>("Sound/ow");

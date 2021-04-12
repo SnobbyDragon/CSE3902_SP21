@@ -47,8 +47,14 @@ namespace sprint0
             RegisterCommand(Keys.M, new ToggleMusicCommand(game));
             RegisterCommand(Keys.OemPeriod, new SkipSongCommand(game));
             RegisterCommand(Keys.OemComma, new ToggleSoundEffectsCommand());
+            RegisterCommand(Keys.D5, new Note1Command(game));
+            RegisterCommand(Keys.D6, new Note2Command(game));
+            RegisterCommand(Keys.D7, new Note3Command(game));
+            RegisterCommand(Keys.D8, new Note4Command(game));
+            RegisterCommand(Keys.D9, new Note5Command(game));
+            RegisterCommand(Keys.D0, new Note6Command(game));
 
-            specialControls = new AbstractSpecialControl[] { new CardiBControl(new CardiBCommand(game)) };
+            specialControls = new AbstractSpecialControl[] { new CardiBControl(new CardiBCommand(game)), new OwlDeathControl(new OwlDeathCommand(game)) };
         }
 
         public void RegisterCommand(Keys key, ICommand command)
