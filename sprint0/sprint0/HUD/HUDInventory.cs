@@ -66,8 +66,11 @@ namespace sprint0
             {
                 RemoveItem(toRemove);
                 inventoryItems.Add(item, LocationMapping[item]);
-                Item = item;
-                SwitchItem = true;
+                if (Item == PlayerItems.None)
+                {
+                    Item = item;
+                    SwitchItem = true;
+                }
             }
         }
         private void HandleSecondaryItem(PlayerItems item)
