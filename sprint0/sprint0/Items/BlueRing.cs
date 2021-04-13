@@ -9,6 +9,7 @@ namespace sprint0
     {
         private readonly int xOffset = 169, yOffset = 19;
         public new PlayerItems PlayerItems { get => PlayerItems.BlueRing; }
+        public new PlayerItems SecondaryType { get => PlayerItems.RingType; }
 
         public BlueRing(Texture2D texture, Vector2 location)
         {

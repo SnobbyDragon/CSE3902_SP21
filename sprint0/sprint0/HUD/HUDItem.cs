@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
@@ -25,9 +24,6 @@ namespace sprint0
             else if (Item != PlayerItems.None)
                 spriteBatch.Draw(Texture, new Rectangle((Location.X - Width - 1), Location.Y, (int)(Width * 2 * Game1.Scale), (int)(Height * Game1.Scale)), ItemMap[Item], Color.White);
         }
-
-        public void Update() { }
-
         public void SetAItem(PlayerItems item)
         {
             if ((HasItem(item) && IsSword(item)) || IsNone(item)) Item = item;
@@ -36,6 +32,7 @@ namespace sprint0
         {
             if ((HasItem(item) && IsValidBItem(item) && IsNone(Item)) || IsNone(item)) Item = item;
         }
+        public void Update() { }
         private bool SmallItem() => Item != PlayerItems.Compass && Item != PlayerItems.Raft && Item != PlayerItems.StepLadder;
         private bool IsSword(PlayerItems item) => item == PlayerItems.Sword || item == PlayerItems.MagicalSword || item == PlayerItems.WhiteSword;
         private bool IsMapOrLetterOrCompass(PlayerItems item) => item == PlayerItems.Map || item == PlayerItems.Letter || item == PlayerItems.Compass;

@@ -43,11 +43,11 @@ namespace sprint0
 
         private void CheckItemAB(IItem item, IPlayer link)
         {
+            link.AddToInventory(item.PlayerItems);
             if (IsSword(item.PlayerItems))
                 link.SetHUDItem(PlayerItems.AItem, item.PlayerItems);
             else
                 link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
-            link.AddToInventory(item.PlayerItems);
         }
 
         private bool IsSword(PlayerItems item) => item == PlayerItems.Sword || item == PlayerItems.WhiteSword || item == PlayerItems.MagicalSword;

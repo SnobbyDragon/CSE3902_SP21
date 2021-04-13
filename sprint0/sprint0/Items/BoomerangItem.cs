@@ -8,6 +8,7 @@ namespace sprint0
     public class BoomerangItem : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.Boomerang; }
+        public new PlayerItems SecondaryType { get => PlayerItems.BoomerangType; }
         private readonly int xOffset = 129, yOffset = 3;
 
         public BoomerangItem(Texture2D texture, Vector2 location)

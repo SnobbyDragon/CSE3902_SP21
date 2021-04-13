@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 //Author: Stuti Shah
 //Updated: 04/03/21 by shah.1440
@@ -11,6 +9,7 @@ namespace sprint0
     {
         protected readonly Dictionary<PlayerItems, Rectangle> itemMap, locationMapping;
         protected readonly List<PlayerItems> topRowItems;
+        protected readonly Dictionary<PlayerItems, PlayerItems> itemToSecondaryItem;
         public Dictionary<PlayerItems, Rectangle> ItemMap { get => itemMap; }
         public Dictionary<PlayerItems, Rectangle> LocationMapping { get => locationMapping; }
         public List<PlayerItems> TopRowItems { get => topRowItems; }
@@ -24,6 +23,19 @@ namespace sprint0
 
         public HUDItemMapping()
         {
+            itemToSecondaryItem = new Dictionary<PlayerItems, PlayerItems>
+            {
+                {PlayerItems.Boomerang, PlayerItems.BoomerangType },
+                {PlayerItems.MagicalBoomerang, PlayerItems.BoomerangType },
+                {PlayerItems.Arrow, PlayerItems.ArrowType },
+                {PlayerItems.SilverArrow, PlayerItems.ArrowType },
+                {PlayerItems.RedCandle, PlayerItems.CandleType },
+                {PlayerItems.BlueCandle, PlayerItems.CandleType },
+                {PlayerItems.RedRing, PlayerItems.RingType },
+                {PlayerItems.BlueRing, PlayerItems.RingType },
+                {PlayerItems.BluePotion, PlayerItems.PotionType },
+                {PlayerItems.RedPotion, PlayerItems.PotionType },
+            };
             itemMap = new Dictionary<PlayerItems, Rectangle>
             {
                 { PlayerItems.Sword, GetSource(555, YPos)},
@@ -81,7 +93,6 @@ namespace sprint0
             };
             currentItem = GetSource(currentItemX, yPosMiddle, smallWidth, height);
         }
-
         private Rectangle GetSource(int xPos, int yPos) => new Rectangle(xPos, yPos, Width, Height);
         private Rectangle GetSourceCompass(int xPos, int yPos) => new Rectangle(xPos, yPos, Width + 3, Height);
         private Rectangle GetSourceRaftLadder(int xPos, int yPos) => new Rectangle(xPos, yPos, Width * 2, Height);
