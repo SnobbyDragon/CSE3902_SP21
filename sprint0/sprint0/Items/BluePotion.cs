@@ -9,6 +9,7 @@ namespace sprint0
     {
         private readonly int xOffset = 80, yOffset = 16;
         public new PlayerItems PlayerItems { get => PlayerItems.BluePotion; }
+        public new PlayerItems SecondaryType { get => PlayerItems.PotionType; }
 
         public BluePotion(Texture2D texture, Vector2 location)
         {

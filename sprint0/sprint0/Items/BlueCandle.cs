@@ -9,6 +9,7 @@ namespace sprint0
     {
         private readonly int xOffset = 160, yOffset = 16;
         public new PlayerItems PlayerItems { get => PlayerItems.BlueCandle; }
+        public new PlayerItems SecondaryType { get => PlayerItems.CandleType; }
 
         public BlueCandle(Texture2D texture, Vector2 location)
         {

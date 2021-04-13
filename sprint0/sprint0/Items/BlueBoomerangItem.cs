@@ -9,6 +9,7 @@ namespace sprint0
     {
         private readonly int xOffset = 129, yOffset = 19;
         public new PlayerItems PlayerItems { get => PlayerItems.MagicalBoomerang; }
+        public new PlayerItems SecondaryType { get => PlayerItems.BoomerangType; }
 
         public BlueBoomerangItem(Texture2D texture, Vector2 location)
         {

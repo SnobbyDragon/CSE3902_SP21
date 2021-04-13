@@ -8,6 +8,7 @@ namespace sprint0
     public class Candle : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.RedCandle; }
+        public new PlayerItems SecondaryType { get => PlayerItems.CandleType; }
         private readonly int xOffset = 160, yOffset = 0;
 
         public Candle(Texture2D texture, Vector2 location)
