@@ -33,7 +33,11 @@ namespace sprint0
             itemHelper.UseSword(player.Health == player.MaxHealth);
             player.State = new LeftWoodSwordState(player);
         }
-
+        public void HandleRod(LinkUseItemHelper itemHelper)
+        {
+            itemHelper.UseSword(true);
+            player.State = new LeftWoodSwordState(player);
+        }
         public void Update()
         {
             sprite.Location = new Rectangle((int)player.Pos.X, (int)player.Pos.Y, sprite.Location.Width, sprite.Location.Height);

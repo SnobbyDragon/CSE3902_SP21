@@ -35,6 +35,7 @@ namespace sprint0
         public void HandleLeft();
         public void HandleRight();
         public void HandleSword();
+        public void HandleRod();
         public void HandleItem();
         public void IncrementItem(PlayerItems inventoryItem);
         public void SetHUDItem(PlayerItems source, PlayerItems newItem);

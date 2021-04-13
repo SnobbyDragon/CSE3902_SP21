@@ -54,6 +54,7 @@ namespace sprint0
         public void HandleLeft() => decoratedLink.HandleLeft();
         public void HandleRight() => decoratedLink.HandleRight();
         public void HandleSword() => decoratedLink.HandleSword();
+        public void HandleRod() => decoratedLink.HandleRod();
         public void Draw(SpriteBatch spriteBatch)
         {
             if (timer % 2 == 0)

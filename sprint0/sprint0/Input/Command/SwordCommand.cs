@@ -10,6 +10,6 @@
         }
 
         private bool CanUse()
-            => game.hudManager.HasSword() || game.stateMachine.GetState().Equals(GameStateMachine.State.test) || game.hudManager.HasItem(PlayerItems.MagicalRod);
+            => game.hudManager.HasSword() || game.stateMachine.GetState().Equals(GameStateMachine.State.test);
     }
 }
