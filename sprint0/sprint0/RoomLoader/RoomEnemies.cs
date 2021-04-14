@@ -47,7 +47,13 @@ namespace sprint0
             => enemiesToSpawn.AddRange(unregEnemies);
 
         public void RemoveEnemy(IEnemy enemy) => enemiesToDie.Add(enemy);
-
+        public void ChangeDigdoggerSize()
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                if (enemy is Digdogger d) d.IsBig = false;
+            }
+        }
         public void RemoveDead()
         {
             foreach (IEnemy enemy in enemiesToDie)
@@ -95,9 +101,12 @@ namespace sprint0
             endBehaviorExecuted = true;
         }
 
-        public void KillOwl(){
-            foreach (IEnemy enemy in enemies) {
-                if (enemy is Owl) { 
+        public void KillOwl()
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                if (enemy is Owl)
+                {
                     RemoveEnemy(enemy);
                 }
             }

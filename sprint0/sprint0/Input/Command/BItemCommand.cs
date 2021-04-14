@@ -23,7 +23,8 @@ namespace sprint0
                 { PlayerItems.Food, new FoodCommand(this.game) },
                 { PlayerItems.BlueCandle, new FourCommand(this.game) },
                 { PlayerItems.RedCandle, new FourCommand(this.game) },
-                { PlayerItems.MagicalRod, new RodCommand(this.game) }
+                { PlayerItems.MagicalRod, new RodCommand(this.game) },
+                { PlayerItems.Flute, new FluteCommand(this.game) },
             };
         }
 

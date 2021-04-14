@@ -16,7 +16,6 @@ namespace sprint0
         private readonly int maxItems = 15;
         public Texture2D Texture { get; set; }
         public bool SwitchItem { get; set; }
-
         public HUDInventory(Game1 game)
         {
             inventoryItems = new Dictionary<PlayerItems, Rectangle>();
@@ -85,6 +84,12 @@ namespace sprint0
             bool hasItem = false;
             foreach (PlayerItems item in itemList) hasItem = hasItem || HasItem(item);
             return hasItem;
+        }
+        public PlayerItems ChangeSword(PlayerItems currentSword)
+        {
+            if (aItem.Count != 0)
+                return aItem[(aItem.IndexOf(currentSword) + 1) % aItem.Count];
+            else return PlayerItems.None;
         }
         public bool HasAItem() => aItem.Count != 0;
         public bool HasItem(PlayerItems item) => inventoryItems.ContainsKey(item);

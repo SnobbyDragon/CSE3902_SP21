@@ -40,7 +40,7 @@ namespace sprint0
             RegisterCommand(Keys.D4, new FourCommand(game));
             RegisterCommand(Keys.E, new PauseCommand(game));
             RegisterCommand(Keys.Space, new StartGameCommand(game));
-            RegisterCommand(Keys.B, new BItemCommand(game));
+            RegisterCommand(Keys.F, new ChangeSwordCommand(game));
             RegisterCommand(Keys.X, new BItemCommand(game));
             RegisterCommand(Keys.G, new LeftItemCommand(game));
             RegisterCommand(Keys.H, new RightItemCommand(game));
@@ -63,7 +63,7 @@ namespace sprint0
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-            
+
             foreach (Keys key in pressedKeys)
             {
                 if ((controllerMappings.ContainsKey(key) && (Array.IndexOf(previousPressedKeys, key) == -1)) || movementKeys.Contains(key))
