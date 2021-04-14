@@ -20,7 +20,7 @@ namespace sprint0
         public List<int> ItemCounts => decoratedLink.ItemCounts;
         public int Health { get => decoratedLink.Health; set => decoratedLink.Health = value; }
         public int MaxHealth { get => decoratedLink.MaxHealth; set => decoratedLink.MaxHealth = value; }
-        public PlayerItems CurrentSword { get => decoratedLink.CurrentSword; set => decoratedLink.CurrentSword = value; }
+        public PlayerItems CurrentSword { get => decoratedLink.CurrentSword; }
 
         public DamagedLink(IPlayer decoratedLink, Game1 game, Direction direction)
         {

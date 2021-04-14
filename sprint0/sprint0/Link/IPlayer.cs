@@ -23,7 +23,7 @@ namespace sprint0
         public IPlayerState State { get; set; }
         public int WeaponDamage { get; }
         public PlayerItems CurrentItem { get; set; }
-        public PlayerItems CurrentSword { get; set; }
+        public PlayerItems CurrentSword { get; }
         public List<int> ItemCounts { get; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }

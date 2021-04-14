@@ -19,7 +19,7 @@ namespace sprint0
         public IPlayerState State { get; set; }
         public Direction Direction { get; set; } = Direction.North;
         public PlayerItems CurrentItem { get; set; }
-        public PlayerItems CurrentSword { get; set; } = PlayerItems.Sword;
+        public PlayerItems CurrentSword { get => HUD.CurrentAItem; }
         public int WeaponDamage { get => weaponDamages[CurrentSword]; }
         public int Health { get; set; } = 28;
         public int MaxHealth { get; set; } = 28;
