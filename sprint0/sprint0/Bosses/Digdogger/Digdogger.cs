@@ -18,7 +18,8 @@ namespace sprint0
         private readonly List<Rectangle> smallSources;
         private readonly Dictionary<Spikes, List<Rectangle>> dirToBigSource;
         private int currFrame, spikeDelay, spikeCounter, health, moveCounter;
-        private readonly bool isBig;
+        private bool isBig;
+        public bool IsBig { get => isBig; set => isBig = value; }
         private enum Spikes { none, left, right };
         private Spikes currSpikes;
         private readonly Random rand;
