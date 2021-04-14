@@ -23,7 +23,11 @@ namespace sprint0
             itemHelper.UseSword(player.Health == player.MaxHealth);
             player.State = new DownWoodSwordState(player);
         }
-
+        public void HandleRod(LinkUseItemHelper itemHelper)
+        {
+            itemHelper.UseSword(true);
+            player.State = new DownWoodSwordState(player);
+        }
         public void UseItem(LinkUseItemHelper itemHelper)
         {
             if (player.CurrentItem != PlayerItems.None && player.CurrentItem != PlayerItems.BlueCandle)
