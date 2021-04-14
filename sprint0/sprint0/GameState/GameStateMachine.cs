@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace sprint0
+﻿namespace sprint0
 {
     //Author: Jacob Urick
     // Last updated 3/28/2021 by urick.9
@@ -49,9 +46,7 @@ namespace sprint0
                 prev = state;
                 state = State.options;
             }
-            else if (state == State.options) {
-                state = prev;
-            }
+            else if (state == State.options) state = prev;
         }
 
         public Direction GetChangeDirection() => direction;

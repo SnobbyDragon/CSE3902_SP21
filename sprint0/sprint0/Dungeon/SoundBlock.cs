@@ -37,7 +37,7 @@ namespace sprint0
 
         public void MakeSound()
          {
-            game.Room.RoomSound.AddSoundEffect(Sounds[sound+1]);
+            game.Room.RoomSound.AddSoundEffect(Sounds[sound-1]);
           
         }
     }

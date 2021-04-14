@@ -84,6 +84,7 @@ namespace sprint0
         private void RemoveLimb(ManhandlaLimb limb1)
         {
             limbs.Remove(limb1);
+            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             foreach (ManhandlaLimb limb in limbs)
                 limb.IncreaseFireballRate();
             double speedIncreaseRate = 1.5;
@@ -101,7 +102,6 @@ namespace sprint0
 
         private void GenerateDest()
         {
-            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
                 rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale)));
