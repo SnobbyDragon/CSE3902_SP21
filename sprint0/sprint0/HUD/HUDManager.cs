@@ -84,6 +84,7 @@ namespace sprint0
         public void Increment(PlayerItems item) => populateHUDInventory.IncrementItem(item);
         public void Decrement(PlayerItems item) => populateHUDInventory.DecrementItem(item);
         public void TakeDamage(int damage) => health = populateHUDInventory.TakeDamage(damage);
+        public void ChangeSword() => mainHUD.SetItem(PlayerItems.AItem, pauseInventory.ChangeSword(mainHUD.GetItem(PlayerItems.AItem)));
         public void SetBItem(PlayerItems item)
         {
             currentItem = item;
