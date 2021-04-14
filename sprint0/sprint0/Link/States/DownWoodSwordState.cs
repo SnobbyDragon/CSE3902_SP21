@@ -14,7 +14,7 @@ namespace sprint0
         public DownWoodSwordState(IPlayer player)
         {
             this.player = player;
-            sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkDownSword, player.Pos);
+            sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkDownSword, player.Pos, player.CurrentSword);
         }
 
         public void Update()

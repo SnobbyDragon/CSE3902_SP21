@@ -21,8 +21,9 @@ namespace sprint0
         public Direction Direction { get; set; }
         public Vector2 Pos { get; set; }
         public IPlayerState State { get; set; }
-        public int WeaponDamage { get; set; }
+        public int WeaponDamage { get; }
         public PlayerItems CurrentItem { get; set; }
+        public PlayerItems CurrentSword { get; }
         public List<int> ItemCounts { get; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }

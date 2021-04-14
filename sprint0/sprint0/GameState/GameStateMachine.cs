@@ -96,7 +96,6 @@
             game.Player.Pos = game.Room.LoadLevel.locations[dest];
         }
 
-
         public void HandleCredits()
         {
             if (state == State.start) state = State.credits;

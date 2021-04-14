@@ -17,8 +17,10 @@ namespace sprint0
         private int width = 16;
         private readonly int height = 16;
 
-        public RightWoodSwordSprite(Texture2D texture, Vector2 location)
+        public RightWoodSwordSprite(Texture2D texture, Vector2 location, PlayerItems sword)
         {
+            if (sword == PlayerItems.WhiteSword) xOffset += 93;
+            else if (sword == PlayerItems.MagicalSword) xOffset += 187;
             Texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             sources = GetFrames();

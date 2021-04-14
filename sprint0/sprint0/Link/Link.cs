@@ -11,26 +11,26 @@ namespace sprint0
         private readonly int speed = 2;
         private readonly LinkUseItemHelper itemHelper;
         private readonly HUDManager HUD;
-        public List<int> ItemCounts { get; }
+        private Dictionary<PlayerItems, int> weaponDamages = new Dictionary<PlayerItems, int> {
+            { PlayerItems.None, 0 }, { PlayerItems.Sword, 2 }, { PlayerItems.WhiteSword, 4 }, { PlayerItems.MagicalSword, 8 }
+        };
+        public List<int> ItemCounts { get; } = new List<int> { -1, -1, 1 };
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get; set; }
         public Direction Direction { get; set; } = Direction.North;
         public PlayerItems CurrentItem { get; set; }
-        public int WeaponDamage { get; set; }
+        public PlayerItems CurrentSword { get => HUD.CurrentAItem; }
+        public int WeaponDamage { get => weaponDamages[CurrentSword]; }
         public int Health { get; set; } = 28;
         public int MaxHealth { get; set; } = 28;
-
         public Link(Game1 game, Vector2 pos)
         {
-            WeaponDamage = 2;
             this.game = game;
             position = pos;
             State = new UpIdleState(this);
-            ItemCounts = new List<int> { -1, -1, 1 };
             HUD = this.game.hudManager;
             itemHelper = new LinkUseItemHelper(game, this, HUD);
             CurrentItem = PlayerItems.None;
-            speed = 2;
         }
         public void Move(int x, int y) => position += new Vector2(speed * x, speed * y);
         public void TakeDamage(Direction direction, int damage)
@@ -84,13 +84,7 @@ namespace sprint0
         }
         public void SetHUDItem(PlayerItems source, PlayerItems newItem) => HUD.SetItem(source, newItem);
         public bool HasItem(PlayerItems item) => HUD.HasItem(item);
-        public bool HasKey()
-        {
-            if (game.stateMachine.GetState().Equals(GameStateMachine.State.test))
-                return true;
-            else
-                return HUD.HasKeys();
-        }
+        public bool HasKey() => game.stateMachine.GetState().Equals(GameStateMachine.State.test) || HUD.HasKeys();
         public void DecrementKey() => HUD.DecrementKey();
         public void AddToInventory(PlayerItems newItem) => HUD.AddBItem(newItem);
     }
