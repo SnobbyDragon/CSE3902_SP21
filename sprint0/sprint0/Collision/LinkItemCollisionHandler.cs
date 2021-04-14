@@ -21,7 +21,7 @@ namespace sprint0
                 if (item.PickedUpDuration == -1)
                 {
                     link.PickUpItem();
-                    if (item is GanonTriforceAshes ganon)
+                    if (item is GanonTriforceAshes)
                         room.LoadLevel.RoomEffect.AddEffect(item.Location.Location.ToVector2(), EffectEnum.GanonAshes);
                     int itemX = (int)link.Pos.X + linkSize / 2 - item.Location.Width / 2;
                     int itemY = (int)link.Pos.Y - item.Location.Height;
@@ -43,11 +43,11 @@ namespace sprint0
 
         private void CheckItemAB(IItem item, IPlayer link)
         {
+            link.AddToInventory(item.PlayerItems);
             if (IsSword(item.PlayerItems))
                 link.SetHUDItem(PlayerItems.AItem, item.PlayerItems);
             else
                 link.SetHUDItem(PlayerItems.BItem, item.PlayerItems);
-            link.AddToInventory(item.PlayerItems);
         }
 
         private bool IsSword(PlayerItems item) => item == PlayerItems.Sword || item == PlayerItems.WhiteSword || item == PlayerItems.MagicalSword;
