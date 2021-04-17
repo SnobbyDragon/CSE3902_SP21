@@ -27,7 +27,7 @@ namespace sprint0
             direction = Direction.North;
             damage = 1;
             int offset = 35;
-            sprites = SpritesheetHelper.GetFramesH(26, 10, width, height, totalFrames, offset);
+            sprites = SpritesheetHelper.GetFramesH(18, 10, width, height, totalFrames, offset);
 
         }
 
