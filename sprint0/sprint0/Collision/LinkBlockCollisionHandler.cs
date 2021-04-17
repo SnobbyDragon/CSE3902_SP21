@@ -15,7 +15,7 @@ namespace sprint0
             if (block is SoundBlock) ((SoundBlock)block).MakeSound();
             if (!block.IsWalkable())
             {
-                if (block.IsMovable()) HandleMovableBlock(link, block, side);
+                if (block.IsMovable(side)) HandleMovableBlock(link, block, side);
                 else HandleImmovableBlock(link, block, side);
             }
             else if (block is Stairs) HandleStairs(link, block);
@@ -46,22 +46,28 @@ namespace sprint0
             switch (side)
             {
                 case Direction.North:
-                    block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y - block.Location.Height, block.Location.Width, block.Location.Height);
+                    if (block is MovableBlock20 && ((MovableBlock20)block).Direction != Direction.North)
+                        link.Pos += new Vector2(0, block.Location.Bottom - (link.Pos.Y + offset));
+                    else
+                        block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y - block.Location.Height, block.Location.Width, block.Location.Height);
                     break;
                 case Direction.South:
-                    block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y + linkSize, block.Location.Width, block.Location.Height);
+                    if (block is MovableBlock20 && ((MovableBlock20)block).Direction != Direction.South)
+                        link.Pos += new Vector2(0, block.Location.Top - (link.Pos.Y + linkSize - offset));
+                    else
+                        block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y + linkSize, block.Location.Width, block.Location.Height);
                     break;
                 case Direction.East:
-                    if (block is MovableBlock5)
-                        block.Location = new Rectangle((int)link.Pos.X + block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
-                    else
+                    if (block is MovableBlock1 || (block is MovableBlock20 && ((MovableBlock20)block).Direction != Direction.East))
                         link.Pos += new Vector2(block.Location.Left - (link.Pos.X + linkSize - offset), 0);
+                    else
+                       block.Location = new Rectangle((int)link.Pos.X + block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
                     break;
                 case Direction.West:
-                    if (block is MovableBlock5)
-                        block.Location = new Rectangle((int)link.Pos.X - block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
-                    else
+                    if (block is MovableBlock1 || (block is MovableBlock20 && ((MovableBlock20)block).Direction != Direction.West))
                         link.Pos += new Vector2(block.Location.Right - (link.Pos.X + offset), 0);
+                    else
+                        block.Location = new Rectangle((int)link.Pos.X - block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
                     break;
             }
             block.SetIsMovable();

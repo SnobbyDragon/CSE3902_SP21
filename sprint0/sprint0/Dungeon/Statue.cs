@@ -41,7 +41,7 @@ namespace sprint0
         private void ShootFireball()
             => game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir.ToVector2(), this);
         public bool IsWalkable() => false;
-        public bool IsMovable() => false;
+        public bool IsMovable(Direction dir) => false;
         public void SetIsMovable() => throw new NotImplementedException();
     }
 }

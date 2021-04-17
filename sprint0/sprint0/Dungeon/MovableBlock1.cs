@@ -27,7 +27,7 @@ namespace sprint0
             => spriteBatch.Draw(Texture, Location, source, Color.White);
         public void Update() { }
         public bool IsWalkable() => false;
-        public bool IsMovable() => isMovable;
+        public bool IsMovable(Direction dir) => isMovable;
         public void SetIsMovable()
         {
             Vector2 changeLoc = Location.Location.ToVector2() - homeLocation;
