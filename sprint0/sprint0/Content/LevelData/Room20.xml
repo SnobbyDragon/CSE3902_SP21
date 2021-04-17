@@ -8,9 +8,8 @@
     <Dungeon ObjectName="LeftLockedDoor" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
 
-    <Block ObjectName="Block" LocationX="160" LocationY="380" />?
-  
-
+     <Block ObjectName="Block" LocationX="160" LocationY="380" />?
+    
     <Block ObjectName="MovableBlock20" LocationX="440" LocationY="340" Direction="North" />?
     <Block ObjectName="MovableBlock20" LocationX="440" LocationY="380" Direction="North" />?
     <Block ObjectName="MovableBlock20" LocationX="480" LocationY="380" Direction="West" />?

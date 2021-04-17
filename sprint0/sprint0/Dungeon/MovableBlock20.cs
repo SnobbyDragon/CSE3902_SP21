@@ -10,7 +10,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private Rectangle source;
         private readonly int width, height;
-        private Vector2 homeLocation; //TODO
+      
         private bool isMovable;
         public Direction Direction { get; set; }
 
@@ -19,7 +19,7 @@ namespace sprint0
             width = height = 16;
             isMovable = true;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-            homeLocation = Location.Location.ToVector2(); //TODO
+
             Texture = texture;
             source = new Rectangle(1001, 11, width, height);
             Direction = direction;
@@ -35,9 +35,7 @@ namespace sprint0
         }
         public void SetIsMovable()
         {
-            //TODO:fix
-            //Vector2 changeLoc = Location.Location.ToVector2() - homeLocation;
-            //if (changeLoc.Length() >= Game1.Scale * width) isMovable = false;
+            
         }
         
     }

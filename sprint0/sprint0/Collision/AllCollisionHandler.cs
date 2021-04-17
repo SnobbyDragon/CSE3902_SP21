@@ -171,7 +171,7 @@ namespace sprint0
             {
                 for (int j = i + 1; j < blocks.Count; j++)
                 {
-                    Collision side = collisionDetector.DetectCollision(blocks[i], blocks[j]);
+                    Collision side = collisionDetector.DetectCollision(blocks[j], blocks[i]);
                     if (side != Collision.None) collisionHandler.HandleCollision(blocks[i], blocks[j], side.ToDirection());
                 }
             }
