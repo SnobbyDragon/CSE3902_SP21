@@ -23,14 +23,14 @@ namespace sprint0
         public void AddItem(Vector2 location, ItemEnum item)
             => itemsToSpawn.Add(itemFactory.MakeItem(item, location));
 
-
         public void Update()
         {
             foreach (IItem item in items)
                 item.Update();
         }
 
-        public void UpdateOffset(Vector2 Offset) {
+        public void UpdateOffset(Vector2 Offset)
+        {
             foreach (IItem item in items)
                 item.Location = new Rectangle(item.Location.X + (int)Offset.X, item.Location.Y + (int)Offset.Y, item.Location.Width, item.Location.Height);
         }
