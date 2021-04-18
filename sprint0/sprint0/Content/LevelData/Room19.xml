@@ -17,6 +17,9 @@
      <Block ObjectName="SoundBlock" LocationX="160" LocationY="380" Sound="3" />?
      <Block ObjectName="SoundBlock" LocationX="160" LocationY="420" Sound="6" />?
       <Block ObjectName="SoundBlock" LocationX="160" LocationY="460" Sound="4" />?
+
+       <Item ObjectName="Fairy" LocationX="520" LocationY="460" />?
+        <Item ObjectName="Fairy" LocationX="520" LocationY="260" />?
     
     <Player ObjectName="Link" LocationX="82" LocationY="340" />?
 
