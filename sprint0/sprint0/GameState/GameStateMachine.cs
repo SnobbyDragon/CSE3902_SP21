@@ -94,6 +94,7 @@
                 game.Slide(Direction.North, (int)game.Rooms[dest].Offset.Y);
             game.Room = game.Rooms[dest];
             game.Player.Pos = game.Room.LoadLevel.locations[dest];
+            game.Room.SuspendPlayer = false;
         }
 
         public void HandleCredits()
