@@ -17,7 +17,6 @@ namespace sprint0
         }
 
         private bool CanUse()
-            => game.hudManager.HasItem(PlayerItems.BlueCandle) || game.hudManager.HasItem(PlayerItems.RedCandle) || game.stateMachine.GetState().Equals(GameStateMachine.State.test)
-            || (game.hudManager.HasItem(PlayerItems.MagicalRod) && game.hudManager.HasItem(PlayerItems.BookOfMagic));
+            => game.hudManager.HasItem(PlayerItems.BlueCandle) || game.hudManager.HasItem(PlayerItems.RedCandle) || game.stateMachine.GetState().Equals(GameStateMachine.State.test);
     }
 }

@@ -7,7 +7,6 @@ namespace sprint0
     class ArrowItem : AbstractItem, IItem
     {
         public new PlayerItems PlayerItems { get => PlayerItems.Arrow; }
-        //public new PlayerItems SecondaryType { get => PlayerItems.ArrowType; }
         private readonly int xOffset = 154, yOffset = 0;
 
         public ArrowItem(Texture2D texture, Vector2 location)

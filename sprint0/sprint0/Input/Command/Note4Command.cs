@@ -5,10 +5,6 @@ namespace sprint0
     {
         private readonly Game1 game;
         public Note4Command(Game1 game) => this.game = game;
-        public void Execute()
-        {
-            
-            game.Room.RoomSound.AddSoundEffect(SoundEnum.Note4);
-        }
+        public void Execute() => game.Room.RoomSound.AddSoundEffect(SoundEnum.Note4);
     }
 }
