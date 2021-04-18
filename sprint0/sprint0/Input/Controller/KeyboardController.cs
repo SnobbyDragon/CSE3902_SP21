@@ -54,7 +54,8 @@ namespace sprint0
             RegisterCommand(Keys.D9, new Note5Command(game));
             RegisterCommand(Keys.D0, new Note6Command(game));
 
-            specialControls = new AbstractSpecialControl[] { new CardiBControl(new CardiBCommand(game)), new OwlDeathControl(new OwlDeathCommand(game)) };
+            specialControls = new AbstractSpecialControl[] { new CardiBControl(new CardiBCommand(game)),
+                new OwlDeathControl(new OwlDeathCommand(game)), new FairyEnlargementControl(new FairyEnlargementCommand(game)) };
         }
 
         public void RegisterCommand(Keys key, ICommand command)

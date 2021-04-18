@@ -35,6 +35,7 @@ namespace sprint0
                 {"sprint0.Aquamentus", SpritesheetHelper.GetFramesH(101, 14, width, height, totalFrames)},
                 {"sprint0.GleeokHead", SpritesheetHelper.GetFramesH(271, 31, width, height, totalFrames)},
                  {"sprint0.Owl", SpritesheetHelper.GetFramesH(271, 31, width, height, totalFrames)},
+                  {"sprint0.FairyEnemy", SpritesheetHelper.GetFramesH(271, 31, width, height, totalFrames)},
                 {"sprint0.Gohma", SpritesheetHelper.GetFramesH(1, 109, width, height, totalFrames)},
                 {"sprint0.ManhandlaLimb", SpritesheetHelper.GetFramesH(1, 109, width, height, totalFrames)},
                 {"sprint0.Statue", SpritesheetHelper.GetFramesH(231, 62, width, height, totalFrames)},

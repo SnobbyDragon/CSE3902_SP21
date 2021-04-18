@@ -111,5 +111,15 @@ namespace sprint0
                 }
             }
         }
+        public void MakeFairyLarge()
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                if (enemy is FairyEnemy)
+                {
+                    ((FairyEnemy)enemy).MakeFairyLarge(); 
+                }
+            }
+        }
     }
 }
