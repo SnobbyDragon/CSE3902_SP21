@@ -8,12 +8,52 @@
     <Dungeon ObjectName="LeftLockedDoor" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
 
-     <Block ObjectName="Block" LocationX="160" LocationY="380" />?
+     <Block ObjectName="Block" LocationX="80" LocationY="420" />?
+     <Block ObjectName="Block" LocationX="120" LocationY="260" />?
+     <Block ObjectName="Block" LocationX="160" LocationY="420" />?
+     <Block ObjectName="Block" LocationX="240" LocationY="300" />?
+     <Block ObjectName="Block" LocationX="440" LocationY="260" />?
+     <Block ObjectName="Block" LocationX="440" LocationY="340" />?
+     <Block ObjectName="Block" LocationX="520" LocationY="380" />?
     
-    <Block ObjectName="MovableBlock20" LocationX="440" LocationY="340" Direction="North" />?
-    <Block ObjectName="MovableBlock20" LocationX="440" LocationY="380" Direction="North" />?
-    <Block ObjectName="MovableBlock20" LocationX="480" LocationY="380" Direction="West" />?
-    
+    <Block ObjectName="MovableBlock20" LocationX="80" LocationY="260" Direction="North" />?
+    <Block ObjectName="MovableBlock20" LocationX="80" LocationY="300" Direction="North" />?
+
+     <Block ObjectName="MovableBlock20" LocationX="120" LocationY="300" Direction="East" />?
+    <Block ObjectName="MovableBlock20" LocationX="160" LocationY="300" Direction="East" />?
+
+     <Block ObjectName="MovableBlock20" LocationX="120" LocationY="340" Direction="South" />?
+    <Block ObjectName="MovableBlock20" LocationX="120" LocationY="380" Direction="South" />?
+      <Block ObjectName="MovableBlock20" LocationX="120" LocationY="420" Direction="South" />?
+
+    <Block ObjectName="MovableBlock20" LocationX="160" LocationY="340" Direction="East" />?
+    <Block ObjectName="MovableBlock20" LocationX="200" LocationY="340" Direction="East" />?
+
+    <Block ObjectName="MovableBlock20" LocationX="240" LocationY="380" Direction="South" />?
+
+    <Block ObjectName="MovableBlock20" LocationX="200" LocationY="380" Direction="West" />?
+
+     <Block ObjectName="MovableBlock20" LocationX="200" LocationY="420" Direction="South" />?
+
+      <Block ObjectName="MovableBlock20" LocationX="280" LocationY="420" Direction="East" />?
+    <Block ObjectName="MovableBlock20" LocationX="320" LocationY="420" Direction="East" />?
+
+    <Block ObjectName="MovableBlock20" LocationX="360" LocationY="340" Direction="North" />?
+    <Block ObjectName="MovableBlock20" LocationX="360" LocationY="380" Direction="North" />?
+
+     <Block ObjectName="MovableBlock20" LocationX="400" LocationY="300" Direction="East" />?
+
+      <Block ObjectName="MovableBlock20" LocationX="400" LocationY="340" Direction="South" />?
+
+      <Block ObjectName="MovableBlock20" LocationX="400" LocationY="260" Direction="North" />?
+
+      <Block ObjectName="MovableBlock20" LocationX="480" LocationY="340" Direction="South" />?
+
+      <Item ObjectName="Key" LocationX="80" LocationY="380" />?
+       <Item ObjectName="MagicalSword" LocationX="240" LocationY="220" />?
+        <Item ObjectName="BluePotion" LocationX="520" LocationY="220" />?
+        <Item ObjectName="BlueRupee" LocationX="200" LocationY="420" />?
+
     <Player ObjectName="Link" LocationX="80" LocationY="340" />?
 
 ?</XnaContent>
