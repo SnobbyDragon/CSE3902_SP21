@@ -54,6 +54,12 @@ namespace sprint0
                 }
                 else HandleSecondaryItem(newItem);
             }
+            else HandleFairy(newItem);
+        }
+        private void HandleFairy(PlayerItems item)
+        {
+            if (item == PlayerItems.Fairy)
+                inventoryItems.Add(item, LocationMapping[PlayerItems.Raft]);
         }
         public void AddAItem(PlayerItems newItem)
         {
@@ -64,7 +70,7 @@ namespace sprint0
             if (item == switchTo)
             {
                 RemoveItem(toRemove);
-                inventoryItems.Add(item, LocationMapping[item]);
+                inventoryItems.Add(item, none);
                 if (Item == PlayerItems.None)
                 {
                     Item = item;

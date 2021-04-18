@@ -14,6 +14,7 @@ namespace sprint0
         public Dictionary<PlayerItems, Rectangle> LocationMapping { get => locationMapping; }
         public List<PlayerItems> TopRowItems { get => topRowItems; }
         public Rectangle CurrentItem { get => currentItem; }
+        protected readonly Rectangle none;
         private readonly int height = 16, smallWidth = 8, bigWidth = 16, yPosTop = 24, yPosMiddle = 48, yPosBottom = 64, currentItemX = 68, mapHeight = 88;
         private readonly Rectangle currentItem;
         protected int Width { get => 8; }
@@ -23,6 +24,7 @@ namespace sprint0
 
         public HUDItemMapping()
         {
+            none = new Rectangle(0, 0, 0, 0);
             itemToSecondaryItem = new Dictionary<PlayerItems, PlayerItems>
             {
                 {PlayerItems.Boomerang, PlayerItems.BoomerangType },
