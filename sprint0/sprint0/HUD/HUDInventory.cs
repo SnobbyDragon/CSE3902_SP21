@@ -59,7 +59,7 @@ namespace sprint0
         private void HandleFairy(PlayerItems item)
         {
             if (item == PlayerItems.Fairy)
-                inventoryItems.Add(item, LocationMapping[PlayerItems.Raft]);
+                inventoryItems.Add(item, none);
         }
         public void AddAItem(PlayerItems newItem)
         {
@@ -70,7 +70,7 @@ namespace sprint0
             if (item == switchTo)
             {
                 RemoveItem(toRemove);
-                inventoryItems.Add(item, none);
+                inventoryItems.Add(item, LocationMapping[item]);
                 if (Item == PlayerItems.None)
                 {
                     Item = item;
