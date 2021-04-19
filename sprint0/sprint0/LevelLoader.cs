@@ -110,7 +110,10 @@ namespace sprint0
                     string width = xmlReader.GetAttribute("Width");
                     string height = xmlReader.GetAttribute("Height");
                     string sound = xmlReader.GetAttribute("Sound");
-                    if (sound!=null)
+                    string direction= xmlReader.GetAttribute("Direction");
+                    if (direction != null)
+                        blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, ParseDirection(direction)));
+                    else if (sound!=null)
                         blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(sound)));
                     else if (width != null && height != null)
                         blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(width), int.Parse(height)));
@@ -138,5 +141,7 @@ namespace sprint0
              => (DungeonEnum)Enum.Parse(typeof(DungeonEnum), dungeon, true);
         private BlockEnum ParseBlock(string block)
              => (BlockEnum)Enum.Parse(typeof(BlockEnum), block, true);
+        private Direction ParseDirection(string dir)
+             => (Direction)Enum.Parse(typeof(Direction), dir, true);
     }
 }
