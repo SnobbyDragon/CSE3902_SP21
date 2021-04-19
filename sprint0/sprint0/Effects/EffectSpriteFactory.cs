@@ -9,12 +9,11 @@ namespace sprint0
 {
     public enum EffectEnum
     {
-        HitSprite, SwordBeamExplode, Death, GanonAshes
+        HitSprite, SwordBeamExplode, Death, GanonAshes, DarkRoom
     }
     public class EffectSpriteFactory
     {
-        private readonly Texture2D texture2;
-        private readonly Texture2D texture1;
+        private readonly Texture2D texture1, texture3, texture2;
         private readonly Game1 game;
 
         public EffectSpriteFactory(Game1 Game)
@@ -22,6 +21,7 @@ namespace sprint0
             this.game = Game;
             texture1 = game.Content.Load<Texture2D>("Images/Bosses");
             texture2 = game.Content.Load<Texture2D>("Images/Link");
+            texture3 = game.Content.Load<Texture2D>("Images/DungeonTileset");
         }
         public IEffect MakeSprite(EffectEnum spriteType, Vector2 location)
         {
@@ -31,6 +31,7 @@ namespace sprint0
                 EffectEnum.SwordBeamExplode => new SwordBeamExplode(texture2, location),
                 EffectEnum.Death => new DeathCloud(texture2, location, game),
                 EffectEnum.GanonAshes => new GanonAshes(texture1, location),
+                EffectEnum.DarkRoom => new DarkRoom(texture3, location, game),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }

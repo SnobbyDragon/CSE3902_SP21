@@ -50,7 +50,8 @@ namespace sprint0
             _graphics = new GraphicsDeviceManager(this)
             {
                 IsFullScreen = false,
-            };
+                PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8
+        };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
