@@ -12,7 +12,7 @@ namespace sprint0
         public LinkBlockCollisionHandler(Game1 game) => this.game = game;
         public void HandleCollision(IPlayer link, IBlock block, Direction side)
         {
-            if (block is SoundBlock) ((SoundBlock)block).MakeSound();
+            if (block is SoundBlock block1) block1.MakeSound();
             if (!block.IsWalkable())
             {
                 if (block.IsMovable()) HandleMovableBlock(link, block, side);
