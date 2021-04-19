@@ -29,6 +29,9 @@
      <Item ObjectName="FairyDistract" LocationX="360" LocationY="380" />?
      <Item ObjectName="FairyDistract" LocationX="360" LocationY="220" />?
        <Item ObjectName="FairyDistract" LocationX="440" LocationY="220" />?
+
+       <Item ObjectName="Fairy" LocationX="520" LocationY="460" />?
+        <Item ObjectName="Fairy" LocationX="520" LocationY="260" />?
     
     <Player ObjectName="Link" LocationX="82" LocationY="340" />?
    

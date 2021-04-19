@@ -12,10 +12,12 @@ namespace sprint0
         private ItemsSpriteFactory itemFactory;
         public List<IItem> ItemsToSpawn { get => itemsToSpawn; set => itemsToSpawn = value; }
         private List<IItem> itemsToSpawn;
+        private readonly List<IItem> itemsToRemove;
 
         public RoomItems(Game1 game)
         {
             items = new List<IItem>();
+            itemsToRemove= new List<IItem>();
             itemsToSpawn = new List<IItem>();
             itemFactory = new ItemsSpriteFactory(game);
         }
@@ -25,6 +27,7 @@ namespace sprint0
 
         public void Update()
         {
+            RemoveDestroyed();
             foreach (IItem item in items)
                 item.Update();
         }
@@ -48,6 +51,22 @@ namespace sprint0
         {
             foreach (IItem item in items)
                 item.Draw(spriteBatch);
+        }
+
+        public void RemoveFairy()
+        {
+            foreach (IItem item in items) {
+                if (item is Fairy)
+                {
+                    itemsToRemove.Add(item);
+                }
+            }
+        }
+
+        public void RemoveDestroyed()
+        {
+            foreach (IItem item in itemsToRemove)
+                items.Remove(item);
         }
     }
 }

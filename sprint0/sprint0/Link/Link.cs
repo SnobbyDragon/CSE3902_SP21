@@ -23,6 +23,7 @@ namespace sprint0
         public int WeaponDamage { get => weaponDamages[CurrentSword]; }
         public int Health { get; set; } = 28;
         public int MaxHealth { get; set; } = 28;
+        private int numTimesProtected;
         public Link(Game1 game, Vector2 pos)
         {
             this.game = game;
@@ -31,6 +32,7 @@ namespace sprint0
             HUD = this.game.hudManager;
             itemHelper = new LinkUseItemHelper(game, this, HUD);
             CurrentItem = PlayerItems.None;
+            numTimesProtected = 0;
         }
         public void Move(int x, int y) => position += new Vector2(speed * x, speed * y);
         public void TakeDamage(Direction direction, int damage)
@@ -74,8 +76,18 @@ namespace sprint0
         }
         private int CalculateDamage(int damage)
         {
+            int maxNumTimesProtected = 3;
             if (HasItem(PlayerItems.BlueRing) && damage >= 2) return damage / 2;
             else if (HasItem(PlayerItems.RedRing) && damage >= 2) return damage * 3 / 4;
+            else if (HasItem(PlayerItems.Fairy)) {
+                if (numTimesProtected > maxNumTimesProtected) {
+                    game.Room.LoadLevel.RoomItems.RemoveFairy();
+                    HUD.RemoveItem(PlayerItems.Fairy);
+                    numTimesProtected = 0;
+                }
+                numTimesProtected++;
+                return 0;
+            }
             else return damage;
         }
         public void ReceiveItem(int n, PlayerItems item)
