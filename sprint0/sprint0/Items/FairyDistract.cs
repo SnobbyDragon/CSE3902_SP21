@@ -7,10 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Fairy : IItem
+    public class FairyDistract : IItem
     {
         public int PickedUpDuration { get; set; }
-        private readonly int maxPickedUpDuration = 40;
         public Rectangle Location { get; set; }
         public int Damage { get => int.MaxValue; }
         public Texture2D Texture { get; set; }
@@ -25,11 +24,11 @@ namespace sprint0
         public PlayerItems PlayerItems { get => PlayerItems.Fairy; }
         public PlayerItems SecondaryType { get => PlayerItems.None; }
 
-        public Fairy(Texture2D texture, Vector2 location, Game1 game)
+        public FairyDistract(Texture2D texture, Vector2 location, Game1 game)
         {
             this.game = game;
             Texture = texture;
-            PickedUpDuration = -1;
+            PickedUpDuration = 0;
             totalFrames = 2;
             currentFrame = 0; repeatedFrames = 10;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
@@ -40,10 +39,9 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (PickedUpDuration < maxPickedUpDuration)
-                spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
-            else if (game.stateMachine.GetState() != GameStateMachine.State.changeRoom)
-                spriteBatch.Draw(Texture, game.Room.Player.Pos + new Vector2(-8, -8), sources[currentFrame / repeatedFrames], Color.White);
+          
+           spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
+            
         }
 
         public void Update()
@@ -58,7 +56,7 @@ namespace sprint0
                 dist = dist.ApproxDirection().ToVector2();
                 Location = new Rectangle((int)(Location.X + dist.X), (int)(Location.Y + dist.Y), Location.Width, Location.Height);
             }
-            if (PickedUpDuration >= 0) PickedUpDuration++;
+           
         }
 
         private void GenerateDest(int offset)

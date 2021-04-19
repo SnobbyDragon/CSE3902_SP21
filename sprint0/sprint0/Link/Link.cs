@@ -12,17 +12,18 @@ namespace sprint0
         private readonly LinkUseItemHelper itemHelper;
         private readonly HUDManager HUD;
         private Dictionary<PlayerItems, int> weaponDamages = new Dictionary<PlayerItems, int> {
-            { PlayerItems.None, 0 }, { PlayerItems.Sword, 2 }, { PlayerItems.WhiteSword, 4 }, { PlayerItems.MagicalSword, 8 }
+            { PlayerItems.None, 2 }, { PlayerItems.Sword, 2 }, { PlayerItems.WhiteSword, 4 }, { PlayerItems.MagicalSword, 8 }
         };
         public List<int> ItemCounts { get; } = new List<int> { -1, -1, 1 };
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get; set; }
         public Direction Direction { get; set; } = Direction.North;
         public PlayerItems CurrentItem { get; set; }
-        public PlayerItems CurrentSword { get => HUD.CurrentAItem; }
+        public PlayerItems CurrentSword { get => HUD.CurrentAItem;}
         public int WeaponDamage { get => weaponDamages[CurrentSword]; }
         public int Health { get; set; } = 28;
         public int MaxHealth { get; set; } = 28;
+        private int numTimesProtected;
         public Link(Game1 game, Vector2 pos)
         {
             this.game = game;
@@ -31,15 +32,19 @@ namespace sprint0
             HUD = this.game.hudManager;
             itemHelper = new LinkUseItemHelper(game, this, HUD);
             CurrentItem = PlayerItems.None;
+            numTimesProtected = 0;
         }
         public void Move(int x, int y) => position += new Vector2(speed * x, speed * y);
         public void TakeDamage(Direction direction, int damage)
         {
-            game.Room.Player = new DamagedLink(this, game, direction);
-            HUD.TakeDamage(CalculateDamage(damage));
-            Health = HUD.Health;
-            game.Room.RoomSound.AddSoundEffect(SoundEnum.LinkDamaged);
-            if (Health <= 0) Die();
+            if (!game.Room.FreezeEnemies)
+            {
+                game.Room.Player = new DamagedLink(this, game, direction);
+                HUD.TakeDamage(CalculateDamage(damage));
+                Health = HUD.Health;
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.LinkDamaged);
+                if (Health <= 0) Die();
+            }
         }
         public void PickUpItem() => State.PickUpItem();
         public void IncrementItem(PlayerItems inventoryItem)
@@ -74,8 +79,18 @@ namespace sprint0
         }
         private int CalculateDamage(int damage)
         {
-            if (HasItem(PlayerItems.BlueRing)) return damage / 2;
-            else if (HasItem(PlayerItems.RedRing)) return damage * 3 / 4;
+            int maxNumTimesProtected = 3;
+            if (HasItem(PlayerItems.BlueRing) && damage >= 2) return damage / 2;
+            else if (HasItem(PlayerItems.RedRing) && damage >= 2) return damage * 3 / 4;
+            else if (HasItem(PlayerItems.Fairy)) {
+                if (numTimesProtected > maxNumTimesProtected) {
+                    game.Room.LoadLevel.RoomItems.RemoveFairy();
+                    HUD.RemoveItem(PlayerItems.Fairy);
+                    numTimesProtected = 0;
+                }
+                numTimesProtected++;
+                return 0;
+            }
             else return damage;
         }
         public void ReceiveItem(int n, PlayerItems item)

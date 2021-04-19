@@ -65,22 +65,25 @@ namespace sprint0
 
         public override void Update()
         {
-            moveCounter++;
-            if (moveCounter == dirChangeDelay) ArbitraryDirection(30, 50);
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-
-            Rectangle loc = Location;
-            loc.Offset(direction.ToVector2());
-            Location = loc;
-
-            if (throwCounter == throwMax)
+            if (!game.Room.FreezeEnemies)
             {
-                throwCounter = 0;
-                UseBoomerang();
+                moveCounter++;
+                if (moveCounter == dirChangeDelay) ArbitraryDirection(30, 50);
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+
+                Rectangle loc = Location;
+                loc.Offset(direction.ToVector2());
+                Location = loc;
+
+                if (throwCounter == throwMax)
+                {
+                    throwCounter = 0;
+                    UseBoomerang();
+                }
+                throwCounter++;
             }
-            throwCounter++;
         }
 
         public bool IsAlive() => health > 0;

@@ -65,6 +65,7 @@
             game.NextRoom = game.Rooms[dest];
             game.Room.SuspendPlayer = true;
             game.NextRoom.SuspendPlayer = true;
+            game.Room.FreezeEnemies = false;
         }
 
         public void HandleFinishRoomChange(int dest)
@@ -94,6 +95,9 @@
                 game.Slide(Direction.North, (int)game.Rooms[dest].Offset.Y);
             game.Room = game.Rooms[dest];
             game.Player.Pos = game.Room.LoadLevel.locations[dest];
+            game.Room.SuspendPlayer = false;
+            game.Room.FreezeEnemies = false;
+
         }
 
         public void HandleCredits()

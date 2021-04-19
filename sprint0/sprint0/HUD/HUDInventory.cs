@@ -54,6 +54,12 @@ namespace sprint0
                 }
                 else HandleSecondaryItem(newItem);
             }
+            else HandleFairy(newItem);
+        }
+        private void HandleFairy(PlayerItems item)
+        {
+            if (item == PlayerItems.Fairy && !HasItem(item))
+                inventoryItems.Add(item, none);
         }
         public void AddAItem(PlayerItems newItem)
         {

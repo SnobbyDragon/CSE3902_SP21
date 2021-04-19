@@ -8,10 +8,30 @@
     <Dungeon ObjectName="LeftWall" LocationX="560" LocationY="320" />?    
     <Dungeon ObjectName="RightLockedDoor" LocationX="0" LocationY="320" />?
 
-    <Block ObjectName="Block" LocationX="160" LocationY="380" />?
-    <Block ObjectName="Block" LocationX="440" LocationY="380" />?
-    <Block ObjectName="Block" LocationX="160" LocationY="300" />?
-    <Block ObjectName="Block" LocationX="440" LocationY="300" />?
+    <Block ObjectName="SoundBlock" LocationX="120" LocationY="260" Sound="4"/>?
+    <Block ObjectName="SoundBlock" LocationX="120" LocationY="420" Sound="3" />?
+    <Block ObjectName="SoundBlock" LocationX="480" LocationY="420" Sound="2"/>?
+    <Block ObjectName="SoundBlock" LocationX="480" LocationY="260" Sound="1"/>?
+
+    <Enemy ObjectName="FairyEnemy" LocationX="400" LocationY="340" />?
+
+     <Item ObjectName="FairyDistract" LocationX="400" LocationY="380" />?
+     <Item ObjectName="FairyDistract" LocationX="360" LocationY="380" />?
+     <Item ObjectName="FairyDistract" LocationX="360" LocationY="220" />?
+       <Item ObjectName="FairyDistract" LocationX="440" LocationY="220" />?
+
+        <Item ObjectName="FairyDistract" LocationX="400" LocationY="380" />?
+     <Item ObjectName="FairyDistract" LocationX="360" LocationY="380" />?
+     <Item ObjectName="FairyDistract" LocationX="360" LocationY="220" />?
+       <Item ObjectName="FairyDistract" LocationX="440" LocationY="220" />?
+
+        <Item ObjectName="FairyDistract" LocationX="400" LocationY="380" />?
+     <Item ObjectName="FairyDistract" LocationX="360" LocationY="380" />?
+     <Item ObjectName="FairyDistract" LocationX="360" LocationY="220" />?
+       <Item ObjectName="FairyDistract" LocationX="440" LocationY="220" />?
+
+       <Item ObjectName="Fairy" LocationX="520" LocationY="460" />?
+        <Item ObjectName="Fairy" LocationX="520" LocationY="260" />?
     
     <Player ObjectName="Link" LocationX="82" LocationY="340" />?
    

@@ -10,8 +10,6 @@ namespace sprint0
         private readonly EnemiesSpriteFactory enemyFactory;
         private readonly BossesSpriteFactory bossFactory;
         public List<IEnemy> Enemies { get => enemies; set => enemies = value; }
-        public List<IEnemy> EnemiesToDie { get => enemiesToDie; set => enemiesToDie = value; }
-        public List<IEnemy> EnemiesToSpawn { get => enemiesToSpawn; set => enemiesToSpawn = value; }
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
         private Vector2 keySpawnLocation;
         private bool endBehaviorExecuted;
@@ -108,6 +106,16 @@ namespace sprint0
                 if (enemy is Owl)
                 {
                     RemoveEnemy(enemy);
+                }
+            }
+        }
+        public void MakeFairyLarge()
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                if (enemy is FairyEnemy)
+                {
+                    ((FairyEnemy)enemy).MakeFairyLarge(); 
                 }
             }
         }

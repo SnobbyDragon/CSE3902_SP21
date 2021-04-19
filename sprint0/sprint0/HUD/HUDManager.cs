@@ -66,12 +66,13 @@ namespace sprint0
         public void RemoveBItem(PlayerItems item)
         {
             mainHUD.RemoveBItem();
-            pauseInventory.RemoveItem(item);
+            RemoveItem(item);
         }
         public void RemoveBomb()
         {
             if (!CanUseBomb() && currentItem == PlayerItems.Bomb) RemoveBItem(PlayerItems.Bomb);
         }
+        public void RemoveItem(PlayerItems item) => pauseInventory.RemoveItem(item);
         public bool HasItem(PlayerItems item) => pauseInventory.HasItem(item);
         public bool HasKeys() => populateHUDInventory.GetNum(PlayerItems.Key) > 0;
         public bool HasBowAndArrow() => pauseInventory.HasItem(PlayerItems.Bow) && pauseInventory.HasItem(arrowList);

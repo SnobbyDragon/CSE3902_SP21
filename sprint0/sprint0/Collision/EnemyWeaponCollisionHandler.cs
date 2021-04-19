@@ -17,6 +17,7 @@ namespace sprint0
                         enemy.TakeDamage(weapon.Damage);
                     }
                 }
+                if (projectile is Boomerang boomerang2 && boomerang2.CanBeCaught && boomerang2.Shooter == enemy) boomerang2.Perish();
             }
             else if (weapon is Bomb bomb)
             {

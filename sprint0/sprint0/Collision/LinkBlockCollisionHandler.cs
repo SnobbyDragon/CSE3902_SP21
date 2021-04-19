@@ -43,7 +43,7 @@ namespace sprint0
             if (link.Pos.Y < Game1.HUDHeight * Game1.Scale)
             {
                 game.stateMachine.HandleSnapRoomChange(stairsRoom);
-                link.Pos = new Vector2(200, 200);
+                link.Pos = new Vector2(280, 340);
                 link.Direction = Direction.East;
                 link.State = new LeftIdleState(link);
             }
