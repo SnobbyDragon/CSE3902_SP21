@@ -15,6 +15,7 @@ namespace sprint0
                 if (block2.IsMovable()) HandleMovableBlock(block1, block2, side);
                 else if (block1.IsMovable()) HandleMovableImmovableBlock(block1, block2, side);
             }
+            
         }
 
         private void HandleMovableBlock(IBlock block1, IBlock block2, Direction side)
