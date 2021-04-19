@@ -21,6 +21,7 @@ namespace sprint0
         public int Health { get => decoratedLink.Health; set => decoratedLink.Health = value; }
         public int MaxHealth { get => decoratedLink.MaxHealth; set => decoratedLink.MaxHealth = value; }
         public PlayerItems CurrentSword { get => decoratedLink.CurrentSword; }
+        public bool CanPlaceLadder { get => decoratedLink.CanPlaceLadder; set => decoratedLink.CanPlaceLadder = value; }
 
         public DamagedLink(IPlayer decoratedLink, Game1 game, Direction direction)
         {

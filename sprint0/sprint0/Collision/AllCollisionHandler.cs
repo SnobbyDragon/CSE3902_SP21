@@ -66,6 +66,11 @@ namespace sprint0
             {
                 Collision side = collisionDetector.DetectCollision(linkHitbox, block);
                 if (side != Collision.None) collisionHandler.HandleCollision(link, block, side.ToDirection());
+                if (block is StepLadderBlock stepLadder && side == Collision.None)
+                { 
+                    stepLadder.UnderLink = false;
+                    link.CanPlaceLadder = true;
+                }
             }
         }
         private void HandleLinkNpcCollisions(IPlayer link, List<INpc> npcs)

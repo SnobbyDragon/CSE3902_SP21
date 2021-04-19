@@ -8,7 +8,6 @@ namespace sprint0
         private readonly Game1 game;
         private readonly int linkSize = (int)(16 * Game1.Scale);
         private readonly int offset = 4, stairsRoom = 1, basement = 0;
-
         public LinkBlockCollisionHandler(Game1 game) => this.game = game;
         public void HandleCollision(IPlayer link, IBlock block, Direction side)
         {
@@ -16,11 +15,11 @@ namespace sprint0
             if (!block.IsWalkable())
             {
                 if (block.IsMovable()) HandleMovableBlock(link, block, side);
+                else if (block is Water && link.CanPlaceLadder) HandleStepLadder(link, block);
                 else HandleImmovableBlock(link, block, side);
             }
             else if (block is Stairs) HandleStairs(link, block);
             else if (block is Ladder) HandleLadder(link);
-            
         }
         private void HandleStairs(IPlayer link, IBlock block)
         {
@@ -83,6 +82,13 @@ namespace sprint0
                     link.Pos += new Vector2(block.Location.Right - (link.Pos.X + offset), 0);
                     break;
             }
+        }
+        private void HandleStepLadder(IPlayer link, IBlock water)
+        {
+            link.CanPlaceLadder = false;
+            Vector2 ladderLoc = new Vector2(water.Location.X, water.Location.Y);
+            game.Room.LoadLevel.RoomBlocks.RemoveBlock(water);
+            game.Room.LoadLevel.RoomBlocks.AddBlock(ladderLoc, BlockEnum.StepLadder);
         }
     }
 }

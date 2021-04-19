@@ -18,7 +18,7 @@ namespace sprint0
 
     public enum BlockEnum
     {
-        Block, Tile, Gap, Water, Floor, Stairs, Ladder, Brick, LeftStatue, RightStatue, MovableBlock, MovableBlock5, InvisibleBlock, SoundBlock
+        Block, Tile, Gap, Water, Floor, Stairs, Ladder, Brick, LeftStatue, RightStatue, MovableBlock, MovableBlock5, InvisibleBlock, SoundBlock, StepLadder
     }
     public class DungeonFactory
     {
@@ -81,6 +81,7 @@ namespace sprint0
                 BlockEnum.MovableBlock => new MovableBlock1(texture, location),
                 BlockEnum.MovableBlock5 => new MovableBlock5(texture, location),
                 BlockEnum.InvisibleBlock => new InvisibleBlock(location, width, height),
+                BlockEnum.StepLadder => new StepLadderBlock(texture, location, game.Room),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
