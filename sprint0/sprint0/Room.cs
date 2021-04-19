@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,7 +11,6 @@ namespace sprint0
         private readonly string message = "EASTMOST PENINSULA IS THE SECRET.";
         private readonly Vector2 messageLoc = new Vector2(170, 250);
         public static PlayerSpriteFactory PlayerFactory { get => Game1.PlayerFactory; }
-        public IPlayer Player { get => Game.Player; set => Game.Player = value; }
         private LoadLevel loadLevel;
         public LoadLevel LoadLevel { get => loadLevel; set => loadLevel = value; }
         public RoomSound RoomSound { get => roomSound; }
@@ -36,6 +36,17 @@ namespace sprint0
         private SpriteFont font;
         public ISprite Sprite { get => sprite; set => sprite = value; }
         public SpriteFont Font { get => font; set => font = value; }
+
+        public IPlayer Player { get => Game.Player; set => Game.Player = value; }
+        public List<IEnemy> Enemies { get => LoadLevel.RoomEnemies.Enemies; }
+        public List<IWeapon> Weapons { get => loadLevel.RoomWeapon.Weapons; }
+        public List<IProjectile> Projectiles { get => loadLevel.RoomProjectile.Projectiles; }
+        public List<IBlock> Blocks { get => loadLevel.RoomBlocks.Blocks; }
+        public List<INpc> Npcs { get => loadLevel.RoomNPCs.NPCs; }
+        public List<IItem> Items { get => loadLevel.RoomItems.Items; }
+        public List<ISprite> Overlays { get => overlay.Sprites; }
+        public List<ISprite> RoomSprites { get => loadLevel.RoomSprite.RoomSprites; }
+
 
         public Room(SpriteBatch spriteBatch, Game1 game, int roomIndex, Vector2 Offset, float linkX = LinkDefaultPos, float linkY = LinkDefaultPos, bool loadedPos = false)
         {
@@ -75,7 +86,7 @@ namespace sprint0
             if (!suspendPlayer) Player.Update();
 
             loadLevel.Update();
-            collisionHandler.HandleAllCollisions(Player, loadLevel.RoomEnemies.Enemies, loadLevel.RoomWeapon.Weapons, loadLevel.RoomProjectile.Projectiles, loadLevel.RoomBlocks.Blocks, loadLevel.RoomNPCs.NPCs, loadLevel.RoomItems.Items, overlay.Sprites, loadLevel.RoomSprite.RoomSprites);
+            collisionHandler.HandleAllCollisions();
             loadLevel.RemoveDead();
             loadLevel.AddNew();
             roomSound.RemoveDead();

@@ -3,13 +3,12 @@ using Microsoft.Xna.Framework;
 
 namespace sprint0
 {
-    public class CollisionDetector
+    public static class CollisionDetector
     {
-        public CollisionDetector() { }
-        public Collision DetectCollision(ISprite one, Rectangle two) => DetectCollision(one.Location, two);
-        public Collision DetectCollision(Rectangle one, ISprite two) => DetectCollision(one, two.Location);
-        public Collision DetectCollision(ISprite one, ISprite two) => DetectCollision(one.Location, two.Location);
-        public Collision DetectCollision(Rectangle one, Rectangle two)
+        public static Collision DetectCollision(ISprite one, Rectangle two) => DetectCollision(one.Location, two);
+        public static Collision DetectCollision(Rectangle one, ISprite two) => DetectCollision(one, two.Location);
+        public static Collision DetectCollision(ISprite one, ISprite two) => DetectCollision(one.Location, two.Location);
+        public static Collision DetectCollision(Rectangle one, Rectangle two)
         {
             Rectangle intersection = Rectangle.Intersect(one, two);
             if (intersection.IsEmpty)
@@ -26,7 +25,7 @@ namespace sprint0
                 return DetermineCollisionBottom(intersection, one);
         }
 
-        public Collision DetermineCollisionBottom(Rectangle intersection, Rectangle one)
+        public static Collision DetermineCollisionBottom(Rectangle intersection, Rectangle one)
         {
             if (intersection.Left > one.Left)
             {
@@ -44,7 +43,7 @@ namespace sprint0
             }
         }
 
-        public Collision DetermineCollisionTop(Rectangle intersection, Rectangle one)
+        public static Collision DetermineCollisionTop(Rectangle intersection, Rectangle one)
         {
             if (intersection.Left > one.Left)
             {
@@ -62,7 +61,7 @@ namespace sprint0
             }
         }
 
-        public Collision DetermineCollisionRight(Rectangle intersection, Rectangle one)
+        public static Collision DetermineCollisionRight(Rectangle intersection, Rectangle one)
         {
             if (intersection.Top > one.Top)
             {
@@ -80,7 +79,7 @@ namespace sprint0
             }
         }
 
-        public Collision DetermineCollisionLeft(Rectangle intersection, Rectangle one)
+        public static Collision DetermineCollisionLeft(Rectangle intersection, Rectangle one)
         {
             if (intersection.Top > one.Top)
             {
