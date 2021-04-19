@@ -45,7 +45,6 @@ namespace sprint0
         public static int BorderThickness { get; } = 32;
         public static float Scale { get; } = 2.5f;
 
-        private Vector2 zeroVector = new Vector2(0, 0);
         public Game1()
         {
             stateMachine = new GameStateMachine(this);
@@ -149,12 +148,8 @@ namespace sprint0
 
         public void Slide(Direction d, int amount)
         {
-            Vector2 offset = zeroVector;
             amount = System.Math.Abs(amount);
-            if (d == Direction.North) offset.Y = amount;
-            else if (d == Direction.South) offset.Y = -amount;
-            else if (d == Direction.East) offset.X = -amount;
-            else if (d == Direction.West) offset.X = amount;
+            Vector2 offset = d.ToVector2() * amount;
             foreach (Room rm in Rooms.Values) rm.UpdateOffsets(offset);
         }
 
