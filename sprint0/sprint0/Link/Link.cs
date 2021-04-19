@@ -35,11 +35,14 @@ namespace sprint0
         public void Move(int x, int y) => position += new Vector2(speed * x, speed * y);
         public void TakeDamage(Direction direction, int damage)
         {
-            game.Room.Player = new DamagedLink(this, game, direction);
-            HUD.TakeDamage(CalculateDamage(damage));
-            Health = HUD.Health;
-            game.Room.RoomSound.AddSoundEffect(SoundEnum.LinkDamaged);
-            if (Health <= 0) Die();
+            if (!game.Room.FreezeEnemies)
+            {
+                game.Room.Player = new DamagedLink(this, game, direction);
+                HUD.TakeDamage(CalculateDamage(damage));
+                Health = HUD.Health;
+                game.Room.RoomSound.AddSoundEffect(SoundEnum.LinkDamaged);
+                if (Health <= 0) Die();
+            }
         }
         public void PickUpItem() => State.PickUpItem();
         public void IncrementItem(PlayerItems inventoryItem)
