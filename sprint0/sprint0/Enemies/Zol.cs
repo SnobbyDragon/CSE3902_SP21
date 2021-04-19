@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-//Author: Hannah Johnson
-
 namespace sprint0
 {
     public class Zol : AbstractEnemy
@@ -18,7 +16,6 @@ namespace sprint0
         private readonly Color color;
         private int pauseCount = 0;
         public new EnemyType Type { get => EnemyType.Gel; }
-
         public Zol(Texture2D texture, Vector2 location, Color gelColor, Game1 game) : base(texture, location, game)
         {
             width = 16;
@@ -55,28 +52,31 @@ namespace sprint0
         {
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
-            moveCounter++;
-            SpawnGel();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-
-            if (pauseCount == 0)
+            if (!game.Room.FreezeEnemies)
             {
-                if (moveCounter == dirChangeDelay)
+                moveCounter++;
+                SpawnGel();
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+
+                if (pauseCount == 0)
                 {
-                    ArbitraryDirection(20, 80);
-                    pauseCount = 3 * totalFrames * repeatedFrames;
+                    if (moveCounter == dirChangeDelay)
+                    {
+                        ArbitraryDirection(20, 80);
+                        pauseCount = 3 * totalFrames * repeatedFrames;
+                    }
+                    if (delayCounter == delay)
+                    {
+                        Rectangle loc = Location;
+                        loc.Offset(speed * direction.ToVector2());
+                        Location = loc;
+                        delayCounter = 0;
+                    }
+                    delayCounter++;
                 }
-                if (delayCounter == delay)
-                {
-                    Rectangle loc = Location;
-                    loc.Offset(speed * direction.ToVector2());
-                    Location = loc;
-                    delayCounter = 0;
-                }
-                delayCounter++;
+                else
+                    pauseCount--;
             }
-            else
-                pauseCount--;
         }
 
         private void SpawnGel()

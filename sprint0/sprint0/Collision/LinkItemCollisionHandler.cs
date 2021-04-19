@@ -13,6 +13,8 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, IItem item, Direction side)
         {
+            if (item is Clock)
+                room.FreezeEnemies = true;
             if (item.PickedUpDuration < 0)
             {
                 CheckItemIncrement(item, link);
