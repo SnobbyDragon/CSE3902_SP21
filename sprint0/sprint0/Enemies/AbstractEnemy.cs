@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -31,14 +30,17 @@ namespace sprint0
 
         public virtual void Update()
         {
-            moveCounter++;
-            if (moveCounter == dirChangeDelay) ArbitraryDirection(30, 50);
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            Rectangle loc = Location;
-            loc.Offset(direction.ToVector2());
-            Location = loc;
+            if (!game.Room.FreezeEnemies)
+            {
+                moveCounter++;
+                if (moveCounter == dirChangeDelay) ArbitraryDirection(30, 50);
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+                Rectangle loc = Location;
+                loc.Offset(direction.ToVector2());
+                Location = loc;
+            }
         }
 
         protected void ArbitraryDirection(int low, int high)

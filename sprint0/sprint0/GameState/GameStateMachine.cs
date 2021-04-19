@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace sprint0
+﻿namespace sprint0
 {
     //Author: Jacob Urick
     // Last updated 3/28/2021 by urick.9
@@ -49,9 +46,7 @@ namespace sprint0
                 prev = state;
                 state = State.options;
             }
-            else if (state == State.options) {
-                state = prev;
-            }
+            else if (state == State.options) state = prev;
         }
 
         public Direction GetChangeDirection() => direction;
@@ -62,14 +57,15 @@ namespace sprint0
             counter = 0;
             direction = d;
             if (d == Direction.North || d == Direction.South)
-                bound = (int)(Game1.MapHeight * Game1.Scale) / game.ScrollSpeed;
+                bound = (int)(Game1.MapHeight * Game1.Scale) / game.ScrollSpeed - 1;
             if (d == Direction.East || d == Direction.West)
-                bound = (int)(Game1.Width * Game1.Scale) / game.ScrollSpeed;
+                bound = (int)(Game1.Width * Game1.Scale) / game.ScrollSpeed - 1;
             state = State.changeRoom;
             game.NextRoomIndex = dest;
             game.NextRoom = game.Rooms[dest];
             game.Room.SuspendPlayer = true;
             game.NextRoom.SuspendPlayer = true;
+            game.Room.FreezeEnemies = false;
         }
 
         public void HandleFinishRoomChange(int dest)
@@ -99,8 +95,10 @@ namespace sprint0
                 game.Slide(Direction.North, (int)game.Rooms[dest].Offset.Y);
             game.Room = game.Rooms[dest];
             game.Player.Pos = game.Room.LoadLevel.locations[dest];
-        }
+            game.Room.SuspendPlayer = false;
+            game.Room.FreezeEnemies = false;
 
+        }
 
         public void HandleCredits()
         {

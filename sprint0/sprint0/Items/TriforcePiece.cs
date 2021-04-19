@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,6 +17,7 @@ namespace sprint0
 
         private readonly Game1 game;
         public PlayerItems PlayerItems { get => PlayerItems.Triforce; }
+        public PlayerItems SecondaryType { get => PlayerItems.None; }
         public TriforcePiece(Texture2D texture, Vector2 location, Game1 gm)
         {
             this.game = gm;

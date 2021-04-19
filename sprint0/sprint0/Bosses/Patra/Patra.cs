@@ -109,7 +109,10 @@ namespace sprint0
         }
 
         private void RemoveMinion(PatraMinion minion1)
-            => minions.Remove(minion1);
+        {
+            minions.Remove(minion1);
+            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
+        }
         public void TakeDamage(int damage)
         {
             if (canTakeDamage && damageTimer == 0)
@@ -131,11 +134,9 @@ namespace sprint0
         // generates a new destination
         private void GenerateDest()
         {
-            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
-                rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))
-                );
+                rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale)));
         }
         public EnemyEnum ParseEnemy(string enemy)
              => (EnemyEnum)Enum.Parse(typeof(EnemyEnum), enemy, true);

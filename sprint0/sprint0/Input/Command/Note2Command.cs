@@ -7,7 +7,6 @@ namespace sprint0
         public Note2Command(Game1 game) => this.game = game;
         public void Execute()
         {
-            
             game.Room.RoomSound.AddSoundEffect(SoundEnum.Note2);
         }
     }

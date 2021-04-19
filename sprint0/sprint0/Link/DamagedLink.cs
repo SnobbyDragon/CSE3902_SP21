@@ -15,11 +15,12 @@ namespace sprint0
         public Vector2 Pos { get => decoratedLink.Pos; set => decoratedLink.Pos = value; }
         public IPlayerState State { get => decoratedLink.State; set => decoratedLink.State = value; }
         Direction IPlayer.Direction { get => decoratedLink.Direction; set => decoratedLink.Direction = value; }
-        public int WeaponDamage { get => decoratedLink.WeaponDamage; set => decoratedLink.WeaponDamage = value; }
+        public int WeaponDamage { get => decoratedLink.WeaponDamage; }
         public PlayerItems CurrentItem { get => decoratedLink.CurrentItem; set => decoratedLink.CurrentItem = value; }
         public List<int> ItemCounts => decoratedLink.ItemCounts;
         public int Health { get => decoratedLink.Health; set => decoratedLink.Health = value; }
         public int MaxHealth { get => decoratedLink.MaxHealth; set => decoratedLink.MaxHealth = value; }
+        public PlayerItems CurrentSword { get => decoratedLink.CurrentSword; }
 
         public DamagedLink(IPlayer decoratedLink, Game1 game, Direction direction)
         {
@@ -54,6 +55,7 @@ namespace sprint0
         public void HandleLeft() => decoratedLink.HandleLeft();
         public void HandleRight() => decoratedLink.HandleRight();
         public void HandleSword() => decoratedLink.HandleSword();
+        public void HandleRod() => decoratedLink.HandleRod();
         public void Draw(SpriteBatch spriteBatch)
         {
             if (timer % 2 == 0)

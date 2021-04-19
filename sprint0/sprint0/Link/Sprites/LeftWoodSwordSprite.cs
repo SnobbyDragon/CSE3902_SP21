@@ -23,8 +23,10 @@ namespace sprint0
         private readonly List<Vector2> locations;
         private readonly List<int> xSizes;
 
-        public LeftWoodSwordSprite(Texture2D texture, Vector2 location)
+        public LeftWoodSwordSprite(Texture2D texture, Vector2 location, PlayerItems sword)
         {
+            if (sword == PlayerItems.WhiteSword) xOffset += 93;
+            else if (sword == PlayerItems.MagicalSword) xOffset += 187;
             this.texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             sources = GetFrames();

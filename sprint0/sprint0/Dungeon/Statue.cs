@@ -1,16 +1,12 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public class Statue : IBlock
+    public class Statue : AbstractBlock, IBlock
     {
         private readonly Game1 game;
-        public Rectangle Location { get; set; }
-        public Texture2D Texture { get; set; }
-        private Rectangle source;
-        private readonly int xOffset = 1018, yOffset = 11, width = 16, height = 16, fireballRate = 100;
+        private readonly int xOffset = 1018, yOffset = 11, fireballRate = 100;
         private int fireballCounter = 0;
         private readonly Direction dir;
 
@@ -23,10 +19,7 @@ namespace sprint0
             if (dir == Direction.East) source = new Rectangle(xOffset, yOffset, width, height);
             else if (dir == Direction.West) source = new Rectangle(xOffset + width + 1, yOffset, width, height);
         }
-
-        public void Draw(SpriteBatch spriteBatch)
-            => spriteBatch.Draw(Texture, Location, source, Color.White);
-        public void Update()
+        public override void Update()
         {
             if (CanShoot()) ShootFireball();
         }
@@ -40,8 +33,5 @@ namespace sprint0
 
         private void ShootFireball()
             => game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir.ToVector2(), this);
-        public bool IsWalkable() => false;
-        public bool IsMovable() => false;
-        public void SetIsMovable() => throw new NotImplementedException();
     }
 }

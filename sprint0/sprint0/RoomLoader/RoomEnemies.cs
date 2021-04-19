@@ -10,8 +10,6 @@ namespace sprint0
         private readonly EnemiesSpriteFactory enemyFactory;
         private readonly BossesSpriteFactory bossFactory;
         public List<IEnemy> Enemies { get => enemies; set => enemies = value; }
-        public List<IEnemy> EnemiesToDie { get => enemiesToDie; set => enemiesToDie = value; }
-        public List<IEnemy> EnemiesToSpawn { get => enemiesToSpawn; set => enemiesToSpawn = value; }
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
         private Vector2 keySpawnLocation;
         private bool endBehaviorExecuted;
@@ -47,7 +45,13 @@ namespace sprint0
             => enemiesToSpawn.AddRange(unregEnemies);
 
         public void RemoveEnemy(IEnemy enemy) => enemiesToDie.Add(enemy);
-
+        public void ChangeDigdoggerSize()
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                if (enemy is Digdogger d) d.IsBig = false;
+            }
+        }
         public void RemoveDead()
         {
             foreach (IEnemy enemy in enemiesToDie)
@@ -95,10 +99,23 @@ namespace sprint0
             endBehaviorExecuted = true;
         }
 
-        public void KillOwl(){
-            foreach (IEnemy enemy in enemies) {
-                if (enemy is Owl) { 
+        public void KillOwl()
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                if (enemy is Owl)
+                {
                     RemoveEnemy(enemy);
+                }
+            }
+        }
+        public void MakeFairyLarge()
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                if (enemy is FairyEnemy)
+                {
+                    ((FairyEnemy)enemy).MakeFairyLarge(); 
                 }
             }
         }

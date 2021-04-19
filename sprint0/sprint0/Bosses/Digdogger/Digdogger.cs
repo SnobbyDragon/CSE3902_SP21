@@ -14,22 +14,19 @@ namespace sprint0
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public EnemyType Type { get => EnemyType.None; }
-        private readonly int bigSize = 32, smallSize = 16;
+        private readonly int bigSize = 32, smallSize = 16, bigTotalFrames, repeatedFrames, smallTotalFrames, moveDelay;
         private readonly List<Rectangle> smallSources;
         private readonly Dictionary<Spikes, List<Rectangle>> dirToBigSource;
-        private int currFrame, spikeDelay, spikeCounter;
-        private readonly int bigTotalFrames, repeatedFrames, smallTotalFrames;
-        private readonly bool isBig;
+        private int currFrame, spikeDelay, spikeCounter, health, moveCounter;
+        private bool isBig;
+        public bool IsBig { get => isBig; set => isBig = value; }
         private enum Spikes { none, left, right };
         private Spikes currSpikes;
         private readonly Random rand;
         private Vector2 destination;
-        private int moveCounter;
-        private readonly int moveDelay;
         private readonly Game1 game;
-        private int health;
         public int Damage { get => 2; }
-        private ItemSpawner itemSpawner;
+        private readonly ItemSpawner itemSpawner;
 
         public Digdogger(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -63,14 +60,8 @@ namespace sprint0
         {
             spikeDelay = rand.Next(repeatedFrames * smallTotalFrames, repeatedFrames * smallTotalFrames * 2);
             spikeCounter = 0;
-            if (rand.Next(0, 2) == 0)
-            {
-                currSpikes = Spikes.left;
-            }
-            else
-            {
-                currSpikes = Spikes.right;
-            }
+            if (rand.Next(0, 2) == 0) currSpikes = Spikes.left;
+            else currSpikes = Spikes.right;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -89,14 +80,12 @@ namespace sprint0
                 if (spikeCounter == spikeDelay)
                 {
                     SwitchSpikeDir();
+                    game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
                 }
                 spikeCounter++;
 
                 Vector2 dist = destination - Location.Location.ToVector2();
-                if (dist.Length() < 5)
-                {
-                    GenerateDest();
-                }
+                if (dist.Length() < 5) GenerateDest();
                 else if (moveCounter == moveDelay)
                 {
                     dist.Normalize();
@@ -110,11 +99,7 @@ namespace sprint0
             currFrame = (currFrame + 1) % (smallTotalFrames * repeatedFrames);
         }
 
-
-        public void ChangeDirection()
-        {
-            GenerateDest();
-        }
+        public void ChangeDirection() => GenerateDest();
 
         private void CheckHealth()
         {
@@ -138,11 +123,9 @@ namespace sprint0
 
         private void GenerateDest()
         {
-            game.Room.RoomSound.AddSoundEffect(ParseSound(GetType().Name));
             destination = new Vector2(
                 rand.Next((int)(Game1.BorderThickness * Game1.Scale), (int)((Game1.Width - Game1.BorderThickness) * Game1.Scale)),
-                rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale))
-                );
+                rand.Next((int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale), (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale)));
         }
 
         public EnemyEnum ParseEnemy(string enemy)

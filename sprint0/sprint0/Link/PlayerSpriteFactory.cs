@@ -17,7 +17,7 @@ namespace sprint0
         public PlayerSpriteFactory(Game1 game)
             => texture = game.Content.Load<Texture2D>("Images/Link");
 
-        public ISprite MakeSprite(LinkEnum spriteType, Vector2 location)
+        public ISprite MakeSprite(LinkEnum spriteType, Vector2 location, PlayerItems swordType = PlayerItems.Sword)
         {
             return spriteType switch
             {
@@ -25,10 +25,10 @@ namespace sprint0
                 LinkEnum.LinkDownIdle => new DownIdleLinkSprite(texture, location),
                 LinkEnum.LinkLeftIdle => new LeftIdleLinkSprite(texture, location),
                 LinkEnum.LinkRightIdle => new RightIdleLinkSprite(texture, location),
-                LinkEnum.LinkUpSword => new UpWoodSwordSprite(texture, location),
-                LinkEnum.LinkDownSword => new DownWoodSwordSprite(texture, location),
-                LinkEnum.LinkLeftSword => new LeftWoodSwordSprite(texture, location),
-                LinkEnum.LinkRightSword => new RightWoodSwordSprite(texture, location),
+                LinkEnum.LinkUpSword => new UpWoodSwordSprite(texture, location, swordType),
+                LinkEnum.LinkDownSword => new DownWoodSwordSprite(texture, location, swordType),
+                LinkEnum.LinkLeftSword => new LeftWoodSwordSprite(texture, location, swordType),
+                LinkEnum.LinkRightSword => new RightWoodSwordSprite(texture, location, swordType),
                 LinkEnum.LinkUpWalking => new UpWalkingLinkSprite(texture, location),
                 LinkEnum.LinkDownWalking => new DownWalkingLinkSprite(texture, location),
                 LinkEnum.LinkLeftWalking => new LeftWalkingLinkSprite(texture, location),

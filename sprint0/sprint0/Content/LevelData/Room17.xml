@@ -23,7 +23,9 @@
     <Block ObjectName="Block" LocationX="440" LocationY="380" />?  
         
     <Boss ObjectName="Ganon" LocationX="360" LocationY="380" />? 
-    <Item ObjectName="PowerBracelet" LocationX="280" LocationY="380" />? 
+    <Item ObjectName="PowerBracelet" LocationX="280" LocationY="380" />?
+
+     <Item ObjectName="Fairy" LocationX="520" LocationY="460" />?
     
     <Player ObjectName="Link" LocationX="80" LocationY="340" />?
     

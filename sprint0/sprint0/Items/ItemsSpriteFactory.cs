@@ -14,7 +14,7 @@ namespace sprint0
         Food, Letter, Map, BluePotion, RedPotion, BlueRupee, Rupee,
         Clock, Bow, HeartContainer, TriforcePiece, Compass, Key, Fairy,
         Arrow, Bomb, PowerBracelet, BookOfMagic, Flute, Raft, Stepladder,
-        MagicalKey, MagicalRod, MagicalSword, WhiteSword, WoodenSword, GanonTriforceAshes, None
+        MagicalKey, MagicalRod, MagicalSword, WhiteSword, WoodenSword, GanonTriforceAshes, None, FairyDistract
     }
     public class ItemsSpriteFactory
     {
@@ -53,6 +53,7 @@ namespace sprint0
                 ItemEnum.Compass => new Compass(texture1, location),
                 ItemEnum.Key => new Key(texture1, location),
                 ItemEnum.Fairy => new Fairy(texture1, location, game),
+                ItemEnum.FairyDistract => new FairyDistract(texture1, location, game),
                 ItemEnum.Arrow => new ArrowItem(texture1, location),
                 ItemEnum.Bomb => new BombItem(texture1, location),
                 ItemEnum.PowerBracelet => new PowerBracelet(texture1, location),

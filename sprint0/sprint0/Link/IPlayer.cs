@@ -13,7 +13,7 @@ namespace sprint0
         Letter = 15, BluePotion = 16, RedPotion = 17, MagicalRod = 18, BookOfMagic = 19, RedRing = 20, MagicalKey = 21,
         PowerBracelet = 22, MagicalBoomerang = 23, Map = 24, Compass = 25, Clock = 26, Fairy = 27, HeartContainer = 28,
         BlueRing = 29, Triforce = 30, Raft = 31, StepLadder = 32,
-        AItem, BItem, HUD, ItemSelectorRed, ItemSelectorBlue,
+        AItem, BItem, HUD, ItemSelectorRed, ItemSelectorBlue, BoomerangType, PotionType, RingType, ArrowType, CandleType
     }
 
     public interface IPlayer : IEntity
@@ -21,8 +21,9 @@ namespace sprint0
         public Direction Direction { get; set; }
         public Vector2 Pos { get; set; }
         public IPlayerState State { get; set; }
-        public int WeaponDamage { get; set; }
+        public int WeaponDamage { get; }
         public PlayerItems CurrentItem { get; set; }
+        public PlayerItems CurrentSword { get; }
         public List<int> ItemCounts { get; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
@@ -35,6 +36,7 @@ namespace sprint0
         public void HandleLeft();
         public void HandleRight();
         public void HandleSword();
+        public void HandleRod();
         public void HandleItem();
         public void IncrementItem(PlayerItems inventoryItem);
         public void SetHUDItem(PlayerItems source, PlayerItems newItem);

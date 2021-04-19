@@ -23,6 +23,7 @@ namespace sprint0
         private readonly Random rand;
         private readonly Game1 game;
         public PlayerItems PlayerItems { get => PlayerItems.Fairy; }
+        public PlayerItems SecondaryType { get => PlayerItems.None; }
 
         public Fairy(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -41,9 +42,8 @@ namespace sprint0
         {
             if (PickedUpDuration < maxPickedUpDuration)
                 spriteBatch.Draw(Texture, Location, sources[currentFrame / repeatedFrames], Color.White);
-            else
+            else if (game.stateMachine.GetState() != GameStateMachine.State.changeRoom)
                 spriteBatch.Draw(Texture, game.Room.Player.Pos + new Vector2(-8, -8), sources[currentFrame / repeatedFrames], Color.White);
-            //fairy becomes small on purpose
         }
 
         public void Update()

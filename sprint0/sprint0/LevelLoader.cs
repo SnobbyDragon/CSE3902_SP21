@@ -95,7 +95,7 @@ namespace sprint0
                     items.Add(itemFactory.MakeItem(ParseItem(objectName), location));
                     break;
                 case "Boss":
-                    if (objectName.Equals("Aodongo") || objectName.Equals("Aquamentus"))
+                    if (objectName.Equals("Dodongo") || objectName.Equals("Aquamentus"))
                         effects.Add(effectFactory.MakeSpawn(ParseEnemy(objectName), location));
                     else
                         enemies.Add(bossFactory.MakeSprite(ParseEnemy(objectName), location));
@@ -110,8 +110,8 @@ namespace sprint0
                     string width = xmlReader.GetAttribute("Width");
                     string height = xmlReader.GetAttribute("Height");
                     string sound = xmlReader.GetAttribute("Sound");
-                    if (width != null && height != null && sound!=null)
-                        blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(width), int.Parse(height), int.Parse(sound)));
+                    if (sound!=null)
+                        blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(sound)));
                     else if (width != null && height != null)
                         blocks.Add(dungeonFactory.MakeBlock(ParseBlock(objectName), location, int.Parse(width), int.Parse(height)));
                     else

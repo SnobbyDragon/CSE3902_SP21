@@ -38,7 +38,9 @@
     <Block ObjectName="RightStatue" LocationX="120" LocationY="420" />?   
     <Block ObjectName="RightStatue" LocationX="240" LocationY="420" />?     
     <Block ObjectName="LeftStatue" LocationX="360" LocationY="420" />?  
-    <Block ObjectName="LeftStatue" LocationX="480" LocationY="420" />? 
+    <Block ObjectName="LeftStatue" LocationX="480" LocationY="420" />?
+
+     <Item ObjectName="Fairy" LocationX="520" LocationY="460" />?
     
     <Player ObjectName="Link" LocationX="80" LocationY="340" />?
     

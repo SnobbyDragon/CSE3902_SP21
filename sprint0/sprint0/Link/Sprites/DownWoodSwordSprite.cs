@@ -19,8 +19,10 @@ namespace sprint0
         private readonly int height = 30;
         private readonly int totalFrames = 4;
 
-        public DownWoodSwordSprite(Texture2D texture, Vector2 location)
+        public DownWoodSwordSprite(Texture2D texture, Vector2 location, PlayerItems sword)
         {
+            if (sword == PlayerItems.WhiteSword) xOffset += 93;
+            else if (sword == PlayerItems.MagicalSword) xOffset += 187;
             this.texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, totalFrames);

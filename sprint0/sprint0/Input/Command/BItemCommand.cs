@@ -18,12 +18,13 @@ namespace sprint0
                 { PlayerItems.Bomb, new TwoCommand(this.game) },
                 { PlayerItems.Boomerang, new ThreeCommand(this.game) },
                 { PlayerItems.MagicalBoomerang, new ThreeCommand(this.game) },
-                { PlayerItems.RedPotion, new PotionCommand(this.game) },
-                { PlayerItems.BluePotion, new PotionCommand(this.game) },
+                { PlayerItems.RedPotion, new PotionCommand(this.game, PlayerItems.RedPotion) },
+                { PlayerItems.BluePotion, new PotionCommand(this.game, PlayerItems.BluePotion) },
                 { PlayerItems.Food, new FoodCommand(this.game) },
                 { PlayerItems.BlueCandle, new FourCommand(this.game) },
                 { PlayerItems.RedCandle, new FourCommand(this.game) },
-                { PlayerItems.MagicalRod, new RodCommand(this.game) }
+                { PlayerItems.MagicalRod, new RodCommand(this.game) },
+                { PlayerItems.Flute, new FluteCommand(this.game) },
             };
         }
 

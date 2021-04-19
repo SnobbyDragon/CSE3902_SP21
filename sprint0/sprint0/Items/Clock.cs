@@ -1,39 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 //Author: Hannah Johnson
-
+//Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class Clock : IItem
+    public class Clock : AbstractItem, IItem
     {
-        public int PickedUpDuration { get; set; }
-        private readonly int maxPickedUpDuration = 40;
-        public Rectangle Location { get; set; }
-        public Texture2D Texture { get; set; }
-        private Rectangle source;
-        private readonly int width = 13, height = 17;
-        public PlayerItems PlayerItems { get => PlayerItems.Clock; }
+        private readonly int xOffset = 58, yOffset = 0;
+        public new PlayerItems PlayerItems { get => PlayerItems.Clock; }
 
         public Clock(Texture2D texture, Vector2 location)
         {
+            width = 13;
+            height = 17;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            PickedUpDuration = -1;
-            source = new Rectangle(58, 0, width, height);
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if (PickedUpDuration < maxPickedUpDuration)
-                spriteBatch.Draw(Texture, Location, source, Color.White);
-        }
-
-        public void Update()
-        {
-            if (PickedUpDuration >= 0) PickedUpDuration++;
+            PickedUpDuration = -2;
+            source = new Rectangle(xOffset, yOffset, width, height);
         }
     }
 }
