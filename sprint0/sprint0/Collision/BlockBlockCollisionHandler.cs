@@ -10,11 +10,12 @@ namespace sprint0
 
         public void HandleCollision(IBlock block1, IBlock block2, Direction side)
         {
-            if (!block2.IsWalkable())
-            {
-                if (block2.IsMovable()) HandleMovableBlock(block1, block2, side);
-                else if (block1.IsMovable()) HandleMovableImmovableBlock(block1, block2, side);
-            }
+            if (block1 is SoundBlock block) block.MakeSound();
+            if (block2 is SoundBlock _block) _block.MakeSound();
+           
+            if (block2.IsMovable(side) && block1.IsMovable(side)) HandleMovableMovableBlock(block1, block2, side);
+            else if (block2.IsMovable(side)) HandleMovableImmovableBlock(block2, block1, side);
+            else if (block1.IsMovable(side)) HandleMovableImmovableBlock(block1, block2, side);
             
         }
 
