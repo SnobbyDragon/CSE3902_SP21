@@ -16,7 +16,7 @@ namespace sprint0
             Texture = texture;
             source = new Rectangle(1001, 11, width, height);
         }
-        public override bool IsMovable() => isMovable;
+        public override bool IsMovable(Direction dir) => isMovable;
         public override void SetIsMovable()
         {
             Vector2 changeLoc = Location.Location.ToVector2() - homeLocation;

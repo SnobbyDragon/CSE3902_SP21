@@ -31,7 +31,6 @@ namespace sprint0
         public bool IsWalkable() => false;
         public bool IsMovable(Direction dir) {
             return dir == Direction && isMovable;
-            
         }
         public void SetIsMovable()
         {

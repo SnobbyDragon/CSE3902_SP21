@@ -15,7 +15,7 @@ namespace sprint0
             => spriteBatch.Draw(Texture, Location, source, Color.White);
         public virtual void Update() { }
         public virtual bool IsWalkable() => false;
-        public virtual bool IsMovable() => false;
+        public virtual bool IsMovable(Direction dir) => false;
         public virtual void SetIsMovable() => throw new NotImplementedException();
     }
 }
