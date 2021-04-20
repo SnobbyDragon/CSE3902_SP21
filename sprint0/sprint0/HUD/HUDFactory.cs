@@ -26,9 +26,9 @@ namespace sprint0
         {
             return spriteType switch
             {
-                HUDEnum.Rupee => new AbstractHUDInventory(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 16 * Game1.Scale)),
-                HUDEnum.Key => new AbstractHUDInventory(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 32 * Game1.Scale)),
-                HUDEnum.Bomb => new AbstractHUDInventory(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 40 * Game1.Scale)),
+                HUDEnum.Rupee => new HUDCounterItems(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 16 * Game1.Scale)),
+                HUDEnum.Key => new HUDCounterItems(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 32 * Game1.Scale)),
+                HUDEnum.Bomb => new HUDCounterItems(texture, new Vector2(location.X + 97 * Game1.Scale, location.Y + 40 * Game1.Scale)),
                 HUDEnum.Heart => new HeartHUD(texture, new Vector2(location.X + 176 * Game1.Scale, location.Y + 32 * Game1.Scale)),
                 _ => throw new ArgumentException("Invalid sprite! Sprite factory failed."),
             };

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
-    public class AbstractHUDInventory : IHUDInventory
+    public class HUDCounterItems : IHUDInventory
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
@@ -14,7 +14,7 @@ namespace sprint0
         private readonly int mod = 10, reset = 0, sideLength = 8, xOffset = 528, yOffset = 117, hundredOffset = 519;
         private List<Rectangle> sources;
 
-        public AbstractHUDInventory(Texture2D texture, Vector2 location)
+        public HUDCounterItems(Texture2D texture, Vector2 location)
         {
             Location = new Rectangle((int)location.X, (int)location.Y, reset, reset);
             Texture = texture;
