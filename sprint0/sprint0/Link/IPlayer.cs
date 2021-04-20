@@ -27,6 +27,7 @@ namespace sprint0
         public List<int> ItemCounts { get; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
+        public bool CanPlaceLadder { get; set; }
         public void Move(int x, int y);
         public void Stop();
         public void TakeDamage(Direction direction, int damage);

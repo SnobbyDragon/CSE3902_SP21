@@ -25,6 +25,7 @@ namespace sprint0
                     link.PickUpItem();
                     if (item is GanonTriforceAshes)
                         room.LoadLevel.RoomEffect.AddEffect(item.Location.Location.ToVector2(), EffectEnum.GanonAshes);
+                    if (item is StepLadder) link.CanPlaceLadder = true;
                     int itemX = (int)link.Pos.X + linkSize / 2 - item.Location.Width / 2;
                     int itemY = (int)link.Pos.Y - item.Location.Height;
                     item.Location = new Rectangle(itemX, itemY, item.Location.Width, item.Location.Height);
