@@ -9,22 +9,22 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        public string Type { get; set; }
+        public NPCEnum Type { get; set; }
         private readonly int xOffset = 1, yOffset = 11, width, height;
-        private readonly Dictionary<string, Rectangle> typeRectMap;
+        private readonly Dictionary<NPCEnum, Rectangle> typeRectMap;
 
-        public OldPerson(Texture2D texture, Vector2 location, string type)
+        public OldPerson(Texture2D texture, Vector2 location, NPCEnum type)
         {
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             Type = type;
             List<Rectangle> sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, 3);
-            typeRectMap = new Dictionary<string, Rectangle>
+            typeRectMap = new Dictionary<NPCEnum, Rectangle>
             {
-                { "man 1", sources[0] },
-                { "man 2", sources[1] },
-                { "woman", sources[2] }
+                { NPCEnum.OldMan1, sources[0] },
+                { NPCEnum.OldMan2, sources[1] },
+                { NPCEnum.OldWoman, sources[2] }
             };
         }
 

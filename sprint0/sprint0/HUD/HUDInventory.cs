@@ -3,45 +3,34 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 //Author: Stuti Shah
-//Updated: 04/12/21 by shah.1440
+//Updated: 04/19/21 by shah.1440
 namespace sprint0
 {
-    public class HUDInventory : HUDItemMapping
+    public class HUDInventory : HUDInventoryHelper
     {
-        private readonly Dictionary<PlayerItems, Rectangle> inventoryItems;
-        public Dictionary<PlayerItems, Rectangle> InventoryItems { get => inventoryItems; }
-        private readonly List<PlayerItems> aItem, secondaryItems;
-        public Rectangle Location { get; set; }
-        public PlayerItems Item { get; set; }
-        private readonly int maxItems = 15;
-        public Texture2D Texture { get; set; }
-        public bool SwitchItem { get; set; }
-        public HUDInventory(Game1 game)
-        {
-            inventoryItems = new Dictionary<PlayerItems, Rectangle>();
-            secondaryItems = new List<PlayerItems>();
-            aItem = new List<PlayerItems>();
-            Texture = new HUDFactory(game).Texture;
-            SwitchItem = false;
-        }
+        public HUDInventory(Game1 game) : base(game) { }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             if (inventoryItems.Count != 0)
             {
                 foreach (KeyValuePair<PlayerItems, Rectangle> hudElement in inventoryItems)
                     if (LocationMapping.ContainsKey(hudElement.Key)) spriteBatch.Draw(Texture, hudElement.Value, ItemMap[hudElement.Key], Color.White);
-                if (Item != PlayerItems.None) spriteBatch.Draw(Texture, CurrentItem, ItemMap[Item], Color.White);
+                if (Item != PlayerItems.None && !HasBowArrowCombo()) spriteBatch.Draw(Texture, CurrentItem, ItemMap[Item], Color.White);
+                else DrawBowArrow(spriteBatch);
             }
         }
-        public void RemoveItem(PlayerItems item)
+
+        private void DrawBowArrow(SpriteBatch spriteBatch)
         {
-            if (HasItem(item)) inventoryItems.Remove(item);
-            if (Item == item) SetItem(PlayerItems.None);
+            int shift = 8;
+            if (HasItem(PlayerItems.Arrow))
+                spriteBatch.Draw(Texture, new Rectangle(CurrentItem.X - shift, CurrentItem.Y, CurrentItem.Width, CurrentItem.Height), ItemMap[PlayerItems.Arrow], Color.White);
+            else
+                spriteBatch.Draw(Texture, new Rectangle(CurrentItem.X - shift, CurrentItem.Y, CurrentItem.Width, CurrentItem.Height), ItemMap[PlayerItems.SilverArrow], Color.White);
+            spriteBatch.Draw(Texture, new Rectangle(CurrentItem.X + shift, CurrentItem.Y, CurrentItem.Width, CurrentItem.Height), ItemMap[PlayerItems.Bow], Color.White);
         }
-        public void SetItem(PlayerItems item)
-        {
-            if (HasItem(item) || item == PlayerItems.None) Item = item;
-        }
+
         public void AddItem(PlayerItems newItem)
         {
             if (!HasItem(newItem) && LocationMapping.ContainsKey(newItem) && inventoryItems.Count <= maxItems)
@@ -56,15 +45,13 @@ namespace sprint0
             }
             else HandleFairy(newItem);
         }
+
         private void HandleFairy(PlayerItems item)
         {
             if (item == PlayerItems.Fairy && !HasItem(item))
                 inventoryItems.Add(item, none);
         }
-        public void AddAItem(PlayerItems newItem)
-        {
-            if (!aItem.Contains(newItem) && ItemMap.ContainsKey(newItem)) aItem.Add(newItem);
-        }
+
         private void BItemSwitch(PlayerItems item, PlayerItems switchTo, PlayerItems toRemove)
         {
             if (item == switchTo)
@@ -84,20 +71,11 @@ namespace sprint0
             BItemSwitch(item, PlayerItems.BlueCandle, PlayerItems.RedCandle);
             BItemSwitch(item, PlayerItems.BluePotion, PlayerItems.RedPotion);
             BItemSwitch(item, PlayerItems.BlueRing, PlayerItems.RedRing);
+            BItemSwitch(item, PlayerItems.SilverArrow, PlayerItems.Arrow);
         }
-        public bool HasItem(List<PlayerItems> itemList)
-        {
-            bool hasItem = false;
-            foreach (PlayerItems item in itemList) hasItem = hasItem || HasItem(item);
-            return hasItem;
-        }
-        public PlayerItems ChangeSword(PlayerItems currentSword)
-        {
-            if (aItem.Count != 0)
-                return aItem[(aItem.IndexOf(currentSword) + 1) % aItem.Count];
-            else return PlayerItems.None;
-        }
-        public bool HasAItem() => aItem.Count != 0;
-        public bool HasItem(PlayerItems item) => inventoryItems.ContainsKey(item);
+
+        private bool HasBowArrowCombo()
+            => (Item == PlayerItems.Arrow || Item == PlayerItems.SilverArrow || Item == PlayerItems.Bow)
+            && secondaryItems.Contains(PlayerItems.ArrowType) && inventoryItems.ContainsKey(PlayerItems.Bow);
     }
 }
