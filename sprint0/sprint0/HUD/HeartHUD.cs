@@ -27,8 +27,7 @@ namespace sprint0
             numHearts = maxHealth / 2;
             heartState = new int[heartType] { reset, reset, numHearts };
             ResetNum();
-            int totalFrames = heartType;
-            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, sideLength, sideLength, totalFrames);
+            sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, sideLength, sideLength, heartType);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -45,7 +44,7 @@ namespace sprint0
                         xShift = reset;
                         yShift = (int)(sideLength * Game1.Scale);
                     }
-                    spriteBatch.Draw(Texture, new Rectangle((int)(Location.X + xShift), (int)(Location.Y + yShift), (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[i], Color.White);
+                    spriteBatch.Draw(Texture, new Rectangle(Location.X + xShift, Location.Y + yShift, (int)(sideLength * Game1.Scale), (int)(sideLength * Game1.Scale)), sources[i], Color.White);
                     xShift += (int)(sideLength * Game1.Scale);
                     heartCount++;
                 }

@@ -9,22 +9,22 @@ namespace sprint0
     {
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
-        public string Type { get; set; }
+        public Color Type { get; set; }
         private readonly int xOffset = 109, yOffset = 11, width, height;
-        private readonly Dictionary<string, Rectangle> typeRectMap;
+        private readonly Dictionary<Color, Rectangle> typeRectMap;
 
-        public Merchant(Texture2D texture, Vector2 location, string type)
+        public Merchant(Texture2D texture, Vector2 location, Color type)
         {
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
             Type = type;
             List<Rectangle> sources = SpritesheetHelper.GetFramesH(xOffset, yOffset, width, height, 3);
-            typeRectMap = new Dictionary<string, Rectangle>
+            typeRectMap = new Dictionary<Color, Rectangle>
             {
-                { "green", sources[0] },
-                { "white", sources[1] },
-                { "red", sources[2] }
+                { Color.Green, sources[0] },
+                { Color.White, sources[1] },
+                { Color.Red, sources[2] }
             };
         }
 
