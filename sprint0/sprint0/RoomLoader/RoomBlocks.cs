@@ -90,7 +90,7 @@ namespace sprint0
         {
             foreach (IBlock block in blocks)
             {
-                if (block is MovableBlock5 block5 && !block5.IsMovable())
+                if (block is MovableBlock5 block5 && !block5.IsMovable(Direction.North))
                     game.Room.LoadLevel.RoomSprite.OpenClosedDoor();
             }
         }

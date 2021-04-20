@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace sprint0
@@ -6,16 +7,22 @@ namespace sprint0
     public class LinkBlockCollisionHandler
     {
         private readonly Game1 game;
+        private readonly List<IBlock> blocks;
         private readonly int linkSize = (int)(16 * Game1.Scale);
         private readonly int offset = 4, stairsRoom = 1, basement = 0;
-        public LinkBlockCollisionHandler(Game1 game) => this.game = game;
+
+        public LinkBlockCollisionHandler(Game1 game, List<IBlock> blocks)
+        {
+            this.game = game;
+            this.blocks = blocks;
+        }
+
         public void HandleCollision(IPlayer link, IBlock block, Direction side)
         {
-            if (block is SoundBlock) ((SoundBlock)block).MakeSound();
+            if (block is SoundBlock block1) block1.MakeSound();
             if (!block.IsWalkable())
             {
-                if (block.IsMovable()) HandleMovableBlock(link, block, side);
-                else if (block is Water && link.CanPlaceLadder) HandleStepLadder(link, block);
+                if (block.IsMovable(side)) HandleMovableBlock(link, block, side);
                 else HandleImmovableBlock(link, block, side);
             }
             else if (block is Stairs) HandleStairs(link, block);
@@ -40,31 +47,73 @@ namespace sprint0
                 link.State = new LeftIdleState(link);
             }
         }
+
         private void HandleMovableBlock(IPlayer link, IBlock block, Direction side)
         {
+            bool canPush;
+            Vector2 originalLoc = block.Location.Location.ToVector2();
             switch (side)
             {
                 case Direction.North:
-                    block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y - block.Location.Height, block.Location.Width, block.Location.Height);
+                    if (block is MovableBlock20 bN && bN.Direction != Direction.North)
+                        link.Pos += new Vector2(0, block.Location.Bottom - (link.Pos.Y + offset));
+                    else
+                    {
+                        block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y - block.Location.Height, block.Location.Width, block.Location.Height);
+                        canPush = BlockBlockCollisionDetector.DetectCollisions(block, blocks);
+                        if (!canPush)
+                        {
+                            block.Location = new Rectangle((int)originalLoc.X, (int)originalLoc.Y, block.Location.Width, block.Location.Height);
+                            link.Pos += new Vector2(0, block.Location.Bottom - (link.Pos.Y + offset));
+                        }
+                    }
                     break;
                 case Direction.South:
-                    block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y + linkSize, block.Location.Width, block.Location.Height);
+                    if (block is MovableBlock20 bS && bS.Direction != Direction.South)
+                        link.Pos += new Vector2(0, block.Location.Top - (link.Pos.Y + linkSize - offset));
+                    else
+                    {
+                        block.Location = new Rectangle(block.Location.X, (int)link.Pos.Y + linkSize, block.Location.Width, block.Location.Height);
+                        canPush = BlockBlockCollisionDetector.DetectCollisions(block, blocks);
+                        if (!canPush)
+                        {
+                            block.Location = new Rectangle((int)originalLoc.X, (int)originalLoc.Y, block.Location.Width, block.Location.Height);
+                            link.Pos += new Vector2(0, block.Location.Top - (link.Pos.Y + linkSize - offset));
+                        }
+                    }
                     break;
                 case Direction.East:
-                    if (block is MovableBlock5)
-                        block.Location = new Rectangle((int)link.Pos.X + block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
-                    else
+                    if (block is MovableBlock1 || (block is MovableBlock20 bE && bE.Direction != Direction.East))
                         link.Pos += new Vector2(block.Location.Left - (link.Pos.X + linkSize - offset), 0);
+                    else
+                    {
+                        block.Location = new Rectangle((int)link.Pos.X + block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
+                        canPush = BlockBlockCollisionDetector.DetectCollisions(block, blocks);
+                        if (!canPush)
+                        {
+                            block.Location = new Rectangle((int)originalLoc.X, (int)originalLoc.Y, block.Location.Width, block.Location.Height);
+                            link.Pos += new Vector2(block.Location.Left - (link.Pos.X + linkSize - offset), 0);
+                        }
+                    }
                     break;
                 case Direction.West:
-                    if (block is MovableBlock5)
-                        block.Location = new Rectangle((int)link.Pos.X - block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
-                    else
+                    if (block is MovableBlock1 || (block is MovableBlock20 bW && bW.Direction != Direction.West))
                         link.Pos += new Vector2(block.Location.Right - (link.Pos.X + offset), 0);
+                    else
+                    {
+                        block.Location = new Rectangle((int)link.Pos.X - block.Location.Width, block.Location.Y, block.Location.Width, block.Location.Height);
+                        canPush = BlockBlockCollisionDetector.DetectCollisions(block, blocks);
+                        if (!canPush)
+                        {
+                            block.Location = new Rectangle((int)originalLoc.X, (int)originalLoc.Y, block.Location.Width, block.Location.Height);
+                            link.Pos += new Vector2(block.Location.Right - (link.Pos.X + offset), 0);
+                        }
+                    }
                     break;
             }
             block.SetIsMovable();
         }
+
         private void HandleImmovableBlock(IPlayer link, IBlock block, Direction side)
         {
             switch (side)
