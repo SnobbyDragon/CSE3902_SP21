@@ -23,6 +23,7 @@ namespace sprint0
             if (!block.IsWalkable())
             {
                 if (block.IsMovable(side)) HandleMovableBlock(link, block, side);
+                else if (block is Water && link.CanPlaceLadder) HandleStepLadder(link, block);
                 else HandleImmovableBlock(link, block, side);
             }
             else if (block is Stairs) HandleStairs(link, block);

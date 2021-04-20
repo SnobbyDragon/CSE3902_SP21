@@ -53,6 +53,11 @@ namespace sprint0
             {
                 Collision side = CollisionDetector.DetectCollision(linkHitbox, block);
                 if (side != Collision.None) collisionHandler.HandleCollision(link, block, side.ToDirection());
+                if (block is StepLadderBlock stepLadder && side == Collision.None)
+                {
+                    stepLadder.UnderLink = false;
+                    link.CanPlaceLadder = true;
+                }
             }
         }
 
