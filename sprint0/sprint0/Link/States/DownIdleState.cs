@@ -18,6 +18,7 @@ namespace sprint0
         public void HandleDown() => player.State = new DownWalkingState(player);
         public void HandleLeft() => player.State = new LeftWalkingState(player);
         public void HandleRight() => player.State = new RightWalkingState(player);
+        public void HandleJump() => player.State = new DownJumpingState(player);
         public void HandleSword(LinkUseItemHelper itemHelper)
         {
             itemHelper.UseSword(player.Health == player.MaxHealth);

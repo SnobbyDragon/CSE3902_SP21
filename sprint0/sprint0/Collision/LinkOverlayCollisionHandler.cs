@@ -12,7 +12,7 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, ISprite overlay, Direction side)
         {
-            if (overlay is BorderFillingOverlay borderFilling)
+            if (overlay is BorderFillingOverlay borderFilling && !link.IsJumping())
             {
                 if (borderFilling.Location.Intersects(new Rectangle((int)link.Pos.X, (int)link.Pos.Y, linkSize, linkSize)))
                 {

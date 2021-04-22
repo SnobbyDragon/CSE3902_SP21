@@ -69,6 +69,7 @@ namespace sprint0
         public void HandleDown() => State.HandleDown();
         public void HandleLeft() => State.HandleLeft();
         public void HandleRight() => State.HandleRight();
+        public void HandleJump() => State.HandleJump();
         public void HandleSword() => State.HandleSword(itemHelper);
         public void HandleRod() => State.HandleRod(itemHelper);
         public void HandleItem() => State.UseItem(itemHelper);
