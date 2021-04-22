@@ -38,11 +38,6 @@ namespace sprint0
         {
             return initialRoomIndex;
         }
-
-        public override List<int> GetRoomsWithKeys()
-        {
-            return roomWithKey;
-        }
     }
 
 }

@@ -9,7 +9,6 @@ namespace sprint0
 
         public void Execute()
         {
-            game.stateMachine.HandleLevelSelectFour();
             if (CanUse())
             {
                 game.Room.Player.CurrentItem = PlayerItems.BlueCandle;

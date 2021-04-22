@@ -22,7 +22,10 @@ namespace sprint0
 
         public abstract int GetTotalNumberOfRooms();
 
-        public abstract List<int> GetRoomsWithKeys();
+        public List<int> GetRoomsWithKeys()
+        {
+            return roomWithKey;
+        }
     }
 
     
