@@ -54,7 +54,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            LocationDraw = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+            LocationDraw = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             if (IsAlive())
                 spriteBatch.Draw(Texture, LocationDraw, source, Color.White, rotation, origin, SpriteEffects.None, 0);
         }
@@ -65,9 +65,9 @@ namespace sprint0
             {
                 rotation = defaultAngle - dir.ToRadians();
                 if (dir == Direction.East || dir == Direction.West)
-                    Location = new Rectangle((int)Location.X, (int)Location.Y, (int)(height * Game1.Scale), (int)(width * Game1.Scale));
+                    Location = new Rectangle(Location.X, Location.Y, (int)(height * Game1.Scale), (int)(width * Game1.Scale));
                 else
-                    Location = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                    Location = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
                 Move();
             }
         }

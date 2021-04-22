@@ -85,7 +85,7 @@ namespace sprint0
         public void Update()
         {
             CheckHealth();
-            if (isBig)
+            if (isBig && ! game.Room.FreezeEnemies)
             {
                 if (spikeCounter == spikeDelay)
                 {

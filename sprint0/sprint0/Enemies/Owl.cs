@@ -43,21 +43,14 @@ namespace sprint0
 
         public override void Update()
         {
-            moveCounter++;
-            if (moveCounter == dirChangeDelay) ArbitraryDirection(30, 50);
-            if (damageTimer > 0) damageTimer--;
-            CheckHealth();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            Rectangle loc = Location;
-            loc.Offset(direction.ToVector2());
-            Location = loc;
+            base.Update();
             if (CanShoot()) ShootFireball();
         }
         private bool CanShoot()
         {
             fireballCounter++;
             fireballCounter %= fireballRate;
-            return fireballCounter == 0;
+            return fireballCounter == 0 && !game.Room.FreezeEnemies;
         }
 
         private void ShootFireball()
