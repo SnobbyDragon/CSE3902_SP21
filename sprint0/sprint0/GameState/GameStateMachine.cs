@@ -6,6 +6,8 @@
     {
         private readonly Game1 game;
         public enum State { start, play, pause, test, over, credits, win, changeRoom, options };
+        public enum Mode { easy, hard};
+        private Mode mode;
         private State state;
         private Direction direction;
         private int counter;
@@ -15,6 +17,25 @@
         {
             this.game = game;
             state = State.start;
+        }
+
+        public void HandleEasy() {
+            game.UpdateDifficuluty(Mode.easy);
+            mode = Mode.easy;
+            
+        }
+        public void HandleHard()
+        {
+            game.UpdateDifficuluty(Mode.easy);
+            mode = Mode.hard;
+        }
+        public void SetMode(Mode mode) {
+            this.mode = mode;
+        }
+
+        public Mode GetMode()
+        {
+            return mode;
         }
 
         public void HandleDeath() => state = State.over;
@@ -88,6 +109,7 @@
                 game.levelMachine.SetLevel(GameLevelMachine.Level.Level1);
                 game.RestartGame();
                 state = State.play;
+                game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
             }
         }
 
@@ -99,6 +121,7 @@
                 game.levelMachine.SetLevel(GameLevelMachine.Level.Level2);
                 game.RestartGame();
                 state = State.play;
+                game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
 
             }
 

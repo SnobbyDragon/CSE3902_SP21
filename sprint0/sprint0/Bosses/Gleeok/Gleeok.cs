@@ -37,7 +37,17 @@ namespace sprint0
             sources.Add(new Rectangle(xOffset + width + 1, yOffset, width, height));
             itemSpawner = new ItemSpawner(game.Room.LoadLevel.RoomItems);
         }
-
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.easy && mode == GameStateMachine.Mode.hard)
+            {
+                health *= 2;
+            }
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.hard && mode == GameStateMachine.Mode.easy)
+            {
+                health /= 2;
+            }
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Location, sources[currFrame / repeatedFrames], Color.White);

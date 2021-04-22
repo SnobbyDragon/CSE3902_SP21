@@ -35,7 +35,7 @@ namespace sprint0
         public int RoomIndex { get; set; }
 
         public int NextRoomIndex { get; set; }
-        public int NumRooms { get; } = 22;
+        public int NumRooms { get; set; }
         public readonly GameStateMachine stateMachine;
         private readonly int LinkDefaultX = 250;
         private readonly int LinkDefaultY = 280;
@@ -93,6 +93,8 @@ namespace sprint0
         public void RestartGame()
         {
             Rooms.Clear();
+            NumRooms = levelMachine.GetNumberOfTotalRooms();
+
             ResetElapsedTime();
             VisitedRooms.Clear();
             RoomIndex = levelMachine.GetInitialRoomIndex();
@@ -182,6 +184,11 @@ namespace sprint0
             base.Update(gameTime);
         }
 
+        public void UpdateDifficuluty(GameStateMachine.Mode mode) {
+            foreach (Room room in Rooms.Values) {
+                room.UpdateDifficulty(mode);
+            }
+        }
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);

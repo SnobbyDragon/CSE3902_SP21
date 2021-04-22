@@ -26,6 +26,14 @@ namespace sprint0
             endBehaviorExecuted = false;
         }
 
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
+            foreach (IEnemy enemy in enemies)
+            {
+                enemy.UpdateDifficulty(mode);
+            }
+        }
+
         public void AddEnemy(Vector2 location, EnemyEnum enemy)
         {
             if (enemy == EnemyEnum.Dodongo || enemy == EnemyEnum.Aquamentus)

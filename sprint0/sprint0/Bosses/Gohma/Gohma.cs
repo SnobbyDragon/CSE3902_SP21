@@ -21,7 +21,17 @@ namespace sprint0
         public int Damage { get => 2; }
         public EnemyType Type { get => EnemyType.None; }
         private readonly ItemSpawner itemSpawner;
-
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.easy && mode == GameStateMachine.Mode.hard)
+            {
+                health *= 2;
+            }
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.hard && mode == GameStateMachine.Mode.easy)
+            {
+                health /= 2;
+            }
+        }
         public Gohma(Texture2D texture, Vector2 location, Color color, Game1 game)
         {
             health = 25;

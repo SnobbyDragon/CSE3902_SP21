@@ -13,11 +13,19 @@ namespace sprint0
         private readonly string message1 = "The current room scroll speed:     ";
         
         private readonly string message2 = "Use the left and right arrow keys to adjust";
+        private readonly string message3 = "You are currently in";
+        private readonly string message4 = "mode.";
+        private readonly string message5 = "Press H for easy mode and E for hard mode.";
+        private readonly string easy = " easy ";
+        private readonly string hard = " hard ";
         private List<Text> textList;
         private readonly int xCoord = 25;
         private readonly int yCoord = 100;
         private int yCoord1 = 150;
         private int yCoord2 = 200;
+        private int yCoord3 = 250;
+        private int yCoord4 = 300;
+        private string mode = "";
         private readonly Game1 game;
         private string speed;
         public OptionsScreen(Game1 game)
@@ -28,7 +36,8 @@ namespace sprint0
                 new Text(game, message0, new Vector2(xCoord, yCoord), Color.Black),
                 new Text(game, message1, new Vector2(xCoord, yCoord1), Color.Black),
                 new Text(game, message2 + speed, new Vector2(xCoord, yCoord2), Color.Black),
-
+                new Text(game, message3 + mode + message4, new Vector2(xCoord, yCoord3), Color.Black),
+                new Text(game, message5, new Vector2(xCoord, yCoord4), Color.Black),
             };
         }
 
@@ -43,15 +52,26 @@ namespace sprint0
                 speed += "=";
             }
         }
-    
+
+        private void BuildMode() {
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.easy) {
+                mode = easy;
+            }
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.hard)
+            {
+                mode = hard;
+            }
+        }
     public void Update()
         {
+            BuildMode();
             BuildSpeed();
             textList = new List<Text> {
-                new Text(game, message0, new Vector2(xCoord, yCoord), Color.Black),
-                new Text(game, message2, new Vector2(xCoord, yCoord1), Color.Black),
-                new Text(game, message1 + speed, new Vector2(xCoord, yCoord2), Color.Black),
-
+              new Text(game, message0, new Vector2(xCoord, yCoord), Color.Black),
+                new Text(game, message1, new Vector2(xCoord, yCoord1), Color.Black),
+                new Text(game, message2 + speed, new Vector2(xCoord, yCoord2), Color.Black),
+                new Text(game, message3 + mode + message4, new Vector2(xCoord, yCoord3), Color.Black),
+                new Text(game, message5, new Vector2(xCoord, yCoord4), Color.Black),
             };
         }
 
