@@ -4,16 +4,16 @@
 
     //Author: Jacob Urick
     // Last updated 4/22/2021 by urick.9
-    public class Level4 : AbstractLevel
+    public class Level3 : AbstractLevel
     {
         protected new readonly int numberOfRooms = 6;
-        protected new readonly string levelString = "Level4";
+        protected new readonly string levelString = "Level3";
         protected new int levelNumber = 2;
         protected new int initialRoomIndex = 0;
         protected new int totalNumberOfRooms = 6;
         protected new List<int> roomWithKey = new List<int> { 1,2,3,4,5,6};
 
-        public Level4()
+        public Level3()
         {
 
         }

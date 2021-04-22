@@ -17,10 +17,10 @@ namespace sprint0
                 { 7, new Dictionary<Direction, int> { { Direction.East, 8 }, { Direction.South, 6 } } },
                 { 8, new Dictionary<Direction, int> { { Direction.East, 7 }, { Direction.South, 5 } } },
                 { 9, new Dictionary<Direction, int> { { Direction.North, 4}, { Direction.South, 10 } } },
-                { 10, new Dictionary<Direction, int> { { Direction.North, 9 }, { Direction.West, 11 } } },
-                { 11, new Dictionary<Direction, int> { { Direction.East, 10 }, { Direction.West, 12 } } },
-                { 12, new Dictionary<Direction, int> { { Direction.East, 11 }, { Direction.West, 13 } } },
-                { 13, new Dictionary<Direction, int> { { Direction.East, 12 } } }
+                { 10, new Dictionary<Direction, int> { { Direction.North, 9 }, { Direction.East, 11 } } },
+                { 11, new Dictionary<Direction, int> { { Direction.West, 10 }, { Direction.East, 12 } } },
+                { 12, new Dictionary<Direction, int> { { Direction.West, 11 }, { Direction.East, 13 } } },
+                { 13, new Dictionary<Direction, int> { { Direction.West, 12 } } }
             };
 
         public static int GetAdjacentRoom(int currRoomIndex, Direction side)

@@ -44,7 +44,7 @@
             {
                 level = new Level3();
             }
-            if (state == Level.Level3)
+            if (state == Level.Level4)
             {
                 level = new Level4();
             }
