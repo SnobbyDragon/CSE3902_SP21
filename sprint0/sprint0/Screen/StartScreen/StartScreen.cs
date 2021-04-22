@@ -11,8 +11,8 @@ namespace sprint0
     {
         private readonly string message0 = "Welcome to our take on \"The Legend of Zelda\"";
         private readonly string message1 = "Press C to view the credits!";
-        private readonly string message2 = "Press Space to start the game in play mode!";
-        private readonly string message3 = "Press T to start the game in test mode!(unlimited items, click to change rooms)";
+        private readonly string message2 = "Press 1 to begin with level 1";
+        private readonly string message3 = "Press 2 to begin in level 2";
         private readonly List<Text> textList;
         private readonly int xCoord0 = 150;
         private readonly int yCoord0 = 150;
