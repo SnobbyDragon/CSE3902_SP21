@@ -19,6 +19,16 @@
             state = State.start;
         }
 
+        public void HandleEasy() {
+            game.UpdateDifficuluty(Mode.easy);
+            mode = Mode.easy;
+            
+        }
+        public void HandleHard()
+        {
+            game.UpdateDifficuluty(Mode.easy);
+            mode = Mode.hard;
+        }
         public void SetMode(Mode mode) {
             this.mode = mode;
         }
