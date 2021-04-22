@@ -13,26 +13,29 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, IItem item, Direction side)
         {
-            if (item is Clock)
-                room.FreezeEnemies = true;
-            if (item.PickedUpDuration < 0)
+            if (!link.IsJumping())
             {
-                CheckItemIncrement(item, link);
-                CheckItemAB(item, link);
-                room.RoomSound.AddSoundEffect(SoundEnum.GetItem);
-                if (item.PickedUpDuration == -1)
+                if (item is Clock)
+                    room.FreezeEnemies = true;
+                if (item.PickedUpDuration < 0)
                 {
-                    link.PickUpItem();
-                    if (item is GanonTriforceAshes)
-                        room.LoadLevel.RoomEffect.AddEffect(item.Location.Location.ToVector2(), EffectEnum.GanonAshes);
-                    int itemX = (int)link.Pos.X + linkSize / 2 - item.Location.Width / 2;
-                    int itemY = (int)link.Pos.Y - item.Location.Height;
-                    item.Location = new Rectangle(itemX, itemY, item.Location.Width, item.Location.Height);
-                    item.PickedUpDuration = 0;
-                    room.RoomSound.AddSoundEffect(SoundEnum.NewItem);
+                    CheckItemIncrement(item, link);
+                    CheckItemAB(item, link);
+                    room.RoomSound.AddSoundEffect(SoundEnum.GetItem);
+                    if (item.PickedUpDuration == -1)
+                    {
+                        link.PickUpItem();
+                        if (item is GanonTriforceAshes)
+                            room.LoadLevel.RoomEffect.AddEffect(item.Location.Location.ToVector2(), EffectEnum.GanonAshes);
+                        int itemX = (int)link.Pos.X + linkSize / 2 - item.Location.Width / 2;
+                        int itemY = (int)link.Pos.Y - item.Location.Height;
+                        item.Location = new Rectangle(itemX, itemY, item.Location.Width, item.Location.Height);
+                        item.PickedUpDuration = 0;
+                        room.RoomSound.AddSoundEffect(SoundEnum.NewItem);
+                    }
+                    else
+                        item.PickedUpDuration = pickUpAnimationTime;
                 }
-                else
-                    item.PickedUpDuration = pickUpAnimationTime;
             }
         }
 

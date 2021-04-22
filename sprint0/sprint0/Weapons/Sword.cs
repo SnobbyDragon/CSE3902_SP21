@@ -11,6 +11,7 @@ namespace sprint0
         private readonly int width, height;
         public int Damage { get; }
         private bool hit = false;
+        private readonly int shortSide = 7, longSide = 16;
 
         public Sword(Vector2 location, Direction dir, IPlayer player)
         {
@@ -18,20 +19,19 @@ namespace sprint0
             Damage = player.WeaponDamage;
             if (dir == Direction.North || dir == Direction.South)
             {
-                width = 7;
-                height = 16;
+                width = shortSide;
+                height = longSide;
             }
             else
             {
-                width = 16;
-                height = 7;
+                width = shortSide;
+                height = longSide;
             }
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
         }
 
         public void Draw(SpriteBatch spriteBatch) { }
-        public bool IsAlive()
-            => player.State is UpWoodSwordState || player.State is DownWoodSwordState || player.State is LeftWoodSwordState || player.State is RightWoodSwordState;
+        public bool IsAlive() => player.IsSword();
         public void Update() { }
         public void RegisterHit() => hit = true;
         public bool HitAlready() => hit;

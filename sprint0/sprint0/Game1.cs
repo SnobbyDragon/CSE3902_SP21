@@ -149,7 +149,7 @@ namespace sprint0
         public void Slide(Direction d, int amount)
         {
             amount = System.Math.Abs(amount);
-            Vector2 offset = d.ToVector2() * amount;
+            Vector2 offset = d.OppositeDirection().ToVector2() * amount;
             foreach (Room rm in Rooms.Values) rm.UpdateOffsets(offset);
         }
 

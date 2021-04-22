@@ -35,6 +35,7 @@ namespace sprint0
         public void HandleDown();
         public void HandleLeft();
         public void HandleRight();
+        public void HandleJump();
         public void HandleSword();
         public void HandleRod();
         public void HandleItem();

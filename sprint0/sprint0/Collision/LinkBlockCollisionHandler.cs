@@ -19,15 +19,18 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, IBlock block, Direction side)
         {
-            if (block is SoundBlock block1) block1.MakeSound();
-            if (!block.IsWalkable())
+            if (!link.IsJumping())
             {
-                if (block.IsMovable(side)) HandleMovableBlock(link, block, side);
-                else HandleImmovableBlock(link, block, side);
+                if (block is SoundBlock block1) block1.MakeSound();
+                if (!block.IsWalkable())
+                {
+                    if (block.IsMovable(side)) HandleMovableBlock(link, block, side);
+                    else HandleImmovableBlock(link, block, side);
+                }
+                else if (block is Stairs) HandleStairs(link, block);
+                else if (block is Ladder) HandleLadder(link);
             }
-            else if (block is Stairs) HandleStairs(link, block);
-            else if (block is Ladder) HandleLadder(link);
-            
+
         }
         private void HandleStairs(IPlayer link, IBlock block)
         {
