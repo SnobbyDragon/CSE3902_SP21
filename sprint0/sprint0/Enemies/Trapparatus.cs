@@ -33,7 +33,10 @@ namespace sprint0
             };
             game.Room.LoadLevel.RoomEnemies.RegisterEnemies(traps.Values);
         }
-
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
+            //No body
+        }
         public void Draw(SpriteBatch spriteBatch) { }
 
         public void Update()

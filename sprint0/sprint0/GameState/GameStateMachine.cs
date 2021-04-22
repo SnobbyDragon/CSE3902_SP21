@@ -6,6 +6,8 @@
     {
         private Game1 game;
         public enum State { start, play, pause, test, over, credits, win, changeRoom, options };
+        public enum Mode { easy, hard};
+        private Mode mode;
         private State state;
         private Direction direction;
         private int counter;
@@ -15,6 +17,15 @@
         {
             this.game = game;
             state = State.start;
+        }
+
+        public void SetMode(Mode mode) {
+            this.mode = mode;
+        }
+
+        public Mode GetMode()
+        {
+            return mode;
         }
 
         public void HandleDeath() => state = State.over;

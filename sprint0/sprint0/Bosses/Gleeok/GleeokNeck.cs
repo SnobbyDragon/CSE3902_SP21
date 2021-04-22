@@ -58,7 +58,10 @@ namespace sprint0
             }
             if (neckHealth < 0) Perish();
         }
-
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
+            //no-op
+        }
         public void TakeDamage(int damage) { }
         public bool IsDead() => isDead;
         public void Perish()
