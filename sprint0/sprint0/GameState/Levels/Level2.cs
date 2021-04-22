@@ -7,8 +7,8 @@
         protected new readonly int numberOfRooms = 6;
         protected new readonly string levelString = "Level2";
         protected new int levelNumber = 2;
-        protected new int initialRoomIndex = 1;
-        protected int totalNumberOfRooms = 22;
+        protected new int initialRoomIndex = 0;
+        protected new int totalNumberOfRooms = 6;
 
         public Level2()
         {
