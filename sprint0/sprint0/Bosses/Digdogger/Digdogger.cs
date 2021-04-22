@@ -5,28 +5,28 @@ using Microsoft.Xna.Framework.Graphics;
 
 // Author: Angela Li
 /*
- * Last updated: 3/14/21 by li.10011
+ * Last updated: 04/19/21 by shah.1440
  */
 namespace sprint0
 {
     public class Digdogger : IEnemy
     {
+        private enum Spikes { none, left, right };
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public EnemyType Type { get => EnemyType.None; }
+        public int Damage { get => 2; }
+        public bool IsBig { get => isBig; set => isBig = value; }
         private readonly int bigSize = 32, smallSize = 16, bigTotalFrames, repeatedFrames, smallTotalFrames, moveDelay;
         private readonly List<Rectangle> smallSources;
         private readonly Dictionary<Spikes, List<Rectangle>> dirToBigSource;
+        private readonly Game1 game;
+        private readonly Random rand;
+        private readonly ItemSpawner itemSpawner;
         private int currFrame, spikeDelay, spikeCounter, health, moveCounter;
         private bool isBig;
-        public bool IsBig { get => isBig; set => isBig = value; }
-        private enum Spikes { none, left, right };
         private Spikes currSpikes;
-        private readonly Random rand;
         private Vector2 destination;
-        private readonly Game1 game;
-        public int Damage { get => 2; }
-        private readonly ItemSpawner itemSpawner;
 
         public Digdogger(Texture2D texture, Vector2 location, Game1 game)
         {
@@ -69,7 +69,7 @@ namespace sprint0
             if (isBig)
                 spriteBatch.Draw(Texture, Location, dirToBigSource[currSpikes][currFrame / repeatedFrames], Color.White);
             else
-                spriteBatch.Draw(Texture, Location, smallSources[currFrame / repeatedFrames], Color.White);
+                spriteBatch.Draw(Texture, new Rectangle(Location.X, Location.Y, (int)(smallSize * Game1.Scale), (int)(smallSize * Game1.Scale)), smallSources[currFrame / repeatedFrames], Color.White);
         }
 
         public void Update()

@@ -20,12 +20,12 @@ namespace sprint0
         {
             return spriteType switch
             {
-                NPCEnum.OldMan1 => new OldPerson(texture, location, "man 1"),
-                NPCEnum.OldMan2 => new OldPerson(texture, location, "man 2"),
-                NPCEnum.OldWoman => new OldPerson(texture, location, "woman"),
-                NPCEnum.GreenMerchant => new Merchant(texture, location, "green"),
-                NPCEnum.WhiteMerchant => new Merchant(texture, location, "white"),
-                NPCEnum.RedMerchant => new Merchant(texture, location, "red"),
+                NPCEnum.OldMan1 => new OldPerson(texture, location, spriteType),
+                NPCEnum.OldMan2 => new OldPerson(texture, location, spriteType),
+                NPCEnum.OldWoman => new OldPerson(texture, location, spriteType),
+                NPCEnum.GreenMerchant => new Merchant(texture, location, Color.Green),
+                NPCEnum.WhiteMerchant => new Merchant(texture, location, Color.White),
+                NPCEnum.RedMerchant => new Merchant(texture, location, Color.Red),
                 NPCEnum.Flame => new Flame(texture, location),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };

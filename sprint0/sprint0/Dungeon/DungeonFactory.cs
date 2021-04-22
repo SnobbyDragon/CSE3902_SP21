@@ -2,23 +2,18 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-//Author: Hannah Johnson and co
-
 namespace sprint0
 {
     public enum DungeonEnum
     {
-        RoomFloor, RoomBorder, Darkness,
-        DownWall, RightWall, LeftWall, UpWall,
-        DownOpenDoor, RightOpenDoor, LeftOpenDoor, UpOpenDoor,
-        DownLockedDoor, RightLockedDoor, LeftLockedDoor, UpLockedDoor,
-        DownShutDoor, RightShutDoor, LeftShutDoor, UpShutDoor,
+        RoomFloor, RoomBorder, Darkness, DownWall, RightWall, LeftWall, UpWall, DownOpenDoor, RightOpenDoor, LeftOpenDoor, UpOpenDoor,
+        DownLockedDoor, RightLockedDoor, LeftLockedDoor, UpLockedDoor, DownShutDoor, RightShutDoor, LeftShutDoor, UpShutDoor,
         DownBombedOpening, RightBombedOpening, LeftBombedOpening, UpBombedOpening
     }
 
     public enum BlockEnum
     {
-        Block, Tile, Gap, Water, Floor, Stairs, Ladder, Brick, LeftStatue, RightStatue, MovableBlock, MovableBlock5, MovableBlock20, InvisibleBlock, SoundBlock
+        Block, Tile, Gap, Water, Floor, Stairs, Ladder, Brick, LeftStatue, RightStatue, MovableBlock, MovableBlock5, MovableBlock20, InvisibleBlock, SoundBlock, StepLadder
     }
     public class DungeonFactory
     {
@@ -32,7 +27,6 @@ namespace sprint0
             this.roomIndex = roomIndex;
             texture = game.Content.Load<Texture2D>("Images/DungeonTileset");
         }
-
         public ISprite MakeSprite(DungeonEnum spriteType, Vector2 location, bool canBeBombed = false)
         {
             return spriteType switch
@@ -63,7 +57,6 @@ namespace sprint0
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
-
         public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
         {
             return spriteType switch
@@ -81,10 +74,10 @@ namespace sprint0
                 BlockEnum.MovableBlock => new MovableBlock1(texture, location),
                 BlockEnum.MovableBlock5 => new MovableBlock5(texture, location),
                 BlockEnum.InvisibleBlock => new InvisibleBlock(location, width, height),
+                BlockEnum.StepLadder => new StepLadderBlock(texture, location, game.Room),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
-
         public IBlock MakeBlock(BlockEnum spriteType, Vector2 location,int sound)
         {
             return spriteType switch
@@ -93,7 +86,6 @@ namespace sprint0
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
-
         public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, Direction dir)
         {
             return spriteType switch

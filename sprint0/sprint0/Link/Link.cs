@@ -24,6 +24,7 @@ namespace sprint0
         public int Health { get; set; } = 28;
         public int MaxHealth { get; set; } = 28;
         private int numTimesProtected;
+        public bool CanPlaceLadder { get; set; } = false;
         public Link(Game1 game, Vector2 pos)
         {
             this.game = game;
