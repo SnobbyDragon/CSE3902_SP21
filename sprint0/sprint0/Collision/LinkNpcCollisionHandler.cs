@@ -10,20 +10,23 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, INpc npc, Direction side)
         {
-            switch (side)
+            if (!link.IsJumping())
             {
-                case Direction.North:
-                    link.Pos += new Vector2(0, npc.Location.Bottom - link.Pos.Y);
-                    break;
-                case Direction.South:
-                    link.Pos += new Vector2(0, npc.Location.Top - (link.Pos.Y + linkSize));
-                    break;
-                case Direction.East:
-                    link.Pos += new Vector2(npc.Location.Left - (link.Pos.X + linkSize), 0);
-                    break;
-                case Direction.West:
-                    link.Pos += new Vector2(npc.Location.Right - link.Pos.X, 0);
-                    break;
+                switch (side)
+                {
+                    case Direction.North:
+                        link.Pos += new Vector2(0, npc.Location.Bottom - link.Pos.Y);
+                        break;
+                    case Direction.South:
+                        link.Pos += new Vector2(0, npc.Location.Top - (link.Pos.Y + linkSize));
+                        break;
+                    case Direction.East:
+                        link.Pos += new Vector2(npc.Location.Left - (link.Pos.X + linkSize), 0);
+                        break;
+                    case Direction.West:
+                        link.Pos += new Vector2(npc.Location.Right - link.Pos.X, 0);
+                        break;
+                }
             }
         }
     }

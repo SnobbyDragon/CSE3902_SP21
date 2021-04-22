@@ -9,6 +9,7 @@ namespace sprint0
         public void HandleDown() { }
         public void HandleLeft() { }
         public void HandleRight() { }
+        public void HandleJump() { }
         public void HandleSword(LinkUseItemHelper itemHelper) { }
         public void HandleRod(LinkUseItemHelper itemHelper) { }
         public void UseItem(LinkUseItemHelper itemHelper) { }
