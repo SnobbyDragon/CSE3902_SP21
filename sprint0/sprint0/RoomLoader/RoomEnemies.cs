@@ -101,7 +101,6 @@ namespace sprint0
             Vector2 location = new Vector2(400, 300);
             if (roomWithKey.Contains(game.RoomIndex))
             {
-                throw new NotImplementedException();
                 game.Room.LoadLevel.RoomItems.AddItem(keySpawnLocation, ItemEnum.Key);
             }
             else if (game.RoomIndex == roomWithBoomerang && game.levelMachine.GetLevelNumber() == 1)
