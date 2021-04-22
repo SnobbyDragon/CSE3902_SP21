@@ -9,9 +9,10 @@
 	<Dungeon ObjectName="RightWall" LocationX="0" LocationY="320" />?
 	<Player ObjectName="Link" LocationX="100" LocationY="300" />?
 <Item ObjectName="Arrow" LocationX="440" LocationY="460" />?
-<Item ObjectName="Bow" LocationX="440" LocationY="400" />?
+<Item ObjectName="Bow" LocationX="310" LocationY="400" />?
+	<Boss ObjectName="Digdogger" LocationX="360" LocationY="380" />?
 
-<Item ObjectName="Key" LocationX="440" LocationY="300" />?
-<Enemy ObjectName="Trapparatus" LocationX="301" LocationY="340" />?
+	<Item ObjectName="Boomerang" LocationX="335" LocationY="310" />?
+	<Enemy ObjectName="Trapparatus" LocationX="301" LocationY="340" />?
 
 ?</XnaContent>

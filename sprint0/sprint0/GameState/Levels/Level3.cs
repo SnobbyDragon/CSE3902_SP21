@@ -39,7 +39,10 @@
         {
             return initialRoomIndex;
         }
-
+        public override List<int> GetRoomsWithKeys()
+        {
+            return roomWithKey;
+        }
     }
 
 }

@@ -1,69 +1,30 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<XnaContent>?    
-    <Dungeon ObjectName="RoomBorder" LocationX="0" LocationY="140" />?
-    <Dungeon ObjectName="RoomFloor" LocationX="80" LocationY="220" />?
-    <Dungeon ObjectName="UpOpenDoor" LocationX="280" LocationY="500" />?    
-    <Dungeon ObjectName="DownLockedDoor" LocationX="280" LocationY="140" />?    
-    <Dungeon ObjectName="LeftWall" LocationX="560" LocationY="320" />?    
-    <Dungeon ObjectName="RightWall" LocationX="0" LocationY="320" />?
-    
-	<Block ObjectName="Water" LocationX="120" LocationY="220" />?
-    <Block ObjectName="Water" LocationX="160" LocationY="220" />?
-    <Block ObjectName="Water" LocationX="200" LocationY="220" />?
-    <Block ObjectName="Water" LocationX="240" LocationY="220" />?
-    <Block ObjectName="Water" LocationX="360" LocationY="220" />?
-     <Block ObjectName="Water" LocationX="400" LocationY="220" />?
-    <Block ObjectName="Water" LocationX="440" LocationY="220" />?
-    <Block ObjectName="Water" LocationX="480" LocationY="220" />?
-    <Block ObjectName="Water" LocationX="520" LocationY="220" />?
+<XnaContent>
+	?
 
-    <Block ObjectName="Water" LocationX="80" LocationY="260" />?
-    <Block ObjectName="Water" LocationX="240" LocationY="260" />?
-     <Block ObjectName="Water" LocationX="440" LocationY="260" />?
-      <Block ObjectName="Water" LocationX="520" LocationY="260" />?
+	<Dungeon ObjectName="RoomBorder" LocationX="0" LocationY="140" />?
+	<Dungeon ObjectName="RoomFloor" LocationX="80" LocationY="220" />?
+	<Dungeon ObjectName="UpWall" LocationX="280" LocationY="500" />?
+	<Dungeon ObjectName="DownLockedDoor" LocationX="280" LocationY="140" />?
+	<Dungeon ObjectName="LeftWall" LocationX="560" LocationY="320" />?
+	<Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
 
-      <Block ObjectName="Water" LocationX="80" LocationY="300" />?
-      <Block ObjectName="Water" LocationX="160" LocationY="300" />?
-      <Block ObjectName="Water" LocationX="240" LocationY="300" />?
 
-      <Block ObjectName="Water" LocationX="320" LocationY="300" />?
-    <Block ObjectName="Water" LocationX="360" LocationY="300" />?
-    <Block ObjectName="Water" LocationX="440" LocationY="300" />?
-    <Block ObjectName="Water" LocationX="520" LocationY="300" />?
-    <Block ObjectName="Water" LocationX="160" LocationY="340" />?
-    <Block ObjectName="Water" LocationX="240" LocationY="340" />?
-     <Block ObjectName="Water" LocationX="360" LocationY="340" />?
 
-      <Block ObjectName="Water" LocationX="440" LocationY="340" />?
-       <Block ObjectName="Water" LocationX="80" LocationY="380" />?
-        <Block ObjectName="Water" LocationX="160" LocationY="380" />?
-        <Block ObjectName="Water" LocationX="240" LocationY="380" />?
-    <Block ObjectName="Water" LocationX="280" LocationY="380" />?
-     <Block ObjectName="Water" LocationX="360" LocationY="380" />?
-      <Block ObjectName="Water" LocationX="440" LocationY="380" />?
-      <Block ObjectName="Water" LocationX="520" LocationY="380" />?
-      <Block ObjectName="Water" LocationX="80" LocationY="420" />?
-      <Block ObjectName="Water" LocationX="160" LocationY="420" />?
-      
-    <Block ObjectName="Water" LocationX="360" LocationY="420" />?
-    <Block ObjectName="Water" LocationX="520" LocationY="420" />?
 
-    <Block ObjectName="Water" LocationX="80" LocationY="460" />?
-    <Block ObjectName="Water" LocationX="120" LocationY="460" />?
-    <Block ObjectName="Water" LocationX="160" LocationY="460" />?
-    <Block ObjectName="Water" LocationX="200" LocationY="460" />?
-    <Block ObjectName="Water" LocationX="240" LocationY="460" />?
+	<Block ObjectName="Block" LocationX="480" LocationY="300" />?
+	<Block ObjectName="Block" LocationX="480" LocationY="340" />?
+	<Block ObjectName="Block" LocationX="480" LocationY="380" />?
 
-    <Block ObjectName="Water" LocationX="360" LocationY="460" />?
-    <Block ObjectName="Water" LocationX="400" LocationY="460" />?
-    <Block ObjectName="Water" LocationX="440" LocationY="460" />?
-    <Block ObjectName="Water" LocationX="480" LocationY="460" />?
-    <Block ObjectName="Water" LocationX="520" LocationY="460" />?
-    
-     <Enemy ObjectName="Stalfos" LocationX="120" LocationY="340" />?
-    <Enemy ObjectName="Stalfos" LocationX="320" LocationY="260" />?
-    <Enemy ObjectName="Stalfos" LocationX="320" LocationY="480" />?
+	<Block ObjectName="Block" LocationX="120" LocationY="420" />?
+	<Block ObjectName="Block" LocationX="160" LocationY="420" />?
+	<Block ObjectName="Block" LocationX="200" LocationY="420" />?
+	<Block ObjectName="Block" LocationX="240" LocationY="420" />?
 
-<Player ObjectName="Link" LocationX="310" LocationY="220" />?
+	<Enemy ObjectName="FairyEnemy" LocationX="120" LocationY="340" />?
+	<Enemy ObjectName="FairyEnemy" LocationX="320" LocationY="260" />?
+	<Enemy ObjectName="FairyEnemy" LocationX="320" LocationY="480" />?
 
-?</XnaContent>
+	<Player ObjectName="Link" LocationX="280" LocationY="340" />?
+	?
+</XnaContent>
