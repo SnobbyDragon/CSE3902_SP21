@@ -18,8 +18,8 @@
         private Level levelState;
         public GameLevelMachine()
         {
-            levelState = Level.Level2;
-            level = new Level2();
+            levelState = Level.Level1;
+            level = new Level1();
             numberOfRooms = level.GetNumberOfRooms();
             levelNumber = level.GetLevelNumber();
             levelString = level.GetLevelString();
@@ -39,6 +39,8 @@
             levelString = level.GetLevelString();
             levelNumber = level.GetLevelNumber();
             numberOfRooms = level.GetNumberOfRooms();
+            numberOfTotalRooms = level.GetTotalNumberOfRooms();
+
         }
 
         public string GetLevelString() {

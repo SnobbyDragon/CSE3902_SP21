@@ -99,6 +99,7 @@
                 game.levelMachine.SetLevel(GameLevelMachine.Level.Level1);
                 game.RestartGame();
                 state = State.play;
+                game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
             }
         }
 
@@ -110,6 +111,7 @@
                 game.levelMachine.SetLevel(GameLevelMachine.Level.Level2);
                 game.RestartGame();
                 state = State.play;
+                game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
 
             }
 
