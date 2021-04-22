@@ -5,6 +5,9 @@ namespace sprint0
     {
         private readonly Game1 game;
         public PauseCommand(Game1 game) => this.game = game;
-        public void Execute() => game.stateMachine.HandlePause();
+        public void Execute() {
+            game.stateMachine.HandlePause();
+            game.stateMachine.HandleEasy();
+        } 
     }
 }

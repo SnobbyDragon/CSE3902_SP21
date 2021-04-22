@@ -13,5 +13,6 @@ namespace sprint0
         public void TakeDamage(int damage);
         public void Perish();
         public EnemyEnum ParseEnemy(string enemy);
+        public void UpdateDifficulty(GameStateMachine.Mode mode);
     }
 }

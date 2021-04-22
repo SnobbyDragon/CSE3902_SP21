@@ -9,6 +9,7 @@ namespace sprint0
 
         public void Execute()
         {
+            game.stateMachine.HandleHard();
             if (game.stateMachine.GetState() == GameStateMachine.State.pause)
                 game.universalScreenManager.PauseScreenManager.HandleRight();
         }

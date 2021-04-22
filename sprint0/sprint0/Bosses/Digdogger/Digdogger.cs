@@ -63,7 +63,17 @@ namespace sprint0
             if (rand.Next(0, 2) == 0) currSpikes = Spikes.left;
             else currSpikes = Spikes.right;
         }
-
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.easy && mode == GameStateMachine.Mode.hard)
+            {
+                health *= 2;
+            }
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.hard && mode == GameStateMachine.Mode.easy)
+            {
+                health /= 2;
+            }
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             if (isBig)

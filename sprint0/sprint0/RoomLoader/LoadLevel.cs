@@ -24,6 +24,10 @@ namespace sprint0
         private readonly RoomEffect roomEffect;
         public Dictionary<int,Vector2> locations;
 
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
+            roomEnemies.UpdateDifficulty(mode);
+        }
         public LoadLevel(Game1 game, int roomIndex)
         {
             roomProjectile = new RoomProjectile(game);

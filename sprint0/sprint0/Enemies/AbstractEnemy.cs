@@ -42,8 +42,18 @@ namespace sprint0
                 Location = loc;
             }
         }
-
-        protected void ArbitraryDirection(int low, int high)
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.easy && mode == GameStateMachine.Mode.hard)
+            {
+                health *= 2;
+            }
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.hard && mode == GameStateMachine.Mode.easy)
+            {
+                health /= 2;
+            }
+        }
+            protected void ArbitraryDirection(int low, int high)
         {
             moveCounter = 0;
             direction = (Direction)rand.Next(0, 4);

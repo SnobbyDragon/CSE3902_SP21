@@ -39,7 +39,10 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
             => spriteBatch.Draw(Texture, Location, source, Color.White);
-
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
+            //noOP
+        }
         public void Update()
         {
             CheckHealth();

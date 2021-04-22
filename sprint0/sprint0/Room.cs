@@ -72,6 +72,9 @@ namespace sprint0
             Overlay.UpdateOffset(ofst);
         }
 
+        public void UpdateDifficulty(GameStateMachine.Mode mode) {
+            loadLevel.UpdateDifficulty(mode);
+        }
         public void Update()
         {
             if (!SuspendPlayer) Player.Update();

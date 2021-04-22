@@ -37,7 +37,17 @@ namespace sprint0
             distance = minDistance; // starts close
             expansionCounter = expansionTime = 0;
         }
-
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.easy && mode == GameStateMachine.Mode.hard)
+            {
+                health *= 2;
+            }
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.hard && mode == GameStateMachine.Mode.easy)
+            {
+                health /= 2;
+            }
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             if (damageTimer % 2 == 0)
