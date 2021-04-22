@@ -1,5 +1,7 @@
 ﻿namespace sprint0
 {
+    using System.Collections.Generic;
+
     //Author: Jacob Urick
     // Last updated 4/22/2021 by urick.9
     public class Level3 : AbstractLevel
@@ -9,6 +11,7 @@
         protected new int levelNumber = 2;
         protected new int initialRoomIndex = 0;
         protected new int totalNumberOfRooms = 6;
+        protected new List<int> roomWithKey = new List<int> { 1,2,3,4,5,6};
 
         public Level3()
         {

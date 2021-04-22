@@ -26,6 +26,10 @@
             numberOfTotalRooms = level.GetTotalNumberOfRooms();
         }
 
+
+        public List<int> GetRoomsWithKeys() {
+            return level.GetRoomsWithKeys();
+        }
         public void SetLevel(Level state) {
             this.levelState = state;
             if (state == Level.Level1) {

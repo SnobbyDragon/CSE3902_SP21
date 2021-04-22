@@ -94,6 +94,7 @@ namespace sprint0
 
         private void RoomEndBehavior()
         {
+            game.levelMachine.GetRoomsWithKeys();
             List<int> roomWithKey = new List<int> { 15, 17, 12, 3, 2, 10 };
             int roomWithBoomerang = 7;
             int roomWithMovableBlock = 5;
