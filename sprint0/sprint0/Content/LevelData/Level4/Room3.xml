@@ -1,24 +1,30 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<XnaContent>?    
-    
-    <Dungeon ObjectName="RoomBorder" LocationX="0" LocationY="140" />?
-    <Dungeon ObjectName="RoomFloor" LocationX="80" LocationY="220" />?
-    <Dungeon ObjectName="UpWall" LocationX="280" LocationY="500" />?
-    <Dungeon ObjectName="DownWall" LocationX="280" LocationY="140" />?    
-    <Dungeon ObjectName="LeftOpenDoor" LocationX="560" LocationY="320" />?
-	<Dungeon ObjectName="RightWall" LocationX="0" LocationY="320" />?
-	<Player ObjectName="Link" LocationX="101" LocationY="300" />?
-	<Block ObjectName="Block" LocationX="130" LocationY="260" />?
-	<Block ObjectName="Block" LocationX="160" LocationY="420" />?
-	<Block ObjectName="Block" LocationX="240" LocationY="300" />?
-	<Block ObjectName="Block" LocationX="440" LocationY="260" />?
-	<Block ObjectName="Block" LocationX="440" LocationY="340" />?
-	<Block ObjectName="Block" LocationX="520" LocationY="380" />?
-	<Item ObjectName="Arrow" LocationX="440" LocationY="460" />?
-<Item ObjectName="Bow" LocationX="440" LocationY="400" />?
-	<Item ObjectName="MagicalSword" LocationX="240" LocationY="220" />?
-	<Item ObjectName="BluePotion" LocationX="480" LocationY="220" />?
-	<Item ObjectName="BlueRupee" LocationX="200" LocationY="420" />?
-	<Item ObjectName="Key" LocationX="440" LocationY="300" />?
+<XnaContent>
+	?
 
-?</XnaContent>
+	<Dungeon ObjectName="RoomBorder" LocationX="0" LocationY="140" />?
+	<Dungeon ObjectName="RoomFloor" LocationX="80" LocationY="220" />?
+	<Dungeon ObjectName="UpWall" LocationX="280" LocationY="500" />?
+	<Dungeon ObjectName="DownLockedDoor" LocationX="280" LocationY="140" />?
+	<Dungeon ObjectName="LeftWall" LocationX="560" LocationY="320" />?
+	<Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
+
+
+
+
+	<Block ObjectName="Block" LocationX="480" LocationY="300" />?
+	<Block ObjectName="Block" LocationX="480" LocationY="340" />?
+	<Block ObjectName="Block" LocationX="480" LocationY="380" />?
+
+	<Block ObjectName="Block" LocationX="120" LocationY="420" />?
+	<Block ObjectName="Block" LocationX="160" LocationY="420" />?
+	<Block ObjectName="Block" LocationX="200" LocationY="420" />?
+	<Block ObjectName="Block" LocationX="240" LocationY="420" />?
+
+	<Enemy ObjectName="Stalfos" LocationX="120" LocationY="340" />?
+	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="260" />?
+	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="480" />?
+
+	<Player ObjectName="Link" LocationX="280" LocationY="340" />?
+	?
+</XnaContent>

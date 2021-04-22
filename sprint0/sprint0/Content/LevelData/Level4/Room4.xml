@@ -6,7 +6,7 @@
     <Dungeon ObjectName="UpLockedDoor" LocationX="280" LocationY="500" />?
     <Dungeon ObjectName="DownWall" LocationX="280" LocationY="140" />?    
     <Dungeon ObjectName="LeftOpenDoor" LocationX="560" LocationY="320" />?
-	<Dungeon ObjectName="RightWall" LocationX="0" LocationY="320" />?
+	<Dungeon ObjectName="RighOpenDoorl" LocationX="0" LocationY="320" />?
 	<Player ObjectName="Link" LocationX="101" LocationY="300" />?
 	<Block ObjectName="Block" LocationX="130" LocationY="260" />?
 	<Block ObjectName="Block" LocationX="160" LocationY="420" />?
