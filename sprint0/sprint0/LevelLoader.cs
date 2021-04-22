@@ -13,7 +13,7 @@ namespace sprint0
         private readonly FileStream roomStream;
         private readonly XmlReader roomReaderInvisible;
         private readonly FileStream roomStreamInvisible;
-        private string genericPath = "";
+        private readonly string genericPath = "";
         private readonly string genericPathStart = "../../../Content/LevelData/";
         private readonly string genericPathFinish = "/Room";
         private readonly string xmlExtension = ".xml";
@@ -35,10 +35,9 @@ namespace sprint0
         private readonly NpcsSpriteFactory npcFactory;
         private readonly EffectSpriteFactory effectFactory;
 
-        public LevelLoader(Game1 game, int roomNo, string folderPath = genericPath)
+        public LevelLoader(Game1 game, int roomNo, string @folderPath = "")
         {
-            genericPath = genericPathStart + game.LevelString + genericPathFinish;
-            Offset = offset;
+            genericPath = (folderPath.Equals("") ? genericPathStart : folderPath) + game.LevelString + genericPathFinish;
             path = Path.GetFullPath(@genericPath) + roomNo.ToString() + xmlExtension;
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
