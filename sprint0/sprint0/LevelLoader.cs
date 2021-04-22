@@ -16,7 +16,9 @@ namespace sprint0
         private readonly FileStream roomStream;
         private readonly XmlReader roomReaderInvisible;
         private readonly FileStream roomStreamInvisible;
-        private readonly string genericPath = "../../../Content/LevelData/Room";
+        private string genericPath = "";
+        private readonly string genericPathStart = "../../../Content/LevelData/";
+        private readonly string genericPathFinish = "/Room";
         private readonly string xmlExtension = ".xml";
         private readonly string path;
         private readonly int roomNo;
@@ -38,6 +40,7 @@ namespace sprint0
         private Vector2 Offset;
         public LevelLoader(Game1 game, int roomNo, Vector2 offset)
         {
+            genericPath = genericPathStart + game.LevelString + genericPathFinish;
             Offset = offset;
             path = Path.GetFullPath(@genericPath) + roomNo.ToString() + xmlExtension;
             roomStream = File.OpenRead(path);

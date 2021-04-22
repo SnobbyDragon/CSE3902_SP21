@@ -12,6 +12,8 @@ namespace sprint0
         private List<IController> controllerList;
         public List<int> VisitedRooms;
         public Dictionary<int, Room> Rooms;
+        public readonly GameLevelMachine levelMachine;
+        public string LevelString { get => levelMachine.GetLevelString(); }
         public IPlayer Player { get; set; }
         private static PlayerSpriteFactory playerFactory;
         public static PlayerSpriteFactory PlayerFactory { get => playerFactory; }
@@ -48,6 +50,7 @@ namespace sprint0
         private Vector2 zeroVector = new Vector2(0, 0);
         public Game1()
         {
+            levelMachine = new GameLevelMachine();
             stateMachine = new GameStateMachine(this);
             _graphics = new GraphicsDeviceManager(this)
             {
@@ -76,7 +79,7 @@ namespace sprint0
             VisitedRooms = new List<int>();
             ScrollSpeed = (scrollSpeedLbound + scrollSpeedUbound)/2;
             Rooms = new Dictionary<int, Room>();
-            RoomIndex = 18;
+            RoomIndex = levelMachine.GetInitialRoomIndex();
 
             base.Initialize();
         }
@@ -93,7 +96,7 @@ namespace sprint0
             Rooms.Clear();
             ResetElapsedTime();
             VisitedRooms.Clear();
-            RoomIndex = 18;
+            RoomIndex = levelMachine.GetInitialRoomIndex();
             InitializeManagers();
             LoadContent();
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
@@ -107,13 +110,13 @@ namespace sprint0
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
 
             List<int> frontier = new List<int> { RoomIndex };
-            while (Rooms.Count < 20)
+            while (Rooms.Count < levelMachine.GetNumberOfRooms())
             {
                 List<int> newFrontier = new List<int>();
                 foreach (int roomIndex in frontier)
                 {
                     Dictionary<Direction, int> adjacentRooms = new Dictionary<Direction, int>();
-                    adjacentRooms = AdjacentRooms.ListOfAdjacentRooms(roomIndex);
+                    adjacentRooms = levelMachine.GetAdjacentRooms(roomIndex);
                     foreach (Direction d in adjacentRooms.Keys)
                     {
                         int idx = adjacentRooms[d];
@@ -129,7 +132,9 @@ namespace sprint0
                 }
                 frontier = newFrontier;
             }
-            Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[1].Offset + eastOffset);
+            if (levelMachine.GetLevelNumber() == 1) {
+                Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[1].Offset + eastOffset);
+            }
             foreach (Room rm in Rooms.Values)
                 rm.LoadContent();
         }

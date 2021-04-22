@@ -17,7 +17,7 @@ namespace sprint0
                 if (borderFilling.Location.Intersects(new Rectangle((int)link.Pos.X, (int)link.Pos.Y, linkSize, linkSize)))
                 {
                     Direction borderSide = borderFilling.BorderFilling.Side;
-                    int newRoom = AdjacentRooms.GetAdjacentRoom(game.RoomIndex, borderSide);
+                    int newRoom = game.levelMachine.GetAdjacentRoom(game.RoomIndex, borderSide);
                     game.stateMachine.HandleNewRoom(borderSide, newRoom);
                     switch (borderSide)
                     {

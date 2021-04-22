@@ -6,6 +6,7 @@
 
         public void HandleCollision(IPlayer link, ISprite border, Direction side, Game1 game)
         {
+           
             if (border is ShutDoor shutDoor)
             {
                 bool openedByBlock = false;
@@ -17,7 +18,7 @@
                 {
                     lockedDoor.OpenDoor();
                     link.DecrementKey();
-                    foreach (ISprite sprite in game.Rooms[AdjacentRooms.GetAdjacentRoom(game.RoomIndex, side)].LoadLevel.RoomSprite.RoomSprites)
+                    foreach (ISprite sprite in game.Rooms[game.levelMachine.GetAdjacentRoom(game.RoomIndex, side)].LoadLevel.RoomSprite.RoomSprites)
                         if (sprite is LockedDoor door && door.Side == DirectionMethods.OppositeDirection(side))
                             door.OpenDoor();
                 }
