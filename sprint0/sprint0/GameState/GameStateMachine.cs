@@ -105,9 +105,6 @@
         }
         public void HandleSnapRoomChange(int dest)
         {
-            if (game.levelMachine.GetLevelNumber() != 1 && dest == 0) {
-                dest = game.NumRooms - 1;
-            }
             state = State.test;
             game.RoomIndex = dest;
             if (game.Rooms[dest].Offset.X > 0)
