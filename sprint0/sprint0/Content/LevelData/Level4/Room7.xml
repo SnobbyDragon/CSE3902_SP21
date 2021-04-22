@@ -20,6 +20,7 @@
 	<Block ObjectName="Block" LocationX="160" LocationY="420" />?
 	<Block ObjectName="Block" LocationX="200" LocationY="420" />?
 	<Block ObjectName="Block" LocationX="240" LocationY="420" />?
+	<Item ObjectName="Bow" LocationX="335" LocationY="310" />?
 
 	<Enemy ObjectName="Stalfos" LocationX="120" LocationY="340" />?
 	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="260" />?

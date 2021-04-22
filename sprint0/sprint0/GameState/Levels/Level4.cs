@@ -11,7 +11,7 @@
         protected new int levelNumber = 2;
         protected new int initialRoomIndex = 13;
         protected new int totalNumberOfRooms = 14;
-        protected new List<int> roomWithKey = new List<int> { 1,2,3,4,5,6};
+        protected new List<int> roomWithKey = new List<int> {3,4,5,6,7,8,9,10,11,12,13};
 
         public Level4()
         {
@@ -39,7 +39,10 @@
         {
             return initialRoomIndex;
         }
-
+        public override List<int> GetRoomsWithKeys()
+        {
+            return roomWithKey;
+        }
     }
 
 }

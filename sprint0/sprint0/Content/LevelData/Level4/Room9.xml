@@ -24,6 +24,9 @@
 	<Enemy ObjectName="Stalfos" LocationX="120" LocationY="340" />?
 	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="260" />?
 	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="480" />?
+	<Item ObjectName="Boomerang" LocationX="335" LocationY="310" />?
+	<Boss ObjectName="Gleeok" LocationX="280" LocationY="275" />?
+	<Boss ObjectName="Gleeok" LocationX="100" LocationY="275" />?
 
 	<Player ObjectName="Link" LocationX="280" LocationY="340" />?
 	?

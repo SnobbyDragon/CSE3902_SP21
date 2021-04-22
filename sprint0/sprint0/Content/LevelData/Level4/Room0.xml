@@ -14,11 +14,10 @@
 	<Block ObjectName="Block" LocationX="440" LocationY="260" />?
 	<Block ObjectName="Block" LocationX="440" LocationY="340" />?
 	<Block ObjectName="Block" LocationX="520" LocationY="380" />?
-	<Item ObjectName="Arrow" LocationX="440" LocationY="460" />?
-<Item ObjectName="Bow" LocationX="440" LocationY="400" />?
 	<Item ObjectName="MagicalSword" LocationX="240" LocationY="220" />?
 	<Item ObjectName="BluePotion" LocationX="480" LocationY="220" />?
 	<Item ObjectName="BlueRupee" LocationX="200" LocationY="420" />?
-	<Item ObjectName="Key" LocationX="440" LocationY="300" />?
 
-?</XnaContent>
+	<Boss ObjectName="Ganon" LocationX="360" LocationY="380" />?
+
+	?</XnaContent>

@@ -6,8 +6,8 @@
 	<Dungeon ObjectName="RoomFloor" LocationX="80" LocationY="220" />?
 	<Dungeon ObjectName="UpWall" LocationX="280" LocationY="500" />?
 	<Dungeon ObjectName="DownWall" LocationX="280" LocationY="140" />?
-	<Dungeon ObjectName="LeftOpenDoor" LocationX="560" LocationY="320" />?
-	<Dungeon ObjectName="RightWall" LocationX="0" LocationY="320" />?
+	<Dungeon ObjectName="LeftWall" LocationX="560" LocationY="320" />?
+	<Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
 
 
 

@@ -21,9 +21,9 @@
 	<Block ObjectName="Block" LocationX="200" LocationY="420" />?
 	<Block ObjectName="Block" LocationX="240" LocationY="420" />?
 
-	<Enemy ObjectName="Stalfos" LocationX="120" LocationY="340" />?
-	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="260" />?
-	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="480" />?
+	<Enemy ObjectName="FairyEnemy" LocationX="120" LocationY="340" />?
+	<Enemy ObjectName="FairyEnemy" LocationX="320" LocationY="260" />?
+	<Enemy ObjectName="FairyEnemy" LocationX="320" LocationY="480" />?
 
 	<Player ObjectName="Link" LocationX="280" LocationY="340" />?
 	?
