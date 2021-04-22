@@ -10,11 +10,15 @@ namespace sprint0
         protected string levelString = "Level1";
         protected int levelNumber = 1;
         protected int initialRoomIndex = 18;
+        protected int totalNumberOfRooms = 22;
+
         public abstract string GetLevelString();
         public abstract int GetNumberOfRooms();
 
         public abstract int GetLevelNumber();
         public abstract int GetInitialRoomIndex();
+
+        public abstract int GetTotalNumberOfRooms();
     }
 
     

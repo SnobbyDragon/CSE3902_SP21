@@ -51,6 +51,7 @@ namespace sprint0
         public Game1()
         {
             levelMachine = new GameLevelMachine();
+            NumRooms = levelMachine.GetNumberOfTotalRooms();
             stateMachine = new GameStateMachine(this);
             _graphics = new GraphicsDeviceManager(this)
             {

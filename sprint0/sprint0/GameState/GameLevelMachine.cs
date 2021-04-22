@@ -9,8 +9,7 @@
     // Last updated 4/22/2021 by urick.9
     public class GameLevelMachine
     {
-        private readonly Level1 level1;
-        private readonly Level2 level2;
+        private int numberOfTotalRooms;
         private string levelString;
         private int levelNumber;
         private int numberOfRooms;
@@ -24,6 +23,7 @@
             numberOfRooms = level.GetNumberOfRooms();
             levelNumber = level.GetLevelNumber();
             levelString = level.GetLevelString();
+            numberOfTotalRooms = level.GetTotalNumberOfRooms();
         }
 
         public void SetLevel(Level state) {
@@ -52,6 +52,10 @@
         public int GetLevelNumber()
         {
             return levelNumber;
+        }
+        public int GetNumberOfTotalRooms()
+        {
+            return numberOfTotalRooms;
         }
 
         public int GetInitialRoomIndex() {
