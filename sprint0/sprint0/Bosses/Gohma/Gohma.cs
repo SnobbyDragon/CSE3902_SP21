@@ -94,18 +94,21 @@ namespace sprint0
         {
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
-            Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
-            if (dist.Length() == 0) currDest = (currDest + 1) % destinations.Count;
-            else if (legCurrFrame % moveDelay == 0)
+            if (!game.Room.FreezeEnemies)
             {
-                dist.Normalize();
-                Rectangle loc = Location;
-                loc.Offset(dist.ApproxDirection().ToVector2());
-                Location = loc;
+                Vector2 dist = destinations[currDest] - Location.Location.ToVector2();
+                if (dist.Length() == 0) currDest = (currDest + 1) % destinations.Count;
+                else if (legCurrFrame % moveDelay == 0)
+                {
+                    dist.Normalize();
+                    Rectangle loc = Location;
+                    loc.Offset(dist.ApproxDirection().ToVector2());
+                    Location = loc;
+                }
+                headCurrFrame = (headCurrFrame + 1) % (headTotalFrames * headRepeatedFrames);
+                legCurrFrame = (legCurrFrame + 1) % (legTotalFrames * legRepeatedFrames);
+                if (CanShoot()) ShootFireball();
             }
-            headCurrFrame = (headCurrFrame + 1) % (headTotalFrames * headRepeatedFrames);
-            legCurrFrame = (legCurrFrame + 1) % (legTotalFrames * legRepeatedFrames);
-            if (CanShoot()) ShootFireball();
         }
 
         public void ChangeDirection() { }

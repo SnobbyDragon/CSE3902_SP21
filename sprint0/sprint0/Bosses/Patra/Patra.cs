@@ -73,19 +73,21 @@ namespace sprint0
                 game.Room.LoadLevel.RoomEnemies.RegisterEnemies(minions);
                 minionsExist = true;
             }
-
-            Vector2 dist = destination - Location.Location.ToVector2();
-            if (dist.Length() < 5) GenerateDest();
-            else if (moveCounter == moveDelay)
+            if (!game.Room.FreezeEnemies)
             {
-                dist.Normalize();
-                Rectangle loc = Location;
-                loc.Offset(dist.ApproxDirection().ToVector2());
-                Location = loc;
-                moveCounter = 0;
+                Vector2 dist = destination - Location.Location.ToVector2();
+                if (dist.Length() < 5) GenerateDest();
+                else if (moveCounter == moveDelay)
+                {
+                    dist.Normalize();
+                    Rectangle loc = Location;
+                    loc.Offset(dist.ApproxDirection().ToVector2());
+                    Location = loc;
+                    moveCounter = 0;
+                }
+                moveCounter++;
+                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             }
-            moveCounter++;
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
             if (damageTimer > 0) damageTimer--;
         }
 

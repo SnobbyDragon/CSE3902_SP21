@@ -11,19 +11,19 @@ namespace sprint0
         private readonly int speed = 2;
         private readonly LinkUseItemHelper itemHelper;
         private readonly HUDManager HUD;
-        private Dictionary<PlayerItems, int> weaponDamages = new Dictionary<PlayerItems, int> {
+        private readonly Dictionary<PlayerItems, int> weaponDamages = new Dictionary<PlayerItems, int> {
             { PlayerItems.None, 2 }, { PlayerItems.Sword, 2 }, { PlayerItems.WhiteSword, 4 }, { PlayerItems.MagicalSword, 8 }
         };
         public List<int> ItemCounts { get; } = new List<int> { -1, -1, 1 };
         public Vector2 Pos { get => position; set => position = value; }
         public IPlayerState State { get; set; }
         public Direction Direction { get; set; } = Direction.North;
-        public PlayerItems CurrentItem { get; set; }
+        public PlayerItems CurrentItem { get; set; } = PlayerItems.None;
         public PlayerItems CurrentSword { get => HUD.CurrentAItem;}
         public int WeaponDamage { get => weaponDamages[CurrentSword]; }
         public int Health { get; set; } = 28;
         public int MaxHealth { get; set; } = 28;
-        private int numTimesProtected;
+        private int numTimesProtected = 0;
         public bool CanPlaceLadder { get; set; } = false;
         public Link(Game1 game, Vector2 pos)
         {
@@ -32,8 +32,6 @@ namespace sprint0
             State = new UpIdleState(this);
             HUD = this.game.hudManager;
             itemHelper = new LinkUseItemHelper(game, this, HUD);
-            CurrentItem = PlayerItems.None;
-            numTimesProtected = 0;
         }
         public void Move(int x, int y) => position += new Vector2(speed * x, speed * y);
         public void TakeDamage(Direction direction, int damage)

@@ -54,7 +54,7 @@ namespace sprint0
             }
             Vector2 dist = destination - Location.Location.ToVector2();
             if (dist.Length() < 5) GenerateDest();
-            else
+            else if(!game.Room.FreezeEnemies)
             {
                 dist.Normalize();
                 Rectangle loc = Location;

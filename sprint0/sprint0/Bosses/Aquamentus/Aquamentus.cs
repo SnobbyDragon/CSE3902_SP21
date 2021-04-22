@@ -44,10 +44,13 @@ namespace sprint0
         public override void Update()
         {
             CheckHealth();
-            if (CanChangeDirection()) ChangeDirection();
-            Move();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            fireballBehaviour.Update();
+            if (!game.Room.FreezeEnemies)
+            {
+                if (CanChangeDirection()) ChangeDirection();
+                Move();
+                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
+                fireballBehaviour.Update();
+            }
             if (damageTimer > 0) damageTimer--;
         }
 
