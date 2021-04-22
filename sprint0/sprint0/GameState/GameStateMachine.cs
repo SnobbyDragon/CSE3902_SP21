@@ -4,7 +4,7 @@
     // Last updated 3/28/2021 by urick.9
     public class GameStateMachine
     {
-        private Game1 game;
+        private readonly Game1 game;
         public enum State { start, play, pause, test, over, credits, win, changeRoom, options };
         private State state;
         private Direction direction;

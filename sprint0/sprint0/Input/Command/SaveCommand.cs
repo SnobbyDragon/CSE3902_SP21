@@ -3,13 +3,10 @@ namespace sprint0
 {
     public class SaveCommand : ICommand
     {
-        public SaveCommand()
-        {
-        }
+        private readonly Game1 game;
 
-        public void Execute()
-        {
-            throw new NotImplementedException();
-        }
+        public SaveCommand(Game1 game) => this.game = game;
+
+        public void Execute() => game.stateMachine.HandleCredits();
     }
 }
