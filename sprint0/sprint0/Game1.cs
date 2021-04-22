@@ -184,10 +184,9 @@ namespace sprint0
             base.Update(gameTime);
         }
 
-        public void UpdateDifficuluty(GameStateMachine.Mode mode) {
-            foreach (Room room in Rooms.Values) {
+        public void UpdateDifficulty(GameStateMachine.Mode mode) {
+            foreach (Room room in Rooms.Values)
                 room.UpdateDifficulty(mode);
-            }
         }
         protected override void Draw(GameTime gameTime)
         {

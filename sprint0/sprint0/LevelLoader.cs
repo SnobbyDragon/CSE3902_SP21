@@ -35,9 +35,9 @@ namespace sprint0
         private readonly NpcsSpriteFactory npcFactory;
         private readonly EffectSpriteFactory effectFactory;
 
-        public LevelLoader(Game1 game, int roomNo, string @folderPath = "")
+        public LevelLoader(Game1 game, int roomNo, bool loadSaved = false)
         {
-            genericPath = (folderPath.Equals("") ? genericPathStart : folderPath) + game.LevelString + genericPathFinish;
+            genericPath = (loadSaved ? LevelSaver.SavedGamePath : genericPathStart) + game.LevelString + genericPathFinish;
             path = Path.GetFullPath(@genericPath) + roomNo.ToString() + xmlExtension;
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);

@@ -6,7 +6,7 @@
     {
         private readonly Game1 game;
         public enum State { start, play, pause, test, over, credits, win, changeRoom, options };
-        public enum Mode { easy, hard};
+        public enum Mode { easy, hard };
         private Mode mode;
         private State state;
         private Direction direction;
@@ -20,13 +20,13 @@
         }
 
         public void HandleEasy() {
-            game.UpdateDifficuluty(Mode.easy);
+            game.UpdateDifficulty(Mode.easy);
             mode = Mode.easy;
             
         }
         public void HandleHard()
         {
-            game.UpdateDifficuluty(Mode.easy);
+            game.UpdateDifficulty(Mode.easy);
             mode = Mode.hard;
         }
         public void SetMode(Mode mode) {
