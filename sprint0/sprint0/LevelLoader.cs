@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Xml;
-using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
-//Updated: 04/04/21 by Stuti Shah
+//Updated: 04/22/21 by li.10011
 namespace sprint0
 {
     public class LevelLoader
@@ -16,7 +13,7 @@ namespace sprint0
         private readonly FileStream roomStream;
         private readonly XmlReader roomReaderInvisible;
         private readonly FileStream roomStreamInvisible;
-        private readonly string genericPath = "../../../Content/LevelData/Room";
+        private const string genericPath = "../../../Content/LevelData/Room";
         private readonly string xmlExtension = ".xml";
         private readonly string path;
         private readonly int roomNo;
@@ -27,7 +24,7 @@ namespace sprint0
         private readonly List<INpc> npcs;
         private readonly List<IItem> items;
         private readonly List<IEffect> effects;
-        private Dictionary<int, Vector2> locations = new Dictionary<int, Vector2>();
+        private readonly Dictionary<int, Vector2> locations;
 
         private readonly Game1 game;
         private readonly ItemsSpriteFactory itemFactory;
@@ -35,11 +32,10 @@ namespace sprint0
         private readonly BossesSpriteFactory bossFactory;
         private readonly NpcsSpriteFactory npcFactory;
         private readonly EffectSpriteFactory effectFactory;
-        private Vector2 Offset;
-        public LevelLoader(Game1 game, int roomNo, Vector2 offset)
+
+        public LevelLoader(Game1 game, int roomNo, string folderPath = genericPath)
         {
-            Offset = offset;
-            path = Path.GetFullPath(@genericPath) + roomNo.ToString() + xmlExtension;
+            path = Path.GetFullPath(folderPath) + roomNo.ToString() + xmlExtension;
             roomStream = File.OpenRead(path);
             roomReader = XmlReader.Create(roomStream);
             this.roomNo = roomNo;
@@ -50,6 +46,7 @@ namespace sprint0
             npcs = new List<INpc>();
             items = new List<IItem>();
             effects = new List<IEffect>();
+            locations = new Dictionary<int, Vector2>();
             this.game = game;
             roomStreamInvisible = File.OpenRead(Path.GetFullPath(@genericPath + "Invisible" + xmlExtension));
             roomReaderInvisible = XmlReader.Create(roomStreamInvisible);

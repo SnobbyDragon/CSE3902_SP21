@@ -56,7 +56,7 @@ namespace sprint0
             collisionHandler = new AllCollisionHandler(this);
             roomSound = new RoomSound(Game);
             loadLevel = new LoadLevel(Game, RoomIndex);
-            loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex, offset).LoadLevel());
+            loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex).LoadLevel());
             loadLevel.UpdateOffsets(offset);
             Overlay.UpdateOffset(offset);
 
