@@ -65,18 +65,9 @@ namespace sprint0
 
         public override void Update()
         {
-            if (damageTimer > 0) damageTimer--;
-            CheckHealth();
+            base.Update();
             if (!game.Room.FreezeEnemies)
             {
-                moveCounter++;
-                if (moveCounter == dirChangeDelay) ArbitraryDirection(30, 50);
-                currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-
-                Rectangle loc = Location;
-                loc.Offset(direction.ToVector2());
-                Location = loc;
-
                 if (throwCounter == throwMax)
                 {
                     throwCounter = 0;

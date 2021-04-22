@@ -80,37 +80,39 @@ namespace sprint0
 
         public override void Update()
         {
-            moveCounter++;
-            if (moveCounter == dirChangeDelay) ChangeDirection();
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
-
-            if (eatingCounter == 0)
+            if (!game.Room.FreezeEnemies)
             {
-                if (direction == Direction.West)
+                moveCounter++;
+                if (moveCounter == dirChangeDelay) ChangeDirection();
+                if (eatingCounter == 0)
                 {
-                    currentSpriteEffect = repeatedFrames + 1;
-                    currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
-                    Location = new Rectangle(Location.X - 1, Location.Y, scaledWidth, scaledSideLength);
-                }
-                else if (direction == Direction.East)
-                {
-                    currentSpriteEffect = 0;
-                    currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
-                    Location = new Rectangle(Location.X + 1, Location.Y, scaledWidth, scaledSideLength);
-                }
-                else if (direction == Direction.South)
-                {
-                    currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
-                    Location = new Rectangle(Location.X, Location.Y + 1, scaledSideLength, scaledSideLength);
-                }
-                else
-                {
-                    currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
-                    Location = new Rectangle(Location.X, Location.Y - 1, scaledSideLength, scaledSideLength);
+                    if (direction == Direction.West)
+                    {
+                        currentSpriteEffect = repeatedFrames + 1;
+                        currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
+                        Location = new Rectangle(Location.X - 1, Location.Y, scaledWidth, scaledSideLength);
+                    }
+                    else if (direction == Direction.East)
+                    {
+                        currentSpriteEffect = 0;
+                        currentFrameRL = (currentFrameRL + 1) % ((totalFramesRL - 1) * repeatedFrames);
+                        Location = new Rectangle(Location.X + 1, Location.Y, scaledWidth, scaledSideLength);
+                    }
+                    else if (direction == Direction.South)
+                    {
+                        currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
+                        Location = new Rectangle(Location.X, Location.Y + 1, scaledSideLength, scaledSideLength);
+                    }
+                    else
+                    {
+                        currentSpriteEffect = (currentSpriteEffect + 1) % (totalSpriteEffects * repeatedFrames);
+                        Location = new Rectangle(Location.X, Location.Y - 1, scaledSideLength, scaledSideLength);
+                    }
                 }
             }
-            else
+            if (eatingCounter > 0)
             {
                 eatingCounter = (eatingCounter + 1) % eatingTime;
                 if (eatingCounter == 0)
@@ -119,6 +121,7 @@ namespace sprint0
                     FaceDirection(direction);
                 }
             }
+            
         }
 
         public void EatBomb()

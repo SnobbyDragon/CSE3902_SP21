@@ -70,7 +70,7 @@ namespace sprint0
                 };
                 neckExists = true;
             }
-            else
+            else if (!game.Room.FreezeEnemies)
             {
                 foreach (IEnemy sprite in necks)
                     sprite.Update();

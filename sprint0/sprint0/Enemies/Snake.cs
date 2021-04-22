@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
-//Author: Hannah Johnson
 
 namespace sprint0
 {
@@ -37,32 +34,9 @@ namespace sprint0
 
         public override void Update()
         {
-
-            moveCounter++;
-            if (moveCounter == dirChangeDelay)
-            {
-                ArbitraryDirection(200, 3300);
-            }
-            if (damageTimer > 0) damageTimer--;
-            CheckHealth();
-            currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-            if (direction == Direction.West)
-            {
-                spriteEffect = SpriteEffects.FlipHorizontally;
-                Location = new Rectangle(Location.X - 1, Location.Y, Location.Width, Location.Height);
-            }
-            else if (direction == Direction.East)
-            {
-                spriteEffect = SpriteEffects.None;
-                Location = new Rectangle(Location.X + 1, Location.Y, Location.Width, Location.Height);
-            }
-            else if (direction == Direction.South)
-                Location = new Rectangle(Location.X, Location.Y + 1, Location.Width, Location.Height);
-            else
-            {
-                Location = new Rectangle(Location.X, Location.Y - 1, Location.Width, Location.Height);
-                if (Location.Y <= (Game1.HUDHeight + 50) * Game1.Scale) direction = Direction.West;
-            }
+            base.Update();
+            if (direction == Direction.West) spriteEffect = SpriteEffects.FlipHorizontally;
+            else if (direction == Direction.East) spriteEffect = SpriteEffects.None;
 
         }
     }

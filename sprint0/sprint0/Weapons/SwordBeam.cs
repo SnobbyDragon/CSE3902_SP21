@@ -74,7 +74,7 @@ namespace sprint0
         {
             if (IsAlive())
             {
-                Rectangle destination = new Rectangle((int)Location.X, (int)Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                Rectangle destination = new Rectangle(Location.X, Location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
                 spriteBatch.Draw(texture, destination, sources[currFrame / repeatedFrames], Color.White, 0, new Vector2(0, 0), spriteEffects[(int)dir], 0);
             }
         }
