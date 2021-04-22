@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<XnaContent>?    
+    <Dungeon ObjectName="RoomBorder" LocationX="0" LocationY="140" />?
+    <Dungeon ObjectName="RoomFloor" LocationX="80" LocationY="220" />?
+
+      <Dungeon ObjectName="UpWall" LocationX="280" LocationY="500" />?    
+    <Dungeon ObjectName="DownWall" LocationX="280" LocationY="140" />?    
+    <Dungeon ObjectName="LeftOpenDoor" LocationX="560" LocationY="320" />?    
+    <Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
+
+	
+    <Enemy ObjectName="Owl" LocationX="440" LocationY="300" />?
+
+      <Block ObjectName="SoundBlock" LocationX="160" LocationY="260" Sound="1" />?
+    <Block ObjectName="SoundBlock" LocationX="160" LocationY="300" Sound="2" />?
+     <Block ObjectName="SoundBlock" LocationX="160" LocationY="340" Sound="2" />?
+     <Block ObjectName="SoundBlock" LocationX="160" LocationY="380" Sound="3" />?
+     <Block ObjectName="SoundBlock" LocationX="160" LocationY="420" Sound="6" />?
+      <Block ObjectName="SoundBlock" LocationX="160" LocationY="460" Sound="4" />?
+
+       <Item ObjectName="Fairy" LocationX="520" LocationY="460" />?
+        <Item ObjectName="Fairy" LocationX="520" LocationY="260" />?
+    
+    <Player ObjectName="Link" LocationX="82" LocationY="340" />?
+
+?</XnaContent>
