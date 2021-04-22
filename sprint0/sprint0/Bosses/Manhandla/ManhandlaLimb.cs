@@ -83,13 +83,16 @@ namespace sprint0
         {
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
-            Location = new Rectangle(
-                center.Location.X + (int)(size * dir.ToVector2().X * Game1.Scale),
-                center.Location.Y + (int)(size * dir.ToVector2().Y * Game1.Scale),
-                (int)(size * Game1.Scale),
-                (int)(size * Game1.Scale));
-            if (CanShoot()) ShootFireball();
+            if (!game.Room.FreezeEnemies)
+            {
+                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames);
+                Location = new Rectangle(
+                    center.Location.X + (int)(size * dir.ToVector2().X * Game1.Scale),
+                    center.Location.Y + (int)(size * dir.ToVector2().Y * Game1.Scale),
+                    (int)(size * Game1.Scale),
+                    (int)(size * Game1.Scale));
+                if (CanShoot()) ShootFireball();
+            }
         }
 
         public void ChangeDirection() { }
@@ -113,7 +116,7 @@ namespace sprint0
         {
             fireballCounter++;
             fireballCounter %= fireballRate;
-            return fireballCounter == 0;
+            return fireballCounter == 0 && !game.Room.FreezeEnemies;
         }
 
         public void IncreaseFireballRate()
