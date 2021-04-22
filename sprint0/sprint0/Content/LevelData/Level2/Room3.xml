@@ -9,12 +9,12 @@
 	<Dungeon ObjectName="LeftLockedDoor" LocationX="560" LocationY="320" />?
 	<Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
 
-	
 
-	<Boss ObjectName="Dodongo" LocationX="250" LocationY="340" />?
-	<Boss ObjectName="Dodongo" LocationX="200" LocationY="340" />?
-	<Boss ObjectName="Dodongo" LocationX="200" LocationY="300" />?
-	<Boss ObjectName="Dodongo" LocationX="250" LocationY="300" />?
+
+	<Boss ObjectName="Patra" LocationX="250" LocationY="340" />?
+	<Boss ObjectName="Patra" LocationX="200" LocationY="340" />?
+	<Boss ObjectName="Patra" LocationX="200" LocationY="300" />?
+	<Boss ObjectName="Patra" LocationX="250" LocationY="300" />?
 	<Enemy ObjectName="Stalfos" LocationX="120" LocationY="340" />?
 	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="260" />?
 	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="480" />?

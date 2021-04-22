@@ -91,7 +91,7 @@ namespace sprint0
             if (!SuspendPlayer)
                 Player.Draw(_spriteBatch);
             overlay.Draw(_spriteBatch);
-            if (RoomIndex == 4 && Game.stateMachine.GetState()!= GameStateMachine.State.changeRoom)
+            if (RoomIndex == 4 && Game.stateMachine.GetState()!= GameStateMachine.State.changeRoom && Game.levelMachine.GetLevelNumber() == 1)
                 text.Draw(_spriteBatch);
         }
     }

@@ -9,7 +9,7 @@ namespace sprint0
             if (weapon is Bomb bomb && border is Wall wall && bomb.Exploding && wall.CanBeBombed)
             {
                 wall.BombWall();
-                foreach (ISprite sprite in game.Rooms[AdjacentRooms.GetAdjacentRoom(game.RoomIndex, side)].LoadLevel.RoomSprite.RoomSprites)
+                foreach (ISprite sprite in game.Rooms[game.levelMachine.GetAdjacentRoom(game.RoomIndex, side)].LoadLevel.RoomSprite.RoomSprites)
                     if (sprite is Wall adjWall && adjWall.Side == DirectionMethods.OppositeDirection(side))
                         adjWall.BombWall();
             }

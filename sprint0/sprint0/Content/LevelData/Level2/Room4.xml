@@ -20,5 +20,4 @@
 	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="480" />?
 
 	<Player ObjectName="Link" LocationX="280" LocationY="340" />?
-	?
 </XnaContent>

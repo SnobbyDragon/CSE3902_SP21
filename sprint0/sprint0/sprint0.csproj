@@ -33,13 +33,13 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\LevelData\Level1\" />
     <Folder Include="HUD\" />
     <Folder Include="Bosses\Manhandla\" />
     <Folder Include="Bosses\Patra\" />
     <Folder Include="Bosses\Dodongo\" />
     <Folder Include="Bosses\Gohma\" />
     <Folder Include="Bosses\Digdogger\" />
-    <Folder Include="Content\LevelData\" />
     <Folder Include="Sound\" />
     <Folder Include="Sound\SoundEffects\" />
     <Folder Include="Dungeon\BorderFilling\" />
