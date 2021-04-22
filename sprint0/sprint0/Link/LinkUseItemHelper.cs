@@ -10,7 +10,7 @@ namespace sprint0
         private readonly HUDManager HUD;
         private readonly Dictionary<Direction, Vector2> swordOffsets = new Dictionary<Direction, Vector2>()
             {
-                { Direction.North, new Vector2(8, -16) }, { Direction.South, new Vector2(12, 16) }, {Direction.East, new Vector2(16, 15) }, {Direction.West, new Vector2(-12, 15) }
+                { Direction.North, new Vector2(8, -16) }, { Direction.South, new Vector2(12, 16) }, {Direction.East, new Vector2(24, 15) }, {Direction.West, new Vector2(-12, 15) }
             };
         private readonly Dictionary<Direction, Vector2> arrowOffsets = new Dictionary<Direction, Vector2>()
             {
