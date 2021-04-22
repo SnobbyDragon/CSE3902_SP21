@@ -7,6 +7,8 @@ namespace sprint0
         public ThreeCommand(Game1 game) => this.game = game;
         public void Execute()
         {
+            game.stateMachine.HandleLevelSelectThree();
+
             if (CanUseBoomerang())
             {
                 game.Room.Player.CurrentItem = PlayerItems.Boomerang;

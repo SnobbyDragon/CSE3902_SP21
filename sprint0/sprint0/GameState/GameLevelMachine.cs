@@ -14,7 +14,7 @@
         private int levelNumber;
         private int numberOfRooms;
         private AbstractLevel level;
-        public enum Level { Level2, Level1 }
+        public enum Level { Level2, Level1, Level3 }
         private Level levelState;
         public GameLevelMachine()
         {
@@ -35,6 +35,10 @@
             if (state == Level.Level2)
             {
                 level = new Level2();
+            }
+            if (state == Level.Level3)
+            {
+                level = new Level3();
             }
             levelString = level.GetLevelString();
             levelNumber = level.GetLevelNumber();
@@ -69,8 +73,13 @@
             {
                 return AdjacentRooms.ListOfAdjacentRooms(roomIndex);
             }
-            else {
+            else if (levelState == Level.Level2)
+            {
                 return AdjacentRooms2.ListOfAdjacentRooms(roomIndex);
+            }
+            else
+            {
+                return AdjacentRooms3.ListOfAdjacentRooms(roomIndex);
             }
         }
 
@@ -80,9 +89,12 @@
             {
                 return AdjacentRooms.GetAdjacentRoom(roomIndex, side);
             }
-            else
+            else if (levelState == Level.Level2)
             {
                 return AdjacentRooms2.GetAdjacentRoom(roomIndex, side);
+            }
+            else {
+                return AdjacentRooms3.GetAdjacentRoom(roomIndex, side);
             }
         }
     }
