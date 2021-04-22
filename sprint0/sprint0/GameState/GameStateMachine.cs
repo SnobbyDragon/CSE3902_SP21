@@ -20,7 +20,7 @@
         public void HandleDeath() => state = State.over;
         public void HandleTest()
         {
-            if (state == State.start || state == State.play) state = State.test;
+            if (state == State.play) state = State.test;
             else if (state == State.test) state = State.play;
         }
 
@@ -35,7 +35,7 @@
             if (state == State.over || state == State.play || state == State.win || state == State.test)
             {
                 game.RestartGame();
-                state = State.play;
+                state = State.start;
             }
         }
 
@@ -81,6 +81,28 @@
                 counter++;
         }
 
+        public void HandleLevelSelectOne()
+        {
+            if (state == State.start)
+            {
+                game.levelMachine.SetLevel(GameLevelMachine.Level.Level1);
+                game.RestartGame();
+                state = State.play;
+            }
+        }
+
+
+        public void HandleLevelSelectTwo()
+        {
+            if (state == State.start)
+            {
+                game.levelMachine.SetLevel(GameLevelMachine.Level.Level2);
+                game.RestartGame();
+                state = State.play;
+
+            }
+
+        }
         public void HandleSnapRoomChange(int dest)
         {
             if (game.levelMachine.GetLevelNumber() != 1 && dest == 0) {
@@ -112,7 +134,7 @@
         public void HandleStart() => state = State.start;
         public void HandlePlay()
         {
-            if (state == State.start || state == State.test) state = State.play;
+            if (state == State.test) state = State.play;
         }
         public State GetState() => state;
     }
