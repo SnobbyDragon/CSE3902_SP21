@@ -43,18 +43,6 @@
 <Block ObjectName="InvisibleBlock" LocationX="280" LocationY="140" Width="32" Height="32" />?
 <Block ObjectName="InvisibleBlock" LocationX="560" LocationY="320" Width="32" Height="32" />?
 <Block ObjectName="InvisibleBlock" LocationX="0" LocationY="320" Width="32" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="140" Width="120" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="340" LocationY="140" Width="120" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="560" LocationY="140" Width="32" Height="80" />?
-<Block ObjectName="InvisibleBlock" LocationX="560" LocationY="380" Width="32" Height="80" />?
-<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="500" Width="120" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="340" LocationY="500" Width="120" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="140" Width="32" Height="80" />?
-<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="380" Width="32" Height="80" />?
-<Block ObjectName="InvisibleBlock" LocationX="280" LocationY="500" Width="32" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="280" LocationY="140" Width="32" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="560" LocationY="320" Width="32" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="320" Width="32" Height="32" />?
 <Enemy ObjectName="RedGoriya" LocationX="360" LocationY="260" />?
 <Enemy ObjectName="RedGoriya" LocationX="360" LocationY="220" />?
 <Enemy ObjectName="RedGoriya" LocationX="280" LocationY="220" />?

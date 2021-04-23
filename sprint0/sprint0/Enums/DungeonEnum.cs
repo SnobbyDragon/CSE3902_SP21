@@ -5,7 +5,7 @@ namespace sprint0
     {
         RoomFloor, RoomBorder, Darkness, DownWall, RightWall, LeftWall, UpWall, DownOpenDoor, RightOpenDoor, LeftOpenDoor, UpOpenDoor,
         DownLockedDoor, RightLockedDoor, LeftLockedDoor, UpLockedDoor, DownShutDoor, RightShutDoor, LeftShutDoor, UpShutDoor,
-        DownBombedOpening, RightBombedOpening, LeftBombedOpening, UpBombedOpening
+        DownBombedOpening, RightBombedOpening, LeftBombedOpening, UpBombedOpening, DarkRoom
     }
 
     public static class DungeonEnumExtension
