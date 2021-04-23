@@ -6,14 +6,14 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BlueRupee : AbstractItem, IItem
+    public class BlueRupee : AbstractItem
     {
         public static int Value { get; } = 5;
         private readonly List<Rectangle> sources;
         private readonly int xOffset = 72, yOffset = 0;
         private int currFrame;
         private readonly int totalFrames = 2, repeatedFrames = 8;
-        public new PlayerItems PlayerItems { get => PlayerItems.BlueRupee; }
+        public override PlayerItems PlayerItems { get => PlayerItems.BlueRupee; }
 
         public BlueRupee(Texture2D texture, Vector2 location)
         {

@@ -24,7 +24,11 @@ namespace sprint0
 
         public IBlock AddBlock(Vector2 location, BlockEnum block, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
         {
-            IBlock newBlock = dungeonFactory.MakeBlock(block, location, width, height);
+            IBlock newBlock;
+            if (block == BlockEnum.InvisibleBlock)
+                newBlock = dungeonFactory.MakeBlock(block, location, width, height);
+            else
+                newBlock = dungeonFactory.MakeBlock(block, location);
             blocksToAdd.Add(newBlock);
             return newBlock;
         }

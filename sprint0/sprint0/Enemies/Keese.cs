@@ -8,7 +8,7 @@ namespace sprint0
     public class Keese : AbstractEnemy
     {
         private readonly Dictionary<Color, List<Rectangle>> colorMap;
-        private readonly Color color;
+        public Color Color { get; }
 
         public Keese(Texture2D texture, Vector2 location, Color keeseColor, Game1 game) : base(texture, location, game)
         {
@@ -16,7 +16,7 @@ namespace sprint0
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            color = keeseColor;
+            Color = keeseColor;
             currentFrame = 0;
             totalFrames = 2;
             repeatedFrames = 8;
@@ -33,7 +33,7 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (damageTimer % 2 == 0) spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
+            if (damageTimer % 2 == 0) spriteBatch.Draw(Texture, Location, colorMap[Color][currentFrame / repeatedFrames], Color.White);
         }
     }
 }

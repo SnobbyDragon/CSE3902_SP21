@@ -10,6 +10,7 @@ namespace sprint0
         private readonly EnemiesSpriteFactory enemyFactory;
         private readonly BossesSpriteFactory bossFactory;
         public List<IEnemy> Enemies { get => enemies; set => enemies = value; }
+        public List<IEnemy> EnemiesToSpawn { get => enemiesToSpawn; }
         private List<IEnemy> enemies, enemiesToSpawn, enemiesToDie;
         private Vector2 keySpawnLocation;
         private bool endBehaviorExecuted;

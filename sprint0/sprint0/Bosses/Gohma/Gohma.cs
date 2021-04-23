@@ -13,7 +13,7 @@ namespace sprint0
         public Texture2D Texture { get; set; }
         private readonly Dictionary<Color, List<Rectangle>> colorToLegMap, colorToHeadMap;
         private readonly List<SpriteEffects> leftLegEffects, rightLegEffects;
-        private readonly Color color;
+        public Color Color { get; }
         private readonly int headTotalFrames, headRepeatedFrames, legTotalFrames, legRepeatedFrames, size = 16, moveDelay, fireballRate = 100, damageTime = 10;
         private readonly List<Vector2> destinations;
         private Vector2 centerOffset;
@@ -38,7 +38,7 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             Texture = texture;
             this.game = game;
-            this.color = color;
+            this.Color = color;
             headCurrFrame = 0;
             legCurrFrame = 0;
             headTotalFrames = 4;
@@ -88,15 +88,15 @@ namespace sprint0
             {
                 spriteBatch.Draw(
                     Texture, new Rectangle(Location.X - (int)(size * Game1.Scale), Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale)),
-                    colorToLegMap[color][legCurrFrame / legRepeatedFrames],
+                    colorToLegMap[Color][legCurrFrame / legRepeatedFrames],
                     Color.White, 0, new Vector2(0, 0),
                     leftLegEffects[legCurrFrame / legRepeatedFrames], 0);
                 spriteBatch.Draw(
                     Texture, new Rectangle(Location.X + (int)(size * Game1.Scale), Location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale)),
-                    colorToLegMap[color][(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], // TODO refator: this is probably overly complicated
+                    colorToLegMap[Color][(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], // TODO refator: this is probably overly complicated
                     Color.White, 0, new Vector2(0, 0),
                     rightLegEffects[(legCurrFrame / legRepeatedFrames + 1) % legTotalFrames], 0);
-                spriteBatch.Draw(Texture, Location, colorToHeadMap[color][headCurrFrame / headRepeatedFrames], Color.White);
+                spriteBatch.Draw(Texture, Location, colorToHeadMap[Color][headCurrFrame / headRepeatedFrames], Color.White);
             }
         }
 

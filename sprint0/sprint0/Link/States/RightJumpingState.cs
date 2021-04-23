@@ -13,6 +13,7 @@ namespace sprint0
         public RightJumpingState(IPlayer player)
         {
             this.player = player;
+            player.Direction = Direction.East;
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkRightIdle, player.Pos);
             speed = initialSpeed;
             count = 0;

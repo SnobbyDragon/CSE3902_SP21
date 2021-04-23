@@ -27,7 +27,7 @@ namespace sprint0
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(size * Game1.Scale), (int)(size * Game1.Scale));
             Texture = texture;
             this.game = game;
-            source = new Rectangle(69, 89, size, size); //center
+            source = new Rectangle(69, 89, size, size);
             speed = 1;
             limbsExist = false;
             limbs = new List<IEnemy>();

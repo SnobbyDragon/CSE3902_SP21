@@ -12,6 +12,7 @@ namespace sprint0
         public UpUseItemState(IPlayer player)
         {
             this.player = player;
+            player.Direction = Direction.North;
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkUpItem, player.Pos);
         }
 

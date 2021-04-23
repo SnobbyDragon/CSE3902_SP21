@@ -8,14 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
  */
 namespace sprint0
 {
-    public enum ItemEnum
-    {
-        MagicalBoomerang, Boomerang, BlueRing, RedRing, BlueCandle, RedCandle,
-        Food, Letter, Map, BluePotion, RedPotion, BlueRupee, Rupee,
-        Clock, Bow, HeartContainer, TriforcePiece, Compass, Key, Fairy,
-        Arrow, Bomb, PowerBracelet, BookOfMagic, Flute, Raft, Stepladder,
-        MagicalKey, MagicalRod, MagicalSword, WhiteSword, WoodenSword, GanonTriforceAshes, None, FairyDistract
-    }
     public class ItemsSpriteFactory
     {
         private readonly Texture2D texture1;

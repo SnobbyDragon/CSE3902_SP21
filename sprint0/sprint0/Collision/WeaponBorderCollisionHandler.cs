@@ -10,7 +10,7 @@ namespace sprint0
             {
                 wall.BombWall();
                 foreach (ISprite sprite in game.Rooms[game.levelMachine.GetAdjacentRoom(game.RoomIndex, side)].LoadLevel.RoomSprite.RoomSprites)
-                    if (sprite is Wall adjWall && adjWall.Side == DirectionMethods.OppositeDirection(side))
+                    if (sprite is Wall adjWall && adjWall.Side == DirectionExtension.OppositeDirection(side))
                         adjWall.BombWall();
             }
         }

@@ -44,5 +44,7 @@
     <Folder Include="Sound\SoundEffects\" />
     <Folder Include="Dungeon\BorderFilling\" />
     <Folder Include="Input\Controller\SpecialControls\" />
+    <Folder Include="SavedGame\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 </Project>

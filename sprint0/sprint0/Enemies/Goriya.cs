@@ -8,7 +8,7 @@ namespace sprint0
     public class Goriya : AbstractEnemy
     {
         private readonly Dictionary<Color, List<Rectangle>> colorMap;
-        private readonly Color color;
+        public Color Color { get; }
         private readonly Room room;
         private int throwCounter;
         private readonly int throwMax = 100;
@@ -19,7 +19,7 @@ namespace sprint0
             width = height = 16;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             Texture = texture;
-            color = goriyaColor;
+            Color = goriyaColor;
             currentFrame = 0;
             totalFrames = 4;
             repeatedFrames = 20;
@@ -41,16 +41,16 @@ namespace sprint0
                 switch (direction)
                 {
                     case Direction.West:
-                        spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
+                        spriteBatch.Draw(Texture, Location, colorMap[Color][currentFrame / repeatedFrames % 2 + 2], Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
                         break;
                     case Direction.East:
-                        spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames % 2 + 2], Color.White);
+                        spriteBatch.Draw(Texture, Location, colorMap[Color][currentFrame / repeatedFrames % 2 + 2], Color.White);
                         break;
                     case Direction.South:
-                        spriteBatch.Draw(Texture, Location, colorMap[color][0], Color.White);
+                        spriteBatch.Draw(Texture, Location, colorMap[Color][0], Color.White);
                         break;
                     case Direction.North:
-                        spriteBatch.Draw(Texture, Location, colorMap[color][1], Color.White);
+                        spriteBatch.Draw(Texture, Location, colorMap[Color][1], Color.White);
                         break;
                 }
             }

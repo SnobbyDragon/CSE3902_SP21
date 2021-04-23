@@ -4,9 +4,9 @@
     // Last updated 3/28/2021 by urick.9
     public class GameStateMachine
     {
-        private Game1 game;
+        private readonly Game1 game;
         public enum State { start, play, pause, test, over, credits, win, changeRoom, options };
-        public enum Mode { easy, hard};
+        public enum Mode { easy, hard };
         private Mode mode;
         private State state;
         private Direction direction;
@@ -19,10 +19,11 @@
             state = State.start;
         }
 
-        public void HandleEasy() {
+        public void HandleEasy()
+        {
             if (state == State.options)
             {
-                game.UpdateDifficuluty(Mode.easy);
+                game.UpdateDifficulty(Mode.easy);
                 mode = Mode.easy;
             }
 
@@ -31,11 +32,12 @@
         {
             if (state == State.options)
             {
-                game.UpdateDifficuluty(Mode.hard);
+                game.UpdateDifficulty(Mode.hard);
                 mode = Mode.hard;
             }
         }
-        public void SetMode(Mode mode) {
+        public void SetMode(Mode mode)
+        {
             this.mode = mode;
         }
 
@@ -154,8 +156,19 @@
                 game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
 
             }
-
         }
+
+        public void HandleLevelSelectLoad()
+        {
+            if (state == State.start)
+            {
+                game.levelMachine.SetLevel(GameLevelMachine.Level.Level1);
+                game.LoadSavedGame();
+                state = State.play;
+                game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
+            }
+        }
+
         public void HandleSnapRoomChange(int dest)
         {
             state = State.test;

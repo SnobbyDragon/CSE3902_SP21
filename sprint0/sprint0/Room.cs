@@ -27,9 +27,10 @@ namespace sprint0
         public bool FreezeEnemies { get; set; }
         public Vector2 Offset { get => offset; set => offset = value; }
         private Vector2 offset;
+        private readonly bool loadSaved;
 
         public IPlayer Player { get => Game.Player; set => Game.Player = value; }
-        public List<IEnemy> Enemies { get => LoadLevel.RoomEnemies.Enemies; }
+        public List<IEnemy> Enemies { get => loadLevel.RoomEnemies.Enemies; }
         public List<IWeapon> Weapons { get => loadLevel.RoomWeapon.Weapons; }
         public List<IProjectile> Projectiles { get => loadLevel.RoomProjectile.Projectiles; }
         public List<IBlock> Blocks { get => loadLevel.RoomBlocks.Blocks; }
@@ -37,17 +38,18 @@ namespace sprint0
         public List<IItem> Items { get => loadLevel.RoomItems.Items; }
         public List<ISprite> Overlays { get => overlay.Sprites; }
         public List<ISprite> RoomSprites { get => loadLevel.RoomSprite.RoomSprites; }
+        public List<IEffect> Effects { get => loadLevel.RoomEffect.RoomEffects; }
 
-
-        public Room(SpriteBatch spriteBatch, Game1 game, int roomIndex, Vector2 Offset, float linkX = LinkDefaultPos, float linkY = LinkDefaultPos, bool loadedPos = false)
+        public Room(SpriteBatch spriteBatch, Game1 game, int roomIndex, Vector2 Offset, bool loadSaved = false, float linkX = LinkDefaultPos, float linkY = LinkDefaultPos, bool loadedPos = false)
         {
             SuspendPlayer = false;
             offset = Offset;
             Game = game;
             _spriteBatch = spriteBatch;
-            this.RoomIndex = roomIndex;
+            RoomIndex = roomIndex;
             linkInitialPos = new Vector2(linkX, linkY);
             this.loadedPos = loadedPos;
+            this.loadSaved = loadSaved;
         }
 
         public void LoadContent()
@@ -56,7 +58,7 @@ namespace sprint0
             collisionHandler = new AllCollisionHandler(this);
             roomSound = new RoomSound(Game);
             loadLevel = new LoadLevel(Game, RoomIndex);
-            loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex, offset).LoadLevel());
+            loadLevel.PopulateLists(new LevelLoader(Game, RoomIndex, loadSaved).LoadLevel());
             loadLevel.UpdateOffsets(offset);
             Overlay.UpdateOffset(offset);
 

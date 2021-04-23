@@ -4,17 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public enum DungeonEnum
-    {
-        RoomFloor, RoomBorder, Darkness, DownWall, RightWall, LeftWall, UpWall, DownOpenDoor, RightOpenDoor, LeftOpenDoor, UpOpenDoor,
-        DownLockedDoor, RightLockedDoor, LeftLockedDoor, UpLockedDoor, DownShutDoor, RightShutDoor, LeftShutDoor, UpShutDoor,
-        DownBombedOpening, RightBombedOpening, LeftBombedOpening, UpBombedOpening, DarkRoom
-    }
-
-    public enum BlockEnum
-    {
-        Block, Tile, Gap, Water, Floor, Stairs, Ladder, Brick, LeftStatue, RightStatue, MovableBlock, MovableBlock5, MovableBlock20, InvisibleBlock, SoundBlock, StepLadder
-    }
     public class DungeonFactory
     {
         private readonly Game1 game;
@@ -27,6 +16,7 @@ namespace sprint0
             this.roomIndex = roomIndex;
             texture = game.Content.Load<Texture2D>("Images/DungeonTileset");
         }
+
         public ISprite MakeSprite(DungeonEnum spriteType, Vector2 location, bool canBeBombed = false)
         {
             return spriteType switch
@@ -58,7 +48,8 @@ namespace sprint0
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
-        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, int width = InvisibleBlock.DefaultSize, int height = InvisibleBlock.DefaultSize)
+
+        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location)
         {
             return spriteType switch
             {
@@ -72,14 +63,24 @@ namespace sprint0
                 BlockEnum.Brick => new Brick(texture, location),
                 BlockEnum.LeftStatue => new Statue(texture, location, Direction.East, game),
                 BlockEnum.RightStatue => new Statue(texture, location, Direction.West, game),
-                BlockEnum.MovableBlock => new MovableBlock1(texture, location),
-                BlockEnum.MovableBlock5 => new MovableBlock5(texture, location),
-                BlockEnum.InvisibleBlock => new InvisibleBlock(location, width, height),
+                BlockEnum.MovableBlock => new MovableBlock1(texture, location, location),
+                BlockEnum.MovableBlock5 => new MovableBlock5(texture, location, location),
+                BlockEnum.InvisibleBlock => new InvisibleBlock(location, InvisibleBlock.DefaultSize, InvisibleBlock.DefaultSize),
                 BlockEnum.StepLadder => new StepLadderBlock(texture, location, game.Room),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
-        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location,int sound)
+
+        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, int width, int height)
+        {
+            return spriteType switch
+            {
+                BlockEnum.InvisibleBlock => new InvisibleBlock(location, width, height),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
+            };
+        }
+
+        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, int sound)
         {
             return spriteType switch
             {
@@ -87,11 +88,22 @@ namespace sprint0
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
+
         public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, Direction dir)
         {
             return spriteType switch
             {
                 BlockEnum.MovableBlock20 => new MovableBlock20(texture, location, dir),
+                _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
+            };
+        }
+
+        public IBlock MakeBlock(BlockEnum spriteType, Vector2 location, Vector2 homeLocation)
+        {
+            return spriteType switch
+            {
+                BlockEnum.MovableBlock => new MovableBlock1(texture, location, homeLocation),
+                BlockEnum.MovableBlock5 => new MovableBlock5(texture, location, homeLocation),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }

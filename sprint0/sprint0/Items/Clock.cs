@@ -5,10 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class Clock : AbstractItem, IItem
+    public class Clock : AbstractItem
     {
         private readonly int xOffset = 58, yOffset = 0;
-        public new PlayerItems PlayerItems { get => PlayerItems.Clock; }
+        public override PlayerItems PlayerItems { get => PlayerItems.Clock; }
 
         public Clock(Texture2D texture, Vector2 location)
         {

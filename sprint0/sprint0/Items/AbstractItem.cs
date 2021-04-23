@@ -7,8 +7,8 @@ namespace sprint0
 {
     public abstract class AbstractItem : IItem
     {
-        public PlayerItems PlayerItems { get => PlayerItems.None; }
-        public PlayerItems SecondaryType { get => PlayerItems.None; }
+        public virtual PlayerItems PlayerItems { get => PlayerItems.None; }
+        public virtual PlayerItems SecondaryType { get => PlayerItems.None; }
         public Rectangle Location { get; set; }
         public Texture2D Texture { get; set; }
         public int PickedUpDuration { get; set; }

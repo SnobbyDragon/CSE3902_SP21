@@ -5,11 +5,11 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BlueCandle : AbstractItem, IItem
+    public class BlueCandle : AbstractItem
     {
         private readonly int xOffset = 160, yOffset = 16;
-        public new PlayerItems PlayerItems { get => PlayerItems.BlueCandle; }
-        public new PlayerItems SecondaryType { get => PlayerItems.CandleType; }
+        public override PlayerItems PlayerItems { get => PlayerItems.BlueCandle; }
+        public override PlayerItems SecondaryType { get => PlayerItems.CandleType; }
 
         public BlueCandle(Texture2D texture, Vector2 location)
         {

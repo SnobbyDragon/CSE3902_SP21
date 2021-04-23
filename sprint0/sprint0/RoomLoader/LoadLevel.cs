@@ -28,6 +28,7 @@ namespace sprint0
         {
             roomEnemies.UpdateDifficulty(mode);
         }
+
         public LoadLevel(Game1 game, int roomIndex)
         {
             roomProjectile = new RoomProjectile(game);

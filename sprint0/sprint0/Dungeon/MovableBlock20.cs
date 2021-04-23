@@ -11,7 +11,7 @@ namespace sprint0
         private Rectangle source;
         private readonly int width, height;
       
-        private bool isMovable;
+        private readonly bool isMovable;
         public Direction Direction { get; set; }
 
         public MovableBlock20(Texture2D texture, Vector2 location, Direction direction)

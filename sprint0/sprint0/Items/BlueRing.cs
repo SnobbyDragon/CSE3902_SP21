@@ -5,11 +5,11 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BlueRing : AbstractItem, IItem
+    public class BlueRing : AbstractItem
     {
         private readonly int xOffset = 169, yOffset = 19;
-        public new PlayerItems PlayerItems { get => PlayerItems.BlueRing; }
-        public new PlayerItems SecondaryType { get => PlayerItems.RingType; }
+        public override PlayerItems PlayerItems { get => PlayerItems.BlueRing; }
+        public override PlayerItems SecondaryType { get => PlayerItems.RingType; }
 
         public BlueRing(Texture2D texture, Vector2 location)
         {

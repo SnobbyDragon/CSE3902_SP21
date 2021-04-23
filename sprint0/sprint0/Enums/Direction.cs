@@ -6,8 +6,11 @@ namespace sprint0
 {
     public enum Direction { North, South, East, West, NorthEast, NorthWest, SouthEast, SouthWest };
 
-    public static class DirectionMethods
+    public static class DirectionExtension
     {
+        public static Direction ToDirection(this string dir)
+            => (Direction)Enum.Parse(typeof(Direction), dir, true);
+
         public static Direction OppositeDirection(this Direction direction)
         {
             return direction switch

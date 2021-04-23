@@ -10,7 +10,7 @@ namespace sprint0
         {
             if (border is AbstractBorderFilling)
             {
-                if (!(enemy is ManhandlaLimb) && !(enemy is PatraMinion))
+                if (!(enemy is ManhandlaLimb) && !(enemy is PatraMinion) && !(enemy is Trapparatus))
                 {
                     switch (side)
                     {

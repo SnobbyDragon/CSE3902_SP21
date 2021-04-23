@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XnaContent>?
+<Dungeon ObjectName="RoomBorder" LocationX="0" LocationY="140" />?
+<Dungeon ObjectName="RoomFloor" LocationX="80" LocationY="220" />?
+<Dungeon ObjectName="UpOpenDoor" LocationX="280" LocationY="500" />?
+<Dungeon ObjectName="DownBombedOpening" LocationX="280" LocationY="140" />?
+<Dungeon ObjectName="LeftOpenDoor" LocationX="560" LocationY="320" />?
+<Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
+<Block ObjectName="Block" LocationX="160" LocationY="300" />?
+<Block ObjectName="Block" LocationX="440" LocationY="300" />?
+<Block ObjectName="Block" LocationX="160" LocationY="380" />?
+<Block ObjectName="Block" LocationX="440" LocationY="380" />?
+<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="140" Width="120" Height="32" />?
+<Block ObjectName="InvisibleBlock" LocationX="340" LocationY="140" Width="120" Height="32" />?
+<Block ObjectName="InvisibleBlock" LocationX="560" LocationY="140" Width="32" Height="80" />?
+<Block ObjectName="InvisibleBlock" LocationX="560" LocationY="380" Width="32" Height="80" />?
+<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="500" Width="120" Height="32" />?
+<Block ObjectName="InvisibleBlock" LocationX="340" LocationY="500" Width="120" Height="32" />?
+<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="140" Width="32" Height="80" />?
+<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="380" Width="32" Height="80" />?
+<Block ObjectName="InvisibleBlock" LocationX="280" LocationY="140" Width="32" Height="32" />?
+<Enemy ObjectName="Dodongo" LocationX="320" LocationY="340" />?
+<Enemy ObjectName="Dodongo" LocationX="240" LocationY="300" />?
+<Enemy ObjectName="Dodongo" LocationX="360" LocationY="300" />?
+<Player LocationX="300" LocationY="300" />?
+?</XnaContent>

@@ -30,7 +30,7 @@ namespace sprint0
             this.dir = dir;
             this.texture = texture;
             Location = new Rectangle((int)location.X, (int)location.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-            adjust = 4 * DirectionMethods.ToVector2(dir);
+            adjust = 4 * DirectionExtension.ToVector2(dir);
             if (dir == Direction.North || dir == Direction.South)
             {
                 width = 7;

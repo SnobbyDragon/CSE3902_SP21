@@ -66,7 +66,7 @@ namespace sprint0
             int xlowerBound = Location.X - offset;
             int ylowerBound = Location.Y - offset;
             int xupperBound = Location.X + offset;
-            int yupperBound = Location.X + offset;
+            int yupperBound = Location.Y + offset;
 
             if (xlowerBound < Game1.BorderThickness * Game1.Scale)
                 xlowerBound = (int)(Game1.BorderThickness * Game1.Scale);
@@ -76,9 +76,9 @@ namespace sprint0
                 ylowerBound = (int)((Game1.HUDHeight + Game1.BorderThickness) * Game1.Scale);
             if (yupperBound > (Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale)
                 yupperBound = (int)((Game1.HUDHeight + Game1.MapHeight - Game1.BorderThickness) * Game1.Scale);
-            destination = new Vector2(
-                rand.Next(xlowerBound, xupperBound),
-                rand.Next(ylowerBound, yupperBound));
+                destination = new Vector2(
+                    rand.Next(xlowerBound, xupperBound),
+                    rand.Next(ylowerBound, yupperBound));
         }
 
         public void RegisterHit() { }

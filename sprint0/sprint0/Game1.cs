@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using System.Linq;
 namespace sprint0
 {
     public class Game1 : Game
@@ -24,6 +23,7 @@ namespace sprint0
         public readonly int scrollSpeedLbound = 1;
         public readonly int scrollSpeedUbound = 8;
         public bool ChangeRoom { get; set; }
+        public bool LoadSaved { get; set; }
 
         public int ScrollSpeed { get; set; }
         public SoundFactory SoundFactory { get; private set; }
@@ -80,6 +80,7 @@ namespace sprint0
             ScrollSpeed = (scrollSpeedLbound + scrollSpeedUbound)/2;
             Rooms = new Dictionary<int, Room>();
             RoomIndex = levelMachine.GetInitialRoomIndex();
+            LoadSaved = false;
 
             base.Initialize();
         }
@@ -89,6 +90,12 @@ namespace sprint0
             universalScreenManager = new UniversalScreenManager(this);
             hudManager = new HUDManager(this);
             hudManager.LoadHUD();
+        }
+
+        public void LoadSavedGame()
+        {
+            LoadSaved = true;
+            RestartGame();
         }
 
         public void RestartGame()
@@ -106,7 +113,7 @@ namespace sprint0
 
         protected override void LoadContent()
         {
-            Room = new Room(_spriteBatch, this, RoomIndex, new Vector2(0, 0));
+            Room = new Room(_spriteBatch, this, RoomIndex, new Vector2(0, 0), LoadSaved);
             playerFactory = new PlayerSpriteFactory(this);
             Rooms.Add(RoomIndex, Room);
             Player = new Link(this, new Vector2(LinkDefaultX, LinkDefaultY));
@@ -125,17 +132,17 @@ namespace sprint0
                         if (!Rooms.ContainsKey(idx))
                         {
                             newFrontier.Add(idx);
-                            if (d == Direction.North) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + northOffset);
-                            else if (d == Direction.South) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + southOffset);
-                            else if (d == Direction.West) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + westOffset);
-                            else if (d == Direction.East) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + eastOffset);
+                            if (d == Direction.North) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + northOffset, LoadSaved);
+                            else if (d == Direction.South) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + southOffset, LoadSaved);
+                            else if (d == Direction.West) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + westOffset, LoadSaved);
+                            else if (d == Direction.East) Rooms[idx] = new Room(_spriteBatch, this, idx, Rooms[roomIndex].Offset + eastOffset, LoadSaved);
                         }
                     }
                 }
                 frontier = newFrontier;
             }
             if (levelMachine.GetLevelNumber() == 1) {
-                Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[1].Offset + eastOffset);
+                Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[1].Offset + eastOffset, LoadSaved);
             }
             foreach (Room rm in Rooms.Values)
                 rm.LoadContent();
@@ -185,11 +192,17 @@ namespace sprint0
             base.Update(gameTime);
         }
 
-        public void UpdateDifficuluty(GameStateMachine.Mode mode) {
-            foreach (Room room in Rooms.Values) {
+        public void UpdateDifficulty(GameStateMachine.Mode mode) {
+            foreach (Room room in Rooms.Values)
                 room.UpdateDifficulty(mode);
-            }
         }
+
+        public void SaveGame()
+        {
+            if (state == GameStateMachine.State.options)
+                LevelSaver.SaveGame(this);
+        }
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);

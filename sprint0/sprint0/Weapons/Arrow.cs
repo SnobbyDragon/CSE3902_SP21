@@ -31,7 +31,7 @@ namespace sprint0
             else
                 loc += new Vector2(0, sourceAdjustY);
             if (dir == Direction.South || dir == Direction.East)
-                tipOffset = width * DirectionMethods.ToVector2(dir) + height * DirectionMethods.ToVector2(dir);
+                tipOffset = width * DirectionExtension.ToVector2(dir) + height * DirectionExtension.ToVector2(dir);
 
             Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
             LocationDraw = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));

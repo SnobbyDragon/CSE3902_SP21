@@ -22,7 +22,7 @@
                         lockedDoor.OpenDoor();
                         link.DecrementKey();
                         foreach (ISprite sprite in game.Rooms[game.levelMachine.GetAdjacentRoom(game.RoomIndex, side)].LoadLevel.RoomSprite.RoomSprites)
-                            if (sprite is LockedDoor door && door.Side == DirectionMethods.OppositeDirection(side))
+                            if (sprite is LockedDoor door && door.Side == DirectionExtension.OppositeDirection(side))
                                 door.OpenDoor();
                     }
                 }
