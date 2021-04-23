@@ -121,9 +121,6 @@ namespace sprint0
                     game.Room.Player.Pos = location;
                     locations.Add(roomNo, location);
                     break;
-                case "Effect":
-                    effects.Add(effectFactory.MakeSprite(ParseEffect(objectName), location));
-                    break;
                 default:
                     throw new ArgumentException("Invalid sprite! Level loading failed.");
             }
