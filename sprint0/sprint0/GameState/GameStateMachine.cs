@@ -120,6 +120,31 @@
                 game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
             }
         }
+        public void HandleLevelSelectThree()
+        {
+            if (state == State.start)
+            {
+                game.levelMachine.SetLevel(GameLevelMachine.Level.Level3);
+                game.RestartGame();
+                state = State.play;
+                game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
+
+            }
+
+        }
+
+        public void HandleLevelSelectFour()
+        {
+            if (state == State.start)
+            {
+                game.levelMachine.SetLevel(GameLevelMachine.Level.Level4);
+                game.RestartGame();
+                state = State.play;
+                game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
+
+            }
+
+        }
 
         public void HandleLevelSelectTwo()
         {

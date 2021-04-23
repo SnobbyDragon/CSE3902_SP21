@@ -14,6 +14,7 @@ namespace sprint0
             commands = new Dictionary<PlayerItems, ICommand>
             {
                 { PlayerItems.Arrow, new OneCommand(this.game) },
+                { PlayerItems.Bow, new OneCommand(this.game) },
                 { PlayerItems.SilverArrow, new OneCommand(this.game) },
                 { PlayerItems.Bomb, new TwoCommand(this.game) },
                 { PlayerItems.Boomerang, new ThreeCommand(this.game) },

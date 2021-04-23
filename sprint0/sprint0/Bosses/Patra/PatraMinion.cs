@@ -60,21 +60,24 @@ namespace sprint0
         {
             if (damageTimer > 0) damageTimer--;
             CheckHealth();
-            currFrame = (currFrame + 1) % (totalFrames * repeatedFrames); // animate flying
-            Vector2 loc = center.Location.Center.ToVector2() + new Vector2((float)(distance * Math.Cos(DegreesToRadians(angle)) - (width * Game1.Scale * .5)), (float)(distance * Math.Sin(DegreesToRadians(angle)) - (height * Game1.Scale * .5)));
-            Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
-            // spins fast, no need for delay
-            angle = (angle - 3) % 360; // spin counterclockwise
-            CountExpansion();
-            if (expansionCounter > 0)
+            if (!game.Room.FreezeEnemies)
             {
-                // not waiting
-                if (expansionCounter > 6) expansionCounter = 0; // expanded 3 times, return to waiting state
-                else
+                currFrame = (currFrame + 1) % (totalFrames * repeatedFrames); // animate flying
+                Vector2 loc = center.Location.Center.ToVector2() + new Vector2((float)(distance * Math.Cos(DegreesToRadians(angle)) - (width * Game1.Scale * .5)), (float)(distance * Math.Sin(DegreesToRadians(angle)) - (height * Game1.Scale * .5)));
+                Location = new Rectangle((int)loc.X, (int)loc.Y, (int)(width * Game1.Scale), (int)(height * Game1.Scale));
+                // spins fast, no need for delay
+                angle = (angle - 3) % 360; // spin counterclockwise
+                CountExpansion();
+                if (expansionCounter > 0)
                 {
-                    // expanding / contracting
-                    if (expansionCounter % 2 == 0) Contract();
-                    else Expand();
+                    // not waiting
+                    if (expansionCounter > 6) expansionCounter = 0; // expanded 3 times, return to waiting state
+                    else
+                    {
+                        // expanding / contracting
+                        if (expansionCounter % 2 == 0) Contract();
+                        else Expand();
+                    }
                 }
             }
         }

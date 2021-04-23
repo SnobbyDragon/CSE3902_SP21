@@ -9,11 +9,8 @@
 	<Dungeon ObjectName="LeftLockedDoor" LocationX="560" LocationY="320" />?
 	<Dungeon ObjectName="RightOpenDoor" LocationX="0" LocationY="320" />?
 
-	
 
-	<Boss ObjectName="Dodongo" LocationX="250" LocationY="340" />?
-	<Block ObjectName="Block" LocationX="400" LocationY="340" />?
-	<Block ObjectName="Block" LocationX="280" LocationY="380" />?
+
 	<Block ObjectName="Block" LocationX="360" LocationY="380" />?
 	<Block ObjectName="Block" LocationX="320" LocationY="420" />?
 	<Enemy ObjectName="GreenGel" LocationX="120" LocationY="340" />?
@@ -22,6 +19,7 @@
 	<Enemy ObjectName="GreenZol" LocationX="120" LocationY="340" />?
 	<Enemy ObjectName="GoldZol" LocationX="320" LocationY="260" />?
 	<Enemy ObjectName="GoldZol" LocationX="320" LocationY="480" />?
+
 	<Player ObjectName="Link" LocationX="280" LocationY="340" />?
 	?
 </XnaContent>

@@ -95,15 +95,18 @@ namespace sprint0
 
         private void RoomEndBehavior()
         {
-            List<int> roomWithKey = new List<int> { 15, 17, 12, 3, 2, 10 };
+           
+            List<int> roomWithKey = game.levelMachine.GetRoomsWithKeys();
             int roomWithBoomerang = 7;
             int roomWithMovableBlock = 5;
             Vector2 location = new Vector2(400, 300);
             if (roomWithKey.Contains(game.RoomIndex))
+            {
                 game.Room.LoadLevel.RoomItems.AddItem(keySpawnLocation, ItemEnum.Key);
-            else if (game.RoomIndex == roomWithBoomerang)
+            }
+            else if (game.RoomIndex == roomWithBoomerang && game.levelMachine.GetLevelNumber() == 1)
                 game.Room.LoadLevel.RoomItems.AddItem(location, ItemEnum.Boomerang);
-            else if (game.RoomIndex == roomWithMovableBlock)
+            else if (game.RoomIndex == roomWithMovableBlock && game.levelMachine.GetLevelNumber() == 1)
                 game.Room.LoadLevel.RoomBlocks.SwitchToMovableBlock();
             endBehaviorExecuted = true;
         }

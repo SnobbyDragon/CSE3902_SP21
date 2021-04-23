@@ -14,7 +14,7 @@
         private int levelNumber;
         private int numberOfRooms;
         private AbstractLevel level;
-        public enum Level { Level2, Level1 }
+        public enum Level { Level2, Level1, Level3, Level4 }
         private Level levelState;
         public GameLevelMachine()
         {
@@ -26,6 +26,10 @@
             numberOfTotalRooms = level.GetTotalNumberOfRooms();
         }
 
+
+        public List<int> GetRoomsWithKeys() {
+            return level.GetRoomsWithKeys();
+        }
         public void SetLevel(Level state) {
             this.levelState = state;
             if (state == Level.Level1) {
@@ -35,6 +39,14 @@
             if (state == Level.Level2)
             {
                 level = new Level2();
+            }
+            if (state == Level.Level3)
+            {
+                level = new Level3();
+            }
+            if (state == Level.Level4)
+            {
+                level = new Level4();
             }
             levelString = level.GetLevelString();
             levelNumber = level.GetLevelNumber();
@@ -69,8 +81,17 @@
             {
                 return AdjacentRooms.ListOfAdjacentRooms(roomIndex);
             }
-            else {
+            else if (levelState == Level.Level2)
+            {
                 return AdjacentRooms2.ListOfAdjacentRooms(roomIndex);
+            }
+            else if(levelState == Level.Level3)
+            {
+                return AdjacentRooms3.ListOfAdjacentRooms(roomIndex);
+            }
+            else 
+            {
+                return AdjacentRooms4.ListOfAdjacentRooms(roomIndex);
             }
         }
 
@@ -80,9 +101,17 @@
             {
                 return AdjacentRooms.GetAdjacentRoom(roomIndex, side);
             }
-            else
+            else if (levelState == Level.Level2)
             {
                 return AdjacentRooms2.GetAdjacentRoom(roomIndex, side);
+            }
+            else if (levelState == Level.Level3)
+            {
+                return AdjacentRooms3.GetAdjacentRoom(roomIndex, side);
+            }
+            else 
+            {
+                return AdjacentRooms4.GetAdjacentRoom(roomIndex, side);
             }
         }
     }
