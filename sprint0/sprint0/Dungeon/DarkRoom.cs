@@ -37,7 +37,14 @@ namespace sprint0
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!game.Room.Overlay.Sprites.Contains(this)) { game.Room.Overlay.AddOverlay(this); }
+            if (!game.Room.Overlay.Sprites.Contains(this) && game.RoomIndex == 5) {
+                game.Room.Overlay.AddOverlay(this);
+            }
+            else if (game.Room.Overlay.Sprites.Contains(this) && game.Room.Overlay.Sprites.IndexOf(this) != game.Room.Overlay.Sprites.Count - 1)
+            {              
+                    game.Room.Overlay.RemoveOverlay(this);
+                    game.Room.Overlay.AddOverlay(this);
+            }
             foreach (IProjectile project in game.Room.LoadLevel.RoomProjectile.Projectiles)
             {
                 if (project is FlameProjectile)
@@ -65,7 +72,6 @@ namespace sprint0
 
         public void Update()
         {
-
         }
         public bool IsAlive()
         {
