@@ -49,8 +49,7 @@ namespace sprint0
             stateMachine = new GameStateMachine(this);
             _graphics = new GraphicsDeviceManager(this)
             {
-                IsFullScreen = false,
-                PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8
+                IsFullScreen = false
         };
             Content.RootDirectory = "Content";
             IsMouseVisible = true;

@@ -9,7 +9,7 @@ namespace sprint0
 {
     public enum EffectEnum
     {
-        HitSprite, SwordBeamExplode, Death, GanonAshes, DarkRoom
+        HitSprite, SwordBeamExplode, Death, GanonAshes
     }
     public class EffectSpriteFactory
     {

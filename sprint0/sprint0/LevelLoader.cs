@@ -135,7 +135,5 @@ namespace sprint0
              => (DungeonEnum)Enum.Parse(typeof(DungeonEnum), dungeon, true);
         private BlockEnum ParseBlock(string block)
              => (BlockEnum)Enum.Parse(typeof(BlockEnum), block, true);
-        private EffectEnum ParseEffect(string effect)
-             => (EffectEnum)Enum.Parse(typeof(EffectEnum), effect, true);
     }
 }
