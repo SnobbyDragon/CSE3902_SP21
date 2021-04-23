@@ -15,7 +15,7 @@ namespace sprint0
         private readonly string message2 = "Use the left and right arrow keys to adjust";
         private readonly string message3 = "You are currently in";
         private readonly string message4 = "mode.";
-        private readonly string message5 = "Press H for easy mode and E for hard mode.";
+        private readonly string message5 = "Press E for easy mode and H for hard mode.";
         private readonly string easy = " easy ";
         private readonly string hard = " hard ";
         private List<Text> textList;
