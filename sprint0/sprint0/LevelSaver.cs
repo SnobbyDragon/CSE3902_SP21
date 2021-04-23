@@ -54,7 +54,8 @@ namespace sprint0
             foreach (INpc npc in room.Npcs)
                 fileWriter.WriteLine(SaveNPC(room, npc));
             foreach (IBlock block in room.Blocks)
-                fileWriter.WriteLine(SaveBlock(room, block));
+                if (room.RoomIndex == 0 || !(block is InvisibleBlock))
+                    fileWriter.WriteLine(SaveBlock(room, block));
             foreach (IEnemy enemy in room.Enemies)
                 if (ValidEnemy(enemy))
                     fileWriter.WriteLine(SaveEnemy(room, enemy));

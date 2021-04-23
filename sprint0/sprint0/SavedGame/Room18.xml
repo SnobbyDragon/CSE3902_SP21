@@ -28,16 +28,5 @@
 <Item ObjectName="Key" LocationX="360" LocationY="460" />?
 <Item ObjectName="Arrow" LocationX="440" LocationY="460" />?
 <Item ObjectName="Bomb" LocationX="480" LocationY="460" />?
-<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="140" Width="120" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="340" LocationY="140" Width="120" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="560" LocationY="140" Width="32" Height="80" />?
-<Block ObjectName="InvisibleBlock" LocationX="560" LocationY="380" Width="32" Height="80" />?
-<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="500" Width="120" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="340" LocationY="500" Width="120" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="140" Width="32" Height="80" />?
-<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="380" Width="32" Height="80" />?
-<Block ObjectName="InvisibleBlock" LocationX="280" LocationY="500" Width="32" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="280" LocationY="140" Width="32" Height="32" />?
-<Block ObjectName="InvisibleBlock" LocationX="0" LocationY="320" Width="32" Height="32" />?
 <Player LocationX="300" LocationY="300" />?
 ?</XnaContent>
