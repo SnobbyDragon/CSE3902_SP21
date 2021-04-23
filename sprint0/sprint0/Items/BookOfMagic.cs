@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BookOfMagic : AbstractItem, IItem
+    public class BookOfMagic : AbstractItem
     {
-        public new PlayerItems PlayerItems { get => PlayerItems.BookOfMagic; }
+        public override PlayerItems PlayerItems { get => PlayerItems.BookOfMagic; }
         private readonly int xOffset = 232, yOffset = 0;
 
         public BookOfMagic(Texture2D texture, Vector2 location)

@@ -13,6 +13,7 @@ namespace sprint0
         public DownJumpingState(IPlayer player)
         {
             this.player = player;
+            player.Direction = Direction.South;
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkDownIdle, player.Pos);
             speed = initialSpeed;
             count = 0;

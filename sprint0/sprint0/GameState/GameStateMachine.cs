@@ -121,7 +121,6 @@
             }
         }
 
-
         public void HandleLevelSelectTwo()
         {
             if (state == State.start)
@@ -132,8 +131,19 @@
                 game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
 
             }
-
         }
+
+        public void HandleLevelSelectLoad()
+        {
+            if (state == State.start)
+            {
+                game.levelMachine.SetLevel(GameLevelMachine.Level.Level1);
+                game.LoadSavedGame();
+                state = State.play;
+                game.NumRooms = game.levelMachine.GetNumberOfTotalRooms();
+            }
+        }
+
         public void HandleSnapRoomChange(int dest)
         {
             state = State.test;

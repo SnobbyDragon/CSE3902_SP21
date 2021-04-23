@@ -11,7 +11,7 @@ namespace sprint0
     {
         public const int DefaultSound = 1;
         private readonly Game1 game;
-        private readonly int sound;
+        public int Sound { get; }
         private readonly List<SoundEnum> Sounds = new List<SoundEnum> { SoundEnum.Note1, SoundEnum.Note2, SoundEnum.Note3, SoundEnum.Note4, SoundEnum.Note5, SoundEnum.Note6 };
 
         public SoundBlock(Texture2D texture, Vector2 location, Game1 game, int sound)
@@ -20,8 +20,8 @@ namespace sprint0
             Texture = texture;
             source = new Rectangle(1001, 11, width, height);
             this.game = game;
-            this.sound = sound;
+            Sound = sound;
         }
-        public void MakeSound() => game.Room.RoomSound.AddSoundEffect(Sounds[sound - 1]);
+        public void MakeSound() => game.Room.RoomSound.AddSoundEffect(Sounds[Sound - 1]);
     }
 }

@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    class BombItem : AbstractItem, IItem
+    class BombItem : AbstractItem
     {
-        public new PlayerItems PlayerItems { get => PlayerItems.Bomb; }
+        public override PlayerItems PlayerItems { get => PlayerItems.Bomb; }
         private readonly int xOffset = 136, yOffset = 0;
         public BombItem(Texture2D texture, Vector2 location)
         {

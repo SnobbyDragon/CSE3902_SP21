@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    class ArrowItem : AbstractItem, IItem
+    class ArrowItem : AbstractItem
     {
-        public new PlayerItems PlayerItems { get => PlayerItems.Arrow; }
-        public new PlayerItems SecondaryType { get => PlayerItems.ArrowType; }
+        public override PlayerItems PlayerItems { get => PlayerItems.Arrow; }
+        public override PlayerItems SecondaryType { get => PlayerItems.ArrowType; }
         private readonly int xOffset = 154, yOffset = 0;
 
         public ArrowItem(Texture2D texture, Vector2 location)

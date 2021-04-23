@@ -6,14 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace sprint0
 {
-    public enum EnemyEnum
-    {
-        Wallmaster, TealGel, BlueGel, GreenGel, GoldGel, LimeGel, BrownGel, GrayGel, WhiteGel,
-        GreenZol, GoldZol, LimeZol, BrownZol, GrayZol, WhiteZol,
-        Snake, RedGoriya, BlueGoriya, RedKeese, BlueKeese, Stalfos, Trap, Trapparatus,
-        Aquamentus, Patra, Manhandla, Gleeok, Ganon, OrangeGohma, BlueGohma, Dodongo, Digdogger,
-        Gel, Goriya, Keese, Zol, Gohma, Owl, FairyEnemy
-    }
     public class EnemiesSpriteFactory
     {
         private readonly Game1 game;

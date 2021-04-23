@@ -14,6 +14,7 @@ namespace sprint0
         public DownUseItemState(IPlayer player)
         {
             this.player = player;
+            player.Direction = Direction.South;
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkDownItem, player.Pos);
         }
 

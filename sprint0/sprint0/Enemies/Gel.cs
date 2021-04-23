@@ -9,7 +9,7 @@ namespace sprint0
     public class Gel : AbstractEnemy
     {
         private readonly Dictionary<Color, List<Rectangle>> colorMap;
-        private readonly Color color;
+        public Color Color { get; }
         public new EnemyType Type { get => EnemyType.Gel; }
 
         public Gel(Texture2D texture, Vector2 location, Game1 gm, Color gelColor) : base(texture, location, gm)
@@ -22,7 +22,7 @@ namespace sprint0
             Texture = texture;
             totalFrames = 2;
             currentFrame = 0;
-            color = gelColor;
+            Color = gelColor;
             damage = 1;
 
             colorMap = new Dictionary<Color, List<Rectangle>>
@@ -40,7 +40,7 @@ namespace sprint0
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (damageTimer % 2 == 0) spriteBatch.Draw(Texture, Location, colorMap[color][currentFrame / repeatedFrames], Color.White);
+            if (damageTimer % 2 == 0) spriteBatch.Draw(Texture, Location, colorMap[Color][currentFrame / repeatedFrames], Color.White);
         }
     }
 }

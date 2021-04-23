@@ -5,10 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 //Author: Hannah Johnson and co
 namespace sprint0
 {
-    public enum NPCEnum
-    {
-        OldMan1, OldMan2, OldWoman, GreenMerchant, WhiteMerchant, RedMerchant, Flame
-    }
     public class NpcsSpriteFactory
     {
         private readonly Texture2D texture;

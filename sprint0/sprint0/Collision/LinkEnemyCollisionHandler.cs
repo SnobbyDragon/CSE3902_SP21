@@ -11,7 +11,7 @@ namespace sprint0
 
         public void HandleCollision(IPlayer link, IEnemy enemy, Direction side)
         {
-            if (!(link is DamagedLink || link.IsJumping()))
+            if (!(link is DamagedLink || link.IsJumping()) && !(enemy is Trapparatus))
             {
                 link.TakeDamage(side, enemy.Damage);
                 switch (side)

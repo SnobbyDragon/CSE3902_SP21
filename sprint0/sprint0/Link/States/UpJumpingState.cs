@@ -13,6 +13,7 @@ namespace sprint0
         public UpJumpingState(IPlayer player)
         {
             this.player = player;
+            player.Direction = Direction.North;
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkUpIdle, player.Pos);
             speed = initialSpeed;
             count = 0;

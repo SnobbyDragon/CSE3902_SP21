@@ -10,7 +10,7 @@ namespace sprint0
         {
             if (!block.IsWalkable())
             {
-                if (!(enemy is ManhandlaLimb) && !(enemy is PatraMinion))
+                if (!(enemy is ManhandlaLimb) && !(enemy is PatraMinion) && !(enemy is Trapparatus))
                 {
                     switch (side)
                     {

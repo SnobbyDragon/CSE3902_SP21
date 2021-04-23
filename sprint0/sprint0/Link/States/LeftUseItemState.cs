@@ -14,6 +14,7 @@ namespace sprint0
         public LeftUseItemState(IPlayer player)
         {
             this.player = player;
+            player.Direction = Direction.West;
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkLeftItem, player.Pos);
         }
 

@@ -5,10 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BlueMap : AbstractItem, IItem
+    public class BlueMap : AbstractItem
     {
         private readonly int xOffset = 88, yOffset = 16;
-        public new PlayerItems PlayerItems { get => PlayerItems.Letter; }
+        public override PlayerItems PlayerItems { get => PlayerItems.Letter; }
 
         public BlueMap(Texture2D texture, Vector2 location)
         {

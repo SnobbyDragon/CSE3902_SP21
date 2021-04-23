@@ -12,6 +12,7 @@ namespace sprint0
         public UpWoodSwordState(IPlayer player)
         {
             this.player = player;
+            player.Direction = Direction.North;
             sprite = Room.PlayerFactory.MakeSprite(LinkEnum.LinkUpSword, player.Pos, player.CurrentSword);
         }
 

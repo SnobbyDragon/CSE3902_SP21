@@ -5,10 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class BoomerangItem : AbstractItem, IItem
+    public class BoomerangItem : AbstractItem
     {
-        public new PlayerItems PlayerItems { get => PlayerItems.Boomerang; }
-        public new PlayerItems SecondaryType { get => PlayerItems.BoomerangType; }
+        public override PlayerItems PlayerItems { get => PlayerItems.Boomerang; }
+        public override PlayerItems SecondaryType { get => PlayerItems.BoomerangType; }
         private readonly int xOffset = 129, yOffset = 3;
 
         public BoomerangItem(Texture2D texture, Vector2 location)

@@ -5,10 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class Candle : AbstractItem, IItem
+    public class Candle : AbstractItem
     {
-        public new PlayerItems PlayerItems { get => PlayerItems.RedCandle; }
-        public new PlayerItems SecondaryType { get => PlayerItems.CandleType; }
+        public override PlayerItems PlayerItems { get => PlayerItems.RedCandle; }
+        public override PlayerItems SecondaryType { get => PlayerItems.CandleType; }
         private readonly int xOffset = 160, yOffset = 0;
 
         public Candle(Texture2D texture, Vector2 location)

@@ -5,11 +5,11 @@ using System;
 //Author: Angela Li
 namespace sprint0
 {
-    public class BlueBoomerangItem : AbstractItem, IItem
+    public class BlueBoomerangItem : AbstractItem
     {
         private readonly int xOffset = 129, yOffset = 19;
-        public new PlayerItems PlayerItems { get => PlayerItems.MagicalBoomerang; }
-        public new PlayerItems SecondaryType { get => PlayerItems.BoomerangType; }
+        public override PlayerItems PlayerItems { get => PlayerItems.MagicalBoomerang; }
+        public override PlayerItems SecondaryType { get => PlayerItems.BoomerangType; }
 
         public BlueBoomerangItem(Texture2D texture, Vector2 location)
         {

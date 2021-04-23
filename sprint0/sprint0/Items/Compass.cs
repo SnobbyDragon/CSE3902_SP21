@@ -5,10 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 //Updated: 04/12/21 by shah.1440
 namespace sprint0
 {
-    public class Compass : AbstractItem, IItem
+    public class Compass : AbstractItem
     {
         private readonly int xOffset = 258, yOffset = 1;
-        public new PlayerItems PlayerItems { get => PlayerItems.Compass; }
+        public override PlayerItems PlayerItems { get => PlayerItems.Compass; }
 
         public Compass(Texture2D texture, Vector2 location)
         {
