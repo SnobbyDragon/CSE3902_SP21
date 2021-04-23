@@ -44,6 +44,7 @@ namespace sprint0
                 DungeonEnum.RightBombedOpening => new BombedOpening(texture, location, Direction.West, game.Rooms[roomIndex]),
                 DungeonEnum.LeftBombedOpening => new BombedOpening(texture, location, Direction.East, game.Rooms[roomIndex]),
                 DungeonEnum.UpBombedOpening => new BombedOpening(texture, location, Direction.South, game.Rooms[roomIndex]),
+                DungeonEnum.DarkRoom => new DarkRoom(texture, location, game),
                 _ => throw new ArgumentException("Invalid sprite! " + spriteType.ToString() + " Sprite factory failed."),
             };
         }
