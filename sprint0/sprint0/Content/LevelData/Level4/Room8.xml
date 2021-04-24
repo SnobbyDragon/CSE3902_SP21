@@ -12,18 +12,17 @@
 
 
 
+	<Block ObjectName="Block" LocationX="480" LocationY="100" />?
 	<Block ObjectName="Block" LocationX="480" LocationY="300" />?
-	<Block ObjectName="Block" LocationX="480" LocationY="340" />?
-	<Block ObjectName="Block" LocationX="480" LocationY="380" />?
+	<Block ObjectName="Block" LocationX="480" LocationY="280" />?
 
-	<Block ObjectName="Block" LocationX="120" LocationY="420" />?
-	<Block ObjectName="Block" LocationX="160" LocationY="420" />?
-	<Block ObjectName="Block" LocationX="200" LocationY="420" />?
-	<Block ObjectName="Block" LocationX="240" LocationY="420" />?
+	<Block ObjectName="Block" LocationX="120" LocationY="220" />?
+	<Block ObjectName="Block" LocationX="160" LocationY="100" />?
+	<Block ObjectName="Block" LocationX="260" LocationY="320" />?
 
-	<Enemy ObjectName="Stalfos" LocationX="120" LocationY="340" />?
-	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="260" />?
-	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="480" />?
+	<Enemy ObjectName="RedGoriya" LocationX="360" LocationY="400" />?
+	<Enemy ObjectName="RedGoriya" LocationX="360" LocationY="300" />?
+	<Enemy ObjectName="RedGoriya" LocationX="280" LocationY="220" />?
 
 	<Player ObjectName="Link" LocationX="280" LocationY="340" />?
 	?
