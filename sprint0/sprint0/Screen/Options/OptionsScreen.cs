@@ -44,7 +44,7 @@ namespace sprint0
 
         private void BuildSpeed()
         {
-            speed = "";
+            speed = "\n";
             int sp = game.ScrollSpeed;
             for (int i = 0; i < sp; i++)
             {

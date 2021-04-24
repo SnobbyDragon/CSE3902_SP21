@@ -9,6 +9,7 @@ namespace sprint0
 {
     public class InstructionScreen
     {
+        private readonly string messageGoal = "Your objective: \nPick up the triforce piece \nlocated in one of the rooms. \nGood Luck!";
         private readonly string messageIntro = "Controls:";
         private readonly string messageLinkMovement = "WASD / Arrow Keys: Move Link";
         private readonly string messageLinkSword = " 'N' / 'Z': Use Sword";
@@ -91,6 +92,7 @@ namespace sprint0
                 new Text(game, messageItemSelection, new Vector2(xCoord, yCoord*menuOffset++), textColor),
                 new Text(game, messageQuit, new Vector2(xCoord, yCoord*menuOffset++), textColor),
                 new Text(game, messageReset, new Vector2(xCoord, yCoord*menuOffset++), textColor),
+                new Text(game, messageGoal, new Vector2(xCoord, yCoord*++menuOffset), textColor),
             };
     }
 }
