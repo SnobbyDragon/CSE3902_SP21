@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-//Author: Jacob Urick
-//Updated: 03/28/21 by urick.9
+//Author: Stuti Shah
 namespace sprint0
 {
     public class InstructionScreen
