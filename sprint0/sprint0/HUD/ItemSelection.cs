@@ -47,7 +47,7 @@ namespace sprint0
         public void Draw(SpriteBatch spriteBatch)
         {
             pos = index;
-            if (BowRange()) pos++;
+            if (index == itemList.IndexOf(PlayerItems.Bow)) pos++;
             if (Handle() && itemList[index] != PlayerItems.None)
                 spriteBatch.Draw(Texture, GetRectangle(), sources[currentFrame / repeatedFrames], Color.White);
         }
@@ -59,6 +59,8 @@ namespace sprint0
             index = (index + itemNum - 1) % itemNum;
             while (Search())
                 index = (index + itemNum - 1) % itemNum;
+            if (index == itemList.IndexOf(PlayerItems.Arrow) && inventoryItems.ContainsKey(PlayerItems.Bow))
+                HandleLeft();
             ResetColor();
         }
 
@@ -67,6 +69,8 @@ namespace sprint0
             index = (index + 1) % itemNum;
             while (Search())
                 index = (index + 1) % itemNum;
+            if (index == itemList.IndexOf(PlayerItems.Arrow) && inventoryItems.ContainsKey(PlayerItems.Bow))
+                HandleRight();
             ResetColor();
         }
         private bool Search() => !InventoryHas() && Handle();
@@ -79,6 +83,5 @@ namespace sprint0
             => new Rectangle(LocationMapping[ItemAtIndex(pos)].X, LocationMapping[ItemAtIndex(pos)].Y,
                 (int)(Height * Game1.Scale), (int)(Height * Game1.Scale));
         public void Update() => currentFrame = (currentFrame + 1) % (totalFrames * repeatedFrames);
-        private bool BowRange() => index == itemList.IndexOf(PlayerItems.Bow);
     }
 }

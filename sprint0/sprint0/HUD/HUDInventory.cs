@@ -23,12 +23,15 @@ namespace sprint0
 
         private void DrawBowArrow(SpriteBatch spriteBatch)
         {
-            int shift = 8;
-            if (HasItem(PlayerItems.Arrow))
-                spriteBatch.Draw(Texture, new Rectangle(CurrentItem.X - shift, CurrentItem.Y, CurrentItem.Width, CurrentItem.Height), ItemMap[PlayerItems.Arrow], Color.White);
-            else
-                spriteBatch.Draw(Texture, new Rectangle(CurrentItem.X - shift, CurrentItem.Y, CurrentItem.Width, CurrentItem.Height), ItemMap[PlayerItems.SilverArrow], Color.White);
-            spriteBatch.Draw(Texture, new Rectangle(CurrentItem.X + shift, CurrentItem.Y, CurrentItem.Width, CurrentItem.Height), ItemMap[PlayerItems.Bow], Color.White);
+            if (Item != PlayerItems.None)
+            {
+                int shift = 8;
+                if (HasItem(PlayerItems.Arrow))
+                    spriteBatch.Draw(Texture, new Rectangle(CurrentItem.X - shift, CurrentItem.Y, CurrentItem.Width, CurrentItem.Height), ItemMap[PlayerItems.Arrow], Color.White);
+                else
+                    spriteBatch.Draw(Texture, new Rectangle(CurrentItem.X - shift, CurrentItem.Y, CurrentItem.Width, CurrentItem.Height), ItemMap[PlayerItems.SilverArrow], Color.White);
+                spriteBatch.Draw(Texture, new Rectangle(CurrentItem.X + shift, CurrentItem.Y, CurrentItem.Width, CurrentItem.Height), ItemMap[PlayerItems.Bow], Color.White);
+            }
         }
 
         public void AddItem(PlayerItems newItem)
