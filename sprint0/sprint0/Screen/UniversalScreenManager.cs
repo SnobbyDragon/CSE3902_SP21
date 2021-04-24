@@ -12,6 +12,7 @@ namespace sprint0
         private VictoryScreenManager victorScreenManager;
         private OptionsScreenManager optionsScreenManager;
         private OpeningScreenManager openingScreenManager;
+        private InstructionScreenManager instructionScreenManager;
         public UniversalScreenManager(Game1 game)
         {
             CreateScreens(game);
@@ -39,6 +40,8 @@ namespace sprint0
             }
             else if (state.Equals(GameStateMachine.State.opening))
                 openingScreenManager.Update();
+            else if (state.Equals(GameStateMachine.State.instructions))
+                instructionScreenManager.Update();
         }
 
         public void Draw(SpriteBatch _spriteBatch, GameStateMachine.State state)
@@ -57,6 +60,8 @@ namespace sprint0
                 victorScreenManager.Draw(_spriteBatch);
             else if (state.Equals(GameStateMachine.State.opening))
                 openingScreenManager.Draw(_spriteBatch);
+            else if (state.Equals(GameStateMachine.State.instructions))
+                instructionScreenManager.Draw(_spriteBatch);
         }
 
         private void CreateScreens(Game1 game)
@@ -68,6 +73,7 @@ namespace sprint0
             gameOverScreenManager = screenFactory.MakeGameOverScreen();
             creditsScreenManager = screenFactory.MakeCreditsScreen();
             startScreenManager = screenFactory.MakeStartScreen();
+            instructionScreenManager = screenFactory.MakeInstructionScreen();
         }
     }
 }

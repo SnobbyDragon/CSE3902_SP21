@@ -43,9 +43,11 @@ namespace sprint0
 
         public bool HasItem(List<PlayerItems> itemList)
         {
-            bool hasItem = false;
-            foreach (PlayerItems item in itemList) hasItem = hasItem || HasItem(item);
-            return hasItem;
+            foreach (PlayerItems item in itemList)
+            {
+                if (HasItem(item)) return true;
+            }
+            return false;
         }
 
         public void AddAItem(PlayerItems newItem)

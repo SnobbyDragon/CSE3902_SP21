@@ -47,5 +47,6 @@
     <Folder Include="SavedGame\" />
     <Folder Include="Enums\" />
     <Folder Include="Screen\OpeningScreen\" />
+    <Folder Include="Screen\InstructionScreen\" />
   </ItemGroup>
 </Project>

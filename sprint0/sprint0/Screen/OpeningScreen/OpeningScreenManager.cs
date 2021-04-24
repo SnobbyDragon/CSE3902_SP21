@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Graphics;
+//Author: Stuti Shah
 namespace sprint0
 {
     public class OpeningScreenManager

@@ -10,10 +10,10 @@ namespace sprint0
     public class CreditsScreen
     {
         private readonly string message0 = "This game is based on the original Zelda.";
-        private readonly string message1 = "It was created for CSE 3902 in Spring 2021 at the OSU";
+        private readonly string message1 = "It was created for CSE 3902 \nin Spring 2021 at the OSU";
         private readonly string message2 = "Its authors include:\n\nNeha Gupta,\n\nJesse He,\n\nHannah Johnson,\n\nAngela Li,\n\nStuti Shah,\n\nJacob Urick";
         private readonly string message3 = "We hope you enjoy it :)";
-        private readonly string message4 = "Special thanks to Grace McKenzie and Dr. Matt Bogus for lots of invaluable feedback.";
+        private readonly string message4 = "Special thanks to: \nGrace McKenzie and Dr. Matt Bogus \nfor lots of invaluable feedback.";
         private List<Text> textList;
         private readonly int xCoord = 25;
         private readonly int yCoord = 100;

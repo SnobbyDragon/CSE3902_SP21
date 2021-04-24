@@ -5,7 +5,7 @@
     public class GameStateMachine
     {
         private readonly Game1 game;
-        public enum State { start, play, pause, test, over, credits, win, changeRoom, options, opening };
+        public enum State { start, play, pause, test, over, credits, win, changeRoom, options, opening, instructions };
         public enum Mode { easy, hard };
         private Mode mode;
         private State state;
@@ -187,6 +187,22 @@
         public void HandleCredits()
         {
             if (state == State.start) state = State.credits;
+        }
+
+        public void HandleInstructions()
+        {
+            if (state == State.play || state == State.start || state == State.test)
+            {
+                prev = state;
+                state = State.instructions;
+            }
+            else if (state == State.instructions) HandleInstructionToPrev();
+        }
+
+        public void HandleInstructionToPrev()
+        {
+            if (prev == State.start) HandleStart();
+            else if (prev == State.play || prev == State.test) HandlePlay();
         }
     }
 }

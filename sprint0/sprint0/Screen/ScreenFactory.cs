@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+//Author: Stuti Shah
 namespace sprint0
 {
     public enum ScreenEnum
@@ -21,5 +22,6 @@ namespace sprint0
         public OptionsScreenManager MakeOptionsScreen() => new OptionsScreenManager(game);
         public GameOverScreenManager MakeGameOverScreen() => new GameOverScreenManager(game);
         public VictoryScreenManager MakeVictoryScreen() => new VictoryScreenManager(game);
+        public InstructionScreenManager MakeInstructionScreen() => new InstructionScreenManager(game);
     }
 }
