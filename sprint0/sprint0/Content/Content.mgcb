@@ -188,6 +188,12 @@
 /processorParam:Quality=Best
 /build:Sound/Cat.wav
 
+#begin Sound/coronavirus.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/coronavirus.wav
+
 #begin Sound/Door_Unlock.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

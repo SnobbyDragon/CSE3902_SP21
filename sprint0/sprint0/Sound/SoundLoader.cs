@@ -10,7 +10,7 @@ namespace sprint0
         private readonly List<Song> songs;
         private readonly int numSongs = 7;
         private readonly Dictionary<SoundEnum, SoundEffect> soundEffects;
-        private readonly SoundEffect cardiB;
+        private readonly Dictionary<SoundEnum, SoundEffect> cardiB;
         public bool RunningLikeCardiO { get; set; }
 
         public SoundLoader(Game1 game)
@@ -67,15 +67,22 @@ namespace sprint0
 
             };
 
-            cardiB = game.Content.Load<SoundEffect>("Sound/ow");
+            cardiB = new Dictionary<SoundEnum, SoundEffect>
+            {
+                { SoundEnum.LinkDamaged, game.Content.Load<SoundEffect>("Sound/ow") },
+                { SoundEnum.SwordShoot, game.Content.Load<SoundEffect>("Sound/coronavirus") },
+                { SoundEnum.Arrow, game.Content.Load<SoundEffect>("Sound/coronavirus") },
+                { SoundEnum.Boomerang, game.Content.Load<SoundEffect>("Sound/coronavirus") },
+                { SoundEnum.UseBomb, game.Content.Load<SoundEffect>("Sound/coronavirus") },
+            };
         }
 
         public List<Song> GetMusic() => songs;
 
         public SoundEffect GetSoundEffect(SoundEnum soundEffectType)
         {
-            if (RunningLikeCardiO && soundEffectType == SoundEnum.LinkDamaged)
-                return cardiB;
+            if (RunningLikeCardiO && cardiB.ContainsKey(soundEffectType))
+                return cardiB[soundEffectType];
             return soundEffects[soundEffectType];
         }
     }
