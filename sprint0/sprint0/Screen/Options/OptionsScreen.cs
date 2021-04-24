@@ -72,11 +72,11 @@ namespace sprint0
             BuildMode();
             BuildSpeed();
             textList = new List<Text> {
-              new Text(game, message0, new Vector2(xCoord, yCoord), Color.Black),
-                new Text(game, message1, new Vector2(xCoord, yCoord1), Color.Black),
-                new Text(game, message2 + speed, new Vector2(xCoord, yCoord2), Color.Black),
-                new Text(game, message3 + mode + message4, new Vector2(xCoord, yCoord3), Color.Black),
-                new Text(game, message5, new Vector2(xCoord, yCoord4), Color.Black),
+              new Text(game, message0, new Vector2(xCoord, yCoord), textColor),
+                new Text(game, message1, new Vector2(xCoord, yCoord1), textColor),
+                new Text(game, message2 + speed, new Vector2(xCoord, yCoord2), textColor),
+                new Text(game, message3 + mode + message4, new Vector2(xCoord, yCoord3),textColor),
+                new Text(game, message5, new Vector2(xCoord, yCoord4), textColor),
             };
         }
 
