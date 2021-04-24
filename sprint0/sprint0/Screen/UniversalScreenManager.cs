@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 //Author: Stuti Shah
 namespace sprint0
 {
@@ -9,19 +6,16 @@ namespace sprint0
     {
         private readonly PauseScreenManager pauseScreenManager;
         public PauseScreenManager PauseScreenManager { get => pauseScreenManager; }
-        private readonly GameOverScreenManager gameOverScreenManager;
-        private readonly StartScreenManager startScreenManager;
-        private readonly CreditsScreenManager creditsScreenManager;
-        private readonly VictoryScreenManager victorScreenManager;
-        private readonly OptionsScreenManager optionsScreenManager;
+        private GameOverScreenManager gameOverScreenManager;
+        private StartScreenManager startScreenManager;
+        private CreditsScreenManager creditsScreenManager;
+        private VictoryScreenManager victorScreenManager;
+        private OptionsScreenManager optionsScreenManager;
+        private OpeningScreenManager openingScreenManager;
         public UniversalScreenManager(Game1 game)
         {
-            optionsScreenManager = new OptionsScreenManager(game);
-            victorScreenManager = new VictoryScreenManager(game);
+            CreateScreens(game);
             pauseScreenManager = new PauseScreenManager(game);
-            gameOverScreenManager = new GameOverScreenManager(game);
-            creditsScreenManager = new CreditsScreenManager(game);
-            startScreenManager = new StartScreenManager(game);
         }
 
         public void Update(GameStateMachine.State state)
@@ -43,6 +37,8 @@ namespace sprint0
                 pauseScreenManager.SetupItemSelector();
                 pauseScreenManager.UpdateItemSelection();
             }
+            else if (state.Equals(GameStateMachine.State.opening))
+                openingScreenManager.Update();
         }
 
         public void Draw(SpriteBatch _spriteBatch, GameStateMachine.State state)
@@ -59,6 +55,19 @@ namespace sprint0
                 optionsScreenManager.Draw(_spriteBatch);
             else if (state.Equals(GameStateMachine.State.win))
                 victorScreenManager.Draw(_spriteBatch);
+            else if (state.Equals(GameStateMachine.State.opening))
+                openingScreenManager.Draw(_spriteBatch);
+        }
+
+        private void CreateScreens(Game1 game)
+        {
+            ScreenFactory screenFactory = new ScreenFactory(game);
+            openingScreenManager = screenFactory.MakeOpeningScreen();
+            optionsScreenManager = screenFactory.MakeOptionsScreen();
+            victorScreenManager = screenFactory.MakeVictoryScreen();
+            gameOverScreenManager = screenFactory.MakeGameOverScreen();
+            creditsScreenManager = screenFactory.MakeCreditsScreen();
+            startScreenManager = screenFactory.MakeStartScreen();
         }
     }
 }

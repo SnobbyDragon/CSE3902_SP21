@@ -75,9 +75,9 @@ namespace sprint0
             InitializeManagers();
             SoundFactory = new SoundFactory(this);
             Music = SoundFactory.MakeBackgroundMusic();
-            stateMachine.HandleStart();
+            stateMachine.HandleOpening();
             VisitedRooms = new List<int>();
-            ScrollSpeed = (scrollSpeedLbound + scrollSpeedUbound)/2;
+            ScrollSpeed = (scrollSpeedLbound + scrollSpeedUbound) / 2;
             Rooms = new Dictionary<int, Room>();
             RoomIndex = levelMachine.GetInitialRoomIndex();
             LoadSaved = false;
@@ -141,7 +141,8 @@ namespace sprint0
                 }
                 frontier = newFrontier;
             }
-            if (levelMachine.GetLevelNumber() == 1) {
+            if (levelMachine.GetLevelNumber() == 1)
+            {
                 Rooms[0] = new Room(_spriteBatch, this, 0, Rooms[1].Offset + eastOffset, LoadSaved);
             }
             foreach (Room rm in Rooms.Values)
@@ -149,13 +150,15 @@ namespace sprint0
         }
 
 
-        public void UpdateScrollSpeed(bool b) {
+        public void UpdateScrollSpeed(bool b)
+        {
             if (b)
             {
                 if (ScrollSpeed < scrollSpeedUbound)
                     ScrollSpeed += 1;
             }
-            else {
+            else
+            {
                 if (ScrollSpeed > scrollSpeedLbound)
                     ScrollSpeed -= 1;
             }
@@ -192,7 +195,8 @@ namespace sprint0
             base.Update(gameTime);
         }
 
-        public void UpdateDifficulty(GameStateMachine.Mode mode) {
+        public void UpdateDifficulty(GameStateMachine.Mode mode)
+        {
             foreach (Room room in Rooms.Values)
                 room.UpdateDifficulty(mode);
         }
