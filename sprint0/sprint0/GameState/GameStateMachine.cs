@@ -1,11 +1,11 @@
 ﻿namespace sprint0
 {
     //Author: Jacob Urick
-    // Last updated 3/28/2021 by urick.9
+    // Last updated 4/23/2021 by shah.1440
     public class GameStateMachine
     {
         private readonly Game1 game;
-        public enum State { start, play, pause, test, over, credits, win, changeRoom, options };
+        public enum State { start, play, pause, test, over, credits, win, changeRoom, options, opening };
         public enum Mode { easy, hard };
         private Mode mode;
         private State state;
@@ -16,9 +16,18 @@
         public GameStateMachine(Game1 game)
         {
             this.game = game;
-            state = State.start;
+            state = State.opening;
         }
 
+        public void SetMode(Mode mode) => this.mode = mode;
+        public Mode GetMode() => mode;
+        public void HandleDeath() => state = State.over;
+        public void HandleVictory() => state = State.win;
+        public void HandleStart() => state = State.start;
+        public void HandleOpening() => state = State.opening;
+        public Direction GetChangeDirection() => direction;
+        public void HandlePlay() => state = State.play;
+        public State GetState() => state;
         public void HandleEasy()
         {
             if (state == State.options)
@@ -36,17 +45,6 @@
                 mode = Mode.hard;
             }
         }
-        public void SetMode(Mode mode)
-        {
-            this.mode = mode;
-        }
-
-        public Mode GetMode()
-        {
-            return mode;
-        }
-
-        public void HandleDeath() => state = State.over;
         public void HandleTest()
         {
             if (state == State.play) state = State.test;
@@ -77,8 +75,6 @@
             }
             else if (state == State.options) state = prev;
         }
-
-        public Direction GetChangeDirection() => direction;
 
         public void HandleNewRoom(Direction d, int dest)
         {
@@ -192,13 +188,5 @@
         {
             if (state == State.start) state = State.credits;
         }
-
-        public void HandleVictory() => state = State.win;
-        public void HandleStart() => state = State.start;
-        public void HandlePlay()
-        {
-            if (state == State.test) state = State.play;
-        }
-        public State GetState() => state;
     }
 }

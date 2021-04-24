@@ -23,6 +23,7 @@ namespace sprint0
         private readonly int fourthOffset = 7;
         private readonly int mandatoryCreditsTimer = 800;
         private int counter;
+        private readonly Color textColor = Color.White;
         private readonly Game1 game;
 
         public CreditsScreen(Game1 game)
@@ -30,11 +31,11 @@ namespace sprint0
             this.game = game;
             counter = 0;
             textList = new List<Text> {
-                new Text(game, message0, new Vector2(xCoord, yCoord), Color.Black),
-                new Text(game, message1, new Vector2(xCoord, yCoord*firstOffset), Color.Black),
-                new Text(game, message2, new Vector2(xCoord, yCoord*secondOffset), Color.Black),
-                new Text(game, message3, new Vector2(xCoord, yCoord*thirdOffset), Color.Black),
-                new Text(game, message4, new Vector2(xCoord, yCoord*fourthOffset), Color.Black)
+                new Text(game, message0, new Vector2(xCoord, yCoord), textColor),
+                new Text(game, message1, new Vector2(xCoord, yCoord*firstOffset), textColor),
+                new Text(game, message2, new Vector2(xCoord, yCoord*secondOffset), textColor),
+                new Text(game, message3, new Vector2(xCoord, yCoord*thirdOffset), textColor),
+                new Text(game, message4, new Vector2(xCoord, yCoord*fourthOffset), textColor)
             };
         }
 
@@ -45,11 +46,11 @@ namespace sprint0
                 counter = 0;
                 textList = new List<Text>
                 {
-                    new Text(game, message0, new Vector2(xCoord, yCoord), Color.Black),
-                    new Text(game, message1, new Vector2(xCoord, yCoord*firstOffset), Color.Black),
-                    new Text(game, message2, new Vector2(xCoord, yCoord*secondOffset), Color.Black),
-                    new Text(game, message3, new Vector2(xCoord, yCoord*thirdOffset), Color.Black),
-                    new Text(game, message4, new Vector2(xCoord, yCoord*fourthOffset), Color.Black)
+                    new Text(game, message0, new Vector2(xCoord, yCoord), textColor),
+                    new Text(game, message1, new Vector2(xCoord, yCoord*firstOffset), textColor),
+                    new Text(game, message2, new Vector2(xCoord, yCoord*secondOffset), textColor),
+                    new Text(game, message3, new Vector2(xCoord, yCoord*thirdOffset), textColor),
+                    new Text(game, message4, new Vector2(xCoord, yCoord*fourthOffset), textColor)
                 };
                 game.stateMachine.HandleStart();
             }

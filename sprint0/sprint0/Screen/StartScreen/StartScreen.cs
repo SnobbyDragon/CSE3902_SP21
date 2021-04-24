@@ -26,17 +26,18 @@ namespace sprint0
         private readonly int yCoord3 = 450;
         private readonly int xCoord2 = 250;
         private readonly Game1 game;
+        private readonly Color textColor = Color.White;
 
         public StartScreen(Game1 game)
         {
             this.game = game;
             textList = new List<Text> {
-                new Text(game, message0, new Vector2(xCoord0, yCoord0), Color.Black),
-                new Text(game, message1, new Vector2(xCoord12, yCoord12), Color.Black),
-                new Text(game, message2, new Vector2(xCoord1, yCoord2), Color.Black),
-                new Text(game, message3, new Vector2(xCoord2, yCoord2), Color.Black),
-                new Text(game, message4, new Vector2(xCoord1, yCoord3), Color.Black),
-                new Text(game, message5, new Vector2(xCoord2, yCoord3), Color.Black)
+                new Text(game, message0, new Vector2(xCoord0, yCoord0), textColor),
+                new Text(game, message1, new Vector2(xCoord12, yCoord12), textColor),
+                new Text(game, message2, new Vector2(xCoord1, yCoord2), textColor),
+                new Text(game, message3, new Vector2(xCoord2, yCoord2), textColor),
+                new Text(game, message4, new Vector2(xCoord1, yCoord3), textColor),
+                new Text(game, message5, new Vector2(xCoord2, yCoord3), textColor)
             };
         }
 

@@ -46,5 +46,6 @@
     <Folder Include="Input\Controller\SpecialControls\" />
     <Folder Include="SavedGame\" />
     <Folder Include="Enums\" />
+    <Folder Include="Screen\OpeningScreen\" />
   </ItemGroup>
 </Project>

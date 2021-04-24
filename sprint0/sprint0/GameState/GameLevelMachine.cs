@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using System.Linq;
     //Author: Jacob Urick
-    // Last updated 4/22/2021 by urick.9
+    // Last updated 4/23/2021 by shah.1440
     public class GameLevelMachine
     {
         private int numberOfTotalRooms;
@@ -14,8 +14,9 @@
         private int levelNumber;
         private int numberOfRooms;
         private AbstractLevel level;
-        public enum Level { Level2, Level1, Level3, Level4 }
-        private Level levelState;
+        public Level LevelState { get => levelState; }
+        public enum Level { Level1, Level2, Level3, Level4 }
+        public Level levelState;
         public GameLevelMachine()
         {
             levelState = Level.Level1;
@@ -26,15 +27,19 @@
             numberOfTotalRooms = level.GetTotalNumberOfRooms();
         }
 
+        public List<int> GetRoomsWithKeys() => level.GetRoomsWithKeys();
+        public string GetLevelString() => levelString;
+        public int GetNumberOfRooms() => numberOfRooms;
+        public int GetLevelNumber() => levelNumber;
+        public int GetNumberOfTotalRooms() => numberOfTotalRooms;
+        public int GetInitialRoomIndex() => level.GetInitialRoomIndex();
 
-        public List<int> GetRoomsWithKeys() {
-            return level.GetRoomsWithKeys();
-        }
-        public void SetLevel(Level state) {
+        public void SetLevel(Level state)
+        {
             this.levelState = state;
-            if (state == Level.Level1) {
+            if (state == Level.Level1)
+            {
                 level = new Level1();
-
             }
             if (state == Level.Level2)
             {
@@ -55,28 +60,8 @@
 
         }
 
-        public string GetLevelString() {
-            return levelString;
-        }
-        public int GetNumberOfRooms()
+        public Dictionary<Direction, int> GetAdjacentRooms(int roomIndex)
         {
-            return numberOfRooms;
-
-        }
-        public int GetLevelNumber()
-        {
-            return levelNumber;
-        }
-        public int GetNumberOfTotalRooms()
-        {
-            return numberOfTotalRooms;
-        }
-
-        public int GetInitialRoomIndex() {
-            return level.GetInitialRoomIndex();
-        }
-
-        public Dictionary<Direction, int> GetAdjacentRooms(int roomIndex) {
             if (levelState == Level.Level1)
             {
                 return AdjacentRooms.ListOfAdjacentRooms(roomIndex);
@@ -85,11 +70,11 @@
             {
                 return AdjacentRooms2.ListOfAdjacentRooms(roomIndex);
             }
-            else if(levelState == Level.Level3)
+            else if (levelState == Level.Level3)
             {
                 return AdjacentRooms3.ListOfAdjacentRooms(roomIndex);
             }
-            else 
+            else
             {
                 return AdjacentRooms4.ListOfAdjacentRooms(roomIndex);
             }
@@ -109,7 +94,7 @@
             {
                 return AdjacentRooms3.GetAdjacentRoom(roomIndex, side);
             }
-            else 
+            else
             {
                 return AdjacentRooms4.GetAdjacentRoom(roomIndex, side);
             }

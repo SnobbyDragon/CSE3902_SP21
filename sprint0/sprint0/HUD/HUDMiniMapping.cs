@@ -14,14 +14,14 @@ namespace sprint0
         private readonly Dictionary<int, int> rowMapping0, rowMapping1, rowMapping2, rowMapping3;
         protected readonly Dictionary<int, int> overlap;
         protected readonly List<Dictionary<int, int>> fullMapping;
-        protected readonly List<Rectangle> source;
+        protected readonly List<Rectangle> source, levelSources;
         private readonly int xOffset = 663, yOffset = 108, totalFrames = 3, startX = 24, startY = 24;
         protected int sideLength = 8;
         public HUDMiniMapping()
         {
             source = SpritesheetHelper.GetFramesH(xOffset, yOffset, sideLength, sideLength, totalFrames);
             source.Add(new Rectangle(528, 126, sideLength, sideLength));
-            source.Add(new Rectangle(537, 117, sideLength, sideLength));
+            levelSources = SpritesheetHelper.GetFramesH(537, 117, sideLength, sideLength, 4);
             roomPos = new Dictionary<int, Rectangle>();
             rowMapping0 = new Dictionary<int, int>
             {
