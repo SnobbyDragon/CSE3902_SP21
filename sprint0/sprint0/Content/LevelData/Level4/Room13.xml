@@ -12,19 +12,16 @@
 
 
 
-	<Block ObjectName="Block" LocationX="480" LocationY="300" />?
-	<Block ObjectName="Block" LocationX="480" LocationY="340" />?
-	<Block ObjectName="Block" LocationX="480" LocationY="380" />?
+	<Block ObjectName="Block" LocationX="220" LocationY="300" />?
+	<Block ObjectName="Block" LocationX="220" LocationY="340" />?
+	<Block ObjectName="Block" LocationX="2200" LocationY="380" />?
 
 	<Block ObjectName="Block" LocationX="120" LocationY="420" />?
 	<Block ObjectName="Block" LocationX="160" LocationY="420" />?
 	<Block ObjectName="Block" LocationX="200" LocationY="420" />?
 	<Block ObjectName="Block" LocationX="240" LocationY="420" />?
 
-	<Enemy ObjectName="Stalfos" LocationX="120" LocationY="340" />?
-	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="260" />?
-	<Enemy ObjectName="Stalfos" LocationX="320" LocationY="480" />?
-
+	<Boss ObjectName="Patra" LocationX="200" LocationY="340" />?
 	<Player ObjectName="Link" LocationX="280" LocationY="340" />?
 	?
 </XnaContent>
