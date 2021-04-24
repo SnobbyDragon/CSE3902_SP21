@@ -26,7 +26,6 @@ namespace sprint0
         private readonly int yCoordLvl2 = 400;
         private readonly int yCoordLvl4 = 500;
         private readonly int yCoord3 = 450;
-        //private readonly int xCoord2 = 250;
         private readonly Game1 game;
         private readonly Color textColor = Color.White;
 
