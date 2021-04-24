@@ -11,7 +11,7 @@ namespace sprint0
     {
         private readonly string message0 = "Options Screen";
         private readonly string message1 = "The current room scroll speed:     ";
-        
+
         private readonly string message2 = "Use the left and right arrow keys to adjust";
         private readonly string message3 = "You are currently in";
         private readonly string message4 = "mode.";
@@ -28,33 +28,38 @@ namespace sprint0
         private string mode = "";
         private readonly Game1 game;
         private string speed;
+        private readonly Color textColor = Color.White;
         public OptionsScreen(Game1 game)
         {
             this.game = game;
             BuildSpeed();
             textList = new List<Text> {
-                new Text(game, message0, new Vector2(xCoord, yCoord), Color.Black),
-                new Text(game, message1, new Vector2(xCoord, yCoord1), Color.Black),
-                new Text(game, message2 + speed, new Vector2(xCoord, yCoord2), Color.Black),
-                new Text(game, message3 + mode + message4, new Vector2(xCoord, yCoord3), Color.Black),
-                new Text(game, message5, new Vector2(xCoord, yCoord4), Color.Black),
+                new Text(game, message0, new Vector2(xCoord, yCoord), textColor),
+                new Text(game, message1, new Vector2(xCoord, yCoord1), textColor),
+                new Text(game, message2 + speed, new Vector2(xCoord, yCoord2), textColor),
+                new Text(game, message3 + mode + message4, new Vector2(xCoord, yCoord3), textColor),
+                new Text(game, message5, new Vector2(xCoord, yCoord4), textColor),
             };
         }
 
-        private void BuildSpeed() {
+        private void BuildSpeed()
+        {
             speed = "";
             int sp = game.ScrollSpeed;
-            for (int i = 0; i < sp; i++) {
+            for (int i = 0; i < sp; i++)
+            {
                 speed += "#";
             }
-            for (int i = 0; i < game.scrollSpeedUbound - sp ; i++)
+            for (int i = 0; i < game.scrollSpeedUbound - sp; i++)
             {
                 speed += "=";
             }
         }
 
-        private void BuildMode() {
-            if (game.stateMachine.GetMode() == GameStateMachine.Mode.easy) {
+        private void BuildMode()
+        {
+            if (game.stateMachine.GetMode() == GameStateMachine.Mode.easy)
+            {
                 mode = easy;
             }
             if (game.stateMachine.GetMode() == GameStateMachine.Mode.hard)
@@ -62,7 +67,7 @@ namespace sprint0
                 mode = hard;
             }
         }
-    public void Update()
+        public void Update()
         {
             BuildMode();
             BuildSpeed();
@@ -81,5 +86,5 @@ namespace sprint0
                 text.Draw(spriteBatch);
         }
     }
-  
+
 }

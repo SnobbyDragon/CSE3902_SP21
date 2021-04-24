@@ -209,7 +209,7 @@ namespace sprint0
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Gray);
+            GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
             if (state.Equals(GameStateMachine.State.changeRoom))
             {
