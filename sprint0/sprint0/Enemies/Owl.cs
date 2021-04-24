@@ -36,10 +36,7 @@ namespace sprint0
             if (damageTimer % 2 == 0) spriteBatch.Draw(Texture, Location, sprites[currentFrame / repeatedFrames], Color.White);
         }
 
-        public override void TakeDamage(int damage)
-        {
-
-        }
+        public override void TakeDamage(int damage) { }
 
         public override void Update()
         {
@@ -60,7 +57,5 @@ namespace sprint0
             dir.Normalize();
             game.Room.LoadLevel.RoomProjectile.AddFireball(Location.Center.ToVector2(), dir, this);
         }
-
-
     }
 }
